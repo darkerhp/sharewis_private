@@ -17,6 +17,13 @@ build:
     # Install packages
     - npm-install
 
+    # Check node versions if needed
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+
     # Check coverage
     # TODO: Setup codecov for repo
     #- script:
