@@ -24,3 +24,23 @@ Then start react-native and run the android app
 $ react-native start
 $ react-native run-android
 ```
+
+## Scripts
+
+### Linting
+Check js and jsx syntax with [eslint](http://eslint.org/)
+```
+$ npm run lint
+```
+
+### Typing
+Check static type with [Flow](https://flowtype.org/)
+```
+$ npm run flow
+```
+
+### Unittesting
+Check unit tests with [Jest](http://facebook.github.io/jest/)
+```
+$ npm test
+```
