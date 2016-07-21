@@ -11,7 +11,7 @@ class Home extends Component {
     return (
       <TouchableHighlight>
         <Text>
-          React Native Test Examples
+          ShareWis ACT
         </Text>
       </TouchableHighlight>
     );

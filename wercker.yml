@@ -1,0 +1,41 @@
+# Read more about containers on our dev center
+# http://devcenter.wercker.com/docs/containers/index.html
+box: node:6.3
+# This is the build pipeline. Pipelines are the core of wercker
+# Read more about pipelines on our dev center
+# http://devcenter.wercker.com/docs/pipelines/index.html
+
+build:
+  # Read more about steps on our dev center:
+  # http://devcenter.wercker.com/docs/steps/index.html
+  steps:
+    - script:
+      name: Set Timezone
+      code: |
+        export TZ="Asia/Tokyo"
+
+    # Install packages
+    - npm-install
+    - script:
+      name: npm install codecov
+      code: |
+         npm install -g jshint codecov to-iso-string
+         npm install --unsafe-perm
+
+    # Check coverage
+    - maxon/npm-run:
+      name: codecov
+      script: codecov
+
+    # A step to run Unit tests
+    - npm-test
+
+  after-steps:
+    - script:
+      code: |
+        env
+    - sherzberg/slack-notify:
+      subdomain: share-wis
+      token: $SLACK_TOKEN
+      channel: "#notifications-ci"
+      username: "ShareWis ACT Mobile on Wercker"

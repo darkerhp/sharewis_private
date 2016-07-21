@@ -16,6 +16,6 @@ describe("<Home />", () => {
       .first()
       .props()
       .children
-    ).to.equal("React Native Test Examples");
+    ).to.equal("ShareWis ACT");
   });
 });
