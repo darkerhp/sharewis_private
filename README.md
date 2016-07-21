@@ -34,7 +34,7 @@ $ npm run lint
 ```
 
 ### Typing
-Check static type with [Flow](https://flowtype.org/)
+Let's catch typing errors in our js code with [Flow](https://flowtype.org/)
 ```
 $ npm run flow
 ```
