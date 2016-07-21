@@ -16,16 +16,17 @@ build:
 
     # Install packages
     - npm-install
-    - script:
-      name: npm install codecov
-      code: |
-         npm install -g jshint codecov to-iso-string
-         npm install --unsafe-perm
 
     # Check coverage
-    - maxon/npm-run:
-      name: codecov
-      script: codecov
+    # TODO: Setup codecov for repo
+    #- script:
+    #  name: npm install codecov
+    #  code: |
+    #     npm install -g jshint codecov to-iso-string
+    #     npm install --unsafe-perm
+    #- maxon/npm-run:
+    #  name: codecov
+    #  script: codecov
 
     # A step to run Unit tests
     - npm-test
