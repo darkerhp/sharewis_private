@@ -35,6 +35,16 @@ build:
     #  name: codecov
     #  script: codecov
 
+    - script:
+        name: npm run lint
+        code: |
+          echo "npm run lint"
+
+    - script:
+        name: npm run flow
+        code: |
+          echo "npm run flow"
+
     # A step to run Unit tests
     - npm-test
 
