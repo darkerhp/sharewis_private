@@ -1,5 +1,9 @@
 # ShareWis ACT Mobile Application
 
+[![wercker
+status](https://app.wercker.com/status/41122a6a18051d09232b2fb51ffc9d57/m
+"wercker
+status")](https://app.wercker.com/project/bykey/41122a6a18051d09232b2fb51ffc9d57)
 
 ## Installation
 
