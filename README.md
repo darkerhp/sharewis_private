@@ -7,9 +7,16 @@ status")](https://app.wercker.com/project/bykey/41122a6a18051d09232b2fb51ffc9d57
 
 ## Installation
 
-Follow the [Getting Started documentation](https://facebook.github.io/react-native/docs/getting-started.html)
+Follow the [Getting Started documentation](https://facebook.github.io/react-native/docs/getting-started.html) for installation on your OS and to support iOS and/or Android.
 
-### Notes for Android
+For this repository specific installation:
+```
+$ git clone git@github.com:ShareWis/sharewis-act-mobile.git
+$ cd sharewis-act-mobile
+$ npm install
+```
+
+### Notes about Android
 
 After installing the required packages (android sdk, android studio ...), in
 order to run the simulator in linux, you need to create a target and execute it
