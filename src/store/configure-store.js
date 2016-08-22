@@ -12,8 +12,9 @@ const middleWare = applyMiddleware(
   loggerMiddleware
 );
 
-const configureStore = function (initialState: Object = {}): Function {
-  return createStore(rootReducer, initialState, middleWare);
-};
+const configureStore =
+  function (initialState: Object = {}): Function {
+    return createStore(rootReducer, initialState, middleWare);
+  };
 
 export default configureStore;
