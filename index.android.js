@@ -11,7 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
-import Home from './src/home'
+import Home from './src/Home'
 
 class SharewisActMobile extends Component {
   render() {

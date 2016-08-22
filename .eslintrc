@@ -1,18 +1,8 @@
 {
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true,
-    }
-  },
-
-  "env": {
-    "es6": true,
-    "jasmine": true,
-  },
-
+  "extends": "airbnb",
   "plugins": [
-    "react"
+    "react",
+    "jsx-a11y",
+    "import"
   ]
 }
