@@ -1,3 +1,6 @@
+/**
+ * @flow
+ */
 export const FETCHING_COURSES = "FETCHING_COURSES";
 export const FETCHING_NEXT_PAGE_COURSES = "FETCHING_NEXT_PAGE_COURSES";
 export const RECEIVED_DATA = "RECEIVED_DATA";
