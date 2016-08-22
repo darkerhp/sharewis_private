@@ -3,7 +3,7 @@ import ReactNative from 'react-native'
 //import SearchBar from '../components/searchBar'
 //import CourseList from '../components/coursesList'
 import { connect } from 'react-redux'
-//import { searchCourses, getCoursesNextPage, focusedOnSearch } from '../actions/index'
+import { searchCourses, getCoursesNextPage, focusedOnSearch } from '../actions/courses'
 
 const { PropTypes } = React;
 const {
