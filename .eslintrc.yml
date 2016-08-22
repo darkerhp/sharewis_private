@@ -1,11 +1,17 @@
 extends: airbnb
 
-plugins:
-  - react
-  - jsx-a11y
-  - import
+parser: babel-eslint
 
 parserOptions:
   ecmaFeatures:
     jsx: true
 
+plugins:
+  - react
+  - jsx-a11y
+  - import
+  - flowtype
+
+rules:
+  flowtype/define-flow-type: 1
+  flowtype/use-flow-type: 1
