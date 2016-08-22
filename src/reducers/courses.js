@@ -4,7 +4,6 @@ const {
   ListView
 } = React;
 
-import { combineReducers } from "redux";
 import * as types from "../actions/courses";
 
 const defaultState = {
@@ -53,8 +52,4 @@ const courseReducer = (state = defaultState, action) => {
   }
 };
 
-const rootReducer = combineReducers({
-  courseData : courseReducer
-});
-
-export default rootReducer;
+export default courseReducer;

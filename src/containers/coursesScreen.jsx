@@ -1,3 +1,6 @@
+/**
+ * @flow
+ */
 import React from 'react'
 import ReactNative from 'react-native'
 //import SearchBar from '../components/searchBar'
@@ -11,7 +14,7 @@ const {
   StyleSheet
 } = ReactNative;
 
-class coursesScreen extends React.Component {
+class CoursesScreen extends React.Component {
   constructor(props){
     super(props);
     this.onSearchChange = this.onSearchChange.bind(this);
