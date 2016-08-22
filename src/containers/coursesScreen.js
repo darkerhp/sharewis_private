@@ -65,7 +65,6 @@ class CoursesScreen extends React.Component {
       <CourseList ref="coursesList" {...this.props}>
       </CourseList>
       */}
-      CourseList
       </View>
     );
   }

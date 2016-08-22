@@ -17,5 +17,5 @@ rules:
   flowtype/define-flow-type: 1
   flowtype/use-flow-type: 1
   # Disable
-  react/jsx-filename-extension: 0
-
+  react/jsx-filename-extension: 0  # unsupported by react-native
+  react/require-extension: 0  # deprecated. use eslint-plugin-import instead
