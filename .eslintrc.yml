@@ -13,5 +13,9 @@ plugins:
   - flowtype
 
 rules:
+  # Enable
   flowtype/define-flow-type: 1
   flowtype/use-flow-type: 1
+  # Disable
+  react/jsx-filename-extension: 0
+
