@@ -5,21 +5,21 @@ import { fetchData } from "../actions"
 import coursesScreen from '../containers/coursesScreen'
 
 let {
-  NavigatorIOS,
+  Navigator,
   StyleSheet
 } = ReactNative;
 
 class App extends React.Component {
   render() {
     return (
-      <NavigatorIOS
+      <Navigator
         style={styles.container}
         initialRoute={{
           title: 'Movies',
           component: CoursesScreen
         }}
       >
-      </NavigatorIOS>
+      </Navigator>
     );
   }
 }
