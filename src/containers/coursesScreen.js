@@ -3,11 +3,11 @@
  */
 
 import React from 'react';
-import ReactNative from 'react-native';
+import ReactNative, { Text } from 'react-native';
 // import SearchBar from '../components/searchBar'
 // import CourseList from '../components/coursesList'
-// import { connect } from 'react-redux';
-// import { searchCourses, getCoursesNextPage, focusedOnSearch } from '../actions/courses';
+import { connect } from 'react-redux';
+import { searchCourses, getCoursesNextPage, focusedOnSearch } from '../actions/courses';
 
 const { PropTypes } = React;
 const {
@@ -53,18 +53,19 @@ class CoursesScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-      {/*
-      <SearchBar
-        query={query}
-        onSearchChange={this.onSearchChange}
-        isLoading={isLoading}
-        onFocus={this.onSearchFocus}
-      >
-      </SearchBar>
+        {/*
+        <SearchBar
+          query={query}
+          onSearchChange={this.onSearchChange}
+          isLoading={isLoading}
+          onFocus={this.onSearchFocus}
+        >
+        </SearchBar>
 
-      <CourseList ref="coursesList" {...this.props}>
-      </CourseList>
-      */}
+        <CourseList ref="coursesList" {...this.props}>
+        </CourseList>
+        */}
+        <Text>TEST</Text>
       </View>
     );
   }
@@ -78,18 +79,19 @@ CoursesScreen.propTypes = {
   isLoadingTail: PropTypes.bool.isRequired,
 };
 
-// function mapStateToProps(state, props) {
-//   const { filter, courses, isLoading, hasCoursesToDisplay, isLoadingTail } = state.coursesData;
-//
-//   return {
-//     query: filter,
-//     courses,
-//     isLoading,
-//     hasCoursesToDisplay,
-//     isLoadingTail,
-//   };
-// }
+/* eslint no-unused-vars: ["error", { "vars": "after-used" }] */
+function mapStateToProps(state, props) {
+  const { filter, courses, isLoading, hasCoursesToDisplay, isLoadingTail } = state.courseData;
 
-// export default connect(mapStateToProps, {
-  // searchCourses, getCoursesNextPage, focusedOnSearch
-// })(CoursesScreen);
+  return {
+    query: filter,
+    courses,
+    isLoading,
+    hasCoursesToDisplay,
+    isLoadingTail,
+  };
+}
+
+export default connect(mapStateToProps, {
+  searchCourses, getCoursesNextPage, focusedOnSearch
+})(CoursesScreen);

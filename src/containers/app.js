@@ -19,11 +19,15 @@ const styles = StyleSheet.create({
 
 const App = () =>
   <Navigator
-    style={styles.container}
     initialRoute={{
       title: 'Courses',
-      component: CoursesScreen,
+      index: 0,
     }}
+    /* eslint no-unused-vars: ["error", { "vars": "after-used" }] */
+    renderScene={(route, navigator) =>
+      <CoursesScreen />
+    }
+    style={styles.container}
   />;
 
 export default App;
