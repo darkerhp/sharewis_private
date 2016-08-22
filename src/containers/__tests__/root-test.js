@@ -1,15 +1,15 @@
 import 'react-native';
 import React from 'react';
-import Home from '../Home';
+import Root from '../root';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-describe('Home', () => {
+describe('Root', () => {
 
   it('renders correctly', () => {
     const tree = renderer.create(
-      <Home />
+      <Root />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
