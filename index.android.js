@@ -11,7 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
-import Home from './src/home'
+import Home from './src/Home'
 
 class SharewisActMobile extends Component {
   render() {
@@ -20,24 +20,5 @@ class SharewisActMobile extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('SharewisActMobile', () => SharewisActMobile);
