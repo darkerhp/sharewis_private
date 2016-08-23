@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "jest": {
-    "preset": "jest-react-native"
+    "preset": "jest-react-native",
+    "testFileExtensions": ["js", "ios.js", "android.js"]
   },
   "babel": {
     "presets": [

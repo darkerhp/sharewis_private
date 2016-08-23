@@ -49,7 +49,7 @@ class CoursesScreen extends React.Component {
   }
 
   render() {
-    // const { courses, query, isLoading } = this.props;
+    const { courses, query, isLoading } = this.props;
 
     return (
       <View style={styles.container}>

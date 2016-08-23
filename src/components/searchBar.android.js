@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 class SearchBar extends React.Component {
   static propTypes = {
-    isLoading: React.PropTypes.bool,
+    isLoading: React.PropTypes.bool.isRequired,
     onSearchChange: React.PropTypes.func.isRequired,
   }
 

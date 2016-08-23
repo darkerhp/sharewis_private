@@ -29,21 +29,30 @@ const styles = StyleSheet.create({
 });
 
 
-const SearchBar = () =>
-  <View style={styles.searchBar}>
-    <TextInput
-      autoCapitalize="none"
-      autoCorrect={false}
-      onChange={this.props.onSearchChange}
-      placeholder="Search a course..."
-      onFocus={this.props.onFocus}
-      style={styles.searchBarInput}
-    />
-    <ActivityIndicatorIOS
-      animating={this.props.isLoading}
-      style={styles.spinner}
-    />
-  </View>;
+class SearchBar extends React.Component {
+  componentDidMount() {
+    return;
+  }
+
+  render() {
+    return (
+      <View style={styles.searchBar}>
+        <TextInput
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChange={this.props.onSearchChange}
+          placeholder="Search a course..."
+          onFocus={this.props.onFocus}
+          style={styles.searchBarInput}
+        />
+        <ActivityIndicatorIOS
+          animating={this.props.isLoading}
+          style={styles.spinner}
+        />
+      </View>
+    );
+  }
+}
 
 SearchBar.propTypes = {
   query: PropTypes.string.isRequired,
