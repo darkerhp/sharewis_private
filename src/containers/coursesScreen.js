@@ -4,7 +4,7 @@
 
 import React from 'react';
 import ReactNative, { Text } from 'react-native';
-import SearchBar from '../components/searchBar'
+import SearchBar from '../components/SearchBar'
 import CourseList from '../components/CoursesList'
 import { connect } from 'react-redux';
 import { searchCourses, getCoursesNextPage, focusedOnSearch } from '../actions/courses';
@@ -61,7 +61,7 @@ class CoursesScreen extends React.Component {
         >
         </SearchBar>
 
-        <CourseList ref="coursesList" {...this.props}>
+        <CourseList ref="CoursesList" {...this.props}>
         </CourseList>
       </View>
     );
