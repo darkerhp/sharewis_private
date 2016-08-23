@@ -5,7 +5,7 @@
 import React from 'react';
 import ReactNative, { Text } from 'react-native';
 import SearchBar from '../components/searchBar'
-import CourseList from '../components/coursesList'
+import CourseList from '../components/CoursesList'
 import { connect } from 'react-redux';
 import { searchCourses, getCoursesNextPage, focusedOnSearch } from '../actions/courses';
 

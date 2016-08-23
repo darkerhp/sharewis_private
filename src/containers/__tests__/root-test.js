@@ -3,7 +3,7 @@ import 'react-native';
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import renderer from 'react-test-renderer';
 import React from 'react';
-import Root from '../root';
+import Root from '../Root';
 
 /* global describe, it, expect, jest */
 jest.mock('ActivityIndicatorIOS', () => 'ActivityIndicatorIOS');

@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-import Root from './src/containers/root'
+import Root from './src/containers/Root'
 import { AppRegistry } from 'react-native';
 
 AppRegistry.registerComponent('SharewisActMobile', () => Root);
