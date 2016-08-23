@@ -9,6 +9,8 @@ import Root from '../Root';
 jest.mock('ActivityIndicatorIOS', () => 'ActivityIndicatorIOS');
 jest.mock('ProgressBarAndroid', () => 'ProgressBarAndroid');
 jest.mock('TouchableNativeFeedback', () => 'TouchableNativeFeedback');
+jest.mock('TouchableNativeFeedback', () => 'TouchableNativeFeedback');
+jest.mock('TextInput', () => 'TextInput');
 
 describe('Root', () => {
   it('renders correctly', () => {
