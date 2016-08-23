@@ -17,6 +17,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
+    "coverage": "jest --coverage",
     "lint": "eslint src",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
