@@ -52,7 +52,7 @@ build:
     - script:
         name: npm run coverage
         code: |
-          [[ $(npm run coverage 2&>1 | grep "All files" | awk '{print $4}') > 90 ]] || exit 1
+          [[ $(npm run coverage 2&>1 | grep "All files" | awk '{print $4}') > 90 ]] || exit "Bad coverage, please run 'npm run coverage'"
 
 
   after-steps:
