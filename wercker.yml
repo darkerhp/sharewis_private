@@ -50,7 +50,7 @@ build:
 
     # A step to check code coverage (90%)
     - script:
-        name: npm run flow
+        name: npm run coverage
         code: |
           [[ $(npm run coverage 2&>1 | grep "All files" | awk '{print $4}') > 90 ]] || exit 1
 
