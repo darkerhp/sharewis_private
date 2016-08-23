@@ -4,8 +4,8 @@
 
 import React from 'react';
 import ReactNative, { Text } from 'react-native';
-// import SearchBar from '../components/searchBar'
-// import CourseList from '../components/coursesList'
+import SearchBar from '../components/searchBar'
+import CourseList from '../components/coursesList'
 import { connect } from 'react-redux';
 import { searchCourses, getCoursesNextPage, focusedOnSearch } from '../actions/courses';
 
@@ -53,7 +53,6 @@ class CoursesScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        {/*
         <SearchBar
           query={query}
           onSearchChange={this.onSearchChange}
@@ -64,8 +63,6 @@ class CoursesScreen extends React.Component {
 
         <CourseList ref="coursesList" {...this.props}>
         </CourseList>
-        */}
-        <Text>TEST</Text>
       </View>
     );
   }
