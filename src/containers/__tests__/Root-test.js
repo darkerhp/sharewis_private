@@ -6,10 +6,10 @@ import React from 'react';
 import Root from '../Root';
 
 /* global describe, it, expect, jest */
-jest.mock('ActivityIndicatorIOS', (): ReactComponent => 'ActivityIndicatorIOS');
-jest.mock('ProgressBarAndroid', (): ReactComponent => 'ProgressBarAndroid');
-jest.mock('TouchableNativeFeedback', (): ReactComponent => 'TouchableNativeFeedback');
-jest.mock('TextInput', (): ReactComponent => 'TextInput');
+jest.mock('ActivityIndicatorIOS', (): Object => 'ActivityIndicatorIOS');
+jest.mock('ProgressBarAndroid', (): Object => 'ProgressBarAndroid');
+jest.mock('TouchableNativeFeedback', (): Object => 'TouchableNativeFeedback');
+jest.mock('TextInput', (): Object => 'TextInput');
 
 describe('Root', () => {
   it('renders correctly', () => {

@@ -7,7 +7,7 @@ exports[`Root renders correctly 1`] = `
         "overflow": "hidden"
       },
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#009688",
         "flex": 1
       }
     ]
