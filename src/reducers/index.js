@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as ActionTypes from '../actions/ActionTypes';
+// import * as ActionTypes from '../actions/ActionTypes';
 
 function exampleReducer(state = {}, action) {
   switch (action.type) {
