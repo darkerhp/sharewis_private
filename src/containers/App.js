@@ -2,7 +2,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 // import { connect } from 'react-redux';
 // import { fetchData } from '../actions/courses';
-import CoursesScreen from '../containers/coursesScreen';
+import CoursesScreen from './CourseList';
 
 const {
   Navigator,
@@ -23,7 +23,6 @@ const App = () =>
       title: 'Courses',
       index: 0,
     }}
-    /* eslint no-unused-vars: ["error", { "vars": "after-used" }] */
     renderScene={(route, navigator) =>
       <CoursesScreen />
     }
