@@ -3,8 +3,8 @@ import * as ActionTypes from '../actions/ActionTypes';
 
 function exampleReducer(state = {}, action) {
   switch (action.type) {
-    case ActionTypes.EXAMPLE_ACTION:
-      return state;
+    // case ActionTypes.EXAMPLE_ACTION:
+    //   return state;
     default:
       return state;
   }
