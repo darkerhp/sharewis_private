@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
 
 
 class SearchBar extends React.Component {
-  componentDidMount() {
+  componentDidMount(): Function {
     return;
   }
 
-  render() {
+  render(): ReactComponent {
     return (
       <View style={styles.searchBar}>
         <TextInput

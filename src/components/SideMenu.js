@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const SideMenu = () =>
+const SideMenu = (): ReactComponent =>
   <View />;
 
 SideMenu.propTypes = {};

@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const Nickname = () =>
+const Nickname = (): ReactComponent =>
   <View />;
 
 Nickname.propTypes = {};

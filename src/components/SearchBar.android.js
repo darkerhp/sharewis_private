@@ -47,11 +47,11 @@ class SearchBar extends React.Component {
     onSearchChange: React.PropTypes.func.isRequired,
   }
 
-  componentDidMount() {
+  componentDidMount(): Function {
     this.textInput.focus();
   }
 
-  render() {
+  render(): ReactComponent {
     let loadingView;
     if (this.props.isLoading) {
       loadingView = (
@@ -80,7 +80,7 @@ class SearchBar extends React.Component {
           </View>
         </TouchableNativeFeedback>
         <TextInput
-          ref={(c) => { this.textInput = c; }}
+          ref={(c: String): Function => { this.textInput = c; }}
           autoCapitalize="none"
           autoCorrect={false}
           autoFocus
