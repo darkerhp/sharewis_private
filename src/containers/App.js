@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
 });
 
 /* eslint no-unused-vars: [2, { "args": "none" }] */
-const App = () =>
+const App = (): Object =>
   <Navigator
     initialRoute={{
       title: 'Courses',
       index: 0,
     }}
-    renderScene={(route, navigator) =>
+    renderScene={(route: Object, navigator: Object): ReactComponent =>
       <CourseList />
     }
     style={styles.container}
