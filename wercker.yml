@@ -14,6 +14,16 @@ build:
       code: |
         export TZ="Asia/Tokyo"
 
+    - script:
+        name: install libelf1
+        code: |
+          if [ `which libelf1` ]; then
+            echo "libelf1 found in cache"
+          else
+            apt-get update --yes
+            apt-get install --yes libelf1
+          fi
+
     # Install packages
     - npm-install
 
@@ -38,12 +48,12 @@ build:
     - script:
         name: npm run lint
         code: |
-          echo "npm run lint"
+          npm run lint
 
     - script:
         name: npm run flow
         code: |
-          echo "npm run flow"
+          npm run flow
 
     # A step to run Unit tests
     - npm-test
@@ -52,8 +62,8 @@ build:
     - script:
         name: npm run coverage
         code: |
-          [[ $(npm run coverage 2&>1 | grep "All files" | awk '{print $4}') > 90 ]] || \
-          { echo "Bad coverage, please run 'npm run coverage'"; exit 1; }
+          [[ $(npm run coverage | grep "All files" | awk '{print $4}') -gt 90 ]] || \
+          { echo "Bad coverage (" $(npm run coverage | grep "All files" | awk '{print $4}') "), please run 'npm run coverage'"; exit 1; }
 
 
   after-steps:

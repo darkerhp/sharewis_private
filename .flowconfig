@@ -17,6 +17,9 @@ node_modules/react-native/flow
 flow/
 
 [options]
+# Needed to stop node_modules/react_native errors
+unsafe.enable_getters_and_setters=true
+
 module.system=haste
 
 esproposal.class_static_fields=enable
