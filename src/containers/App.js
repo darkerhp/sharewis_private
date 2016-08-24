@@ -2,7 +2,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 // import { connect } from 'react-redux';
 // import { fetchData } from '../actions/courses';
-import CoursesScreen from './CourseList';
+import CourseList from './CourseList';
 
 const {
   Navigator,
@@ -24,7 +24,7 @@ const App = () =>
       index: 0,
     }}
     renderScene={(route, navigator) =>
-      <CoursesScreen />
+      <CourseList />
     }
     style={styles.container}
   />;

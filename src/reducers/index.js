@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 // import * as ActionTypes from '../actions/ActionTypes';
 
-function exampleReducer(state = {}, action) {
+const exampleReducer = (state: Object = {}, action: Object): Function => {
   switch (action.type) {
     // case ActionTypes.EXAMPLE_ACTION:
     //   return state;
     default:
       return state;
   }
-}
+};
 
-const rootReducer = combineReducers({
+const rootReducer: Function = combineReducers({
   exampleReducer,
 });
 
