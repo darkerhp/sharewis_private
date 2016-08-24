@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
+/* eslint no-unused-vars: [2, { "args": "none" }] */
 const App = () =>
   <Navigator
     initialRoute={{
