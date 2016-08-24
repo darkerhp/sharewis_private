@@ -17,8 +17,12 @@ build:
     - script:
         name: install libelf1
         code: |
-          apt-get update --yes
-          apt-get install --yes libelf1
+          if [ `which libelf1` ]; then
+            echo "libelf1 found in cache"
+          else
+            apt-get update --yes
+            apt-get install --yes libelf1
+          fi
 
     # Install packages
     - npm-install
@@ -59,7 +63,7 @@ build:
         name: npm run coverage
         code: |
           [[ $(npm run coverage 2&>1 | grep "All files" | awk '{print $4}') -gt 90 ]] || \
-          { echo "Bad coverage, please run 'npm run coverage'"; exit 1; }
+          { echo "Bad coverage, please run 'npm run coverage'"; npm run coverage; exit 1; }
 
 
   after-steps:
