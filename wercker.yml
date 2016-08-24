@@ -63,7 +63,7 @@ build:
         name: npm run coverage
         code: |
           [[ $(npm run coverage 2&>1 | grep "All files" | awk '{print $4}') -gt 90 ]] || \
-          { echo "Bad coverage, please run 'npm run coverage'"; npm run coverage; exit 1; }
+          { echo "Bad coverage (" $(npm run coverage 2&>1 | grep "All files" | awk '{print $4}') "), please run 'npm run coverage'\n\n\n"; npm run coverage; exit 1; }
 
 
   after-steps:
