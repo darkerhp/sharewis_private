@@ -41,6 +41,11 @@ build:
           npm run lint
 
     - script:
+      name: npm install flow-bin
+      code: |
+         npm install flow-bin@0.27.0
+
+    - script:
         name: npm run flow
         code: |
           npm run flow
