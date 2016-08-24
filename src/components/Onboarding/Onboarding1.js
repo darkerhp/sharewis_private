@@ -4,16 +4,11 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-const { Component, PropTypes } = React;
+// const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-class Onboarding1 extends Component {
-  render() {
-    return (
-      <View></View>
-    );
-  }
-}
+const Onboarding1 = () =>
+  <View />;
 
 Onboarding1.propTypes = {};
 Onboarding1.defaultProps = {};

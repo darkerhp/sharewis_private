@@ -4,16 +4,11 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-const { Component, PropTypes } = React;
+// const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-class TermsOfService extends Component {
-  render() {
-    return (
-      <View></View>
-    );
-  }
-}
+const TermsOfService = () =>
+  <View />;
 
 TermsOfService.propTypes = {};
 TermsOfService.defaultProps = {};

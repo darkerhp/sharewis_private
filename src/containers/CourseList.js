@@ -4,18 +4,13 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-const { Component, PropTypes } = React;
+// const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-class CouseList extends Component {
-  render() {
-    return (
-      <View></View>
-    );
-  }
-}
+const CourseList = () =>
+  <View />;
 
-CouseList.propTypes = {};
-CouseList.defaultProps = {};
+CourseList.propTypes = {};
+CourseList.defaultProps = {};
 
-export default CouseList;
+export default CourseList;
