@@ -3,6 +3,7 @@ import ReactNative from 'react-native';
 // import { connect } from 'react-redux';
 // import { fetchData } from '../actions/courses';
 import CourseList from './CourseList';
+import Styles from '../styles';
 
 const {
   Navigator,
@@ -12,7 +13,7 @@ const {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: Styles.mainColorBlue,
   },
 });
 
