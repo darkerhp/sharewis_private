@@ -2,8 +2,12 @@
 
 [![wercker
 status](https://app.wercker.com/status/41122a6a18051d09232b2fb51ffc9d57/m
-"wercker
-status")](https://app.wercker.com/project/bykey/41122a6a18051d09232b2fb51ffc9d57)
+"wercker status")](https://app.wercker.com/project/bykey/41122a6a18051d09232b2fb51ffc9d57)
+
+[![VersionEye npm deps](https://www.versioneye.com/user/projects/57bd7376939fc600508e8982/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57bd7376939fc600508e8982?child=summary#dialog_dependency_badge)
+
+![uses js](http://forthebadge.com/images/badges/uses-js.svg)
+
 
 ## Installation
 
