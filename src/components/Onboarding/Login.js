@@ -7,10 +7,10 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const OnboardingLogin = (): ReactComponent =>
+const Login = () =>
   <View />;
 
-OnboardingLogin.propTypes = {};
-OnboardingLogin.defaultProps = {};
+Login.propTypes = {};
+Login.defaultProps = {};
 
-export default OnboardingLogin;
+export default Login;
