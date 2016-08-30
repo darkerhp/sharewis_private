@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Slide = ({ text, imageSrc }) =>
+const Slide = ({ text, imageSrc }: Object): Component =>
   <View style={styles.slide}>
     <View style={styles.slideImageContainer}>
       <Image
