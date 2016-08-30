@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const TermsOfService = (): ReactComponent =>
+const TermsOfService = (): ReactElement<any> =>
   <View />;
 
 TermsOfService.propTypes = {};

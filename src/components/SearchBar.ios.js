@@ -34,7 +34,7 @@ class SearchBar extends React.Component {
     return;
   }
 
-  render(): ReactComponent {
+  render(): ReactElement<any> {
     return (
       <View style={styles.searchBar}>
         <TextInput

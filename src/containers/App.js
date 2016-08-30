@@ -24,7 +24,7 @@ const App = (): Object =>
       title: 'Courses',
       index: 0,
     }}
-    renderScene={(route: Object, navigator: Object): ReactComponent =>
+    renderScene={(route: Object, navigator: Object): ReactElement<any> =>
       <Onboarding />
     }
     style={styles.container}

@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const Password = (): ReactComponent =>
+const Password = (): ReactElement<any> =>
   <View />;
 
 Password.propTypes = {};

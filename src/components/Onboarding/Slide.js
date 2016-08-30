@@ -6,7 +6,6 @@ import ReactNative from 'react-native';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text, Dimensions, Image } = ReactNative;
-
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Slide = ({ text, imageSrc }: Object): Component =>
+const Slide = ({ text, imageSrc }: Object): ReactElement<any> =>
   <View style={styles.slide}>
     <View style={styles.slideImageContainer}>
       <Image
