@@ -7,6 +7,7 @@ import Swiper from 'react-native-swiper';
 
 import { connect } from 'react-redux';
 import Slide from '../components/Onboarding/Slide';
+import Login from '../components/Onboarding/Login';
 
 const { StyleSheet, Text, View } = ReactNative;
 
@@ -55,7 +56,7 @@ class Onboarding extends React.Component {
         <Slide text={t.slide1Text} imageSrc={require('../components/Onboarding/images/slide1.png')} />
         <Slide text={t.slide2Text} imageSrc={require('../components/Onboarding/images/slide2.png')} />
         <Slide text={t.slide3Text} imageSrc={require('../components/Onboarding/images/slide3.png')} />
-        {/*<Login style={styles.slide} />*/}
+        <Login />
       </Swiper>
     );
   }

@@ -5,10 +5,12 @@ import React from 'react';
 import ReactNative from 'react-native';
 
 // const { Component, PropTypes } = React;
-const { View } = ReactNative;
+const { View, Text } = ReactNative;
 
 const Login = () =>
-  <View />;
+  <View>
+      <Text>ログインページ</Text>
+  </View>;
 
 Login.propTypes = {};
 Login.defaultProps = {};
