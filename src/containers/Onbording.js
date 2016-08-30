@@ -45,6 +45,11 @@ const t = {
   next: '次へ',
 };
 
+// images
+const slide1ImageSrc = require('../components/Onboarding/images/slide1.png');
+const slide2ImageSrc = require('../components/Onboarding/images/slide2.png');
+const slide3ImageSrc = require('../components/Onboarding/images/slide3.png');
+
 const Onboarding = (): ReactElement<any> =>
   <Swiper
     style={styles.wrapper}
@@ -59,18 +64,15 @@ const Onboarding = (): ReactElement<any> =>
   >
     <Slide
       text={t.slide1Text}
-      // eslint-disable-next-line global-require
-      imageSrc={require('../components/Onboarding/images/slide1.png')}
+      imageSrc={slide1ImageSrc}
     />
     <Slide
       text={t.slide2Text}
-      // eslint-disable-next-line global-require
-      imageSrc={require('../components/Onboarding/images/slide2.png')}
+      imageSrc={slide2ImageSrc}
     />
     <Slide
       text={t.slide3Text}
-      // eslint-disable-next-line global-require
-      imageSrc={require('../components/Onboarding/images/slide3.png')}
+      imageSrc={slide3ImageSrc}
     />
     <Login />
   </Swiper>;
