@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const PrivacyPolicy = (): ReactComponent =>
+const PrivacyPolicy = (): ReactElement<any> =>
   <View />;
 
 PrivacyPolicy.propTypes = {};

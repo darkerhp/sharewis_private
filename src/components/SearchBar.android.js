@@ -51,7 +51,7 @@ class SearchBar extends React.Component {
     this.textInput.focus();
   }
 
-  render(): ReactComponent {
+  render(): ReactElement<any> {
     let loadingView;
     if (this.props.isLoading) {
       loadingView = (

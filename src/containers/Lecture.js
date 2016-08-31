@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const Lecture = (): ReactComponent =>
+const Lecture = (): ReactElement<any> =>
   <View />;
 
 Lecture.propTypes = {};

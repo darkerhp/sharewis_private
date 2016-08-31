@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const Profile = (): ReactComponent =>
+const Profile = (): ReactElement<any> =>
   <View />;
 
 Profile.propTypes = {};

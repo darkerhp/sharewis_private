@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 // const { Component, PropTypes } = React;
 const { View } = ReactNative;
 
-const Logout = (): ReactComponent =>
+const Logout = (): ReactElement<any> =>
   <View />;
 
 Logout.propTypes = {};
