@@ -1,42 +1,51 @@
 /**
  * @flow
  */
-import React, { Component } from 'react';
+import React, {
+  Component,
+  PropTypes,
+} from 'react';
 import ReactNative from 'react-native';
 
 const { Text, TextInput, View } = ReactNative;
 
 const t = {
   emailLabel: 'メールアドレスでログインする',
-  emailValue: 'メールアドレス',
-  passwordValue: 'パスワード',
+  emailPlaceHolder: 'メールアドレス',
+  passwordPlaceHolder: 'パスワード',
 };
 
 class Email extends Component {
-  constructor(props: Object) {
-    super(props);
-    this.state = {
-      label: t.emailLabel,
-      email: t.emailValue,
-      password: t.passwordValue,
-    };
-  }
+  propTypes = {
+    email: PropTypes.string.isRequired,
+    password: PropTypes.number.isRequired,
+  };
+  state = {
+    email: null,
+    password: null,
+  };
 
   render(): ReactElement<any> {
     return (
       <View>
-        <Text>{ this.state.label }</Text>
+        <Text>{ t.emailLabel }</Text>
         <TextInput
-          value={this.state.email}
+          placeholder={t.emailPlaceHolder}
           onChangeText={(email: String): String => this.setState({ email })}
+          keyboardType="email-address"
+          returnKeyType="next"
+          autoFocus
         />
         <TextInput
-          value={this.state.password}
+          placeholder={t.passwordPlaceHolder}
           onChangeText={(password: String): String => this.setState({ password })}
+          returnKeyType="next"
+          secureTextEntry
         />
       </View>
     );
   }
 }
+
 
 export default Email;
