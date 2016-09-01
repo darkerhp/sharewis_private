@@ -1,13 +1,10 @@
-/**
- * @flow
- */
 import React from 'react';
 import ReactNative from 'react-native';
 
 // const { Component, PropTypes } = React;
 const { View, Text } = ReactNative;
 
-const Login = (): ReactElement<any> =>
+const Login = () =>
   <View>
     <Text>ログインページ</Text>
   </View>;

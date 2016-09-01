@@ -6,7 +6,7 @@ const {
   Text,
 } = ReactNative;
 
-const CoursesList = (): ReactElement<any> =>
+const CoursesList = () =>
   <View>
     <Text>Courses List</Text>
   </View>;
