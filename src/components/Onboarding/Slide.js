@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import React from 'react';
 import ReactNative from 'react-native';
 
@@ -41,7 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Slide = ({ text, imageSrc }: Object): ReactElement<any> =>
+const Slide = ({ text, imageSrc }) =>
   <View style={styles.slide}>
     <View style={styles.slideImageContainer}>
       <Image

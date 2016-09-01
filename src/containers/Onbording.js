@@ -1,6 +1,3 @@
-/**
- * @flow
- */
 import React from 'react';
 import ReactNative from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -50,7 +47,7 @@ const slide1ImageSrc = require('../components/Onboarding/images/slide1.png');
 const slide2ImageSrc = require('../components/Onboarding/images/slide2.png');
 const slide3ImageSrc = require('../components/Onboarding/images/slide3.png');
 
-const Onboarding = (): ReactElement<any> =>
+const Onboarding = () =>
   <Swiper
     style={styles.wrapper}
     showsButtons

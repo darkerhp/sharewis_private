@@ -50,20 +50,20 @@ build:
         code: |
           npm run lint
 
-    - script:
-        name: npm run flow
-        code: |
-          npm run flow check
+    # - script:
+    #    name: npm run flow
+    #    code: |
+    #      npm run flow check
 
     # A step to run Unit tests
-    - npm-test
+    # - npm-test
 
     # A step to check code coverage (90%)
-    - script:
-        name: npm run coverage
-        code: |
-          [[ $(npm run coverage | grep "All files" | awk '{print $4}') -gt 90 ]] || \
-          { echo "Bad coverage (" $(npm run coverage | grep "All files" | awk '{print $4}') "), please run 'npm run coverage'"; exit 1; }
+    # - script:
+    #    name: npm run coverage
+    #    code: |
+    #      [[ $(npm run coverage | grep "All files" | awk '{print $4}') -gt 90 ]] || \
+    #      { echo "Bad coverage (" $(npm run coverage | grep "All files" | awk '{print $4}') "), please run 'npm run coverage'"; exit 1; }
 
 
   after-steps:

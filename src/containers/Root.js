@@ -5,7 +5,7 @@ import App from './App';
 
 const store = configureStore();
 
-const Root = (): ReactElement<any> =>
+const Root = () =>
   <Provider store={store}>
     <App />
   </Provider>;
