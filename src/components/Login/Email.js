@@ -34,7 +34,7 @@ class Email extends Component {
     console.log(`do login with ${this.state.email}/${this.state.password}`);
   }
 
-  render(): ReactElement<any> {
+  render() {
     return (
       <View>
         <Text>{ t.emailLabel }</Text>

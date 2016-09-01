@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 const { View } = ReactNative;
 
 
-const Facebook = (): ReactElement<any> =>
+const Facebook = () =>
   <View />;
 
 export default Facebook;
