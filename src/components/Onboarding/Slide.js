@@ -2,7 +2,13 @@ import React from 'react';
 import ReactNative from 'react-native';
 
 const { PropTypes } = React;
-const { View, StyleSheet, Text, Dimensions, Image } = ReactNative;
+const {
+  Dimensions,
+  StyleSheet,
+  Text,
+  Image,
+  View,
+} = ReactNative;
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({

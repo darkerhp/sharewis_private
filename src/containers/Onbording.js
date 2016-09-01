@@ -13,7 +13,9 @@ const {
 } = ReactNative;
 
 const styles = StyleSheet.create({
-  wrapper: {},
+  wrapper: {
+    flex: 1,
+  },
   buttonText: {
     fontSize: 17,
     color: '#007aff',

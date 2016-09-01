@@ -3,27 +3,30 @@ import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 
-const { PropTypes } = React;
-const { View, Text } = ReactNative;
+ const { PropTypes } = React;
+const { View, StyleSheet, Text } = ReactNative;
+
+const styles = StyleSheet.create({
+  login: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  contentText: {
+    textAlign: 'center',
+    lineHeight: 22,
+    fontSize: 17,
+    color: '#222222',
+  },
+});
 
 
-const Login = (props) =>
-  <View style={{ flex: 1 }}>
-    <Text>
-      current page: {props.text}
+const Login = (): ReactElement<any> =>
+  <View style={styles.login}>
+    <Text style={styles.contentText}>
+    ログインページ
     </Text>
-    <Button
-      style={{ backgroundColor: 'red' }}
-      onPress={Actions.courseList}
-    >
-      Go to Course List
-    </Button>
-    <Button
-      style={{ backgroundColor: 'yellow' }}
-      onPress={Actions.lecture}
-    >
-      Go to Lecture
-    </Button>
   </View>;
 
 Login.propTypes = {
