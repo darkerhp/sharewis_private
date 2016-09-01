@@ -1,4 +1,4 @@
-package com.sharewisactmobile;
+package com.sharewis.ShareWisAct;
 
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
