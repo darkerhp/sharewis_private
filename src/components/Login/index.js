@@ -25,8 +25,8 @@ const Login = () =>
     <Facebook />
     <Hr />
     <Text style={styles.contentText}>
-    アカウントをお持ちでない方はShareWis ACTのWebサイト
-    からアカウントを作成してください
+      アカウントをお持ちでない方はShareWis ACTのWebサイト
+      からアカウントを作成してください
     </Text>
   </View>;
 

@@ -4,7 +4,7 @@ import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 
 import Slide from '../components/Onboarding/Slide';
-import Login from '../components/Onboarding/Login';
+import Login from '../components/Login';
 
 const {
   StyleSheet,
