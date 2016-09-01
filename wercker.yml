@@ -50,10 +50,10 @@ build:
         code: |
           npm run lint
 
-    - script:
-        name: npm run flow
-        code: |
-          npm run flow check
+    # - script:
+    #    name: npm run flow
+    #    code: |
+    #      npm run flow check
 
     # A step to run Unit tests
     - npm-test
