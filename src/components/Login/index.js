@@ -23,7 +23,7 @@ const Login = () =>
   <View style={styles.login}>
     <Email />
     <Facebook />
-    <Hr />
+    <Hr lineColor="black" />
     <Text style={styles.contentText}>
       アカウントをお持ちでない方はShareWis ACTのWebサイト
       からアカウントを作成してください
