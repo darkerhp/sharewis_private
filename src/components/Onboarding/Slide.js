@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import MainStyles from '../../styles';
 
 const { PropTypes } = React;
 const {
@@ -36,12 +37,7 @@ const styles = StyleSheet.create({
     padding: 25,
     opacity: 0.6,
   },
-  contentText: {
-    textAlign: 'center',
-    lineHeight: 22,
-    fontSize: 17,
-    color: '#222222',
-  },
+  contentText: MainStyles.Text,
 });
 
 const Slide = ({ text, imageSrc }) =>

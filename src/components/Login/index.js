@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactNative from 'react-native';
-import Button from 'react-native-button';
-import { Actions } from 'react-native-router-flux';
+import Hr from 'react-native-hr';
+import MainStyles from '../../styles';
+import Email from './Email';
+import Facebook from './Facebook';
 
- const { PropTypes } = React;
+const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
 
 const styles = StyleSheet.create({
@@ -11,21 +13,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'blue',
   },
-  contentText: {
-    textAlign: 'center',
-    lineHeight: 22,
-    fontSize: 17,
-    color: '#222222',
-  },
+  contentText: MainStyles.Text,
 });
 
 
-const Login = (): ReactElement<any> =>
+const Login = () =>
   <View style={styles.login}>
+    <Email />
+    <Facebook />
+    <Hr />
     <Text style={styles.contentText}>
-    ログインページ
+    アカウントをお持ちでない方はShareWis ACTのWebサイト
+    からアカウントを作成してください
     </Text>
   </View>;
 
