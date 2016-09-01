@@ -6,6 +6,7 @@ import React, {
   PropTypes,
 } from 'react';
 import ReactNative from 'react-native';
+import Button from 'react-native-button';
 
 const { Text, TextInput, View } = ReactNative;
 
@@ -13,6 +14,7 @@ const t = {
   emailLabel: 'メールアドレスでログインする',
   emailPlaceHolder: 'メールアドレス',
   passwordPlaceHolder: 'パスワード',
+  login: 'ログイン',
 };
 
 class Email extends Component {
@@ -24,6 +26,11 @@ class Email extends Component {
     email: null,
     password: null,
   };
+
+  doLogin() {
+    /* eslint no-console: ["error", { allow: ["log"] }] */
+    console.log(`do login with ${this.state.email}/${this.state.password}`);
+  }
 
   render(): ReactElement<any> {
     return (
@@ -42,6 +49,11 @@ class Email extends Component {
           returnKeyType="next"
           secureTextEntry
         />
+        <Button
+          onPress={(): void => this.doLogin()}
+        >
+          { t.login }
+        </Button>
       </View>
     );
   }
