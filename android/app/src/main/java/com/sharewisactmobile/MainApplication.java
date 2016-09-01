@@ -45,12 +45,14 @@ public class MainApplication extends Application implements ReactApplication {
   public ReactNativeHost getReactNativeHost() {
       return mReactNativeHost;
   }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    FacebookSdk.sdkInitialize(getApplicationContext());
+    // If you want to use AppEventsLogger to log events.
+    // AppEventsLogger.activateApp(this);
+  }
 }
 
-@Override
-public void onCreate() {
-  super.onCreate();
-  FacebookSdk.sdkInitialize(getApplicationContext());
-  // If you want to use AppEventsLogger to log events.
-  AppEventsLogger.activateApp(this);
-}
+
