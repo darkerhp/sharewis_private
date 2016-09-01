@@ -51,7 +51,7 @@ class Email extends Component {
           secureTextEntry
         />
         <Button
-          onPress={(): void => this.doLogin()}
+          onPress={() => this.doLogin()}
         >
           { t.login }
         </Button>

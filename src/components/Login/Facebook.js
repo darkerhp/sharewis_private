@@ -1,8 +1,9 @@
 /**
  * @flow
  */
-import React from 'react';
+import React, { Component } from 'react';
 import ReactNative from 'react-native';
+import { LoginButton } from 'react-native-fbsdk';
 
 const { Text, View } = ReactNative;
 
@@ -10,9 +11,23 @@ const t = {
   facebookLabel: 'Facebookアカウントでログインする',
 };
 
-const Facebook = () =>
-  <View>
-    <Text>{ t.facebookLabel }</Text>
-  </View>;
+class Facebook extends Component {
+  doLogin() {
+    /* eslint no-console: ["error", { allow: ["log"] }] */
+    console.log(`do login with ${this.state.email}/${this.state.password}`);
+  }
+
+  render() {
+    return (
+      <View>
+        <Text>{ t.facebookLabel }</Text>
+        <LoginButton
+          publishPermissions={['publish_actions']}
+          onLoginFinished={() => this.doLogin()}
+        />
+      </View>
+    );
+  }
+}
 
 export default Facebook;
