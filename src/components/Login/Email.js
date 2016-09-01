@@ -43,7 +43,6 @@ class Email extends Component {
           onChangeText={(email: String): String => this.setState({ email })}
           keyboardType="email-address"
           returnKeyType="next"
-          autoFocus
         />
         <TextInput
           placeholder={t.passwordPlaceHolder}
