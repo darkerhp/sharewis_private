@@ -3,7 +3,7 @@
  */
 import React, {
   Component,
-  PropTypes,
+  // PropTypes,
 } from 'react';
 import ReactNative from 'react-native';
 import Button from 'react-native-button';
@@ -20,10 +20,10 @@ const t = {
 
 
 class Email extends Component {
-  static propTypes = {
-    email: PropTypes.string.isRequired,
-    password: PropTypes.number.isRequired,
-  };
+  // static propTypes = {
+  //   email: PropTypes.string.isRequired,
+  //   password: PropTypes.number.isRequired,
+  // };
   state = {
     email: null,
     password: null,
