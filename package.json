@@ -10,11 +10,6 @@
       "android.js"
     ]
   },
-  "babel": {
-    "presets": [
-      "react-native"
-    ]
-  },
   "engines": {
     "node": ">=6.3.0",
     "npm": ">=3.10.5"
