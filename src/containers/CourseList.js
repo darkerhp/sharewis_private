@@ -5,8 +5,12 @@ import { connect } from 'react-redux';
 const { View, Text } = ReactNative;
 
 
-const CourseList = () =>
-  <View />;
+const CourseList = (routes) =>
+  <View>
+    <Text>
+      {routes.title}
+    </Text>
+  </View>;
 
 CourseList.propTypes = {
   routes: PropTypes.object,

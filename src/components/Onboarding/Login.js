@@ -14,9 +14,7 @@ const Login = (props) =>
     </Text>
     <Button
       style={{ backgroundColor: 'red' }}
-      onPress={() => {
-        Actions.refresh({ key: 'courseList' });
-      }}
+      onPress={Actions.courseList}
     >
       Go to Course List
     </Button>
