@@ -8,7 +8,7 @@ const { View, Text } = ReactNative;
 
 
 const Login = (props) =>
-  <View>
+  <View style={{ flex: 1 }}>
     <Text>
       current page: {props.text}
     </Text>

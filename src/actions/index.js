@@ -13,6 +13,3 @@ export const pressNext = () => ({
 export const navigateToInitPage = () => ({
   type: types.NAVIGATE_TO_INIT_PAGE,
 });
-
-// Scenes
-export { scenes } from './scenes';

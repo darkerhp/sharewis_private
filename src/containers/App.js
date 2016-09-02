@@ -4,7 +4,7 @@ import { Router } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
 import Styles from '../styles';
-import { scenes } from '../actions';
+import scenes from '../actions/scenes';
 
 
 const RouterWithRedux = connect()(Router);

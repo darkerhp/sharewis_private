@@ -11,28 +11,21 @@ const t = {
 };
 
 
-const scenes = Actions.create(
+export default Actions.create(
   <Scene key="root">
-    {/*
     <Scene
       key="onboarding"
       component={Onboarding}
     />
-    */}
     <Scene
       key="courseList"
       component={CourseList}
       title={t.courseList}
     />
-    {/*
     <Scene
       key="profile"
       component={Profile}
       title={t.profile}
     />
-    */}
   </Scene>
 );
-
-
-export default scenes;
