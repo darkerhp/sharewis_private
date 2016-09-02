@@ -1,25 +1,29 @@
 /**
  * @flow
  */
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import { LoginButton } from 'react-native-fbsdk';
 
-const { Text, View } = ReactNative;
+const { Alert, Text, View } = ReactNative;
 
 const t = {
+  errorTitle: 'エラー',
   facebookLabel: 'Facebookアカウントでログインする',
   loginError: 'Facebookログインが失敗しました',
   loginSuccess: 'Facebookログインが出来ました',
+  successTitle: '成功',
 };
 
 class Facebook extends Component {
   doLogin(error, result) {
     if (error) {
-      alert(t.loginError);
+      Alert.alert(t.errorTitle, t.loginError);
       console.error(error);
     }
-    alert(t.loginSuccess);
+    Alert.alert(t.successTitle, t.loginSuccess);
+    console.log(result);
   }
 
   render() {
