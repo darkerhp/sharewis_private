@@ -12,7 +12,7 @@ const t = {
 
 
 export default Actions.create(
-  <Scene key="root">
+  <Scene key="root" hideNavBar>
     <Scene
       key="onboarding"
       component={Onboarding}

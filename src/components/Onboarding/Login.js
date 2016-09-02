@@ -13,11 +13,12 @@ const Login = (props) =>
       current page: {props.text}
     </Text>
     <Button
+      style={{ backgroundColor: 'red' }}
       onPress={() => {
         Actions.refresh({ key: 'courseList' });
       }}
     >
-      Switch!
+      Go to Course List
     </Button>
   </View>;
 
