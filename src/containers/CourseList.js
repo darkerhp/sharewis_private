@@ -2,10 +2,12 @@ import React from 'react';
 import ReactNative from 'react-native';
 
 // const { Component, PropTypes } = React;
-const { View } = ReactNative;
+const { View, Text } = ReactNative;
 
 const CourseList = () =>
-  <View />;
+  <View>
+    <Text>Courses List</Text>
+  </View>;
 
 CourseList.propTypes = {};
 CourseList.defaultProps = {};

@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactNative from 'react-native';
-// import { connect } from 'react-redux';
-// import { fetchData } from '../actions/courses';
+import { StyleSheet } from 'react-native';
+import { Router } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+
 import Onboarding from './Onbording';
+import CourseList from './CourseList';
 import Styles from '../styles';
 
-const {
-  Navigator,
-  StyleSheet,
-} = ReactNative;
+const RouterWithRedux = connect()(Router);
 
 const styles = StyleSheet.create({
   container: {
@@ -19,15 +18,9 @@ const styles = StyleSheet.create({
 
 /* eslint no-unused-vars: [2, { "args": "none" }] */
 const App = () =>
-  <Navigator
-    initialRoute={{
-      title: 'Courses',
-      index: 0,
-    }}
-    renderScene={(route, navigator) =>
-      <Onboarding />
-    }
-    style={styles.container}
-  />;
+  <RouterWithRedux style={styles.container}>
+    <Onboarding />
+    <CourseList />
+  </RouterWithRedux>;
 
 export default App;

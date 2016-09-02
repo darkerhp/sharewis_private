@@ -4,7 +4,12 @@ import Swiper from 'react-native-swiper';
 import Slide from '../components/Onboarding/Slide';
 import Login from '../components/Onboarding/Login';
 
-const { StyleSheet, Text, View } = ReactNative;
+const {
+  PropTypes,
+  StyleSheet,
+  Text,
+  View,
+} = ReactNative;
 
 const styles = StyleSheet.create({
   wrapper: {},
@@ -74,7 +79,9 @@ const Onboarding = () =>
     <Login />
   </Swiper>;
 
-Onboarding.propTypes = {};
+Onboarding.propTypes = {
+  routes: PropTypes.object,
+};
 Onboarding.defaultProps = {};
 
 export default Onboarding;
