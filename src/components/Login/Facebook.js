@@ -9,12 +9,17 @@ const { Text, View } = ReactNative;
 
 const t = {
   facebookLabel: 'Facebookアカウントでログインする',
+  loginError: 'Facebookログインが失敗しました',
+  loginSuccess: 'Facebookログインが出来ました',
 };
 
 class Facebook extends Component {
-  doLogin() {
-    /* eslint no-console: ["error", { allow: ["log"] }] */
-    console.log(`do login with ${this.state.email}/${this.state.password}`);
+  doLogin(error, result) {
+    if (error) {
+      alert(t.loginError);
+      console.error(error);
+    }
+    alert(t.loginSuccess);
   }
 
   render() {
@@ -23,7 +28,7 @@ class Facebook extends Component {
         <Text>{ t.facebookLabel }</Text>
         <LoginButton
           readPermissions={['public_profile']}
-          onLoginFinished={() => this.doLogin()}
+          onLoginFinished={this.doLogin}
         />
       </View>
     );
