@@ -59,3 +59,6 @@ Check unit tests with [Jest](http://facebook.github.io/jest/)
 ```
 $ npm test
 ```
+
+### For Debugging
+[reactotoron](https://github.com/reactotron/reactotron)
