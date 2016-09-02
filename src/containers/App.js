@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Router } from 'react-native-router-flux';
+import { Actions, Router } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
 import Styles from '../styles';
-import scenes from '../actions/scenes';
+import getScenes from '../components/Scenes';
 
 
 const RouterWithRedux = connect()(Router);
@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
     backgroundColor: Styles.mainColorBlue,
   },
 });
+
+const scenes = Actions.create(getScenes());
 
 
 /* eslint no-unused-vars: [2, { "args": "none" }] */

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Actions, Scene } from 'react-native-router-flux';
+import { Scene } from 'react-native-router-flux';
 
 import CourseList from '../containers/CourseList';
 import Onboarding from '../containers/Onbording';
@@ -11,7 +11,7 @@ const t = {
 };
 
 
-export default Actions.create(
+const getScenes = () =>
   <Scene key="root" hideNavBar>
     <Scene
       key="onboarding"
@@ -27,5 +27,7 @@ export default Actions.create(
       component={Profile}
       title={t.profile}
     />
-  </Scene>
-);
+  </Scene>;
+
+
+export default getScenes;
