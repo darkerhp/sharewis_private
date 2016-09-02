@@ -53,6 +53,10 @@ $ keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore
 Add the generated 28-char hash to the Android -> Key Hashes in
 [the staging app](https://developers.facebook.com/apps/739140542810010/settings/)
 
+### iOS
+[Download](https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip)
+the Facebook SDK and unzip it to `~/Documents/FacebookSDK/`
+
 
 ## Scripts
 
