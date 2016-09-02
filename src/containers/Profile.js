@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import { connect } from 'react-redux';
 
-// const { Component, PropTypes } = React;
-const { View } = ReactNative;
+const { PropTypes } = React;
+const { Text, View } = ReactNative;
 
-const Profile = () =>
-  <View />;
 
-Profile.propTypes = {};
-Profile.defaultProps = {};
+const Profile = (routes) =>
+  <View>
+    <Text>
+      { routes.scene.title }
+    </Text>
+  </View>;
 
-export default Profile;
+Profile.propTypes = {
+  routes: PropTypes.object,
+};
+
+
+export default connect(
+  ({ routes }) => ({ routes })
+)(Profile);
