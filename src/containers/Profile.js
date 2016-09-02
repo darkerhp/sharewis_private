@@ -18,6 +18,6 @@ Profile.propTypes = {
 };
 
 
-export default connect((
-  { routes }) => ({ routes })
+export default connect(
+  ({ routes }) => ({ routes })
 )(Profile);

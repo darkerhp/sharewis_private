@@ -84,4 +84,6 @@ Onboarding.propTypes = {};
 Onboarding.defaultProps = {};
 
 
-export default connect()(Onboarding);
+export default connect(
+  ({ routes }) => ({ routes })
+)(Onboarding);
