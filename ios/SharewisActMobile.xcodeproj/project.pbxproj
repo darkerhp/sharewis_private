@@ -753,6 +753,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				FACEBOOK_APP_ID = 739140542810010;
 				FRAMEWORK_SEARCH_PATHS = " ~/Documents/FacebookSDK";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = " ~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -781,6 +782,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FACEBOOK_APP_ID = 1491866444383166;
 				FRAMEWORK_SEARCH_PATHS = " ~/Documents/FacebookSDK";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = " ~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
