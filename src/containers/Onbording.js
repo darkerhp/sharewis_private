@@ -7,7 +7,6 @@ import Slide from '../components/Onboarding/Slide';
 import Login from '../components/Onboarding/Login';
 
 const {
-  PropTypes,
   StyleSheet,
   Text,
   View,
@@ -81,12 +80,8 @@ const Onboarding = () =>
     <Login />
   </Swiper>;
 
-Onboarding.propTypes = {
-  routes: PropTypes.object,
-};
+Onboarding.propTypes = {};
 Onboarding.defaultProps = {};
 
 
-export default connect((
-  { routes }) => ({ routes })
-)(Onboarding);
+export default connect()(Onboarding);

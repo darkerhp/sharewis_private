@@ -1,21 +1,22 @@
 import React from 'react';
-import { PropTypes, View, Text } from 'react-native';
+import ReactNative from 'react-native';
 import { connect } from 'react-redux';
 
+const { PropTypes, View, Text } = ReactNative;
 
-const CourseList = () =>
+
+const CourseList = (routes) =>
   <View>
     <Text>
-    { this.props.routes.scene.title }
+      { routes.scene.title }
     </Text>
   </View>;
 
 CourseList.propTypes = {
   routes: PropTypes.object,
 };
-CourseList.defaultProps = {};
 
 
-export default connect((
-  { routes }) => ({ routes })
+export default connect(
+  ({ routes }) => ({ routes })
 )(CourseList);
