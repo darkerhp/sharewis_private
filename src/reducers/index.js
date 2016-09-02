@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import routes from './routes';
 // import * as ActionTypes from '../actions/ActionTypes';
 
 const exampleReducer = (state: Object = {}, action: Object): Function => {
@@ -12,6 +13,7 @@ const exampleReducer = (state: Object = {}, action: Object): Function => {
 
 const rootReducer: Function = combineReducers({
   exampleReducer,
+  routes,
 });
 
 export default rootReducer;
