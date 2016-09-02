@@ -22,7 +22,7 @@ class Facebook extends Component {
       <View>
         <Text>{ t.facebookLabel }</Text>
         <LoginButton
-          publishPermissions={['publish_actions']}
+          readPermissions={['public_profile']}
           onLoginFinished={() => this.doLogin()}
         />
       </View>
