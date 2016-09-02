@@ -3,8 +3,8 @@ import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 
-// const { Component, PropTypes } = React;
-const { PropTypes, View, Text } = ReactNative;
+const { PropTypes } = React;
+const { View, Text } = ReactNative;
 
 
 const Login = (props) =>

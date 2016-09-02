@@ -2,8 +2,8 @@ import React from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
 
-// const { Component, PropTypes } = React;
-const { PropTypes, Text, View } = ReactNative;
+const { PropTypes } = React;
+const { Text, View } = ReactNative;
 
 
 const Profile = (routes) =>
