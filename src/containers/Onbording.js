@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Swiper from 'react-native-swiper';
+import { connect } from 'react-redux';
+
 import Slide from '../components/Onboarding/Slide';
 import Login from '../components/Onboarding/Login';
 
@@ -84,4 +86,7 @@ Onboarding.propTypes = {
 };
 Onboarding.defaultProps = {};
 
-export default Onboarding;
+
+export default connect((
+  { routes }) => ({ routes })
+)(Onboarding);
