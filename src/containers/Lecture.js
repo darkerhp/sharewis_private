@@ -25,27 +25,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'transparent',
   },
-  appMessage: {
-    fontSize: 36,
-    color: 'white',
-  },
-  appSubMessage: {
-    fontSize: 18,
-  },
-  imageContainer: {
-    borderRadius: 14,
-    marginTop: 30,
-    marginBottom: 30,
-    padding: 10,
-    backgroundColor: 'white',
-    opacity: 0.7,
-  },
-  image: {
-    borderRadius: 4,
-    width: 250,
-    height: 300,
-    resizeMode: 'stretch',
-  },
 });
 
 class Lecture extends React.Component {
