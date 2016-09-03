@@ -1,5 +1,4 @@
-// Onboarding
-export const ON_SCROLL = 'ON_SCROLL';
-export const PRESS_PREV = 'PRESS_PREV';
-export const PRESS_NEXT = 'PRESS_NEXT';
-export const NAVIGATE_TO_INIT_PAGE = 'NAVIGATE_TO_INIT_PAGE';
+// VideoLecture
+export const PRESS_PLAY = 'PRESS_PLAY';
+export const PRESS_RATE = 'PRESS_RATE';
+export const PRESS_FULL_SCREEN = 'PRESS_FULL_SCREEN';

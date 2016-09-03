@@ -1,15 +1,12 @@
 import * as types from '../constants/ActionTypes';
 
-// Onboarding
-export const onScroll = () => ({
-  type: types.ON_SCROLL,
+// VideoLecture
+export const pressPlay = () => ({
+  type: types.PRESS_PLAY,
 });
-export const pressPrev = () => ({
-  type: types.PRESS_PREV,
+export const pressRate = () => ({
+  type: types.PRESS_RATE,
 });
-export const pressNext = () => ({
-  type: types.PRESS_NEXT,
-});
-export const navigateToInitPage = () => ({
-  type: types.NAVIGATE_TO_INIT_PAGE,
+export const pressFullScreen = () => ({
+  type: types.PRESS_FULL_SCREEN,
 });
