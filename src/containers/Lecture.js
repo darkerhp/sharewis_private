@@ -40,7 +40,7 @@ class Lecture extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={[styles.videoContainer, {marginTop: 64}]}>
+        <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
             source={{ uri: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin' }} // Can be a URL or a local file.
             rate={1.0}
@@ -51,7 +51,7 @@ class Lecture extends React.Component {
             repeat={false}
             playInBackground={false}
             playWhenInactive={false}
-            onError={e => console.log(e)}
+            // onError={e => console.log(e)}
             style={styles.backgroundVideo}
           />
         </View>
@@ -71,7 +71,12 @@ class Lecture extends React.Component {
           {/* TODO NextLecture 実装する */}
           <View style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'stretch' }}>
             <TouchableOpacity
-              style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#579eff', minHeight: 60 }}
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#579eff',
+                minHeight: 60,
+              }}
             >
               <Text style={{ color: 'white' }}>次のレクチャーに進む</Text>
             </TouchableOpacity>
