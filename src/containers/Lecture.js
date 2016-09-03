@@ -81,7 +81,7 @@ class Lecture extends React.Component {
           <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
             <Text>ProgressBar</Text>
           </View>
-          {/* TODO LecturteTitle 実装する */}
+          {/* TODO LectureTitle 実装する */}
           <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
             <Text>LecturteTitle</Text>
           </View>
