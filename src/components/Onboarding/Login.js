@@ -18,6 +18,12 @@ const Login = (props) =>
     >
       Go to Course List
     </Button>
+    <Button
+      style={{ backgroundColor: 'yellow' }}
+      onPress={Actions.lecture}
+    >
+      Go to Lecture
+    </Button>
   </View>;
 
 Login.propTypes = {

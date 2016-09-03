@@ -4,6 +4,7 @@ import { Scene } from 'react-native-router-flux';
 import CourseList from '../containers/CourseList';
 import Onboarding from '../containers/Onbording';
 import Profile from '../containers/Profile';
+import Lecture from '../containers/Lecture';
 
 const t = {
   courseList: 'コースリスト',
@@ -26,6 +27,12 @@ const getScenes = () =>
       key="profile"
       component={Profile}
       title={t.profile}
+    />
+    <Scene
+      key="lecture"
+      component={Lecture}
+      title={t.profile}
+      hideNavBar={false}
     />
   </Scene>;
 

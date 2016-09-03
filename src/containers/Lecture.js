@@ -40,7 +40,7 @@ class Lecture extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={styles.videoContainer}>
+        <View style={[styles.videoContainer, {marginTop: 64}]}>
           <Video
             source={{ uri: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin' }} // Can be a URL or a local file.
             rate={1.0}
