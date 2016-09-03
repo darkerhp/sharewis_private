@@ -41,7 +41,7 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
       buttonColor="#579eff"
       onPress={onPressPlay}
     />
-    {/* TODO 実装する */}
+    {/* TODO rateButton 実装する */}
     <ActionButton
       position={'center'}
       offsetY={0}
@@ -49,7 +49,7 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
       buttonColor="#579eff"
       onPress={onPressPlay}
     />
-    {/* TODO 実装する */}
+    {/* TODO fullScreenButton 実装する */}
     <ActionButton
       position={'right'}
       offsetY={0}
