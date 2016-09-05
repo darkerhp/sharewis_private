@@ -4,6 +4,8 @@ import ReactNative from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import BaseStyles from '../../baseStyles';
+
 const { PropTypes } = React;
 const { View, StyleSheet } = ReactNative;
 
@@ -12,7 +14,7 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   playButton: {
     fontSize: 40,
@@ -38,7 +40,7 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
       offsetY={0}
       size={78}
       icon={<Icon name={isPaused ? 'ios-play' : 'ios-pause'} style={styles.playButton} />}
-      buttonColor="#579eff"
+      buttonColor={BaseStyles.mainColorBlue}
       onPress={onPressPlay}
     />
     {/* TODO rateButton 実装する */}
@@ -46,7 +48,7 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
       position={'center'}
       offsetY={0}
       icon={<Icon name={isPaused ? 'ios-play' : 'ios-pause'} style={styles.rateButton} />}
-      buttonColor="#579eff"
+      buttonColor={BaseStyles.mainColorBlue}
       onPress={onPressPlay}
     />
     {/* TODO fullScreenButton 実装する */}
@@ -54,7 +56,7 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
       position={'right'}
       offsetY={0}
       icon={<Icon name={isPaused ? 'ios-play' : 'ios-pause'} style={styles.fullScreenButton} />}
-      buttonColor="#579eff"
+      buttonColor={BaseStyles.mainColorBlue}
       onPress={onPressPlay}
     />
   </View>;
