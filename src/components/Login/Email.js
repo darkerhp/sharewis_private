@@ -29,7 +29,7 @@ class Email extends Component {
     password: null,
   };
 
-  doLogin() {
+  handlePressedLogin() {
     /* eslint no-console: ["error", { allow: ["log"] }] */
     console.log(`do login with ${this.state.email}/${this.state.password}`);
   }
@@ -51,7 +51,7 @@ class Email extends Component {
           secureTextEntry
         />
         <Button
-          onPress={() => this.doLogin()}
+          onPress={this.handlePressedLogin}
         >
           { t.login }
         </Button>

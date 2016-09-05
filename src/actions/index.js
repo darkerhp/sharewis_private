@@ -10,3 +10,8 @@ export const pressSpeed = () => ({
 export const pressFullScreen = () => ({
   type: types.PRESS_FULL_SCREEN,
 });
+
+// Login
+export const doLogin = () => ({
+  type: types.DO_LOGIN,
+});

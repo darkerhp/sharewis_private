@@ -17,7 +17,7 @@ const t = {
 };
 
 class Facebook extends Component {
-  doLogin(error, result) {
+  handleLoginFinished(error, result) {
     if (error) {
       Alert.alert(t.errorTitle, t.loginError);
       console.error(error);
@@ -32,7 +32,7 @@ class Facebook extends Component {
         <Text>{ t.facebookLabel }</Text>
         <LoginButton
           readPermissions={['public_profile']}
-          onLoginFinished={this.doLogin}
+          onLoginFinished={this.handleLoginFinished}
         />
       </View>
     );
