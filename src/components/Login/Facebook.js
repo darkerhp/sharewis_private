@@ -23,7 +23,7 @@ class Facebook extends Component {
       console.error(error);
     }
     Alert.alert(t.successTitle, t.loginSuccess);
-    console.log(result);
+    console.log('login done', result);
   }
 
   render() {
