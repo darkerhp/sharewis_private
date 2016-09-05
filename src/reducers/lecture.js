@@ -3,9 +3,11 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   isPaused: false,
-  speed: 1.0, // 1.2, 1.5, 2.0
+  speed: 1,
   isFullScreen: false,
 };
+
+const speedList = [1, 1.2, 1.5, 2];
 
 const lecture = (state = initialState, action) => {
   switch (action.type) {
@@ -14,6 +16,14 @@ const lecture = (state = initialState, action) => {
         ...state,
         isPaused: !state.isPaused,
       };
+    case types.PRESS_SPEED: {
+      const currentIndex = speedList.indexOf(state.speed);
+      const index = (currentIndex === speedList.length - 1) ? 0 : currentIndex + 1;
+      return {
+        ...state,
+        speed: speedList[index],
+      };
+    }
     default:
       return state;
   }
