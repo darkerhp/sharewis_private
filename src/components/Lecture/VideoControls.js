@@ -16,20 +16,16 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
   },
+  buttonColor: {
+    color: 'white',
+  },
   playButton: {
     fontSize: 40,
     height: 40,
-    color: 'white',
   },
   rateButton: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
   },
   fullScreenButton: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
   },
 });
 
@@ -39,7 +35,12 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
       position={'left'}
       offsetY={0}
       size={78}
-      icon={<Icon name={isPaused ? 'ios-play' : 'ios-pause'} style={styles.playButton} />}
+      icon={
+        <Icon
+          name={isPaused ? 'ios-play' : 'ios-pause'}
+          style={[styles.buttonColor, styles.playButton]}
+        />
+      }
       buttonColor={BaseStyles.mainColorBlue}
       onPress={onPressPlay}
     />
@@ -47,7 +48,12 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
     <ActionButton
       position={'center'}
       offsetY={0}
-      icon={<Icon name={isPaused ? 'ios-play' : 'ios-pause'} style={styles.rateButton} />}
+      icon={
+        <Icon
+          name={isPaused ? 'ios-play' : 'ios-pause'}
+          style={[styles.buttonColor, styles.rateButton]}
+        />
+      }
       buttonColor={BaseStyles.mainColorBlue}
       onPress={onPressPlay}
     />
@@ -55,7 +61,12 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
     <ActionButton
       position={'right'}
       offsetY={0}
-      icon={<Icon name={isPaused ? 'ios-play' : 'ios-pause'} style={styles.fullScreenButton} />}
+      icon={
+        <Icon
+          name={isPaused ? 'ios-play' : 'ios-pause'}
+          style={[styles.buttonColor, styles.fullScreenButton]}
+        />
+      }
       buttonColor={BaseStyles.mainColorBlue}
       onPress={onPressPlay}
     />

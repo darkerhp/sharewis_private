@@ -62,7 +62,7 @@ class Lecture extends React.Component {
           </View>
           {/* TODO LectureTitle 実装する */}
           <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
-            <Text>LecturteTitle</Text>
+            <Text>LectureTitle</Text>
           </View>
           <VideoControls
             isPaused={this.props.isPaused}
@@ -96,11 +96,6 @@ const mapStateToProps = (state) => ({
   isPaused: state.lecture.isPaused,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  const actions = bindActionCreators(Actions, dispatch);
-  return ({
-    pressPlay: actions.pressPlay,
-  });
-};
+const mapDispatchToProps = (dispatch => ({ ...bindActionCreators(Actions, dispatch) }));
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lecture);
