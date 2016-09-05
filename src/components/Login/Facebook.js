@@ -12,7 +12,7 @@ const t = {
   errorTitle: 'エラー',
   facebookLabel: 'Facebookアカウントでログインする',
   loginError: 'Facebookログインが失敗しました',
-  loginSuccess: 'Facebookログインが出来ました',
+  loginSuccess: 'Facebookログインができました',
   successTitle: '成功',
 };
 
