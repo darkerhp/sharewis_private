@@ -1,3 +1,4 @@
+/* @flow */
 // VideoLecture
 export const PRESS_PLAY = 'PRESS_PLAY';
 export const PRESS_SPEED = 'PRESS_SPEED';
@@ -5,5 +6,7 @@ export const PRESS_FULL_SCREEN = 'PRESS_FULL_SCREEN';
 export const VIDEO_PROGRESS = 'VIDEO_PROGRESS';
 
 // Login
-export const FACEBOOK_LOGIN = 'FACEBOOK_LOGIN';
-export const EMAIL_LOGIN = 'EMAIL_LOGIN';
+export const FETCH_LOGIN_FAILURE = 'FETCH_LOGIN_FAILURE';
+export const FETCH_LOGIN_SUCCESS = 'FETCH_LOGIN_SUCCESS';
+export const START_EMAIL_LOGIN = 'START_EMAIL_LOGIN';
+export const START_FACEBOOK_LOGIN = 'START_FACEBOOK_LOGIN';

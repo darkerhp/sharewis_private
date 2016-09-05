@@ -1,5 +1,5 @@
 /* @flow */
-import { PRESS_PLAY } from '../constants/ActionTypes';
+import { PRESS_PLAY } from '../actions/lecture';
 
 const initialState = {
   isPaused: false,

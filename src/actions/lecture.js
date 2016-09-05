@@ -1,4 +1,6 @@
+/* @flow */
 import * as types from '../constants/ActionTypes';
+
 
 export const pressPlay = () => ({
   type: types.PRESS_PLAY,
