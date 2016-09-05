@@ -31,10 +31,15 @@ class Lecture extends React.Component {
   constructor(props) {
     super(props);
     this.handlePressPlay = this.handlePressPlay.bind(this);
+    this.handlePressRate = this.handlePressRate.bind(this);
   }
 
   handlePressPlay() {
     this.props.pressPlay();
+  }
+
+  handlePressRate() {
+    this.props.pressRate();
   }
 
   render() {
@@ -43,7 +48,7 @@ class Lecture extends React.Component {
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
             source={{ uri: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin' }} // Can be a URL or a local file.
-            rate={1.0}
+            rate={this.props.rate}
             volume={1.0}
             muted={false}
             paused={this.props.isPaused}
@@ -66,7 +71,9 @@ class Lecture extends React.Component {
           </View>
           <VideoControls
             isPaused={this.props.isPaused}
+            rate={this.props.rate}
             onPressPlay={this.handlePressPlay}
+            onPressRate={this.handlePressRate}
           />
           {/* TODO NextLecture 実装する */}
           <View style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'stretch' }}>
@@ -92,10 +99,6 @@ Lecture.propTypes = {
   pressPlay: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  isPaused: state.lecture.isPaused,
-});
-
-const mapDispatchToProps = (dispatch => ({ ...bindActionCreators(Actions, dispatch) }));
-
+const mapStateToProps = state => ({ ...state.lecture });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 export default connect(mapStateToProps, mapDispatchToProps)(Lecture);

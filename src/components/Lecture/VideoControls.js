@@ -2,12 +2,13 @@ import React from 'react';
 import ReactNative from 'react-native';
 
 import ActionButton from 'react-native-action-button';
-import Icon from 'react-native-vector-icons/Ionicons';
+// import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BaseStyles from '../../baseStyles';
 
 const { PropTypes } = React;
-const { View, StyleSheet } = ReactNative;
+const { View, StyleSheet, TouchableOpacity, Text } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -21,15 +22,29 @@ const styles = StyleSheet.create({
   },
   playButton: {
     fontSize: 40,
-    height: 40,
+    height: 44,
+  },
+  playSpeedButton: {
+    width: 58,
+    height: 58,
+    marginLeft: 10,
+    borderRadius: 58 * 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: BaseStyles.mainColorBlue,
   },
   rateButton: {
+    fontSize: 20,
+    height: 22,
   },
   fullScreenButton: {
+    fontSize: 20,
+    height: 22,
   },
 });
 
-const VideoControls = ({ isPaused, onPressPlay }) =>
+const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate, onPressFullScreen }) =>
   <View style={styles.container}>
     <ActionButton
       position={'left'}
@@ -37,38 +52,33 @@ const VideoControls = ({ isPaused, onPressPlay }) =>
       size={78}
       icon={
         <Icon
-          name={isPaused ? 'ios-play' : 'ios-pause'}
+          name={isPaused ? 'play-arrow' : 'pause'}
           style={[styles.buttonColor, styles.playButton]}
         />
       }
       buttonColor={BaseStyles.mainColorBlue}
       onPress={onPressPlay}
     />
-    {/* TODO rateButton 実装する */}
-    <ActionButton
-      position={'center'}
-      offsetY={0}
-      icon={
-        <Icon
-          name={isPaused ? 'ios-play' : 'ios-pause'}
-          style={[styles.buttonColor, styles.rateButton]}
-        />
-      }
-      buttonColor={BaseStyles.mainColorBlue}
-      onPress={onPressPlay}
-    />
+    <TouchableOpacity onPress={onPressRate} style={{flex: 1, width: 58}}>
+      <View style={[styles.playSpeedButton]}>
+        <Text style={{fontSize: 18, color: 'white'}}>
+          x{rate}{rate % 1 === 0 ? '.0' : ''}
+        </Text>
+      </View>
+    </TouchableOpacity>
     {/* TODO fullScreenButton 実装する */}
     <ActionButton
       position={'right'}
-      offsetY={0}
+      offsetY={7}
+      size={62}
       icon={
         <Icon
-          name={isPaused ? 'ios-play' : 'ios-pause'}
+          name={'fullscreen'}
           style={[styles.buttonColor, styles.fullScreenButton]}
         />
       }
       buttonColor={BaseStyles.mainColorBlue}
-      onPress={onPressPlay}
+      onPress={onPressFullScreen}
     />
   </View>;
 
