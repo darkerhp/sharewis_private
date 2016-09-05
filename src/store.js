@@ -10,7 +10,8 @@ import Reactotron from 'reactotron-react-native';
 import createReactotronEnhancer from 'reactotron-redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 
-import rootReducer from '../reducers';
+import rootReducer from './reducers';
+
 
 const loggerMiddleware = createLogger();
 const middleWare = applyMiddleware(
