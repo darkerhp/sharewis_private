@@ -97,6 +97,8 @@ class Lecture extends React.Component {
 Lecture.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   pressPlay: PropTypes.func.isRequired,
+  rate: PropTypes.number.isRequired,
+  pressRate: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({ ...state.lecture });

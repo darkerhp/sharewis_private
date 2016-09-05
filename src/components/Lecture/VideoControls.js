@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import Button from 'react-native-button'
+import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BaseStyles from '../../baseStyles';
 
 const { PropTypes } = React;
-const { View, StyleSheet, TouchableOpacity, Text } = ReactNative;
+const { View, StyleSheet } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     height: 28,
     color: 'white',
-  }
+  },
 });
 
 const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate }) =>
@@ -65,7 +65,7 @@ const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate }) =>
     >
       <Icon
         name={isPaused ? 'play-arrow' : 'pause'}
-        style={[styles.buttonColor, styles.playButtonIcon]}
+        style={styles.playButtonIcon}
       />
     </Button>
     <Button
@@ -79,11 +79,11 @@ const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate }) =>
     <Button
       containerStyle={styles.rateButton}
       style={styles.buttonText}
-      onPress={(e)=> console.log(e)}
+      // onPress={(e) => console.log(e)}
     >
       <Icon
         name={'fullscreen'}
-        style={[styles.buttonColor, styles.fullScreenButtonIcon]}
+        style={styles.fullScreenButtonIcon}
       />
     </Button>
   </View>;
