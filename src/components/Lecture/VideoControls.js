@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     height: 44,
     color: 'white',
   },
-  rateButton: {
+  speedButton: {
     width: 62,
     height: 62,
     borderRadius: 62 / 2,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate }) =>
+const VideoControls = ({ isPaused, speed, onPressPlay, onPressSpeed }) =>
   <View style={styles.container}>
     <Button
       containerStyle={styles.playButton}
@@ -69,15 +69,15 @@ const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate }) =>
       />
     </Button>
     <Button
-      containerStyle={styles.rateButton}
+      containerStyle={styles.speedButton}
       style={styles.buttonText}
-      onPress={onPressRate}
+      onPress={onPressSpeed}
     >
-      x{rate}{rate % 1 === 0 ? '.0' : ''}
+      x{speed}{speed % 1 === 0 ? '.0' : ''}
     </Button>
     {/* TODO fullScreenButton 実装する */}
     <Button
-      containerStyle={styles.rateButton}
+      containerStyle={styles.speedButton}
       style={styles.buttonText}
       // onPress={(e) => console.log(e)}
     >
@@ -92,8 +92,8 @@ const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate }) =>
 VideoControls.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   onPressPlay: PropTypes.func.isRequired,
-  rate: PropTypes.number.isRequired,
-  onPressRate: PropTypes.func.isRequired,
+  speed: PropTypes.number.isRequired,
+  onPressSpeed: PropTypes.func.isRequired,
   // isFullScreen: PropTypes.bool.isRequired,
   // onPressFullScreen: PropTypes.func.isRequired,
 };

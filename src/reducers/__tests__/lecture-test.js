@@ -7,7 +7,7 @@ describe('todos reducer', () => {
     expect(reducer(undefined, {})).toEqual(
       {
         isPaused: false,
-        rate: 1,
+        speed: 1,
         isFullScreen: false,
       },
     );
@@ -18,25 +18,25 @@ describe('todos reducer', () => {
       reducer(undefined, { type: types.PRESS_PLAY })
     ).toEqual({
       isPaused: true,
-      rate: 1,
+      speed: 1,
       isFullScreen: false,
     });
   });
 
-  it('should handle PRESS_RATE', () => {
+  it('should handle PRESS_SPEED', () => {
     expect(
-      reducer(undefined, { type: types.PRESS_RATE })
+      reducer(undefined, { type: types.PRESS_SPEED })
     ).toEqual({
       isPaused: false,
-      rate: 1.2,
+      speed: 1.2,
       isFullScreen: false,
     });
 
-    // rate 2 to 1
+    // speed 2 to 1
     expect(
-      reducer({ rate: 2 }, { type: types.PRESS_RATE })
+      reducer({ speed: 2 }, { type: types.PRESS_SPEED })
     ).toEqual({
-      rate: 1,
+      speed: 1,
     });
   });
 });

@@ -31,15 +31,15 @@ class Lecture extends React.Component {
   constructor(props) {
     super(props);
     this.handlePressPlay = this.handlePressPlay.bind(this);
-    this.handlePressRate = this.handlePressRate.bind(this);
+    this.handlePressSpeed = this.handlePressSpeed.bind(this);
   }
 
   handlePressPlay() {
     this.props.pressPlay();
   }
 
-  handlePressRate() {
-    this.props.pressRate();
+  handlePressSpeed() {
+    this.props.pressSpeed();
   }
 
   render() {
@@ -48,7 +48,7 @@ class Lecture extends React.Component {
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
             source={{ uri: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin' }} // Can be a URL or a local file.
-            rate={this.props.rate}
+            speed={this.props.speed}
             volume={1.0}
             muted={false}
             paused={this.props.isPaused}
@@ -71,9 +71,9 @@ class Lecture extends React.Component {
           </View>
           <VideoControls
             isPaused={this.props.isPaused}
-            rate={this.props.rate}
+            speed={this.props.speed}
             onPressPlay={this.handlePressPlay}
-            onPressRate={this.handlePressRate}
+            onPressSpeed={this.handlePressSpeed}
           />
           {/* TODO NextLecture 実装する */}
           <View style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'stretch' }}>
@@ -97,8 +97,8 @@ class Lecture extends React.Component {
 Lecture.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   pressPlay: PropTypes.func.isRequired,
-  rate: PropTypes.number.isRequired,
-  pressRate: PropTypes.func.isRequired,
+  speed: PropTypes.number.isRequired,
+  pressSpeed: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({ ...state.lecture });
