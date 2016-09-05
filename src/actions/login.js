@@ -1,4 +1,6 @@
 /* @flow */
+/* global fetch */
+
 import * as types from '../constants/ActionTypes';
 import { ACCOUNT_API_URL } from '../constants/Api';
 
@@ -34,7 +36,7 @@ export const fetchLoginSuccess = result => ({
 
 
 // Thunks
-export const fetchUser = (loginMethod, authorization) => (
+export const fetchUser = (loginMethod, credentials) => (
   async dispatch => {
     const nextAction = {
       facebook: startFacebookLogin,
@@ -43,10 +45,11 @@ export const fetchUser = (loginMethod, authorization) => (
     dispatch(nextAction)(credentials);
     const result = await fetch(ACCOUNT_API_URL, {
       headers: {
-       'Content-Type': 'application/json',
-       'Accept': 'application/json',
-       'Authorization': authorization,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `${credentials[0]}:${credentials[1]}`,
       },
     });
+    return result;
   }
 );
