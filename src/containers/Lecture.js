@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Video from 'react-native-video';
 
-import * as Actions from '../actions/index';
+import Actions from '../actions/lecture';
 import VideoControls from '../components/Lecture/VideoControls';
 
 const { PropTypes } = React;
