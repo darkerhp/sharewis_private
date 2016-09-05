@@ -1,5 +1,5 @@
 /* @flow */
-import { PRESS_PLAY, PRESS_RATE } from '../actions/lecture';
+import * as types from '../constants/ActionTypes';
 
 const initialState = {
   isPaused: false,
@@ -11,12 +11,12 @@ const rateList = [1, 1.2, 1.5, 2];
 
 const lecture = (state = initialState, action) => {
   switch (action.type) {
-    case PRESS_PLAY:
+    case types.PRESS_PLAY:
       return {
         ...state,
         isPaused: !state.isPaused,
       };
-    case PRESS_RATE: {
+    case types.PRESS_RATE: {
       const currentIndex = rateList.indexOf(state.rate);
       const index = (currentIndex === rateList.length - 1) ? 0 : currentIndex + 1;
       return {

@@ -1,21 +1,11 @@
-// Constants
-export const PRESS_PLAY = 'PRESS_PLAY';
-export const PRESS_RATE = 'PRESS_RATE';
-export const PRESS_FULL_SCREEN = 'PRESS_FULL_SCREEN';
+import * as types from '../constants/ActionTypes';
 
-// ActionCreators
 export const pressPlay = () => ({
-  type: PRESS_PLAY,
+  type: types.PRESS_PLAY,
 });
 export const pressRate = () => ({
-  type: PRESS_RATE,
+  type: types.PRESS_RATE,
 });
 export const pressFullScreen = () => ({
-  type: PRESS_FULL_SCREEN,
+  type: types.PRESS_FULL_SCREEN,
 });
-
-export default {
-  pressPlay,
-  pressRate,
-  pressFullScreen,
-};
