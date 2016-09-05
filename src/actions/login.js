@@ -1,4 +1,5 @@
-import { EMAIL_LOGIN, FACEBOOK_LOGIN } from '../constants/ActionTypes';
+export const FACEBOOK_LOGIN = 'FACEBOOK_LOGIN';
+export const EMAIL_LOGIN = 'EMAIL_LOGIN';
 
 
 export const emailLogin = (email, password) => ({
