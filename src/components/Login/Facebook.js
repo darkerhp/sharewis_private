@@ -16,6 +16,7 @@ const t = {
   successTitle: '成功',
 };
 
+
 class Facebook extends Component {
   handleLoginFinished(error, result) {
     if (error) {
