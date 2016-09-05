@@ -29,7 +29,6 @@
   "dependencies": {
     "react": "~15.3.0",
     "react-native": "0.32.0",
-    "react-native-action-button": "^2.0.1",
     "react-native-button": "^1.7.0",
     "react-native-router-flux": "^3.35.0",
     "react-native-swiper": "^1.4.11",

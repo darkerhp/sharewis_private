@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import ActionButton from 'react-native-action-button';
-// import Icon from 'react-native-vector-icons/Ionicons';
+import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BaseStyles from '../../baseStyles';
@@ -13,78 +12,90 @@ const { View, StyleSheet, TouchableOpacity, Text } = ReactNative;
 const styles = StyleSheet.create({
   container: {
     flex: 2,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    justifyContent: 'space-around',
+    alignItems: 'center',
     flexDirection: 'row',
   },
-  buttonColor: {
-    color: 'white',
-  },
   playButton: {
-    fontSize: 40,
-    height: 44,
-  },
-  playSpeedButton: {
-    width: 58,
-    height: 58,
-    marginLeft: 10,
-    borderRadius: 58 * 0.5,
+    width: 78,
+    height: 78,
+    borderRadius: 78 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
     backgroundColor: BaseStyles.mainColorBlue,
   },
+  playButtonIcon: {
+    fontSize: 40,
+    height: 44,
+    color: 'white',
+  },
   rateButton: {
-    fontSize: 20,
-    height: 22,
+    width: 62,
+    height: 62,
+    borderRadius: 62 / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: BaseStyles.mainColorBlue,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
   },
   fullScreenButton: {
-    fontSize: 20,
-    height: 22,
+    width: 62,
+    height: 62,
+    borderRadius: 62 / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: BaseStyles.mainColorBlue,
   },
+  fullScreenButtonIcon: {
+    fontSize: 28,
+    height: 28,
+    color: 'white',
+  }
 });
 
-const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate, onPressFullScreen }) =>
+const VideoControls = ({ isPaused, rate, onPressPlay, onPressRate }) =>
   <View style={styles.container}>
-    <ActionButton
-      position={'left'}
-      offsetY={0}
-      size={78}
-      icon={
-        <Icon
-          name={isPaused ? 'play-arrow' : 'pause'}
-          style={[styles.buttonColor, styles.playButton]}
-        />
-      }
-      buttonColor={BaseStyles.mainColorBlue}
+    <Button
+      containerStyle={styles.playButton}
+      style={styles.buttonText}
       onPress={onPressPlay}
-    />
-    <TouchableOpacity onPress={onPressRate} style={{flex: 1, width: 58}}>
-      <View style={[styles.playSpeedButton]}>
-        <Text style={{fontSize: 18, color: 'white'}}>
-          x{rate}{rate % 1 === 0 ? '.0' : ''}
-        </Text>
-      </View>
-    </TouchableOpacity>
+    >
+      <Icon
+        name={isPaused ? 'play-arrow' : 'pause'}
+        style={[styles.buttonColor, styles.playButtonIcon]}
+      />
+    </Button>
+    <Button
+      containerStyle={styles.rateButton}
+      style={styles.buttonText}
+      onPress={onPressRate}
+    >
+      x{rate}{rate % 1 === 0 ? '.0' : ''}
+    </Button>
     {/* TODO fullScreenButton 実装する */}
-    <ActionButton
-      position={'right'}
-      offsetY={7}
-      size={62}
-      icon={
-        <Icon
-          name={'fullscreen'}
-          style={[styles.buttonColor, styles.fullScreenButton]}
-        />
-      }
-      buttonColor={BaseStyles.mainColorBlue}
-      onPress={onPressFullScreen}
-    />
+    <Button
+      containerStyle={styles.rateButton}
+      style={styles.buttonText}
+      onPress={(e)=> console.log(e)}
+    >
+      <Icon
+        name={'fullscreen'}
+        style={[styles.buttonColor, styles.fullScreenButtonIcon]}
+      />
+    </Button>
   </View>;
+
 
 VideoControls.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   onPressPlay: PropTypes.func.isRequired,
+  rate: PropTypes.number.isRequired,
+  onPressRate: PropTypes.func.isRequired,
+  // isFullScreen: PropTypes.bool.isRequired,
+  // onPressFullScreen: PropTypes.func.isRequired,
 };
 
 export default VideoControls;
