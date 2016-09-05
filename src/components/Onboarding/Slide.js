@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
-import MainStyles from '../../styles';
+import MainStyles from '../../baseStyles';
 
 const { PropTypes } = React;
 const {

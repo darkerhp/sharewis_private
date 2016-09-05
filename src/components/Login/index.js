@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
-import MainStyles from '../../styles';
+import MainStyles from '../../baseStyles';
 import Email from './Email';
 import Facebook from './Facebook';
 
