@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 class Login extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
-    loggedIn: PropTypes.bool,
+    loggedIn: PropTypes.bool.isRequired,
   };
 
   componentWillReceiveProps(props) {
