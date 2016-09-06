@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import Video from 'react-native-video';
 
 import * as Actions from '../actions/lecture';
+import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 
 const { PropTypes } = React;
@@ -62,9 +63,7 @@ class Lecture extends React.Component {
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           {/* TODO ProgressBar 実装する */}
-          <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
-            <Text>ProgressBar</Text>
-          </View>
+          <SeekBar />
           {/* TODO LectureTitle 実装する */}
           <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
             <Text>LectureTitle</Text>
