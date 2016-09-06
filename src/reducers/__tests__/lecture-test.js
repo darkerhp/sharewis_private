@@ -4,32 +4,28 @@ import * as types from '../../constants/ActionTypes';
 
 describe('todos reducer', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(
-      {
-        isPaused: false,
-        speed: 1,
-        isFullScreen: false,
-      },
-    );
+    expect(reducer(undefined, {})).toEqual({
+      isPaused: false,
+      speed: 1,
+      isFullScreen: false,
+      duration: 0,
+      currentTime: 0,
+    });
   });
 
   it('should handle PRESS_PLAY', () => {
     expect(
-      reducer(undefined, { type: types.PRESS_PLAY })
+      reducer({ isPaused: false }, { type: types.PRESS_PLAY })
     ).toEqual({
       isPaused: true,
-      speed: 1,
-      isFullScreen: false,
     });
   });
 
   it('should handle PRESS_SPEED', () => {
     expect(
-      reducer(undefined, { type: types.PRESS_SPEED })
+      reducer({ speed: 1 }, { type: types.PRESS_SPEED })
     ).toEqual({
-      isPaused: false,
       speed: 1.2,
-      isFullScreen: false,
     });
 
     // speed 2 to 1
@@ -39,4 +35,13 @@ describe('todos reducer', () => {
       speed: 1,
     });
   });
+
+  it('should handle VIDEO_PROGRESS', () => {
+    expect(
+      reducer({ currentTime: 0 }, { type: types.VIDEO_PROGRESS, currentTime: 1 })
+    ).toEqual({
+      currentTime: 1,
+    });
+  });
+
 });
