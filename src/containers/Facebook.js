@@ -32,21 +32,26 @@ class Facebook extends Component {
     this.getAccountData = this.getAccountData.bind(this);
   }
 
-  async getAccountData(error, result) {
-    if (error) {
+  async getAccountData(fbGraphError, result) {
+    if (fbGraphError) {
       Alert.alert(t.errorTitle, t.loginError);
-      console.error(error);
+      console.error(fbGraphError);
       return;
     }
     // Notify ACT API of the login and fetch user data
-    await this.props.fetchUserByFacebook('facebook', [result.email, result.id]);
-    Alert.alert(t.successTitle, t.loginSuccess);
+    try {
+      await this.props.fetchUserByFacebook('facebook', [result.email, result.id]);
+      Alert.alert(t.successTitle, t.loginSuccess);
+    } catch (actError) {
+      Alert.alert(t.errorTitle, t.loginError);
+      console.error(actError);
+    }
   }
 
-  handleLoginFinished(error, result) {
-    if (error || !result.grantedPermissions.find(perm => perm === 'email')) {
+  handleLoginFinished(fbLoginError, result) {
+    if (fbLoginError || !result.grantedPermissions.find(perm => perm === 'email')) {
       Alert.alert(t.errorTitle, t.loginError);
-      console.error(error);
+      console.error(fbLoginError);
       console.error(result.grantedPermissions);
       return;
     }
