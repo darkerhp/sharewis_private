@@ -44,6 +44,12 @@ class Facebook extends Component {
   }
 
   handleLoginFinished(error, result) {
+    if (error || !result.grantedPermissions.find(perm => perm === 'email')) {
+      Alert.alert(t.errorTitle, t.loginError);
+      console.error(error);
+      console.error(result.grantedPermissions);
+      return;
+    }
     const infoRequest = new GraphRequest('/me?fields=email', null, this.getAccountData);
     new GraphRequestManager().addRequest(infoRequest).start();
   }
