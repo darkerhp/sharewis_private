@@ -62,3 +62,9 @@ $ npm test
 
 ### For Debugging
 [reactotoron](https://github.com/reactotron/reactotron)
+
+If using Reactotron-cli, remember to run
+```
+$ adb reverse tcp:9090 tcp:9090
+```
+In order for the simulator to allow traffic from and to the Reactotron dashboard
