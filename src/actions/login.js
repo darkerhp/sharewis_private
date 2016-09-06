@@ -5,7 +5,7 @@
 import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 import * as types from '../constants/ActionTypes';
 import { ACCOUNT_API_URL } from '../constants/Api';
-// import { promisify } from '../utils';
+// import promisify from '../utils/asyncUtils';
 
 
 // Actions Creators
