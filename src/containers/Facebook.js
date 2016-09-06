@@ -24,40 +24,37 @@ const t = {
 class Facebook extends Component {
   static propTypes = {
     fetchUser: PropTypes.func.isRequired,
-    fetchUserFromFacebook: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.handleLoginFinished = this.handleLoginFinished.bind(this);
-    this.fetchUser = this.fetchUser.bind(this);
+    this.getAccountData = this.getAccountData.bind(this);
   }
 
   async componentDidMount() {
     console.log('in componentDidMount');
     console.log('props', this.props);
 
-    const infoRequest = new GraphRequest('/me?fields=email', null, this.fetchUser);
+    const infoRequest = new GraphRequest('/me?fields=email', null, this.getAccountData);
     new GraphRequestManager().addRequest(infoRequest).start();
   }
 
-  async fetchUser(error, result) {
-    console.log('in graph request callback');
+  async getAccountData(error, result) {
     if (error) {
       Alert.alert(t.errorTitle, t.loginError);
       console.error(error);
       return;
     }
-    console.log(result);
     // Notify ACT API of the login and fetch user data
-    const data = await this.props.fetchUser('facebook', [result.email, result.id]);
-    console.log('data from api:', data);
+    await this.props.fetchUser('facebook', [result.email, result.id]);
     Alert.alert(t.successTitle, t.loginSuccess);
   }
 
   handleLoginFinished(error, result) {
-    console.log('facebook login done', result);
-    const infoRequest = new GraphRequest('/me?fields=email', null, this.fetchUser);
+    console.log('loginFinished', result);
+    console.log('facebook login done, grab user email');
+    const infoRequest = new GraphRequest('/me?fields=email', null, this.getAccountData);
     new GraphRequestManager().addRequest(infoRequest).start();
   }
 
