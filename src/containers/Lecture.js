@@ -8,7 +8,7 @@ import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 
-const { PropTypes } = React;
+const { Component, PropTypes } = React;
 const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
 
 const styles = StyleSheet.create({
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class Lecture extends React.Component {
+class Lecture extends Component {
   constructor(props) {
     super(props);
     this.handleValueChange = this.handleValueChange.bind(this);
@@ -45,7 +45,7 @@ class Lecture extends React.Component {
       <View style={{ flex: 1 }}>
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
-            ref={(ref) => (this.video = ref)}
+            ref={ref => (this.video = ref)}
             source={{ uri: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin' }} // Can be a URL or a local file.
             rate={this.props.speed}
             volume={1.0}

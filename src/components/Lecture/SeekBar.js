@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactNative from 'react-native';
-
 import moment from 'moment';
 import momentDurationFormat from 'moment-duration-format'; // eslint-disable-line
 
@@ -42,7 +41,7 @@ const SeekBar = ({ currentTime, duration, onValueChange }) => {
       <Slider
         maximumValue={duration}
         value={currentTime}
-        onValueChange={(value) => onValueChange(value)}
+        onValueChange={value => onValueChange(value)}
         style={styles.slider}
       />
       <View style={styles.timeTextContainer}>
