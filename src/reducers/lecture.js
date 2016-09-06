@@ -1,5 +1,5 @@
 /* @flow */
-import { PRESS_PLAY } from '../actions/lecture';
+import * as types from '../constants/ActionTypes';
 
 const initialState = {
   isPaused: false,
@@ -13,7 +13,7 @@ const speedList = [1, 1.2, 1.5, 2];
 
 const lecture = (state = initialState, action) => {
   switch (action.type) {
-    case PRESS_PLAY:
+    case types.PRESS_PLAY:
       return {
         ...state,
         isPaused: !state.isPaused,
