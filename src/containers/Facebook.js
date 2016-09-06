@@ -6,7 +6,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import { LoginButton } from 'react-native-fbsdk';
 import * as Actions from '../actions/login';
-import connectComponentStateActions from '../utils';
+import connectToProps from '../utils';
 
 const { Component, PropTypes } = React;
 const { Alert, Text, View } = ReactNative;
@@ -50,4 +50,4 @@ class Facebook extends Component {
   }
 }
 
-export default connectComponentStateActions(Facebook, 'user', Actions);
+export default connectToProps(Facebook, 'user', Actions);
