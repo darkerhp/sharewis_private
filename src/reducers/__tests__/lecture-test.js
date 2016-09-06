@@ -43,5 +43,4 @@ describe('todos reducer', () => {
       currentTime: 1,
     });
   });
-
 });
