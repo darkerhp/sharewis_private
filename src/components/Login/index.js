@@ -1,11 +1,18 @@
+/**
+ * @flow
+ */
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
-import MainStyles from '../../baseStyles';
-import Email from './Email';
-import Facebook from '../../containers/Facebook';
+import { Actions } from 'react-native-router-flux';
 
-const { PropTypes } = React;
+import MainStyles from '../../baseStyles';
+import Facebook from '../../containers/Facebook';
+import connectToProps from '../../utils/reduxUtils';
+import Email from './Email';
+
+const { Component, PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
 
 const styles = StyleSheet.create({
@@ -18,20 +25,33 @@ const styles = StyleSheet.create({
 });
 
 
-const Login = () =>
-  <View style={styles.login}>
-    <Email />
-    <Facebook />
-    <Hr lineColor="black" />
-    <Text style={styles.contentText}>
-      アカウントをお持ちでない方はShareWis ACTのWebサイト
-      からアカウントを作成してください
-    </Text>
-  </View>;
+class Login extends Component {
+  static propTypes = {
+    isFetching: PropTypes.bool.isRequired,
+    loggedIn: PropTypes.bool,
+  };
 
-Login.propTypes = {
-  text: PropTypes.string,
-};
-Login.defaultProps = {};
+  componentWillReceiveProps(props) {
+    console.log('in componentWillReceiveProps', props);
+    // Redirect to Course List page if user is logged in
+    if (!props.isFetching && props.loggedIn) {
+      Actions.courseList();
+    }
+  }
 
-export default Login;
+  render() {
+    return (
+      <View style={styles.login}>
+        <Email />
+        <Facebook />
+        <Hr lineColor="black" />
+        <Text style={styles.contentText}>
+          アカウントをお持ちでない方はShareWis ACTのWebサイト
+          からアカウントを作成してください
+        </Text>
+      </View>
+    );
+  }
+}
+
+export default connectToProps(Login, 'user');
