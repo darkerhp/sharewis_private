@@ -23,7 +23,7 @@ const t = {
 
 class Facebook extends Component {
   static propTypes = {
-    fetchUser: PropTypes.func.isRequired,
+    fetchUserByFacebook: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -47,7 +47,7 @@ class Facebook extends Component {
       return;
     }
     // Notify ACT API of the login and fetch user data
-    await this.props.fetchUser('facebook', [result.email, result.id]);
+    await this.props.fetchUserByFacebook('facebook', [result.email, result.id]);
     Alert.alert(t.successTitle, t.loginSuccess);
   }
 

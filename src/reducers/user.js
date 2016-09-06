@@ -1,39 +1,44 @@
 /* @flow */
-import {
-  FETCH_LOGIN_FAILURE,
-  FETCH_LOGIN_SUCCESS,
-  START_EMAIL_LOGIN,
-  START_FACEBOOK_LOGIN,
-} from '../actions/login';
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
+import * as types from '../constants/ActionTypes';
 
 const initialState = {
   user: null,
   password: null,
   facebookId: null,
+  userName: null,
+  nickName: null,
+  isFetching: false,
+  loggedIn: false,
 };
 
-const user: Function = (state = initialState, action) => {
+
+export default function user(state = initialState, action) {
   switch (action.type) {
-    case FETCH_LOGIN_FAILURE:
+    case types.FETCH_FB_EMAIL_FAILURE:
       return {
         ...state,
         isFetching: false,
         loggedIn: false,
       };
-    case FETCH_LOGIN_SUCCESS:
+    case types.FETCH_FB_EMAIL_SUCCESS:
+      console.log('REDUCER FETCH_FB_EMAIL_SUCCESS');
+      console.log(state);
       return {
         ...state,
         isFetching: false,
         loggedIn: true,
       };
-    case START_EMAIL_LOGIN:
+    case types.START_ACT_EMAIL_LOGIN:
       return {
         ...state,
         email: state.email,
         isFetching: true,
         password: state.password,
       };
-    case START_FACEBOOK_LOGIN:
+    case types.START_ACT_FACEBOOK_LOGIN:
+      console.log('REDUCER START_ACT_FACEBOOK_LOGIN');
+      console.log(state);
       return {
         ...state,
         email: state.email,
@@ -43,6 +48,4 @@ const user: Function = (state = initialState, action) => {
     default:
       return state;
   }
-};
-
-export default user;
+}

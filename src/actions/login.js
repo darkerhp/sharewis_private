@@ -15,12 +15,15 @@ export const startActEmailLogin = ([email, password]) => ({
   password,
 });
 
-export const startActFacebookLogin = ([email, facebookId]) => ({
-  type: types.START_ACT_FACEBOOK_LOGIN,
-  email,
-  facebookId,
-  isFetching: true,
-});
+export const startActFacebookLogin = ([email, facebookId]) => {
+  console.log('startActFacebookLogin', email, facebookId);
+  return {
+    type: types.START_ACT_FACEBOOK_LOGIN,
+    email,
+    facebookId,
+    isFetching: true,
+  };
+};
 
 export const fetchActLoginFailure = error => ({
   type: types.FETCH_ACT_LOGIN_FAILURE,
@@ -29,13 +32,16 @@ export const fetchActLoginFailure = error => ({
   loggedIn: false,
 });
 
-export const fetchActLoginSuccess = result => ({
-  type: types.FETCH_ACT_LOGIN_SUCCESS,
-  isFetching: false,
-  loggedIn: true,
-  userName: result.userName,
-  nickName: result.nickName,
-});
+export const fetchActLoginSuccess = result => {
+  console.log('fetchActLoginSuccess', result);
+  return {
+    type: types.FETCH_ACT_LOGIN_SUCCESS,
+    isFetching: false,
+    loggedIn: true,
+    userName: result.userName,
+    nickName: result.nickName,
+  };
+};
 
 export const fetchFBEmailSuccess = (email, facebookId) => ({
   type: types.FETCH_FB_EMAIL_SUCCESS,
@@ -47,14 +53,14 @@ export const fetchFBEmailSuccess = (email, facebookId) => ({
 
 // Thunks
 
-export const fetchUser = (loginMethod, credentials) =>
+export const fetchUserByFacebook = (loginMethod, credentials) =>
   async dispatch => {
     console.log('credentials', credentials);
-    const data = await getUserData(credentials);
-    console.log('account api query done.', data);
-    const nextAction = {
-      facebook: startActFacebookLogin,
-      email: startActEmailLogin,
-    }[loginMethod];
-    return dispatch(nextAction(data));
+    dispatch(startActFacebookLogin(credentials));
+    try {
+      const data = await getUserData(credentials);
+      return dispatch(fetchActLoginSuccess(data));
+    } catch (error) {
+      return dispatch(fetchActLoginFailure(error));
+    }
   };
