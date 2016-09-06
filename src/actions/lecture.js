@@ -9,3 +9,7 @@ export const pressSpeed = () => ({
 export const pressFullScreen = () => ({
   type: types.PRESS_FULL_SCREEN,
 });
+export const videoProgress = (currentTime) => ({
+  type: types.VIDEO_PROGRESS,
+  currentTime,
+});

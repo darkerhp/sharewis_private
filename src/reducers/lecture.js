@@ -5,6 +5,8 @@ const initialState = {
   isPaused: false,
   speed: 1,
   isFullScreen: false,
+  duration: 0,
+  currentTime: 0,
 };
 
 const speedList = [1, 1.2, 1.5, 2];
@@ -24,6 +26,11 @@ const lecture = (state = initialState, action) => {
         speed: speedList[index],
       };
     }
+    case types.VIDEO_PROGRESS:
+      return {
+        ...state,
+        currentTime: action.currentTime,
+      };
     default:
       return state;
   }
