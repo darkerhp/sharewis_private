@@ -8,9 +8,9 @@ import Hr from 'react-native-hr';
 import { Actions } from 'react-native-router-flux';
 
 import MainStyles from '../../baseStyles';
-import Facebook from '../../containers/Facebook';
 import connectToProps from '../../utils/reduxUtils';
 import Email from './Email';
+import Facebook from './Facebook';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;

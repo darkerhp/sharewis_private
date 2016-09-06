@@ -6,8 +6,8 @@ import React from 'react';
 import ReactNative from 'react-native';
 import { GraphRequest, GraphRequestManager, LoginButton } from 'react-native-fbsdk';
 
-import * as Actions from '../actions/login';
-import connectToProps from '../utils/reduxUtils';
+import * as Actions from '../../actions/login';
+import connectToProps from '../../utils/reduxUtils';
 
 const { Component, PropTypes } = React;
 const { Alert, Text, View } = ReactNative;
