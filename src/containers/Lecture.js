@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import Video from 'react-native-video';
 
 import * as Actions from '../actions/lecture';
+import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 
-const { PropTypes } = React;
+const { Component, PropTypes } = React;
 const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
 
 const styles = StyleSheet.create({
@@ -27,19 +28,16 @@ const styles = StyleSheet.create({
   },
 });
 
-class Lecture extends React.Component {
+class Lecture extends Component {
   constructor(props) {
     super(props);
-    this.handlePressPlay = this.handlePressPlay.bind(this);
-    this.handlePressSpeed = this.handlePressSpeed.bind(this);
+    this.handleValueChange = this.handleValueChange.bind(this);
   }
 
-  handlePressPlay() {
-    this.props.pressPlay();
-  }
-
-  handlePressSpeed() {
-    this.props.pressSpeed();
+  handleValueChange(value) {
+    if (this.video) {
+      this.video.seek(value);
+    }
   }
 
   render() {
@@ -47,8 +45,9 @@ class Lecture extends React.Component {
       <View style={{ flex: 1 }}>
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
+            ref={ref => (this.video = ref)}
             source={{ uri: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin' }} // Can be a URL or a local file.
-            speed={this.props.speed}
+            rate={this.props.speed}
             volume={1.0}
             muted={false}
             paused={this.props.isPaused}
@@ -58,13 +57,16 @@ class Lecture extends React.Component {
             playWhenInactive={false}
             // onError={e => console.log(e)}
             style={styles.backgroundVideo}
+            onProgress={data => this.props.videoProgress(data.currentTime)}
           />
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
-          {/* TODO ProgressBar 実装する */}
-          <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
-            <Text>ProgressBar</Text>
-          </View>
+          <SeekBar
+            currentTime={this.props.currentTime}
+            duration={107/* TODO this.props.duration */}
+            onValueChange={this.handleValueChange}
+            video={this.video}
+          />
           {/* TODO LectureTitle 実装する */}
           <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
             <Text>LectureTitle</Text>
@@ -72,8 +74,8 @@ class Lecture extends React.Component {
           <VideoControls
             isPaused={this.props.isPaused}
             speed={this.props.speed}
-            onPressPlay={this.handlePressPlay}
-            onPressSpeed={this.handlePressSpeed}
+            onPressPlay={this.props.pressPlay}
+            onPressSpeed={this.props.pressSpeed}
           />
           {/* TODO NextLecture 実装する */}
           <View style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'stretch' }}>
@@ -99,6 +101,8 @@ Lecture.propTypes = {
   pressPlay: PropTypes.func.isRequired,
   speed: PropTypes.number.isRequired,
   pressSpeed: PropTypes.func.isRequired,
+  currentTime: PropTypes.number.isRequired,
+  videoProgress: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({ ...state.lecture });
