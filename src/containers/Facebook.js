@@ -32,14 +32,6 @@ class Facebook extends Component {
     this.getAccountData = this.getAccountData.bind(this);
   }
 
-  async componentDidMount() {
-    console.log('in componentDidMount');
-    console.log('props', this.props);
-
-    const infoRequest = new GraphRequest('/me?fields=email', null, this.getAccountData);
-    new GraphRequestManager().addRequest(infoRequest).start();
-  }
-
   async getAccountData(error, result) {
     if (error) {
       Alert.alert(t.errorTitle, t.loginError);
@@ -52,8 +44,6 @@ class Facebook extends Component {
   }
 
   handleLoginFinished(error, result) {
-    console.log('loginFinished', result);
-    console.log('facebook login done, grab user email');
     const infoRequest = new GraphRequest('/me?fields=email', null, this.getAccountData);
     new GraphRequestManager().addRequest(infoRequest).start();
   }

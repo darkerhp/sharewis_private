@@ -3,7 +3,6 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
-  user: null,
   password: null,
   facebookId: null,
   userName: null,
@@ -22,28 +21,30 @@ export default function user(state = initialState, action) {
         loggedIn: false,
       };
     case types.FETCH_FB_EMAIL_SUCCESS:
-      console.log('REDUCER FETCH_FB_EMAIL_SUCCESS');
-      console.log(state);
       return {
         ...state,
-        isFetching: false,
-        loggedIn: true,
+        email: action.email,
+        facebookId: action.facebookId,
+        isFetching: true,
       };
     case types.START_ACT_EMAIL_LOGIN:
       return {
         ...state,
-        email: state.email,
         isFetching: true,
-        password: state.password,
+        password: action.password,
       };
     case types.START_ACT_FACEBOOK_LOGIN:
-      console.log('REDUCER START_ACT_FACEBOOK_LOGIN');
-      console.log(state);
       return {
         ...state,
-        email: state.email,
-        facebookId: state.facebookId,
         isFetching: true,
+      };
+    case types.FETCH_ACT_LOGIN_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        loggedIn: true,
+        userName: action.userName,
+        nickName: action.nickName,
       };
     default:
       return state;
