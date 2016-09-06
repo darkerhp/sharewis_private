@@ -9,14 +9,14 @@ import { ACCOUNT_API_URL } from '../constants/Api';
 
 
 // Actions Creators
-export const startActEmailLogin = (email, password) => ({
+export const startActEmailLogin = ([email, password]) => ({
   type: types.START_ACT_EMAIL_LOGIN,
   email,
   isFetching: true,
   password,
 });
 
-export const startActFacebookLogin = (email, facebookId) => ({
+export const startActFacebookLogin = ([email, facebookId]) => ({
   type: types.START_ACT_FACEBOOK_LOGIN,
   email,
   facebookId,
@@ -54,6 +54,7 @@ export const fetchUser = (loginMethod, credentials) =>
       email: startActEmailLogin,
     }[loginMethod];
     console.log('next action', nextAction);
+    console.log('credentials', credentials);
     const result = await fetch(ACCOUNT_API_URL, {
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ export const fetchUser = (loginMethod, credentials) =>
       },
     });
     console.log('QUERY DONE!', result);
-    return dispatch(nextAction)(credentials);
+    return dispatch(nextAction)(...credentials);
   };
 
 

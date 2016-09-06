@@ -4,7 +4,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
-import { LoginButton } from 'react-native-fbsdk';
+import { GraphRequest, GraphRequestManager, LoginButton } from 'react-native-fbsdk';
 import * as Actions from '../actions/login';
 import { connectToProps } from '../utils';
 
@@ -22,32 +22,42 @@ const t = {
 
 class Facebook extends Component {
   static propTypes = {
+    fetchUser: PropTypes.func.isRequired,
     fetchUserFromFacebook: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.handleLoginFinished = this.handleLoginFinished.bind(this);
+    this.fetchUser = this.fetchUser.bind(this);
   }
 
   async componentDidMount() {
     console.log('in componentDidMount');
     console.log('props', this.props);
 
-    const data = await this.props.fetchUserFromFacebook();
-    console.log('data from api:', data);
+    const infoRequest = new GraphRequest('/me?fields=email', null, this.fetchUser);
+    new GraphRequestManager().addRequest(infoRequest).start();
   }
 
-  async handleLoginFinished(error, result) {
+  async fetchUser(error, result) {
+    console.log('in graph request callback');
     if (error) {
       Alert.alert(t.errorTitle, t.loginError);
       console.error(error);
+      return;
     }
-    console.log('login done', result);
+    console.log(result);
     // Notify ACT API of the login and fetch user data
-    const data = await this.props.fetchUserFromFacebook();
+    const data = await this.props.fetchUser('facebook', [result.email, result.id]);
     console.log('data from api:', data);
     Alert.alert(t.successTitle, t.loginSuccess);
+  }
+
+  handleLoginFinished(error, result) {
+    console.log('facebook login done', result);
+    const infoRequest = new GraphRequest('/me?fields=email', null, this.fetchUser);
+    new GraphRequestManager().addRequest(infoRequest).start();
   }
 
   render() {
