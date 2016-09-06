@@ -3,7 +3,7 @@ import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import MainStyles from '../../baseStyles';
 import Email from './Email';
-import Facebook from './Facebook';
+import Facebook from '../../containers/Facebook';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
