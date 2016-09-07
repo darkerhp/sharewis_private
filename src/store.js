@@ -19,7 +19,7 @@ const middleWare = applyMiddleware(
   loggerMiddleware
 );
 
-// To purge the storage, set to true
+// [DEBUG TOOL] To purge the storage, set to true
 const PURGE_STORAGE = false;
 
 

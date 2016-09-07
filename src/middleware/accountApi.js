@@ -4,7 +4,7 @@
 /* global fetch */
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import { ACCOUNT_API_URL } from '../constants/Api';
-import { checkStatus, checkResult } from './apiUtils';
+import { checkStatus, checkResult } from '../utils/apiUtils';
 
 
 const getUserData = async (credentials) => {

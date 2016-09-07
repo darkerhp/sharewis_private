@@ -4,7 +4,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 
 import * as types from '../constants/ActionTypes';
-import getUserData from '../utils/accountApi';
+import getUserData from '../middleware/accountApi';
 
 
 // Actions Creators
