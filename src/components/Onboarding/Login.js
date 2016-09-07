@@ -7,7 +7,7 @@ const { PropTypes } = React;
 const { View, Text } = ReactNative;
 
 
-const Login = props =>
+const Login = (props) =>
   <View style={{ flex: 1 }}>
     <Text>
       current page: {props.text}

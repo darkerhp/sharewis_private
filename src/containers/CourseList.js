@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const { View, Text } = ReactNative;
 
 
-const CourseList = routes =>
+const CourseList = (routes) =>
   <View>
     <Text>
       {routes.title}
