@@ -14,3 +14,5 @@ if (__DEV__) {
 
 export const ACCOUNT_API_URL = `https://${ACCOUNT_API_HOST}${ACCOUNT_API_BASE_PATH}`;
 export const ACT_API_URL = `https://${ACT_API_HOST}`;
+
+export const PASSWORD_FORGOTTEN_URL = `${ACT_API_URL}/users/password/new`;

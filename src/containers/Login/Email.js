@@ -1,10 +1,13 @@
+/* eslint no-console: ["error", { allow: ["log"] }] */
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import Button from 'react-native-button';
+import Hyperlink from 'react-native-hyperlink';
 
 import BaseStyles from '../../baseStyles';
+import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
-const { Text, StyleSheet, TextInput, View } = ReactNative;
+const { Alert, Text, StyleSheet, TextInput, View } = ReactNative;
 
 const styles = StyleSheet.create({
   view: {
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-end',
     flexDirection: 'row',
-    marginHorizontal: 17,
+    marginHorizontal: 13,
     marginBottom: 4,
     borderColor: '#110000',
     borderWidth: 1,
@@ -24,6 +27,7 @@ const styles = StyleSheet.create({
   label: {
     flex: 1,
     color: '#222',
+    fontSize: 10.5,
   },
   inputWrapper: {
     flex: 2,
@@ -34,30 +38,29 @@ const styles = StyleSheet.create({
   textInputWrapper: {
     flex: 1,
     borderColor: BaseStyles.lightGray,
-    paddingLeft: 17,
+    paddingLeft: 13,
     borderWidth: 1,
   },
   buttonTextWrapper: {
     flex: 2,
-    marginHorizontal: 17,
-    marginTop: 17,
+    marginHorizontal: 13,
+    marginTop: 13,
     borderColor: '#BB0000',
     borderWidth: 1,
   },
   buttonWrapper: {
-    flex: 3,
+    flex: 5,
   },
   button: BaseStyles.Button,
   textWrapper: {
-    flex: 1,
-    borderColor: 'pink',
-    borderWidth: 1,
+    flex: 3,
   },
   text: {
     flex: 1,
-    color: '#222',
     textAlign: 'center',
     textAlignVertical: 'center',
+    fontSize: 10.5,
+    color: BaseStyles.hyperlink,
   },
 });
 
@@ -81,8 +84,15 @@ class Email extends Component {
   };
 
   handlePressedLogin() {
-    /* eslint no-console: ["error", { allow: ["log"] }] */
     console.log(`do login with ${this.state.email}/${this.state.password}`);
+  }
+
+  handleHyperlinkText(url) {
+    return url === PASSWORD_FORGOTTEN_URL ? t.passwordForgotten : url;
+  }
+
+  handleHyperlinkOnPress(url) {
+    Alert.alert(url);
   }
 
   render() {
@@ -123,11 +133,15 @@ class Email extends Component {
           >
             { t.login }
           </Button>
-          <View style={styles.textWrapper}>
+          <Hyperlink
+            style={styles.textWrapper}
+            linkText={this.handleHyperlinkText}
+            onPress={this.handleHyperlinkOnPress}
+          >
             <Text style={styles.text}>
-              { t.passwordForgotten }
+              {PASSWORD_FORGOTTEN_URL}
             </Text>
-          </View>
+          </Hyperlink>
         </View>
       </View>
     );

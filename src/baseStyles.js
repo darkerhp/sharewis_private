@@ -1,4 +1,5 @@
 const Variables = {
+  hyperlink: '#2980b9',
   lightGray: '#dadada',
   mainColorBlue: '#579eff',
   mainColorLightBlue: '#a0e0fc',

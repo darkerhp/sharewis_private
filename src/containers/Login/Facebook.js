@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 1,
     borderColor: 'blue',
-    marginHorizontal: 17,
+    marginHorizontal: 13,
   },
   labelWrapper: {
     flex: 1,
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'flex-end',
     color: '#222',
+    fontSize: 10.5,
   },
   buttonWrapper: {
     flex: 1,

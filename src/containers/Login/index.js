@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 1,
     borderColor: 'green',
-    marginHorizontal: 17,
-    paddingVertical: 17,
+    marginHorizontal: 13,
+    paddingVertical: 13,
   },
 });
 
