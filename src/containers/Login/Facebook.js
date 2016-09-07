@@ -16,8 +16,6 @@ const { Alert, StyleSheet, Text, View } = ReactNative;
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: 'blue',
     marginHorizontal: 13,
   },
   labelWrapper: {

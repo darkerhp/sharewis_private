@@ -12,8 +12,6 @@ const { Alert, Text, StyleSheet, TextInput, View } = ReactNative;
 const styles = StyleSheet.create({
   view: {
     flex: 2,
-    borderWidth: 1,
-    borderColor: 'red',
   },
   labelWrapper: {
     flex: 1,
@@ -21,8 +19,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 13,
     marginBottom: 4,
-    borderColor: '#110000',
-    borderWidth: 1,
   },
   label: {
     flex: 1,
@@ -31,22 +27,19 @@ const styles = StyleSheet.create({
   },
   inputWrapper: {
     flex: 2,
-    borderColor: '#770000',
-    borderWidth: 1,
     backgroundColor: 'white',
+    paddingLeft: 13,
+    borderColor: BaseStyles.lightGray,
+    borderWidth: 1,
   },
   textInputWrapper: {
     flex: 1,
     borderColor: BaseStyles.lightGray,
-    paddingLeft: 13,
-    borderWidth: 1,
   },
   buttonTextWrapper: {
     flex: 2,
     marginHorizontal: 13,
     marginTop: 13,
-    borderColor: '#BB0000',
-    borderWidth: 1,
   },
   buttonWrapper: {
     flex: 5,
@@ -104,7 +97,7 @@ class Email extends Component {
           </Text>
         </View>
         <View style={styles.inputWrapper}>
-          <View style={styles.textInputWrapper}>
+          <View style={[styles.textInputWrapper, { borderBottomWidth: 1 }]}>
             <TextInput
               style={BaseStyles.TextInput}
               placeholder={t.emailPlaceHolder}

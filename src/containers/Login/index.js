@@ -3,14 +3,16 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import { Actions } from 'react-native-router-flux';
+import Hyperlink from 'react-native-hyperlink';
 
 import BaseStyles from '../../baseStyles';
 import connectToProps from '../../utils/reduxUtils';
+import { ACT_API_URL } from '../../constants/Api';
 import Email from './Email';
 import Facebook from './Facebook';
 
 const { Component, PropTypes } = React;
-const { View, StyleSheet, Text } = ReactNative;
+const { Alert, View, StyleSheet, Text } = ReactNative;
 
 const styles = StyleSheet.create({
   login: {
@@ -29,13 +31,15 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: 'green',
     marginHorizontal: 13,
     paddingVertical: 13,
   },
 });
 
+const t = {
+  signupText: `アカウントをお持ちでない方は ${ACT_API_URL} からアカウントを作成してください`,
+  actWebsite: 'ShareWis ACTのWebサイト',
+};
 
 class Login extends Component {
   static propTypes = {
@@ -51,6 +55,15 @@ class Login extends Component {
     }
   }
 
+  handleHyperlinkText(url) {
+    console.log('hyperlink text', url);
+    return url === ACT_API_URL ? t.actWebsite : url;
+  }
+
+  handleHyperlinkOnPress(url) {
+    Alert.alert(url);
+  }
+
   render() {
     return (
       <View style={styles.login}>
@@ -58,10 +71,16 @@ class Login extends Component {
         <Facebook />
         <View style={styles.footer}>
           <Hr lineColor="black" />
-          <Text style={styles.contentText}>
-            アカウントをお持ちでない方はShareWis ACTのWebサイト
-            からアカウントを作成してください
-          </Text>
+          <Hyperlink
+            style={styles.textWrapper}
+            linkStyle={{ color: BaseStyles.hyperlink }}
+            linkText={this.handleHyperlinkText}
+            onPress={this.handleHyperlinkOnPress}
+          >
+            <Text style={styles.contentText}>
+              {t.signupText}
+            </Text>
+          </Hyperlink>
         </View>
       </View>
     );
