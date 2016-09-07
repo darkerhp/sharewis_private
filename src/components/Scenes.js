@@ -12,16 +12,18 @@ const t = {
 };
 
 
-const getScenes = () =>
+const getScenes = (loggedIn) =>
   <Scene key="root" hideNavBar>
     <Scene
       key="onboarding"
       component={Onboarding}
+      initial={!loggedIn}
     />
     <Scene
       key="courseList"
       component={CourseList}
       title={t.courseList}
+      initial={loggedIn}
     />
     <Scene
       key="profile"
