@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
 
-import MainStyles from '../baseStyles';
+import BaseStyles from '../baseStyles';
 
 const { View, StyleSheet, Text } = ReactNative;
 
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  contentText: MainStyles.Text,
+  contentText: BaseStyles.Text,
 });
 
 

@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import { Actions } from 'react-native-router-flux';
 
-import MainStyles from '../../baseStyles';
+import BaseStyles from '../../baseStyles';
 import connectToProps from '../../utils/reduxUtils';
 import Email from './Email';
 import Facebook from './Facebook';
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  contentText: MainStyles.Text,
+  contentText: BaseStyles.Text,
 });
 
 

@@ -40,13 +40,13 @@ class Email extends Component {
         <Text>{ t.emailLabel }</Text>
         <TextInput
           placeholder={t.emailPlaceHolder}
-          onChangeText={(email: String): String => this.setState({ email })}
+          onChangeText={email => this.setState({ email })}
           keyboardType="email-address"
           returnKeyType="next"
         />
         <TextInput
           placeholder={t.passwordPlaceHolder}
-          onChangeText={(password: String): String => this.setState({ password })}
+          onChangeText={password => this.setState({ password })}
           returnKeyType="next"
           secureTextEntry
         />

@@ -7,7 +7,7 @@ import { ACCOUNT_API_URL } from '../constants/Api';
 import { checkStatus, checkResult } from './apiUtils';
 
 
-const getUserData = async credentials => {
+const getUserData = async (credentials) => {
   console.log('start /users/me request');
   // Run query
   const result = await fetch(`${ACCOUNT_API_URL}/users/me`, {
