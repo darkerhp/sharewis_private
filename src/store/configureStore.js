@@ -1,6 +1,8 @@
 /* global __DEV__ */
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 /* eslint no-console: ["error", { allow: ["log"] }] */
+
+import { AsyncStorage } from 'react-native';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -33,9 +35,11 @@ const configureStore = (initialState) => {
   const store = createStore(rootReducer, initialState, composition);
 
   if (PURGE_STORAGE) {
-    persistStore(store).purge();
+    persistStore(store, { storage: AsyncStorage }).purge();
   } else {
-    persistStore(store, {}, () => console.log('rehydration complete'));
+    persistStore(store, { storage: AsyncStorage }, () =>
+      console.log('rehydration complete')
+    );
   }
 
   return store;
