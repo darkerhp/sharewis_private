@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
 const CourseList = routes =>
   <View style={styles.courseList}>
     <Text style={styles.contentText}>
-      aaaa
       {routes.title}
     </Text>
   </View>;
