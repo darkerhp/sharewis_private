@@ -9,16 +9,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
   },
-  barContainer: {
+  barsContainer: {
     flexDirection: 'row',
     height: 18,
     borderWidth: 1,
     borderColor: '#cdcdcd',
   },
-  complete: {
+  barComplete: {
     backgroundColor: '#427fda',
   },
-  incomplete: {
+  barIncomplete: {
     backgroundColor: '#cdcdcd',
   },
 });
@@ -36,9 +36,9 @@ const Progress = ({ completeLectureCount, totalLectureCount }) => {
       <View style={styles.progressText}>
         <Text>{completeLectureCount}/{totalLectureCount}{t.lectureCompleteLable}</Text>
       </View>
-      <View style={styles.barContainer}>
-        <View style={[styles.complete, { flex: completePercentage }]} />
-        <View style={[styles.incomplete, { flex: incompletePercentage }]} />
+      <View style={styles.barsContainer}>
+        <View style={[styles.barComplete, { flex: completePercentage }]} />
+        <View style={[styles.barIncomplete, { flex: incompletePercentage }]} />
       </View>
     </View>
   );
