@@ -13,7 +13,9 @@ plugins:
   - flowtype
 
 rules:
-  # Enable
+  #Enable
+  arrow-parens: [2, "as-needed", { "requireForBlockBody": true }]
+
   #  flowtype/define-flow-type: 1
   #  flowtype/use-flow-type: 1
   #  flowtype/require-parameter-type: 1
