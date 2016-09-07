@@ -46,6 +46,13 @@ export default function user(state = initialState, action) {
         userName: action.userName,
         nickName: action.nickName,
       };
+    case types.FETCH_ACT_LOGIN_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        loggedIn: false,
+      };
+
     default:
       return state;
   }
