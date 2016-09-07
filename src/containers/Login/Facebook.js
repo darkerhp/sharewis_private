@@ -7,10 +7,38 @@ import ReactNative from 'react-native';
 import { GraphRequest, GraphRequestManager, LoginButton } from 'react-native-fbsdk';
 
 import * as Actions from '../../actions/login';
+// import BaseStyles from '../../baseStyles';
 import connectToProps from '../../utils/reduxUtils';
 
 const { Component, PropTypes } = React;
-const { Alert, Text, View } = ReactNative;
+const { Alert, StyleSheet, Text, View } = ReactNative;
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'blue',
+    marginHorizontal: 17,
+  },
+  labelWrapper: {
+    flex: 1,
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+  },
+  label: {
+    flex: 1,
+    alignSelf: 'flex-end',
+    color: '#222',
+  },
+  buttonWrapper: {
+    flex: 1,
+    alignItems: 'stretch',
+  },
+  button: {
+    marginVertical: 5,
+    height: 30,
+  },
+});
 
 const t = {
   errorTitle: 'エラー',
@@ -19,7 +47,6 @@ const t = {
   loginSuccess: 'Facebookログインができました',
   successTitle: '成功',
 };
-
 
 class Facebook extends Component {
   static propTypes = {
@@ -61,12 +88,19 @@ class Facebook extends Component {
 
   render() {
     return (
-      <View>
-        <Text>{ t.facebookLabel }</Text>
-        <LoginButton
-          readPermissions={['public_profile']}
-          onLoginFinished={this.handleLoginFinished}
-        />
+      <View style={styles.view}>
+        <View style={styles.labelWrapper}>
+          <Text style={styles.label}>
+            { t.facebookLabel }
+          </Text>
+        </View>
+        <View style={styles.buttonWrapper}>
+          <LoginButton
+            style={styles.button}
+            readPermissions={['public_profile']}
+            onLoginFinished={this.handleLoginFinished}
+          />
+        </View>
       </View>
     );
   }

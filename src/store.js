@@ -20,7 +20,7 @@ const middleWare = applyMiddleware(
 );
 
 // [DEBUG TOOL] To purge the storage, set to true
-const PURGE_STORAGE = false;
+const PURGE_STORAGE = 0;
 
 
 const configureStore = (initialState) => {

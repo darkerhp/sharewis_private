@@ -66,6 +66,7 @@ const Onboarding = () =>
     nextButton={<Text style={styles.buttonText}>{t.next}</Text>}
     buttonWrapperStyle={styles.buttonWrapper}
   >
+    {/*
     <Slide
       text={t.slide1Text}
       imageSrc={slide1ImageSrc}
@@ -74,6 +75,7 @@ const Onboarding = () =>
       text={t.slide2Text}
       imageSrc={slide2ImageSrc}
     />
+    */}
     <Slide
       text={t.slide3Text}
       imageSrc={slide3ImageSrc}
