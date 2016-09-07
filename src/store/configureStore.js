@@ -27,7 +27,7 @@ const configureStore = (initialState) => {
 
   if (__DEV__) {
     const reactotronEnhancer = createReactotronEnhancer(Reactotron, {
-      isActionImportant: action => action.type.match(/LOGIN/g),
+      // isActionImportant: action => action.type.match(/LOGIN/g),
     });
     composition = compose(reactotronEnhancer, composition);
   }
