@@ -7,7 +7,14 @@ import Hyperlink from 'react-native-hyperlink';
 import BaseStyles from '../../baseStyles';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
-const { Alert, Text, StyleSheet, TextInput, View } = ReactNative;
+const {
+  Alert,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} = ReactNative;
 
 const styles = StyleSheet.create({
   view: {
@@ -35,14 +42,23 @@ const styles = StyleSheet.create({
   textInputWrapper: {
     flex: 1,
     borderColor: BaseStyles.lightGray,
+    borderBottomWidth: 1,
   },
   buttonTextWrapper: {
     flex: 2,
     marginHorizontal: 13,
     marginTop: 13,
   },
+  innerTextInput: {
+    flex: 1,
+    ...Platform.select({
+      ios: { borderBottomWidth: 0.1 },
+      android: { borderBottomWidth: 1 },
+    }),
+  },
   buttonWrapper: {
     flex: 5,
+    flexDirection: 'row',
   },
   button: BaseStyles.Button,
   textWrapper: {
@@ -97,7 +113,7 @@ class Email extends Component {
           </Text>
         </View>
         <View style={styles.inputWrapper}>
-          <View style={[styles.textInputWrapper, { borderBottomWidth: 1 }]}>
+          <View style={[styles.textInputWrapper, styles.innerTextInput]}>
             <TextInput
               style={BaseStyles.TextInput}
               placeholder={t.emailPlaceHolder}

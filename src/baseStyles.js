@@ -16,10 +16,9 @@ const DefaultComponents = {
   },
   TextInput: {
     flex: 1,
-    borderWidth: 0.5,
     padding: 4,
-    // borderColor: Variables.lightGray,
-    borderColor: 'blue',
+    borderColor: Variables.lightGray,
+    borderWidth: 1,
     fontSize: 13,
     color: '#222',
     backgroundColor: 'white',
@@ -29,10 +28,10 @@ const DefaultComponents = {
     fontSize: 15,
     backgroundColor: '#96D243',
     color: 'white',
-    textAlignVertical: 'center',
     borderColor: 'purple',
     borderWidth: 1,
     alignSelf: 'stretch',
+    textAlignVertical: 'center',
   },
 };
 
