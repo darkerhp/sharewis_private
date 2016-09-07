@@ -14,49 +14,67 @@ describe('User reducer', () => {
     });
   });
 
-  it('should handle facebook graph request actions', () => {
-    loggedOut = { isFetching: false, loggedIn: false };
-    loggedIn = {
-      isFetching: true,
-      loggedIn: true,
-      facebookId: '12345',
-      email: 'a@example.com',
-    };
-    // Successful login
-    expect(reducer(loggedOut, {
-      type: types.FETCH_FB_EMAIL_SUCCESS,
-      facebookId: '12345',
-      email: 'a@example.com',
-    })
-    ).toEqual(loggedIn);
-    // Failed login
-    expect(
-      reducer(loggedOut, { type: types.FETCH_FB_EMAIL_FAILURE })
-    ).toEqual(loggedOut);
+  describe('Facebook graph request actions', () => {
+    beforeEach(() => {
+      loggedOut = { isFetching: false, loggedIn: false };
+      loggedIn = {
+        // NOTE: successful facebook login does not set loggedIn to true,
+        // we still need to query ACT API.
+        isFetching: true,
+        loggedIn: false,
+        facebookId: '12345',
+        email: 'a@example.com',
+      };
+    });
+
+    it('should handle successful login', () => {
+      expect(reducer(loggedOut, {
+        type: types.FETCH_FB_EMAIL_SUCCESS,
+        facebookId: '12345',
+        email: 'a@example.com',
+      })
+      ).toEqual(loggedIn);
+    });
+
+    it('should handle failed login', () => {
+      expect(
+        reducer(loggedOut, { type: types.FETCH_FB_EMAIL_FAILURE })
+      ).toEqual(loggedOut);
+    });
   });
 
-  it('should handle ACT login facebook actions', () => {
-    loggedOut = { isFetching: false, loggedIn: false };
-    fetching = { isFetching: true, loggedIn: false };
-    loggedIn = {
-      isFetching: false,
-      loggedIn: false,
-      userName: 'username',
-      nickName: 'nickname',
-    };
-
-    expect(
-      reducer(loggedOut, { type: types.START_ACT_FACEBOOK_LOGIN })
-    ).toEqual(fetching);
-    expect(
-      reducer(fetching, { type: types.FETCH_ACT_LOGIN_FAILURE })
-    ).toEqual(loggedOut);
-    expect(
-      reducer(fetching, {
-        type: types.FETCH_ACT_LOGIN_SUCCESS,
+  describe('ACT login facebook actions', () => {
+    beforeEach(() => {
+      loggedOut = { isFetching: false, loggedIn: false };
+      fetching = { isFetching: true, loggedIn: false };
+      loggedIn = {
+        isFetching: false,
+        loggedIn: true,
         userName: 'username',
         nickName: 'nickname',
-      })
-    ).toEqual(loggedIn);
+      };
+    });
+
+    it('should handle start login', () => {
+      expect(
+        reducer(loggedOut, { type: types.START_ACT_FACEBOOK_LOGIN })
+      ).toEqual(fetching);
+    });
+
+    it('should handle failure login', () => {
+      expect(
+        reducer(fetching, { type: types.FETCH_ACT_LOGIN_FAILURE })
+      ).toEqual(loggedOut);
+    });
+
+    it('should handle success login', () => {
+      expect(
+        reducer(fetching, {
+          type: types.FETCH_ACT_LOGIN_SUCCESS,
+          userName: 'username',
+          nickName: 'nickname',
+        })
+      ).toEqual(loggedIn);
+    });
   });
 });
