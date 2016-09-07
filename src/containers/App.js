@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
 });
 
 
-const App = () => {
+const App = ({ loggedIn }) => {
   const scenes = Actions.create(
-    getScenes(this.props.loggedIn)
+    getScenes(loggedIn)
   );
 
   return (
