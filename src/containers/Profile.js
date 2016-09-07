@@ -6,7 +6,7 @@ const { PropTypes } = React;
 const { Text, View } = ReactNative;
 
 
-const Profile = routes =>
+const Profile = (routes) =>
   <View>
     <Text>
       { routes.scene.title }
