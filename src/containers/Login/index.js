@@ -57,11 +57,6 @@ class Login extends Component {
     }
   }
 
-  handleHyperlinkText(url) {
-    console.log('hyperlink text', url);
-    return url === ACT_API_URL ? t.actWebsite : url;
-  }
-
   render() {
     return (
       <View style={styles.login}>
@@ -72,7 +67,7 @@ class Login extends Component {
           <Hr lineColor="black" />
           <Hyperlink
             linkStyle={{ color: BaseStyles.hyperlink }}
-            linkText={this.handleHyperlinkText}
+            linkText={t.actWebsite}
             onPress={redirectTo}
           >
             <Text style={styles.contentText}>
