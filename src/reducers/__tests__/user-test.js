@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import reducer from '../user';
 import * as types from '../../constants/ActionTypes';
+import reducer from '../user';
 
 describe('User reducer', () => {
   it('should return the initial state', () => {
