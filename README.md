@@ -79,6 +79,8 @@ $ npm test
 ```
 
 ### For Debugging
+
+#### Reactotron
 [reactotoron](https://github.com/reactotron/reactotron)
 
 If using Reactotron-cli, remember to run
@@ -86,3 +88,9 @@ If using Reactotron-cli, remember to run
 $ adb reverse tcp:9090 tcp:9090
 ```
 In order for the simulator to allow traffic from and to the Reactotron dashboard
+
+#### Reset data
+By default, data are stored on the device via AsyncStorage (redux-persist).
+If you need to reset the data (eg to see the onboarding view), temporarily edit
+the `src/store.js` file and set `PURGE_STORAGE = 1` (then revert it after
+reloading the simulator)
