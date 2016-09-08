@@ -7,7 +7,10 @@ const { View, StyleSheet, Text } = ReactNative;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
+  },
+  progressText: {
+    marginBottom: 5,
   },
   barsContainer: {
     flexDirection: 'row',
@@ -33,9 +36,7 @@ const Progress = ({ completeLectureCount, totalLectureCount }) => {
   const incompletePercentage = 100 - completePercentage;
   return (
     <View style={styles.container}>
-      <View style={styles.progressText}>
-        <Text>{completeLectureCount}/{totalLectureCount}{t.lectureCompleteLable}</Text>
-      </View>
+      <Text style={styles.progressText}>{completeLectureCount}/{totalLectureCount}{t.lectureCompleteLable}</Text>
       <View style={styles.barsContainer}>
         <View style={[styles.barComplete, { flex: completePercentage }]} />
         <View style={[styles.barIncomplete, { flex: incompletePercentage }]} />
