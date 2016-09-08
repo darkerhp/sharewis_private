@@ -2,7 +2,7 @@
  * @flow
  */
 /* global fetch */
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
+/* eslint no-console: ["error", { allow: ["log"] }] */
 import { ACCOUNT_API_URL } from '../constants/Api';
 import { checkStatus, checkResult } from '../utils/apiUtils';
 

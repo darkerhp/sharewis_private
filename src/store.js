@@ -9,6 +9,7 @@ import createLogger from 'redux-logger';
 import Reactotron from 'reactotron-react-native';
 import createReactotronEnhancer from 'reactotron-redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
+import { LoginManager } from 'react-native-fbsdk';
 
 import rootReducer from './reducers';
 
@@ -36,6 +37,7 @@ const configureStore = (initialState) => {
   const store = createStore(rootReducer, initialState, composition);
 
   if (PURGE_STORAGE) {
+    LoginManager.logOut();
     persistStore(store, { storage: AsyncStorage }).purge();
   } else {
     persistStore(store, { storage: AsyncStorage }, () =>

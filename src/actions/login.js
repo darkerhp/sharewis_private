@@ -1,7 +1,7 @@
 /**
 * @flow
 */
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
+/* eslint no-console: ["error", { allow: ["log"] }] */
 
 import * as types from '../constants/ActionTypes';
 import getUserData from '../middleware/accountApi';
@@ -22,12 +22,11 @@ export const startActFacebookLogin = ([email, facebookId]) => ({
   isFetching: true,
 });
 
-export const fetchActLoginFailure = error => ({
+export const fetchActLoginFailure = {
   type: types.FETCH_ACT_LOGIN_FAILURE,
-  error,
   isFetching: false,
   loggedIn: false,
-});
+};
 
 export const fetchActLoginSuccess = result => ({
   type: types.FETCH_ACT_LOGIN_SUCCESS,
@@ -55,6 +54,7 @@ export const fetchUserByFacebook = (loginMethod, credentials) =>
       const data = await getUserData(credentials);
       return dispatch(fetchActLoginSuccess(data));
     } catch (error) {
-      return dispatch(fetchActLoginFailure(error));
+      dispatch(fetchActLoginFailure);
+      throw error;
     }
   };

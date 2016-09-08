@@ -1,10 +1,10 @@
 /**
  * @flow
  */
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
+/* eslint no-console: ["error", { allow: ["warn", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
-import { GraphRequest, GraphRequestManager, LoginButton } from 'react-native-fbsdk';
+import FBSDK from 'react-native-fbsdk';
 
 import * as Actions from '../../actions/login';
 // import BaseStyles from '../../baseStyles';
@@ -12,6 +12,7 @@ import connectToProps from '../../utils/reduxUtils';
 
 const { Component, PropTypes } = React;
 const { Alert, StyleSheet, Text, View } = ReactNative;
+const { GraphRequest, GraphRequestManager, LoginButton, LoginManager } = FBSDK;
 
 const styles = StyleSheet.create({
   view: {
@@ -40,11 +41,13 @@ const styles = StyleSheet.create({
 });
 
 const t = {
+  emailNotFound: 'Facebookからメールを貰えませんでした。Facebookの設定からメールを共有することが出来るように同意して下さい',
   errorTitle: 'エラー',
   facebookLabel: 'Facebookアカウントでログインする',
   loginError: 'Facebookログインが失敗しました',
   loginSuccess: 'Facebookログインができました',
   successTitle: '成功',
+  userDoesNotExist: 'ACTでこのユーザーを見付かりませんでした。ウエブサイトからサインアップをして下さい',
 };
 
 class Facebook extends Component {
@@ -60,8 +63,9 @@ class Facebook extends Component {
 
   async getAccountData(fbGraphError, result) {
     if (fbGraphError) {
-      Alert.alert(t.errorTitle, t.loginError);
-      console.error(fbGraphError);
+      Alert.alert(t.errorTitle, t.emailNotFound);
+      console.warn('Unable to fetch user email from Facebook!');
+      console.log(fbGraphError);
       return;
     }
     // Notify ACT API of the login and fetch user data
@@ -69,16 +73,24 @@ class Facebook extends Component {
       await this.props.fetchUserByFacebook('facebook', [result.email, result.id]);
       Alert.alert(t.successTitle, t.loginSuccess);
     } catch (actError) {
-      Alert.alert(t.errorTitle, t.loginError);
-      console.error(actError);
+      LoginManager.logOut();
+      Alert.alert(t.errorTitle, t.userDoesNotExist);
     }
   }
 
   handleLoginFinished(fbLoginError, result) {
-    if (fbLoginError || !result.grantedPermissions.find(perm => perm === 'email')) {
+    console.log(result);
+    if (fbLoginError) {
       Alert.alert(t.errorTitle, t.loginError);
-      console.error(fbLoginError);
-      console.error(result.grantedPermissions);
+      console.warn('Unexpected facebook login error!');
+      console.log(fbLoginError);
+      return;
+    } else if (result.isCancelled) {
+      return;
+    } else if (!result.grantedPermissions.find(perm => perm === 'email')) {
+      Alert.alert(t.errorTitle, t.emailNotFound);
+      console.warn('Missing email permission!');
+      console.log(result.grantedPermissions);
       return;
     }
     const infoRequest = new GraphRequest('/me?fields=email', null, this.getAccountData);
