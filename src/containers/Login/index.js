@@ -7,9 +7,10 @@ import { Actions } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import BaseStyles from '../../baseStyles';
+import { ACT_API_URL } from '../../constants/Api';
+import BaseTranslations from '../../translations';
 import connectToProps from '../../utils/reduxUtils';
 import redirectTo from '../../utils/linking';
-import { ACT_API_URL } from '../../constants/Api';
 import Email from './Email';
 import Facebook from './Facebook';
 
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
 });
 
 const t = {
+  ...BaseTranslations,
   signupText: `アカウントをお持ちでない方は ${ACT_API_URL} からアカウントを作成してください`,
-  actWebsite: 'ShareWis ACTのWebサイト',
 };
 
 class Login extends Component {

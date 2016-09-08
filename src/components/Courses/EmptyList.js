@@ -4,6 +4,7 @@ import Hyperlink from 'react-native-hyperlink';
 
 import BaseStyles from '../../baseStyles';
 import { ACT_API_URL } from '../../constants/Api';
+import BaseTranslations from '../../translations';
 import redirectTo from '../../utils/linking';
 
 const { StyleSheet, Text, View } = ReactNative;
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
 });
 
 const t = {
+  ...BaseTranslations,
   noCourses: `購入・みのコースがない方は、 ${ACT_API_URL} よりお手・きを進めてください`,
 };
 

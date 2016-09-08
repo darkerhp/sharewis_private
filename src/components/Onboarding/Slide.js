@@ -4,6 +4,7 @@ import Hyperlink from 'react-native-hyperlink';
 
 import BaseStyles from '../../baseStyles';
 import { ACT_API_URL } from '../../constants/Api';
+import BaseTranslations from '../../translations';
 import redirectTo from '../../utils/linking';
 
 const { PropTypes } = React;
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
 });
 
 const t = {
-  actWebsite: 'ShareWis ACTのサイト',
+  ...BaseTranslations,
 };
 
 

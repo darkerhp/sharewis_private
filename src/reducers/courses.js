@@ -2,7 +2,10 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
-  courses: ['コース１', 'コース２'],
+  // Test empty course page
+  courses: null,
+  // Test filled course page
+  // courses: ['コース１', 'コース２'],
 };
 
 const courses = (state = initialState, action) => {

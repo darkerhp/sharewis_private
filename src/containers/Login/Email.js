@@ -96,10 +96,6 @@ class Email extends Component {
     console.log(`do login with ${this.state.email}/${this.state.password}`);
   }
 
-  handleHyperlinkText(url) {
-    return url === PASSWORD_FORGOTTEN_URL ? t.passwordForgotten : url;
-  }
-
   render() {
     return (
       <View style={styles.view}>
@@ -134,14 +130,14 @@ class Email extends Component {
           <Button
             containerStyle={styles.buttonWrapper}
             style={styles.button}
-            onPress={redirectTo}
+            onPress={this.handlePressedLogin}
           >
             { t.login }
           </Button>
           <Hyperlink
             style={styles.textWrapper}
-            linkText={this.handleHyperlinkText}
-            onPress={this.handleHyperlinkOnPress}
+            linkText={t.passwordForgotten}
+            onPress={redirectTo}
           >
             <Text style={styles.text}>
               {PASSWORD_FORGOTTEN_URL}
