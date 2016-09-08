@@ -71,7 +71,6 @@ class Login extends Component {
         <View style={styles.footer}>
           <Hr lineColor="black" />
           <Hyperlink
-            style={styles.textWrapper}
             linkStyle={{ color: BaseStyles.hyperlink }}
             linkText={this.handleHyperlinkText}
             onPress={redirectTo}

@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import Hyperlink from 'react-native-hyperlink';
+
 import BaseStyles from '../../baseStyles';
+import { ACT_API_URL } from '../../constants/Api';
+import redirectTo from '../../utils/linking';
 
 const { PropTypes } = React;
 const {
@@ -40,6 +44,11 @@ const styles = StyleSheet.create({
   contentText: BaseStyles.Text,
 });
 
+const t = {
+  actWebsite: 'ShareWis ACTのサイト',
+};
+
+
 const Slide = ({ text, imageSrc }) =>
   <View style={styles.slide}>
     <View style={styles.slideImageContainer}>
@@ -50,9 +59,17 @@ const Slide = ({ text, imageSrc }) =>
       />
     </View>
     <View style={styles.content}>
-      <Text style={styles.contentText}>
-        {text}
-      </Text>
+      <Hyperlink
+        style={{ flex: 1 }}
+        linkStyle={{ color: BaseStyles.hyperlink }}
+        linkText={url => (url === ACT_API_URL ? t.actWebsite : url)}
+        onPress={redirectTo}
+      >
+
+        <Text style={styles.contentText}>
+          {text}
+        </Text>
+      </Hyperlink>
     </View>
   </View>;
 
