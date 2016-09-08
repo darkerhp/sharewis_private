@@ -2,8 +2,9 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
-import { Actions } from 'react-native-router-flux';
 import Hyperlink from 'react-native-hyperlink';
+import { Actions } from 'react-native-router-flux';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import BaseStyles from '../../baseStyles';
 import connectToProps from '../../utils/reduxUtils';
@@ -67,6 +68,7 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.login}>
+        <Spinner visible={this.props.isFetching} />
         <Email />
         <Facebook />
         <View style={styles.footer}>
