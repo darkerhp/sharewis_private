@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 const t = {
   ...BaseTranslations,
-  noCourses: `購入・みのコースがない方は、 ${ACT_API_URL} よりお手・きを進めてください`,
+  noCourses: `購入済みのコースがない方は、 ${ACT_API_URL} よりお手続きを進めてください`,
 };
 
 
