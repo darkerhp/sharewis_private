@@ -7,7 +7,7 @@ import Profile from '../containers/Profile';
 import Lecture from '../containers/Lecture';
 
 const t = {
-  courseList: 'コースリスト',
+  courseList: 'マイコース',
   profile: 'プロファイル',
 };
 
