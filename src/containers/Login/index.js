@@ -8,12 +8,13 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import BaseStyles from '../../baseStyles';
 import connectToProps from '../../utils/reduxUtils';
+import redirectTo from '../../utils/linking';
 import { ACT_API_URL } from '../../constants/Api';
 import Email from './Email';
 import Facebook from './Facebook';
 
 const { Component, PropTypes } = React;
-const { Linking, StyleSheet, Text, View } = ReactNative;
+const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   login: {
@@ -61,10 +62,6 @@ class Login extends Component {
     return url === ACT_API_URL ? t.actWebsite : url;
   }
 
-  handleHyperlinkOnPress(url) {
-    Linking.openURL(url).catch(err => console.error('An error occurred', err));
-  }
-
   render() {
     return (
       <View style={styles.login}>
@@ -77,7 +74,7 @@ class Login extends Component {
             style={styles.textWrapper}
             linkStyle={{ color: BaseStyles.hyperlink }}
             linkText={this.handleHyperlinkText}
-            onPress={this.handleHyperlinkOnPress}
+            onPress={redirectTo}
           >
             <Text style={styles.contentText}>
               {t.signupText}
