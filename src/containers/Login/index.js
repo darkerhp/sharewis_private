@@ -13,7 +13,7 @@ import Email from './Email';
 import Facebook from './Facebook';
 
 const { Component, PropTypes } = React;
-const { Alert, View, StyleSheet, Text } = ReactNative;
+const { Linking, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   login: {
@@ -62,7 +62,7 @@ class Login extends Component {
   }
 
   handleHyperlinkOnPress(url) {
-    Alert.alert(url);
+    Linking.openURL(url).catch(err => console.error('An error occurred', err));
   }
 
   render() {
