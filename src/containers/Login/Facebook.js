@@ -108,7 +108,7 @@ class Facebook extends Component {
         <View style={styles.buttonWrapper}>
           <LoginButton
             style={styles.button}
-            readPermissions={['public_profile']}
+            readPermissions={['public_profile', 'email']}
             onLoginFinished={this.handleLoginFinished}
           />
         </View>
