@@ -3,6 +3,7 @@ import ReactNative from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 
+import { ACT_API_URL } from '../constants/Api';
 import Slide from '../components/Onboarding/Slide';
 import Login from './Login';
 
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
 const t = {
   slide1Text: 'ShareWis ACT ビューワーアプリはShareWis ACTで購入したコースを閲覧するためのアプリです。',
   slide2Text: 'アプリを使えば、コースの動画を事前にダウンロードして、通信費を気にすることなく受講することができます。',
-  slide3Text: 'アカウントをお持ちでない方、購入済みのコースがない方は、ShareWis ACTのサイトよりお手続きを進めてください。',
+  slide3Text: `アカウントをお持ちでない方、購入済みのコースがない方は、 ${ACT_API_URL} よりお手続きを進めてください。`,
   back: '戻る',
   next: '次へ',
 };

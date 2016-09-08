@@ -7,13 +7,15 @@ import { Actions } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import BaseStyles from '../../baseStyles';
-import connectToProps from '../../utils/reduxUtils';
 import { ACT_API_URL } from '../../constants/Api';
+import BaseTranslations from '../../translations';
+import connectToProps from '../../utils/reduxUtils';
+import redirectTo from '../../utils/linking';
 import Email from './Email';
 import Facebook from './Facebook';
 
 const { Component, PropTypes } = React;
-const { Alert, View, StyleSheet, Text } = ReactNative;
+const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   login: {
@@ -38,8 +40,8 @@ const styles = StyleSheet.create({
 });
 
 const t = {
+  ...BaseTranslations,
   signupText: `アカウントをお持ちでない方は ${ACT_API_URL} からアカウントを作成してください`,
-  actWebsite: 'ShareWis ACTのWebサイト',
 };
 
 class Login extends Component {
@@ -56,15 +58,6 @@ class Login extends Component {
     }
   }
 
-  handleHyperlinkText(url) {
-    console.log('hyperlink text', url);
-    return url === ACT_API_URL ? t.actWebsite : url;
-  }
-
-  handleHyperlinkOnPress(url) {
-    Alert.alert(url);
-  }
-
   render() {
     return (
       <View style={styles.login}>
@@ -74,10 +67,9 @@ class Login extends Component {
         <View style={styles.footer}>
           <Hr lineColor="black" />
           <Hyperlink
-            style={styles.textWrapper}
             linkStyle={{ color: BaseStyles.hyperlink }}
-            linkText={this.handleHyperlinkText}
-            onPress={this.handleHyperlinkOnPress}
+            linkText={t.actWebsite}
+            onPress={redirectTo}
           >
             <Text style={styles.contentText}>
               {t.signupText}

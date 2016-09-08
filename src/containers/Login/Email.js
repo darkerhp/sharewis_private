@@ -6,9 +6,9 @@ import Hyperlink from 'react-native-hyperlink';
 
 import BaseStyles from '../../baseStyles';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
+import redirectTo from '../../utils/linking';
 
 const {
-  Alert,
   Platform,
   StyleSheet,
   Text,
@@ -96,14 +96,6 @@ class Email extends Component {
     console.log(`do login with ${this.state.email}/${this.state.password}`);
   }
 
-  handleHyperlinkText(url) {
-    return url === PASSWORD_FORGOTTEN_URL ? t.passwordForgotten : url;
-  }
-
-  handleHyperlinkOnPress(url) {
-    Alert.alert(url);
-  }
-
   render() {
     return (
       <View style={styles.view}>
@@ -144,8 +136,8 @@ class Email extends Component {
           </Button>
           <Hyperlink
             style={styles.textWrapper}
-            linkText={this.handleHyperlinkText}
-            onPress={this.handleHyperlinkOnPress}
+            linkText={t.passwordForgotten}
+            onPress={redirectTo}
           >
             <Text style={styles.text}>
               {PASSWORD_FORGOTTEN_URL}
