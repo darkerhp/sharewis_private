@@ -8,7 +8,6 @@ import { checkStatus, checkResult } from '../utils/apiUtils';
 
 
 const getUserData = async (credentials) => {
-  console.log('start /users/me request');
   // Run query
   const result = await fetch(`${ACCOUNT_API_URL}/users/me`, {
     headers: {
@@ -21,8 +20,8 @@ const getUserData = async (credentials) => {
   await checkStatus(result);
   const json = await result.json();
   await checkResult(json, user => user.username);
-  // Parse and return results
 
+  // Parse and return results
   return {
     userName: json.username,
     nickName: json.nickname,

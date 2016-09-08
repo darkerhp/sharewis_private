@@ -1,13 +1,9 @@
-/**
- * @flow
- */
 /* eslint no-console: ["error", { allow: ["warn", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
 import FBSDK from 'react-native-fbsdk';
 
 import * as Actions from '../../actions/login';
-// import BaseStyles from '../../baseStyles';
 import connectToProps from '../../utils/reduxUtils';
 
 const { Component, PropTypes } = React;

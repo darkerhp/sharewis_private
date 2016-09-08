@@ -8,7 +8,8 @@ import Styles from '../baseStyles';
 import getScenes from '../components/Scenes';
 import connectToProps from '../utils/reduxUtils';
 
-const { PropTypes } = React; const RouterWithRedux = connect()(Router);
+const { PropTypes } = React;
+const RouterWithRedux = connect()(Router);
 
 const styles = StyleSheet.create({
   container: {

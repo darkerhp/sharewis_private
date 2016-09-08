@@ -13,8 +13,6 @@ const {
 } = ReactNative;
 
 const styles = StyleSheet.create({
-  wrapper: {
-  },
   buttonText: {
     fontSize: 17,
     color: '#007aff',
@@ -56,7 +54,6 @@ const slide3ImageSrc = require('../components/Onboarding/images/slide3.png');
 
 const Onboarding = () =>
   <Swiper
-    style={styles.wrapper}
     showsButtons
     loop={false}
     dot={<View style={[{ backgroundColor: 'rgba(0,0,0,.2)' }, styles.dotStyles]} />}

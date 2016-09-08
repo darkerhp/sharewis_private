@@ -12,7 +12,7 @@ const t = {
 };
 
 
-const getScenes = (loggedIn) =>
+const getScenes = loggedIn =>
   <Scene key="root" hideNavBar>
     <Scene
       key="onboarding"
