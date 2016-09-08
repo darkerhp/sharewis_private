@@ -1,5 +1,5 @@
 /* eslint no-console: ["error", { allow: ["log"] }] */
-import React, { Component } from 'react';
+import React from 'react';
 import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
@@ -8,6 +8,7 @@ import BaseStyles from '../../baseStyles';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
 
+const { Component, PropTypes } = React;
 const {
   Platform,
   StyleSheet,
@@ -83,13 +84,10 @@ const t = {
 
 
 class Email extends Component {
-  // static propTypes = {
-  //   email: PropTypes.string.isRequired,
-  //   password: PropTypes.number.isRequired,
-  // };
-  state = {
-    email: null,
-    password: null,
+  static propTypes = {
+    email: PropTypes.string.isRequired,
+    password: PropTypes.number.isRequired,
+    addEmail: PropTypes.func.isRequired,
   };
 
   handlePressedLogin() {
@@ -110,7 +108,7 @@ class Email extends Component {
               style={BaseStyles.TextInput}
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={email => this.setState({ email })}
+              onChangeText={text => this.props.addEmail(text)}
               keyboardType="email-address"
               returnKeyType="next"
             />

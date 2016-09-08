@@ -14,6 +14,10 @@ const initialState = {
 
 export default function user(state = initialState, action) {
   switch (action.type) {
+    case types.ADD_EMAIL:
+      return { ...state, email: action.email };
+    case types.ADD_PASSWORD:
+      return { ...state, password: action.password };
     case types.FETCH_FB_EMAIL_FAILURE:
       return {
         ...state,

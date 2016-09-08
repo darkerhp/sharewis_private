@@ -8,6 +8,17 @@ import getUserData from '../middleware/accountApi';
 
 
 // Actions Creators
+
+export const addEmail = email => ({
+  type: types.ADD_EMAIL,
+  email,
+});
+
+export const addPassword = password => ({
+  type: types.ADD_PASSWORD,
+  password,
+});
+
 export const startActEmailLogin = ([email, password]) => ({
   type: types.START_ACT_EMAIL_LOGIN,
   email,
