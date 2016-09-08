@@ -2,7 +2,7 @@
 import reducer from '../lecture';
 import * as types from '../../constants/ActionTypes';
 
-describe('todos reducer', () => {
+describe('Lecture reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       isPaused: false,

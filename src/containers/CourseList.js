@@ -2,12 +2,23 @@ import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
 
-const { View, Text } = ReactNative;
+import BaseStyles from '../baseStyles';
+
+const { View, StyleSheet, Text } = ReactNative;
+
+const styles = StyleSheet.create({
+  courseList: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  contentText: BaseStyles.Text,
+});
 
 
-const CourseList = (routes) =>
-  <View>
-    <Text>
+const CourseList = routes =>
+  <View style={styles.courseList}>
+    <Text style={styles.contentText}>
       {routes.title}
     </Text>
   </View>;

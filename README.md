@@ -36,9 +36,27 @@ $ emulator -avd react
 
 Then start react-native and run the android app
 ```
-$ react-native start
+$ npm start
 $ react-native run-android
+$ react-native log-android
 ```
+
+## Facebook
+
+### Android
+To authenticate the exchange of information between the app and Facebook,
+you need to generate a release key hash and add it to the Android settings
+within your Facebook App ID.
+```
+$ keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+```
+Add the generated 28-char hash to the Android -> Key Hashes in
+[the staging app](https://developers.facebook.com/apps/739140542810010/settings/)
+
+### iOS
+[Download](https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip)
+the Facebook SDK and unzip it to `~/Documents/FacebookSDK/`
+
 
 ## Scripts
 
@@ -61,6 +79,8 @@ $ npm test
 ```
 
 ### For Debugging
+
+#### Reactotron
 [reactotoron](https://github.com/reactotron/reactotron)
 
 If using Reactotron-cli, remember to run
@@ -68,3 +88,9 @@ If using Reactotron-cli, remember to run
 $ adb reverse tcp:9090 tcp:9090
 ```
 In order for the simulator to allow traffic from and to the Reactotron dashboard
+
+#### Reset data
+By default, data are stored on the device via AsyncStorage (redux-persist).
+If you need to reset the data (eg to see the onboarding view), temporarily edit
+the `src/store.js` file and set `PURGE_STORAGE = 1` (then revert it after
+reloading the simulator)

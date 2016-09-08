@@ -2,7 +2,7 @@ import React from 'react';
 import { Scene } from 'react-native-router-flux';
 
 import CourseList from '../containers/CourseList';
-import Onboarding from '../containers/Onbording';
+import Onboarding from '../containers/Onboarding';
 import Profile from '../containers/Profile';
 import Lecture from '../containers/Lecture';
 
@@ -12,16 +12,18 @@ const t = {
 };
 
 
-const getScenes = () =>
+const getScenes = loggedIn =>
   <Scene key="root" hideNavBar>
     <Scene
       key="onboarding"
       component={Onboarding}
+      initial={!loggedIn}
     />
     <Scene
       key="courseList"
       component={CourseList}
       title={t.courseList}
+      initial={loggedIn}
     />
     <Scene
       key="profile"

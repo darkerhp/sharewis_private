@@ -1,12 +1,14 @@
+/**
+ * @flow
+ */
 import React from 'react';
 import ReactNative from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Video from 'react-native-video';
 
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
+import connectToProps from '../utils/reduxUtils';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
@@ -105,6 +107,4 @@ Lecture.propTypes = {
   videoProgress: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({ ...state.lecture });
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
-export default connect(mapStateToProps, mapDispatchToProps)(Lecture);
+export default connectToProps(Lecture, 'lecture', Actions);

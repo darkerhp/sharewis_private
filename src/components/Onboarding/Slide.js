@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import BaseStyles from '../../baseStyles';
 
 const { PropTypes } = React;
-const { View, StyleSheet, Text, Dimensions, Image } = ReactNative;
+const {
+  Dimensions,
+  StyleSheet,
+  Text,
+  Image,
+  View,
+} = ReactNative;
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -14,7 +21,7 @@ const styles = StyleSheet.create({
   },
   slideImageContainer: {
     flex: 2,
-    backgroundColor: '#ecf1f3',
+    backgroundColor: BaseStyles.onboardingBgLightBlue,
   },
   slideImage: {
     flex: -1,
@@ -30,12 +37,7 @@ const styles = StyleSheet.create({
     padding: 25,
     opacity: 0.6,
   },
-  contentText: {
-    textAlign: 'center',
-    lineHeight: 22,
-    fontSize: 17,
-    color: '#222222',
-  },
+  contentText: BaseStyles.Text,
 });
 
 const Slide = ({ text, imageSrc }) =>

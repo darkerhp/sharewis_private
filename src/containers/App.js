@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions, Router } from 'react-native-router-flux';
@@ -5,8 +6,9 @@ import { connect } from 'react-redux';
 
 import Styles from '../baseStyles';
 import getScenes from '../components/Scenes';
+import connectToProps from '../utils/reduxUtils';
 
-
+const { PropTypes } = React;
 const RouterWithRedux = connect()(Router);
 
 const styles = StyleSheet.create({
@@ -16,15 +18,23 @@ const styles = StyleSheet.create({
   },
 });
 
-const scenes = Actions.create(getScenes());
+
+const App = ({ loggedIn }) => {
+  const scenes = Actions.create(
+    getScenes(loggedIn)
+  );
+
+  return (
+    <RouterWithRedux
+      style={styles.container}
+      scenes={scenes}
+    />
+  );
+};
+
+App.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+};
 
 
-/* eslint no-unused-vars: [2, { "args": "none" }] */
-const App = () =>
-  <RouterWithRedux
-    style={styles.container}
-    scenes={scenes}
-  />;
-
-
-export default App;
+export default connectToProps(App, 'user');
