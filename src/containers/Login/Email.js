@@ -3,6 +3,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
+import { Field, reduxForm } from 'redux-form';
 
 import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
@@ -16,7 +17,6 @@ const {
   Platform,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } = ReactNative;
 
@@ -108,6 +108,7 @@ class Email extends Component {
     }
   }
 
+  @reduxForm('Email login')
   render() {
     return (
       <View style={styles.view}>
@@ -118,13 +119,18 @@ class Email extends Component {
         </View>
         <View style={styles.inputWrapper}>
           <View style={[styles.textInputWrapper, styles.innerTextInput]}>
-            <TextInput
+            <Field
               style={BaseStyles.TextInput}
+              name="email"
+              component="input"
+              type="email"
+              {/*
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
               onChangeText={text => this.handleOnChangeEmail(text)}
               keyboardType="email-address"
               returnKeyType="next"
+              */}
             />
           </View>
           <View style={styles.textInputWrapper}>
