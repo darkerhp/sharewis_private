@@ -88,9 +88,14 @@ const t = {
 class Email extends Component {
   static propTypes = {
     addEmail: PropTypes.func.isRequired,
+    addPassword: PropTypes.func.isRequired,
+    fetchUserBy: PropTypes.func.isRequired,
+    email: PropTypes.string,
+    password: PropTypes.string,
   };
 
-  handlePressedLogin() {
+  async handlePressedLogin() {
+    await this.props.fetchUserBy('facebook', [this.props.email, this.props.password]);
   }
 
   render() {
@@ -117,7 +122,7 @@ class Email extends Component {
               style={BaseStyles.TextInput}
               placeholder={t.passwordPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={password => this.setState({ password })}
+              onChangeText={text => this.props.addPassword(text)}
               returnKeyType="next"
               secureTextEntry
             />

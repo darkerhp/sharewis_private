@@ -49,7 +49,7 @@ const t = {
 
 class Facebook extends Component {
   static propTypes = {
-    fetchUserByFacebook: PropTypes.func.isRequired,
+    fetchUserBy: PropTypes.func.isRequired,
   };
 
   @autobind
@@ -62,7 +62,7 @@ class Facebook extends Component {
     }
     // Notify ACT API of the login and fetch user data
     try {
-      await this.props.fetchUserByFacebook('facebook', [result.email, result.id]);
+      await this.props.fetchUserBy('facebook', [result.email, result.id]);
       Alert.alert(t.successTitle, t.loginSuccess);
     } catch (actError) {
       LoginManager.logOut();
