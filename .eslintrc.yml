@@ -13,11 +13,11 @@ plugins:
   - flowtype
 
 rules:
-  Enable
-    no-unused-vars: [
-      "error",
-      { "varsIgnorePattern": "[iI]gnored" }
-    ]
+  # Enable
+  no-unused-vars: [
+    "error",
+    { "varsIgnorePattern": "[iI]gnored" }
+  ]
   #  flowtype/define-flow-type: 1
   #  flowtype/use-flow-type: 1
   #  flowtype/require-parameter-type: 1

@@ -4,13 +4,15 @@ import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
 import { Field, reduxForm } from 'redux-form';
+import autobind from 'autobind-decorator';
 
 import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
+import TextField from '../../components/TextField';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
 import connectToProps from '../../utils/reduxUtils';
-import * as CustomType from '../../utils/propTypes';
+import validateEmailLogin from '../../utils/validate';
 
 const { Component, PropTypes } = React;
 const {
@@ -86,25 +88,34 @@ const t = {
 };
 
 
-@reduxForm
-class Email extends Component {
-  defaultName = 'Email login';
+const formOptions = {
+  form: 'email',
+  validate: validateEmailLogin,
+};
 
+
+@reduxForm(formOptions)
+class Email extends Component {
   static propTypes = {
     addEmail: PropTypes.func.isRequired,
     addPassword: PropTypes.func.isRequired,
     fetchUserBy: PropTypes.func.isRequired,
-    email: CustomType.email,
-    password: CustomType.password,
+    email: PropTypes.string,
+    password: PropTypes.string,
   };
 
+  @autobind
   async handlePressedLogin() {
-    await this.props.fetchUserBy('facebook', [this.props.email, this.props.password]);
+    await this.props.fetchUserBy(
+      'facebook',
+      [this.props.email, this.props.password],
+    );
   }
 
+  @autobind
   handleOnChangeEmail(text) {
     try {
-      this.props.addEmail(text)
+      this.props.addEmail(text);
     } catch (error) {
       console.log('YESSS ERROR FOUND');
     }
@@ -123,20 +134,21 @@ class Email extends Component {
             <Field
               style={BaseStyles.TextInput}
               name="email"
-              component="input"
               type="email"
-            />
-              {/*
+              component={TextField}
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
               onChangeText={text => this.handleOnChangeEmail(text)}
               keyboardType="email-address"
               returnKeyType="next"
-              */}
+            />
           </View>
           <View style={styles.textInputWrapper}>
-            <TextInput
+            <Field
               style={BaseStyles.TextInput}
+              name="password"
+              type="password"
+              component={TextField}
               placeholder={t.passwordPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
               onChangeText={text => this.props.addPassword(text)}
@@ -149,7 +161,6 @@ class Email extends Component {
           <Button
             containerStyle={styles.buttonWrapper}
             style={styles.button}
-            onPress={this.handlePressedLogin}
           >
             { t.login }
           </Button>
