@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-const { Component, PropTypes } = React;
-const { View, StyleSheet, Text, Slider, Dimensions } = ReactNative;
+const { PropTypes } = React;
+const { View, StyleSheet, Text } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -27,7 +27,7 @@ const Section = ({ lecture }) =>
 
 
 Section.propTypes = {
-  lecture: PropTypes.object.isRequired
+  lecture: PropTypes.object.isRequired,
 };
 
 export default Section;

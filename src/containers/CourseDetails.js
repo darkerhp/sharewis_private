@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import moment from 'moment';
-import momentDurationFormat from 'moment-duration-format'; // eslint-disable-line
-
 import Progress from '../components/CourseDetails/Progress';
 import Lecture from '../components/CourseDetails/Lecture';
 import Section from '../components/CourseDetails/Section';
+import Duration from '../components/Duration';
 
 const { Component } = React;
 const { View, StyleSheet, Text, Image, ScrollView, Dimensions, TouchableOpacity } = ReactNative;
@@ -100,16 +98,16 @@ class CourseDetails extends Component {
 
   // レクチャー種別画像を取得する
   // TODO 画像の種類 要確認 WEB ACTでは足りてない
-  getLectureImageSrc(lecture) {
-    switch (lecture.type) {
-      case 'VideoLecture':
-        return videoImageSrc;
-      case 'QuizLecture':
-        return quizImageSrc;
-      default:
-        return textImageSrc;
-    }
-  }
+  // getLectureImageSrc(lecture) {
+  //   switch (lecture.type) {
+  //     case 'VideoLecture':
+  //       return videoImageSrc;
+  //     case 'QuizLecture':
+  //       return quizImageSrc;
+  //     default:
+  //       return textImageSrc;
+  //   }
+  // }
 
   render() {
     const totalLectureCount = lectures.filter(e => e.kind === 'lecture').length;
@@ -145,13 +143,12 @@ class CourseDetails extends Component {
             totalLectureCount={totalLectureCount}
           />
 
-          <View style={styles.totalDurationWrapper}>
-            <Text style={styles.totalDuration}>
-              {moment
-                .duration(totalDuration, 'seconds')
-                .format(t.totalDurationFormat, { trim: false })}
-            </Text>
-          </View>
+          <Duration
+            duration={totalDuration}
+            format={t.totalDurationFormat}
+            containerStyle={styles.totalDurationWrapper}
+            durationStyle={styles.totalDuration}
+          />
         </View>
 
         <View style={styles.lectureListContainer}>
@@ -159,7 +156,7 @@ class CourseDetails extends Component {
             lecture.kind === 'section'
               ? <Section key={i} lecture={lecture} />
               : <Lecture key={i} lecture={lecture} />
-            ))}
+          ))}
         </View>
       </ScrollView>
     );

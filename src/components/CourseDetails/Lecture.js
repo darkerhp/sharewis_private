@@ -3,11 +3,10 @@ import ReactNative from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import moment from 'moment';
-import momentDurationFormat from 'moment-duration-format'; // eslint-disable-line
+import Duration from '../Duration';
 
-const { Component, PropTypes } = React;
-const { View, StyleSheet, Text, Slider, Dimensions } = ReactNative;
+const { PropTypes } = React;
+const { View, StyleSheet, Text } = ReactNative;
 
 const lectureRowHeight = 48;
 const styles = StyleSheet.create({
@@ -33,7 +32,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   lectureInfoWrapper: {
-
+    flex: 1,
+    height: lectureRowHeight,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   lectureIconWrapper: {
     flex: 1,
@@ -42,12 +45,6 @@ const styles = StyleSheet.create({
   lectureIcon: {},
   durationWrapper: {
     flex: 1,
-  },
-  duration: {
-    padding: 3,
-    fontSize: 8,
-    backgroundColor: '#F2F2F2',
-    fontWeight: '600',
   },
   lectureTitleTextWrapper: {
     flex: 5,
@@ -78,25 +75,15 @@ const Lecture = ({ lecture }) =>
       <Text style={styles.lectureNoText}>{lecture.order}</Text>
     </View>
 
-    <View style={{
-      flex:1,
-      height: lectureRowHeight,
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'}
-    }>
+    <View style={styles.lectureInfoWrapper}>
       <View style={styles.lectureIconWrapper}>
         <Icon
-          //name={'picture-as-pdf'}
+          // name={'picture-as-pdf'} TODO レクチャータイプ毎にアイコンを変える
           name={'play-circle-filled'}
           style={styles.lectureIcon}
         />
       </View>
-      <View style={styles.durationWrapper}>
-        <Text style={styles.duration}>
-          {moment.duration(lecture.duration, 'seconds').format('mm:ss', { trim: false })}
-        </Text>
-      </View>
+      <Duration duration={lecture.duration} containerStyle={styles.durationWrapper} />
     </View>
 
     <View style={styles.lectureTitleTextWrapper}>
@@ -105,7 +92,7 @@ const Lecture = ({ lecture }) =>
 
     <View style={styles.actionIconWrapper}>
       <Icon
-        //name={'delete'}
+        // name={'delete'}
         name={'cloud-download'}
         style={styles.actionIcon}
       />
@@ -114,7 +101,7 @@ const Lecture = ({ lecture }) =>
 
 
 Lecture.propTypes = {
-  lecture: PropTypes.object.isRequired
+  lecture: PropTypes.object.isRequired,
 };
 
 export default Lecture;
