@@ -9,6 +9,7 @@ import BaseStyles from '../../baseStyles';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
 import connectToProps from '../../utils/reduxUtils';
+import * as CustomType from '../../utils/propTypes';
 
 const { Component, PropTypes } = React;
 const {
@@ -86,12 +87,13 @@ const t = {
 
 
 class Email extends Component {
+
   static propTypes = {
     addEmail: PropTypes.func.isRequired,
     addPassword: PropTypes.func.isRequired,
     fetchUserBy: PropTypes.func.isRequired,
-    email: PropTypes.string,
-    password: PropTypes.string,
+    email: CustomType.email,
+    password: CustomType.password,
   };
 
   async handlePressedLogin() {
