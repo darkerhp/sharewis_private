@@ -5,9 +5,18 @@ import Progress from '../components/CourseDetails/Progress';
 import Lecture from '../components/CourseDetails/Lecture';
 import Section from '../components/CourseDetails/Section';
 import Duration from '../components/Duration';
+import BaseStyles from '../baseStyles';
 
 const { Component } = React;
-const { View, StyleSheet, Text, Image, ScrollView, Dimensions, TouchableOpacity } = ReactNative;
+const {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+} = ReactNative;
 const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -15,7 +24,7 @@ const styles = StyleSheet.create({
   courseInfosContainer: { height: (height - 65) / 2, padding: 10 },
   lectureListContainer: {
     flex: 1,
-    borderColor: '#DDDDDD',
+    borderColor: BaseStyles.borderColor,
     borderTopWidth: 1,
   },
   courseTitleWrapper: { flex: 1 },
@@ -60,7 +69,6 @@ const t = {
   totalDurationFormat: '計 h時間m分',
 };
 
-// Dummy data
 const lectures = [
   { title: 'セクション１', kind: 'section' },
   { order: 1, title: 'レクチャーA', kind: 'lecture', duration: 30, isCompleted: true },
@@ -86,8 +94,8 @@ const course = {
 };
 
 const videoImageSrc = require('../components/CourseDetails/images/video.png');
-const quizImageSrc = require('../components/CourseDetails/images/quiz.png');
-const textImageSrc = require('../components/CourseDetails/images/text.png');
+// const quizImageSrc = require('../components/CourseDetails/images/quiz.png');
+// const textImageSrc = require('../components/CourseDetails/images/text.png');
 
 class CourseDetails extends Component {
 
@@ -96,18 +104,20 @@ class CourseDetails extends Component {
   // TODO レクチャークリックでレクチャー画面に遷移する ストーリーあり
   // TODO durationのフォーマットをUtil化
 
-  // レクチャー種別画像を取得する
-  // TODO 画像の種類 要確認 WEB ACTでは足りてない
-  // getLectureImageSrc(lecture) {
-  //   switch (lecture.type) {
-  //     case 'VideoLecture':
-  //       return videoImageSrc;
-  //     case 'QuizLecture':
-  //       return quizImageSrc;
-  //     default:
-  //       return textImageSrc;
-  //   }
-  // }
+  componentDidMount() {
+    // レクチャー種別画像を取得する
+    // TODO 画像の種類 要確認 WEB ACTでは足りてない
+    // getLectureImageSrc(lecture) {
+    //   switch (lecture.type) {
+    //     case 'VideoLecture':
+    //       return videoImageSrc;
+    //     case 'QuizLecture':
+    //       return quizImageSrc;
+    //     default:
+    //       return textImageSrc;
+    //   }
+    // }
+  }
 
   render() {
     const totalLectureCount = lectures.filter(e => e.kind === 'lecture').length;

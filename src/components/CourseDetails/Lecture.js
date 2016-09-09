@@ -4,6 +4,7 @@ import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Duration from '../Duration';
+import BaseStyles from '../../baseStyles';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     flexDirection: 'row',
-    borderColor: '#DDDDDD',
+    borderColor: BaseStyles.borderColor,
     borderBottomWidth: 1,
   },
   lectureNoTextWrapper: {
@@ -23,12 +24,12 @@ const styles = StyleSheet.create({
     height: lectureRowHeight,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#DDDDDD',
+    borderColor: BaseStyles.borderColor,
     borderRightWidth: 1,
   },
   lectureNoText: {
     fontSize: 14,
-    color: '#525252',
+    color: BaseStyles.textColor,
     fontWeight: '600',
   },
   lectureInfoWrapper: {
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
   },
   lectureTitleText: {
     fontSize: 12,
-    color: '#525252',
+    color: BaseStyles.textColor,
     fontWeight: 'bold',
   },
   actionIconWrapper: {
@@ -83,7 +84,7 @@ const Lecture = ({ lecture }) =>
           style={styles.lectureIcon}
         />
       </View>
-      <Duration duration={lecture.duration} containerStyle={styles.durationWrapper} />
+      <Duration duration={lecture.duration} containerStyle={styles.durationWrapper}/>
     </View>
 
     <View style={styles.lectureTitleTextWrapper}>

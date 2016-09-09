@@ -16,16 +16,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const Duration = ({ duration, format = 'mm:ss', containerStyle = null, durationStyle = null, prefixText = ''}) => {
-  return (
-    <View style={[styles.container, containerStyle]}>
-      <Text style={[styles.duration, durationStyle]}>
-        {prefixText}{moment.duration(duration, 'seconds').format(format, { trim: false })}
-      </Text>
-    </View>
-  );
-};
-
+const Duration = ({
+  duration,
+  format = 'mm:ss',
+  containerStyle = null,
+  durationStyle = null,
+  prefixText = '',
+}) =>
+  <View style={[styles.container, containerStyle]}>
+    <Text style={[styles.duration, durationStyle]}>
+      {prefixText}{moment.duration(duration, 'seconds').format(format, { trim: false })}
+    </Text>
+  </View>;
 
 Duration.propTypes = {
   duration: PropTypes.number.isRequired,

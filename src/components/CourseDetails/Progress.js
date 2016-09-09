@@ -37,7 +37,7 @@ const Progress = ({ completeLectureCount, totalLectureCount }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.progressText}>
-        {completeLectureCount}/{totalLectureCount}{t.lectureCompleteLable}
+        {completeLectureCount}/{totalLectureCount}{t.lectureCompleteLabel}
       </Text>
       <View style={styles.barsContainer}>
         <View style={[styles.barComplete, { flex: completePercentage }]} />

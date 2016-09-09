@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   sectionTitleText: {
     fontSize: 14,
-    color: '#525252',
+    color: BaseStyles.textColor,
   },
 });
 
