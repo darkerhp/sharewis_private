@@ -86,7 +86,9 @@ const t = {
 };
 
 
+@reduxForm
 class Email extends Component {
+  defaultName = 'Email login';
 
   static propTypes = {
     addEmail: PropTypes.func.isRequired,
@@ -108,7 +110,6 @@ class Email extends Component {
     }
   }
 
-  @reduxForm('Email login')
   render() {
     return (
       <View style={styles.view}>
@@ -124,6 +125,7 @@ class Email extends Component {
               name="email"
               component="input"
               type="email"
+            />
               {/*
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
@@ -131,7 +133,6 @@ class Email extends Component {
               keyboardType="email-address"
               returnKeyType="next"
               */}
-            />
           </View>
           <View style={styles.textInputWrapper}>
             <TextInput
