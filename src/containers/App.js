@@ -8,7 +8,7 @@ import Styles from '../baseStyles';
 import getScenes from '../components/Scenes';
 import connectToProps from '../utils/reduxUtils';
 
-const { PropTypes } = React;
+const { Component, PropTypes } = React;
 const RouterWithRedux = connect()(Router);
 
 const styles = StyleSheet.create({
@@ -19,22 +19,26 @@ const styles = StyleSheet.create({
 });
 
 
-const App = ({ loggedIn }) => {
-  const scenes = Actions.create(
-    getScenes(loggedIn)
-  );
+class App extends Component {
+  static propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+  };
 
-  return (
-    <RouterWithRedux
-      style={styles.container}
-      scenes={scenes}
-    />
-  );
-};
+  componentWillMount() {
+    this.scenes = Actions.create(
+      getScenes(this.props.loggedIn)
+    );
+  }
 
-App.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-};
+  render() {
+    return (
+      <RouterWithRedux
+        style={styles.container}
+        scenes={this.scenes}
+      />
+    );
+  }
+}
 
 
 export default connectToProps(App, 'user');
