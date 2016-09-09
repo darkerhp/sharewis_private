@@ -4,11 +4,7 @@
   "private": true,
   "jest": {
     "preset": "jest-react-native",
-    "testFileExtensions": [
-      "js",
-      "ios.js",
-      "android.js"
-    ]
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|ios.js|android.js|json|node)$"
   },
   "engines": {
     "node": ">=6.3.0",
