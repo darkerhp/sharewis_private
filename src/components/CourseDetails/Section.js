@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
+import BaseStyles from '../../baseStyles';
+
 const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
 
@@ -11,7 +13,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
     padding: 7,
-    borderColor: '#DDDDDD',
+    borderColor: BaseStyles.borderColor,
     borderBottomWidth: 1,
   },
   sectionTitleText: {
