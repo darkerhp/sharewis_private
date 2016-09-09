@@ -84,7 +84,7 @@ const Lecture = ({ lecture }) =>
           style={styles.lectureIcon}
         />
       </View>
-      <Duration duration={lecture.duration} containerStyle={styles.durationWrapper}/>
+      <Duration duration={lecture.duration} containerStyle={styles.durationWrapper} />
     </View>
 
     <View style={styles.lectureTitleTextWrapper}>

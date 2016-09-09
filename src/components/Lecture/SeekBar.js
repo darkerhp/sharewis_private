@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactNative from 'react-native';
-import moment from 'moment';
-import momentDurationFormat from 'moment-duration-format'; // eslint-disable-line
 
 import Duration from '../Duration';
 
 const { PropTypes } = React;
-const { View, StyleSheet, Text, Slider, Dimensions } = ReactNative;
+const { View, StyleSheet, Slider, Dimensions } = ReactNative;
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
