@@ -8,9 +8,9 @@ import Progress from '../components/CourseDetails/Progress';
 import Lecture from '../components/CourseDetails/Lecture';
 import Section from '../components/CourseDetails/Section';
 
-const { Component, PropTypes } = React;
+const { Component } = React;
 const { View, StyleSheet, Text, Image, ScrollView, Dimensions, TouchableOpacity } = ReactNative;
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: { flex: 1, paddingTop: 65 },
@@ -33,9 +33,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
   },
-  courseImage: {
-    // width: width - 20,
-  },
+  courseImage: {},
   nextLectureTextWrapper: {
     flex: 1,
     alignItems: 'center',
@@ -86,12 +84,32 @@ const lectures = [
 
 const course = {
   title: '差がつくビジネス戦略講座 | 事業開発・Platform戦略(R)・ITマーケティング',
-  lectures: lectures,
+  lectures,
 };
 
 const videoImageSrc = require('../components/CourseDetails/images/video.png');
+const quizImageSrc = require('../components/CourseDetails/images/quiz.png');
+const textImageSrc = require('../components/CourseDetails/images/text.png');
 
 class CourseDetails extends Component {
+
+  // TODO lecturesから次に学ぶべきレクチャーを取得する処理 ストーリーあり
+  // TODO レクチャー画像に被せるレクチャータイトル ストーリーあり
+  // TODO レクチャークリックでレクチャー画面に遷移する ストーリーあり
+  // TODO durationのフォーマットをUtil化
+
+  // レクチャー種別画像を取得する
+  // TODO 画像の種類 要確認 WEB ACTでは足りてない
+  getLectureImageSrc(lecture) {
+    switch (lecture.type) {
+      case 'VideoLecture':
+        return videoImageSrc;
+      case 'QuizLecture':
+        return quizImageSrc;
+      default:
+        return textImageSrc;
+    }
+  }
 
   render() {
     const totalLectureCount = lectures.filter(e => e.kind === 'lecture').length;
@@ -110,7 +128,11 @@ class CourseDetails extends Component {
           <View style={styles.nextLectureContainer}>
             <TouchableOpacity>
               <View style={styles.courseImageWrapper}>
-                <Image source={videoImageSrc} style={styles.courseImage} resizeMode={Image.resizeMode.contain} />
+                <Image
+                  source={videoImageSrc}
+                  style={styles.courseImage}
+                  resizeMode={Image.resizeMode.contain}
+                />
               </View>
               <View style={styles.nextLectureTextWrapper}>
                 <Text style={styles.nextLectureText}>{t.nextLecture}</Text>
@@ -118,21 +140,26 @@ class CourseDetails extends Component {
             </TouchableOpacity>
           </View>
 
-          <Progress completeLectureCount={completeLectureCount} totalLectureCount={totalLectureCount} />
+          <Progress
+            completeLectureCount={completeLectureCount}
+            totalLectureCount={totalLectureCount}
+          />
 
           <View style={styles.totalDurationWrapper}>
-            <Text
-              style={styles.totalDuration}
-            >{moment.duration(totalDuration, 'seconds').format(t.totalDurationFormat, { trim: false })}</Text>
+            <Text style={styles.totalDuration}>
+              {moment
+                .duration(totalDuration, 'seconds')
+                .format(t.totalDurationFormat, { trim: false })}
+            </Text>
           </View>
         </View>
 
         <View style={styles.lectureListContainer}>
-          {course.lectures.map((lecture, i) =>
+          {course.lectures.map((lecture, i) => (
             lecture.kind === 'section'
               ? <Section key={i} lecture={lecture} />
-              : <Lecture key={i} lecture={lecture} />)
-          }
+              : <Lecture key={i} lecture={lecture} />
+            ))}
         </View>
       </ScrollView>
     );
