@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import FBSDK from 'react-native-fbsdk';
+import autobind from 'autobind-decorator';
 
 import * as Actions from '../../actions/login';
 import connectToProps from '../../utils/reduxUtils';
@@ -51,12 +52,7 @@ class Facebook extends Component {
     fetchUserByFacebook: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.handleLoginFinished = this.handleLoginFinished.bind(this);
-    this.getAccountData = this.getAccountData.bind(this);
-  }
-
+  @autobind
   async getAccountData(fbGraphError, result) {
     if (fbGraphError) {
       Alert.alert(t.errorTitle, t.emailNotFound);
@@ -74,6 +70,7 @@ class Facebook extends Component {
     }
   }
 
+  @autobind
   handleLoginFinished(fbLoginError, result) {
     console.log(result);
     if (fbLoginError) {

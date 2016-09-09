@@ -4,6 +4,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Video from 'react-native-video';
+import autobind from 'autobind-decorator';
 
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
@@ -31,11 +32,7 @@ const styles = StyleSheet.create({
 });
 
 class Lecture extends Component {
-  constructor(props) {
-    super(props);
-    this.handleValueChange = this.handleValueChange.bind(this);
-  }
-
+  @autobind
   handleValueChange(value) {
     if (this.video) {
       this.video.seek(value);
