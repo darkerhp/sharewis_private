@@ -8,8 +8,11 @@ const t = {
 };
 
 
-export const email = (props, propName, componentIgnored) =>
-  (!validate.isEmail(props[propName])) || new Error(t.invalidEmail);
+export const email = (props, propName, component) => {
+  console.log('and component is: ', typeof(component));
+  debugger;
+  return (!validate.isEmail(props[propName])) || new Error(t.invalidEmail);
+}
 
 
 export const password = (props, propName, componentIgnored) =>

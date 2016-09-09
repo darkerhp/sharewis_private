@@ -100,6 +100,14 @@ class Email extends Component {
     await this.props.fetchUserBy('facebook', [this.props.email, this.props.password]);
   }
 
+  handleOnChangeEmail(text) {
+    try {
+      this.props.addEmail(text)
+    } catch (error) {
+      console.log('YESSS ERROR FOUND');
+    }
+  }
+
   render() {
     return (
       <View style={styles.view}>
@@ -114,7 +122,7 @@ class Email extends Component {
               style={BaseStyles.TextInput}
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={text => this.props.addEmail(text)}
+              onChangeText={text => this.handleOnChangeEmail(text)}
               keyboardType="email-address"
               returnKeyType="next"
             />
