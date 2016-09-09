@@ -4,9 +4,11 @@ import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
 
+import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
+import connectToProps from '../../utils/reduxUtils';
 
 const { Component, PropTypes } = React;
 const {
@@ -85,13 +87,10 @@ const t = {
 
 class Email extends Component {
   static propTypes = {
-    email: PropTypes.string.isRequired,
-    password: PropTypes.number.isRequired,
     addEmail: PropTypes.func.isRequired,
   };
 
   handlePressedLogin() {
-    console.log(`do login with ${this.state.email}/${this.state.password}`);
   }
 
   render() {
@@ -148,4 +147,4 @@ class Email extends Component {
 }
 
 
-export default Email;
+export default connectToProps(Email, 'user', Actions);
