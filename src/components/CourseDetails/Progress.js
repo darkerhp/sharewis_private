@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 });
 
 const t = {
-  lectureCompleteLable: 'レクチャーが完了しました',
+  lectureCompleteLabel: 'レクチャーが完了しました',
 };
 
 const Progress = ({ completeLectureCount, totalLectureCount }) => {
