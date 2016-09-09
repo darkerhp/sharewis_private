@@ -71,16 +71,19 @@ Let's catch typing errors in our js code with [Flow](https://flowtype.org/)
 ```
 $ npm run flow
 ```
+**NOTE: We currently disabled Flow rules**
 
 ### Unittesting
 Check unit tests with [Jest](http://facebook.github.io/jest/)
 ```
 $ npm test
+$ npm test -- --watch   # continuous testing
 ```
 
-### For Debugging
 
-#### Reactotron
+## Debugging
+
+### Reactotron
 [reactotoron](https://github.com/reactotron/reactotron)
 
 If using Reactotron-cli, remember to run
@@ -89,8 +92,33 @@ $ adb reverse tcp:9090 tcp:9090
 ```
 In order for the simulator to allow traffic from and to the Reactotron dashboard
 
-#### Reset data
+### Reset data
 By default, data are stored on the device via AsyncStorage (redux-persist).
 If you need to reset the data (eg to see the onboarding view), temporarily edit
 the `src/store.js` file and set `PURGE_STORAGE = 1` (then revert it after
 reloading the simulator)
+
+
+## Upgrading
+
+1. Install the new version of react-native
+   ```
+   $ npm install -save react-native@0.32.1
+   ```
+2. Run upgrade script. Always read the diff when prompted and decided whether to
+   override the file or not. When conflicts appear, choose override.
+   ```
+   $ react-native upgrade
+   ```
+3. Resolve conflicting files with git add patch. On large chunks, use `s` to
+   split chunks further. On smaller chunks that still have conflicts, use `e`
+   then remove related `-` or `+` signs.
+   ```
+   $ git add -p ios/SharewisActMobile.xcodeproj/project.pbxproj
+   $ git add -p ios/SharewisActMobile/Info.plist
+   $ # ...
+   ```
+4. Remove unwanted changes
+   ```
+   $ git checkout -- <files containing unwanted changes>
+   ```
