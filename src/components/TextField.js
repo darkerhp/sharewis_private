@@ -5,12 +5,11 @@ const { PropTypes } = React;
 
 
 const TextField = props => {
-  const { input: { value, onChange } } = props;
+  const { style, meta: { error, touched } = props;
 
   return (
     <TextInput
-      onChangeText={text => onChange(text)}
-      value={value}
+      styles=[style, {touched && error && {color: 'red'}}]
       underlineColorAndroid="transparent"
       selectTextOnFocus
       {...props}

@@ -97,8 +97,6 @@ const formOptions = {
 @reduxForm(formOptions)
 class Email extends Component {
   static propTypes = {
-    addEmail: PropTypes.func.isRequired,
-    addPassword: PropTypes.func.isRequired,
     fetchUserBy: PropTypes.func.isRequired,
     email: PropTypes.string,
     password: PropTypes.string,
@@ -115,9 +113,11 @@ class Email extends Component {
   @autobind
   handleOnChangeEmail(text) {
     try {
-      this.props.addEmail(text);
+      console.log(`add ${text} to email`);
+      return this.props.addEmail(text);
     } catch (error) {
       console.log('YESSS ERROR FOUND');
+      return false;
     }
   }
 
