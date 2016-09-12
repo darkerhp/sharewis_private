@@ -9,7 +9,7 @@ const TextField = (props) => {
   // touched is a flag set by redux-form when the onBlur event occurs
   // (when the form is submitted)
 
-
+  console.log('render TextField:', error, touched);
   return (
     <TextInput
       // Let's only change the text color instead of showing error messages

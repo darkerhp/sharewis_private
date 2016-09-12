@@ -24,7 +24,7 @@ const DefaultComponents = {
     borderColor: Variables.lightGray,
     borderWidth: 1,
     fontSize: 13,
-    color: '#222',
+    color: 'red',
     backgroundColor: 'white',
   },
   Button: {

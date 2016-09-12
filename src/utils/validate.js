@@ -3,8 +3,8 @@
 */
 
 const t = {
-  required: 'Required',
-  badEmail: 'This is not an email',
+  required: '必要です',
+  badEmail: 'メールではありません',
 };
 
 // Terribly simple and easily circumvented
@@ -13,6 +13,7 @@ const isEmail = text =>
 
 
 const validateEmailLogin = (values) => {
+  console.log('in validateEmailLogin:', values);
   const errors = {};
   if (!values.email) {
     errors.email = t.required;

@@ -1,10 +1,14 @@
 /* eslint no-console: ["error", { allow: ["log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
+import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
-import { Field, reduxForm } from 'redux-form';
-import autobind from 'autobind-decorator';
+import {
+  Field,
+  reduxForm,
+  SubmissionError,
+} from 'redux-form';
 
 import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
@@ -95,32 +99,47 @@ const t = {
 const formOptions = {
   form: 'email',
   validate: validateEmailLogin,
+  touchOnChange: true,
 };
 
 
 @reduxForm(formOptions)
 class Email extends Component {
   static propTypes = {
-    addEmail: PropTypes.func,
-    addPassword: PropTypes.func,
-    fetchUserBy: PropTypes.func.isRequired,
+    addEmail: PropTypes.func.isRequired,
+    addPassword: PropTypes.func.isRequired,
     email: PropTypes.string,
+    fetchUserBy: PropTypes.func.isRequired,
+    form: PropTypes.any.isRequired, // eslint-disable-line
+    handleSubmit: PropTypes.func.isRequired,
     password: PropTypes.string,
+    touch: PropTypes.func.isRequired,
   };
 
   @autobind
-  async handlePress() {
+  async handlePress(data) {
+    console.log('start touch');
+    console.log(data);
+    const { email, fetchUserBy, form, password, touch } = this.props;
+
+    touch('email', 'password');
+    console.log('end touch');
+    const fieldErrors = form.email.syncErrors;
+    console.log(fieldErrors);
+    if (fieldErrors) {
+      Alert.alert(t.errorTitle, fieldErrors.join('\n'));
+      return;
+    }
     try {
-      await this.props.fetchUserBy(
-        'email',
-        [this.props.email, this.props.password],
-      );
+      await fetchUserBy('email', [email, password]);
     } catch (error) {
-      Alert.alert(t.errorTitle, t.loginError);
+      throw new SubmissionError({ _error: t.loginError });
     }
   }
 
   render() {
+    const { handleSubmit, addEmail, addPassword } = this.props;
+
     return (
       <View style={styles.view}>
         <View style={styles.labelWrapper}>
@@ -137,7 +156,7 @@ class Email extends Component {
               component={TextField}
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={text => this.props.addEmail(text)}
+              onChangeText={text => addEmail(text)}
               keyboardType="email-address"
               returnKeyType="next"
             />
@@ -150,7 +169,7 @@ class Email extends Component {
               component={TextField}
               placeholder={t.passwordPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={text => this.props.addPassword(text)}
+              onChangeText={text => addPassword(text)}
               returnKeyType="next"
               secureTextEntry
             />
@@ -160,7 +179,7 @@ class Email extends Component {
           <Button
             containerStyle={styles.buttonWrapper}
             style={styles.button}
-            onPress={this.handlePress}
+            onPress={handleSubmit(this.handlePress)}
           >
             { t.login }
           </Button>
