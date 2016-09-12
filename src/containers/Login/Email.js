@@ -8,6 +8,7 @@ import autobind from 'autobind-decorator';
 
 import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
+import BaseTranslations from '../../translations';
 import TextField from '../../components/TextField';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
@@ -16,6 +17,7 @@ import validateEmailLogin from '../../utils/validate';
 
 const { Component, PropTypes } = React;
 const {
+  Alert,
   Platform,
   StyleSheet,
   Text,
@@ -80,11 +82,13 @@ const styles = StyleSheet.create({
 });
 
 const t = {
+  ...BaseTranslations,
   emailLabel: 'メールアドレスでログインする',
   emailPlaceHolder: 'メールアドレス',
   login: 'ログイン',
   passwordForgotten: 'パスワードを忘れた方',
   passwordPlaceHolder: 'パスワード',
+  loginError: 'このメールとパスワードでログインを失敗しました',
 };
 
 
@@ -105,21 +109,14 @@ class Email extends Component {
   };
 
   @autobind
-  async handlePressedLogin() {
-    await this.props.fetchUserBy(
-      'facebook',
-      [this.props.email, this.props.password],
-    );
-  }
-
-  @autobind
-  handleOnChangeEmail(text) {
+  async handlePress() {
     try {
-      console.log(`add ${text} to email`);
-      return this.props.addEmail(text);
+      await this.props.fetchUserBy(
+        'email',
+        [this.props.email, this.props.password],
+      );
     } catch (error) {
-      console.log('YESSS ERROR FOUND');
-      return false;
+      Alert.alert(t.errorTitle, t.loginError);
     }
   }
 
@@ -140,7 +137,7 @@ class Email extends Component {
               component={TextField}
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={text => this.handleOnChangeEmail(text)}
+              onChangeText={text => this.props.addEmail(text)}
               keyboardType="email-address"
               returnKeyType="next"
             />
@@ -163,6 +160,7 @@ class Email extends Component {
           <Button
             containerStyle={styles.buttonWrapper}
             style={styles.button}
+            onPress={this.handlePress}
           >
             { t.login }
           </Button>

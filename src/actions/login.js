@@ -33,10 +33,12 @@ export const startActFacebookLogin = ([email, facebookId]) => ({
   isFetching: true,
 });
 
-export const fetchActLoginFailure = {
-  type: types.FETCH_ACT_LOGIN_FAILURE,
-  isFetching: false,
-  loggedIn: false,
+export const fetchActLoginFailure = error => {
+  return {
+    type: types.FETCH_ACT_LOGIN_FAILURE,
+    isFetching: false,
+    loggedIn: false,
+  };
 };
 
 export const fetchActLoginSuccess = result => ({
@@ -59,13 +61,16 @@ export const fetchFBEmailSuccess = ([email, facebookId]) => ({
 
 export const fetchUserBy = (loginMethod, credentials) =>
   (async) (dispatch) => {
-    dispatch(fetchFBEmailSuccess(credentials));
+    if (loginMethod === 'facebook') {
+      dispatch(fetchFBEmailSuccess(credentials));
+    }
+
     dispatch(startActFacebookLogin(credentials));
     try {
       const data = await getUserData(credentials);
       return dispatch(fetchActLoginSuccess(data));
     } catch (error) {
-      dispatch(fetchActLoginFailure);
+      dispatch(fetchActLoginFailure(error));
       throw error;
     }
   };

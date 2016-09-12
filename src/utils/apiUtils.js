@@ -6,8 +6,7 @@ export function checkStatus(result) {
   if (result.ok) {
     return result;
   }
-  const error = new Error(result.statusText);
-  throw error;
+  throw new Error(result.statusText);
 }
 
 export function checkResult(json, ok) {

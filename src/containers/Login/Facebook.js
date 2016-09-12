@@ -5,6 +5,7 @@ import FBSDK from 'react-native-fbsdk';
 import autobind from 'autobind-decorator';
 
 import * as Actions from '../../actions/login';
+import BaseTranslations from '../../translations';
 import connectToProps from '../../utils/reduxUtils';
 
 const { Component, PropTypes } = React;
@@ -38,8 +39,8 @@ const styles = StyleSheet.create({
 });
 
 const t = {
+  ...BaseTranslations,
   emailNotFound: 'Facebookからメールを貰えませんでした。Facebookの設定からメールを共有することが出来るように同意して下さい',
-  errorTitle: 'エラー',
   facebookLabel: 'Facebookアカウントでログインする',
   loginError: 'Facebookログインが失敗しました',
   loginSuccess: 'Facebookログインができました',
