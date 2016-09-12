@@ -519,6 +519,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = S6JTW2HH6N;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SharewisActMobile" */;
@@ -851,7 +854,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
 				FACEBOOK_APP_ID = 739140542810010;
 				FRAMEWORK_SEARCH_PATHS = " ~/Documents/FacebookSDK";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = " ~/Documents/FacebookSDK";
@@ -870,6 +875,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWisACT";
 				PRODUCT_NAME = SharewisActMobile;
 			};
 			name = Debug;
@@ -878,6 +884,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
 				FACEBOOK_APP_ID = 1491866444383166;
 				FRAMEWORK_SEARCH_PATHS = " ~/Documents/FacebookSDK";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = " ~/Documents/FacebookSDK";
@@ -896,6 +904,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWisACT";
 				PRODUCT_NAME = SharewisActMobile;
 			};
 			name = Release;
