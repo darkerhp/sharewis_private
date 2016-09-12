@@ -7,8 +7,8 @@ import ReactNative from 'react-native';
 const { Linking } = ReactNative;
 
 
-const redirectTo = (url) =>
-  Linking.canOpenURL(url).then(supported => {
+const redirectTo = url =>
+  Linking.canOpenURL(url).then((supported) => {
     if (supported) {
       return Linking.openURL(url);
     }

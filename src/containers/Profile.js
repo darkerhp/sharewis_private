@@ -1,23 +1,20 @@
 import React from 'react';
 import ReactNative from 'react-native';
-import { connect } from 'react-redux';
+import connectToProps from '../utils/reduxUtils';
 
-const { PropTypes } = React;
 const { Text, View } = ReactNative;
 
-
-const Profile = (routes) =>
-  <View>
-    <Text>
-      { routes.scene.title }
-    </Text>
-  </View>;
-
-Profile.propTypes = {
-  routes: PropTypes.object,
+const t = {
+  profile: 'Profile',
 };
 
 
-export default connect(
-  ({ routes }) => ({ routes })
-)(Profile);
+const Profile = () =>
+  <View>
+    <Text>
+      {t.profile}
+    </Text>
+  </View>;
+
+
+export default connectToProps(Profile, 'user');

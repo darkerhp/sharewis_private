@@ -7,7 +7,7 @@ global.Promise = require.requireActual('promise');
 
 jest.mock('Linking', () => ({
   canOpenURL: url =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       resolve(url === 'https://staging-act.share-wis.com');
     }),
   openURL: url => new Promise(resolve => resolve(url)),

@@ -47,13 +47,11 @@ const t = {
 class Login extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
-    loggedIn: PropTypes.bool.isRequired,
   };
 
-  componentWillReceiveProps(props) {
-    console.log('in componentWillReceiveProps', props);
+  componentWillReceiveProps(nextProps) {
     // Redirect to Course List page if user is logged in
-    if (!props.isFetching && props.loggedIn) {
+    if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
       Actions.courseList();
     }
   }
