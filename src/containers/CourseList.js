@@ -77,7 +77,6 @@ const CourseList = ({ courses }) => (
 );
 
 CourseList.propTypes = {
-  routes: PropTypes.object,
   courses: PropTypes.arrayOf(PropTypes.string),
 };
 
