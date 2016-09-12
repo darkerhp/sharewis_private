@@ -44,12 +44,12 @@ const SeekBar = ({ currentTime, duration, onValueChange }) => {
       />
       <Slider
         maximumValue={duration}
-        value={timeEnd < 0 ? 0 : timeEnd}
+        value={currentTime}
         onValueChange={value => onValueChange(value)}
         style={styles.slider}
       />
       <Duration
-        duration={currentTime}
+        duration={timeEnd < 0 ? 0 : timeEnd}
         format={'mm:ss'}
         containerStyle={styles.timeTextContainer}
         durationStyle={styles.timeText}
