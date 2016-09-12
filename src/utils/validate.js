@@ -12,7 +12,7 @@ const isEmail = text =>
   (text instanceof String) && /.*?@.*?\.[a-z]{2,4}/.test(text);
 
 
-const validateEmailLogin = values => {
+const validateEmailLogin = (values) => {
   const errors = {};
   if (!values.email) {
     errors.email = t.required;

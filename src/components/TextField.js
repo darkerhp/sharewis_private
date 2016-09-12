@@ -4,7 +4,7 @@ import { TextInput } from 'react-native';
 const { PropTypes } = React;
 
 
-const TextField = props => {
+const TextField = (props) => {
   const { style, meta: { error, touched } } = props;
   // touched is a flag set by redux-form when the onBlur event occurs
   // (when the form is submitted)
@@ -21,6 +21,7 @@ const TextField = props => {
   );
 };
 
+/* eslint forbid-prop-types: [false] */
 TextField.propTypes = {
   style: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,

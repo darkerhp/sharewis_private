@@ -97,6 +97,8 @@ const formOptions = {
 @reduxForm(formOptions)
 class Email extends Component {
   static propTypes = {
+    addEmail: PropTypes.func,
+    addPassword: PropTypes.func,
     fetchUserBy: PropTypes.func.isRequired,
     email: PropTypes.string,
     password: PropTypes.string,
