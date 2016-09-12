@@ -759,8 +759,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -770,7 +768,9 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				FACEBOOK_APP_ID = 739140542810010;
+				FACEBOOK_APP_ID = 1491866444383166;
+				FRAMEWORK_SEARCH_PATHS = " ~/Documents/FacebookSDK";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = " ~/Documents/FacebookSDK";
 				INFOPLIST_FILE = SharewisActMobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -778,8 +778,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SharewisActMobile.app/SharewisActMobile";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
@@ -790,6 +788,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
+				FACEBOOK_APP_ID = 739140542810010;
 				FRAMEWORK_SEARCH_PATHS = " ~/Documents/FacebookSDK";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = " ~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
