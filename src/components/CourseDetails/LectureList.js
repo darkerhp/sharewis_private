@@ -29,6 +29,7 @@ const LectureList = ({ lectures, containerStyle }) =>
 
 LectureList.propTypes = {
   lectures: PropTypes.array.isRequired,
+  containerStyle: PropTypes.object.isRequired,
 };
 
 export default LectureList;
