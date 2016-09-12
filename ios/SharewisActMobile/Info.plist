@@ -59,14 +59,14 @@
 			<string>MaterialIcons.ttf</string>
 			<string>Octicons.ttf</string>
 			<string>Zocial.ttf</string>
-			</array>
+		</array>
 		<key>CFBundleURLTypes</key>
 		<array>
 			<dict>
 				<key>CFBundleURLSchemes</key>
 				<array>
 					<string>fb$(FACEBOOK_APP_ID)</string>
-					</array>
+				</array>
 			</dict>
 		</array>
 		<key>FacebookAppID</key>
