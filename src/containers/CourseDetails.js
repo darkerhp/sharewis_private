@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
 import Progress from '../components/CourseDetails/Progress';
-import Lecture from '../components/CourseDetails/Lecture';
-import Section from '../components/CourseDetails/Section';
+import LectureList from '../components/CourseDetails/LectureList';
+// import Section from '../components/CourseDetails/Section';
 import Duration from '../components/Duration';
 import BaseStyles from '../baseStyles';
+
+import { lectures, course } from './dummyData';
 
 const { Component } = React;
 const {
@@ -21,12 +24,7 @@ const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: { flex: 1, paddingTop: 65 },
-  courseInfosContainer: { height: (height - 65) / 2, padding: 10 },
-  lectureListContainer: {
-    flex: 1,
-    borderColor: BaseStyles.borderColor,
-    borderTopWidth: 1,
-  },
+  courseInfoContainer: { height: (height - 65) / 2, padding: 10 },
   courseTitleWrapper: { flex: 1 },
   courseTitleText: { color: 'black', fontSize: 24, fontWeight: '900' },
   nextLectureContainer: {
@@ -51,6 +49,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '900',
   },
+  nextLectureTitleText: {
+    color: 'white',
+    position: 'absolute',
+    top: 30,
+    left: 75,
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
   totalDurationWrapper: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -69,78 +74,77 @@ const t = {
   totalDurationFormat: '計 h時間m分',
 };
 
-const lectures = [
-  { title: 'セクション１', kind: 'section' },
-  { order: 1, title: 'レクチャーA', kind: 'lecture', duration: 30, isCompleted: true },
-  { order: 2, title: 'レクチャーB', kind: 'lecture', duration: 60, isCompleted: true },
-  { order: 3, title: 'レクチャーC', kind: 'lecture', duration: 90, isCompleted: true },
-  { title: 'セクション2', kind: 'section' },
-  { order: 4, title: 'レクチャーD', kind: 'lecture', duration: 30, isCompleted: false },
-  { order: 5, title: 'レクチャーE', kind: 'lecture', duration: 60, isCompleted: false },
-  { order: 6, title: 'レクチャーF', kind: 'lecture', duration: 90, isCompleted: false },
-  { title: 'セクション3', kind: 'section' },
-  { order: 7, title: 'レクチャーG', kind: 'lecture', duration: 30, isCompleted: false },
-  { order: 8, title: 'レクチャーH', kind: 'lecture', duration: 60, isCompleted: false },
-  { order: 9, title: 'レクチャーI', kind: 'lecture', duration: 90, isCompleted: false },
-  { title: 'セクション4', kind: 'section' },
-  { order: 10, title: 'レクチャーJ', kind: 'lecture', duration: 30, isCompleted: false },
-  { order: 11, title: 'レクチャーK', kind: 'lecture', duration: 60, isCompleted: false },
-  { order: 12, title: 'レクチャーL', kind: 'lecture', duration: 90, isCompleted: false },
-];
-
-const course = {
-  title: '差がつくビジネス戦略講座 | 事業開発・Platform戦略(R)・ITマーケティング',
-  lectures,
-};
-
 const videoImageSrc = require('../components/CourseDetails/images/video.png');
-// const quizImageSrc = require('../components/CourseDetails/images/quiz.png');
-// const textImageSrc = require('../components/CourseDetails/images/text.png');
+const quizImageSrc = require('../components/CourseDetails/images/quiz.png');
+const textImageSrc = require('../components/CourseDetails/images/text.png');
 
 class CourseDetails extends Component {
+  constructor(props) {
+    super(props);
 
-  // TODO lecturesから次に学ぶべきレクチャーを取得する処理 ストーリーあり
-  // TODO レクチャー画像に被せるレクチャータイトル ストーリーあり
-  // TODO レクチャークリックでレクチャー画面に遷移する ストーリーあり
-  // TODO durationのフォーマットをUtil化
+  }
 
   componentDidMount() {
-    // レクチャー種別画像を取得する
-    // TODO 画像の種類 要確認 WEB ACTでは足りてない
-    // getLectureImageSrc(lecture) {
-    //   switch (lecture.type) {
-    //     case 'VideoLecture':
-    //       return videoImageSrc;
-    //     case 'QuizLecture':
-    //       return quizImageSrc;
-    //     default:
-    //       return textImageSrc;
-    //   }
-    // }
+  }
+
+  handleOnPressNextLecture(nextLecture) {
+    RouterActions.lecture({
+      lecture: nextLecture,
+      title: nextLecture.title,
+    });
+  }
+
+  getNextLecture(lectures) {
+    filteredLecture = lectures
+      .filter(l =>
+        l.kind === 'lecture' && l.type === 'VideoLecture' && l.isCompleted === false
+      ).sort((a, b) => {
+        if (a.order === b.order) return 0;
+        return a.order < b.order ? -1 : 1;
+      });
+    return filteredLecture[0] || {};
+  }
+
+  getNextLectureImageSrc(nextLecture) {
+    switch (nextLecture.type) {
+      case 'VideoLecture':
+        return videoImageSrc;
+      case 'QuizLecture':
+        return quizImageSrc;
+      case 'TextLecture':
+        return textImageSrc;
+      default:
+        return videoImageSrc;
+    }
   }
 
   render() {
-    const totalLectureCount = lectures.filter(e => e.kind === 'lecture').length;
-    const completeLectureCount = lectures.filter(e => e.isCompleted).length;
-    const totalDuration = lectures.map(e => e.duration || 0).reduce((a, b) => a + b);
+    const totalLectureCount = lectures.filter(l => l.kind === 'lecture').length;
+    const completeLectureCount = lectures.filter(l => l.isCompleted).length;
+    const totalDuration = lectures.map(l => l.duration || 0).reduce((a, b) => a + b);
+    // TODO testしにくいので移動する
+    const nextLecture = this.getNextLecture(lectures);
     return (
       <ScrollView
         style={styles.container}
         automaticallyAdjustContentInsets={false}
       >
-        <View style={styles.courseInfosContainer}>
+        <View style={styles.courseInfoContainer}>
           <View style={styles.courseTitleWrapper}>
             <Text>{course.title}</Text>
           </View>
 
-          <View style={styles.nextLectureContainer}>
-            <TouchableOpacity>
+          <View style={styles.nextLectureContainer} visible={false}>
+            <TouchableOpacity
+              onPress={() => this.handleOnPressNextLecture(nextLecture)}
+            >
               <View style={styles.courseImageWrapper}>
                 <Image
-                  source={videoImageSrc}
+                  source={this.getNextLectureImageSrc(nextLecture)}
                   style={styles.courseImage}
                   resizeMode={Image.resizeMode.contain}
                 />
+                <Text style={styles.nextLectureTitleText}>{nextLecture.title}</Text>
               </View>
               <View style={styles.nextLectureTextWrapper}>
                 <Text style={styles.nextLectureText}>{t.nextLecture}</Text>
@@ -161,13 +165,7 @@ class CourseDetails extends Component {
           />
         </View>
 
-        <View style={styles.lectureListContainer}>
-          {course.lectures.map((lecture, i) => (
-            lecture.kind === 'section'
-              ? <Section key={i} lecture={lecture} />
-              : <Lecture key={i} lecture={lecture} />
-          ))}
-        </View>
+        <LectureList lectures={course.lectures} containerStyle={{flex: 1}} />
       </ScrollView>
     );
   }
@@ -175,5 +173,4 @@ class CourseDetails extends Component {
 
 CourseDetails.propTypes = {};
 CourseDetails.defaultProps = {};
-
 export default CourseDetails;
