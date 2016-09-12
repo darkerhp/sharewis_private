@@ -5,11 +5,15 @@ const { PropTypes } = React;
 
 
 const TextField = props => {
-  const { style, meta: { error, touched } = props;
+  const { style, meta: { error, touched } } = props;
+  // touched is a flag set by redux-form when the onBlur event occurs
+  // (when the form is submitted)
+
 
   return (
     <TextInput
-      styles=[style, {touched && error && {color: 'red'}}]
+      // Let's only change the text color instead of showing error messages
+      style={(touched && error) ? [style, { color: 'red' }] : style}
       underlineColorAndroid="transparent"
       selectTextOnFocus
       {...props}
@@ -18,7 +22,8 @@ const TextField = props => {
 };
 
 TextField.propTypes = {
-  input: PropTypes.object.isRequired,
+  style: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
 };
 
 
