@@ -1,9 +1,12 @@
 const Variables = {
   hyperlink: '#2980b9',
-  lightGray: '#dadada',
+  lightGray: '#dadada', // TODO rename or remove
   mainColorBlue: '#579eff',
   mainColorLightBlue: '#a0e0fc',
   onboardingBgLightBlue: '#ecf1f3',
+  borderColor: '#ddd',
+  textColor: '#525252',
+  navbarHeight: 65,
 };
 
 const DefaultComponents = {

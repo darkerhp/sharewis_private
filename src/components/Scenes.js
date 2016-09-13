@@ -2,6 +2,7 @@ import React from 'react';
 import { ActionConst, Scene } from 'react-native-router-flux';
 
 import CourseList from '../containers/CourseList';
+import CourseDetails from '../containers/CourseDetails';
 import Onboarding from '../containers/Onboarding';
 import Profile from '../containers/Profile';
 import Lecture from '../containers/Lecture';
@@ -32,6 +33,11 @@ const getScenes = loggedIn =>
       key="profile"
       component={Profile}
       title={t.profile}
+    />
+    <Scene
+      key="CourseDetails"
+      component={CourseDetails}
+      hideNavBar={false}
     />
     <Scene
       key="lecture"
