@@ -7,18 +7,17 @@ const { PropTypes } = React;
 const TextField = (props) => {
   const {
     style,
-    input: {value, onChange },
+    input: { value, onChange },
     meta: { error, touched },
     ...otherProps,
   } = props;
 
-  console.log('render TextField:', value, error, touched);
   return (
     <TextInput
       // Let's only change the text color instead of showing error messages
       style={(touched && error) ? [style, { color: 'red' }] : style}
       underlineColorAndroid="transparent"
-      onChangeText={value => onChange(value)}
+      onChangeText={text => onChange(text)}
       value={value}
       selectTextOnFocus
       {...otherProps}
@@ -26,10 +25,11 @@ const TextField = (props) => {
   );
 };
 
-/* eslint forbid-prop-types: [false] */
+/* eslint-disable react/forbid-prop-types */
 TextField.propTypes = {
   style: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
+  input: PropTypes.object.isRequired,
 };
 
 
