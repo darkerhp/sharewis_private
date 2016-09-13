@@ -71,6 +71,10 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     flex: 5,
     flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#96D243',
+    justifyContent: 'center',
+    marginVertical: 10,
   },
   button: BaseStyles.Button,
   textWrapper: {

@@ -33,12 +33,7 @@ const DefaultComponents = {
   Button: {
     flex: 1,
     fontSize: 15,
-    backgroundColor: '#96D243',
     color: 'white',
-    borderColor: 'purple',
-    borderWidth: 1,
-    alignSelf: 'stretch',
-    textAlignVertical: 'center',
   },
 };
 
