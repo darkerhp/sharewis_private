@@ -32,6 +32,25 @@ const styles = StyleSheet.create({
 });
 
 class Lecture extends Component {
+  static propTypes = {
+    isPaused: PropTypes.bool.isRequired,
+    pressPlay: PropTypes.func.isRequired,
+    speed: PropTypes.number.isRequired,
+    pressSpeed: PropTypes.func.isRequired,
+    currentTime: PropTypes.number.isRequired,
+    videoProgress: PropTypes.func.isRequired,
+    lecture: PropTypes.shape({
+      /* eslint-disable react/no-unused-prop-types */
+      order: PropTypes.number,
+      title: PropTypes.string,
+      kind: PropTypes.string,
+      duration: PropTypes.number,
+      isCompleted: PropTypes.bool,
+      type: PropTypes.string,
+      /* eslint-enable react/no-unused-prop-types */
+    }).isRequired,
+  };
+
   @autobind
   handleValueChange(value) {
     if (this.video) {
@@ -40,29 +59,37 @@ class Lecture extends Component {
   }
 
   render() {
-    const { lecture } = this.props;
+    const {
+      lecture,
+      currentTime,
+      isPaused,
+      speed,
+      videoProgress,
+      pressPlay,
+      pressSpeed,
+    } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
             ref={ref => (this.video = ref)}
             source={{ uri: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin' }} // Can be a URL or a local file.
-            rate={this.props.speed}
+            rate={speed}
             volume={1.0}
             muted={false}
-            paused={this.props.isPaused}
+            paused={isPaused}
             resizeMode="contain"
             repeat={false}
             playInBackground={false}
             playWhenInactive={false}
             // onError={e => console.log(e)}
             style={styles.backgroundVideo}
-            onProgress={data => this.props.videoProgress(data.currentTime)}
+            onProgress={data => videoProgress(data.currentTime)}
           />
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
-            currentTime={this.props.currentTime}
+            currentTime={currentTime}
             duration={lecture.duration}
             onValueChange={this.handleValueChange}
             video={this.video}
@@ -72,10 +99,10 @@ class Lecture extends Component {
             <Text>{lecture.title}</Text>
           </View>
           <VideoControls
-            isPaused={this.props.isPaused}
-            speed={this.props.speed}
-            onPressPlay={this.props.pressPlay}
-            onPressSpeed={this.props.pressSpeed}
+            isPaused={isPaused}
+            speed={speed}
+            onPressPlay={pressPlay}
+            onPressSpeed={pressSpeed}
           />
           {/* TODO NextLecture 実装する */}
           <View style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'stretch' }}>
@@ -95,15 +122,5 @@ class Lecture extends Component {
     );
   }
 }
-
-Lecture.propTypes = {
-  isPaused: PropTypes.bool.isRequired,
-  pressPlay: PropTypes.func.isRequired,
-  speed: PropTypes.number.isRequired,
-  pressSpeed: PropTypes.func.isRequired,
-  currentTime: PropTypes.number.isRequired,
-  videoProgress: PropTypes.func.isRequired,
-  lecture: PropTypes.object.isRequired, // TODO shape
-};
 
 export default connectToProps(Lecture, 'lecture', Actions);

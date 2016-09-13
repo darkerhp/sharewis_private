@@ -29,6 +29,7 @@ const Section = ({ lecture }) =>
 
 
 Section.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   lecture: PropTypes.object.isRequired,
 };
 

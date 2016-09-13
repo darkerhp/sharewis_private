@@ -9,11 +9,13 @@ const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
+  container: { padding: 10 },
   courseTitleWrapper: { flex: 1 },
-  courseTitleText: { color: 'black', fontSize: 16, fontWeight: '900' },
+  courseTitleText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: '900',
+  },
   totalDurationWrapper: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -71,8 +73,19 @@ CourseInfoSection.propTypes = {
   totalLectureCount: PropTypes.number.isRequired,
   completeLectureCount: PropTypes.number.isRequired,
   totalDuration: PropTypes.number.isRequired,
-  nextLecture: PropTypes.object.isRequired, // TODO shape
+  // eslint-disable-next-line react/no-unused-prop-types
+  nextLecture: PropTypes.shape({
+    /* eslint-disable react/no-unused-prop-types */
+    order: PropTypes.number,
+    title: PropTypes.string,
+    kind: PropTypes.string,
+    duration: PropTypes.number,
+    isCompleted: PropTypes.bool,
+    type: PropTypes.string,
+    /* eslint-enable react/no-unused-prop-types */
+  }).isRequired,
   handlePressNextLecture: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   containerStyle: PropTypes.object.isRequired,
 };
 

@@ -6,6 +6,7 @@ const Variables = {
   onboardingBgLightBlue: '#ecf1f3',
   borderColor: '#ddd',
   textColor: '#525252',
+  navbarHeight: 65,
 };
 
 const DefaultComponents = {

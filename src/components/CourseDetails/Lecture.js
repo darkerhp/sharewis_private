@@ -102,7 +102,16 @@ const Lecture = ({ lecture }) =>
 
 
 Lecture.propTypes = {
-  lecture: PropTypes.object.isRequired,
+  lecture: PropTypes.shape({
+    /* eslint-disable react/no-unused-prop-types */
+    order: PropTypes.number,
+    title: PropTypes.string,
+    kind: PropTypes.string,
+    duration: PropTypes.number,
+    isCompleted: PropTypes.bool,
+    type: PropTypes.string,
+    /* eslint-enable react/no-unused-prop-types */
+  }).isRequired,
 };
 
 export default Lecture;

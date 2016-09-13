@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
-import * as CourseUtil from '../course';
+import * as CourseUtils from '../course';
 
 // Test Data
 const course = {
@@ -36,19 +36,19 @@ const course = {
 
 describe('Course Utils', () => {
   it('should return totalLectureCount', () =>
-    expect(CourseUtil.totalLectureCount(course)).toEqual(3)
+    expect(CourseUtils.totalLectureCount(course)).toEqual(3)
   );
 
   it('should return completeLectureCount', () =>
-    expect(CourseUtil.completeLectureCount(course)).toEqual(1)
+    expect(CourseUtils.completeLectureCount(course)).toEqual(1)
   );
 
   it('should return totalDuration', () =>
-    expect(CourseUtil.totalDuration(course)).toEqual(180)
+    expect(CourseUtils.totalDuration(course)).toEqual(180)
   );
 
   it('should return next lecture', () => {
-    nextLecture = CourseUtil.getNextLecture(course);
+    nextLecture = CourseUtils.getNextLecture(course);
     expect(nextLecture.order).toEqual(3);
   });
 });

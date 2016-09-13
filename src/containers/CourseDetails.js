@@ -6,7 +6,8 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
-import * as CourseUtil from '../utils/course';
+import * as CourseUtils from '../utils/course';
+import BaseStyles from '../baseStyles';
 
 import { course } from './dummyData'; // TODO
 
@@ -17,15 +18,21 @@ const {
   Dimensions,
 } = ReactNative;
 const { height } = Dimensions.get('window');
-
-const NAVBAR_HEIGHT = 65;
-const HALF_DISPLAY_HEIGHT = (height - NAVBAR_HEIGHT) / 2;
-
+const HALF_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 2;
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: NAVBAR_HEIGHT },
+  container: { flex: 1, paddingTop: BaseStyles.navbarHeight },
 });
 
 class CourseDetails extends Component {
+  static propTypes = {
+    // lectures: PropTypes.arrayOf(PropTypes.shape({
+    //   id: PropTypes.number.isRequired,
+    //   title: PropTypes.string.isRequired,
+    //   duration: PropTypes.number.isRequired,
+    //   type: PropTypes.number.isRequired,
+    // })).isRequired,
+  };
+
   // componentWillMount() { console.log('[CourseDetails] Component Will Mount', arguments); }
   // componentDidMount() { console.log('[CourseDetails] Component Did Mount', arguments); }
   // componentWillReceiveProps() {
@@ -39,7 +46,7 @@ class CourseDetails extends Component {
   @autobind
   handlePressNextLecture() {
     // const { course } = this.props; TODO propを受け取る
-    const nextLecture = CourseUtil.getNextLecture(course);
+    const nextLecture = CourseUtils.getNextLecture(course);
     RouterActions.lecture({ lecture: nextLecture, title: nextLecture.title });
   }
 
@@ -47,10 +54,10 @@ class CourseDetails extends Component {
     // const { course } = this.props; TODO propを受け取る
     const courseInfo = {
       courseTitle: course.title,
-      totalLectureCount: CourseUtil.totalLectureCount(course),
-      completeLectureCount: CourseUtil.completeLectureCount(course),
-      totalDuration: CourseUtil.totalDuration(course),
-      nextLecture: CourseUtil.getNextLecture(course),
+      totalLectureCount: CourseUtils.totalLectureCount(course),
+      completeLectureCount: CourseUtils.completeLectureCount(course),
+      totalDuration: CourseUtils.totalDuration(course),
+      nextLecture: CourseUtils.getNextLecture(course),
     };
     return (
       <ScrollView
@@ -68,13 +75,4 @@ class CourseDetails extends Component {
   }
 }
 
-CourseDetails.propTypes = {
-  // lectures: PropTypes.arrayOf(PropTypes.shape({
-  //   id: PropTypes.number.isRequired,
-  //   title: PropTypes.string.isRequired,
-  //   duration: PropTypes.number.isRequired,
-  //   type: PropTypes.number.isRequired,
-  // })).isRequired,
-};
-CourseDetails.defaultProps = {};
 export default CourseDetails;

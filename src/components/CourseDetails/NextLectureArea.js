@@ -76,8 +76,19 @@ const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyle }
 
 
 NextLectureArea.propTypes = {
-  nextLecture: PropTypes.object.isRequired, // TODO shape
+  // eslint-disable-next-line react/no-unused-prop-types
+  nextLecture: PropTypes.shape({
+    /* eslint-disable react/no-unused-prop-types */
+    order: PropTypes.number,
+    title: PropTypes.string,
+    kind: PropTypes.string,
+    duration: PropTypes.number,
+    isCompleted: PropTypes.bool,
+    type: PropTypes.string,
+    /* eslint-enable react/no-unused-prop-types */
+  }).isRequired,
   handlePressNextLecture: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   containerStyle: PropTypes.object.isRequired,
 };
 
