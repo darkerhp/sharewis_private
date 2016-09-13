@@ -38,6 +38,7 @@ const CourseInfoSection = ({
   totalLectureCount,
   completeLectureCount,
   totalDuration,
+  isCompleted,
   nextLecture,
   handlePressNextLecture,
   containerStyle,
@@ -47,11 +48,14 @@ const CourseInfoSection = ({
       <Text style={styles.courseTitleText}>{courseTitle}</Text>
     </View>
 
-    <NextLectureArea
-      nextLecture={nextLecture}
-      handlePressNextLecture={handlePressNextLecture}
-      containerStyle={{ flex: 3 }}
-    />
+    {!isCompleted ?
+      <NextLectureArea
+        nextLecture={nextLecture}
+        handlePressNextLecture={handlePressNextLecture}
+        hidden
+        containerStyle={{ flex: 3 }}
+      /> : null
+    }
 
     <Progress
       completeLectureCount={completeLectureCount}
@@ -67,12 +71,12 @@ const CourseInfoSection = ({
   </View>
 );
 
-
 CourseInfoSection.propTypes = {
   courseTitle: PropTypes.string.isRequired,
   totalLectureCount: PropTypes.number.isRequired,
   completeLectureCount: PropTypes.number.isRequired,
   totalDuration: PropTypes.number.isRequired,
+  isCompleted: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   nextLecture: PropTypes.shape({
     /* eslint-disable react/no-unused-prop-types */

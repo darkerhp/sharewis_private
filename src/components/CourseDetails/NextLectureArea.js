@@ -74,7 +74,6 @@ const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyle }
     </TouchableOpacity>
   </View>;
 
-
 NextLectureArea.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types
   nextLecture: PropTypes.shape({

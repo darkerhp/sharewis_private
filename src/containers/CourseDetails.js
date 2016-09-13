@@ -17,8 +17,11 @@ const {
   ScrollView,
   Dimensions,
 } = ReactNative;
+
 const { height } = Dimensions.get('window');
 const HALF_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 2;
+const QUARTER_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 4;
+
 const styles = StyleSheet.create({
   container: { flex: 1, paddingTop: BaseStyles.navbarHeight },
 });
@@ -44,8 +47,8 @@ class CourseDetails extends Component {
   // componentWillUnmount() { console.log('[CourseDetails] Component Will Unmount', arguments); }
 
   @autobind
+  // TODO ↓this.prop使うようになったら消す
   // eslint-disable-next-line class-methods-use-this
-  // TODO ↑this.prop使うようになったら消す
   handlePressNextLecture() {
     // const { course } = this.props; TODO propを受け取る
     const nextLecture = CourseUtils.getNextLecture(course);
@@ -54,10 +57,14 @@ class CourseDetails extends Component {
 
   render() {
     // const { course } = this.props; TODO propを受け取る
+    const completeLectureCount = CourseUtils.completeLectureCount(course);
+    const totalLectureCount = CourseUtils.totalLectureCount(course);
+    const isCompleted = completeLectureCount === totalLectureCount;
     const courseInfo = {
+      totalLectureCount,
+      completeLectureCount,
+      isCompleted,
       courseTitle: course.title,
-      totalLectureCount: CourseUtils.totalLectureCount(course),
-      completeLectureCount: CourseUtils.completeLectureCount(course),
       totalDuration: CourseUtils.totalDuration(course),
       nextLecture: CourseUtils.getNextLecture(course),
     };
@@ -69,7 +76,7 @@ class CourseDetails extends Component {
         <CourseInfoSection
           {...courseInfo}
           handlePressNextLecture={this.handlePressNextLecture}
-          containerStyle={{ height: HALF_DISPLAY_HEIGHT }}
+          containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
         />
         <LectureList lectures={course.lectures} containerStyle={{ flex: 1 }} />
       </ScrollView>
