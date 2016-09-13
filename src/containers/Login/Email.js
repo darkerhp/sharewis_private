@@ -154,6 +154,8 @@ class Email extends Component {
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
               keyboardType="email-address"
+              autoCapitalize={'none'}
+              autoCorrect={'false'}
               returnKeyType="next"
             />
           </View>
@@ -165,6 +167,8 @@ class Email extends Component {
               component={TextField}
               placeholder={t.passwordPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
+              autoCapitalize={'none'}
+              autoCorrect={'false'}
               returnKeyType="next"
               secureTextEntry
             />
