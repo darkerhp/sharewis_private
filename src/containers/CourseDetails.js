@@ -44,6 +44,8 @@ class CourseDetails extends Component {
   // componentWillUnmount() { console.log('[CourseDetails] Component Will Unmount', arguments); }
 
   @autobind
+  // eslint-disable-next-line class-methods-use-this
+  // TODO ↑this.prop使うようになったら消す
   handlePressNextLecture() {
     // const { course } = this.props; TODO propを受け取る
     const nextLecture = CourseUtils.getNextLecture(course);
