@@ -24,8 +24,6 @@ const DefaultComponents = {
   TextInput: {
     flex: 1,
     padding: 4,
-    borderColor: Variables.lightGray,
-    borderWidth: 1,
     fontSize: 13,
     color: '#222',
     backgroundColor: 'white',

@@ -64,7 +64,10 @@ const styles = StyleSheet.create({
   innerTextInput: {
     flex: 1,
     ...Platform.select({
-      ios: { borderBottomWidth: 0.1 },
+      ios: {
+        borderLeftWidth: 0,
+        borderBottomWidth: 1,
+      },
       android: { borderBottomWidth: 1 },
     }),
   },
