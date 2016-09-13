@@ -1,176 +1,80 @@
 import React from 'react';
 import ReactNative from 'react-native';
+
+import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
-import Progress from '../components/CourseDetails/Progress';
 import LectureList from '../components/CourseDetails/LectureList';
-// import Section from '../components/CourseDetails/Section';
-import Duration from '../components/Duration';
-import BaseStyles from '../baseStyles';
+import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
+import * as CourseUtil from '../utils/course';
 
-import { lectures, course } from './dummyData';
+import { course } from './dummyData'; // TODO
 
 const { Component } = React;
 const {
-  View,
   StyleSheet,
-  Text,
-  Image,
   ScrollView,
   Dimensions,
-  TouchableOpacity,
 } = ReactNative;
 const { height } = Dimensions.get('window');
 
+const NAVBAR_HEIGHT = 65;
+const HALF_DISPLAY_HEIGHT = (height - NAVBAR_HEIGHT) / 2;
+
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 65 },
-  courseInfoContainer: { height: (height - 65) / 2, padding: 10 },
-  courseTitleWrapper: { flex: 1 },
-  courseTitleText: { color: 'black', fontSize: 24, fontWeight: '900' },
-  nextLectureContainer: {
-    flex: 3,
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
-  courseImageWrapper: {
-    flex: 2,
-    overflow: 'hidden',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-  courseImage: {},
-  nextLectureTextWrapper: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#579eff',
-  },
-  nextLectureText: {
-    color: 'white',
-    fontWeight: '900',
-  },
-  nextLectureTitleText: {
-    color: 'white',
-    position: 'absolute',
-    top: 30,
-    left: 75,
-    backgroundColor: 'rgba(0,0,0,0)',
-  },
-  totalDurationWrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-  totalDuration: {
-    color: 'black',
-    fontSize: 10,
-    padding: 5,
-    backgroundColor: '#F2F2F2',
-  },
+  container: { flex: 1, paddingTop: NAVBAR_HEIGHT },
 });
 
-const t = {
-  nextLecture: '次のレクチャーへ',
-  totalDurationFormat: '計 h時間m分',
-};
-
-const videoImageSrc = require('../components/CourseDetails/images/video.png');
-const quizImageSrc = require('../components/CourseDetails/images/quiz.png');
-const textImageSrc = require('../components/CourseDetails/images/text.png');
-
 class CourseDetails extends Component {
-  constructor(props) {
-    super(props);
+  // componentWillMount() { console.log('[CourseDetails] Component Will Mount', arguments); }
+  // componentDidMount() { console.log('[CourseDetails] Component Did Mount', arguments); }
+  // componentWillReceiveProps() {
+  //  console.log('[CourseDetails] Component Will Receive Props', arguments);
+  // }
+  // shouldComponentUpdate() { console.log('[CourseDetails] Should Component Update', arguments); }
+  // componentWillUpdate() { console.log('[CourseDetails] Component Will Update', arguments); }
+  // componentDidUpdate() { console.log('[CourseDetails] Component Did Update', arguments); }
+  // componentWillUnmount() { console.log('[CourseDetails] Component Will Unmount', arguments); }
 
-  }
-
-  componentDidMount() {
-  }
-
-  handleOnPressNextLecture(nextLecture) {
-    RouterActions.lecture({
-      lecture: nextLecture,
-      title: nextLecture.title,
-    });
-  }
-
-  getNextLecture(lectures) {
-    filteredLecture = lectures
-      .filter(l =>
-        l.kind === 'lecture' && l.type === 'VideoLecture' && l.isCompleted === false
-      ).sort((a, b) => {
-        if (a.order === b.order) return 0;
-        return a.order < b.order ? -1 : 1;
-      });
-    return filteredLecture[0] || {};
-  }
-
-  getNextLectureImageSrc(nextLecture) {
-    switch (nextLecture.type) {
-      case 'VideoLecture':
-        return videoImageSrc;
-      case 'QuizLecture':
-        return quizImageSrc;
-      case 'TextLecture':
-        return textImageSrc;
-      default:
-        return videoImageSrc;
-    }
+  @autobind
+  handlePressNextLecture() {
+    // const { course } = this.props; TODO propを受け取る
+    const nextLecture = CourseUtil.getNextLecture(course);
+    RouterActions.lecture({ lecture: nextLecture, title: nextLecture.title });
   }
 
   render() {
-    const totalLectureCount = lectures.filter(l => l.kind === 'lecture').length;
-    const completeLectureCount = lectures.filter(l => l.isCompleted).length;
-    const totalDuration = lectures.map(l => l.duration || 0).reduce((a, b) => a + b);
-    // TODO testしにくいので移動する
-    const nextLecture = this.getNextLecture(lectures);
+    // const { course } = this.props; TODO propを受け取る
+    const courseInfo = {
+      courseTitle: course.title,
+      totalLectureCount: CourseUtil.totalLectureCount(course),
+      completeLectureCount: CourseUtil.completeLectureCount(course),
+      totalDuration: CourseUtil.totalDuration(course),
+      nextLecture: CourseUtil.getNextLecture(course),
+    };
     return (
       <ScrollView
         style={styles.container}
         automaticallyAdjustContentInsets={false}
       >
-        <View style={styles.courseInfoContainer}>
-          <View style={styles.courseTitleWrapper}>
-            <Text>{course.title}</Text>
-          </View>
-
-          <View style={styles.nextLectureContainer} visible={false}>
-            <TouchableOpacity
-              onPress={() => this.handleOnPressNextLecture(nextLecture)}
-            >
-              <View style={styles.courseImageWrapper}>
-                <Image
-                  source={this.getNextLectureImageSrc(nextLecture)}
-                  style={styles.courseImage}
-                  resizeMode={Image.resizeMode.contain}
-                />
-                <Text style={styles.nextLectureTitleText}>{nextLecture.title}</Text>
-              </View>
-              <View style={styles.nextLectureTextWrapper}>
-                <Text style={styles.nextLectureText}>{t.nextLecture}</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <Progress
-            completeLectureCount={completeLectureCount}
-            totalLectureCount={totalLectureCount}
-          />
-
-          <Duration
-            duration={totalDuration}
-            format={t.totalDurationFormat}
-            containerStyle={styles.totalDurationWrapper}
-            durationStyle={styles.totalDuration}
-          />
-        </View>
-
-        <LectureList lectures={course.lectures} containerStyle={{flex: 1}} />
+        <CourseInfoSection
+          {...courseInfo}
+          handlePressNextLecture={this.handlePressNextLecture}
+          containerStyle={{ height: HALF_DISPLAY_HEIGHT }}
+        />
+        <LectureList lectures={course.lectures} containerStyle={{ flex: 1 }} />
       </ScrollView>
     );
   }
 }
 
-CourseDetails.propTypes = {};
+CourseDetails.propTypes = {
+  // lectures: PropTypes.arrayOf(PropTypes.shape({
+  //   id: PropTypes.number.isRequired,
+  //   title: PropTypes.string.isRequired,
+  //   duration: PropTypes.number.isRequired,
+  //   type: PropTypes.number.isRequired,
+  // })).isRequired,
+};
 CourseDetails.defaultProps = {};
 export default CourseDetails;

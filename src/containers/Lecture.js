@@ -40,6 +40,7 @@ class Lecture extends Component {
   }
 
   render() {
+    const { lecture } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
@@ -62,13 +63,13 @@ class Lecture extends Component {
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
             currentTime={this.props.currentTime}
-            duration={107/* TODO this.props.duration */}
+            duration={lecture.duration}
             onValueChange={this.handleValueChange}
             video={this.video}
           />
           {/* TODO LectureTitle 実装する */}
           <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
-            <Text>LectureTitle</Text>
+            <Text>{lecture.title}</Text>
           </View>
           <VideoControls
             isPaused={this.props.isPaused}
@@ -102,6 +103,7 @@ Lecture.propTypes = {
   pressSpeed: PropTypes.func.isRequired,
   currentTime: PropTypes.number.isRequired,
   videoProgress: PropTypes.func.isRequired,
+  lecture: PropTypes.object.isRequired, // TODO shape
 };
 
 export default connectToProps(Lecture, 'lecture', Actions);
