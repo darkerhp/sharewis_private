@@ -100,45 +100,35 @@ const formOptions = {
   form: 'email',
   validate: validateEmailLogin,
   touchOnChange: true,
+  fields: ['email', 'password'],
 };
 
 
 @reduxForm(formOptions)
 class Email extends Component {
   static propTypes = {
-    addEmail: PropTypes.func.isRequired,
-    addPassword: PropTypes.func.isRequired,
-    email: PropTypes.string,
     fetchUserBy: PropTypes.func.isRequired,
     form: PropTypes.any.isRequired, // eslint-disable-line
     handleSubmit: PropTypes.func.isRequired,
-    password: PropTypes.string,
-    touch: PropTypes.func.isRequired,
   };
 
   @autobind
-  async handlePress(data) {
-    console.log('start touch');
-    console.log(data);
-    const { email, fetchUserBy, form, password, touch } = this.props;
+  async handlePress({ email, password }) {
+    const { fetchUserBy } = this.props;
 
-    touch('email', 'password');
-    console.log('end touch');
-    const fieldErrors = form.email.syncErrors;
-    console.log(fieldErrors);
-    if (fieldErrors) {
-      Alert.alert(t.errorTitle, fieldErrors.join('\n'));
-      return;
-    }
     try {
       await fetchUserBy('email', [email, password]);
     } catch (error) {
-      throw new SubmissionError({ _error: t.loginError });
+      Alert.alert(t.errorTitle, t.loginError);
+      throw new SubmissionError({
+        email: t.loginError,
+        password: t.loginError,
+      });
     }
   }
 
   render() {
-    const { handleSubmit, addEmail, addPassword } = this.props;
+    const { handleSubmit } = this.props;
 
     return (
       <View style={styles.view}>
@@ -156,7 +146,6 @@ class Email extends Component {
               component={TextField}
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={text => addEmail(text)}
               keyboardType="email-address"
               returnKeyType="next"
             />
@@ -169,7 +158,6 @@ class Email extends Component {
               component={TextField}
               placeholder={t.passwordPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={text => addPassword(text)}
               returnKeyType="next"
               secureTextEntry
             />

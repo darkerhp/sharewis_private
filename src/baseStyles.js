@@ -1,3 +1,6 @@
+/**
+* @flow
+*/
 const Variables = {
   hyperlink: '#2980b9',
   lightGray: '#dadada', // TODO rename or remove
@@ -24,7 +27,7 @@ const DefaultComponents = {
     borderColor: Variables.lightGray,
     borderWidth: 1,
     fontSize: 13,
-    color: 'red',
+    color: '#222',
     backgroundColor: 'white',
   },
   Button: {
