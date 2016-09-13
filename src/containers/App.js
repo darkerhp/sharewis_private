@@ -25,6 +25,8 @@ class App extends Component {
   };
 
   componentWillMount() {
+    console.log('Are we logged in ?', this.props.loggedIn);
+    console.log(this.props);
     this.scenes = Actions.create(
       getScenes(this.props.loggedIn)
     );
