@@ -9,6 +9,7 @@ import { checkStatus, checkResult } from '../utils/apiUtils';
 
 const getUserData = (async) (credentials) => {
   // Run query
+  console.log('start /user/me request');
   const result = await fetch(`${ACCOUNT_API_URL}/users/me`, {
     headers: {
       'Content-Type': 'application/json',
@@ -18,10 +19,16 @@ const getUserData = (async) (credentials) => {
   });
   // Verify results
   await checkStatus(result);
+  console.log('jsonize', result);
+  await setTimeout(() => null, 200);
   const json = await result.json();
+  // const text = await result.text();
+  // const json = JSON.parse(text);
+  console.log('checkresult');
   await checkResult(json, user => user.username);
 
   // Parse and return results
+  console.log('YES SUCCESS');
   return {
     userName: json.username,
     nickName: json.nickname,

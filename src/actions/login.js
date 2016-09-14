@@ -65,23 +65,19 @@ export const fetchFBEmailSuccess = ([email, facebookId]) => ({
 
 export const fetchUserBy = (loginMethod, credentials) =>
   (async) (dispatch) => {
-    console.log('in fetchUserBy', loginMethod, credentials);
     if (loginMethod === 'facebook') {
       dispatch(fetchFBEmailSuccess(credentials));
       dispatch(startActFacebookLogin(credentials));
     } else {
-      console.log('dispatch startActEmailLogin');
       dispatch(startActEmailLogin(credentials));
     }
 
     try {
-      console.log('start getUserData');
       const data = await getUserData(credentials);
-      console.log('end getUserData');
-      console.log('dispatch fetchActLoginSuccess');
+      console.log('getUserData done', data);
       return dispatch(fetchActLoginSuccess(data));
     } catch (error) {
-      console.log('dispatch fetchActLoginFailure', error);
+      console.log('WHATTT ?', error);
       dispatch(fetchActLoginFailure);
       throw error;
     }

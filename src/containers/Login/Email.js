@@ -147,9 +147,10 @@ class Email extends Component {
   @autobind
   async handlePress({ email, password }) {
     const { fetchUserBy } = this.props;
-
     try {
-      await fetchUserBy('email', [email, password]);
+      const data = await fetchUserBy('email', [email, password]);
+      console.log('fetchUserBy done', data);
+      return data;
     } catch (error) {
       Alert.alert(t.errorTitle, t.loginError);
       throw new SubmissionError({
@@ -201,7 +202,11 @@ class Email extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyle={(loginDisabled) ? styles.buttonWrapperDisabled : styles.buttonWrapper}
+            containerStyle={
+              (loginDisabled)
+                ? styles.buttonWrapperDisabled
+                : styles.buttonWrapper
+            }
             style={styles.button}
             onPress={handleSubmit(this.handlePress)}
             disabled={loginDisabled}
