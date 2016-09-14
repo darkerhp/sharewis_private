@@ -73,7 +73,7 @@ class Lecture extends Component {
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
             ref={ref => (this.video = ref)}
-            source={{ uri: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin' }} // Can be a URL or a local file.
+            source={{ uri: lecture.url }} // Can be a URL or a local file.
             rate={speed}
             volume={1.0}
             muted={false}

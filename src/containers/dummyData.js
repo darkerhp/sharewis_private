@@ -8,6 +8,7 @@ export const lectures = [
     duration: 30,
     isCompleted: true,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   {
     order: 2,
@@ -16,6 +17,7 @@ export const lectures = [
     duration: 60,
     isCompleted: true,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   {
     order: 3,
@@ -24,6 +26,7 @@ export const lectures = [
     duration: 90,
     isCompleted: true,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   { title: 'セクション2', kind: 'section' },
   {
@@ -33,6 +36,7 @@ export const lectures = [
     duration: 30,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   {
     order: 5,
@@ -41,6 +45,7 @@ export const lectures = [
     duration: 60,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   {
     order: 6,
@@ -49,6 +54,7 @@ export const lectures = [
     duration: 90,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   { title: 'セクション3', kind: 'section' },
   {
@@ -58,6 +64,7 @@ export const lectures = [
     duration: 30,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   {
     order: 8,
@@ -66,6 +73,7 @@ export const lectures = [
     duration: 60,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   {
     order: 9,
@@ -74,6 +82,7 @@ export const lectures = [
     duration: 90,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   { title: 'セクション4', kind: 'section' },
   {
@@ -83,6 +92,7 @@ export const lectures = [
     duration: 30,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   {
     order: 11,
@@ -91,6 +101,7 @@ export const lectures = [
     duration: 60,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
   {
     order: 12,
@@ -99,6 +110,7 @@ export const lectures = [
     duration: 90,
     isCompleted: false,
     type: 'VideoLecture',
+    url: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
   },
 ];
 
