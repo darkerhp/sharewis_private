@@ -51,11 +51,13 @@ const t = {
 class Facebook extends Component {
   static propTypes = {
     fetchUserBy: PropTypes.func.isRequired,
+    fetchFBEmailFailure: PropTypes.func.isRequired,
   };
 
   @autobind
   async getAccountData(fbGraphError, result) {
     if (fbGraphError) {
+      this.props.fetchFBEmailFailure();
       Alert.alert(t.errorTitle, t.emailNotFound);
       console.warn('Unable to fetch user email from Facebook!');
       console.log(fbGraphError);

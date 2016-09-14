@@ -9,14 +9,14 @@ import getUserData from '../middleware/accountApi';
 
 // Actions Creators
 
-export const addEmail = email => ({
-  type: types.ADD_EMAIL,
-  email,
+export const enableEmailLogin = () => ({
+  type: types.ENABLE_EMAIL_LOGIN,
+  loginDisabled: true,
 });
 
-export const addPassword = password => ({
-  type: types.ADD_PASSWORD,
-  password,
+export const disableEmailLogin = () => ({
+  type: types.DISABLE_EMAIL_LOGIN,
+  loginDisabled: false,
 });
 
 export const startActEmailLogin = ([email, password]) => ({
@@ -45,6 +45,12 @@ export const fetchActLoginSuccess = result => ({
   loggedIn: true,
   userName: result.userName,
   nickName: result.nickName,
+});
+
+export const fetchFBEmailFailure = () => ({
+  type: types.FETCH_FB_EMAIL_SUCCESS,
+  isFetching: false,
+  loggedIn: false,
 });
 
 export const fetchFBEmailSuccess = ([email, facebookId]) => ({

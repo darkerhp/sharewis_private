@@ -9,27 +9,31 @@ const initialState = {
   nickName: null,
   isFetching: false,
   loggedIn: false,
+  loginDisabled: true,
 };
 
 
 export default function user(state = initialState, action) {
   switch (action.type) {
-    case types.ADD_EMAIL:
-      return { ...state, email: action.email };
-    case types.ADD_PASSWORD:
-      return { ...state, password: action.password };
-    case types.FETCH_FB_EMAIL_FAILURE:
+    case types.ENABLE_EMAIL_LOGIN:
+    case types.DISABLE_EMAIL_LOGIN:
       return {
         ...state,
-        isFetching: false,
-        loggedIn: false,
+        loginDisabled: action.loginDisabled,
+      };
+    case types.FETCH_FB_EMAIL_FAILURE:
+    case types.FETCH_ACT_LOGIN_FAILURE:
+      return {
+        ...state,
+        isFetching: action.isFetching,
+        loggedIn: action.loggedIn,
       };
     case types.FETCH_FB_EMAIL_SUCCESS:
       return {
         ...state,
+        isFetching: true,
         email: action.email,
         facebookId: action.facebookId,
-        isFetching: true,
       };
     case types.START_ACT_EMAIL_LOGIN:
       return {
@@ -50,13 +54,6 @@ export default function user(state = initialState, action) {
         userName: action.userName,
         nickName: action.nickName,
       };
-    case types.FETCH_ACT_LOGIN_FAILURE:
-      return {
-        ...state,
-        isFetching: false,
-        loggedIn: false,
-      };
-
     default:
       return state;
   }

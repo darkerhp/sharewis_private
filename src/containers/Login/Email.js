@@ -79,6 +79,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 10,
   },
+  buttonWrapperDisabled: {
+    flex: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: BaseStyles.lightGray,
+    justifyContent: 'center',
+    marginVertical: 10,
+  },
   button: BaseStyles.Button,
   textWrapper: {
     flex: 3,
@@ -117,6 +125,7 @@ class Email extends Component {
     fetchUserBy: PropTypes.func.isRequired,
     form: PropTypes.any.isRequired, // eslint-disable-line
     handleSubmit: PropTypes.func.isRequired,
+    loginDisabled: PropTypes.bool.isRequired,
   };
 
   @autobind
@@ -135,7 +144,7 @@ class Email extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, loginDisabled } = this.props;
 
     return (
       <View style={styles.view}>
@@ -176,9 +185,10 @@ class Email extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyle={styles.buttonWrapper}
+            containerStyle={(loginDisabled) ? styles.buttonWrapperDisabled : styles.buttonWrapper}
             style={styles.button}
             onPress={handleSubmit(this.handlePress)}
+            disabled={loginDisabled}
           >
             { t.login }
           </Button>
