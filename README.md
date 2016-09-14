@@ -35,7 +35,11 @@ $ # Build device with low resolution
 $ android create avd -n react-galaxynexus -t android-18 --abi default/x86 --device "Galaxy Nexus" --skin "720x1280" -c 128M
 $ # Build device with high resolution
 $ android create avd -n react-nexus6 -t android-24 --abi default/x86_64 --device "Nexus 6" --skin "1440x2560" -c 128M
-$ emulator -avd react
+$ # Enable keyboard for each avd
+$ for f in ~/.android/avd/*.avd/config.ini; do echo 'hw.keyboard=yes' >> "$f";
+done
+$ # Start emulator
+$ emulator -avd react-galaxynexus
 ```
 
 Then start react-native and run the android app
