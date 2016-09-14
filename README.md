@@ -122,3 +122,10 @@ reloading the simulator)
    ```
    $ git checkout -- <files containing unwanted changes>
    ```
+5. Linking
+   ```
+   $ rnpm link
+   ```
+
+### For react native video
+   - Info.plistの `App Transport Security Settings` に `Allow Arbitrary Loads` を追加してYESを設定する。（For Dev）
