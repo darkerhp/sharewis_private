@@ -7,7 +7,7 @@ import Duration from '../Duration';
 import BaseStyles from '../../baseStyles';
 
 const { PropTypes } = React;
-const { View, StyleSheet, Text } = ReactNative;
+const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
 
 const lectureRowHeight = 48;
 const styles = StyleSheet.create({
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Lecture = ({ lecture }) =>
+const Lecture = ({ lecture, handlePressLecture }) =>
   <View style={styles.container}>
     <View style={styles.lectureNoTextWrapper}>
       <Text style={styles.lectureNoText}>{lecture.order}</Text>
@@ -87,17 +87,20 @@ const Lecture = ({ lecture }) =>
       <Duration duration={lecture.duration} containerStyle={styles.durationWrapper} />
     </View>
 
-    <View style={styles.lectureTitleTextWrapper}>
+    <TouchableOpacity
+      style={styles.lectureTitleTextWrapper}
+      onPress={() => handlePressLecture(lecture)}
+    >
       <Text style={styles.lectureTitleText}>{lecture.title}</Text>
-    </View>
+    </TouchableOpacity>
 
-    <View style={styles.actionIconWrapper}>
+    <TouchableOpacity style={styles.actionIconWrapper}>
       <Icon
         // name={'delete'}
         name={'cloud-download'}
         style={styles.actionIcon}
       />
-    </View>
+    </TouchableOpacity>
   </View>;
 
 
@@ -112,6 +115,7 @@ Lecture.propTypes = {
     type: PropTypes.string,
     /* eslint-enable react/no-unused-prop-types */
   }).isRequired,
+  handlePressLecture: PropTypes.func.isRequired,
 };
 
 export default Lecture;

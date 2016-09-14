@@ -16,15 +16,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (key, lecture) => (
+const renderLecture = (key, lecture, handlePressLecture) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
-    : <Lecture key={key} lecture={lecture} />
+    : <Lecture key={key} lecture={lecture} handlePressLecture={handlePressLecture} />
 );
 
-const LectureList = ({ lectures, containerStyle }) =>
+const LectureList = ({ lectures, containerStyle, handlePressLecture }) =>
   <View style={[styles.container, containerStyle]}>
-    {lectures.map((lecture, i) => renderLecture(i, lecture))}
+    {lectures.map((lecture, i) => renderLecture(i, lecture, handlePressLecture))}
   </View>;
 
 LectureList.propTypes = {
@@ -38,6 +38,7 @@ LectureList.propTypes = {
     type: PropTypes.string,
     /* eslint-enable react/no-unused-prop-types */
   })).isRequired,
+  handlePressLecture: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   containerStyle: PropTypes.object.isRequired,
 };

@@ -55,6 +55,13 @@ class CourseDetails extends Component {
     RouterActions.lecture({ lecture: nextLecture, title: nextLecture.title });
   }
 
+  @autobind
+  // TODO ↓this.prop使うようになったら消す
+  // eslint-disable-next-line class-methods-use-this
+  handlePressLecture(lecture) {
+    RouterActions.lecture({ lecture, title: lecture.title });
+  }
+
   render() {
     // const { course } = this.props; TODO propを受け取る
     const completeLectureCount = CourseUtils.completeLectureCount(course);
@@ -78,7 +85,11 @@ class CourseDetails extends Component {
           handlePressNextLecture={this.handlePressNextLecture}
           containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
         />
-        <LectureList lectures={course.lectures} containerStyle={{ flex: 1 }} />
+        <LectureList
+          containerStyle={{ flex: 1 }}
+          lectures={course.lectures}
+          handlePressLecture={this.handlePressLecture}
+        />
       </ScrollView>
     );
   }
