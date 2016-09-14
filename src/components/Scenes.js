@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActionConst, Scene } from 'react-native-router-flux';
 
+import BaseStyles from '../baseStyles';
 import CourseList from '../containers/CourseList';
 import CourseDetails from '../containers/CourseDetails';
 import Onboarding from '../containers/Onboarding';
@@ -12,6 +13,31 @@ const t = {
   profile: 'プロファイル',
 };
 
+const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
+const menuWhiteImage = require('./images/ic_menu_white.png');
+const backButtonWhiteImage = require('./images/ic_chevron_left_white.png');
+const baseNavBarProps = {
+  navigationBarStyle: {
+    backgroundColor: BaseStyles.navBarBackgroundColor,
+    borderBottomColor: BaseStyles.navBarBackgroundColor,
+  },
+  backTitle: '戻る',
+  titleStyle: { color: 'white' },
+  backButtonTextStyle: {
+    color: 'white',
+    paddingLeft: 0,
+  },
+  rightButtonTextStyle: { color: 'white' },
+  rightButtonIconStyle: {
+    width: 25,
+    height: 17,
+  },
+  leftButtonTextStyle: { color: 'white' },
+  leftButtonIconStyle: {
+    width: 25,
+    height: 17,
+  },
+};
 
 const getScenes = loggedIn =>
   <Scene key="root" hideNavBar>
@@ -28,22 +54,31 @@ const getScenes = loggedIn =>
       type={ActionConst.RESET}
       hideNavBar={false}
       duration={0}
-    />
-    <Scene
-      key="profile"
-      component={Profile}
-      title={t.profile}
+      {...baseNavBarProps}
+      onLeft={()=> console.log('onLeft')} // eslint-disable-line no-console
+      leftButtonImage={menuWhiteImage}
     />
     <Scene
       key="CourseDetails"
       component={CourseDetails}
       hideNavBar={false}
+      {...baseNavBarProps}
+      backTitle={t.courseList}
+      onRight={()=> console.log('onRight')} // eslint-disable-line no-console
+      rightButtonImage={moreHorizWhiteImage}
     />
     <Scene
       key="lecture"
       component={Lecture}
       title={t.profile}
       hideNavBar={false}
+      {...baseNavBarProps}
+      backButtonImage={backButtonWhiteImage}
+    />
+    <Scene
+      key="profile"
+      component={Profile}
+      title={t.profile}
     />
   </Scene>;
 

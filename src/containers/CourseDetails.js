@@ -16,6 +16,7 @@ const {
   StyleSheet,
   ScrollView,
   Dimensions,
+  StatusBar,
 } = ReactNative;
 
 const { height } = Dimensions.get('window');
@@ -45,6 +46,10 @@ class CourseDetails extends Component {
   // componentWillUpdate() { console.log('[CourseDetails] Component Will Update', arguments); }
   // componentDidUpdate() { console.log('[CourseDetails] Component Did Update', arguments); }
   // componentWillUnmount() { console.log('[CourseDetails] Component Will Unmount', arguments); }
+
+  // static renderNavigationBar() {
+  //   return <ReactNative.Text>URYYY</ReactNative.Text>;
+  // }
 
   @autobind
   // TODO ↓this.prop使うようになったら消す
@@ -80,6 +85,7 @@ class CourseDetails extends Component {
         style={styles.container}
         automaticallyAdjustContentInsets={false}
       >
+        <StatusBar barStyle="light-content" />
         <CourseInfoSection
           {...courseInfo}
           handlePressNextLecture={this.handlePressNextLecture}
