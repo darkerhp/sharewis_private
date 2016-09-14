@@ -16,6 +16,7 @@ const t = {
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
 const menuWhiteImage = require('./images/ic_menu_white.png');
 const backButtonWhiteImage = require('./images/ic_chevron_left_white.png');
+
 const baseNavBarProps = {
   navigationBarStyle: {
     backgroundColor: BaseStyles.navBarBackgroundColor,
@@ -55,7 +56,7 @@ const getScenes = loggedIn =>
       hideNavBar={false}
       duration={0}
       {...baseNavBarProps}
-      onLeft={()=> console.log('onLeft')} // eslint-disable-line no-console
+      onLeft={() => console.log('onLeft')} // eslint-disable-line no-console
       leftButtonImage={menuWhiteImage}
     />
     <Scene
@@ -64,7 +65,7 @@ const getScenes = loggedIn =>
       hideNavBar={false}
       {...baseNavBarProps}
       backTitle={t.courseList}
-      onRight={()=> console.log('onRight')} // eslint-disable-line no-console
+      onRight={() => console.log('onRight')} // eslint-disable-line no-console
       rightButtonImage={moreHorizWhiteImage}
     />
     <Scene
