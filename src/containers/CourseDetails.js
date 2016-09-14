@@ -59,8 +59,7 @@ class CourseDetails extends Component {
   // TODO ↓this.prop使うようになったら消す
   // eslint-disable-next-line class-methods-use-this
   handlePressLecture(lecture) {
-    console.log('dfsafdsa');
-    RouterActions.lecture({ lecture: lecture, title: lecture.title });
+    RouterActions.lecture({ lecture, title: lecture.title });
   }
 
   render() {
