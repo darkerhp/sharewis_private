@@ -47,10 +47,6 @@ class CourseDetails extends Component {
   // componentDidUpdate() { console.log('[CourseDetails] Component Did Update', arguments); }
   // componentWillUnmount() { console.log('[CourseDetails] Component Will Unmount', arguments); }
 
-  // static renderNavigationBar() {
-  //   return <ReactNative.Text>URYYY</ReactNative.Text>;
-  // }
-
   @autobind
   // TODO ↓this.prop使うようになったら消す
   // eslint-disable-next-line class-methods-use-this
