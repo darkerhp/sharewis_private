@@ -18,13 +18,13 @@ const validateEmailLogin = (values) => {
   if (!values.email) {
     errors.email = t.required;
   }
+  // else if (!isEmail(values.email)) {
+  //   errors.email = t.badEmail;
+  // }
   if (!values.password) {
     errors.password = t.required;
   }
-  if (!isEmail(values.email)) {
-    console.log(`Seriously, ${values.email} is not an email?`);
-    errors.email = t.badEmail;
-  }
+
   return errors;
 };
 

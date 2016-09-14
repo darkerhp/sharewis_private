@@ -5,10 +5,12 @@ import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
 import {
+  formValueSelector,
   Field,
   reduxForm,
   SubmissionError,
 } from 'redux-form';
+import { connect } from 'react-redux';
 
 import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
@@ -118,14 +120,28 @@ const formOptions = {
   fields: ['email', 'password'],
 };
 
+const checkInput = (states) => {
+  const { form, ...otherStates } = states;
+  const selector = formValueSelector('email');
+  const hasEmail = selector(states, 'email') !== undefined;
+  const hasPassword = selector(states, 'password') !== undefined;
+  return {
+    ...otherStates,
+    loginDisabled: !(hasEmail && hasPassword),
+  };
+};
 
+
+@connect(checkInput)
 @reduxForm(formOptions)
 class Email extends Component {
   static propTypes = {
     fetchUserBy: PropTypes.func.isRequired,
-    form: PropTypes.any.isRequired, // eslint-disable-line
     handleSubmit: PropTypes.func.isRequired,
     loginDisabled: PropTypes.bool.isRequired,
+    enableEmailLogin: PropTypes.func.isRequired,
+    disableEmailLogin: PropTypes.func.isRequired,
+    form: PropTypes.string.isRequired,
   };
 
   @autobind

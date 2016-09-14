@@ -11,12 +11,12 @@ import getUserData from '../middleware/accountApi';
 
 export const enableEmailLogin = () => ({
   type: types.ENABLE_EMAIL_LOGIN,
-  loginDisabled: true,
+  loginDisabled: false,
 });
 
 export const disableEmailLogin = () => ({
   type: types.DISABLE_EMAIL_LOGIN,
-  loginDisabled: false,
+  loginDisabled: true,
 });
 
 export const startActEmailLogin = ([email, password]) => ({
@@ -67,9 +67,11 @@ export const fetchUserBy = (loginMethod, credentials) =>
   (async) (dispatch) => {
     if (loginMethod === 'facebook') {
       dispatch(fetchFBEmailSuccess(credentials));
+      dispatch(startActFacebookLogin(credentials));
+    } else {
+      dispatch(startActEmailLogin(credentials));
     }
 
-    dispatch(startActFacebookLogin(credentials));
     try {
       const data = await getUserData(credentials);
       return dispatch(fetchActLoginSuccess(data));

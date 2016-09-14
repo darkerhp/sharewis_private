@@ -6,7 +6,7 @@ const { PropTypes } = React;
 
 const TextField = (props) => {
   const {
-    style,
+    // style,
     input: { value, onChange },
     meta: { error, touched },
     ...otherProps,
@@ -14,7 +14,7 @@ const TextField = (props) => {
 
   return (
     <TextInput
-      style={(touched && error) ? [style, { color: 'red' }] : style}
+      // style={(touched && error) ? [style, { color: 'red' }] : style}
       underlineColorAndroid="transparent"
       onChangeText={text => onChange(text)}
       value={value}
