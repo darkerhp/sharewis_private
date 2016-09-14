@@ -1,5 +1,4 @@
 /* global __DEV__ */
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import { AsyncStorage } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
@@ -17,13 +16,11 @@ const store = configureStore();
 
 export default class Root extends Component {
   constructor() {
-    console.log('in Root constructor');
     super();
     this.state = { rehydrated: false };
   }
 
   componentWillMount() {
-    console.log('in Root componentWillMount');
     const persistor = persistStore(
       store,
       { storage: AsyncStorage },
@@ -36,7 +33,6 @@ export default class Root extends Component {
   }
 
   render() {
-    console.log('in Root render', this.state.rehydrated);
     if (!this.state.rehydrated) {
       return <Spinner visible />;
     }
