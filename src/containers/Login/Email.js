@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
         borderLeftWidth: 0,
         borderBottomWidth: 1,
       },
-      android: { borderBottomWidth: 1 },
     }),
   },
   buttonWrapper: {
