@@ -63,7 +63,7 @@ class Login extends Component {
         <Email />
         <Facebook />
         <View style={styles.footer}>
-          <Hr lineColor="black" />
+          <Hr lineColor={BaseStyles.lightGray} />
           <Hyperlink
             linkStyle={{ color: BaseStyles.hyperlink }}
             linkText={t.actWebsite}
