@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Duration from '../Duration';
 import BaseStyles from '../../baseStyles';
-import * as LectureUtils from '../../utils/lecture';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
@@ -71,46 +70,38 @@ const styles = StyleSheet.create({
   },
 });
 
-
-const renderDownloadAction = () =>
-  <TouchableOpacity style={styles.actionIconWrapper}>
-    <Icon
-      // name={'delete'}
-      name={'cloud-download'}
-      style={styles.actionIcon}
-    />
-  </TouchableOpacity>;
-
-const Lecture = ({ lecture, handlePressLecture }) => {
-  const isAccessibleLecture = lecture.type === 'VideoLecture';
-  return (
-    <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
-      <View style={styles.lectureNoTextWrapper}>
-        <Text style={styles.lectureNoText}>{lecture.order}</Text>
-      </View>
-
-      <View style={styles.lectureInfoWrapper}>
-        <View style={styles.lectureIconWrapper}>
-          <Icon
-            name={LectureUtils.getLectureIconName(lecture)}
-            style={styles.lectureIcon}
-          />
-        </View>
-        <Duration duration={lecture.duration} containerStyle={styles.durationWrapper} />
-      </View>
-
-      <TouchableOpacity
-        style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
-        onPress={() => handlePressLecture(lecture)}
-        disabled={!isAccessibleLecture}
-      >
-        <Text style={styles.lectureTitleText}>{lecture.title}</Text>
-      </TouchableOpacity>
-
-      {isAccessibleLecture && renderDownloadAction()}
+const Lecture = ({ lecture, handlePressLecture }) =>
+  <View style={styles.container}>
+    <View style={styles.lectureNoTextWrapper}>
+      <Text style={styles.lectureNoText}>{lecture.order}</Text>
     </View>
-  );
-};
+
+    <View style={styles.lectureInfoWrapper}>
+      <View style={styles.lectureIconWrapper}>
+        <Icon
+          // name={'picture-as-pdf'} TODO レクチャータイプ毎にアイコンを変える
+          name={'play-circle-filled'}
+          style={styles.lectureIcon}
+        />
+      </View>
+      <Duration duration={lecture.duration} containerStyle={styles.durationWrapper} />
+    </View>
+
+    <TouchableOpacity
+      style={styles.lectureTitleTextWrapper}
+      onPress={() => handlePressLecture(lecture)}
+    >
+      <Text style={styles.lectureTitleText}>{lecture.title}</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity style={styles.actionIconWrapper}>
+      <Icon
+        // name={'delete'}
+        name={'cloud-download'}
+        style={styles.actionIcon}
+      />
+    </TouchableOpacity>
+  </View>;
 
 
 Lecture.propTypes = {
