@@ -4,7 +4,7 @@ import * as LectureUtils from '../lecture';
 
 describe('LectureUtils Utils', () => {
   describe('getLectureIconName', () => {
-    let lecture = {
+    const lecture = {
       order: 3,
       title: 'レクチャーC',
       kind: 'lecture',
@@ -15,31 +15,31 @@ describe('LectureUtils Utils', () => {
 
     it('should return video lecture icon name', () => {
       const expectedIconName = 'play-circle-filled';
-      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName)
+      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName);
     });
 
     it('should return text lecture icon name', () => {
       lecture.type = 'TextLecture';
       const expectedIconName = 'text-format';
-      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName)
+      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName);
     });
 
     it('should return pdf lecture icon name', () => {
       lecture.type = 'PdfLecture';
       const expectedIconName = 'picture-as-pdf';
-      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName)
+      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName);
     });
 
     it('should return audio lecture icon name', () => {
       lecture.type = 'AudioLecture';
       const expectedIconName = 'audiotrack';
-      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName)
+      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName);
     });
 
     it('should return quiz lecture icon name', () => {
       lecture.type = 'QuizLecture';
       const expectedIconName = 'question-answer';
-      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName)
+      expect(LectureUtils.getLectureIconName(lecture)).toEqual(expectedIconName);
     });
   });
 });
