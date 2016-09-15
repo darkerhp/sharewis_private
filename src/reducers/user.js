@@ -19,24 +19,20 @@ export default function user(state = initialState, action) {
     loggedIn: action.loggedIn,
   };
   switch (action.type) {
+    // Handle Failures
     case types.FETCH_FB_EMAIL_FAILURE:
     case types.FETCH_ACT_LOGIN_FAILURE:
       return {
         ...state,
         ...newState,
       };
+    // Facebook actions
     case types.FETCH_FB_EMAIL_SUCCESS:
       return {
         ...state,
         ...newState,
         email: action.email,
         facebookId: action.facebookId,
-      };
-    case types.START_ACT_EMAIL_LOGIN:
-      return {
-        ...state,
-        ...newState,
-        password: action.password,
       };
     case types.START_ACT_FACEBOOK_LOGIN:
       return {
@@ -45,6 +41,14 @@ export default function user(state = initialState, action) {
         email: action.email,
         facebookId: action.facebookId,
       };
+    // Email actions
+    case types.START_ACT_EMAIL_LOGIN:
+      return {
+        ...state,
+        ...newState,
+        password: action.password,
+      };
+    // Handle Successes
     case types.FETCH_ACT_LOGIN_SUCCESS:
       return {
         ...state,
