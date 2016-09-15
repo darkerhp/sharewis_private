@@ -7,6 +7,7 @@ const Variables = {
   borderColor: '#ddd',
   textColor: '#525252',
   navbarHeight: 65,
+  navBarBackgroundColor: '#1288d8',
 };
 
 const DefaultComponents = {

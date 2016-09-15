@@ -12,7 +12,7 @@ import VideoControls from '../components/Lecture/VideoControls';
 import connectToProps from '../utils/reduxUtils';
 
 const { Component, PropTypes } = React;
-const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
+const { View, StyleSheet, StatusBar, Text, TouchableOpacity } = ReactNative;
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -70,6 +70,7 @@ class Lecture extends Component {
     } = this.props;
     return (
       <View style={{ flex: 1 }}>
+        <StatusBar barStyle="light-content" />
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
             ref={ref => (this.video = ref)}

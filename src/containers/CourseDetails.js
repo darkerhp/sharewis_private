@@ -16,6 +16,7 @@ const {
   StyleSheet,
   ScrollView,
   Dimensions,
+  StatusBar,
 } = ReactNative;
 
 const { height } = Dimensions.get('window');
@@ -80,6 +81,7 @@ class CourseDetails extends Component {
         style={styles.container}
         automaticallyAdjustContentInsets={false}
       >
+        <StatusBar barStyle="light-content" />
         <CourseInfoSection
           {...courseInfo}
           handlePressNextLecture={this.handlePressNextLecture}
