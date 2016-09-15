@@ -1,5 +1,5 @@
 // @flow
-export const getLectureIconName = lecture => {
+export const getLectureIconName = (lecture) => {
   switch (lecture.type) {
     case 'VideoLecture':
       return 'play-circle-filled';
@@ -12,7 +12,7 @@ export const getLectureIconName = lecture => {
     case 'QuizLecture':
       return 'question-answer';
     default:
-      return null;
+      return null; // TODO
   }
 };
 
