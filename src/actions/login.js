@@ -37,7 +37,7 @@ export const fetchActLoginSuccess = result => ({
 });
 
 export const fetchFBEmailFailure = () => ({
-  type: types.FETCH_FB_EMAIL_SUCCESS,
+  type: types.FETCH_FB_EMAIL_FAILURE,
   isFetching: false,
   loggedIn: false,
 });

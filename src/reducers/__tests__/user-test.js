@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import * as types from '../../constants/ActionTypes';
 import reducer from '../user';
+import * as actions from '../../actions/login';
 
 describe('User reducer', () => {
   it('should return the initial state', () => {
@@ -11,6 +12,7 @@ describe('User reducer', () => {
       nickName: null,
       isFetching: false,
       loggedIn: false,
+      loginDisabled: true,
     });
   });
 
@@ -38,7 +40,7 @@ describe('User reducer', () => {
 
     it('should handle failed login', () => {
       expect(
-        reducer(loggedOut, { type: types.FETCH_FB_EMAIL_FAILURE })
+        reducer(loggedOut, actions.fetchFBEmailFailure())
       ).toEqual(loggedOut);
     });
   });
@@ -63,7 +65,7 @@ describe('User reducer', () => {
 
     it('should handle failure login', () => {
       expect(
-        reducer(fetching, { type: types.FETCH_ACT_LOGIN_FAILURE })
+        reducer(fetching, actions.fetchActLoginFailure)
       ).toEqual(loggedOut);
     });
 
