@@ -75,6 +75,7 @@ parameters:
 
 # Describe your paths here
 paths:
+  # 1. we fetch the list of courses for the user (title, summary, free_description, image_url, nb_lectures_watched)
   /{user-lang}/my_courses:
     parameters:
       - $ref: '#/parameters/user-lang'
@@ -84,7 +85,7 @@ paths:
       security:
         - act_auth:
           - courses
-      description: Gets list of `Course` objects.
+      description: Gets the user's list of courses
       responses:
         200:
           description: Successful response
@@ -97,6 +98,7 @@ paths:
               properties:
                 data:
                   $ref: '#/definitions/Course'
+  # 2. We fetch the details of 1 course + list of lectures for that course (title, estimated_time, lecture type, lecture status)
   /{user-lang}/courses/{course-slug}:
     parameters:
       - $ref: '#/parameters/user-lang'
@@ -107,18 +109,24 @@ paths:
       security:
         - act_auth:
           - courses
-      description: |
-        Gets `Course` object
+      description: Gets `Course` object including the list of lectures for that course
       responses:
         200:
           description: Successful response
           schema:
             type: object
-            title: Course
+            title: CourseDetails
             properties:
               data:
-                $ref: '#/definitions/Course'
-  /{user-lang}/lectures/{lecture-id}:
+                $ref: '#/definitions/CourseDetails'
+  # 3. We fetch the details for a lecture. Response is one of the following:
+  #  a. VideoLecture:  get a video url
+  #  b. QuizLecture: get question, wrong_answer, explanation
+  #  c. TextLecture:  get body text
+  #  d. PdfLecture: get a pdf url
+  #  e. AttachmentLecture
+  #  f. AudioLecture: get body text and audio file url
+  /{user-lang}/lectures/{lecture-id}/video:
     parameters:
       - $ref: '#/parameters/user-lang'
       - $ref: '#/parameters/lecture-id'
@@ -128,16 +136,58 @@ paths:
       security:
         - act_auth:
           - lectures
-      description: Gets `Lecture` object
+      description: Gets `VideoLecture` object
       responses:
         200:
           description: Successful response
           schema:
             type: object
-            title: Lecture
+            title: VideoLecture
             properties:
               data:
-                $ref: '#/definitions/Lecture'
+                $ref: '#/definitions/VideoLecture'
+  /{user-lang}/lectures/{lecture-id}/quiz:
+    parameters:
+      - $ref: '#/parameters/user-lang'
+      - $ref: '#/parameters/lecture-id'
+    get:
+      tags:
+        - Lectures
+      security:
+        - act_auth:
+          - lectures
+      description: Gets `QuizLecture` object
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            title: QuizLecture
+            properties:
+              data:
+                $ref: '#/definitions/QuizLecture'
+  /{user-lang}/lectures/{lecture-id}/text:
+    parameters:
+      - $ref: '#/parameters/user-lang'
+      - $ref: '#/parameters/lecture-id'
+    get:
+      tags:
+        - Lectures
+      security:
+        - act_auth:
+          - lectures
+      description: Gets `TextLecture` object
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            title: TextLecture
+            properties:
+              data:
+                $ref: '#/definitions/TextLecture'
+  # 4. For quizzes, we send a post request to record the user data
+  #    For videos, we send the lecture_status update
   /quizzes/{quiz-id}:
     parameters:
       - $ref: '#/parameters/quiz-id'
@@ -156,13 +206,36 @@ paths:
             type: string
       responses:
         200:
+          description: Successfully saved
+  /lectures/{lecture-id}:
+    parameters:
+      - $ref: '#/parameters/lecture-id'
+    post:
+      tags:
+        - Lectures
+      security:
+        - act_auth:
+          - lectures
+      description: Update the status of a lecture
+      parameters:
+        - name: status
+          in: body
+          description: new state of the lecture
+          schema:
+            type: string
+            enum: &lecture-status
+              - viewed
+              - later
+              - finished
+      responses:
+        200:
           description: Successful response
           schema:
             type: object
-            title: Quiz
+            title: QuizLecture
             properties:
               data:
-                $ref: '#/definitions/Quiz'
+                $ref: '#/definitions/QuizLecture'              
                   
                   
 definitions:
@@ -171,13 +244,77 @@ definitions:
     properties:
       title:
         type: string
+      summary:
+        type: string
+      free_description:
+        type: string
+      image_url:
+        type: string
+      nb_lectures_watched:
+        type: integer
+  CourseDetails:
+    allOf:
+      - $ref: '#/definitions/Course'
+      - type: object
+        properties:
+          lectures:
+            type: array
+            items:
+              title: Lecture
+              type: object
+              properties:
+                data:
+                  $ref: '#/definitions/Lecture' 
   Lecture:
     type: object
     properties:
       title:
         type: string
-  Quiz:
-    type: object
-    properties:
-      title:
+      estimated_time:
+        type: integer
+      type:
         type: string
+        enum:
+          - video
+          - quiz
+          - text
+          - pdf
+          - attachment
+          - audio
+      status:
+        type: string
+        enum: *lecture-status
+  VideoLecture:
+    allOf:
+      - $ref: '#/definitions/Lecture'
+      - type: object
+        required:
+          - video_url
+        properties:
+          video_url:
+            type: string
+  QuizLecture:
+    allOf:
+      - $ref: '#/definitions/Lecture'
+      - type: object
+        required:
+          - question
+        properties:
+          question:
+            type: string
+          wrong_answer:
+            type: string
+          explanation:
+            type: string
+  TextLecture:
+    allOf:
+      - $ref: '#/definitions/Lecture'
+      - type: object
+        required:
+          - body
+        properties:
+          body:
+            type: string
+  # PdfLecture:
+  # AttachmentLecture:
+  # AudioLecture:
