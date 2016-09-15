@@ -1,0 +1,183 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.0"
+  title: ShareWis ACT API
+  description: |
+    API to allow the iOS and Android mobile
+    applications to fetch user data from the server
+    
+    ## Good to know
+    User API specification is not included here.
+    Please confer to the **sharewis-account** 
+    repository to access the list of serverless 
+    endpoints available.
+
+host: act.share-wis.com
+basePath: /api/v2
+schemes:
+  - https
+produces: 
+  - application/json
+consumes:
+  - application/json
+    
+tags:
+  - name: Courses
+  - name: Lectures
+  - name: Quizzes
+
+#################
+securityDefinitions:
+  act_auth:
+    type: oauth2
+    flow: implicit
+    authorizationUrl: https://act.share-wis.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token # FIXME
+    scopes:
+      courses: to read any course data related to a user
+      lectures: to read and update the status of any lecture available to a user
+      quizzes: to read and answer to any quiz associated to a lecture
+security:
+  - act_auth:
+    - courses
+    - lectures
+    - quizzes
+
+parameters:
+  course-slug:
+    name: course-slug
+    in: path
+    description: slug (or id) representing the course
+    type: string
+    required: true
+  lecture-id:
+    name: lecture-id
+    in: path
+    description: the lecture identifier number
+    type: number
+    required: true
+  quiz-id:
+    name: quiz-id
+    in: path
+    description: the quiz identifier number
+    type: number
+    required: true
+  user-lang:
+    name: user-lang
+    in: path
+    description: the user language
+    type: string
+    required: true
+
+# Describe your paths here
+paths:
+  /{user-lang}/my_courses:
+    parameters:
+      - $ref: '#/parameters/user-lang'
+    get:
+      tags:
+        - Courses
+      security:
+        - act_auth:
+          - courses
+      description: Gets list of `Course` objects.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfCourses
+            type: array
+            items:
+              title: Course
+              type: object
+              properties:
+                data:
+                  $ref: '#/definitions/Course'
+  /{user-lang}/courses/{course-slug}:
+    parameters:
+      - $ref: '#/parameters/user-lang'
+      - $ref: '#/parameters/course-slug'
+    get:
+      tags:
+        - Courses
+      security:
+        - act_auth:
+          - courses
+      description: |
+        Gets `Course` object
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            title: Course
+            properties:
+              data:
+                $ref: '#/definitions/Course'
+  /{user-lang}/lectures/{lecture-id}:
+    parameters:
+      - $ref: '#/parameters/user-lang'
+      - $ref: '#/parameters/lecture-id'
+    get:
+      tags:
+        - Lectures
+      security:
+        - act_auth:
+          - lectures
+      description: Gets `Lecture` object
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            title: Lecture
+            properties:
+              data:
+                $ref: '#/definitions/Lecture'
+  /quizzes/{quiz-id}:
+    parameters:
+      - $ref: '#/parameters/quiz-id'
+    post:
+      tags:
+        - Quizzes
+      security:
+        - act_auth:
+          - quizzes
+      description: Sends a Quiz answer
+      parameters:
+        - name: quiz_answer
+          in: body
+          description: answer to the quiz
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            title: Quiz
+            properties:
+              data:
+                $ref: '#/definitions/Quiz'
+                  
+                  
+definitions:
+  Course:
+    type: object
+    properties:
+      title:
+        type: string
+  Lecture:
+    type: object
+    properties:
+      title:
+        type: string
+  Quiz:
+    type: object
+    properties:
+      title:
+        type: string
