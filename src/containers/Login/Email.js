@@ -121,6 +121,9 @@ const formOptions = {
 };
 
 const checkInput = (states) => {
+  // We extract form from the state because returning it will cause
+  // a bug "form must be a string, not an object"
+  // eslint-disable-next-line no-unused-vars
   const { form, ...otherStates } = states;
   const selector = formValueSelector('email');
   const hasEmail = selector(states, 'email') !== undefined;
@@ -139,9 +142,6 @@ class Email extends Component {
     fetchUserBy: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     loginDisabled: PropTypes.bool.isRequired,
-    enableEmailLogin: PropTypes.func.isRequired,
-    disableEmailLogin: PropTypes.func.isRequired,
-    form: PropTypes.string.isRequired,
   };
 
   @autobind

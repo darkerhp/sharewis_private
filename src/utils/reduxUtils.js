@@ -7,9 +7,8 @@ import { connect } from 'react-redux';
 //  * stateKey: a props key or an array of keys
 //  * actions: a module of action creators
 const connectToProps = (component, stateKey, actions) => {
-  let mapStateToProps;
-  const keys = (typeof stateKey == 'string') ? [stateKey] : stateKey;
-  mapStateToProps = oldState => {
+  const keys = (typeof stateKey === 'string') ? [stateKey] : stateKey;
+  const mapStateToProps = (oldState) => {
     let newState = {};
     for (const key of keys) {
       newState = {

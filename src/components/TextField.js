@@ -8,7 +8,7 @@ const TextField = (props) => {
   const {
     // style,
     input: { value, onChange },
-    meta: { error, touched },
+    // meta: { error, touched },
     ...otherProps,
   } = props;
 
@@ -26,8 +26,8 @@ const TextField = (props) => {
 
 /* eslint-disable react/forbid-prop-types */
 TextField.propTypes = {
-  style: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
+  // style: PropTypes.object.isRequired,
+  // meta: PropTypes.object.isRequired,
   input: PropTypes.object.isRequired,
 };
 

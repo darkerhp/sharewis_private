@@ -9,16 +9,6 @@ import getUserData from '../middleware/accountApi';
 
 // Actions Creators
 
-export const enableEmailLogin = () => ({
-  type: types.ENABLE_EMAIL_LOGIN,
-  loginDisabled: false,
-});
-
-export const disableEmailLogin = () => ({
-  type: types.DISABLE_EMAIL_LOGIN,
-  loginDisabled: true,
-});
-
 export const startActEmailLogin = ([email, password]) => ({
   type: types.START_ACT_EMAIL_LOGIN,
   email,
