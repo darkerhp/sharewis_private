@@ -17,9 +17,10 @@ export const startActEmailLogin = ([email, password]) => ({
 
 export const startActFacebookLogin = ([email, facebookId]) => ({
   type: types.START_ACT_FACEBOOK_LOGIN,
+  isFetching: true,
+  loggedIn: false,
   email,
   facebookId,
-  isFetching: true,
 });
 
 export const fetchActLoginFailure = {
@@ -44,7 +45,8 @@ export const fetchFBEmailFailure = () => ({
 
 export const fetchFBEmailSuccess = ([email, facebookId]) => ({
   type: types.FETCH_FB_EMAIL_SUCCESS,
-  loggedIn: true,
+  isFetching: true,
+  loggedIn: false,
   email,
   facebookId,
 });

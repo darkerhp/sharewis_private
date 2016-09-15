@@ -30,53 +30,61 @@ describe('User reducer', () => {
     });
 
     it('should handle successful login', () => {
-      expect(reducer(loggedOut, {
-        type: types.FETCH_FB_EMAIL_SUCCESS,
-        facebookId: '12345',
-        email: 'a@example.com',
-      })
-      ).toEqual(loggedIn);
+      const action = actions.fetchFBEmailSuccess([
+        'a@example.com',
+        '12345',
+      ]);
+      expect(action.type).toEqual(types.FETCH_FB_EMAIL_SUCCESS);
+      expect(reducer(loggedOut, action)).toEqual(loggedIn);
     });
 
     it('should handle failed login', () => {
-      expect(
-        reducer(loggedOut, actions.fetchFBEmailFailure())
-      ).toEqual(loggedOut);
+      const action = actions.fetchFBEmailFailure();
+      expect(action.type).toEqual(types.FETCH_FB_EMAIL_FAILURE);
+      expect(reducer(loggedOut, action)).toEqual(loggedOut);
     });
   });
 
   describe('ACT login facebook actions', () => {
     beforeEach(() => {
       loggedOut = { isFetching: false, loggedIn: false };
-      fetching = { isFetching: true, loggedIn: false };
+      fetching = {
+        isFetching: true,
+        loggedIn: false,
+        email: 'user@example.com',
+        facebookId: '1234567890',
+      };
       loggedIn = {
         isFetching: false,
         loggedIn: true,
+        email: 'user@example.com',
+        facebookId: '1234567890',
         userName: 'username',
         nickName: 'nickname',
       };
     });
 
     it('should handle start login', () => {
-      expect(
-        reducer(loggedOut, { type: types.START_ACT_FACEBOOK_LOGIN })
-      ).toEqual(fetching);
+      const action = actions.startActFacebookLogin([
+        'user@example.com',
+        '1234567890',
+      ]);
+      expect(action.type).toEqual(types.START_ACT_FACEBOOK_LOGIN);
+      expect(reducer(loggedOut, action)).toEqual(fetching);
     });
 
     it('should handle failure login', () => {
-      expect(
-        reducer(fetching, actions.fetchActLoginFailure)
-      ).toEqual(loggedOut);
+      const action = actions.fetchActLoginFailure;
+      expect(action.type).toEqual(types.FETCH_ACT_LOGIN_FAILURE);
+      expect(reducer(loggedOut, action)).toEqual(loggedOut);
     });
 
     it('should handle success login', () => {
-      expect(
-        reducer(fetching, {
-          type: types.FETCH_ACT_LOGIN_SUCCESS,
-          userName: 'username',
-          nickName: 'nickname',
-        })
-      ).toEqual(loggedIn);
+      const action = actions.fetchActLoginSuccess({
+        userName: 'username',
+        nickName: 'nickname',
+      });
+      expect(reducer(fetching, action)).toEqual(loggedIn);
     });
   });
 });
