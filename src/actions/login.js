@@ -1,7 +1,6 @@
 /**
 * @flow
 */
-/* eslint no-console: ["error", { allow: ["log"] }] */
 
 import * as types from '../constants/ActionTypes';
 import getUserData from '../middleware/accountApi';
@@ -64,10 +63,8 @@ export const fetchUserBy = (loginMethod, credentials) =>
 
     try {
       const data = await getUserData(credentials);
-      console.log('getUserData done', data);
       return dispatch(fetchActLoginSuccess(data));
     } catch (error) {
-      console.log('WHATTT ?', error);
       dispatch(fetchActLoginFailure);
       throw error;
     }

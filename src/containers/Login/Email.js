@@ -1,4 +1,3 @@
-/* eslint no-console: ["error", { allow: ["log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
@@ -149,7 +148,6 @@ class Email extends Component {
     const { fetchUserBy } = this.props;
     try {
       const data = await fetchUserBy('email', [email, password]);
-      console.log('fetchUserBy done', data);
       return data;
     } catch (error) {
       Alert.alert(t.errorTitle, t.loginError);
