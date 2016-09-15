@@ -15,6 +15,8 @@ export const videoProgress = currentTime => ({
   type: types.VIDEO_PROGRESS,
   currentTime,
 });
-export const pressNextLecture = () => ({
+export const pressNextLecture = (course, lectureId) => ({
   type: types.PRESS_NEXT_LECTURE,
+  course,
+  lectureId,
 });
