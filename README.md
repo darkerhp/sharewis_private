@@ -9,6 +9,20 @@ status](https://app.wercker.com/status/41122a6a18051d09232b2fb51ffc9d57/m/master
 ![uses js](http://forthebadge.com/images/badges/uses-js.svg)
 
 
+## DeployGate
+
+To test the applications from a real device, install using the following QR
+codes
+
+### Android
+
+![android qrcode](https://chart.googleapis.com/chart?chs=178x178&cht=qr&chl=https%3A%2F%2Fdeploygate.com%2Fusers%2FShareWisInc%2Fapps%2Fcom.sharewis.ShareWisAct)
+
+### iOS
+
+![ios qrcode](https://chart.googleapis.com/chart?chs=178x178&cht=qr&chl=https%3A%2F%2Fdeploygate.com%2Fconnect%2Fiphones%3Ffrom_qr%3D1)
+
+
 ## Installation
 
 Follow the [Getting Started documentation](https://facebook.github.io/react-native/docs/getting-started.html) for installation on your OS and to support iOS and/or Android.
