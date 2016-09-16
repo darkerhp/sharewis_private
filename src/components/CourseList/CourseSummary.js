@@ -42,14 +42,13 @@ const styles = StyleSheet.create({
   },
   download: {
     flex: 2,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'center',
+    flexDirection: 'row-reverse',
   },
   downloadText: {
-    fontSize: 12,
     color: '#7fc8ed',
-    alignItems: 'center',
-    justifyContent: 'center',
+    fontSize: 11,
+    paddingLeft: 3,
   },
 });
 
@@ -81,9 +80,9 @@ const CourseSummary = ({ course, ...props }) =>
         <ProgressBar progress={course.nb_lectures_watched / course.total_nb_lectures} />
         <View style={styles.download}>
           <Text style={styles.downloadText}>
-            <Icon size={20} name={'cloud-download'} />
             {t.downloadAvailable}
           </Text>
+          <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
         </View>
       </View>
     </View>
