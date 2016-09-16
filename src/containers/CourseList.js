@@ -12,7 +12,14 @@ import redirectTo from '../utils/linking';
 import connectToProps from '../utils/redux';
 
 const { Component, PropTypes } = React;
-const { StyleSheet, Text, View } = ReactNative;
+const {
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} = ReactNative;
+
 
 const styles = StyleSheet.create({
   courseList: {
@@ -21,15 +28,13 @@ const styles = StyleSheet.create({
     margin: 13,
     marginBottom: 53,
   },
-  courseWrapper: {
-    flex: 1,
-  },
   contentText: {
     ...BaseStyles.Text,
     textAlignVertical: 'center',
   },
   container: {
     flex: 1,
+    height: Dimensions.get('window').height / 2,
     borderWidth: 1,
     borderColor: 'gray',
     marginBottom: 13,
@@ -73,20 +78,21 @@ class CourseList extends Component {
       return <EmptyList />;
     }
     return (
-      <View style={styles.courseList}>
-        <View style={styles.container}>
-          {courses.map((course, key) =>
-            <CourseSummary
-              style={styles.courseWrapper}
-              onPress={() =>
-                RouterActions.courseDetails({ course })
-              }
-              course={course}
-              key={key}
-            />
-          )}
-        </View>
-        <View style={styles.container}>
+      <ScrollView
+        style={styles.courseList}
+        automaticallyAdjustContentInsets={false}
+      >
+        {courses.map((course, key) =>
+          <CourseSummary
+            style={styles.container}
+            onPress={() =>
+              RouterActions.courseDetails({ course })
+            }
+            course={course}
+            key={key}
+          />
+        )}
+        <View style={[styles.container, { height: 150 }]}>
           <View style={styles.hyperlinkWrapper}>
             <Hyperlink
               style={styles.searchMore}
@@ -100,7 +106,7 @@ class CourseList extends Component {
             </Hyperlink>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
