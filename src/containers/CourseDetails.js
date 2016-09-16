@@ -7,28 +7,25 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import * as CourseUtils from '../utils/course';
+import connectToProps from '../utils/redux';
 import BaseStyles from '../baseStyles';
 
-import { course } from './dummyData'; // TODO
-
-const { Component } = React;
-const {
-  StyleSheet,
-  ScrollView,
-  Dimensions,
-  StatusBar,
-} = ReactNative;
+const { Component, PropTypes } = React;
+const { Dimensions, ScrollView, StatusBar, View } = ReactNative;
 
 const { height } = Dimensions.get('window');
 const HALF_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 2;
 const QUARTER_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 4;
 
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: BaseStyles.navbarHeight },
-});
 
 class CourseDetails extends Component {
   static propTypes = {
+    course: PropTypes.shape({
+      /* eslint-disable react/no-unused-prop-types */
+      title: PropTypes.string.required,
+      lectures: PropTypes.array.required,
+      /* eslint-enable react/no-unused-prop-types */
+    }),
     // lectures: PropTypes.arrayOf(PropTypes.shape({
     //   id: PropTypes.number.isRequired,
     //   title: PropTypes.string.isRequired,
@@ -37,21 +34,9 @@ class CourseDetails extends Component {
     // })).isRequired,
   };
 
-  // componentWillMount() { console.log('[CourseDetails] Component Will Mount', arguments); }
-  // componentDidMount() { console.log('[CourseDetails] Component Did Mount', arguments); }
-  // componentWillReceiveProps() {
-  //  console.log('[CourseDetails] Component Will Receive Props', arguments);
-  // }
-  // shouldComponentUpdate() { console.log('[CourseDetails] Should Component Update', arguments); }
-  // componentWillUpdate() { console.log('[CourseDetails] Component Will Update', arguments); }
-  // componentDidUpdate() { console.log('[CourseDetails] Component Did Update', arguments); }
-  // componentWillUnmount() { console.log('[CourseDetails] Component Will Unmount', arguments); }
-
   @autobind
-  // TODO ↓this.prop使うようになったら消す
-  // eslint-disable-next-line class-methods-use-this
   handlePressNextLecture() {
-    // const { course } = this.props; TODO propを受け取る
+    const { course } = this.props;
     const nextLecture = CourseUtils.getNextLecture(course);
     RouterActions.lecture({ lecture: nextLecture, title: nextLecture.title });
   }
@@ -64,7 +49,7 @@ class CourseDetails extends Component {
   }
 
   render() {
-    // const { course } = this.props; TODO propを受け取る
+    const { course } = this.props;
     const completeLectureCount = CourseUtils.completeLectureCount(course);
     const totalLectureCount = CourseUtils.totalLectureCount(course);
     const isCompleted = completeLectureCount === totalLectureCount;
@@ -78,23 +63,27 @@ class CourseDetails extends Component {
     };
     return (
       <ScrollView
-        style={styles.container}
-        automaticallyAdjustContentInsets={false}
+        style={{ flex: 1 }}
+        showVerticalScrollIndicator={false}
+        indicatorStyle={'white'}
       >
-        <StatusBar barStyle="light-content" />
-        <CourseInfoSection
-          {...courseInfo}
-          handlePressNextLecture={this.handlePressNextLecture}
-          containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
-        />
-        <LectureList
-          containerStyle={{ flex: 1 }}
-          lectures={course.lectures}
-          handlePressLecture={this.handlePressLecture}
-        />
+        <View style={BaseStyles.ContainerWithNavbar}>
+          <StatusBar barStyle="light-content" />
+          <CourseInfoSection
+            {...courseInfo}
+            handlePressNextLecture={this.handlePressNextLecture}
+            containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
+          />
+          <LectureList
+            containerStyle={{ flex: 1 }}
+            lectures={course.lectures}
+            handlePressLecture={this.handlePressLecture}
+          />
+        </View>
       </ScrollView>
     );
   }
 }
 
-export default CourseDetails;
+
+export default connectToProps(CourseDetails, 'courses');
