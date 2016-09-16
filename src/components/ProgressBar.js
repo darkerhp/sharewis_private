@@ -6,13 +6,14 @@ const { StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
   progressView: {
-    flex: 1,
-    height: 1,
-    backgroundColor: 'lightgray',
     flexDirection: 'row',
+    height: 18,
+    backgroundColor: '#cdcdcd',
+    borderColor: '#cdcdcd',
+    borderWidth: 1,
   },
   currentProgress: {
-    backgroundColor: 'darkgray',
+    backgroundColor: '#427fda',
   },
 });
 

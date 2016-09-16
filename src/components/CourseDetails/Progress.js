@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import ProgressBar from '../ProgressBar';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
@@ -12,40 +13,20 @@ const styles = StyleSheet.create({
   progressText: {
     marginBottom: 5,
   },
-  barsContainer: {
-    flexDirection: 'row',
-    height: 18,
-    borderWidth: 1,
-    borderColor: '#cdcdcd',
-  },
-  barComplete: {
-    backgroundColor: '#427fda',
-  },
-  barIncomplete: {
-    backgroundColor: '#cdcdcd',
-  },
 });
 
 const t = {
-  lectureCompleteLabel: 'レクチャーが完了しました',
+  lectureCompleteLabel: (progress, total) =>
+    `${progress}/${total}のレクチャーが完了しました`,
 };
 
-const Progress = ({ completeLectureCount, totalLectureCount }) => {
-  const completePercentage = completeLectureCount > 0
-    ? (completeLectureCount / totalLectureCount) * 100 : 0;
-  const incompletePercentage = 100 - completePercentage;
-  return (
-    <View style={styles.container}>
-      <Text style={styles.progressText}>
-        {completeLectureCount}/{totalLectureCount}{t.lectureCompleteLabel}
-      </Text>
-      <View style={styles.barsContainer}>
-        <View style={[styles.barComplete, { flex: completePercentage }]} />
-        <View style={[styles.barIncomplete, { flex: incompletePercentage }]} />
-      </View>
-    </View>
-  );
-};
+const Progress = ({ completeLectureCount, totalLectureCount }) =>
+  <View style={styles.container}>
+    <Text style={styles.progressText}>
+      {t.lectureCompleteLabel(completeLectureCount, totalLectureCount)}
+    </Text>
+    <ProgressBar progress={completeLectureCount / totalLectureCount} />
+  </View>;
 
 Progress.propTypes = {
   completeLectureCount: PropTypes.number.isRequired,
