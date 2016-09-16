@@ -2,8 +2,6 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 
-import BaseStyles from '../../baseStyles';
-
 const { PropTypes } = React;
 const {
   Image,
@@ -21,18 +19,21 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   title: {
-    ...BaseStyles.Text,
     flex: 2,
-    textAlignVertical: 'center',
+    marginTop: 10,
+    marginLeft: 10,
+    fontSize: 15,
+    color: '#222',
   },
   hr: {
     flex: 1,
     justifyContent: 'center',
   },
   progress: {
-    ...BaseStyles.Text,
     flex: 2,
-    textAlignVertical: 'center',
+    fontSize: 12,
+    marginLeft: 10,
+    color: '#222',
   },
   CourseSummary: {
     flex: 1,

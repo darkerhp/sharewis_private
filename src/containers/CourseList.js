@@ -79,31 +79,34 @@ class CourseList extends Component {
     }
     return (
       <ScrollView
-        style={styles.courseList}
-        automaticallyAdjustContentInsets={false}
+        style={{ flex: 1 }}
+        showVerticalScrollIndicator={false}
+        indicatorStyle={'white'}
       >
-        {courses.map((course, key) =>
-          <CourseSummary
-            style={styles.container}
-            onPress={() =>
-              RouterActions.courseDetails({ course })
-            }
-            course={course}
-            key={key}
-          />
-        )}
-        <View style={[styles.container, { height: 150 }]}>
-          <View style={styles.hyperlinkWrapper}>
-            <Hyperlink
-              style={styles.searchMore}
-              linkStyle={styles.hyperlink}
-              linkText={t.searchMore}
-              onPress={redirectTo}
-            >
-              <Text style={styles.contentText}>
-                {ACT_API_URL}
-              </Text>
-            </Hyperlink>
+        <View style={styles.courseList}>
+          {courses.map((course, key) =>
+            <CourseSummary
+              style={styles.container}
+              onPress={() =>
+                RouterActions.courseDetails({ course })
+              }
+              course={course}
+              key={key}
+            />
+          )}
+          <View style={[styles.container, { height: 150 }]}>
+            <View style={styles.hyperlinkWrapper}>
+              <Hyperlink
+                style={styles.searchMore}
+                linkStyle={styles.hyperlink}
+                linkText={t.searchMore}
+                onPress={redirectTo}
+              >
+                <Text style={styles.contentText}>
+                  {ACT_API_URL}
+                </Text>
+              </Hyperlink>
+            </View>
           </View>
         </View>
       </ScrollView>
