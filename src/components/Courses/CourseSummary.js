@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     flex: 2,
     marginTop: 10,
     fontSize: 13,
+    fontWeight: '900',
     color: '#222',
   },
   hr: {

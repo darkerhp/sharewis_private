@@ -14,6 +14,7 @@ import connectToProps from '../utils/redux';
 const { Component, PropTypes } = React;
 const {
   Dimensions,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -24,7 +25,14 @@ const {
 const styles = StyleSheet.create({
   courseList: {
     flex: 1,
-    top: 53,
+    ...Platform.select({
+      ios: {
+        top: 63,
+      },
+      android: {
+        top: 53,
+      },
+    }),
     margin: 13,
     marginBottom: 53,
   },
