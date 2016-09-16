@@ -8,7 +8,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import BaseStyles from '../../baseStyles';
 import { ACT_API_URL } from '../../constants/Api';
-import BaseTranslations from '../../translations';
+import BaseTranslations from '../../baseTranslations';
 import connectToProps from '../../utils/redux';
 import redirectTo from '../../utils/linking';
 import Email from './Email';

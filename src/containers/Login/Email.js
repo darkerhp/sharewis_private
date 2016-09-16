@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
-import BaseTranslations from '../../translations';
+import BaseTranslations from '../../baseTranslations';
 import TextField from '../../components/TextField';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';

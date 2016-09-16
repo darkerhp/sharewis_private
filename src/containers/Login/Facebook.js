@@ -5,7 +5,7 @@ import FBSDK from 'react-native-fbsdk';
 import autobind from 'autobind-decorator';
 
 import * as Actions from '../../actions/login';
-import BaseTranslations from '../../translations';
+import BaseTranslations from '../../baseTranslations';
 import connectToProps from '../../utils/redux';
 
 const { Component, PropTypes } = React;
