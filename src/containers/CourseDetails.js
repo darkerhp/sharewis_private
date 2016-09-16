@@ -38,14 +38,23 @@ class CourseDetails extends Component {
   handlePressNextLecture() {
     const { course } = this.props;
     const nextLecture = CourseUtils.getNextLecture(course);
-    RouterActions.lecture({ lecture: nextLecture, title: nextLecture.title });
+    RouterActions.lecture({
+      title: nextLecture.title,
+      lectureId: nextLecture.id,
+      course,
+    });
   }
 
   @autobind
   // TODO ↓this.prop使うようになったら消す
   // eslint-disable-next-line class-methods-use-this
   handlePressLecture(lecture) {
-    RouterActions.lecture({ lecture, title: lecture.title });
+    // const { course } = this.props; TODO propを受け取る
+    RouterActions.lecture({
+      title: lecture.title,
+      lectureId: lecture.id,
+      course,
+    });
   }
 
   render() {
