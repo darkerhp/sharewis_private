@@ -154,8 +154,7 @@ class Email extends Component {
       console.log('OH NOO', error);
       Alert.alert(t.errorTitle, t.loginError);
       throw new SubmissionError({
-        email: t.loginError,
-        password: t.loginError,
+        _error: t.loginError,
       });
     }
   }
@@ -202,11 +201,7 @@ class Email extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyle={
-              (loginDisabled)
-                ? styles.buttonWrapperDisabled
-                : styles.buttonWrapper
-            }
+            containerStyle={loginDisabled ? styles.buttonWrapperDisabled : styles.buttonWrapper}
             style={styles.button}
             onPress={handleSubmit(this.handlePress)}
             disabled={loginDisabled}
