@@ -26,7 +26,7 @@ export default function user(state = initialState, action) {
         isFetching: false,
         loggedIn: false,
       };
-    // Facebook newStates
+    // Facebook actions
     case types.FETCH_FB_EMAIL_SUCCESS:
       return {
         ...state,
@@ -41,7 +41,7 @@ export default function user(state = initialState, action) {
         isFetching: true,
         loggedIn: false,
       };
-    // Email newStates
+    // Email actions
     case types.START_ACT_EMAIL_LOGIN:
       return {
         ...state,
