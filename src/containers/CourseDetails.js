@@ -11,20 +11,12 @@ import connectToProps from '../utils/redux';
 import BaseStyles from '../baseStyles';
 
 const { Component, PropTypes } = React;
-const {
-  StyleSheet,
-  ScrollView,
-  Dimensions,
-  StatusBar,
-} = ReactNative;
+const { ScrollView, Dimensions, StatusBar } = ReactNative;
 
 const { height } = Dimensions.get('window');
 const HALF_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 2;
 const QUARTER_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 4;
 
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: BaseStyles.navbarHeight },
-});
 
 class CourseDetails extends Component {
   static propTypes = {
@@ -71,7 +63,7 @@ class CourseDetails extends Component {
     };
     return (
       <ScrollView
-        style={styles.container}
+        style={BaseStyles.ContainerWithNavbar}
         automaticallyAdjustContentInsets={false}
       >
         <StatusBar barStyle="light-content" />
