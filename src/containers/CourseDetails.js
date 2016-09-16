@@ -11,7 +11,7 @@ import connectToProps from '../utils/redux';
 import BaseStyles from '../baseStyles';
 
 const { Component, PropTypes } = React;
-const { ScrollView, Dimensions, StatusBar } = ReactNative;
+const { Dimensions, ScrollView, StatusBar, View } = ReactNative;
 
 const { height } = Dimensions.get('window');
 const HALF_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 2;
@@ -63,20 +63,23 @@ class CourseDetails extends Component {
     };
     return (
       <ScrollView
-        style={BaseStyles.ContainerWithNavbar}
-        automaticallyAdjustContentInsets={false}
+        style={{ flex: 1 }}
+        showVerticalScrollIndicator={false}
+        indicatorStyle={'white'}
       >
-        <StatusBar barStyle="light-content" />
-        <CourseInfoSection
-          {...courseInfo}
-          handlePressNextLecture={this.handlePressNextLecture}
-          containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
-        />
-        <LectureList
-          containerStyle={{ flex: 1 }}
-          lectures={course.lectures}
-          handlePressLecture={this.handlePressLecture}
-        />
+        <View style={BaseStyles.ContainerWithNavbar}>
+          <StatusBar barStyle="light-content" />
+          <CourseInfoSection
+            {...courseInfo}
+            handlePressNextLecture={this.handlePressNextLecture}
+            containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
+          />
+          <LectureList
+            containerStyle={{ flex: 1 }}
+            lectures={course.lectures}
+            handlePressLecture={this.handlePressLecture}
+          />
+        </View>
       </ScrollView>
     );
   }
