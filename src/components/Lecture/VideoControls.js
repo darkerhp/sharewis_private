@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 78 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.mainColorBlue,
+    backgroundColor: BaseStyles.backgroundColor,
   },
   playButtonIcon: {
     fontSize: 40,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.mainColorBlue,
+    backgroundColor: BaseStyles.backgroundColor,
   },
   buttonText: {
     fontSize: 18,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.mainColorBlue,
+    backgroundColor: BaseStyles.backgroundColor,
   },
   fullScreenButtonIcon: {
     fontSize: 28,

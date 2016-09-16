@@ -8,8 +8,8 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import BaseStyles from '../../baseStyles';
 import { ACT_API_URL } from '../../constants/Api';
-import BaseTranslations from '../../translations';
-import connectToProps from '../../utils/reduxUtils';
+import BaseTranslations from '../../baseTranslations';
+import connectToProps from '../../utils/redux';
 import redirectTo from '../../utils/linking';
 import Email from './Email';
 import Facebook from './Facebook';
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     paddingVertical: 70,
     // justifyContent: 'center',
     // alignItems: 'stretch',
-    backgroundColor: BaseStyles.onboardingBgLightBlue,
+    backgroundColor: BaseStyles.onboardingBackgroundColor,
   },
   contentText: {
     flex: 1,
@@ -63,7 +63,7 @@ class Login extends Component {
         <Email />
         <Facebook />
         <View style={styles.footer}>
-          <Hr lineColor={BaseStyles.lightGray} />
+          <Hr lineColor={'#dadada'} />
           <Hyperlink
             linkStyle={{ color: BaseStyles.hyperlink }}
             linkText={t.actWebsite}

@@ -3,7 +3,7 @@
  */
 /* global fetch */
 import { ACCOUNT_API_URL } from '../constants/Api';
-import { checkStatus, checkResult } from '../utils/apiUtils';
+import { checkStatus, checkResult } from '../utils/api';
 
 
 const getUserData = (async) (credentials) => {
