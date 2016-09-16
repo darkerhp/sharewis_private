@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   slideImageContainer: {
     flex: 2,
-    backgroundColor: BaseStyles.onboardingBgLightBlue,
+    backgroundColor: BaseStyles.onboardingBackgroundColor,
   },
   slideImage: {
     flex: -1,

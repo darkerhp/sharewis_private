@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: 'white',
     paddingLeft: 13,
-    borderColor: BaseStyles.lightGray,
+    borderColor: '#dadada',
     borderWidth: 1,
   },
   textInputWrapper: {
     flex: 1,
-    borderColor: BaseStyles.lightGray,
+    borderColor: '#dadada',
     borderBottomWidth: 1,
   },
   buttonTextWrapper: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 5,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: BaseStyles.lightGray,
+    backgroundColor: '#dadada',
     justifyContent: 'center',
     marginVertical: 10,
   },
@@ -174,7 +174,7 @@ class Email extends Component {
               type="email"
               component={TextField}
               placeholder={t.emailPlaceHolder}
-              placeholderTextColor={BaseStyles.lightGray}
+              placeholderTextColor={'#dadada'}
               keyboardType="email-address"
               autoCapitalize={'none'}
               autoCorrect={false}
@@ -188,7 +188,7 @@ class Email extends Component {
               type="password"
               component={TextField}
               placeholder={t.passwordPlaceHolder}
-              placeholderTextColor={BaseStyles.lightGray}
+              placeholderTextColor={'#dadada'}
               autoCapitalize={'none'}
               autoCorrect={false}
               returnKeyType="next"

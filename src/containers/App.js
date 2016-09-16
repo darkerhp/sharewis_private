@@ -13,7 +13,7 @@ const RouterWithRedux = connect()(Router);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Styles.mainColorBlue,
+    backgroundColor: Styles.backgroundColor,
   },
 });
 
