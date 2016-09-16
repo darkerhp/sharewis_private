@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import ProgressBar from '../ProgressBar';
+import BaseStyle from '../../baseStyles';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
   },
   progressText: {
     marginBottom: 5,
+    color: BaseStyle.textColor,
   },
 });
 
