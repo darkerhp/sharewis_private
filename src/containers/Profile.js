@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
-import connectToProps from '../utils/reduxUtils';
+import connectToProps from '../utils/redux';
 
 const { Text, View } = ReactNative;
 
