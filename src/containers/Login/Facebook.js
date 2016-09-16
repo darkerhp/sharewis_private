@@ -5,6 +5,7 @@ import FBSDK from 'react-native-fbsdk';
 import autobind from 'autobind-decorator';
 
 import * as Actions from '../../actions/login';
+import BaseTranslations from '../../translations';
 import connectToProps from '../../utils/reduxUtils';
 
 const { Component, PropTypes } = React;
@@ -38,8 +39,8 @@ const styles = StyleSheet.create({
 });
 
 const t = {
+  ...BaseTranslations,
   emailNotFound: 'Facebookからメールを貰えませんでした。Facebookの設定からメールを共有することが出来るように同意して下さい',
-  errorTitle: 'エラー',
   facebookLabel: 'Facebookアカウントでログインする',
   loginError: 'Facebookログインが失敗しました',
   loginSuccess: 'Facebookログインができました',
@@ -49,12 +50,14 @@ const t = {
 
 class Facebook extends Component {
   static propTypes = {
-    fetchUserByFacebook: PropTypes.func.isRequired,
+    fetchUserBy: PropTypes.func.isRequired,
+    fetchFBEmailFailure: PropTypes.func.isRequired,
   };
 
   @autobind
   async getAccountData(fbGraphError, result) {
     if (fbGraphError) {
+      this.props.fetchFBEmailFailure();
       Alert.alert(t.errorTitle, t.emailNotFound);
       console.warn('Unable to fetch user email from Facebook!');
       console.log(fbGraphError);
@@ -62,7 +65,7 @@ class Facebook extends Component {
     }
     // Notify ACT API of the login and fetch user data
     try {
-      await this.props.fetchUserByFacebook('facebook', [result.email, result.id]);
+      await this.props.fetchUserBy('facebook', [result.email, result.id]);
       Alert.alert(t.successTitle, t.loginSuccess);
     } catch (actError) {
       LoginManager.logOut();

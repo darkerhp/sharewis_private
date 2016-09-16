@@ -1,18 +1,31 @@
-/* eslint no-console: ["error", { allow: ["log"] }] */
-import React, { Component } from 'react';
+import React from 'react';
 import ReactNative from 'react-native';
+import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
+import {
+  formValueSelector,
+  Field,
+  reduxForm,
+  SubmissionError,
+} from 'redux-form';
+import { connect } from 'react-redux';
 
+import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
+import BaseTranslations from '../../translations';
+import TextField from '../../components/TextField';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
+import connectToProps from '../../utils/reduxUtils';
+import validateEmailLogin from '../../utils/validate';
 
+const { Component, PropTypes } = React;
 const {
+  Alert,
   Platform,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } = ReactNative;
 
@@ -52,13 +65,27 @@ const styles = StyleSheet.create({
   innerTextInput: {
     flex: 1,
     ...Platform.select({
-      ios: { borderBottomWidth: 0.1 },
-      android: { borderBottomWidth: 1 },
+      ios: {
+        borderLeftWidth: 0,
+        borderBottomWidth: 1,
+      },
     }),
   },
   buttonWrapper: {
     flex: 5,
     flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#96D243',
+    justifyContent: 'center',
+    marginVertical: 10,
+  },
+  buttonWrapperDisabled: {
+    flex: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: BaseStyles.lightGray,
+    justifyContent: 'center',
+    marginVertical: 10,
   },
   button: BaseStyles.Button,
   textWrapper: {
@@ -74,29 +101,64 @@ const styles = StyleSheet.create({
 });
 
 const t = {
+  ...BaseTranslations,
   emailLabel: 'メールアドレスでログインする',
   emailPlaceHolder: 'メールアドレス',
   login: 'ログイン',
   passwordForgotten: 'パスワードを忘れた方',
   passwordPlaceHolder: 'パスワード',
+  loginError: 'このメールとパスワードでログインを失敗しました',
 };
 
 
+const formOptions = {
+  form: 'email',
+  validate: validateEmailLogin,
+  //touchOnChange: true,
+  //fields: ['email', 'password'],
+};
+
+const checkInput = (states) => {
+  // We extract form from the state because returning it will cause
+  // a bug "form must be a string, not an object"
+  // eslint-disable-next-line no-unused-vars
+  const { form, ...otherStates } = states;
+  const selector = formValueSelector('email');
+  const hasEmail = selector(states, 'email') !== undefined;
+  const hasPassword = selector(states, 'password') !== undefined;
+  return {
+    ...otherStates,
+    loginDisabled: !(hasEmail && hasPassword),
+  };
+};
+
+
+@connect(checkInput)
+@reduxForm(formOptions)
 class Email extends Component {
-  // static propTypes = {
-  //   email: PropTypes.string.isRequired,
-  //   password: PropTypes.number.isRequired,
-  // };
-  state = {
-    email: null,
-    password: null,
+  static propTypes = {
+    fetchUserBy: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    loginDisabled: PropTypes.bool.isRequired,
   };
 
-  handlePressedLogin() {
-    console.log(`do login with ${this.state.email}/${this.state.password}`);
+  @autobind
+  async handlePress({ email, password }) {
+    const { fetchUserBy } = this.props;
+    try {
+      const data = await fetchUserBy('email', [email, password]);
+      return data;
+    } catch (error) {
+      Alert.alert(t.errorTitle, t.loginError);
+      throw new SubmissionError({
+        _error: t.loginError,
+      });
+    }
   }
 
   render() {
+    const { handleSubmit, loginDisabled } = this.props;
+
     return (
       <View style={styles.view}>
         <View style={styles.labelWrapper}>
@@ -106,21 +168,29 @@ class Email extends Component {
         </View>
         <View style={styles.inputWrapper}>
           <View style={[styles.textInputWrapper, styles.innerTextInput]}>
-            <TextInput
+            <Field
               style={BaseStyles.TextInput}
+              name="email"
+              type="email"
+              component={TextField}
               placeholder={t.emailPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={email => this.setState({ email })}
               keyboardType="email-address"
+              autoCapitalize={'none'}
+              autoCorrect={false}
               returnKeyType="next"
             />
           </View>
           <View style={styles.textInputWrapper}>
-            <TextInput
+            <Field
               style={BaseStyles.TextInput}
+              name="password"
+              type="password"
+              component={TextField}
               placeholder={t.passwordPlaceHolder}
               placeholderTextColor={BaseStyles.lightGray}
-              onChangeText={password => this.setState({ password })}
+              autoCapitalize={'none'}
+              autoCorrect={false}
               returnKeyType="next"
               secureTextEntry
             />
@@ -128,9 +198,10 @@ class Email extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyle={styles.buttonWrapper}
+            containerStyle={loginDisabled ? styles.buttonWrapperDisabled : styles.buttonWrapper}
             style={styles.button}
-            onPress={this.handlePressedLogin}
+            onPress={handleSubmit(this.handlePress)}
+            disabled={loginDisabled}
           >
             { t.login }
           </Button>
@@ -150,4 +221,4 @@ class Email extends Component {
 }
 
 
-export default Email;
+export default connectToProps(Email, 'user', Actions);

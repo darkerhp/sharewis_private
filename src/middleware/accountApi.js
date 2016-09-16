@@ -2,7 +2,6 @@
  * @flow
  */
 /* global fetch */
-/* eslint no-console: ["error", { allow: ["log"] }] */
 import { ACCOUNT_API_URL } from '../constants/Api';
 import { checkStatus, checkResult } from '../utils/apiUtils';
 
@@ -18,7 +17,10 @@ const getUserData = (async) (credentials) => {
   });
   // Verify results
   await checkStatus(result);
+  await setTimeout(() => null, 200);
   const json = await result.json();
+  // const text = await result.text();
+  // const json = JSON.parse(text);
   await checkResult(json, user => user.username);
 
   // Parse and return results
