@@ -14,47 +14,48 @@ const initialState = {
 
 
 export default function user(state = initialState, action) {
-  const newState = {
-    isFetching: action.isFetching,
-    loggedIn: action.loggedIn,
-  };
-  switch (action.type) {
+  const { type, ...newState } = action;
+
+  switch (type) {
     // Handle Failures
     case types.FETCH_FB_EMAIL_FAILURE:
     case types.FETCH_ACT_LOGIN_FAILURE:
       return {
         ...state,
         ...newState,
+        isFetching: false,
+        loggedIn: false,
       };
-    // Facebook actions
+    // Facebook newStates
     case types.FETCH_FB_EMAIL_SUCCESS:
       return {
         ...state,
         ...newState,
-        email: action.email,
-        facebookId: action.facebookId,
+        isFetching: true,
+        loggedIn: false,
       };
     case types.START_ACT_FACEBOOK_LOGIN:
       return {
         ...state,
         ...newState,
-        email: action.email,
-        facebookId: action.facebookId,
+        isFetching: true,
+        loggedIn: false,
       };
-    // Email actions
+    // Email newStates
     case types.START_ACT_EMAIL_LOGIN:
       return {
         ...state,
         ...newState,
-        password: action.password,
+        isFetching: true,
+        loggedIn: false,
       };
     // Handle Successes
     case types.FETCH_ACT_LOGIN_SUCCESS:
       return {
         ...state,
         ...newState,
-        userName: action.userName,
-        nickName: action.nickName,
+        isFetching: false,
+        loggedIn: true,
       };
     default:
       return state;
