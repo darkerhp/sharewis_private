@@ -77,7 +77,12 @@ const CourseList = ({ courses }) => (
 );
 
 CourseList.propTypes = {
-  courses: PropTypes.arrayOf(PropTypes.string),
+  courses: PropTypes.arrayOf(PropTypes.shape({
+    /* eslint-disable react/no-unused-prop-types */
+    title: PropTypes.string.required,
+    lectures: PropTypes.object,
+    /* eslint-enable react/no-unused-prop-types */
+  })),
 };
 
 

@@ -1,11 +1,12 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
+import { course } from '../data/dummyData'; // TODO
 
 const initialState = {
   // Test empty course page
-  courses: null,
+  // courses: null,
   // Test filled course page
-  // courses: ['コース１', 'コース２'],
+  courses: [course],
 };
 
 const courses = (state = initialState, action) => {

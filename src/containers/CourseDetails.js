@@ -9,7 +9,7 @@ import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import * as CourseUtils from '../utils/course';
 import BaseStyles from '../baseStyles';
 
-import { course } from './dummyData'; // TODO
+import { course } from '../data/dummyData'; // TODO
 
 const { Component } = React;
 const {
