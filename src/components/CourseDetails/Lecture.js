@@ -28,6 +28,15 @@ const styles = StyleSheet.create({
     borderColor: BaseStyles.borderColor,
     borderRightWidth: 1,
   },
+  lectureNoTextWrapperCompleted: { // FIXME lectureNoTextWrapperと共通化できる？
+    flex: 1,
+    height: lectureRowHeight,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: BaseStyles.backgroundColor,
+    borderRightWidth: 1,
+    backgroundColor: BaseStyles.backgroundColor,
+  },
   lectureNoText: {
     fontSize: 14,
     color: BaseStyles.textColor,
@@ -85,7 +94,9 @@ const Lecture = ({ lecture, handlePressLecture }) => {
   const isAccessibleLecture = lecture.type === 'VideoLecture';
   return (
     <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
-      <View style={styles.lectureNoTextWrapper}>
+      <View style={lecture.isCompleted
+                ? styles.lectureNoTextWrapperCompleted
+                : styles.lectureNoTextWrapper}>
         <Text style={styles.lectureNoText}>{lecture.order}</Text>
       </View>
 
