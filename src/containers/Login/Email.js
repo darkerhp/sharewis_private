@@ -114,8 +114,8 @@ const t = {
 const formOptions = {
   form: 'email',
   validate: validateEmailLogin,
-  touchOnChange: true,
-  fields: ['email', 'password'],
+  //touchOnChange: true,
+  //fields: ['email', 'password'],
 };
 
 const checkInput = (states) => {
@@ -126,6 +126,8 @@ const checkInput = (states) => {
   const selector = formValueSelector('email');
   const hasEmail = selector(states, 'email') !== undefined;
   const hasPassword = selector(states, 'password') !== undefined;
+  console.log('hasEmail', hasEmail);
+  console.log('hasPassword', hasPassword);
   return {
     ...otherStates,
     loginDisabled: !(hasEmail && hasPassword),
@@ -149,6 +151,7 @@ class Email extends Component {
       const data = await fetchUserBy('email', [email, password]);
       return data;
     } catch (error) {
+      console.log('OH NOO', error);
       Alert.alert(t.errorTitle, t.loginError);
       throw new SubmissionError({
         email: t.loginError,
