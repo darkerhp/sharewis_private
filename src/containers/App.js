@@ -1,4 +1,3 @@
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions, Router } from 'react-native-router-flux';

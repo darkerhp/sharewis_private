@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import * as CourseUtils from '../course';
 
 // Test Data

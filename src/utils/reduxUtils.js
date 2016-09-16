@@ -3,8 +3,21 @@ import { connect } from 'react-redux';
 
 
 // Alias to connect State and Dispatch to props
-const connectToProps = (component, stateElement, actions) => {
-  const mapStateToProps = state => ({ ...state[stateElement] });
+//  * component: a React Component
+//  * stateKey: a props key or an array of keys
+//  * actions: a module of action creators
+const connectToProps = (component, stateKey, actions) => {
+  const keys = (typeof stateKey === 'string') ? [stateKey] : stateKey;
+  const mapStateToProps = (oldState) => {
+    let newState = {};
+    for (const key of keys) {
+      newState = {
+        ...newState,
+        ...oldState[key],
+      };
+    }
+    return newState;
+  };
   if (!actions) {
     return connect(mapStateToProps)(component);
   }

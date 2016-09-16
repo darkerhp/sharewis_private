@@ -88,6 +88,11 @@ Check js and jsx syntax with [eslint](http://eslint.org/)
 $ npm run lint
 ```
 
+**Special conventions**:
+  - When you need to set a function attribute that is unused, suffix it with
+    **Ignored** (cf `src/utils/propTypes.js`)
+
+
 ### Typing
 Let's catch typing errors in our js code with [Flow](https://flowtype.org/)
 ```

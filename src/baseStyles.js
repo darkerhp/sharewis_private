@@ -1,3 +1,6 @@
+/**
+* @flow
+*/
 const Variables = {
   hyperlink: '#2980b9',
   lightGray: '#dadada', // TODO rename or remove
@@ -21,8 +24,6 @@ const DefaultComponents = {
   TextInput: {
     flex: 1,
     padding: 4,
-    borderColor: Variables.lightGray,
-    borderWidth: 1,
     fontSize: 13,
     color: '#222',
     backgroundColor: 'white',
@@ -30,12 +31,7 @@ const DefaultComponents = {
   Button: {
     flex: 1,
     fontSize: 15,
-    backgroundColor: '#96D243',
     color: 'white',
-    borderColor: 'purple',
-    borderWidth: 1,
-    alignSelf: 'stretch',
-    textAlignVertical: 'center',
   },
 };
 
