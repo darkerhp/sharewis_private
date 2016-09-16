@@ -61,5 +61,4 @@ describe('Course Utils', () => {
     nextLecture = CourseUtils.getNextVideoLecture(course, false);
     expect(nextLecture.order).toEqual(1);
   });
-
 });
