@@ -2,6 +2,8 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 
+import ProgressBar from '../ProgressBar';
+
 const { PropTypes } = React;
 const {
   Image,
@@ -43,7 +45,8 @@ const styles = StyleSheet.create({
 
 
 const t = {
-  progressText: currentProgress => `${currentProgress}のレクチャーが完了しました`,
+  progressText: (progress, total) =>
+    `${progress}/${total}のレクチャーが完了しました`,
 };
 
 
@@ -62,8 +65,9 @@ const CourseSummary = ({ course, ...props }) =>
           <Hr lineColor={'#dadada'} />
         </View>
         <Text style={styles.progress}>
-          {t.progressText(course.lecturesProgress)}
+          {t.progressText(course.nb_lectures_watched, course.total_nb_lectures)}
         </Text>
+        <ProgressBar progress={course.total_nb_lectures / course.nb_lectures_watched} />
       </View>
     </View>
   </TouchableHighlight>;
