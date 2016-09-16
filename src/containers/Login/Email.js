@@ -17,7 +17,7 @@ import BaseTranslations from '../../translations';
 import TextField from '../../components/TextField';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
-import connectToProps from '../../utils/reduxUtils';
+import connectToProps from '../../utils/redux';
 import validateEmailLogin from '../../utils/validate';
 
 const { Component, PropTypes } = React;

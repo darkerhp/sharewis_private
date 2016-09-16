@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { checkStatus, checkResult } from '../apiUtils';
+import { checkStatus, checkResult } from '../api';
 
 
 describe('API Utils', () => {

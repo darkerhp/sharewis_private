@@ -7,7 +7,7 @@ import BaseStyles from '../baseStyles';
 import EmptyList from '../components/Courses/EmptyList';
 import { ACT_API_URL } from '../constants/Api';
 import redirectTo from '../utils/linking';
-import connectToProps from '../utils/reduxUtils';
+import connectToProps from '../utils/redux';
 
 const { PropTypes } = React;
 const { StyleSheet, Text, View } = ReactNative;

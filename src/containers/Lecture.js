@@ -9,7 +9,7 @@ import autobind from 'autobind-decorator';
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
-import connectToProps from '../utils/reduxUtils';
+import connectToProps from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, StatusBar, Text, TouchableOpacity } = ReactNative;

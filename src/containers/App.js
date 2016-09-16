@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Styles from '../baseStyles';
 import getScenes from '../components/Scenes';
-import connectToProps from '../utils/reduxUtils';
+import connectToProps from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const RouterWithRedux = connect()(Router);
