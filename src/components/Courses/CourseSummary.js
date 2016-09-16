@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ProgressBar from '../ProgressBar';
 
@@ -47,6 +48,8 @@ const styles = StyleSheet.create({
   downloadText: {
     fontSize: 12,
     color: '#7fc8ed',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
 const t = {
   progressText: (progress, total) =>
     `${progress}/${total}のレクチャーが完了しました`,
-  downloadAvailable: 'ダウンロード消みレクチャーあり',
+  downloadAvailable: 'ダウンロード済みレクチャーあり',
 };
 
 
@@ -78,6 +81,7 @@ const CourseSummary = ({ course, ...props }) =>
         <ProgressBar progress={course.nb_lectures_watched / course.total_nb_lectures} />
         <View style={styles.download}>
           <Text style={styles.downloadText}>
+            <Icon size={20} name={'cloud-download'} />
             {t.downloadAvailable}
           </Text>
         </View>

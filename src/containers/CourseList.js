@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: Dimensions.get('window').height / 2,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: BaseStyles.borderColor,
     marginBottom: 13,
   },
   hyperlinkWrapper: {
