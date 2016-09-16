@@ -3,7 +3,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import Hyperlink from 'react-native-hyperlink';
-import { Actions } from 'react-native-router-flux';
+import { Actions as RouterActions } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import BaseStyles from '../../baseStyles';
@@ -21,8 +21,6 @@ const styles = StyleSheet.create({
   login: {
     flex: 1,
     paddingVertical: 70,
-    // justifyContent: 'center',
-    // alignItems: 'stretch',
     backgroundColor: BaseStyles.onboardingBackgroundColor,
   },
   contentText: {
@@ -52,7 +50,7 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     // Redirect to Course List page if user is logged in
     if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
-      Actions.courseList();
+      RouterActions.courseList();
     }
   }
 

@@ -126,7 +126,17 @@ export const lectures = [
   },
 ];
 
-export const course = {
-  title: '差がつくビジネス戦略講座 | 事業開発・Platform戦略(R)・ITマーケティング',
-  lectures,
-};
+
+export const courses = [
+  {
+    title: '差がつくビジネス戦略講座 | 事業開発・Platform戦略(R)・ITマーケティング',
+    imageUrl: 'https://act-production.s3.amazonaws.com/uploads/course/image/23/normal_sekaide70000_programming.png',
+    lecturesProgress: '110/202',
+    lectures,
+  }, {
+    title: '未経験からプロのWebデザイナーに！ 450レッスン完全マスターコース',
+    imageUrl: 'https://act-production.s3.amazonaws.com/uploads/course/image/214/normal_%E5%85%A8%E4%BD%93%E7%B5%B1%E5%90%88%E3%82%B3%E3%83%BC%E3%82%B9_460-258.jpg',
+    lecturesProgress: '0/20',
+    lectures,
+  },
+];

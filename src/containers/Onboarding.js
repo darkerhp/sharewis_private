@@ -79,9 +79,6 @@ const Onboarding = () =>
     <Login />
   </Swiper>;
 
-Onboarding.propTypes = {};
-Onboarding.defaultProps = {};
-
 
 export default connect(
   ({ routes }) => ({ routes })

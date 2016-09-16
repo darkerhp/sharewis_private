@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
-import autobind from 'autobind-decorator';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/Courses/CourseSummary';
@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
     top: 53,
     margin: 13,
     marginBottom: 53,
+  },
+  courseWrapper: {
+    flex: 1,
   },
   contentText: {
     ...BaseStyles.Text,
@@ -52,6 +55,7 @@ const t = {
 };
 
 
+// eslint-disable-next-line react/prefer-stateless-function
 class CourseList extends Component {
   static propTypes = {
     courses: PropTypes.arrayOf(PropTypes.shape({
@@ -61,11 +65,6 @@ class CourseList extends Component {
       /* eslint-enable react/no-unused-prop-types */
     })),
   };
-
-  @autobind
-  componentDidUpdate() {
-    return this.props;
-  }
 
   render() {
     const { courses } = this.props;
@@ -77,7 +76,14 @@ class CourseList extends Component {
       <View style={styles.courseList}>
         <View style={styles.container}>
           {courses.map((course, key) =>
-            <CourseSummary course={course} key={key} />
+            <CourseSummary
+              style={styles.courseWrapper}
+              onPress={() =>
+                RouterActions.courseDetails({ course })
+              }
+              course={course}
+              key={key}
+            />
           )}
         </View>
         <View style={styles.container}>

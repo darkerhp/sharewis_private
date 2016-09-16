@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import { ActionConst, Scene } from 'react-native-router-flux';
 
@@ -40,6 +41,7 @@ const baseNavBarProps = {
   },
 };
 
+
 const getScenes = loggedIn =>
   <Scene key="root" hideNavBar>
     <Scene
@@ -50,21 +52,21 @@ const getScenes = loggedIn =>
       key="courseList"
       component={CourseList}
       title={t.courseList}
-      initial
+      initial={!loggedIn}
       type={ActionConst.RESET}
       hideNavBar={false}
       duration={0}
       {...baseNavBarProps}
-      onLeft={() => console.log('onLeft')} // eslint-disable-line no-console
+      onLeft={() => console.log('onLeft')}
       leftButtonImage={menuWhiteImage}
     />
     <Scene
-      key="CourseDetails"
+      key="courseDetails"
       component={CourseDetails}
       hideNavBar={false}
       {...baseNavBarProps}
       backTitle={t.courseList}
-      onRight={() => console.log('onRight')} // eslint-disable-line no-console
+      onRight={() => console.log('onRight')}
       rightButtonImage={moreHorizWhiteImage}
     />
     <Scene

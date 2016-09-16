@@ -1,15 +1,9 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
-import { course } from '../data/dummyData'; // TODO
+import { courses } from '../data/dummyData'; // TODO
 
-const initialState = {
-  // Test empty course page
-  // courses: null,
-  // Test filled course page
-  courses: [course],
-};
 
-const courses = (state = initialState, action) => {
+const coursesReducer = (state = { courses }, action) => {
   switch (action.type) {
     case types.FETCH_COURSES_LIST_SUCCESS:
       return {
@@ -22,4 +16,4 @@ const courses = (state = initialState, action) => {
 };
 
 
-export default courses;
+export default coursesReducer;
