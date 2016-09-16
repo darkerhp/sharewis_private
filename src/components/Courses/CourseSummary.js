@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
   },
   detailsWrapper: {
     flex: 3,
+    marginHorizontal: 10,
   },
   title: {
     flex: 2,
     marginTop: 10,
-    marginLeft: 10,
-    fontSize: 15,
+    fontSize: 13,
     color: '#222',
   },
   hr: {
@@ -32,14 +32,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   progress: {
-    flex: 2,
-    fontSize: 12,
-    marginLeft: 10,
-    color: '#222',
-  },
-  CourseSummary: {
     flex: 1,
-    margin: 30,
+    fontSize: 12,
+    color: '#222',
+    marginBottom: 3,
+    textDecorationLine: 'underline',
+  },
+  download: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  downloadText: {
+    fontSize: 12,
+    color: '#7fc8ed',
   },
 });
 
@@ -47,6 +53,7 @@ const styles = StyleSheet.create({
 const t = {
   progressText: (progress, total) =>
     `${progress}/${total}のレクチャーが完了しました`,
+  downloadAvailable: 'ダウンロード消みレクチャーあり',
 };
 
 
@@ -67,7 +74,12 @@ const CourseSummary = ({ course, ...props }) =>
         <Text style={styles.progress}>
           {t.progressText(course.nb_lectures_watched, course.total_nb_lectures)}
         </Text>
-        <ProgressBar progress={course.total_nb_lectures / course.nb_lectures_watched} />
+        <ProgressBar progress={course.nb_lectures_watched / course.total_nb_lectures} />
+        <View style={styles.download}>
+          <Text style={styles.downloadText}>
+            {t.downloadAvailable}
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableHighlight>;
