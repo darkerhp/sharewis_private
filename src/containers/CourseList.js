@@ -5,8 +5,8 @@ import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
 import BaseStyles from '../baseStyles';
-import CourseSummary from '../components/Courses/CourseSummary';
-import EmptyList from '../components/Courses/EmptyList';
+import CourseSummary from '../components/CourseList/CourseSummary';
+import EmptyList from '../components/CourseList/EmptyList';
 import { ACT_API_URL } from '../constants/Api';
 import redirectTo from '../utils/linking';
 import connectToProps from '../utils/redux';
