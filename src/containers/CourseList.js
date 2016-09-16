@@ -2,14 +2,16 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
+import autobind from 'autobind-decorator';
 
 import BaseStyles from '../baseStyles';
+import CourseSummary from '../components/Courses/CourseSummary';
 import EmptyList from '../components/Courses/EmptyList';
 import { ACT_API_URL } from '../constants/Api';
 import redirectTo from '../utils/linking';
 import connectToProps from '../utils/redux';
 
-const { PropTypes } = React;
+const { Component, PropTypes } = React;
 const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
@@ -28,9 +30,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     marginBottom: 13,
-  },
-  courseWrapper: {
-    flex: 1,
   },
   hyperlinkWrapper: {
     flex: 1,
@@ -53,37 +52,52 @@ const t = {
 };
 
 
-const CourseList = ({ courses }) => (
-  (!courses) ? <EmptyList /> :
-    <View style={styles.courseList}>
-      <View style={styles.container}>
-        <View style={styles.courseWrapper} />
-      </View>
-      <View style={styles.container}>
-        <View style={styles.hyperlinkWrapper}>
-          <Hyperlink
-            style={styles.searchMore}
-            linkStyle={styles.hyperlink}
-            linkText={t.searchMore}
-            onPress={redirectTo}
-          >
-            <Text style={styles.contentText}>
-              {ACT_API_URL}
-            </Text>
-          </Hyperlink>
+class CourseList extends Component {
+  static propTypes = {
+    courses: PropTypes.arrayOf(PropTypes.shape({
+      /* eslint-disable react/no-unused-prop-types */
+      title: PropTypes.string.required,
+      lectures: PropTypes.array.required,
+      /* eslint-enable react/no-unused-prop-types */
+    })),
+  };
+
+  @autobind
+  componentDidUpdate() {
+    return this.props;
+  }
+
+  render() {
+    const { courses } = this.props;
+
+    if (!courses) {
+      return <EmptyList />;
+    }
+    return (
+      <View style={styles.courseList}>
+        <View style={styles.container}>
+          {courses.map((course, key) =>
+            <CourseSummary course={course} key={key} />
+          )}
+        </View>
+        <View style={styles.container}>
+          <View style={styles.hyperlinkWrapper}>
+            <Hyperlink
+              style={styles.searchMore}
+              linkStyle={styles.hyperlink}
+              linkText={t.searchMore}
+              onPress={redirectTo}
+            >
+              <Text style={styles.contentText}>
+                {ACT_API_URL}
+              </Text>
+            </Hyperlink>
+          </View>
         </View>
       </View>
-    </View>
-);
-
-CourseList.propTypes = {
-  courses: PropTypes.arrayOf(PropTypes.shape({
-    /* eslint-disable react/no-unused-prop-types */
-    title: PropTypes.string.required,
-    lectures: PropTypes.object,
-    /* eslint-enable react/no-unused-prop-types */
-  })),
-};
+    );
+  }
+}
 
 
 export default connectToProps(CourseList, 'courses');
