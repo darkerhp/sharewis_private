@@ -92,5 +92,4 @@ class CourseDetails extends Component {
   }
 }
 
-
 export default connectToProps(CourseDetails, 'courses');

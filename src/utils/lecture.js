@@ -29,8 +29,7 @@ export const getNextVideoLecture = (lectures, skipCompleted = true) => {
   return filteredLecture[0] || {};
 };
 
-export const getLectureById = (lectures, lectureId) => {
-  return lectures
+export const getLectureById = (lectures, lectureId) =>
+  lectures
     .filter(l => l.kind === 'lecture')
-    .find((lecture) => lecture.id === lectureId);
-};
+    .find(lecture => lecture.id === lectureId);

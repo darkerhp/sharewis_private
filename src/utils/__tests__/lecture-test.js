@@ -40,7 +40,7 @@ const lectures = [
 
 describe('LectureUtils Utils', () => {
   describe('getLectureIconName', () => {
-    let lecture = { type: 'VideoLecture' };
+    const lecture = { type: 'VideoLecture' };
 
     it('should return video lecture icon name', () => {
       const expectedIconName = 'play-circle-filled';

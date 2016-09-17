@@ -94,9 +94,11 @@ const Lecture = ({ lecture, handlePressLecture }) => {
   const isAccessibleLecture = lecture.type === 'VideoLecture';
   return (
     <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
-      <View style={lecture.isCompleted
+      <View
+        style={lecture.isCompleted
                 ? styles.lectureNoTextWrapperCompleted
-                : styles.lectureNoTextWrapper}>
+                : styles.lectureNoTextWrapper}
+      >
         <Text style={styles.lectureNoText}>{lecture.order}</Text>
       </View>
 
