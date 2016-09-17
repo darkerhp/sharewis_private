@@ -53,12 +53,4 @@ describe('Course Utils', () => {
   it('should return totalDuration', () =>
     expect(CourseUtils.totalDuration(course)).toEqual(240)
   );
-
-  it('should return next video lecture', () => {
-    nextLecture = CourseUtils.getNextVideoLecture(course);
-    expect(nextLecture.order).toEqual(4);
-
-    nextLecture = CourseUtils.getNextVideoLecture(course, false);
-    expect(nextLecture.order).toEqual(1);
-  });
 });
