@@ -16,12 +16,12 @@ export const getLectureIconName = (lecture) => {
   }
 };
 
-export const getNextVideoLecture = (lectures, ignoreCompleted = true) => {
+export const getNextVideoLecture = (lectures, skipCompleted = true) => {
   const filteredLecture = lectures
     .filter(l =>
       l.kind === 'lecture'
       && l.type === 'VideoLecture'
-      && l.isCompleted === !ignoreCompleted
+      && (!skipCompleted || l.isCompleted === false)
     ).sort((a, b) => {
       if (a.order === b.order) return 0;
       return a.order < b.order ? -1 : 1;
