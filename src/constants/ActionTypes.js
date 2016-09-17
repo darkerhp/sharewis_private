@@ -5,7 +5,8 @@ export const PRESS_PLAY = 'PRESS_PLAY';
 export const PRESS_SPEED = 'PRESS_SPEED';
 export const PRESS_FULL_SCREEN = 'PRESS_FULL_SCREEN';
 export const VIDEO_PROGRESS = 'VIDEO_PROGRESS';
-
+export const PRESS_NEXT_LECTURE = 'PRESS_NEXT_LECTURE';
+export const LOAD_LECTURE = 'LOAD_LECTURE';
 
 // Login
 export const FETCH_FB_EMAIL_FAILURE = 'FETCH_FB_EMAIL_FAILURE';
