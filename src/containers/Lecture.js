@@ -83,7 +83,7 @@ class Lecture extends Component {
       isCompleted: PropTypes.bool,
       type: PropTypes.string,
       /* eslint-enable react/no-unused-prop-types */
-    }).isRequired,
+    }),
     pressNextLecture: PropTypes.func.isRequired,
     loadLecture: PropTypes.func.isRequired,
   };
