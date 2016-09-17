@@ -2,6 +2,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Video from 'react-native-video';
 import autobind from 'autobind-decorator';
+import Button from 'react-native-button';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,7 +13,7 @@ import VideoControls from '../components/Lecture/VideoControls';
 import * as LectureUtils from '../utils/lecture';
 
 const { Component, PropTypes } = React;
-const { View, StyleSheet, StatusBar, Text, TouchableOpacity } = ReactNative;
+const { View, StyleSheet, StatusBar, Text } = ReactNative;
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -168,15 +169,15 @@ class Lecture extends Component {
             onPressPlay={pressPlay}
             onPressSpeed={pressSpeed}
           />
-          {/* TODO Button化する */}
           <View style={styles.nextLectureButtonWrapper}>
             {nextLecture &&
-              <TouchableOpacity
-                style={styles.nextLectureButton}
+              <Button
+                containerStyle={styles.nextLectureButton}
+                style={styles.nextLectureButtonText}
                 onPress={() => this.handlePressNextLecture(course, lectureId)}
               >
-                <Text style={styles.nextLectureButtonText}>{t.nextLecture}</Text>
-              </TouchableOpacity>
+                {t.nextLecture}
+              </Button>
             }
           </View>
         </View>
