@@ -68,6 +68,7 @@ const getScenes = loggedIn =>
       {...baseNavBarProps}
       backTitle={t.courseList}
       onRight={() => console.log('onRight')}
+      backButtonImage={backButtonWhiteImage}
       rightButtonImage={moreHorizWhiteImage}
     />
     <Scene
