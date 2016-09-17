@@ -1,15 +1,16 @@
-/**
- * @flow
- */
 import React from 'react';
 import ReactNative from 'react-native';
 import Video from 'react-native-video';
 import autobind from 'autobind-decorator';
+import { Actions as RouterActions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 import connectToProps from '../utils/redux';
+import * as LectureUtils from '../utils/lecture';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, StatusBar, Text, TouchableOpacity } = ReactNative;
@@ -39,17 +40,34 @@ class Lecture extends Component {
     pressSpeed: PropTypes.func.isRequired,
     currentTime: PropTypes.number.isRequired,
     videoProgress: PropTypes.func.isRequired,
-    lecture: PropTypes.shape({
+    lectureId: PropTypes.number.isRequired,
+    course: PropTypes.shape({
       /* eslint-disable react/no-unused-prop-types */
       order: PropTypes.number,
       title: PropTypes.string,
       kind: PropTypes.string,
       duration: PropTypes.number,
       isCompleted: PropTypes.bool,
+      isStarted: PropTypes.bool,
       type: PropTypes.string,
       /* eslint-enable react/no-unused-prop-types */
     }).isRequired,
+    pressNextLecture: PropTypes.func.isRequired,
+    loadLecture: PropTypes.func.isRequired,
   };
+
+  componentWillMount() {
+    const { course, lectureId } = this.props.scene;
+    this.props.loadLecture(course, lectureId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.scene.lectureId) return;
+    if (nextProps.scene.lectureId !== this.props.lectureId) {
+      const { course, lectureId } = nextProps.scene;
+      this.props.loadLecture(course, lectureId);
+    }
+  }
 
   @autobind
   handleValueChange(value) {
@@ -58,16 +76,30 @@ class Lecture extends Component {
     }
   }
 
+  @autobind
+  handlePressNextLecture(course, lectureId) {
+    this.props.pressNextLecture(course, lectureId); // update lecture status to finish
+    const { nextLecture } = this.props;
+    RouterActions.refresh({
+      title: nextLecture.title,
+      lectureId: nextLecture.id,
+      course,
+    });
+  }
+
   render() {
     const {
-      lecture,
+      lectureId,
+      course,
       currentTime,
       isPaused,
       speed,
       videoProgress,
+      nextLecture,
       pressPlay,
       pressSpeed,
     } = this.props;
+    const lecture = LectureUtils.getLectureById(course.lectures, lectureId);
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
@@ -105,18 +137,20 @@ class Lecture extends Component {
             onPressPlay={pressPlay}
             onPressSpeed={pressSpeed}
           />
-          {/* TODO NextLecture 実装する */}
           <View style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'stretch' }}>
-            <TouchableOpacity
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: '#579eff',
-                minHeight: 60,
-              }}
-            >
-              <Text style={{ color: 'white' }}>次のレクチャーに進む</Text>
-            </TouchableOpacity>
+            {nextLecture &&
+              <TouchableOpacity
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: '#579eff',
+                  minHeight: 60,
+                }}
+                onPress={() => this.handlePressNextLecture(course, lectureId)}
+              >
+                <Text style={{ color: 'white' }}>次のレクチャーに進む</Text>
+              </TouchableOpacity>
+            }
           </View>
         </View>
       </View>
@@ -124,4 +158,10 @@ class Lecture extends Component {
   }
 }
 
-export default connectToProps(Lecture, 'lecture', Actions);
+
+const mapStateToProps = state => ({ ...state['lecture'], ...state['routes'] });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+Lecture = connect(mapStateToProps, mapDispatchToProps)(Lecture);
+export default Lecture;
+// export default connectToProps(Lecture, ['lecture', 'routes'], Actions);
+
