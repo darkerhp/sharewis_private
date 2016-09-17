@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
-  nextLectureButton:{
+  nextLectureButton: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#579eff',
     minHeight: 60,
   },
-  nextLectureButtonText:{
+  nextLectureButtonText: {
     color: 'white',
   },
 });
@@ -71,6 +71,16 @@ class Lecture extends Component {
       duration: PropTypes.number,
       isCompleted: PropTypes.bool,
       isStarted: PropTypes.bool,
+      type: PropTypes.string,
+      /* eslint-enable react/no-unused-prop-types */
+    }).isRequired,
+    nextLecture: PropTypes.shape({
+      /* eslint-disable react/no-unused-prop-types */
+      order: PropTypes.number,
+      title: PropTypes.string,
+      kind: PropTypes.string,
+      duration: PropTypes.number,
+      isCompleted: PropTypes.bool,
       type: PropTypes.string,
       /* eslint-enable react/no-unused-prop-types */
     }).isRequired,
@@ -189,5 +199,4 @@ const mapStateToProps = state =>
     } : {}
   ));
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
-Lecture = connect(mapStateToProps, mapDispatchToProps)(Lecture);
-export default Lecture;
+export default connect(mapStateToProps, mapDispatchToProps)(Lecture);
