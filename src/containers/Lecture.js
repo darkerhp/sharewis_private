@@ -9,7 +9,6 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
-import connectToProps from '../utils/redux';
 import * as LectureUtils from '../utils/lecture';
 
 const { Component, PropTypes } = React;
@@ -30,7 +29,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'transparent',
   },
+  lectureTitleTextWrapper: {
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  nextLectureButtonWrapper: {
+    flex: 3,
+    justifyContent: 'flex-end',
+    alignItems: 'stretch',
+  },
+  nextLectureButton:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#579eff',
+    minHeight: 60,
+  },
+  nextLectureButtonText:{
+    color: 'white',
+  },
 });
+
+const t = {
+  nextLecture: '次のレクチャーに進む',
+};
 
 class Lecture extends Component {
   static propTypes = {
@@ -57,14 +79,14 @@ class Lecture extends Component {
   };
 
   componentWillMount() {
-    const { course, lectureId } = this.props.scene;
+    const { course, lectureId } = this.props;
     this.props.loadLecture(course, lectureId);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.scene.lectureId) return;
-    if (nextProps.scene.lectureId !== this.props.lectureId) {
-      const { course, lectureId } = nextProps.scene;
+    if (!nextProps.lectureId) return;
+    if (nextProps.lectureId !== this.props.lectureId) {
+      const { course, lectureId } = nextProps;
       this.props.loadLecture(course, lectureId);
     }
   }
@@ -127,8 +149,7 @@ class Lecture extends Component {
             onValueChange={this.handleValueChange}
             video={this.video}
           />
-          {/* TODO LectureTitle 実装する */}
-          <View style={{ flex: 0.5, justifyContent: 'flex-end', alignItems: 'stretch' }}>
+          <View style={styles.lectureTitleTextWrapper}>
             <Text>{lecture.title}</Text>
           </View>
           <VideoControls
@@ -137,18 +158,14 @@ class Lecture extends Component {
             onPressPlay={pressPlay}
             onPressSpeed={pressSpeed}
           />
-          <View style={{ flex: 3, justifyContent: 'flex-end', alignItems: 'stretch' }}>
+          {/* TODO Button化する */}
+          <View style={styles.nextLectureButtonWrapper}>
             {nextLecture &&
               <TouchableOpacity
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#579eff',
-                  minHeight: 60,
-                }}
+                style={styles.nextLectureButton}
                 onPress={() => this.handlePressNextLecture(course, lectureId)}
               >
-                <Text style={{ color: 'white' }}>次のレクチャーに進む</Text>
+                <Text style={styles.nextLectureButtonText}>{t.nextLecture}</Text>
               </TouchableOpacity>
             }
           </View>
@@ -159,9 +176,18 @@ class Lecture extends Component {
 }
 
 
-const mapStateToProps = state => ({ ...state['lecture'], ...state['routes'] });
+const mapStateToProps = state =>
+  Object.assign({ ...state.lecture }, (
+    /*
+     routerのactionに設定されたpropsはstate.routes.sceneに格納されているため
+     sceneから取得した情報をpropsに設定する
+     */
+    state.routes.scene.sceneKey === 'lecture' ?
+    {
+      lectureId: state.routes.scene.lectureId,
+      course: state.routes.scene.course,
+    } : {}
+  ));
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 Lecture = connect(mapStateToProps, mapDispatchToProps)(Lecture);
 export default Lecture;
-// export default connectToProps(Lecture, ['lecture', 'routes'], Actions);
-
