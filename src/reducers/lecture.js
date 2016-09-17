@@ -1,8 +1,10 @@
 /* @flow */
+// TODO video と lecture, lectures分けたほうがよさげ
 import * as types from '../constants/ActionTypes';
+import * as LectureUtils from '../utils/lecture';
 
 const initialState = {
-  isPaused: false,
+  isPaused: true,
   speed: 1,
   isFullScreen: false,
   duration: 0,
@@ -31,6 +33,31 @@ const lecture = (state = initialState, action) => {
         ...state,
         currentTime: action.currentTime,
       };
+    case types.PRESS_NEXT_LECTURE: {
+      const newLectures = state.course.lectures.map(l => (
+          l.id !== action.lectureId ? l : Object.assign({}, l, { isCompleted: true })
+      ));
+      return {
+        ...state,
+        lectureId: action.lectureId,
+        course: Object.assign({}, state.course, { newLectures }),
+      };
+    }
+    case types.LOAD_LECTURE: {
+      const { course, lectureId } = action;
+      const idx = course.lectures.findIndex(l =>
+        l.kind === 'lecture' && l.id === lectureId
+      );
+      const nextLecture = LectureUtils.getNextVideoLecture(course.lectures.slice(idx + 1), false);
+      return {
+        ...state,
+        ...initialState,
+        course,
+        lectureId,
+        nextLecture: Object.keys(nextLecture).length ? nextLecture : null,
+      }
+      ;
+    }
     default:
       return state;
   }
