@@ -16,17 +16,17 @@ export const getLectureIconName = (lecture) => {
   }
 };
 
+const sortByOrder = (a, b) => {
+  if (a.order === b.order) return 0;
+  return a.order < b.order ? -1 : 1;
+};
+
 export const getNextVideoLecture = (lectures, skipCompleted = true) => {
-  const filteredLecture = lectures
-    .filter(l =>
-      l.kind === 'lecture'
-      && l.type === 'VideoLecture'
-      && (!skipCompleted || l.isCompleted === false)
-    ).sort((a, b) => {
-      if (a.order === b.order) return 0;
-      return a.order < b.order ? -1 : 1;
-    });
-  return filteredLecture[0] || {};
+  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === 'VideoLecture');
+  if (skipCompleted) {
+    videoLectures = videoLectures.filter(l => l.isCompleted === false);
+  }
+  return videoLectures.sort(sortByOrder)[0] || {};
 };
 
 export const getLectureById = (lectures, lectureId) =>
