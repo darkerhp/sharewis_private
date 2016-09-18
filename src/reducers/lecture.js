@@ -35,19 +35,17 @@ const lecture = (state = initialState, action) => {
       };
     case types.PRESS_NEXT_LECTURE: {
       const newLectures = state.course.lectures.map(l => (
-          l.id !== action.lectureId ? l : Object.assign({}, l, { isCompleted: true })
+        l.id !== action.lectureId ? l : { ...l, isCompleted: true }
       ));
       return {
         ...state,
         lectureId: action.lectureId,
-        course: Object.assign({}, state.course, { newLectures }),
+        course: { ...state.course, lectures: newLectures },
       };
     }
     case types.LOAD_LECTURE: {
       const { course, lectureId } = action;
-      const idx = course.lectures.findIndex(l =>
-        l.kind === 'lecture' && l.id === lectureId
-      );
+      const idx = course.lectures.findIndex(l => l.id === lectureId);
       const nextLecture = LectureUtils.getNextVideoLecture(course.lectures.slice(idx + 1), false);
       return {
         ...state,
@@ -55,8 +53,7 @@ const lecture = (state = initialState, action) => {
         course,
         lectureId,
         nextLecture: Object.keys(nextLecture).length ? nextLecture : null,
-      }
-      ;
+      };
     }
     default:
       return state;
