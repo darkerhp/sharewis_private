@@ -16,4 +16,20 @@ export const getLectureIconName = (lecture) => {
   }
 };
 
-export default getLectureIconName;
+const sortByOrder = (a, b) => {
+  if (a.order === b.order) return 0;
+  return a.order < b.order ? -1 : 1;
+};
+
+export const getNextVideoLecture = (lectures, skipCompleted = true) => {
+  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === 'VideoLecture');
+  if (skipCompleted) {
+    videoLectures = videoLectures.filter(l => l.isCompleted === false);
+  }
+  return videoLectures.sort(sortByOrder)[0] || {};
+};
+
+export const getLectureById = (lectures, lectureId) =>
+  lectures
+    .filter(l => l.kind === 'lecture')
+    .find(lecture => lecture.id === lectureId);

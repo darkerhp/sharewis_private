@@ -5,7 +5,7 @@ import * as types from '../../constants/ActionTypes';
 describe('Lecture reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
-      isPaused: false,
+      isPaused: true,
       speed: 1,
       isFullScreen: false,
       duration: 0,
