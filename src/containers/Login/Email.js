@@ -139,9 +139,9 @@ class Email extends Component {
       const data = await fetchUserBy('email', [email, password]);
       return data;
     } catch (error) {
-      Alert.alert(I18n.t('errorTitle'), I18n.t('loginError'));
+      Alert.alert(I18n.t('errorTitle'), I18n.t('loginEmailError'));
       throw new SubmissionError({
-        _error: I18n.t('loginError'),
+        _error: I18n.t('loginEmailError'),
       });
     }
   }
@@ -153,7 +153,7 @@ class Email extends Component {
       <View style={styles.view}>
         <View style={styles.labelWrapper}>
           <Text style={styles.label}>
-            { I18n.t('emailLabel') }
+            { I18n.t('emailOrUsername') }
           </Text>
         </View>
         <View style={styles.inputWrapper}>
@@ -163,7 +163,7 @@ class Email extends Component {
               name="email"
               type="email"
               component={TextField}
-              placeholder={I18n.t('emailPlaceHolder')}
+              placeholder={I18n.t('emailOrUsername')}
               placeholderTextColor={'#dadada'}
               keyboardType="email-address"
               autoCapitalize={'none'}

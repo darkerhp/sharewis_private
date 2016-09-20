@@ -57,7 +57,6 @@ class Facebook extends Component {
     // Notify ACT API of the login and fetch user data
     try {
       await this.props.fetchUserBy('facebook', [result.email, result.id]);
-      Alert.alert(I18n.t('successTitle'), I18n.t('loginSuccess'));
     } catch (actError) {
       LoginManager.logOut();
       Alert.alert(I18n.t('errorTitle'), I18n.t('userDoesNotExist'));
@@ -68,7 +67,7 @@ class Facebook extends Component {
   handleLoginFinished(fbLoginError, result) {
     console.log(result);
     if (fbLoginError) {
-      Alert.alert(I18n.t('errorTitle'), I18n.t('loginError'));
+      Alert.alert(I18n.t('errorTitle'), I18n.t('loginFacebookError'));
       console.warn('Unexpected facebook login error!');
       console.log(fbLoginError);
       return;
