@@ -19,7 +19,6 @@
     "slide1Text": "ShareWis ACT ビューワーアプリはShareWis ACTで購入したコースを閲覧するためのアプリです。",
     "slide2Text": "アプリを使えば、コースの動画を事前にダウンロードして、通信費を気にすることなく受講することができます。",
     "slide3Text": "アカウントをお持ちでない方、購入済みのコースがない方は、 ACT_API_URL よりお手続きを進めてください。",
-    "successTitle": "成功",
     "userDoesNotExist": "ACTでこのユーザーを見付かりませんでした。ウエブサイトからサインアップをして下さい"
   },
   "en": {
@@ -38,12 +37,11 @@
     "passwordForgotten": "Forgot your password?",
     "passwordPlaceHolder": "Password",
     "profile": "PROFILE",
-    "signupText": "アカウントをお持ちでない方は ACT_API_URL からアカウントを作成してください",
+    "signupText": "If you don't have a ShareWis ACT account, please sign up from the ShareWis ACT website.",
     "slide1Text": "ShareWis ACT Viewer is an app to view courses purchased on ShareWis ACT.",
     "slide2Text": "No worry about mobile roaming costs. Download your videos in advance via WiFi, and watch them offline whenever you want!",
     "slide3Text": "If you don't have a ShareWis ACT account or haven't purchased any courses yet, please go to the ACT_API_URL.",
-    "successTitle": "成功",
-    "userDoesNotExist": "ACTでこのユーザーを見付かりませんでした。ウエブサイトからサインアップをして下さい"
+    "userDoesNotExist": "We couldn't find your user in ShareWis ACT. Please sign up from ShareWis ACT website"
   },
   "vn": {
     "actWebsite": "trang web ShareWis ACT",
@@ -61,11 +59,10 @@
     "passwordForgotten": "Quên mật khẩu",
     "passwordPlaceHolder": "Mật khẩu",
     "profile": "Hồ sơ",
-    "signupText": "アカウントをお持ちでない方は ACT_API_URL からアカウントを作成してください",
+    "signupText": "Nếu bạn không có một tài khoản ShareWis ACT, xin vui lòng đăng ký từ trang web ShareWis ACT.",
     "slide1Text": "ShareWis ACT Viewer là một ứng dụng để xem các khóa học mua trên ShareWis ACT.",
     "slide2Text": "Không cần lo lắng về chi phí chuyển vùng di động. Tải video của bạn trước qua WiFi, và xem chúng offline bất cứ khi nào bạn muốn!",
     "slide3Text": "Nếu bạn không có tài khoản ShareWis ACT hoặc chưa mua bất kỳ khóa học nào, vui lòng vào ACT_API_URL.",
-    "successTitle": "成功",
-    "userDoesNotExist": "ACTでこのユーザーを見付かりませんでした。ウエブサイトからサインアップをして下さい"
+    "userDoesNotExist": "Chúng tôi không thể tìm thấy người dùng của bạn trong ShareWis ACT. Hãy đăng ký từ trang web ShareWis ACT"
   }
 }
