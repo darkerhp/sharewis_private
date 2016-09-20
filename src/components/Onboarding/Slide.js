@@ -1,11 +1,29 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
+import I18n from 'react-native-i18n';
 
 import BaseStyles from '../../baseStyles';
 import { ACT_API_URL } from '../../constants/Api';
-import BaseTranslations from '../../baseTranslations';
 import redirectTo from '../../utils/linking';
+
+I18n.translations = {
+  ja: {
+    ...I18n.translations.ja,
+    actWebsite: 'ShareWis ACTのWebサイト',
+    errorTitle: 'エラー',
+  },
+  en: {
+    ...I18n.translations.en,
+    actWebsite: "ShareWis ACT's website",
+    errorTitle: 'Error',
+  },
+  vn: {
+    ...I18n.translations.vn,
+    actWebsite: 'Các trang web ShareWis ACT',
+    errorTitle: 'lỗi',
+  },
+};
 
 const { PropTypes } = React;
 const {
@@ -45,10 +63,6 @@ const styles = StyleSheet.create({
   contentText: BaseStyles.Text,
 });
 
-const t = {
-  ...BaseTranslations,
-};
-
 
 const Slide = ({ text, imageSrc }) =>
   <View style={styles.slide}>
@@ -63,7 +77,7 @@ const Slide = ({ text, imageSrc }) =>
       <Hyperlink
         style={{ flex: 1 }}
         linkStyle={{ color: BaseStyles.hyperlink }}
-        linkText={url => (url === ACT_API_URL ? t.actWebsite : url)}
+        linkText={url => (url === ACT_API_URL ? I18n.t('actWebsite') : url)}
         onPress={redirectTo}
       >
 

@@ -8,7 +8,6 @@ import { ACT_API_URL } from '../constants/Api';
 import Slide from '../components/Onboarding/Slide';
 import Login from './Login';
 
-I18n.fallbacks = true;
 
 const {
   StyleSheet,
@@ -44,6 +43,7 @@ const styles = StyleSheet.create({
 
 I18n.translations = {
   ja: {
+    ...I18n.translations.ja,
     slide1Text: 'ShareWis ACT ビューワーアプリはShareWis ACTで購入したコースを閲覧するためのアプリです。',
     slide2Text: 'アプリを使えば、コースの動画を事前にダウンロードして、通信費を気にすることなく受講することができます。',
     slide3Text: `アカウントをお持ちでない方、購入済みのコースがない方は、 ${ACT_API_URL} よりお手続きを進めてください。`,
@@ -51,6 +51,7 @@ I18n.translations = {
     next: '次へ',
   },
   en: {
+    ...I18n.translations.en,
     slide1Text: 'The ShareWis ACT viewer app allows you to browse purchased contents from ShareWis ACT.',
     slide2Text: 'It allows you to download videos offline so that you do not need to worry about roaming costs.',
     slide3Text: `If you do not yet have an account, please complete the signup procedure on ${ACT_API_URL}.`,
@@ -58,6 +59,7 @@ I18n.translations = {
     next: 'Next',
   },
   vn: {
+    ...I18n.translations.vn,
     slide1Text: 'Ứng dụng xem ShareWis ACT cho phép bạn duyệt nội dung mua từ ShareWis ACT.',
     slide2Text: 'Nó cho phép bạn tải video trên mạng, do đó bạn không cần phải lo lắng về chi phí chuyển vùng.',
     slide3Text: `Nếu bạn chưa có tài khoản, xin vui lòng hoàn thành các thủ tục đăng ký trên ${ACT_API_URL}.`,
@@ -78,20 +80,20 @@ const Onboarding = () =>
     dot={<View style={[{ backgroundColor: 'rgba(0,0,0,.2)' }, styles.dotStyles]} />}
     activeDot={<View style={[{ backgroundColor: 'gray' }, styles.dotStyles]} />}
     paginationStyle={styles.pagination}
-    prevButton={<Text style={styles.buttonText}>{I18n.t.back}</Text>}
-    nextButton={<Text style={styles.buttonText}>{I18n.t.next}</Text>}
+    prevButton={<Text style={styles.buttonText}>{I18n.t('back')}</Text>}
+    nextButton={<Text style={styles.buttonText}>{I18n.t('next')}</Text>}
     buttonWrapperStyle={styles.buttonWrapper}
   >
     <Slide
-      text={I18n.t.slide1Text}
+      text={I18n.t('slide1Text')}
       imageSrc={slide1ImageSrc}
     />
     <Slide
-      text={I18n.t.slide2Text}
+      text={I18n.t('slide2Text')}
       imageSrc={slide2ImageSrc}
     />
     <Slide
-      text={I18n.t.slide3Text}
+      text={I18n.t('slide3Text')}
       imageSrc={slide3ImageSrc}
     />
     <Login />

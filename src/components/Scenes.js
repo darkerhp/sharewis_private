@@ -8,10 +8,25 @@ import CourseDetails from '../containers/CourseDetails';
 import Onboarding from '../containers/Onboarding';
 import Profile from '../containers/Profile';
 import Lecture from '../containers/Lecture';
+// Load default translations
+import I18n from '../baseTranslations';
 
-const t = {
-  courseList: 'マイコース',
-  profile: 'プロファイル',
+I18n.translations = {
+  ja: {
+    ...I18n.translations.ja,
+    courseList: 'マイコース',
+    profile: 'プロファイル',
+  },
+  en: {
+    ...I18n.translations.en,
+    courseList: 'My courses',
+    profile: 'Profile',
+  },
+  vn: {
+    ...I18n.translations.vn,
+    courseList: 'các khóa học của tôi',
+    profile: 'Hồ sơ',
+  },
 };
 
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
@@ -52,7 +67,7 @@ const getScenes = loggedIn =>
     <Scene
       key="courseList"
       component={CourseList}
-      title={t.courseList}
+      title={I18n.t('courseList')}
       initial={loggedIn}
       type={ActionConst.RESET}
       hideNavBar={false}
@@ -66,7 +81,7 @@ const getScenes = loggedIn =>
       component={CourseDetails}
       hideNavBar={false}
       {...baseNavBarProps}
-      backTitle={t.courseList}
+      backTitle={I18n.t('courseList')}
       onRight={() => console.log('onRight')}
       backButtonImage={backButtonWhiteImage}
       rightButtonImage={moreHorizWhiteImage}
@@ -74,7 +89,7 @@ const getScenes = loggedIn =>
     <Scene
       key="lecture"
       component={Lecture}
-      title={t.profile}
+      title={I18n.t('profile')}
       hideNavBar={false}
       {...baseNavBarProps}
       backButtonImage={backButtonWhiteImage}
@@ -82,7 +97,7 @@ const getScenes = loggedIn =>
     <Scene
       key="profile"
       component={Profile}
-      title={t.profile}
+      title={I18n.t('profile')}
     />
   </Scene>;
 
