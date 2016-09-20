@@ -59,7 +59,7 @@ class Facebook extends Component {
       await this.props.fetchUserBy('facebook', [result.email, result.id]);
     } catch (actError) {
       LoginManager.logOut();
-      Alert.alert(I18n.t('errorTitle'), I18n.t('userDoesNotExist'));
+      Alert.alert(I18n.t('errorTitle'), I18n.t('facebookUserDoesNotExist'));
     }
   }
 

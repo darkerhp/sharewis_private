@@ -26,7 +26,7 @@
     "slide2Text": "アプリを使えば、コースの動画を事前にダウンロードして、通信費を気にすることなく受講することができます。",
     "slide3Text": "アカウントをお持ちでない方、購入済みのコースがない方は、 ACT_API_URL よりお手続きを進めてください。",
     "totalDurationFormat": "計 h時間m分",
-    "userDoesNotExist": "ACTでこのユーザーを見付かりませんでした。ウエブサイトからサインアップをして下さい"
+    "facebookUserDoesNotExist": "ACTでこのユーザーを見付かりませんでした。ウエブサイトからサインアップをして下さい"
   },
   "en": {
     "actWebsite": "ShareWis ACT's website",
@@ -55,7 +55,7 @@
     "slide2Text": "No worry about mobile roaming costs. Download your videos in advance via WiFi, and watch them offline whenever you want!",
     "slide3Text": "If you don't have a ShareWis ACT account or haven't purchased any courses yet, please go to the ACT_API_URL.",
     "totalDurationFormat": "LT",
-    "userDoesNotExist": "We couldn't find your user in ShareWis ACT. Please sign up from ShareWis ACT website"
+    "facebookUserDoesNotExist": "We couldn't find your user in ShareWis ACT. Please sign up from ShareWis ACT website"
   },
   "vn": {
     "actWebsite": "trang web ShareWis ACT",
@@ -84,6 +84,6 @@
     "slide2Text": "Không cần lo lắng về chi phí chuyển vùng di động. Tải video của bạn trước qua WiFi, và xem chúng offline bất cứ khi nào bạn muốn!",
     "slide3Text": "Nếu bạn không có tài khoản ShareWis ACT hoặc chưa mua bất kỳ khóa học nào, vui lòng vào ACT_API_URL.",
     "totalDurationFormat": "LT",
-    "userDoesNotExist": "Chúng tôi không thể tìm thấy người dùng của bạn trong ShareWis ACT. Hãy đăng ký từ trang web ShareWis ACT"
+    "facebookUserDoesNotExist": "Chúng tôi không thể tìm thấy người dùng của bạn trong ShareWis ACT. Hãy đăng ký từ trang web ShareWis ACT"
   }
 }
