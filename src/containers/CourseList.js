@@ -3,6 +3,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
+import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
@@ -52,11 +53,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const t = {
-  actWebsite: 'ShareWis ACTのサイト',
-  searchMore: '更にコースを探す',
-};
-
 
 // eslint-disable-next-line react/prefer-stateless-function
 class CourseList extends Component {
@@ -97,7 +93,7 @@ class CourseList extends Component {
               <Hyperlink
                 style={styles.searchMore}
                 linkStyle={styles.hyperlink}
-                linkText={t.searchMore}
+                linkText={I18n.t('searchMore')}
                 onPress={redirectTo}
               >
                 <Text style={styles.contentText}>

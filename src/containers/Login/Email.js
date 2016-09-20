@@ -153,7 +153,7 @@ class Email extends Component {
       <View style={styles.view}>
         <View style={styles.labelWrapper}>
           <Text style={styles.label}>
-            { I18n.t('emailOrUsername') }
+            { I18n.t('emailOrUsernameLabel') }
           </Text>
         </View>
         <View style={styles.inputWrapper}>
