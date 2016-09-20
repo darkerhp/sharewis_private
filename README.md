@@ -45,6 +45,7 @@ $ android list sdk -a -e | grep x86_64  # find an appropriate sdk
 $ android update sdk -a -u -t sys-img-x86_64-android-23  # install the sdk
 $ android list targets   # Find target and abi values for target
 $ android create avd -n react -t android-23 --abi default/x86_64
+$ android avd # Then clone the 'Galaxy Nexus' device and add more RAM to it for local dev
 $ # Build device with low resolution
 $ android create avd -n react-galaxynexus -t android-18 --abi default/x86 --device "Galaxy Nexus" --skin "720x1280" -c 128M
 $ # Build device with high resolution
@@ -53,7 +54,7 @@ $ # Enable keyboard for each avd
 $ for f in ~/.android/avd/*.avd/config.ini; do echo 'hw.keyboard=yes' >> "$f";
 done
 $ # Start emulator
-$ emulator -avd react-galaxynexus
+$ emulator @react-galaxynexus
 ```
 
 Then start react-native and run the android app
