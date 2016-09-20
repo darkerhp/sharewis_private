@@ -9,13 +9,13 @@ describe('Course Utils', () => {
   });
 
   it('should support japanese, english and vietnamese', () => {
-    expect(Object.keys(I18n.translations)).toEqual(['ja', 'en', 'vn']);
+    expect(Object.keys(I18n.translations)).toEqual(['ja', 'en', 'vi']);
   });
   it('should have the same number of translations for each language', () => {
     const jaKeysNb = Object.keys(I18n.translations.ja).length;
     const enKeysNb = Object.keys(I18n.translations.en).length;
-    const vnKeysNb = Object.keys(I18n.translations.vn).length;
+    const viKeysNb = Object.keys(I18n.translations.vi).length;
     expect(jaKeysNb).toEqual(enKeysNb);
-    expect(jaKeysNb).toEqual(vnKeysNb);
+    expect(jaKeysNb).toEqual(viKeysNb);
   });
 });
