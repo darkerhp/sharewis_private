@@ -1,6 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import { ActionConst, Scene } from 'react-native-router-flux';
+import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
 import CourseList from '../containers/CourseList';
@@ -8,11 +9,6 @@ import CourseDetails from '../containers/CourseDetails';
 import Onboarding from '../containers/Onboarding';
 import Profile from '../containers/Profile';
 import Lecture from '../containers/Lecture';
-
-const t = {
-  courseList: 'マイコース',
-  profile: 'プロファイル',
-};
 
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
 const menuWhiteImage = require('./images/ic_menu_white.png');
@@ -52,7 +48,7 @@ const getScenes = loggedIn =>
     <Scene
       key="courseList"
       component={CourseList}
-      title={t.courseList}
+      title={I18n.t('courseList')}
       initial={loggedIn}
       type={ActionConst.RESET}
       hideNavBar={false}
@@ -66,7 +62,7 @@ const getScenes = loggedIn =>
       component={CourseDetails}
       hideNavBar={false}
       {...baseNavBarProps}
-      backTitle={t.courseList}
+      backTitle={I18n.t('courseList')}
       onRight={() => console.log('onRight')}
       backButtonImage={backButtonWhiteImage}
       rightButtonImage={moreHorizWhiteImage}
@@ -74,7 +70,7 @@ const getScenes = loggedIn =>
     <Scene
       key="lecture"
       component={Lecture}
-      title={t.profile}
+      title={I18n.t('profile')}
       hideNavBar={false}
       {...baseNavBarProps}
       backButtonImage={backButtonWhiteImage}
@@ -82,7 +78,7 @@ const getScenes = loggedIn =>
     <Scene
       key="profile"
       component={Profile}
-      title={t.profile}
+      title={I18n.t('profile')}
     />
   </Scene>;
 

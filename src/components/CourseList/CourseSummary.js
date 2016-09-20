@@ -2,6 +2,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import I18n from 'react-native-i18n';
 
 import ProgressBar from '../ProgressBar';
 
@@ -53,13 +54,6 @@ const styles = StyleSheet.create({
 });
 
 
-const t = {
-  progressText: (progress, total) =>
-    `${progress}/${total}のレクチャーが完了しました`,
-  downloadAvailable: 'ダウンロード済みレクチャーあり',
-};
-
-
 const CourseSummary = ({ course, ...props }) =>
   <TouchableHighlight {...props}>
     <View style={{ flex: 1 }}>
@@ -75,12 +69,12 @@ const CourseSummary = ({ course, ...props }) =>
           <Hr lineColor={'#dadada'} />
         </View>
         <Text style={styles.progress}>
-          {t.progressText(course.nb_lectures_watched, course.total_nb_lectures)}
+          {`${course.nb_lectures_watched}/${course.total_nb_lectures} ${I18n.t('progressText')}`}
         </Text>
         <ProgressBar progress={course.nb_lectures_watched / course.total_nb_lectures} />
         <View style={styles.download}>
           <Text style={styles.downloadText}>
-            {t.downloadAvailable}
+            {I18n.t('downloadAvailable')}
           </Text>
           <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
         </View>

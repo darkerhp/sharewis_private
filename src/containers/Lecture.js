@@ -6,6 +6,7 @@ import Button from 'react-native-button';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import I18n from 'react-native-i18n';
 
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
@@ -51,9 +52,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const t = {
-  nextLecture: '次のレクチャーに進む',
-};
 
 class Lecture extends Component {
   static propTypes = {
@@ -176,7 +174,7 @@ class Lecture extends Component {
                 style={styles.nextLectureButtonText}
                 onPress={() => this.handlePressNextLecture(course, lectureId)}
               >
-                {t.nextLecture}
+                {I18n.t('nextLecture')}
               </Button>
             }
           </View>

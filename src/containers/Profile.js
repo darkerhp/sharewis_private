@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import I18n from 'react-native-i18n';
 import connectToProps from '../utils/redux';
 
 const { Text, View } = ReactNative;
-
-const t = {
-  profile: 'Profile',
-};
 
 
 const Profile = () =>
   <View>
     <Text>
-      {t.profile}
+      {I18n.t('profile')}
     </Text>
   </View>;
 

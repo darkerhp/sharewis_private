@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import I18n from 'react-native-i18n';
 import ProgressBar from '../ProgressBar';
 import BaseStyle from '../../baseStyles';
 
@@ -17,15 +18,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const t = {
-  lectureCompleteLabel: (progress, total) =>
-    `${progress}/${total}のレクチャーが完了しました`,
-};
 
 const Progress = ({ completeLectureCount, totalLectureCount }) =>
   <View style={styles.container}>
     <Text style={styles.progressText}>
-      {t.lectureCompleteLabel(completeLectureCount, totalLectureCount)}
+      {`${completeLectureCount}/${totalLectureCount} ${I18n.t('progressText')}`}
     </Text>
     <ProgressBar progress={completeLectureCount / totalLectureCount} />
   </View>;

@@ -2,10 +2,11 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
+import I18n from 'react-native-i18n';
 
-import { ACT_API_URL } from '../constants/Api';
 import Slide from '../components/Onboarding/Slide';
 import Login from './Login';
+
 
 const {
   StyleSheet,
@@ -39,15 +40,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// i18n TODO 多言語化
-const t = {
-  slide1Text: 'ShareWis ACT ビューワーアプリはShareWis ACTで購入したコースを閲覧するためのアプリです。',
-  slide2Text: 'アプリを使えば、コースの動画を事前にダウンロードして、通信費を気にすることなく受講することができます。',
-  slide3Text: `アカウントをお持ちでない方、購入済みのコースがない方は、 ${ACT_API_URL} よりお手続きを進めてください。`,
-  back: '戻る',
-  next: '次へ',
-};
-
 // images
 const slide1ImageSrc = require('../components/Onboarding/images/slide1.png');
 const slide2ImageSrc = require('../components/Onboarding/images/slide2.png');
@@ -60,20 +52,20 @@ const Onboarding = () =>
     dot={<View style={[{ backgroundColor: 'rgba(0,0,0,.2)' }, styles.dotStyles]} />}
     activeDot={<View style={[{ backgroundColor: 'gray' }, styles.dotStyles]} />}
     paginationStyle={styles.pagination}
-    prevButton={<Text style={styles.buttonText}>{t.back}</Text>}
-    nextButton={<Text style={styles.buttonText}>{t.next}</Text>}
+    prevButton={<Text style={styles.buttonText}>{I18n.t('back')}</Text>}
+    nextButton={<Text style={styles.buttonText}>{I18n.t('next')}</Text>}
     buttonWrapperStyle={styles.buttonWrapper}
   >
     <Slide
-      text={t.slide1Text}
+      text={I18n.t('slide1Text')}
       imageSrc={slide1ImageSrc}
     />
     <Slide
-      text={t.slide2Text}
+      text={I18n.t('slide2Text')}
       imageSrc={slide2ImageSrc}
     />
     <Slide
-      text={t.slide3Text}
+      text={I18n.t('slide3Text')}
       imageSrc={slide3ImageSrc}
     />
     <Login />

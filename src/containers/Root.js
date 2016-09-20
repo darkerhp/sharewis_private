@@ -6,12 +6,14 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import Spinner from 'react-native-loading-spinner-overlay';
 
+import setupI18n from '../utils/translations';
 import PURGE_STORAGE from '../constants/Debug';
 import configureStore from '../store';
 import App from './App';
 
 const { Component } = React;
 const store = configureStore();
+setupI18n();
 
 
 export default class Root extends Component {

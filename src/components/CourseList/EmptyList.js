@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
+import I18n from 'react-native-i18n';
 
 import BaseStyles from '../../baseStyles';
-import { ACT_API_URL } from '../../constants/Api';
-import BaseTranslations from '../../baseTranslations';
 import redirectTo from '../../utils/linking';
 
 const { StyleSheet, Text, View } = ReactNative;
@@ -25,22 +24,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const t = {
-  ...BaseTranslations,
-  noCourses: `購入済みのコースがない方は、 ${ACT_API_URL} よりお手続きを進めてください`,
-};
-
 
 const emptyList = () =>
   <View style={styles.courseList}>
     <Hyperlink
       style={styles.emptyList}
       linkStyle={{ color: BaseStyles.hyperlink }}
-      linkText={t.actWebsite}
+      linkText={I18n.t('actWebsite')}
       onPress={redirectTo}
     >
       <Text style={styles.contentText}>
-        {t.noCourses}
+        {I18n.t('noCourses')}
       </Text>
     </Hyperlink>
   </View>;

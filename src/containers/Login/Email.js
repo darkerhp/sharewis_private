@@ -10,10 +10,10 @@ import {
   SubmissionError,
 } from 'redux-form';
 import { connect } from 'react-redux';
+import I18n from 'react-native-i18n';
 
 import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
-import BaseTranslations from '../../baseTranslations';
 import TextField from '../../components/TextField';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
@@ -100,16 +100,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const t = {
-  ...BaseTranslations,
-  emailLabel: 'メールアドレスでログインする',
-  emailPlaceHolder: 'メールアドレス',
-  login: 'ログイン',
-  passwordForgotten: 'パスワードを忘れた方',
-  passwordPlaceHolder: 'パスワード',
-  loginError: 'このメールとパスワードでログインを失敗しました',
-};
-
 
 const formOptions = {
   form: 'email',
@@ -149,9 +139,9 @@ class Email extends Component {
       const data = await fetchUserBy('email', [email, password]);
       return data;
     } catch (error) {
-      Alert.alert(t.errorTitle, t.loginError);
+      Alert.alert(I18n.t('errorTitle'), I18n.t('loginEmailError'));
       throw new SubmissionError({
-        _error: t.loginError,
+        _error: I18n.t('loginEmailError'),
       });
     }
   }
@@ -163,7 +153,7 @@ class Email extends Component {
       <View style={styles.view}>
         <View style={styles.labelWrapper}>
           <Text style={styles.label}>
-            { t.emailLabel }
+            { I18n.t('emailOrUsernameLabel') }
           </Text>
         </View>
         <View style={styles.inputWrapper}>
@@ -173,7 +163,7 @@ class Email extends Component {
               name="email"
               type="email"
               component={TextField}
-              placeholder={t.emailPlaceHolder}
+              placeholder={I18n.t('emailOrUsername')}
               placeholderTextColor={'#dadada'}
               keyboardType="email-address"
               autoCapitalize={'none'}
@@ -187,7 +177,7 @@ class Email extends Component {
               name="password"
               type="password"
               component={TextField}
-              placeholder={t.passwordPlaceHolder}
+              placeholder={I18n.t('passwordPlaceHolder')}
               placeholderTextColor={'#dadada'}
               autoCapitalize={'none'}
               autoCorrect={false}
@@ -203,11 +193,11 @@ class Email extends Component {
             onPress={handleSubmit(this.handlePress)}
             disabled={loginDisabled}
           >
-            { t.login }
+            { I18n.t('login') }
           </Button>
           <Hyperlink
             style={styles.textWrapper}
-            linkText={t.passwordForgotten}
+            linkText={I18n.t('passwordForgotten')}
             onPress={redirectTo}
           >
             <Text style={styles.text}>
