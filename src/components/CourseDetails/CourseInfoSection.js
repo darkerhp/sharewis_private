@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import I18n from 'react-native-i18n';
 
 import NextLectureArea from './NextLectureArea';
 import Duration from '../Duration';
@@ -29,9 +30,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const t = {
-  totalDurationFormat: '計 h時間m分',
-};
 
 const CourseInfoSection = ({
   courseTitle,
@@ -64,7 +62,7 @@ const CourseInfoSection = ({
 
     <Duration
       duration={totalDuration}
-      format={t.totalDurationFormat}
+      format={I18n.t('totalDurationFormat')}
       containerStyle={styles.totalDurationWrapper}
       durationStyle={styles.totalDuration}
     />

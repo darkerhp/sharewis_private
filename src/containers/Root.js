@@ -5,23 +5,15 @@ import { LoginManager } from 'react-native-fbsdk';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import Spinner from 'react-native-loading-spinner-overlay';
-import I18n from 'react-native-i18n';
 
+import setupI18n from '../utils/translations';
 import PURGE_STORAGE from '../constants/Debug';
-import { ACT_API_URL } from '../constants/Api';
-import rawTranslations from '../data/translations';
 import configureStore from '../store';
 import App from './App';
 
 const { Component } = React;
 const store = configureStore();
-
-// Set localization
-let stringTranslations = JSON.stringify(rawTranslations);
-stringTranslations = stringTranslations.replace(/ACT_API_URL/gm, ACT_API_URL);
-I18n.fallbacks = true;
-I18n.defaultLocale = 'en-US';
-I18n.translations = JSON.parse(stringTranslations);
+setupI18n();
 
 
 export default class Root extends Component {

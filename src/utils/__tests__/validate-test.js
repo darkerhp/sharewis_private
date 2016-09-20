@@ -1,5 +1,9 @@
 /* eslint-disable no-undef */
 import validateEmailLogin from '../validate';
+import setupI18n from '../translations';
+
+setupI18n();
+
 
 describe('Validate', () => {
   describe('validateEmailLogin', () => {
@@ -9,8 +13,8 @@ describe('Validate', () => {
         password: '',
       };
       expect(validateEmailLogin(emptyForm)).toEqual({
-        email: '必要です',
-        password: '必要です',
+        email: 'Required',
+        password: 'Required',
       });
     });
 
@@ -20,7 +24,7 @@ describe('Validate', () => {
         password: 'password',
       };
       expect(validateEmailLogin(incompleteForm)).toEqual({
-        email: '必要です',
+        email: 'Required',
       });
     });
 
@@ -30,7 +34,7 @@ describe('Validate', () => {
         password: '',
       };
       expect(validateEmailLogin(incompleteForm)).toEqual({
-        password: '必要です',
+        password: 'Required',
       });
     });
 

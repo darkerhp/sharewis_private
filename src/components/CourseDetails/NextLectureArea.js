@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import I18n from 'react-native-i18n';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text, Image, TouchableOpacity } = ReactNative;
@@ -36,9 +37,6 @@ const styles = StyleSheet.create({
 
 });
 
-const t = {
-  nextLecture: '次のレクチャーへ',
-};
 
 const videoImageSrc = require('./images/video.png');
 const quizImageSrc = require('./images/quiz.png');
@@ -69,7 +67,7 @@ const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyle }
         <Text style={styles.nextLectureTitleText}>{nextLecture.title}</Text>
       </View>
       <View style={styles.nextLectureTextWrapper}>
-        <Text style={styles.nextLectureText}>{t.nextLecture}</Text>
+        <Text style={styles.nextLectureText}>{I18n.t('nextLecture')}</Text>
       </View>
     </TouchableOpacity>
   </View>;
