@@ -7,23 +7,6 @@ import BaseStyles from '../../baseStyles';
 import { ACT_API_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
 
-I18n.translations = {
-  ja: {
-    ...I18n.translations.ja,
-    actWebsite: 'ShareWis ACTのWebサイト',
-    errorTitle: 'エラー',
-  },
-  en: {
-    ...I18n.translations.en,
-    actWebsite: "ShareWis ACT's website",
-    errorTitle: 'Error',
-  },
-  vn: {
-    ...I18n.translations.vn,
-    actWebsite: 'Các trang web ShareWis ACT',
-    errorTitle: 'lỗi',
-  },
-};
 
 const { PropTypes } = React;
 const {

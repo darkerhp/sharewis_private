@@ -5,10 +5,9 @@ import Hr from 'react-native-hr';
 import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
+import I18n from 'react-native-i18n';
 
 import BaseStyles from '../../baseStyles';
-import { ACT_API_URL } from '../../constants/Api';
-import BaseTranslations from '../../baseTranslations';
 import connectToProps from '../../utils/redux';
 import redirectTo from '../../utils/linking';
 import Email from './Email';
@@ -37,10 +36,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const t = {
-  ...BaseTranslations,
-  signupText: `アカウントをお持ちでない方は ${ACT_API_URL} からアカウントを作成してください`,
-};
 
 class Login extends Component {
   static propTypes = {
@@ -64,11 +59,11 @@ class Login extends Component {
           <Hr lineColor={'#dadada'} />
           <Hyperlink
             linkStyle={{ color: BaseStyles.hyperlink }}
-            linkText={t.actWebsite}
+            linkText={I18n.t('actWebsite')}
             onPress={redirectTo}
           >
             <Text style={styles.contentText}>
-              {t.signupText}
+              {I18n.t('signupText')}
             </Text>
           </Hyperlink>
         </View>

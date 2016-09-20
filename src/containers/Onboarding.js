@@ -4,7 +4,6 @@ import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 
-import { ACT_API_URL } from '../constants/Api';
 import Slide from '../components/Onboarding/Slide';
 import Login from './Login';
 
@@ -40,33 +39,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 });
-
-I18n.translations = {
-  ja: {
-    ...I18n.translations.ja,
-    slide1Text: 'ShareWis ACT ビューワーアプリはShareWis ACTで購入したコースを閲覧するためのアプリです。',
-    slide2Text: 'アプリを使えば、コースの動画を事前にダウンロードして、通信費を気にすることなく受講することができます。',
-    slide3Text: `アカウントをお持ちでない方、購入済みのコースがない方は、 ${ACT_API_URL} よりお手続きを進めてください。`,
-    back: '戻る',
-    next: '次へ',
-  },
-  en: {
-    ...I18n.translations.en,
-    slide1Text: 'The ShareWis ACT viewer app allows you to browse purchased contents from ShareWis ACT.',
-    slide2Text: 'It allows you to download videos offline so that you do not need to worry about roaming costs.',
-    slide3Text: `If you do not yet have an account, please complete the signup procedure on ${ACT_API_URL}.`,
-    back: 'Back',
-    next: 'Next',
-  },
-  vn: {
-    ...I18n.translations.vn,
-    slide1Text: 'Ứng dụng xem ShareWis ACT cho phép bạn duyệt nội dung mua từ ShareWis ACT.',
-    slide2Text: 'Nó cho phép bạn tải video trên mạng, do đó bạn không cần phải lo lắng về chi phí chuyển vùng.',
-    slide3Text: `Nếu bạn chưa có tài khoản, xin vui lòng hoàn thành các thủ tục đăng ký trên ${ACT_API_URL}.`,
-    back: 'Trở lại',
-    next: 'kế tiếp',
-  },
-};
 
 // images
 const slide1ImageSrc = require('../components/Onboarding/images/slide1.png');

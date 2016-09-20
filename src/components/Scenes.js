@@ -1,6 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import { ActionConst, Scene } from 'react-native-router-flux';
+import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
 import CourseList from '../containers/CourseList';
@@ -8,26 +9,6 @@ import CourseDetails from '../containers/CourseDetails';
 import Onboarding from '../containers/Onboarding';
 import Profile from '../containers/Profile';
 import Lecture from '../containers/Lecture';
-// Load default translations
-import I18n from '../baseTranslations';
-
-I18n.translations = {
-  ja: {
-    ...I18n.translations.ja,
-    courseList: 'マイコース',
-    profile: 'プロファイル',
-  },
-  en: {
-    ...I18n.translations.en,
-    courseList: 'My courses',
-    profile: 'Profile',
-  },
-  vn: {
-    ...I18n.translations.vn,
-    courseList: 'các khóa học của tôi',
-    profile: 'Hồ sơ',
-  },
-};
 
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
 const menuWhiteImage = require('./images/ic_menu_white.png');
