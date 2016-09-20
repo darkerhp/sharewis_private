@@ -5,12 +5,13 @@
     "courseList": "マイコース",
     "downloadAvailable": "ダウンロード済みレクチャーあり",
     "emailOrUsername": "メールアドレスまたはアカウント名",
-    "emailOrUsernameLabel": "メールアドレスまたはアカウント名でログインする",
-    "emailNotFound": "Facebookからメールを貰えませんでした。Facebookの設定からメールを共有することが出来るように同意して下さい",
+    "emailOrUsernameLabel": "メールアドレスでログインする",
+    "emailNotFound": "Facebookからメールアドレスを取得することができませんでした。Facebookの共有設定をご確認ください",
     "errorTitle": "エラー",
     "facebookLabel": "Facebookアカウントでログイン",
+    "facebookUserDoesNotExist": "登録されていないFacebookアカウントです。ShareWis ACTのサイトからアカウントを作成してください",
     "login": "ログイン",
-    "loginEmailError": "このメールとパスワードでログインを失敗しました",
+    "loginEmailError": "メールアドレス、ユーザー名またはパスワードが正しくありません",
     "loginFacebookError": "Facebookログインが失敗しました",
     "next": "次へ",
     "nextLecture": "次のレクチャーへ",
@@ -25,8 +26,7 @@
     "slide1Text": "ShareWis ACT ビューワーアプリはShareWis ACTで購入したコースを閲覧するためのアプリです。",
     "slide2Text": "アプリを使えば、コースの動画を事前にダウンロードして、通信費を気にすることなく受講することができます。",
     "slide3Text": "アカウントをお持ちでない方、購入済みのコースがない方は、 ACT_API_URL よりお手続きを進めてください。",
-    "totalDurationFormat": "計 h時間m分",
-    "facebookUserDoesNotExist": "ACTでこのユーザーを見付かりませんでした。ウエブサイトからサインアップをして下さい"
+    "totalDurationFormat": "計 h時間m分"
   },
   "en": {
     "actWebsite": "ShareWis ACT's website",
@@ -34,12 +34,13 @@
     "courseList": "My courses",
     "downloadAvailable": "Downloaded lectures exist",
     "emailOrUsername": "E-mail or Username",
-    "emailOrUsernameLabel": "Login with your e-mail or username",
+    "emailOrUsernameLabel": "Login with your e-mail",
     "emailNotFound": "We were unable to fetch your email from Facebook. Please review your Facebook settings to allow sharing your email.",
     "errorTitle": "Error",
     "facebookLabel": "Login with your Facebook account",
+    "facebookUserDoesNotExist": "Your Facebook account is not registered. Please sign up from ShareWis ACT website",
     "login": "Login",
-    "loginEmailError": "Login failed using these email and password.",
+    "loginEmailError": "Invalid email, username or password",
     "loginFacebookError": "Login with Facebook failed.",
     "next": "Next",
     "nextLecture": "Next lecture",
@@ -49,13 +50,12 @@
     "profile": "PROFILE",
     "progressText": "lectures completed",
     "required": "Required",
-    "searchMore": "Search more",
+    "searchMore": "Get more course",
     "signupText": "If you don't have a ShareWis ACT account, please sign up from the ACT_API_URL.",
     "slide1Text": "ShareWis ACT Viewer is an app to view courses purchased on ShareWis ACT.",
     "slide2Text": "No worry about mobile roaming costs. Download your videos in advance via WiFi, and watch them offline whenever you want!",
     "slide3Text": "If you don't have a ShareWis ACT account or haven't purchased any courses yet, please go to the ACT_API_URL.",
-    "totalDurationFormat": "LT",
-    "facebookUserDoesNotExist": "We couldn't find your user in ShareWis ACT. Please sign up from ShareWis ACT website"
+    "totalDurationFormat": "[Total ]h[ hours ]m[ minutes]"
   },
   "vn": {
     "actWebsite": "trang web ShareWis ACT",
@@ -63,10 +63,11 @@
     "courseList": "các khóa học của tôi",
     "downloadAvailable": "Bài giảng tải về đã tồn tại",
     "emailOrUsername": "Địa chỉ email hoặc tên tài khoản",
-    "emailOrUsernameLabel": "Đăng nhập với email hoặc tên người dùng",
+    "emailOrUsernameLabel": "Đăng nhập với email",
     "emailNotFound": "Chúng tôi không thể tìm nạp email của bạn từ Facebook. Hãy xem xét cài đặt Facebook của bạn để cho phép chia sẻ email của bạn.",
     "errorTitle": "lỗi",
     "facebookLabel": "Đăng nhập bằng tài khoản Facebook",
+    "facebookUserDoesNotExist": "Chúng tôi không thể tìm thấy người dùng của bạn trong ShareWis ACT. Hãy đăng ký từ trang web ShareWis ACT",
     "login": "Đăng nhập",
     "loginEmailError": "Đăng nhập thất bại sử dụng các email và mật khẩu.",
     "loginFacebookError": "Đăng nhập với Facebook thất bại.",
@@ -83,7 +84,6 @@
     "slide1Text": "ShareWis ACT Viewer là một ứng dụng để xem các khóa học mua trên ShareWis ACT.",
     "slide2Text": "Không cần lo lắng về chi phí chuyển vùng di động. Tải video của bạn trước qua WiFi, và xem chúng offline bất cứ khi nào bạn muốn!",
     "slide3Text": "Nếu bạn không có tài khoản ShareWis ACT hoặc chưa mua bất kỳ khóa học nào, vui lòng vào ACT_API_URL.",
-    "totalDurationFormat": "LT",
-    "facebookUserDoesNotExist": "Chúng tôi không thể tìm thấy người dùng của bạn trong ShareWis ACT. Hãy đăng ký từ trang web ShareWis ACT"
+    "totalDurationFormat": "[Tổng cộng ]h[ giờ ]m[ phút]"
   }
 }
