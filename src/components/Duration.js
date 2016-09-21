@@ -32,8 +32,10 @@ const Duration = ({
 Duration.propTypes = {
   duration: PropTypes.number.isRequired,
   format: PropTypes.string,
-  containerStyle: PropTypes.number,
-  durationStyle: PropTypes.number,
+  /* eslint-disable react/forbid-prop-types */
+  containerStyle: PropTypes.object,
+  durationStyle: PropTypes.object,
+  /* eslint-enable react/forbid-prop-types */
   prefixText: PropTypes.string,
 };
 

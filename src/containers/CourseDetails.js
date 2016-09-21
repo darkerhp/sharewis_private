@@ -26,23 +26,14 @@ class CourseDetails extends Component {
       lectures: PropTypes.array.required,
       /* eslint-enable react/no-unused-prop-types */
     }),
-    // lectures: PropTypes.arrayOf(PropTypes.shape({
-    //   id: PropTypes.number.isRequired,
-    //   title: PropTypes.string.isRequired,
-    //   duration: PropTypes.number.isRequired,
-    //   type: PropTypes.number.isRequired,
-    // })).isRequired,
   };
 
   @autobind
   handlePressNextLecture() {
     const { course } = this.props;
-    const nextLecture = LectureUtils.getNextVideoLecture(course.lectures);
-    RouterActions.lecture({
-      title: nextLecture.title,
-      lectureId: nextLecture.id,
-      course,
-    });
+    this.handlePressLecture(
+      LectureUtils.getNextVideoLecture(course.lectures)
+    );
   }
 
   @autobind
