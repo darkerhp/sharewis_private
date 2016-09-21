@@ -109,7 +109,7 @@ const Lecture = ({ lecture, handlePressLecture }) => {
             style={styles.lectureIcon}
           />
         </View>
-        <Duration duration={lecture.duration} containerStyle={styles.durationWrapper} />
+        <Duration duration={lecture.duration} containerStyleId={styles.durationWrapper} />
       </View>
 
       <TouchableOpacity

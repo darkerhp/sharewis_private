@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
 const Duration = ({
   duration,
   format = 'mm:ss',
-  containerStyle = null,
-  durationStyle = null,
+  containerStyleId = null,
+  durationStyleId = null,
   prefixText = '',
 }) =>
-  <View style={[styles.container, containerStyle]}>
-    <Text style={[styles.duration, durationStyle]}>
+  <View style={[styles.container, containerStyleId]}>
+    <Text style={[styles.duration, durationStyleId]}>
       {prefixText}{moment.duration(duration, 'seconds').format(format, { trim: false })}
     </Text>
   </View>;
@@ -32,10 +32,8 @@ const Duration = ({
 Duration.propTypes = {
   duration: PropTypes.number.isRequired,
   format: PropTypes.string,
-  /* eslint-disable react/forbid-prop-types */
-  containerStyle: PropTypes.object,
-  durationStyle: PropTypes.object,
-  /* eslint-enable react/forbid-prop-types */
+  containerStyleId: PropTypes.number,
+  durationStyleId: PropTypes.number,
   prefixText: PropTypes.string,
 };
 

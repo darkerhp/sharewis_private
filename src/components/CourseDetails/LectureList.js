@@ -22,8 +22,8 @@ const renderLecture = (key, lecture, handlePressLecture) => (
     : <Lecture key={key} lecture={lecture} handlePressLecture={handlePressLecture} />
 );
 
-const LectureList = ({ lectures, containerStyle, handlePressLecture }) =>
-  <View style={[styles.container, containerStyle]}>
+const LectureList = ({ lectures, containerStyleId, handlePressLecture }) =>
+  <View style={[styles.container, containerStyleId]}>
     {lectures.map((lecture, i) => renderLecture(i, lecture, handlePressLecture))}
   </View>;
 
@@ -39,8 +39,7 @@ LectureList.propTypes = {
     /* eslint-enable react/no-unused-prop-types */
   })).isRequired,
   handlePressLecture: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  containerStyle: PropTypes.object.isRequired,
+  containerStyleId: PropTypes.number.isRequired,
 };
 
 export default LectureList;

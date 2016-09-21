@@ -11,6 +11,7 @@ const { View, StyleSheet, Text } = ReactNative;
 
 const styles = StyleSheet.create({
   container: { padding: 10 },
+  lectureAreaContainer: { flex: 3 },
   courseTitleWrapper: { flex: 1 },
   courseTitleText: {
     color: 'black',
@@ -40,7 +41,7 @@ const CourseInfoSection = ({
   nextLecture,
   handlePressNextLecture,
   containerStyle,
-}) => (
+}) =>
   <View style={[styles.container, containerStyle]}>
     <View style={styles.courseTitleWrapper}>
       <Text style={styles.courseTitleText}>{courseTitle}</Text>
@@ -51,7 +52,7 @@ const CourseInfoSection = ({
         nextLecture={nextLecture}
         handlePressNextLecture={handlePressNextLecture}
         hidden
-        containerStyle={{ flex: 3 }}
+        containerStyleId={styles.lectureAreaContainer}
       /> : null
     }
 
@@ -63,11 +64,11 @@ const CourseInfoSection = ({
     <Duration
       duration={totalDuration}
       format={I18n.t('totalDurationFormat')}
-      containerStyle={styles.totalDurationWrapper}
-      durationStyle={styles.totalDuration}
+      containerStyleId={styles.totalDurationWrapper}
+      durationStyleId={styles.totalDuration}
     />
-  </View>
-);
+  </View>;
+
 
 CourseInfoSection.propTypes = {
   courseTitle: PropTypes.string.isRequired,

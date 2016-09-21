@@ -55,8 +55,8 @@ const getNextLectureImageSrc = (nextLecture) => {
   }
 };
 
-const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyle }) =>
-  <View style={[styles.container, containerStyle]}>
+const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyleId }) =>
+  <View style={[styles.container, containerStyleId]}>
     <TouchableOpacity onPress={handlePressNextLecture}>
       <View style={styles.courseImageWrapper}>
         <Image
@@ -85,8 +85,7 @@ NextLectureArea.propTypes = {
     /* eslint-enable react/no-unused-prop-types */
   }).isRequired,
   handlePressNextLecture: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  containerStyle: PropTypes.object.isRequired,
+  containerStyleId: PropTypes.number.isRequired,
 };
 
 export default NextLectureArea;

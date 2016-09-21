@@ -188,7 +188,7 @@ class Email extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyle={loginDisabled ? styles.buttonWrapperDisabled : styles.buttonWrapper}
+            containerStyleId={loginDisabled ? styles.buttonWrapperDisabled : styles.buttonWrapper}
             style={styles.button}
             onPress={handleSubmit(this.handlePress)}
             disabled={loginDisabled}
