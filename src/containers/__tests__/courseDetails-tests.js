@@ -1,44 +1,42 @@
 /* eslint-disable no-undef */
-/* eslint-disable import/no-extraneous-dependencies */
-jest.mock('../../utils/redux', () =>
-  (component, state) => component
-);
-jest.mock('react-native-router-flux', () => ({
-  Actions: () => ({
-    lecture: kwargs =>
-      new Promise((resolve) => {
-        resolve(Object.keys(kwargs) === ['title', 'lectureId', 'course']);
-      }),
-  }),
-}));
-
-
+/* eslint-disable no-console */
 import React from 'react';
 import 'react-native';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import renderer from 'react-test-renderer';
 import CourseDetails from '../CourseDetails';
+import { courses } from '../../data/dummyData';
 
 global.Promise = require.requireActual('promise');
 
 
-describe('CourseDetails', () => {
-  it('should have a pressLecture handler', () => {
-    const course = {
-      title: 'course1',
-      lectures: [{
-        isCompleted: true,
-        duration: 60,
-        type: 'VideoLecture',
-      }, {
-        isCompleted: false,
-        duration: 90,
-        type: 'VideoLecture',
-      }],
-    };
+// Mock the connectToProps method, we do not need the store
+jest.mock('../../utils/redux', () =>
+  (component, stateIgnored) => component
+);
+// Mock the router actions, we do not need redirect
+jest.mock('react-native-router-flux', () => ({
+  Actions: {
+    lecture: kwargs =>
+      new Promise(resolve => resolve(kwargs)),
+  },
+}));
 
-    const tree = renderer.create(
-      <CourseDetails course={course} />
-    );
-    expect(1).toEqual(1);
+
+describe('CourseDetails', () => {
+  beforeEach(() => {
+    instance = new CourseDetails({ course: courses[0] });
+  });
+
+  it('should have a pressLecture handler', (async) () => {
+    const result = await instance.handlePressLecture(courses[0].lectures[1]);
+    expect(result.title).toEqual('レクチャーA');
+    expect(result.lectureId).toEqual(1);
+  });
+
+  it('should have a pressNextLecture handler', (async) () => {
+    const result = await instance.handlePressNextLecture();
+    expect(result.title).toEqual('レクチャーH');
+    expect(result.lectureId).toEqual(8);
   });
 });

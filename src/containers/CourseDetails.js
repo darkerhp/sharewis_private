@@ -31,15 +31,14 @@ class CourseDetails extends Component {
   @autobind
   handlePressNextLecture() {
     const { course } = this.props;
-    this.handlePressLecture(
-      LectureUtils.getNextVideoLecture(course.lectures)
-    );
+    const lecture = LectureUtils.getNextVideoLecture(course.lectures);
+    return this.handlePressLecture(lecture);
   }
 
   @autobind
   handlePressLecture(lecture) {
     const { course } = this.props;
-    RouterActions.lecture({
+    return RouterActions.lecture({
       title: lecture.title,
       lectureId: lecture.id,
       course,

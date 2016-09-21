@@ -15,7 +15,7 @@ plugins:
 rules:
   # Enable
   no-unused-vars: [
-    "error",
+    0,
     { "varsIgnorePattern": "[iI]gnored" }
   ]
   #  flowtype/define-flow-type: 1
