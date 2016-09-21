@@ -17,8 +17,9 @@ info:
     repository to access the list of serverless 
     endpoints available.
 
-host: act.share-wis.com
-basePath: /api/v2
+# staging endpoint for development
+host: staging-act.share-wis.com
+basePath: /api
 schemes:
   - https
 produces: 
