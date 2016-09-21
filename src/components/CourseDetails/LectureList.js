@@ -16,13 +16,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (key, lecture, handlePressLecture) => (
+const renderLecture = (key, lecture, handlePressLecture, handlePressDownload) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
     : <Lecture
       key={key}
       currentLecture={lecture}
       handlePressLecture={handlePressLecture}
+      handlePressDownload={handlePressDownload}
     />
 );
 
@@ -44,6 +45,7 @@ LectureList.propTypes = {
   })).isRequired,
   handlePressLecture: PropTypes.func.isRequired,
   containerStyleId: PropTypes.number.isRequired,
+  handlePressDownload: PropTypes.func.isRequired,
 };
 
 export default LectureList;
