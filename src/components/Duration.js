@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
 const Duration = ({
   duration,
   format = 'mm:ss',
-  containerStyle = null,
-  durationStyle = null,
+  containerStyleId = null,
+  durationStyleId = null,
   prefixText = '',
 }) =>
-  <View style={[styles.container, containerStyle]}>
-    <Text style={[styles.duration, durationStyle]}>
+  <View style={[styles.container, containerStyleId]}>
+    <Text style={[styles.duration, durationStyleId]}>
       {prefixText}{moment.duration(duration, 'seconds').format(format, { trim: false })}
     </Text>
   </View>;
@@ -32,8 +32,8 @@ const Duration = ({
 Duration.propTypes = {
   duration: PropTypes.number.isRequired,
   format: PropTypes.string,
-  containerStyle: PropTypes.number,
-  durationStyle: PropTypes.number,
+  containerStyleId: PropTypes.number,
+  durationStyleId: PropTypes.number,
   prefixText: PropTypes.string,
 };
 

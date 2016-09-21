@@ -12,11 +12,22 @@ import connectToProps from '../utils/redux';
 import BaseStyles from '../baseStyles';
 
 const { Component, PropTypes } = React;
-const { Dimensions, ScrollView, StatusBar, View } = ReactNative;
+const {
+  Dimensions,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+} = ReactNative;
 
 const { height } = Dimensions.get('window');
 const HALF_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 2;
 const QUARTER_DISPLAY_HEIGHT = (height - BaseStyles.navbarHeight) / 4;
+
+const styles = StyleSheet.create({
+  lectureContainer: { flex: 1 },
+});
+
 
 class CourseDetails extends Component {
   static propTypes = {
@@ -26,29 +37,19 @@ class CourseDetails extends Component {
       lectures: PropTypes.array.required,
       /* eslint-enable react/no-unused-prop-types */
     }),
-    // lectures: PropTypes.arrayOf(PropTypes.shape({
-    //   id: PropTypes.number.isRequired,
-    //   title: PropTypes.string.isRequired,
-    //   duration: PropTypes.number.isRequired,
-    //   type: PropTypes.number.isRequired,
-    // })).isRequired,
   };
 
   @autobind
   handlePressNextLecture() {
     const { course } = this.props;
-    const nextLecture = CourseUtils.getNextLecture(course);
-    RouterActions.lecture({
-      title: nextLecture.title,
-      lectureId: nextLecture.id,
-      course,
-    });
+    const lecture = LectureUtils.getNextVideoLecture(course.lectures);
+    return this.handlePressLecture(lecture);
   }
 
   @autobind
   handlePressLecture(lecture) {
     const { course } = this.props;
-    RouterActions.lecture({
+    return RouterActions.lecture({
       title: lecture.title,
       lectureId: lecture.id,
       course,
@@ -82,7 +83,7 @@ class CourseDetails extends Component {
             containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
           />
           <LectureList
-            containerStyle={{ flex: 1 }}
+            containerStyleId={styles.lectureContainer}
             lectures={course.lectures}
             handlePressLecture={this.handlePressLecture}
           />
