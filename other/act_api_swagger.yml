@@ -191,10 +191,16 @@ definitions:
   Lecture:
     type: object
     required:
+      - id
+      - course_id
       - title
       - order
       - kind
     properties:
+      id:
+        type: integer
+      course_id:
+        type: integer
       title:
         type: string
       estimated_time:
