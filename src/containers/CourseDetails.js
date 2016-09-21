@@ -37,7 +37,7 @@ class CourseDetails extends Component {
   @autobind
   handlePressNextLecture() {
     const { course } = this.props;
-    const nextLecture = CourseUtils.getNextLecture(course);
+    const nextLecture = LectureUtils.getNextVideoLecture(course.lectures);
     RouterActions.lecture({
       title: nextLecture.title,
       lectureId: nextLecture.id,
