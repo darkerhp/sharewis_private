@@ -36,11 +36,11 @@ securityDefinitions:
   apikey_security:
     type: apiKey
     in: header
-    name: API_KEY
+    name: APP-API-KEY
   user_security:
     type: apiKey
     in: header
-    name: user_id
+    name: user-id
 
 parameters:
   course-slug:
@@ -51,12 +51,6 @@ parameters:
     required: true
   lecture-id:
     name: lecture-id
-    in: path
-    description: the lecture identifier number
-    type: number
-    required: true
-  lecture-id2:
-    name: lecture-id2
     in: path
     description: the lecture identifier number
     type: number
@@ -105,31 +99,10 @@ paths:
             properties:
               data:
                 $ref: '#/definitions/CourseDetails'
-  # 3. We fetch the details for a lecture. 
   /courses/{course-slug}/lectures/{lecture-id}:
     parameters:
       - $ref: '#/parameters/course-slug'
       - $ref: '#/parameters/lecture-id'
-    get:
-      tags:
-        - Lectures
-      security:
-        - apikey_security: []
-        - user_security: []
-      description: Get lecture details
-      responses:
-        200:
-          description: Successful response
-          schema:
-            type: object
-            title: Lecture
-            properties:
-              data:
-                $ref: '#/definitions/Lecture'
-  /courses/{course-slug}/lectures/{lecture-id2}:
-    parameters:
-      - $ref: '#/parameters/course-slug'
-      - $ref: '#/parameters/lecture-id2'
     put:
       tags:
         - Lectures
@@ -160,11 +133,6 @@ paths:
 definitions:
   Course:
     type: object
-    require:
-      - id
-      - title
-      - image_url
-      - lecture_count
     properties:
       id:
         type: integer
@@ -191,12 +159,6 @@ definitions:
                   $ref: '#/definitions/Lecture' 
   Lecture:
     type: object
-    required:
-      - id
-      - course_id
-      - title
-      - order
-      - kind
     properties:
       id:
         type: integer
@@ -227,3 +189,4 @@ definitions:
         enum: *lecture-status
       video_url:
         type: string
+
