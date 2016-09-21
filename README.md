@@ -152,3 +152,46 @@ reloading the simulator)
    ```
 ### For react native video
    - Info.plistの `App Transport Security Settings` に `Allow Arbitrary Loads` を追加してYESを設定する。（For Dev）
+
+## Deploy staging app to [DeployGate](https://deploygate.com/dashboard) 
+
+How to deploy staging app to DeployGate manually.
+
+### Build apk file (Android)
+
+Run below commands.
+
+```
+$ cd sharewis-act-mobile
+$ git pull origin master
+$ npm install
+$ cd android && ./gradlew assembleRelease
+```
+
+The generated apk files are in `android/app/build/outputs/apk`.
+Upload `app-release.apk` to DeployGate.
+
+### Build ipa file (iOS)
+
+Run below commands.
+
+```
+$ cd sharewis-act-mobile
+$ git pull origin master
+$ npm install
+```
+
+And build ipa with xcode.
+
+1. Open xcode project.
+2. Set scheme `SharewisActMobile` and `Generic iOS Device`
+3. `Product` -> `Archive...`
+4. After archiving, the organization window is opened.
+5. Check latest archive in the organization window and click `Export...`
+6. Check `Save for AdHoc Deployment` and go next and next...
+8. Upload exported `SharewisActMobile.ipa` to DeployGate.
+
+### Upload
+
+1. Login to [DeployGate](https://deploygate.com/dashboard). (ID & Password are [here](https://launchpad.meldium.com/#/launchpad?edit=c01f6779-d5a9-440e-880a-284ac87fe443))
+2. Drag & Drop the apk or ipa 
