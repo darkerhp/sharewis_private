@@ -79,17 +79,24 @@ const styles = StyleSheet.create({
   },
 });
 
-
-const renderDownloadAction = () =>
-  <TouchableOpacity style={styles.actionIconWrapper}>
-    <Icon
-      // name={'delete'}
-      name={'cloud-download'}
-      style={styles.actionIcon}
-    />
+// TODO components化
+const renderDownloadAction = (handlePressDownload, lecture) =>
+  <TouchableOpacity
+    style={styles.actionIconWrapper}
+    onPress={() => handlePressDownload(lecture)}
+  >
+    {lecture.isDownloading === true
+      ?
+      <Text>{lecture.percentage}</Text> // TODO
+      :
+      <Icon
+        name={lecture.isDownloaded === true ? 'delete' : 'cloud-download'}
+        style={styles.actionIcon}
+      />
+    }
   </TouchableOpacity>;
 
-const Lecture = ({ lectures, currentLecture, handlePressLecture }) => {
+const Lecture = ({ lectures, currentLecture, handlePressLecture, handlePressDownload }) => {
   const isAccessibleLecture = currentLecture.type === 'VideoLecture';
   return (
     <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
@@ -119,7 +126,7 @@ const Lecture = ({ lectures, currentLecture, handlePressLecture }) => {
         <Text style={styles.lectureTitleText}>{currentLecture.title}</Text>
       </TouchableOpacity>
 
-      {isAccessibleLecture && renderDownloadAction()}
+      {isAccessibleLecture && renderDownloadAction(handlePressDownload, currentLecture)}
     </View>
   );
 };
@@ -138,7 +145,7 @@ Lecture.propTypes = {
     /* eslint-enable react/no-unused-prop-types */
   }).isRequired,
   handlePressLecture: PropTypes.func.isRequired,
+  handlePressDownload: PropTypes.func.isRequired,
 };
-
 
 export default Lecture;
