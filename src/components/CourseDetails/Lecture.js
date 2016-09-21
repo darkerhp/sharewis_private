@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 import BaseStyles from '../../baseStyles';
 import * as LectureUtils from '../../utils/lecture';
@@ -87,7 +88,14 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
   >
     {lecture.isDownloading === true
       ?
-      <Text>{lecture.percentage}</Text> // TODO
+      <AnimatedCircularProgress
+        size={30}
+        width={3}
+        fill={lecture.percentage}
+        rotation={0}
+        tintColor="#00e0ff"
+        backgroundColor="#3d5875"
+      />
       :
       <Icon
         name={lecture.isDownloaded === true ? 'delete' : 'cloud-download'}
