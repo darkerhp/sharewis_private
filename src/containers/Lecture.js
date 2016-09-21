@@ -109,13 +109,22 @@ class Lecture extends Component {
 
   @autobind
   handlePressNextLecture(course, lectureId) {
-    this.props.pressNextLecture(course, lectureId); // update lecture status to finish
-    const { nextLecture } = this.props;
+    const { nextLecture, pressNextLecture } = this.props;
+    // update current lecture status to completed
+    pressNextLecture(course, lectureId);
     RouterActions.refresh({
       title: nextLecture.title,
       lectureId: nextLecture.id,
       course,
     });
+  }
+
+  @autobind
+  handleVideoProgress(data) {
+    const { currentTime, videoProgress } = this.props;
+    if (currentTime !== data.currentTime) {
+      videoProgress(data.currentTime);
+    }
   }
 
   render() {
@@ -137,7 +146,8 @@ class Lecture extends Component {
         <View style={[styles.videoContainer, { marginTop: 64 }]}>
           <Video
             ref={ref => (this.video = ref)}
-            source={{ uri: lecture.url }} // Can be a URL or a local file.
+            // source can be a URL or a local file
+            source={{ uri: lecture.url }}
             rate={speed}
             volume={1.0}
             muted={false}
@@ -146,9 +156,10 @@ class Lecture extends Component {
             repeat={false}
             playInBackground={false}
             playWhenInactive={false}
-            // onError={e => console.log(e)}
+            // onError={e => console.log(e)
             style={styles.backgroundVideo}
-            onProgress={data => videoProgress(data.currentTime)}
+            onProgress={this.handleVideoProgress}
+            onEnd={() => this.handlePressNextLecture(course, lectureId)}
           />
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
