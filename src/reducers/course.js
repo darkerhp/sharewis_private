@@ -3,11 +3,12 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   jobId: -1,
+  isLectureDownloading: false,
 };
 
 const lecture = (state, action) => {
   switch (action.type) {
-    case types.START_DOWNLOAD_VIDEO:
+    case types.BEGIN_DOWNLOAD_VIDEO:
       if (state.id !== action.lectureId) return state;
 
       return {
@@ -37,7 +38,7 @@ const lecture = (state, action) => {
 
 const lectures = (state, action) => {
   switch (action.type) {
-    case types.START_DOWNLOAD_VIDEO:
+    case types.BEGIN_DOWNLOAD_VIDEO:
     case types.FINISH_DOWNLOAD_VIDEO:
     case types.PROGRESS_DOWNLOAD_VIDEO:
       return state.map(l => lecture(l, action));
@@ -48,14 +49,22 @@ const lectures = (state, action) => {
 
 const course = (state = initialState, action) => {
   switch (action.type) {
+    // TODO レクチャーにダウンロード状態を追加する
     case types.LOAD_COURSE: {
-      console.log('PRESS_DOWNLOAD_VIDEO');
+      console.log('LOAD_COURSE');
       return {
         ...state,
       };
     }
-    case types.START_DOWNLOAD_VIDEO: {
-      console.log('START_DOWNLOAD_VIDEO');
+    case types.PRESS_DOWNLOAD_VIDEO: {
+      console.log('PRESS_DOWNLOAD_VIDEO');
+      return {
+        ...state,
+        isLectureDownloading: true,
+      };
+    }
+    case types.BEGIN_DOWNLOAD_VIDEO: {
+      console.log('BEGIN_DOWNLOAD_VIDEO');
       return {
         ...state,
         course: {
@@ -79,6 +88,7 @@ const course = (state = initialState, action) => {
       console.log('FINISH_DOWNLOAD_VIDEO');
       return {
         ...state,
+        isLectureDownloading: false,
         course: {
           ...state.course,
           lectures: lectures(action.course.lectures, action),

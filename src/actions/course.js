@@ -1,11 +1,14 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
 
+export const loadCourse = () => ({
+  type: types.LOAD_COURSE,
+});
 export const pressDownloadVideo = () => ({
   type: types.PRESS_DOWNLOAD_VIDEO,
 });
-export const startDownloadVideo = (course, lectureId, jobId, statusCode) => ({
-  type: types.START_DOWNLOAD_VIDEO,
+export const beginDownloadVideo = (course, lectureId, jobId, statusCode) => ({
+  type: types.BEGIN_DOWNLOAD_VIDEO,
   course,
   lectureId,
   jobId,

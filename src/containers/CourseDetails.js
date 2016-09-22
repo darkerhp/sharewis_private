@@ -18,6 +18,7 @@ import * as Actions from '../actions/course';
 
 const { Component, PropTypes } = React;
 const {
+  Alert,
   Dimensions,
   ScrollView,
   StatusBar,
@@ -43,6 +44,11 @@ class CourseDetails extends Component {
     lectureProgress: PropTypes.number.isRequired,
     loadCurrentLecture: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
+    isLectureDownloading: PropTypes.bool.isRequired,
+    pressDownloadVideo: PropTypes.func.isRequired,
+    beginDownloadVideo: PropTypes.func.isRequired,
+    progressDownloadVideo: PropTypes.func.isRequired,
+    finishDownloadVideo: PropTypes.func.isRequired,
   };
 
   @autobind
@@ -63,16 +69,20 @@ class CourseDetails extends Component {
   handlePressDownload(lecture) {
     const {
       course,
-      jobId,
+      isLectureDownloading,
+      pressDownloadVideo,
+      beginDownloadVideo,
+      progressDownloadVideo,
+      finishDownloadVideo,
     } = this.props;
+    if (isLectureDownloading) {
+      Alert.alert('エラー', '現在他のレクチャーをダウンロード中です。'); // TODO
+      return;
+    }
+    pressDownloadVideo();
 
-    // this.props.pressDownloadVideo(lecture);
-
-    if (jobId !== -1) return;
-    courseId = 999; // TODO
-
-    const toFile = FileUtils.createVideoFileName(lecture.id, courseId);
-    const videoDirPath = FileUtils.getCourseVideosDirPath(courseId);
+    const videoDirPath = FileUtils.getCourseVideosDirPath(course.id);
+    const toFile = FileUtils.createVideoFileName(lecture.id, course.id);
 
     RNFS.exists(videoDirPath)
       .then(res => res || RNFS.mkdir(videoDirPath))
@@ -82,18 +92,21 @@ class CourseDetails extends Component {
           toFile,
           begin: (res) => {
             const { jobId, statusCode } = res;
-            this.props.startDownloadVideo(course, lecture.id, jobId, statusCode);
+            beginDownloadVideo(course, lecture.id, jobId, statusCode);
           },
           progress: (data) => {
             const percentage = Math.ceil((100 * data.bytesWritten) / data.contentLength);
-            this.props.progressDownloadVideo(course, lecture.id, percentage);
+            progressDownloadVideo(course, lecture.id, percentage);
           },
           progressDivider: 2,
         }).promise
       )
       .then(res => console.log(res))
-      .catch(err => console.log(err))
-      .then(() => this.props.finishDownloadVideo(course, lecture.id));
+      .catch(err => {
+        console.error(err);
+        Alert.alert('エラー', 'ダウンロード中にエラーが発生しました。');
+      }) // TODO
+      .then(() => finishDownloadVideo(course, lecture.id));
   }
 
   render() {
