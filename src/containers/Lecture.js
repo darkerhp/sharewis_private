@@ -62,6 +62,7 @@ class Lecture extends Component {
     currentTime: PropTypes.number.isRequired,
     duration: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
+    isLastLecture: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
     speed: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -113,7 +114,7 @@ class Lecture extends Component {
   render() {
     const {
       // state
-      currentTime, duration, isPaused, speed, title, url,
+      currentTime, duration, isLastLecture, isPaused, speed, title, url,
       // actions
       pressPlay, pressSpeed, updateVideoProgress,
     } = this.props;
@@ -156,7 +157,7 @@ class Lecture extends Component {
             onPressSpeed={pressSpeed}
           />
           <View style={styles.nextLectureButtonWrapper}>
-            {/* nextLecture &&
+            { isLastLecture ||
               <Button
                 containerStyle={styles.nextLectureButton}
                 style={styles.nextLectureButtonText}
@@ -164,7 +165,7 @@ class Lecture extends Component {
               >
                 {I18n.t('nextLecture')}
               </Button>
-            */}
+            }
           </View>
         </View>
       </View>

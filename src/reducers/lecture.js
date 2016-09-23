@@ -9,6 +9,7 @@ const initialState = {
   id: 0,
   isCompleted: false,
   isFullScreen: false,  // TODO
+  isLastLecture: false,
   isPaused: true,
   speed: 1,
   title: undefined,
