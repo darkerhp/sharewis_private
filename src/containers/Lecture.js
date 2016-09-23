@@ -116,7 +116,6 @@ class Lecture extends Component {
     RouterActions.refresh({
       title: nextLecture.title,
       lectureId: nextLecture.id,
-      course,
     });
   }
 

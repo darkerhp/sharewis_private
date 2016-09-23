@@ -5,6 +5,7 @@ import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
+import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
@@ -63,7 +64,18 @@ class CourseList extends Component {
       lectures: PropTypes.array.required,
       /* eslint-enable react/no-unused-prop-types */
     })),
+    fetchCoursesListFailure: PropTypes.func.isRequired,
+    fetchCoursesListSuccess: PropTypes.func.isRequired,
   };
+
+  componentWillMount() {
+    console.log('in componentWillMount', this.props);
+    try {
+      this.props.fetchCoursesListSuccess();
+    } catch (error) {
+      this.props.fetchCoursesListFailure(error);
+    }
+  }
 
   render() {
     const { courses } = this.props;
@@ -109,4 +121,4 @@ class CourseList extends Component {
 }
 
 
-export default connectToProps(CourseList, 'courseList');
+export default connectToProps(CourseList, 'courseList', Actions);

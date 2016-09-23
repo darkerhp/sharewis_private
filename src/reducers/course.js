@@ -1,4 +1,5 @@
 /* @flow */
+import * as types from '../constants/ActionTypes';
 
 
 const initialState = {
@@ -8,7 +9,14 @@ const initialState = {
 };
 
 const course = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, ...newState } = action;
+
+  switch (type) {
+    case types.SET_CURRENT_COURSE:
+      return {
+        ...state,
+        ...newState,
+      };
     default:
       return state;
   }

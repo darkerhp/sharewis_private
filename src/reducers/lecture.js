@@ -34,13 +34,17 @@ const lecture = (state = initialState, action) => {
         currentTime: action.currentTime,
       };
     case types.PRESS_NEXT_LECTURE: {
-      const newLectures = state.course.lectures.map(l => (
+      const newLectures = action.course.lectures.map(l => (
         l.id !== action.lectureId ? l : { ...l, isCompleted: true }
       ));
       return {
         ...state,
         lectureId: action.lectureId,
-        course: { ...state.course, lectures: newLectures },
+        course: {
+          ...action.course,
+          lectures: newLectures,
+          lectureCount: action.course.lectureCount + 1,
+        },
       };
     }
     case types.LOAD_LECTURE: {

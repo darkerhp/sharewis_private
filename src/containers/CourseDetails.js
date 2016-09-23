@@ -1,9 +1,11 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
+import * as Actions from '../actions/course';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import * as CourseUtils from '../utils/course';
@@ -37,7 +39,13 @@ class CourseDetails extends Component {
       lectures: PropTypes.array.required,
       /* eslint-enable react/no-unused-prop-types */
     }),
+    setCurrentCourse: PropTypes.func.isRequired,
   };
+
+  componentWillMount() {
+    console.log('in componentWillMount', this.props);
+    this.props.setCurrentCourse(this.props.course);
+  }
 
   @autobind
   handlePressNextLecture() {
@@ -93,4 +101,4 @@ class CourseDetails extends Component {
   }
 }
 
-export default connectToProps(CourseDetails, 'currentCourse');
+export default connectToProps(CourseDetails, 'currentCourse', Actions);
