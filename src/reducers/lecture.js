@@ -44,7 +44,7 @@ const lecture = (state = initialState, action) => {
         course: {
           ...state.course,
           lectures: newLectures,
-          lecture_progress: state.course.lectures.lecture_progress + 1,
+          nb_lectures_watched: state.course.lectures.nb_lectures_watched + 1,
         },
       };
       return newState;
