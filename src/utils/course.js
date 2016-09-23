@@ -1,9 +1,6 @@
 // @flow
-export const totalLectureCount = course =>
-  course.lectures.filter(l => l.kind === 'lecture').length;
+const totalDuration = lectures =>
+  lectures.map(l => l.duration || 0).reduce((a, b) => a + b);
 
-export const completeLectureCount = course =>
-  course.lectures.filter(l => l.isCompleted).length;
 
-export const totalDuration = course =>
-  course.lectures.map(l => l.duration || 0).reduce((a, b) => a + b);
+export default totalDuration;

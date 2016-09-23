@@ -15,25 +15,12 @@ const speedList = [1, 1.2, 1.5, 2];
 
 const lecture = (state = initialState, action) => {
   switch (action.type) {
-    case types.PRESS_PLAY:
+    case types.LOAD_CURRENT_LECTURE:
       return {
         ...state,
-        isPaused: !state.isPaused,
+        ...action.currentLecture,
       };
-    case types.PRESS_SPEED: {
-      const currentIndex = speedList.indexOf(state.speed);
-      const index = (currentIndex === speedList.length - 1) ? 0 : currentIndex + 1;
-      return {
-        ...state,
-        speed: speedList[index],
-      };
-    }
-    case types.VIDEO_PROGRESS:
-      return {
-        ...state,
-        currentTime: action.currentTime,
-      };
-    case types.PRESS_NEXT_LECTURE: {
+    case types.LOAD_NEXT_LECTURE: {
       const newLectures = action.course.lectures.map(l => (
         l.id !== action.lectureId ? l : { ...l, isCompleted: true }
       ));
@@ -47,18 +34,24 @@ const lecture = (state = initialState, action) => {
         },
       };
     }
-    case types.LOAD_CURRENT_LECTURE: {
-      const { course, lectureId } = action;
-      const idx = course.lectures.findIndex(l => l.id === lectureId);
-      const nextLecture = LectureUtils.getNextVideoLecture(course.lectures.slice(idx + 1), false);
+    case types.PRESS_PLAY:
       return {
         ...state,
-        ...initialState,
-        course,
-        lectureId,
-        nextLecture: Object.keys(nextLecture).length ? nextLecture : null,
+        isPaused: !state.isPaused,
+      };
+    case types.PRESS_SPEED: {
+      const currentIndex = speedList.indexOf(state.speed);
+      const index = (currentIndex === speedList.length - 1) ? 0 : currentIndex + 1;
+      return {
+        ...state,
+        speed: speedList[index],
       };
     }
+    case types.UPDATE_VIDEO_PROGRESS:
+      return {
+        ...state,
+        currentTime: action.currentTime,
+      };
     default:
       return state;
   }

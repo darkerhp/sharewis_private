@@ -8,7 +8,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import * as Actions from '../actions/courseDetails';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
-import * as CourseUtils from '../utils/course';
+import totalDuration from '../utils/course';
 import * as LectureUtils from '../utils/lecture';
 import { connectActions, connectState } from '../utils/redux';
 import BaseStyles from '../baseStyles';
@@ -16,8 +16,7 @@ import BaseStyles from '../baseStyles';
 const { Component, PropTypes } = React;
 const {
   Dimensions,
-  ScrollView,
-  StatusBar,
+  ScrollView, StatusBar,
   StyleSheet,
   View,
 } = ReactNative;
@@ -35,49 +34,39 @@ const styles = StyleSheet.create({
 @connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
-    course: PropTypes.shape({
-      /* eslint-disable react/no-unused-prop-types */
-      title: PropTypes.string.required,
-      lectures: PropTypes.array.required,
-      /* eslint-enable react/no-unused-prop-types */
-    }),
-    loadCurrentCourse: PropTypes.func.isRequired,
+    lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    lectureCount: PropTypes.number.isRequired,
+    lectureProgress: PropTypes.number.isRequired,
+    loadCurrentLecture: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
   };
-
-  componentWillMount() {
-    console.log('in componentWillMount', this.props);
-    this.props.loadCurrentCourse(this.props.course);
-  }
 
   @autobind
   handlePressNextLecture() {
-    const { course } = this.props;
-    const lecture = LectureUtils.getNextVideoLecture(course.lectures);
+    const { lectures } = this.props;
+    const lecture = LectureUtils.getNextVideoLecture(lectures);
     return this.handlePressLecture(lecture);
   }
 
-  @autobind
+  // eslint-disable-next-line class-methods-use-this
   handlePressLecture(lecture) {
-    const { course } = this.props;
+    this.props.loadCurrentLecture(lecture);
     return RouterActions.lecture({
+      lecture,
       title: lecture.title,
-      lectureId: lecture.id,
-      course,
     });
   }
 
   render() {
-    const { course } = this.props;
-    const completeLectureCount = CourseUtils.completeLectureCount(course);
-    const totalLectureCount = CourseUtils.totalLectureCount(course);
-    const isCompleted = completeLectureCount === totalLectureCount;
+    const { lectures, lectureCount, lectureProgress, title } = this.props;
+    const isCompleted = lectureCount === lectureProgress;
     const courseInfo = {
-      totalLectureCount,
-      completeLectureCount,
+      totalLectureCount: lectureCount,
+      completeLectureCount: lectureProgress,
       isCompleted,
-      courseTitle: course.title,
-      totalDuration: CourseUtils.totalDuration(course),
-      nextLecture: LectureUtils.getNextVideoLecture(course.lectures),
+      courseTitle: title,
+      totalDuration: totalDuration(lectures),
+      nextLecture: LectureUtils.getNextVideoLecture(lectures),
     };
     return (
       <ScrollView
@@ -94,7 +83,7 @@ class CourseDetails extends Component {
           />
           <LectureList
             containerStyleId={styles.lectureContainer}
-            lectures={course.lectures}
+            lectures={lectures}
             handlePressLecture={this.handlePressLecture}
           />
         </View>

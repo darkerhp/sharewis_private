@@ -18,6 +18,11 @@ const coursesReducer = (state = initialState, action) => {
         ...state,
         courses: action.courses,
       };
+    case types.LOAD_CURRENT_COURSE:
+      return {
+        ...state,
+        currentCourse: action.currentCourse,
+      };
     default:
       return state;
   }

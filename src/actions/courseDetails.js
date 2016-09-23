@@ -1,12 +1,9 @@
 import * as types from '../constants/ActionTypes';
 
 
-export const loadCurrentCourse = ({ lectures, lectureCount, lectureProgress }) => ({
-  type: types.LOAD_CURRENT_COURSE,
-  lectures,
-  lectureCount,
-  lectureProgress,
+// Used in courseDetails and lecture reducers
+// eslint-disable-next-line import/prefer-default-export
+export const loadCurrentLecture = currentLecture => ({
+  type: types.LOAD_CURRENT_LECTURE,
+  currentLecture,
 });
-
-// Since we always import * as Actions
-export const foo = 'bar';

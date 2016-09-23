@@ -36,9 +36,9 @@ describe('Lecture reducer', () => {
     });
   });
 
-  it('should handle VIDEO_PROGRESS', () => {
+  it('should handle UPDATE_VIDEO_PROGRESS', () => {
     expect(
-      reducer({ currentTime: 0 }, { type: types.VIDEO_PROGRESS, currentTime: 1 })
+      reducer({ currentTime: 0 }, { type: types.UPDATE_VIDEO_PROGRESS, currentTime: 1 })
     ).toEqual({
       currentTime: 1,
     });

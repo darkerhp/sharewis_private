@@ -57,48 +57,27 @@ const styles = StyleSheet.create({
 @connectState('currentLecture')
 class Lecture extends Component {
   static propTypes = {
-    isPaused: PropTypes.bool.isRequired,
-    pressPlay: PropTypes.func.isRequired,
-    speed: PropTypes.number.isRequired,
-    pressSpeed: PropTypes.func.isRequired,
+    // state
     currentTime: PropTypes.number.isRequired,
-    videoProgress: PropTypes.func.isRequired,
-    lectureId: PropTypes.number.isRequired,
-    course: PropTypes.shape({
-      /* eslint-disable react/no-unused-prop-types */
-      order: PropTypes.number,
-      title: PropTypes.string,
-      kind: PropTypes.string,
-      duration: PropTypes.number,
-      isCompleted: PropTypes.bool,
-      isStarted: PropTypes.bool,
-      type: PropTypes.string,
-      /* eslint-enable react/no-unused-prop-types */
-    }).isRequired,
-    nextLecture: PropTypes.shape({
-      /* eslint-disable react/no-unused-prop-types */
-      order: PropTypes.number,
-      title: PropTypes.string,
-      kind: PropTypes.string,
-      duration: PropTypes.number,
-      isCompleted: PropTypes.bool,
-      type: PropTypes.string,
-      /* eslint-enable react/no-unused-prop-types */
-    }),
-    pressNextLecture: PropTypes.func.isRequired,
-    loadCurrentLecture: PropTypes.func.isRequired,
+    duration: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    isPaused: PropTypes.bool.isRequired,
+    speed: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    // actions
+    loadNextLecture: PropTypes.func.isRequired,
+    pressPlay: PropTypes.func.isRequired,
+    pressSpeed: PropTypes.func.isRequired,
+    updateLectureProgress: PropTypes.func.isRequired,
+    updateVideoProgress: PropTypes.func.isRequired,
   };
 
-  componentWillMount() {
-    const { course, lectureId } = this.props;
-    this.props.loadCurrentLecture(course, lectureId);
-  }
-
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.lectureId) return;
-    if (nextProps.lectureId !== this.props.lectureId) {
-      const { course, lectureId } = nextProps;
-      this.props.loadCurrentLecture(course, lectureId);
+    if (!nextProps.id) return;
+    if (nextProps.id !== this.props.id) {
+      const { course, id } = nextProps;
+      // this.props.loadCurrentLecture(course, id);
     }
   }
 
@@ -110,37 +89,32 @@ class Lecture extends Component {
   }
 
   @autobind
-  handlePressNextLecture(course, lectureId) {
-    const { nextLecture, pressNextLecture } = this.props;
-    // update current lecture status to completed
-    pressNextLecture(course, lectureId);
-    RouterActions.refresh({
-      title: nextLecture.title,
-      lectureId: nextLecture.id,
-    });
+  handlePressNextLecture(course, id) {
+    const { loadNextLecture, updateLectureProgress } = this.props;
+
+    updateLectureProgress();
+    // loadNextLecture(id);
+    // RouterActions.refresh({
+    //   title: nextLecture.title,
+    //   id: nextLecture.id,
+    // });
   }
 
   @autobind
   handleVideoProgress(data) {
-    const { currentTime, videoProgress } = this.props;
+    const { currentTime, updateVideoProgress } = this.props;
     if (currentTime !== data.currentTime) {
-      videoProgress(data.currentTime);
+      updateVideoProgress(data.currentTime);
     }
   }
 
   render() {
     const {
-      lectureId,
-      course,
-      currentTime,
-      isPaused,
-      speed,
-      videoProgress,
-      nextLecture,
-      pressPlay,
-      pressSpeed,
+      // state
+      id, currentTime, duration, isPaused, speed, title, url,
+      // actions
+      pressPlay, pressSpeed, updateVideoProgress,
     } = this.props;
-    const lecture = LectureUtils.getLectureById(course.lectures, lectureId);
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
@@ -148,7 +122,7 @@ class Lecture extends Component {
           <Video
             ref={ref => (this.video = ref)}
             // source can be a URL or a local file
-            source={{ uri: lecture.url }}
+            source={{ uri: url }}
             rate={speed}
             volume={1.0}
             muted={false}
@@ -160,18 +134,18 @@ class Lecture extends Component {
             // onError={e => console.log(e)
             style={styles.backgroundVideo}
             onProgress={this.handleVideoProgress}
-            onEnd={() => this.handlePressNextLecture(course, lectureId)}
+            onEnd={() => this.handlePressNextLecture(id)}
           />
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
             currentTime={currentTime}
-            duration={lecture.duration}
+            duration={duration}
             onValueChange={this.handleValueChange}
             video={this.video}
           />
           <View style={styles.lectureTitleTextWrapper}>
-            <Text>{lecture.title}</Text>
+            <Text>{title}</Text>
           </View>
           <VideoControls
             isPaused={isPaused}
@@ -180,15 +154,15 @@ class Lecture extends Component {
             onPressSpeed={pressSpeed}
           />
           <View style={styles.nextLectureButtonWrapper}>
-            {nextLecture &&
+            {/* nextLecture &&
               <Button
                 containerStyle={styles.nextLectureButton}
                 style={styles.nextLectureButtonText}
-                onPress={() => this.handlePressNextLecture(course, lectureId)}
+                onPress={() => this.handlePressNextLecture(id)}
               >
                 {I18n.t('nextLecture')}
               </Button>
-            }
+            */}
           </View>
         </View>
       </View>

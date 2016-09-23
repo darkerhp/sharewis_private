@@ -67,15 +67,20 @@ class CourseList extends Component {
     })),
     fetchCoursesListFailure: PropTypes.func.isRequired,
     fetchCoursesListSuccess: PropTypes.func.isRequired,
+    loadCurrentCourse: PropTypes.func.isRequired,
   };
 
   componentWillMount() {
-    console.log('in componentWillMount', this.props);
     try {
       this.props.fetchCoursesListSuccess();
     } catch (error) {
       this.props.fetchCoursesListFailure(error);
     }
+  }
+
+  handlePressCourse(course) {
+    this.props.loadCurrentCourse(course);
+    RouterActions.courseDetails({ course });
   }
 
   render() {
@@ -94,9 +99,7 @@ class CourseList extends Component {
           {courses.map((course, key) =>
             <CourseSummary
               style={styles.container}
-              onPress={() =>
-                RouterActions.courseDetails({ course })
-              }
+              onPress={() => this.handlePressCourse(course)}
               course={course}
               key={key}
             />

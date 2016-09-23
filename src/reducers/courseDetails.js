@@ -9,13 +9,21 @@ const initialState = {
 };
 
 const courseReducer = (state = initialState, action) => {
-  const { type, ...newState } = action;
-
-  switch (type) {
+  switch (action.type) {
     case types.LOAD_CURRENT_COURSE:
       return {
         ...state,
-        ...newState,
+        ...action.currentCourse,
+      };
+    case types.LOAD_CURRENT_LECTURE:
+      return {
+        ...state,
+        currentLecture: action.currentCourse,
+      };
+    case types.UPDATE_LECTURE_PROGRESS:
+      return {
+        ...state,
+        lectureProgress: state.lectureProgress + action.increment,
       };
     default:
       return state;
