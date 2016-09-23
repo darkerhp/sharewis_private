@@ -63,26 +63,9 @@ class Lecture extends Component {
     videoProgress: PropTypes.func.isRequired,
     lectureId: PropTypes.number.isRequired,
     course: PropTypes.shape({
-      /* eslint-disable react/no-unused-prop-types */
-      order: PropTypes.number,
-      title: PropTypes.string,
-      kind: PropTypes.string,
-      duration: PropTypes.number,
-      isCompleted: PropTypes.bool,
-      isStarted: PropTypes.bool,
-      type: PropTypes.string,
-      /* eslint-enable react/no-unused-prop-types */
+      lecture_progress: PropTypes.number,
     }).isRequired,
-    nextLecture: PropTypes.shape({
-      /* eslint-disable react/no-unused-prop-types */
-      order: PropTypes.number,
-      title: PropTypes.string,
-      kind: PropTypes.string,
-      duration: PropTypes.number,
-      isCompleted: PropTypes.bool,
-      type: PropTypes.string,
-      /* eslint-enable react/no-unused-prop-types */
-    }),
+    nextLecture: PropTypes.shape(),
     pressNextLecture: PropTypes.func.isRequired,
     loadLecture: PropTypes.func.isRequired,
   };
@@ -94,10 +77,20 @@ class Lecture extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.lectureId) return;
-    if (nextProps.lectureId !== this.props.lectureId) {
-      const { course, lectureId } = nextProps;
+    const { course, lectureId, nextLecture } = nextProps;
+    console.log('in componentWillReceiveProps', course.lecture_progress, this.props.course.lecture_progress);
+    if (lectureId !== this.props.lectureId) {
       this.props.loadLecture(course, lectureId);
+    } else if (course.lecture_progress > this.props.course.lecture_progress) {
+      RouterActions.refresh({
+        title: nextLecture.title,
+        lectureId: nextLecture.id,
+        course,
+      });
     }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    console.log('in componentWillUpdate', nextProps.course.lecture_progress);
   }
 
   @autobind
@@ -109,17 +102,8 @@ class Lecture extends Component {
 
   @autobind
   handlePressNextLecture() {
-    const { lectureId, nextLecture, pressNextLecture } = this.props;
-    // update current lecture status to completed
-    console.log('before action', this.props.course);
-    pressNextLecture(this.props.course, lectureId);
-    // Fetch updated couse after action
-    console.log('after action', this.props.course);
-    RouterActions.refresh({
-      title: nextLecture.title,
-      lectureId: nextLecture.id,
-      course: this.props.course,
-    });
+    const { course, lectureId, pressNextLecture } = this.props;
+    pressNextLecture(course, lectureId);
   }
 
   @autobind
@@ -142,6 +126,7 @@ class Lecture extends Component {
       pressPlay,
       pressSpeed,
     } = this.props;
+    console.log('in render', course.lecture_progress);
     const lecture = LectureUtils.getLectureById(course.lectures, lectureId);
     return (
       <View style={{ flex: 1 }}>

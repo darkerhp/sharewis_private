@@ -35,18 +35,14 @@ const lecture = (state = initialState, action) => {
         currentTime: action.currentTime,
       };
     case types.PRESS_NEXT_LECTURE: {
-      const newLectures = state.course.lectures.map(l => (
-        l.id !== action.lectureId ? l : { ...l, isCompleted: true }
-      ));
       const newState = {
         ...state,
         lectureId: action.lectureId,
-        course: {
-          ...state.course,
-          lectures: newLectures,
-          lecture_progress: state.course.lectures.lecture_progress + 1,
-        },
+        course: action.course,
       };
+      console.log('PRESS_NEXT_LECTURE state', state);
+      console.log('PRESS_NEXT_LECTURE action', action);
+      console.log('PRESS_NEXT_LECTURE newState', newState);
       return newState;
     }
     case types.LOAD_LECTURE: {
