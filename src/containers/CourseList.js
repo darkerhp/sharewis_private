@@ -109,4 +109,4 @@ class CourseList extends Component {
 }
 
 
-export default connectToProps(CourseList, 'courses');
+export default connectToProps(CourseList, 'courseList');

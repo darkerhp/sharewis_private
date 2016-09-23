@@ -12,6 +12,7 @@ import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 import * as LectureUtils from '../utils/lecture';
+import connectToProps from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, StatusBar, Text } = ReactNative;
@@ -196,17 +197,4 @@ class Lecture extends Component {
 }
 
 
-const mapStateToProps = state =>
-  Object.assign({ ...state.lecture }, (
-    /*
-     routerのactionに設定されたpropsはstate.routes.sceneに格納されているため
-     sceneから取得した情報をpropsに設定する
-     */
-    state.routes.scene.sceneKey === 'lecture' ?
-    {
-      lectureId: state.routes.scene.lectureId,
-      course: state.routes.scene.course,
-    } : {}
-  ));
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
-export default connect(mapStateToProps, mapDispatchToProps)(Lecture);
+export default connectToProps(Lecture, 'currentLecture', Actions);

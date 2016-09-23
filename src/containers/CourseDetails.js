@@ -93,4 +93,4 @@ class CourseDetails extends Component {
   }
 }
 
-export default connectToProps(CourseDetails, 'courses');
+export default connectToProps(CourseDetails, 'currentCourse');
