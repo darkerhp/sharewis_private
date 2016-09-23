@@ -43,13 +43,13 @@ const getScenes = loggedIn =>
     <Scene
       key="onboarding"
       component={Onboarding}
-      initial={!loggedIn}
+      initial={loggedIn}
     />
     <Scene
       key="courseList"
       component={CourseList}
       title={I18n.t('courseList')}
-      initial={loggedIn}
+      initial={!loggedIn}
       type={ActionConst.RESET}
       hideNavBar={false}
       duration={0}

@@ -32,58 +32,28 @@ const styles = StyleSheet.create({
 
 class CourseDetails extends Component {
   static propTypes = {
-    course: PropTypes.shape({
-      /* eslint-disable react/no-unused-prop-types */
-      title: PropTypes.string.required,
-      lectures: PropTypes.array.required,
-      /* eslint-enable react/no-unused-prop-types */
-    }),
+    currentCourse: PropTypes.shape({}),
   };
-
-  /*
-  componentWillMount() { console.log('componentWillMount')};
-  componentDidMount() { console.log('componentDidMount')};
-  componentWillReceiveProps(nextProps) { console.log('componentWillReceiveProps', nextProps)};
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate', nextProps, nextState)
-  };
-  componentWillUpdate(nextProps, nextState) {
-    console.log('componentWillUpdate', nextProps, nextState)
-  };
-  componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate', prevProps, prevState)
-  };
-  componentWillUnmount() { console.log('componentWillUnmount')};
-  */
 
   @autobind
   handlePressNextLecture() {
-    const { course } = this.props;
-    const lecture = LectureUtils.getNextVideoLecture(course.lectures);
-    return this.handlePressLecture(lecture);
+    const { currentCourse } = this.props;
+    const nextLecture = LectureUtils.getNextVideoLecture(currentCourse.lectures);
+    RouterActions.lecture({ currentLecture: nextLecture });
   }
 
-  @autobind
-  handlePressLecture(lecture) {
-    const { course } = this.props;
-    return RouterActions.lecture({
-      title: lecture.title,
-      lectureId: lecture.id,
-      course,
-    });
-  }
 
   render() {
-    const { course } = this.props;
-    console.log(`in render with ${course.lecture_progress} lectures completed`);
-    const isCompleted = course.lecture_progress === course.lecture_count;
+    const { currentCourse } = this.props;
+    console.log(`in render with ${currentCourse.lectureProgress} lectures completed`);
+    const isCompleted = currentCourse.lectureProgress === currentCourse.lectureCount;
     const courseInfo = {
-      totalLectureCount: course.lecture_count,
-      completeLectureCount: course.lecture_progress,
+      totalLectureCount: currentCourse.lectureCount,
+      completeLectureCount: currentCourse.lectureProgress,
       isCompleted,
-      courseTitle: course.title,
-      totalDuration: CourseUtils.totalDuration(course),
-      nextLecture: LectureUtils.getNextVideoLecture(course.lectures),
+      courseTitle: currentCourse.title,
+      totalDuration: CourseUtils.totalDuration(currentCourse),
+      nextLecture: LectureUtils.getNextVideoLecture(currentCourse.lectures),
     };
     return (
       <ScrollView
@@ -100,8 +70,8 @@ class CourseDetails extends Component {
           />
           <LectureList
             containerStyleId={styles.lectureContainer}
-            lectures={course.lectures}
-            handlePressLecture={this.handlePressLecture}
+            lectures={currentCourse.lectures}
+            handlePressLecture={lecture => RouterActions.lecture({ currentLecture: lecture })}
           />
         </View>
       </ScrollView>

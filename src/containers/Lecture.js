@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import ReactNative from 'react-native';
 import Video from 'react-native-video';
@@ -8,10 +9,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import I18n from 'react-native-i18n';
 
-import * as Actions from '../actions/lecture';
+import * as lectureActions from '../actions/lecture';
+import * as courseActions from '../actions/course';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 import * as LectureUtils from '../utils/lecture';
+import connectToProps from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, StatusBar, Text } = ReactNative;
@@ -55,42 +58,36 @@ const styles = StyleSheet.create({
 
 class Lecture extends Component {
   static propTypes = {
+    currentLecture: PropTypes.shape().isRequired,
+    videoProgress: PropTypes.func.isRequired,
+    nextLecture: PropTypes.shape(),
+    getNextLecture: PropTypes.func.isRequired,
+    loadLecture: PropTypes.func.isRequired,
+    // Following sounds like params for props.video, not lecture
     isPaused: PropTypes.bool.isRequired,
     pressPlay: PropTypes.func.isRequired,
     speed: PropTypes.number.isRequired,
     pressSpeed: PropTypes.func.isRequired,
     currentTime: PropTypes.number.isRequired,
-    videoProgress: PropTypes.func.isRequired,
-    lectureId: PropTypes.number.isRequired,
-    course: PropTypes.shape({
-      lecture_progress: PropTypes.number,
-    }).isRequired,
-    nextLecture: PropTypes.shape(),
-    pressNextLecture: PropTypes.func.isRequired,
-    loadLecture: PropTypes.func.isRequired,
   };
 
   componentWillMount() {
-    const { course, lectureId } = this.props;
-    this.props.loadLecture(course, lectureId);
+    const { currentLecture, loadLecture } = this.props;
+    loadLecture(currentLecture);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.lectureId) return;
-    const { course, lectureId, nextLecture } = nextProps;
-    console.log('in componentWillReceiveProps', course.lecture_progress, this.props.course.lecture_progress);
-    if (lectureId !== this.props.lectureId) {
-      this.props.loadLecture(course, lectureId);
-    } else if (course.lecture_progress > this.props.course.lecture_progress) {
-      RouterActions.refresh({
-        title: nextLecture.title,
-        lectureId: nextLecture.id,
-        course,
-      });
+    if (!nextProps.currentLecture) return;
+    const { currentLecture } = nextProps;
+    if (currentLecture !== this.props.currentLecture) {
+      this.props.loadLecture(currentLecture);
+
+      // RouterActions.refresh({
+      //   title: nextLecture.title,
+      //   currentLecture: nextLecture.id,
+      //   course,
+      // });
     }
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log('in componentWillUpdate', nextProps.course.lecture_progress);
   }
 
   @autobind
@@ -98,12 +95,6 @@ class Lecture extends Component {
     if (this.video) {
       this.video.seek(value);
     }
-  }
-
-  @autobind
-  handlePressNextLecture() {
-    const { course, lectureId, pressNextLecture } = this.props;
-    pressNextLecture(course, lectureId);
   }
 
   @autobind
@@ -116,18 +107,16 @@ class Lecture extends Component {
 
   render() {
     const {
-      lectureId,
-      course,
+      currentLecture,
       currentTime,
+      getNextLecture,
       isPaused,
-      speed,
-      videoProgress,
       nextLecture,
       pressPlay,
       pressSpeed,
+      speed,
+      videoProgress,
     } = this.props;
-    console.log('in render', course.lecture_progress);
-    const lecture = LectureUtils.getLectureById(course.lectures, lectureId);
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
@@ -135,7 +124,7 @@ class Lecture extends Component {
           <Video
             ref={ref => (this.video = ref)}
             // source can be a URL or a local file
-            source={{ uri: lecture.url }}
+            source={{ uri: currentLecture.url }}
             rate={speed}
             volume={1.0}
             muted={false}
@@ -147,18 +136,18 @@ class Lecture extends Component {
             // onError={e => console.log(e)
             style={styles.backgroundVideo}
             onProgress={this.handleVideoProgress}
-            onEnd={this.handlePressNextLecture}
+            onEnd={lecture => getNextLecture(lecture.id)}
           />
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
             currentTime={currentTime}
-            duration={lecture.duration}
+            duration={currentLecture.duration}
             onValueChange={this.handleValueChange}
             video={this.video}
           />
           <View style={styles.lectureTitleTextWrapper}>
-            <Text>{lecture.title}</Text>
+            <Text>{currentLecture.title}</Text>
           </View>
           <VideoControls
             isPaused={isPaused}
@@ -171,7 +160,7 @@ class Lecture extends Component {
               <Button
                 containerStyle={styles.nextLectureButton}
                 style={styles.nextLectureButtonText}
-                onPress={this.handlePressNextLecture}
+                onPress={lecture => getNextLecture(lecture.id)}
               >
                 {I18n.t('nextLecture')}
               </Button>
@@ -184,17 +173,4 @@ class Lecture extends Component {
 }
 
 
-const mapStateToProps = state =>
-  Object.assign({ ...state.lecture }, (
-    /*
-     routerのactionに設定されたpropsはstate.routes.sceneに格納されているため
-     sceneから取得した情報をpropsに設定する
-     */
-    state.routes.scene.sceneKey === 'lecture' ?
-    {
-      lectureId: state.routes.scene.lectureId,
-      course: state.routes.scene.course,
-    } : {}
-  ));
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
-export default connect(mapStateToProps, mapDispatchToProps)(Lecture);
+export default connectToProps(Lecture, 'lecture', { ...lectureActions, ...courseActions });

@@ -34,7 +34,7 @@ describe('CourseDetails', () => {
     expect(result.lectureId).toEqual(1);
   });
 
-  it('should have a pressNextLecture handler', (async) () => {
+  it('should have a getNextLecture handler', (async) () => {
     const result = await instance.handlePressNextLecture();
     expect(result.title).toEqual('レクチャーH');
     expect(result.lectureId).toEqual(8);
