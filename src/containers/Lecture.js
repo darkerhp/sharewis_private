@@ -62,6 +62,7 @@ class Lecture extends Component {
     currentTime: PropTypes.number.isRequired,
     duration: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
+    isCompleted: PropTypes.bool.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
     speed: PropTypes.number.isRequired,
@@ -95,9 +96,11 @@ class Lecture extends Component {
 
   @autobind
   handlePressNextLecture() {
-    const { id, lectures, loadCurrentLecture, completeCurrentLecture } = this.props;
+    const { id, isCompleted, lectures, loadCurrentLecture, completeCurrentLecture } = this.props;
 
-    completeCurrentLecture();
+    if (!isCompleted) {
+      completeCurrentLecture();
+    }
 
     const nextLecture = LectureUtils.getLectureById(lectures, id + 1);
     loadCurrentLecture(nextLecture);

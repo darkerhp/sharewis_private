@@ -16,15 +16,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (key, lecture, handlePressLecture) => (
+const renderLecture = (key, lecture, handlePressLecture, lectures) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
-    : <Lecture key={key} lecture={lecture} handlePressLecture={handlePressLecture} />
+    : <Lecture
+      key={key}
+      lectures={lectures}
+      currentLecture={lecture}
+      handlePressLecture={handlePressLecture}
+    />
 );
 
 const LectureList = ({ lectures, containerStyleId, handlePressLecture }) =>
   <View style={[styles.container, containerStyleId]}>
-    {lectures.map((lecture, i) => renderLecture(i, lecture, handlePressLecture))}
+    {lectures.map((lecture, i) => renderLecture(i, lecture, handlePressLecture, lectures))}
   </View>;
 
 LectureList.propTypes = {

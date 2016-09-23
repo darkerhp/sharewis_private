@@ -48,7 +48,7 @@ class CourseDetails extends Component {
     return this.handlePressLecture(lecture);
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  @autobind
   handlePressLecture(lecture) {
     const { lectures, loadCurrentLecture } = this.props;
     loadCurrentLecture(lecture);
