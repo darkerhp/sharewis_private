@@ -12,7 +12,6 @@ import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 import * as LectureUtils from '../utils/lecture';
-import * as CourseUtils from '../utils/course';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, StatusBar, Text } = ReactNative;

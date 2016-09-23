@@ -1,9 +1,7 @@
 /* @flow */
 // TODO video と lecture, lectures分けたほうがよさげ
-/* eslint-disable no-console */
 import * as types from '../constants/ActionTypes';
 import * as LectureUtils from '../utils/lecture';
-import * as CourseUtils from '../utils/course';
 
 const initialState = {
   isPaused: true,
@@ -36,17 +34,14 @@ const lecture = (state = initialState, action) => {
         currentTime: action.currentTime,
       };
     case types.PRESS_NEXT_LECTURE: {
-      console.log(`Before with ${CourseUtils.completeLectureCount(state.course)} courses completed`);
       const newLectures = state.course.lectures.map(l => (
         l.id !== action.lectureId ? l : { ...l, isCompleted: true }
       ));
-      const newState = {
+      return {
         ...state,
         lectureId: action.lectureId,
         course: { ...state.course, lectures: newLectures },
       };
-      console.log(`now with ${CourseUtils.completeLectureCount(newState.course)} courses completed`);
-      return newState;
     }
     case types.LOAD_LECTURE: {
       const { course, lectureId } = action;

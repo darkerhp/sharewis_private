@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import ReactNative from 'react-native';
 
@@ -57,18 +56,9 @@ class CourseDetails extends Component {
     });
   }
 
-  componentWillMount() { console.log('componentWillMount')};
-  componentDidMount() { console.log('componentDidMount')};
-  componentWillReceiveProps(nextProps) { console.log('componentWillReceiveProps', nextProps)};
-  shouldComponentUpdate(nextProps, nextState) { console.log('shouldComponentUpdate', nextProps, nextState)};
-  componentWillUpdate(nextProps, nextState) { console.log('componentWillUpdate', nextProps, nextState)};
-  componentDidUpdate(prevProps, prevState) { console.log('componentDidUpdate', prevProps, prevState)};
-  componentWillUnmount() { console.log('componentWillUnmount')};
-
   render() {
     const { course } = this.props;
     const completeLectureCount = CourseUtils.completeLectureCount(course);
-    console.log(`in render with ${completeLectureCount} lectures completed`);
     const totalLectureCount = CourseUtils.totalLectureCount(course);
     const isCompleted = completeLectureCount === totalLectureCount;
     const courseInfo = {
