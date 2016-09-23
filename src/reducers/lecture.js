@@ -4,11 +4,15 @@ import * as types from '../constants/ActionTypes';
 import * as LectureUtils from '../utils/lecture';
 
 const initialState = {
+  currentTime: 0,
+  duration: 0,
+  id: 0,
+  isCompleted: false,
+  isFullScreen: false,  // TODO
   isPaused: true,
   speed: 1,
-  isFullScreen: false,
-  duration: 0,
-  currentTime: 0,
+  title: undefined,
+  url: undefined,
 };
 
 const speedList = [1, 1.2, 1.5, 2];
@@ -20,20 +24,6 @@ const lecture = (state = initialState, action) => {
         ...state,
         ...action.currentLecture,
       };
-    case types.LOAD_NEXT_LECTURE: {
-      const newLectures = action.course.lectures.map(l => (
-        l.id !== action.lectureId ? l : { ...l, isCompleted: true }
-      ));
-      return {
-        ...state,
-        lectureId: action.lectureId,
-        course: {
-          ...action.course,
-          lectures: newLectures,
-          lectureCount: action.course.lectureCount + 1,
-        },
-      };
-    }
     case types.PRESS_PLAY:
       return {
         ...state,

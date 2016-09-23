@@ -23,10 +23,14 @@ const coursesReducer = (state = initialState, action) => {
         ...state,
         currentCourse: action.currentCourse,
       };
-    case types.UPDATE_LECTURE_PROGRESS: {
-      const lectureProgress = state.currentCourse.lectureProgress + action.increment;
+    case types.COMPLETE_CURRENT_LECTURE: {
+      const lectureProgress = state.currentCourse.lectureProgress + 1;
+      const lectures = state.currentCourse.lectures.map(l => (
+        l.id !== state.id ? l : { ...l, isCompleted: true }
+      ));
       const currentCourse = {
         ...state.currentCourse,
+        lectures,
         lectureProgress,
       };
       const courses = state.courses.map(c => (

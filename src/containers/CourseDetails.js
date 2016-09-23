@@ -50,10 +50,11 @@ class CourseDetails extends Component {
 
   // eslint-disable-next-line class-methods-use-this
   handlePressLecture(lecture) {
-    this.props.loadCurrentLecture(lecture);
+    const { lectures, loadCurrentLecture } = this.props;
+    loadCurrentLecture(lecture);
     return RouterActions.lecture({
-      lecture,
       title: lecture.title,
+      lectures,
     });
   }
 

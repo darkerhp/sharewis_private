@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
 @connectState('currentLecture')
 class Lecture extends Component {
   static propTypes = {
+    lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     // state
     currentTime: PropTypes.number.isRequired,
     duration: PropTypes.number.isRequired,
@@ -66,18 +67,21 @@ class Lecture extends Component {
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     // actions
-    loadNextLecture: PropTypes.func.isRequired,
+    loadCurrentLecture: PropTypes.func.isRequired,
     pressPlay: PropTypes.func.isRequired,
     pressSpeed: PropTypes.func.isRequired,
-    updateLectureProgress: PropTypes.func.isRequired,
+    completeCurrentLecture: PropTypes.func.isRequired,
     updateVideoProgress: PropTypes.func.isRequired,
   };
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.id) return;
     if (nextProps.id !== this.props.id) {
-      const { course, id } = nextProps;
-      // this.props.loadCurrentLecture(course, id);
+      const { id, title } = nextProps;
+      RouterActions.refresh({
+        title: nextProps.title,
+        id: nextProps.id,
+      });
     }
   }
 
@@ -89,15 +93,13 @@ class Lecture extends Component {
   }
 
   @autobind
-  handlePressNextLecture(course, id) {
-    const { loadNextLecture, updateLectureProgress } = this.props;
+  handlePressNextLecture() {
+    const { id, lectures, loadCurrentLecture, completeCurrentLecture } = this.props;
 
-    updateLectureProgress();
-    // loadNextLecture(id);
-    // RouterActions.refresh({
-    //   title: nextLecture.title,
-    //   id: nextLecture.id,
-    // });
+    completeCurrentLecture();
+
+    const nextLecture = LectureUtils.getLectureById(lectures, id + 1);
+    loadCurrentLecture(nextLecture);
   }
 
   @autobind
@@ -111,7 +113,7 @@ class Lecture extends Component {
   render() {
     const {
       // state
-      id, currentTime, duration, isPaused, speed, title, url,
+      currentTime, duration, isPaused, speed, title, url,
       // actions
       pressPlay, pressSpeed, updateVideoProgress,
     } = this.props;
@@ -134,7 +136,7 @@ class Lecture extends Component {
             // onError={e => console.log(e)
             style={styles.backgroundVideo}
             onProgress={this.handleVideoProgress}
-            onEnd={() => this.handlePressNextLecture(id)}
+            onEnd={this.handlePressNextLecture}
           />
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
@@ -158,7 +160,7 @@ class Lecture extends Component {
               <Button
                 containerStyle={styles.nextLectureButton}
                 style={styles.nextLectureButtonText}
-                onPress={() => this.handlePressNextLecture(id)}
+                onPress={this.handlePressNextLecture}
               >
                 {I18n.t('nextLecture')}
               </Button>

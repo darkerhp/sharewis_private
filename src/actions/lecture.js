@@ -2,10 +2,9 @@
 import * as types from '../constants/ActionTypes';
 
 
-export const loadNextLecture = (course, lectureId) => ({
-  type: types.LOAD_NEXT_LECTURE,
-  course,
-  lectureId,
+export const loadCurrentLecture = currentLecture => ({
+  type: types.LOAD_CURRENT_LECTURE,
+  currentLecture,
 });
 
 export const pressFullScreen = () => ({
@@ -26,7 +25,6 @@ export const updateVideoProgress = currentTime => ({
 });
 
 // Used in courseList and courseDetails reducers
-export const updateLectureProgress = () => ({
-  type: types.UPDATE_LECTURE_PROGRESS,
-  increment: 1,
+export const completeCurrentLecture = () => ({
+  type: types.COMPLETE_CURRENT_LECTURE,
 });
