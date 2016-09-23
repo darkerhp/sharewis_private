@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import * as types from '../../constants/ActionTypes';
-import reducer from '../courses';
+import reducer from '../courseList';
 
 
 describe('Course reducer', () => {
