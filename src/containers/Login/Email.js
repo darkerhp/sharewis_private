@@ -17,7 +17,7 @@ import BaseStyles from '../../baseStyles';
 import TextField from '../../components/TextField';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
-import connectToProps from '../../utils/redux';
+import { connectActions, connectState } from '../../utils/redux';
 import validateEmailLogin from '../../utils/validate';
 
 const { Component, PropTypes } = React;
@@ -124,6 +124,8 @@ const checkInput = (states) => {
 
 
 @connect(checkInput)
+@connectActions(Actions)
+@connectState('user')
 @reduxForm(formOptions)
 class Email extends Component {
   static propTypes = {
@@ -211,4 +213,4 @@ class Email extends Component {
 }
 
 
-export default connectToProps(Email, 'user', Actions);
+export default Email;

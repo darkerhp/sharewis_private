@@ -4,7 +4,6 @@ import Video from 'react-native-video';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import { Actions as RouterActions } from 'react-native-router-flux';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import I18n from 'react-native-i18n';
 
@@ -12,7 +11,7 @@ import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 import * as LectureUtils from '../utils/lecture';
-import connectToProps from '../utils/redux';
+import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, StatusBar, Text } = ReactNative;
@@ -54,6 +53,8 @@ const styles = StyleSheet.create({
 });
 
 
+@connectActions(Actions)
+@connectState('currentLecture')
 class Lecture extends Component {
   static propTypes = {
     isPaused: PropTypes.bool.isRequired,
@@ -196,4 +197,4 @@ class Lecture extends Component {
 }
 
 
-export default connectToProps(Lecture, 'currentLecture', Actions);
+export default Lecture;

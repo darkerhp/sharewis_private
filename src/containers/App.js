@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Styles from '../baseStyles';
 import getScenes from '../components/Scenes';
-import connectToProps from '../utils/redux';
+import { connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const RouterWithRedux = connect()(Router);
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
 });
 
 
+@connectState('user')
 class App extends Component {
   static propTypes = {
     loggedIn: PropTypes.bool.isRequired,
@@ -40,4 +41,4 @@ class App extends Component {
 }
 
 
-export default connectToProps(App, 'user');
+export default App;

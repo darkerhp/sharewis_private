@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
-import connectToProps from '../utils/redux';
+import { connectState } from '../utils/redux';
 
 const { Text, View } = ReactNative;
 
@@ -14,4 +14,4 @@ const Profile = () =>
   </View>;
 
 
-export default connectToProps(Profile, 'user');
+export default connectState(Profile, 'user');

@@ -10,7 +10,7 @@ import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import * as CourseUtils from '../utils/course';
 import * as LectureUtils from '../utils/lecture';
-import connectToProps from '../utils/redux';
+import { connectActions, connectState } from '../utils/redux';
 import BaseStyles from '../baseStyles';
 
 const { Component, PropTypes } = React;
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
 });
 
 
+@connectActions(Actions)
+@connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
     course: PropTypes.shape({
@@ -101,4 +103,4 @@ class CourseDetails extends Component {
   }
 }
 
-export default connectToProps(CourseDetails, 'currentCourse', Actions);
+export default CourseDetails;

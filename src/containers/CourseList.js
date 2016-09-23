@@ -11,7 +11,7 @@ import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
 import { ACT_API_URL } from '../constants/Api';
 import redirectTo from '../utils/linking';
-import connectToProps from '../utils/redux';
+import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const {
@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
 });
 
 
-// eslint-disable-next-line react/prefer-stateless-function
+@connectActions(Actions)
+@connectState('courseList')
 class CourseList extends Component {
   static propTypes = {
     courses: PropTypes.arrayOf(PropTypes.shape({
@@ -121,4 +122,4 @@ class CourseList extends Component {
 }
 
 
-export default connectToProps(CourseList, 'courseList', Actions);
+export default CourseList;

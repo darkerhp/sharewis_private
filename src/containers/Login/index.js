@@ -8,7 +8,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../../baseStyles';
-import connectToProps from '../../utils/redux';
+import { connectActions, connectState } from '../../utils/redux';
 import redirectTo from '../../utils/linking';
 import Email from './Email';
 import Facebook from './Facebook';
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
 });
 
 
+@connectState('user')
 class Login extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
@@ -72,4 +73,4 @@ class Login extends Component {
   }
 }
 
-export default connectToProps(Login, 'user');
+export default Login;

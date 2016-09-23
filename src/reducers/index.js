@@ -9,7 +9,7 @@ import user from './user';
 
 
 const rootReducer: Function = combineReducers({
-  courseList: courseList,
+  courseList,
   currentCourse: courseDetails,
   currentLecture: lecture,
   form,
