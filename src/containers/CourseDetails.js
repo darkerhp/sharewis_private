@@ -67,7 +67,8 @@ class CourseDetails extends Component {
 
   render() {
     const { course } = this.props;
-    console.log(`in render with ${course.nb_lectures_watched} lectures completed`);
+    const completeLectureCount = CourseUtils.completeLectureCount(course);
+    console.log(`in render with ${completeLectureCount} lectures completed`);
     const totalLectureCount = CourseUtils.totalLectureCount(course);
     const isCompleted = completeLectureCount === totalLectureCount;
     const courseInfo = {

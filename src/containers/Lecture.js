@@ -12,6 +12,7 @@ import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 import * as LectureUtils from '../utils/lecture';
+import * as CourseUtils from '../utils/course';
 
 const { Component, PropTypes } = React;
 const { View, StyleSheet, StatusBar, Text } = ReactNative;
@@ -108,17 +109,14 @@ class Lecture extends Component {
   }
 
   @autobind
-  handlePressNextLecture() {
-    const { lectureId, nextLecture, pressNextLecture } = this.props;
+  handlePressNextLecture(course, lectureId) {
+    const { nextLecture, pressNextLecture } = this.props;
     // update current lecture status to completed
-    console.log('before action', this.props.course);
-    pressNextLecture(this.props.course, lectureId);
-    // Fetch updated couse after action
-    console.log('after action', this.props.course);
+    pressNextLecture(course, lectureId);
     RouterActions.refresh({
       title: nextLecture.title,
       lectureId: nextLecture.id,
-      course: this.props.course,
+      course,
     });
   }
 
@@ -162,7 +160,7 @@ class Lecture extends Component {
             // onError={e => console.log(e)
             style={styles.backgroundVideo}
             onProgress={this.handleVideoProgress}
-            onEnd={this.handlePressNextLecture}
+            onEnd={() => this.handlePressNextLecture(course, lectureId)}
           />
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
@@ -186,7 +184,7 @@ class Lecture extends Component {
               <Button
                 containerStyle={styles.nextLectureButton}
                 style={styles.nextLectureButtonText}
-                onPress={this.handlePressNextLecture}
+                onPress={() => this.handlePressNextLecture(course, lectureId)}
               >
                 {I18n.t('nextLecture')}
               </Button>
