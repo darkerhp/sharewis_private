@@ -25,7 +25,7 @@ export const updateVideoProgress = currentTime => ({
   currentTime,
 });
 
-// Used in courseDetails reducer
+// Used in courseList and courseDetails reducers
 export const updateLectureProgress = () => ({
   type: types.UPDATE_LECTURE_PROGRESS,
   increment: 1,
