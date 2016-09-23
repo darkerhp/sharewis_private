@@ -57,7 +57,12 @@ const styles = StyleSheet.create({
 // eslint-disable-next-line react/prefer-stateless-function
 class CourseList extends Component {
   static propTypes = {
-    courses: PropTypes.arrayOf(PropTypes.shape({})),
+    courses: PropTypes.arrayOf(PropTypes.shape({
+      /* eslint-disable react/no-unused-prop-types */
+      title: PropTypes.string.required,
+      lectures: PropTypes.array.required,
+      /* eslint-enable react/no-unused-prop-types */
+    })),
   };
 
   render() {
@@ -76,7 +81,8 @@ class CourseList extends Component {
           {courses.map((course, key) =>
             <CourseSummary
               style={styles.container}
-              onPress={() => RouterActions.courseDetails({ currentCourse: course })
+              onPress={() =>
+                RouterActions.courseDetails({ course })
               }
               course={course}
               key={key}

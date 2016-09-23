@@ -69,9 +69,9 @@ const CourseSummary = ({ course, ...props }) =>
           <Hr lineColor={'#dadada'} />
         </View>
         <Text style={styles.progress}>
-          {`${course.lectureProgress}/${course.lectureCount} ${I18n.t('progressText')}`}
+          {`${course.lecture_progress}/${course.lecture_count} ${I18n.t('progressText')}`}
         </Text>
-        <ProgressBar progress={course.lectureProgress / course.lectureCount} />
+        <ProgressBar progress={course.lecture_progress / course.lecture_count} />
         <View style={styles.download}>
           <Text style={styles.downloadText}>
             {I18n.t('downloadAvailable')}

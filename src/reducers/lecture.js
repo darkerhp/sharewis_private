@@ -34,11 +34,27 @@ const lecture = (state = initialState, action) => {
         ...state,
         currentTime: action.currentTime,
       };
+    case types.PRESS_NEXT_LECTURE: {
+      const newState = {
+        ...state,
+        lectureId: action.lectureId,
+        course: action.course,
+      };
+      console.log('PRESS_NEXT_LECTURE state', state);
+      console.log('PRESS_NEXT_LECTURE action', action);
+      console.log('PRESS_NEXT_LECTURE newState', newState);
+      return newState;
+    }
     case types.LOAD_LECTURE: {
+      const { course, lectureId } = action;
+      const idx = course.lectures.findIndex(l => l.id === lectureId);
+      const nextLecture = LectureUtils.getNextVideoLecture(course.lectures.slice(idx + 1), false);
       return {
         ...state,
         ...initialState,
-        lecture,
+        course,
+        lectureId,
+        nextLecture: Object.keys(nextLecture).length ? nextLecture : null,
       };
     }
     default:
