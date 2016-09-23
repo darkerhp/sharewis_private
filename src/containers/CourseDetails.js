@@ -1,4 +1,3 @@
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
 
