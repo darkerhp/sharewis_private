@@ -8,11 +8,11 @@ const initialState = {
   lectures: {},
 };
 
-const course = (state = initialState, action) => {
+const courseReducer = (state = initialState, action) => {
   const { type, ...newState } = action;
 
   switch (type) {
-    case types.SET_CURRENT_COURSE:
+    case types.LOAD_CURRENT_COURSE:
       return {
         ...state,
         ...newState,
@@ -23,4 +23,4 @@ const course = (state = initialState, action) => {
 };
 
 
-export default course;
+export default courseReducer;

@@ -20,8 +20,8 @@ export const pressNextLecture = (course, lectureId) => ({
   course,
   lectureId,
 });
-export const loadLecture = (course, lectureId) => ({
-  type: types.LOAD_LECTURE,
+export const loadCurrentLecture = (course, lectureId) => ({
+  type: types.LOAD_CURRENT_LECTURE,
   course,
   lectureId,
 });

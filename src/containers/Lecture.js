@@ -85,19 +85,19 @@ class Lecture extends Component {
       /* eslint-enable react/no-unused-prop-types */
     }),
     pressNextLecture: PropTypes.func.isRequired,
-    loadLecture: PropTypes.func.isRequired,
+    loadCurrentLecture: PropTypes.func.isRequired,
   };
 
   componentWillMount() {
     const { course, lectureId } = this.props;
-    this.props.loadLecture(course, lectureId);
+    this.props.loadCurrentLecture(course, lectureId);
   }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.lectureId) return;
     if (nextProps.lectureId !== this.props.lectureId) {
       const { course, lectureId } = nextProps;
-      this.props.loadLecture(course, lectureId);
+      this.props.loadCurrentLecture(course, lectureId);
     }
   }
 

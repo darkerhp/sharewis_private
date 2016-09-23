@@ -47,7 +47,7 @@ const lecture = (state = initialState, action) => {
         },
       };
     }
-    case types.LOAD_LECTURE: {
+    case types.LOAD_CURRENT_LECTURE: {
       const { course, lectureId } = action;
       const idx = course.lectures.findIndex(l => l.id === lectureId);
       const nextLecture = LectureUtils.getNextVideoLecture(course.lectures.slice(idx + 1), false);
