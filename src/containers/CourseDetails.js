@@ -40,22 +40,6 @@ class CourseDetails extends Component {
     }),
   };
 
-  /*
-  componentWillMount() { console.log('componentWillMount')};
-  componentDidMount() { console.log('componentDidMount')};
-  componentWillReceiveProps(nextProps) { console.log('componentWillReceiveProps', nextProps)};
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate', nextProps, nextState)
-  };
-  componentWillUpdate(nextProps, nextState) {
-    console.log('componentWillUpdate', nextProps, nextState)
-  };
-  componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate', prevProps, prevState)
-  };
-  componentWillUnmount() { console.log('componentWillUnmount')};
-  */
-
   @autobind
   handlePressNextLecture() {
     const { course } = this.props;
@@ -73,13 +57,22 @@ class CourseDetails extends Component {
     });
   }
 
+  componentWillMount() { console.log('componentWillMount')};
+  componentDidMount() { console.log('componentDidMount')};
+  componentWillReceiveProps(nextProps) { console.log('componentWillReceiveProps', nextProps)};
+  shouldComponentUpdate(nextProps, nextState) { console.log('shouldComponentUpdate', nextProps, nextState)};
+  componentWillUpdate(nextProps, nextState) { console.log('componentWillUpdate', nextProps, nextState)};
+  componentDidUpdate(prevProps, prevState) { console.log('componentDidUpdate', prevProps, prevState)};
+  componentWillUnmount() { console.log('componentWillUnmount')};
+
   render() {
     const { course } = this.props;
     console.log(`in render with ${course.lecture_progress} lectures completed`);
-    const isCompleted = course.lecture_progress === course.lecture_count;
+    const totalLectureCount = CourseUtils.totalLectureCount(course);
+    const isCompleted = completeLectureCount === totalLectureCount;
     const courseInfo = {
-      totalLectureCount: course.lecture_count,
-      completeLectureCount: course.lecture_progress,
+      totalLectureCount,
+      completeLectureCount,
       isCompleted,
       courseTitle: course.title,
       totalDuration: CourseUtils.totalDuration(course),

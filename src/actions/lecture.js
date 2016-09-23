@@ -15,25 +15,13 @@ export const videoProgress = currentTime => ({
   type: types.VIDEO_PROGRESS,
   currentTime,
 });
+export const pressNextLecture = (course, lectureId) => ({
+  type: types.PRESS_NEXT_LECTURE,
+  course,
+  lectureId,
+});
 export const loadLecture = (course, lectureId) => ({
   type: types.LOAD_LECTURE,
   course,
   lectureId,
 });
-
-export const pressNextLecture = (currentCourse, lectureId) => {
-  const newLectures = currentCourse.lectures.map(l => (
-    l.id !== lectureId ? l : { ...l, isCompleted: true }
-  ));
-  const course = {
-    ...currentCourse,
-    lectures: [...newLectures],
-    lecture_progress: currentCourse.lecture_progress + 1,
-  };
-
-  return {
-    type: types.PRESS_NEXT_LECTURE,
-    course,
-    lectureId,
-  };
-};
