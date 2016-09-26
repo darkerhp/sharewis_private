@@ -58,23 +58,13 @@ const styles = StyleSheet.create({
 @connectState('courseList')
 class CourseList extends Component {
   static propTypes = {
-    courses: PropTypes.arrayOf(PropTypes.shape({
-      /* eslint-disable react/no-unused-prop-types */
-      title: PropTypes.string.required,
-      lectures: PropTypes.array.required,
-      /* eslint-enable react/no-unused-prop-types */
-    })),
-    fetchCourseListFailure: PropTypes.func.isRequired,
+    courses: PropTypes.arrayOf(PropTypes.shape({})),
     fetchCourseList: PropTypes.func.isRequired,
     loadCurrentCourse: PropTypes.func.isRequired,
   };
 
   componentWillMount() {
-    try {
-      this.props.fetchCourseList();
-    } catch (error) {
-      this.props.fetchCourseListFailure(error);
-    }
+    this.props.fetchCourseList();
   }
 
   handlePressCourse(course) {

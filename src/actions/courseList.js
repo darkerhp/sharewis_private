@@ -31,6 +31,7 @@ export const fetchCourseList = () =>
   async (dispatch, getState) => {
     dispatch(fetchCourseListStart());
     try {
+      console.log('state', getState());
       const userId = getState().user.userId;
       const courses = await getUserCourses(userId);
       dispatch(fetchCourseListSuccess(courses));

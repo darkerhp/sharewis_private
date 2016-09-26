@@ -2,6 +2,7 @@
  * @flow
  */
 export function checkStatus(result) {
+  console.log('in checkStatus', result);
   if (result.ok) {
     return result;
   }

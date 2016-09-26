@@ -15,9 +15,10 @@ const getHeaders = userId => ({
 
 export const getUserCourses = async (userId) => {
   // Run query
-  const result = await fetch(`${ACT_API_URL}/courses/me`, {
+  const result = await fetch(`${ACT_API_URL}/my_courses`, {
     headers: getHeaders(userId),
   });
+  console.log('headers', getHeaders(userId));
   // Verify results
   await checkStatus(result);
   const json = await result.json();
