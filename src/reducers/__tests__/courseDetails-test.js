@@ -25,10 +25,11 @@ describe('CourseList reducer', () => {
   });
 
   it('should load current lecture', () => {
-    expect(reducer({ currentLecture: null }, {
+    expect(reducer({ lectures, currentLecture: null }, {
       type: types.LOAD_CURRENT_LECTURE,
       currentLecture: lectures[0],
     })).toEqual({
+      lectures,
       currentLecture: lectures[0],
     });
   });

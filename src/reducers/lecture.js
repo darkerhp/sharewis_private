@@ -12,10 +12,10 @@ const initialState = {
   isFullScreen: false,  // TODO
   isLastLecture: false,
   isPaused: true,
+  lectures: [],
   speed: 1,
   title: undefined,
   url: undefined,
-  lectures: [],
 };
 
 const speedList = [1, 1.2, 1.5, 2];

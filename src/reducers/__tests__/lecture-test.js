@@ -12,6 +12,7 @@ describe('Lecture reducer', () => {
       isFullScreen: false,
       isLastLecture: false,
       isPaused: true,
+      lectures: [],
       speed: 1,
       title: undefined,
       url: undefined,

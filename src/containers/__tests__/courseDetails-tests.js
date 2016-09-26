@@ -33,13 +33,15 @@ describe('CourseDetails', () => {
 
   it('should have a pressLecture handler', async () => {
     const result = await instance.handlePressLecture(courses[0].lectures[1]);
-    expect(result.title).toEqual('レクチャーA');
-    expect(result.lectures.length).toEqual(16);
+    expect(result).toEqual({
+      title: 'レクチャーA',
+    });
   });
 
   it('should have a pressNextLecture handler', async () => {
     const result = await instance.handlePressNextLecture();
-    expect(result.title).toEqual('レクチャーH');
-    expect(result.lectures.length).toEqual(16);
+    expect(result).toEqual({
+      title: 'レクチャーH',
+    });
   });
 });
