@@ -13,8 +13,7 @@ const getHeaders = userId => ({
   'user-id': userId,
 });
 
-
-const getUserCourses = async (userId) => {
+export const getUserCourses = async (userId) => {
   // Run query
   const result = await fetch(`${ACT_API_URL}/courses/me`, {
     headers: getHeaders(userId),
@@ -27,3 +26,6 @@ const getUserCourses = async (userId) => {
   // Parse and return results
   return json.data;
 };
+
+
+export const foo = 'bar';

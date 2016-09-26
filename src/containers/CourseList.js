@@ -64,16 +64,16 @@ class CourseList extends Component {
       lectures: PropTypes.array.required,
       /* eslint-enable react/no-unused-prop-types */
     })),
-    fetchCoursesListFailure: PropTypes.func.isRequired,
-    fetchCoursesListSuccess: PropTypes.func.isRequired,
+    fetchCourseListFailure: PropTypes.func.isRequired,
+    fetchCourseList: PropTypes.func.isRequired,
     loadCurrentCourse: PropTypes.func.isRequired,
   };
 
   componentWillMount() {
     try {
-      this.props.fetchCoursesListSuccess();
+      this.props.fetchCourseList();
     } catch (error) {
-      this.props.fetchCoursesListFailure(error);
+      this.props.fetchCourseListFailure(error);
     }
   }
 
