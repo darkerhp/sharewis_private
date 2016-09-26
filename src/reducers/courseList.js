@@ -24,9 +24,18 @@ const coursesReducer = (state = initialState, action) => {
         currentCourse: action.currentCourse,
       };
     case types.COMPLETE_CURRENT_LECTURE: {
+      const currentLecture = {
+        ...state.currentCourse.currentLecture,
+        isCompleted: true,
+      };
+      const lectures = state.currentCourse.lectures.map(l => (
+        l.id !== currentLecture.id ? l : currentLecture
+      ));
+
       const lectureProgress = state.currentCourse.lectureProgress + 1;
       const currentCourse = {
         ...state.currentCourse,
+        lectures,
         lectureProgress,
       };
       const courses = state.courses.map(c => (
