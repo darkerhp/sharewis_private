@@ -104,8 +104,6 @@ const styles = StyleSheet.create({
 const formOptions = {
   form: 'email',
   validate: validateEmailLogin,
-  touchOnChange: true,
-  //fields: ['email', 'password'],
 };
 
 const checkInput = (states) => {
