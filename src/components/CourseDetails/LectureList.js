@@ -28,7 +28,7 @@ const renderLecture = (key, lecture, handlePressLecture) => (
 
 const LectureList = ({ lectures, containerStyleId, handlePressLecture }) =>
   <View style={[styles.container, containerStyleId]}>
-    {lectures.map((lecture, i) => renderLecture(i, lecture, handlePressLecture, lectures))}
+    {lectures.map((lecture, i) => renderLecture(i, lecture, handlePressLecture))}
   </View>;
 
 LectureList.propTypes = {

@@ -48,6 +48,7 @@ build:
     - script:
         name: npm run lint
         code: |
+          npm run lint -- --version
           npm run lint
 
     # - script:
