@@ -2,19 +2,41 @@
 // TODO video と lecture, lectures分けたほうがよさげ
 import * as types from '../constants/ActionTypes';
 import * as LectureUtils from '../utils/lecture';
+import replaceInList from '../utils/list';
 
 const initialState = {
-  isPaused: true,
-  speed: 1,
-  isFullScreen: false,
-  duration: 0,
   currentTime: 0,
+  duration: 0,
+  id: 0,
+  isCompleted: false,
+  isFullScreen: false,  // TODO
+  isLastLecture: false,
+  isPaused: true,
+  lectures: [],
+  speed: 1,
+  title: undefined,
+  url: undefined,
 };
 
 const speedList = [1, 1.2, 1.5, 2];
 
 const lecture = (state = initialState, action) => {
   switch (action.type) {
+    case types.COMPLETE_CURRENT_LECTURE: {
+      let { lectures, ...currentLecture } = state;
+      currentLecture.isCompleted = true;
+      lectures = replaceInList(lectures, currentLecture);
+      return {
+        lectures,
+        ...currentLecture,
+      };
+    }
+    case types.LOAD_CURRENT_LECTURE:
+      return {
+        ...state,
+        lectures: action.lectures,
+        ...action.currentLecture,
+      };
     case types.PRESS_PLAY:
       return {
         ...state,
@@ -28,33 +50,11 @@ const lecture = (state = initialState, action) => {
         speed: speedList[index],
       };
     }
-    case types.VIDEO_PROGRESS:
+    case types.UPDATE_VIDEO_PROGRESS:
       return {
         ...state,
         currentTime: action.currentTime,
       };
-    case types.PRESS_NEXT_LECTURE: {
-      const newLectures = state.course.lectures.map(l => (
-        l.id !== action.lectureId ? l : { ...l, isCompleted: true }
-      ));
-      return {
-        ...state,
-        lectureId: action.lectureId,
-        course: { ...state.course, lectures: newLectures },
-      };
-    }
-    case types.LOAD_LECTURE: {
-      const { course, lectureId } = action;
-      const idx = course.lectures.findIndex(l => l.id === lectureId);
-      const nextLecture = LectureUtils.getNextVideoLecture(course.lectures.slice(idx + 1), false);
-      return {
-        ...state,
-        ...initialState,
-        course,
-        lectureId,
-        nextLecture: Object.keys(nextLecture).length ? nextLecture : null,
-      };
-    }
     default:
       return state;
   }

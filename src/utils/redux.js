@@ -1,28 +1,15 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+export const mapStateToProps = key =>
+  state => ({ ...state[key] });
 
-// Alias to connect State and Dispatch to props
-//  * component: a React Component
-//  * stateKey: a props key or an array of keys
-//  * actions: a module of action creators
-const connectToProps = (component, stateKey, actions) => {
-  const keys = (typeof stateKey === 'string') ? [stateKey] : stateKey;
-  const mapStateToProps = (oldState) => {
-    let newState = {};
-    for (const key of keys) {
-      newState = {
-        ...newState,
-        ...oldState[key],
-      };
-    }
-    return newState;
-  };
-  if (!actions) {
-    return connect(mapStateToProps)(component);
-  }
-  const mapDispatchToProps = dispatch => ({ ...bindActionCreators(actions, dispatch) });
-  return connect(mapStateToProps, mapDispatchToProps)(component);
-};
+export const mapDispatchToProps = actions =>
+  dispatch => ({ ...bindActionCreators(actions, dispatch) });
 
-export default connectToProps;
+
+export const connectState = key =>
+  component => connect(mapStateToProps(key))(component);
+
+export const connectActions = actions =>
+  component => connect(null, mapDispatchToProps(actions))(component);

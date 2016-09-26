@@ -19,7 +19,11 @@ const styles = StyleSheet.create({
 const renderLecture = (key, lecture, handlePressLecture) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
-    : <Lecture key={key} lecture={lecture} handlePressLecture={handlePressLecture} />
+    : <Lecture
+      key={key}
+      currentLecture={lecture}
+      handlePressLecture={handlePressLecture}
+    />
 );
 
 const LectureList = ({ lectures, containerStyleId, handlePressLecture }) =>

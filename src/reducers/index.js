@@ -1,16 +1,18 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 
-import courses from './courses';
+import courseList from './courseList';
+import courseDetails from './courseDetails';
 import lecture from './lecture';
 import routes from './routes';
 import user from './user';
 
 
 const rootReducer: Function = combineReducers({
-  courses,
+  courseList,
+  currentCourse: courseDetails,
+  currentLecture: lecture,
   form,
-  lecture,
   routes,
   user,
 });

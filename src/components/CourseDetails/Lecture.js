@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactNative from 'react-native';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import Duration from '../Duration';
 import BaseStyles from '../../baseStyles';
 import * as LectureUtils from '../../utils/lecture';
+import Duration from '../Duration';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
@@ -90,34 +89,34 @@ const renderDownloadAction = () =>
     />
   </TouchableOpacity>;
 
-const Lecture = ({ lecture, handlePressLecture }) => {
-  const isAccessibleLecture = lecture.type === 'VideoLecture';
+const Lecture = ({ lectures, currentLecture, handlePressLecture }) => {
+  const isAccessibleLecture = currentLecture.type === 'VideoLecture';
   return (
     <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
       <View
-        style={lecture.isCompleted
+        style={currentLecture.isCompleted
                 ? styles.lectureNoTextWrapperCompleted
                 : styles.lectureNoTextWrapper}
       >
-        <Text style={styles.lectureNoText}>{lecture.order}</Text>
+        <Text style={styles.lectureNoText}>{currentLecture.order}</Text>
       </View>
 
       <View style={styles.lectureInfoWrapper}>
         <View style={styles.lectureIconWrapper}>
           <Icon
-            name={LectureUtils.getLectureIconName(lecture)}
+            name={LectureUtils.getLectureIconName(currentLecture)}
             style={styles.lectureIcon}
           />
         </View>
-        <Duration duration={lecture.duration} containerStyleId={styles.durationWrapper} />
+        <Duration duration={currentLecture.duration} containerStyleId={styles.durationWrapper} />
       </View>
 
       <TouchableOpacity
         style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
-        onPress={() => handlePressLecture(lecture)}
+        onPress={() => handlePressLecture(currentLecture, lectures)}
         disabled={!isAccessibleLecture}
       >
-        <Text style={styles.lectureTitleText}>{lecture.title}</Text>
+        <Text style={styles.lectureTitleText}>{currentLecture.title}</Text>
       </TouchableOpacity>
 
       {isAccessibleLecture && renderDownloadAction()}
@@ -127,7 +126,8 @@ const Lecture = ({ lecture, handlePressLecture }) => {
 
 
 Lecture.propTypes = {
-  lecture: PropTypes.shape({
+  lectures: PropTypes.arrayOf(PropTypes.shape({})),
+  currentLecture: PropTypes.shape({
     /* eslint-disable react/no-unused-prop-types */
     order: PropTypes.number,
     title: PropTypes.string,
@@ -139,5 +139,6 @@ Lecture.propTypes = {
   }).isRequired,
   handlePressLecture: PropTypes.func.isRequired,
 };
+
 
 export default Lecture;

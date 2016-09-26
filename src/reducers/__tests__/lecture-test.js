@@ -5,11 +5,17 @@ import * as types from '../../constants/ActionTypes';
 describe('Lecture reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
-      isPaused: true,
-      speed: 1,
-      isFullScreen: false,
-      duration: 0,
       currentTime: 0,
+      duration: 0,
+      id: 0,
+      isCompleted: false,
+      isFullScreen: false,
+      isLastLecture: false,
+      isPaused: true,
+      lectures: [],
+      speed: 1,
+      title: undefined,
+      url: undefined,
     });
   });
 
@@ -36,9 +42,9 @@ describe('Lecture reducer', () => {
     });
   });
 
-  it('should handle VIDEO_PROGRESS', () => {
+  it('should handle UPDATE_VIDEO_PROGRESS', () => {
     expect(
-      reducer({ currentTime: 0 }, { type: types.VIDEO_PROGRESS, currentTime: 1 })
+      reducer({ currentTime: 0 }, { type: types.UPDATE_VIDEO_PROGRESS, currentTime: 1 })
     ).toEqual({
       currentTime: 1,
     });

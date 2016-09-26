@@ -6,7 +6,7 @@ import autobind from 'autobind-decorator';
 import I18n from 'react-native-i18n';
 
 import * as Actions from '../../actions/login';
-import connectToProps from '../../utils/redux';
+import { connectActions, connectState } from '../../utils/redux';
 
 const { Component, PropTypes } = React;
 const { Alert, StyleSheet, Text, View } = ReactNative;
@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
 });
 
 
+@connectActions(Actions)
+@connectState('user')
 class Facebook extends Component {
   static propTypes = {
     fetchUserBy: PropTypes.func.isRequired,
@@ -103,4 +105,4 @@ class Facebook extends Component {
   }
 }
 
-export default connectToProps(Facebook, 'user', Actions);
+export default Facebook;

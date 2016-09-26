@@ -5,12 +5,13 @@ import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
+import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
 import { ACT_API_URL } from '../constants/Api';
 import redirectTo from '../utils/linking';
-import connectToProps from '../utils/redux';
+import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const {
@@ -54,7 +55,8 @@ const styles = StyleSheet.create({
 });
 
 
-// eslint-disable-next-line react/prefer-stateless-function
+@connectActions(Actions)
+@connectState('courseList')
 class CourseList extends Component {
   static propTypes = {
     courses: PropTypes.arrayOf(PropTypes.shape({
@@ -63,7 +65,23 @@ class CourseList extends Component {
       lectures: PropTypes.array.required,
       /* eslint-enable react/no-unused-prop-types */
     })),
+    fetchCoursesListFailure: PropTypes.func.isRequired,
+    fetchCoursesListSuccess: PropTypes.func.isRequired,
+    loadCurrentCourse: PropTypes.func.isRequired,
   };
+
+  componentWillMount() {
+    try {
+      this.props.fetchCoursesListSuccess();
+    } catch (error) {
+      this.props.fetchCoursesListFailure(error);
+    }
+  }
+
+  handlePressCourse(course) {
+    this.props.loadCurrentCourse(course);
+    RouterActions.courseDetails({ course });
+  }
 
   render() {
     const { courses } = this.props;
@@ -81,9 +99,7 @@ class CourseList extends Component {
           {courses.map((course, key) =>
             <CourseSummary
               style={styles.container}
-              onPress={() =>
-                RouterActions.courseDetails({ course })
-              }
+              onPress={() => this.handlePressCourse(course)}
               course={course}
               key={key}
             />
@@ -109,4 +125,4 @@ class CourseList extends Component {
 }
 
 
-export default connectToProps(CourseList, 'courses');
+export default CourseList;

@@ -2,26 +2,30 @@
 import * as types from '../constants/ActionTypes';
 
 
-export const pressPlay = () => ({
-  type: types.PRESS_PLAY,
+export const loadCurrentLecture = (lectures, currentLecture) => ({
+  type: types.LOAD_CURRENT_LECTURE,
+  lectures,
+  currentLecture,
 });
-export const pressSpeed = () => ({
-  type: types.PRESS_SPEED,
-});
+
 export const pressFullScreen = () => ({
   type: types.PRESS_FULL_SCREEN,
 });
-export const videoProgress = currentTime => ({
-  type: types.VIDEO_PROGRESS,
+
+export const pressPlay = () => ({
+  type: types.PRESS_PLAY,
+});
+
+export const pressSpeed = () => ({
+  type: types.PRESS_SPEED,
+});
+
+export const updateVideoProgress = currentTime => ({
+  type: types.UPDATE_VIDEO_PROGRESS,
   currentTime,
 });
-export const pressNextLecture = (course, lectureId) => ({
-  type: types.PRESS_NEXT_LECTURE,
-  course,
-  lectureId,
-});
-export const loadLecture = (course, lectureId) => ({
-  type: types.LOAD_LECTURE,
-  course,
-  lectureId,
+
+// Used in courseList and courseDetails reducers
+export const completeCurrentLecture = () => ({
+  type: types.COMPLETE_CURRENT_LECTURE,
 });
