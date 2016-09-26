@@ -28,6 +28,7 @@ export const fetchActLoginSuccess = result => ({
   type: types.FETCH_ACT_LOGIN_SUCCESS,
   userName: result.userName,
   nickName: result.nickName,
+  userId: result.userId,
 });
 
 export const fetchFBEmailFailure = () => ({
