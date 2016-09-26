@@ -51,11 +51,10 @@ class CourseDetails extends Component {
   handlePressLecture(lecture) {
     const { lectures, loadCurrentLecture } = this.props;
     loadCurrentLecture(lecture);
-    const result = RouterActions.lecture({
+    return RouterActions.lecture({
       title: lecture.title,
       lectures,
     });
-    return result;
   }
 
   render() {
