@@ -2,8 +2,9 @@
 import * as types from '../constants/ActionTypes';
 
 
-export const loadCurrentLecture = currentLecture => ({
+export const loadCurrentLecture = (lectures, currentLecture) => ({
   type: types.LOAD_CURRENT_LECTURE,
+  lectures,
   currentLecture,
 });
 

@@ -50,11 +50,8 @@ class CourseDetails extends Component {
   @autobind
   handlePressLecture(lecture) {
     const { lectures, loadCurrentLecture } = this.props;
-    loadCurrentLecture(lecture);
-    return RouterActions.lecture({
-      title: lecture.title,
-      lectures,
-    });
+    loadCurrentLecture(lectures, lecture);
+    return RouterActions.lecture({ title: lecture.title });
   }
 
   render() {

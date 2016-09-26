@@ -80,10 +80,7 @@ class Lecture extends Component {
     if (!nextProps.id) return;
     if (nextProps.id !== this.props.id) {
       const { id, title } = nextProps;
-      RouterActions.refresh({
-        title: nextProps.title,
-        id: nextProps.id,
-      });
+      RouterActions.lecture({ title });
     }
   }
 
@@ -103,7 +100,7 @@ class Lecture extends Component {
     }
 
     const nextLecture = LectureUtils.getLectureById(lectures, id + 1);
-    loadCurrentLecture(nextLecture);
+    loadCurrentLecture(lectures, nextLecture);
   }
 
   @autobind
