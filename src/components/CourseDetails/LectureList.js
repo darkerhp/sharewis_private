@@ -16,12 +16,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (key, lecture, handlePressLecture, lectures) => (
+const renderLecture = (key, lecture, handlePressLecture) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
     : <Lecture
       key={key}
-      lectures={lectures}
       currentLecture={lecture}
       handlePressLecture={handlePressLecture}
     />
