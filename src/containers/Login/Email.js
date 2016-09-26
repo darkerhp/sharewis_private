@@ -104,8 +104,6 @@ const styles = StyleSheet.create({
 const formOptions = {
   form: 'email',
   validate: validateEmailLogin,
-  //touchOnChange: true,
-  //fields: ['email', 'password'],
 };
 
 const checkInput = (states) => {
@@ -123,9 +121,9 @@ const checkInput = (states) => {
 };
 
 
-@connect(checkInput)
 @connectActions(Actions)
 @connectState('user')
+@connect(checkInput)
 @reduxForm(formOptions)
 class Email extends Component {
   static propTypes = {
@@ -190,7 +188,7 @@ class Email extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyleId={loginDisabled ? styles.buttonWrapperDisabled : styles.buttonWrapper}
+            containerStyle={loginDisabled ? styles.buttonWrapperDisabled : styles.buttonWrapper}
             style={styles.button}
             onPress={handleSubmit(this.handlePress)}
             disabled={loginDisabled}
