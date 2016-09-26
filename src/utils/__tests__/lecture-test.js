@@ -1,42 +1,7 @@
 /* eslint-disable no-undef */
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import * as LectureUtils from '../lecture';
+import { lectures } from '../../data/dummyData';
 
-const lectures = [
-  { title: 'セクション１', kind: 'section' },
-  {
-    order: 1,
-    title: 'レクチャーA',
-    kind: 'lecture',
-    duration: 30,
-    isCompleted: true,
-    type: 'VideoLecture',
-  },
-  {
-    order: 2,
-    title: 'レクチャーB',
-    kind: 'lecture',
-    duration: 60,
-    isCompleted: true,
-    type: 'VideoLecture',
-  },
-  {
-    order: 3,
-    title: 'レクチャーC',
-    kind: 'lecture',
-    duration: 60,
-    isCompleted: false,
-    type: 'TextLecture',
-  },
-  {
-    order: 4,
-    title: 'レクチャーD',
-    kind: 'lecture',
-    duration: 90,
-    isCompleted: false,
-    type: 'VideoLecture',
-  },
-];
 
 describe('LectureUtils Utils', () => {
   describe('getLectureIconName', () => {
@@ -74,7 +39,7 @@ describe('LectureUtils Utils', () => {
 
   it('should return next video lecture', () => {
     nextLecture = LectureUtils.getNextVideoLecture(lectures);
-    expect(nextLecture.order).toEqual(4);
+    expect(nextLecture.order).toEqual(8);
 
     nextLecture = LectureUtils.getNextVideoLecture(lectures, false);
     expect(nextLecture.order).toEqual(1);
