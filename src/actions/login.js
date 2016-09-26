@@ -44,7 +44,7 @@ export const fetchFBEmailSuccess = ([email, facebookId]) => ({
 // Thunks
 
 export const fetchUserBy = (loginMethod, credentials) =>
-  (async) (dispatch) => {
+  async (dispatch) => {
     if (loginMethod === 'facebook') {
       dispatch(fetchFBEmailSuccess(credentials));
       dispatch(startActFacebookLogin(credentials));
