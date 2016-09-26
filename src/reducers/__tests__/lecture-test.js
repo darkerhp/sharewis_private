@@ -5,11 +5,16 @@ import * as types from '../../constants/ActionTypes';
 describe('Lecture reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
+      currentTime: 0,
+      duration: 0,
+      id: 0,
+      isCompleted: false,
+      isFullScreen: false,
+      isLastLecture: false,
       isPaused: true,
       speed: 1,
-      isFullScreen: false,
-      duration: 0,
-      currentTime: 0,
+      title: undefined,
+      url: undefined,
     });
   });
 

@@ -7,7 +7,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import * as Actions from '../actions/courseDetails';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
-import totalDuration from '../utils/course';
+import totalDuration from '../utils/courseDetails';
 import * as LectureUtils from '../utils/lecture';
 import { connectActions, connectState } from '../utils/redux';
 import BaseStyles from '../baseStyles';
@@ -51,10 +51,11 @@ class CourseDetails extends Component {
   handlePressLecture(lecture) {
     const { lectures, loadCurrentLecture } = this.props;
     loadCurrentLecture(lecture);
-    return RouterActions.lecture({
+    const result = RouterActions.lecture({
       title: lecture.title,
       lectures,
     });
+    return result;
   }
 
   render() {
