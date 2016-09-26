@@ -1,5 +1,6 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
+import { loadCurrentLecture, completeCurrentLecture } from '../utils/reducers';
 
 
 const initialState = {
@@ -9,7 +10,7 @@ const initialState = {
   lectures: {},
 };
 
-const courseReducer = (state = initialState, action) => {
+const courseDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.LOAD_CURRENT_COURSE:
       return {
@@ -17,24 +18,9 @@ const courseReducer = (state = initialState, action) => {
         ...action.currentCourse,
       };
     case types.LOAD_CURRENT_LECTURE:
-      return {
-        ...state,
-        currentLecture: action.currentLecture,
-      };
+      return loadCurrentLecture(state, action);
     case types.COMPLETE_CURRENT_LECTURE: {
-      const currentLecture = {
-        ...state.currentLecture,
-        isCompleted: true,
-      };
-      const lectures = state.lectures.map(l => (
-        l.id !== currentLecture.id ? l : currentLecture
-      ));
-      return {
-        ...state,
-        lectures,
-        currentLecture,
-        lectureProgress: state.lectureProgress + 1,
-      };
+      return completeCurrentLecture(state);
     }
     default:
       return state;
@@ -42,4 +28,4 @@ const courseReducer = (state = initialState, action) => {
 };
 
 
-export default courseReducer;
+export default courseDetailsReducer;

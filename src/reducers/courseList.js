@@ -1,12 +1,17 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
+import {
+  loadCurrentLecture,
+  completeCurrentLecture,
+  updateCurrentCourse,
+} from '../utils/reducers';
 
 const initialState = {
   courses: [],
   error: null,
 };
 
-const coursesReducer = (state = initialState, action) => {
+const courseListReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_COURSES_LIST_FAILURE:
       return {
@@ -23,25 +28,13 @@ const coursesReducer = (state = initialState, action) => {
         ...state,
         currentCourse: action.currentCourse,
       };
+    case types.LOAD_CURRENT_LECTURE: {
+      const currentCourse = loadCurrentLecture(state.currentCourse, action);
+      return updateCurrentCourse(state, currentCourse);
+    }
     case types.COMPLETE_CURRENT_LECTURE: {
-      const currentLecture = {
-        ...state.currentCourse.currentLecture,
-        isCompleted: true,
-      };
-      const lectures = state.currentCourse.lectures.map(l => (
-        l.id !== currentLecture.id ? l : currentLecture
-      ));
-
-      const lectureProgress = state.currentCourse.lectureProgress + 1;
-      const currentCourse = {
-        ...state.currentCourse,
-        lectures,
-        lectureProgress,
-      };
-      const courses = state.courses.map(c => (
-        c.id !== state.currentCourse.id ? c : currentCourse
-      ));
-      return { ...state, courses, currentCourse };
+      const currentCourse = completeCurrentLecture(state.currentCourse);
+      return updateCurrentCourse(state, currentCourse);
     }
     default:
       return state;
@@ -49,4 +42,4 @@ const coursesReducer = (state = initialState, action) => {
 };
 
 
-export default coursesReducer;
+export default courseListReducer;
