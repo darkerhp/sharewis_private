@@ -16,6 +16,7 @@
 		013A5CD6327C475F88C3F54A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26EE054DA7A14E5ABA01EB22 /* Ionicons.ttf */; };
 		05EB66BF0B8E4B2088AF211E /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3534DFC452F4768BD5D6AE2 /* Entypo.ttf */; };
 		076CBA399E724BF88CBB0E24 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E2745CD896B46B1937BE05F /* libRCTVideo.a */; };
+		0A05F2BF1D9A255D00E5F95C /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A05F2971D9A142A00E5F95C /* libRNFS.a */; };
 		0A9BC57C1D92CE960065D89F /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9BC56A1D92CE500065D89F /* libART.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -252,6 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A05F2BF1D9A255D00E5F95C /* libRNFS.a in Frameworks */,
 				0A9BC57C1D92CE960065D89F /* libART.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				82A464B61D791B6A004918D5 /* FBSDKCoreKit.framework in Frameworks */,
