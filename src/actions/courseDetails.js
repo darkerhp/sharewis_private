@@ -15,9 +15,10 @@ export const fetchCourseDetailsStart = () => ({
   type: types.FETCH_COURSE_DETAILS_START,
 });
 
-export const fetchCourseDetailsSuccess = course => ({
+export const fetchCourseDetailsSuccess = ({ course, lectures }) => ({
   type: types.FETCH_COURSE_DETAILS_SUCCESS,
   course,
+  lectures,
 });
 
 // Used in courseDetails and lecture reducers
@@ -69,8 +70,8 @@ export const fetchCourseDetails = courseId =>
     dispatch(fetchCourseDetailsStart());
     try {
       const userId = getState().user.userId;
-      const course = await getCourseDetails(userId, courseId);
-      dispatch(fetchCourseDetailsSuccess(course));
+      const result = await getCourseDetails(userId, courseId);
+      dispatch(fetchCourseDetailsSuccess(result));
     } catch (error) {
       dispatch(fetchCourseDetailsFailure());
       throw error;

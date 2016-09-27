@@ -43,7 +43,7 @@ export const getCourseDetails = async (userId, courseId) => {
   // Verify results
   await checkStatus(result);
   const json = await result.json();
-  await checkResult(json, c => c.id);
+  await checkResult(json, c => c.course && c.lectures);
 
   // Parse and return results
   return json;

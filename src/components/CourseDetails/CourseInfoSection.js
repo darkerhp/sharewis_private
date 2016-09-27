@@ -62,7 +62,7 @@ const CourseInfoSection = ({
     />
 
     <Duration
-      duration={totalDuration}
+      estimatedTime={totalDuration}
       format={I18n.t('totalDurationFormat')}
       containerStyleId={styles.totalDurationWrapper}
       durationStyleId={styles.totalDuration}
@@ -82,7 +82,7 @@ CourseInfoSection.propTypes = {
     order: PropTypes.number,
     title: PropTypes.string,
     kind: PropTypes.string,
-    duration: PropTypes.number,
+    estimatedTime: PropTypes.number,
     isCompleted: PropTypes.bool,
     type: PropTypes.string,
     /* eslint-enable react/no-unused-prop-types */

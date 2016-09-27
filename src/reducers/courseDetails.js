@@ -67,7 +67,7 @@ const courseDetailsReducer = (state = initialState, action) => {
     case types.FETCH_COURSE_DETAILS_START:
       return {
         ...state,
-        isFetching: true,
+        isFetching: state.lectures.length === 0,
       };
     case types.FETCH_COURSE_DETAILS_FAILURE:
       return {
@@ -78,20 +78,16 @@ const courseDetailsReducer = (state = initialState, action) => {
     case types.FETCH_COURSE_DETAILS_SUCCESS:
       return {
         ...state,
-        courseId: action.id,
-        imageUrl: action.image_url,
         isFetching: false,
-        lectureCount: action.lecture_count,
-        lectureProgress: action.lecture_progress,
+        lectureProgress: action.course.lecture_progress,
         lectures: action.lectures.map(
           ({ course_id, estimated_time, video_url, ...lecture }) => ({
             ...lecture,
-            courseId: lecture.course_id,
-            estimatedTime: lecture.estimated_time,
-            videoUrl: lecture.video_url,
+            courseId: course_id,
+            estimatedTime: estimated_time,
+            videoUrl: video_url,
           }),
         ),
-        title: action.title,
       };
 
     case types.LOAD_CURRENT_COURSE:

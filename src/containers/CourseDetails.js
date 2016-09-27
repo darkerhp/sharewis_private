@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
 class CourseDetails extends Component {
   static propTypes = {
     // states
-    courseId: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
@@ -59,8 +58,8 @@ class CourseDetails extends Component {
 
   async componentWillMount() {
     try {
-      const { courseId, fetchCourseDetails } = this.props;
-      await fetchCourseDetails(courseId);
+      const { id, fetchCourseDetails } = this.props;
+      await fetchCourseDetails(id);
     } catch (error) {
       Alert.alert(I18n.t('errorTitle'), I18n.t('errorFetchingLectures'));
     }

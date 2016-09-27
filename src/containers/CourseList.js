@@ -60,9 +60,12 @@ const styles = StyleSheet.create({
 @connectState('courseList')
 class CourseList extends Component {
   static propTypes = {
+    // states
     courses: PropTypes.arrayOf(PropTypes.shape({})),
-    fetchCourseList: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
+    // actions
+    fetchCourseList: PropTypes.func.isRequired,
+    loadCurrentCourse: PropTypes.func.isRequired,
   };
 
   async componentWillMount() {
@@ -71,6 +74,11 @@ class CourseList extends Component {
     } catch (error) {
       Alert.alert(I18n.t('errorTitle'), I18n.t('errorFetchingCourses'));
     }
+  }
+
+  handlePressCourse(course) {
+    this.props.loadCurrentCourse(course);
+    RouterActions.courseDetails();
   }
 
   render() {
@@ -90,7 +98,7 @@ class CourseList extends Component {
           {courses.map((course, key) =>
             <CourseSummary
               style={styles.container}
-              onPress={() => RouterActions.courseDetails({ courseId: course.id })}
+              onPress={() => this.handlePressCourse(course)}
 
               course={course}
               key={key}

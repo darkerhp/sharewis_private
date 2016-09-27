@@ -6,7 +6,7 @@ import replaceInList from '../utils/list';
 
 const initialState = {
   currentTime: 0,
-  duration: 0,
+  estimatedTime: 0,
   id: 0,
   isCompleted: false,
   isFullScreen: false,  // TODO

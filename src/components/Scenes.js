@@ -52,7 +52,7 @@ const getScenes = loggedIn =>
       initial={loggedIn}
       type={ActionConst.RESET}
       hideNavBar={false}
-      duration={0}
+      estimatedTime={0}
       {...baseNavBarProps}
       onLeft={() => console.log('onLeft')}
       leftButtonImage={menuWhiteImage}

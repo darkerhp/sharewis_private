@@ -32,24 +32,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const SeekBar = ({ currentTime, duration, onValueChange }) => {
-  const timeEnd = duration - currentTime;
+const SeekBar = ({ currentTime, estimatedTime, onValueChange }) => {
+  const timeEnd = estimatedTime - currentTime;
   return (
     <View style={styles.container}>
       <Duration
-        duration={currentTime}
+        estimatedTime={currentTime}
         format={'mm:ss'}
         containerStyleId={styles.timeTextContainer}
         durationStyle={styles.timeText}
       />
       <Slider
-        maximumValue={duration}
+        maximumValue={estimatedTime}
         value={currentTime}
         onValueChange={value => onValueChange(value)}
         style={styles.slider}
       />
       <Duration
-        duration={timeEnd < 0 ? 0 : timeEnd}
+        estimatedTime={timeEnd < 0 ? 0 : timeEnd}
         format={'mm:ss'}
         containerStyleId={styles.timeTextContainer}
         durationStyle={styles.timeText}
@@ -62,7 +62,7 @@ const SeekBar = ({ currentTime, duration, onValueChange }) => {
 
 SeekBar.propTypes = {
   currentTime: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
+  estimatedTime: PropTypes.number.isRequired,
   onValueChange: PropTypes.func.isRequired,
 };
 

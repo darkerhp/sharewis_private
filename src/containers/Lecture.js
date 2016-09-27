@@ -59,7 +59,7 @@ class Lecture extends Component {
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     // state
     currentTime: PropTypes.number.isRequired,
-    duration: PropTypes.number.isRequired,
+    estimatedTime: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     isCompleted: PropTypes.bool.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
@@ -113,7 +113,7 @@ class Lecture extends Component {
   render() {
     const {
       // state
-      currentTime, duration, isLastLecture, isPaused, speed, title, url,
+      currentTime, estimatedTime, isLastLecture, isPaused, speed, title, url,
       // actions
       pressPlay, pressSpeed, updateVideoProgress,
     } = this.props;
@@ -142,7 +142,7 @@ class Lecture extends Component {
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
             currentTime={currentTime}
-            duration={duration}
+            estimatedTime={estimatedTime}
             onValueChange={this.handleValueChange}
             video={this.video}
           />

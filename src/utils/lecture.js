@@ -1,18 +1,20 @@
 // @flow
 export const getLectureIconName = (lecture) => {
   switch (lecture.type) {
-    case 'VideoLecture':
+    case 'video':
       return 'play-circle-filled';
-    case 'TextLecture':
+    case 'text':
       return 'text-format';
-    case 'PdfLecture':
+    case 'pdf':
       return 'picture-as-pdf';
-    case 'AudioLecture':
+    case 'audio':
       return 'audiotrack';
-    case 'QuizLecture':
+    case 'quiz':
       return 'question-answer';
+    case 'attachment':
+      return 'attachment';
     default:
-      return null; // TODO
+      return 'error';  // TODO
   }
 };
 
@@ -22,7 +24,7 @@ const sortByOrder = (a, b) => {
 };
 
 export const getNextVideoLecture = (lectures, skipCompleted = true) => {
-  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === 'VideoLecture');
+  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === 'video');
   if (skipCompleted) {
     videoLectures = videoLectures.filter(l => l.isCompleted === false);
   }

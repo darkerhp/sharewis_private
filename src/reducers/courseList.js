@@ -17,7 +17,9 @@ const courseListReducer = (state = initialState, action) => {
     case types.FETCH_COURSES_LIST_START:
       return {
         ...state,
-        isFetching: true,
+        // API is slow. Do not show the spinner for 10sec everytime if props are
+        // already registered.
+        isFetching: state.courses.length === 0,
       };
     case types.FETCH_COURSES_LIST_FAILURE:
       return {
