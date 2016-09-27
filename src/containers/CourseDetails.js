@@ -100,7 +100,7 @@ class CourseDetails extends Component {
           toFile,
           begin: (res) => {
             const { jobId, statusCode } = res;
-            beginDownloadVideo(lecture.id, jobId, statusCode);
+            beginDownloadVideo(lectures, lecture.id, jobId, statusCode);
           },
           progress: (data) => {
             const percentage = Math.ceil((100 * data.bytesWritten) / data.contentLength);
