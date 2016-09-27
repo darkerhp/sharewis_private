@@ -135,7 +135,10 @@ definitions:
   CourseDetails:
     type: object
     allOf:
-      - $ref: '#/definitions/Course'
+      - type: object
+        properties:
+          course:
+            $ref: '#/definitions/Course'
       - type: object
         properties:
           lectures:
