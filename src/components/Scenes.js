@@ -1,6 +1,6 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
-import { ActionConst, Scene } from 'react-native-router-flux';
+import { Actions, ActionConst, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
@@ -74,6 +74,7 @@ const getScenes = loggedIn =>
       hideNavBar={false}
       {...baseNavBarProps}
       backButtonImage={backButtonWhiteImage}
+      onBack={() => Actions.courseDetails()}
     />
     <Scene
       key="profile"
