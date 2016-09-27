@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
 
-// Used in courseDetails and lecture reducers
+// Used in courseDetails and lecture reducers TODO 移動する
 // eslint-disable-next-line import/prefer-default-export
 export const loadCurrentLecture = (lectures, currentLecture) => ({
   type: types.LOAD_CURRENT_LECTURE,
