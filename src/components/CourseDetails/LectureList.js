@@ -3,7 +3,7 @@ import ReactNative from 'react-native';
 
 import BaseStyles from '../../baseStyles';
 
-import Lecture from './Lecture';
+import LectureItem from './LectureItem';
 import Section from './Section';
 
 const { PropTypes } = React;
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 const renderLecture = (key, lecture, handlePressLecture, handlePressDownload) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
-    : <Lecture
+    : <LectureItem
       key={key}
       currentLecture={lecture}
       handlePressLecture={handlePressLecture}

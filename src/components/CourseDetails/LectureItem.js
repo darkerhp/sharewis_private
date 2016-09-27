@@ -104,7 +104,7 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
     }
   </TouchableOpacity>;
 
-const Lecture = ({ lectures, currentLecture, handlePressLecture, handlePressDownload }) => {
+const LectureItem = ({ lectures, currentLecture, handlePressLecture, handlePressDownload }) => {
   const isAccessibleLecture = currentLecture.type === 'VideoLecture';
   return (
     <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
@@ -140,7 +140,7 @@ const Lecture = ({ lectures, currentLecture, handlePressLecture, handlePressDown
 };
 
 
-Lecture.propTypes = {
+LectureItem.propTypes = {
   lectures: PropTypes.arrayOf(PropTypes.shape({})),
   currentLecture: PropTypes.shape({
     /* eslint-disable react/no-unused-prop-types */
@@ -156,4 +156,4 @@ Lecture.propTypes = {
   handlePressDownload: PropTypes.func.isRequired,
 };
 
-export default Lecture;
+export default LectureItem;
