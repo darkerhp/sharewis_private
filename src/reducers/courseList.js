@@ -28,7 +28,13 @@ const courseListReducer = (state = initialState, action) => {
     case types.FETCH_COURSES_LIST_SUCCESS:
       return {
         ...state,
-        courses: action.courses,
+        courses: action.courses.map(course => ({
+          id: course.id,
+          imageUrl: course.image_url,
+          lectureCount: course.lecture_count,
+          lectureProgress: course.lecture_progress,
+          title: course.title,
+        })),
         isFetching: false,
       };
     case types.LOAD_CURRENT_COURSE:

@@ -139,7 +139,7 @@ class Email extends Component {
       const data = await fetchUserBy('email', [email, password]);
       return data;
     } catch (error) {
-      Alert.alert(I18n.t('errorTitle'), I18n.t('errorFetchingCourses'));
+      Alert.alert(I18n.t('errorTitle'), I18n.t('loginEmailError'));
       throw new SubmissionError({
         _error: I18n.t('loginEmailError'),
       });

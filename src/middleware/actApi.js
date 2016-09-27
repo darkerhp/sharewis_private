@@ -30,7 +30,7 @@ export const getUserCourses = async (userId) => {
   });
 
   // Parse and return results
-  return json.data;
+  return json;
 };
 
 
