@@ -12,12 +12,11 @@ export const loadCurrentLecture = (currentCourse, action) => {
   };
 };
 
-
 // Returns state.currentCourse
 export const completeCurrentLecture = (currentCourse) => {
   const currentLecture = {
     ...currentCourse.currentLecture,
-    isCompleted: true,
+    status: 'finished',
   };
   const lectures = replaceInList(currentCourse.lectures, currentLecture);
   return {
@@ -27,6 +26,22 @@ export const completeCurrentLecture = (currentCourse) => {
     lectureProgress: currentCourse.lectureProgress + 1,
   };
 };
+
+// Returns state.currentCourse
+export const fetchCourseDetailsSuccess = (state, { course, lectures }) => ({
+  ...state,
+  isFetching: false,
+  lectureCount: course.lecture_count,
+  lectureProgress: course.lecture_progress,
+  lectures: lectures.map(
+    ({ course_id, estimated_time, video_url, ...lecture }) => ({
+      ...lecture,
+      courseId: course_id,
+      estimatedTime: estimated_time,
+      videoUrl: video_url,
+    }),
+  ),
+});
 
 
 // Return state

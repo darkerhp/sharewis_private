@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   totalDuration: {
+    width: 125,  // Or text will be trimmed in english
+    textAlign: 'center',
     color: 'black',
     fontSize: 10,
     padding: 5,
@@ -76,17 +78,7 @@ CourseInfoSection.propTypes = {
   completeLectureCount: PropTypes.number.isRequired,
   totalDuration: PropTypes.number.isRequired,
   isCompleted: PropTypes.bool.isRequired,
-  // eslint-disable-next-line react/no-unused-prop-types
-  nextLecture: PropTypes.shape({
-    /* eslint-disable react/no-unused-prop-types */
-    order: PropTypes.number,
-    title: PropTypes.string,
-    kind: PropTypes.string,
-    estimatedTime: PropTypes.number,
-    isCompleted: PropTypes.bool,
-    type: PropTypes.string,
-    /* eslint-enable react/no-unused-prop-types */
-  }).isRequired,
+  nextLecture: PropTypes.shape({}).isRequired,
   handlePressNextLecture: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   containerStyle: PropTypes.object.isRequired,

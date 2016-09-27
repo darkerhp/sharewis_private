@@ -1,18 +1,20 @@
+import * as ApiConstants from '../constants/Api';
+
 // @flow
 export const getLectureIconName = (lecture) => {
   switch (lecture.type) {
-    case 'video':
+    case ApiConstants.LECTURE_TYPE_VIDEO:
       return 'play-circle-filled';
-    case 'text':
+    case ApiConstants.LECTURE_TYPE_TEXT:
       return 'text-format';
-    case 'pdf':
+    case ApiConstants.LECTURE_TYPE_PDF:
       return 'picture-as-pdf';
-    case 'audio':
+    case ApiConstants.LECTURE_TYPE_AUDIO:
       return 'audiotrack';
-    case 'quiz':
+    case ApiConstants.LECTURE_TYPE_QUIZ:
       return 'question-answer';
-    case 'attachment':
-      return 'attachment';
+    case ApiConstants.LECTURE_TYPE_ATTACHMENT:
+      return ApiConstants.LECTURE_TYPE_ATTACHMENT;
     default:
       return 'error';  // TODO
   }
@@ -24,9 +26,9 @@ const sortByOrder = (a, b) => {
 };
 
 export const getNextVideoLecture = (lectures, skipCompleted = true) => {
-  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === 'video');
+  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === ApiConstants.LECTURE_TYPE_VIDEO);
   if (skipCompleted) {
-    videoLectures = videoLectures.filter(l => l.isCompleted === false);
+    videoLectures = videoLectures.filter(l => l.status === 'not_started');
   }
   return videoLectures.sort(sortByOrder)[0] || {};
 };

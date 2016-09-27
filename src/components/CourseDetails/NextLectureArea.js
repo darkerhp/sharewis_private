@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
+import * as ApiConstants from '../../constants/Api';
 
 const { PropTypes } = React;
 const { View, StyleSheet, Text, Image, TouchableOpacity } = ReactNative;
@@ -44,11 +45,11 @@ const textImageSrc = require('./images/text.png');
 
 const getNextLectureImageSrc = (nextLecture) => {
   switch (nextLecture.type) {
-    case 'VideoLecture':
+    case ApiConstants.LECTURE_TYPE_VIDEO:
       return videoImageSrc;
-    case 'QuizLecture':
+    case ApiConstants.LECTURE_TYPE_QUIZ:
       return quizImageSrc;
-    case 'TextLecture':
+    case ApiConstants.LECTURE_TYPE_TEXT:
       return textImageSrc;
     default:
       return videoImageSrc;
@@ -80,7 +81,7 @@ NextLectureArea.propTypes = {
     title: PropTypes.string,
     kind: PropTypes.string,
     estimatedTime: PropTypes.number,
-    isCompleted: PropTypes.bool,
+    status: PropTypes.string,
     type: PropTypes.string,
     /* eslint-enable react/no-unused-prop-types */
   }).isRequired,

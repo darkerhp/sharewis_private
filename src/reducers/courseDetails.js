@@ -1,6 +1,10 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
-import { loadCurrentLecture, completeCurrentLecture } from '../utils/reducers';
+import {
+  fetchCourseDetailsSuccess,
+  loadCurrentLecture,
+  completeCurrentLecture,
+} from '../utils/reducers';
 
 
 const initialState = {
@@ -76,20 +80,7 @@ const courseDetailsReducer = (state = initialState, action) => {
         isFetching: false,
       };
     case types.FETCH_COURSE_DETAILS_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        lectureProgress: action.course.lecture_progress,
-        lectures: action.lectures.map(
-          ({ course_id, estimated_time, video_url, ...lecture }) => ({
-            ...lecture,
-            courseId: course_id,
-            estimatedTime: estimated_time,
-            videoUrl: video_url,
-          }),
-        ),
-      };
-
+      return fetchCourseDetailsSuccess(state, action);
     case types.LOAD_CURRENT_COURSE:
       return {
         ...state,

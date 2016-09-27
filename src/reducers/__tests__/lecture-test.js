@@ -8,7 +8,7 @@ describe('Lecture reducer', () => {
       currentTime: 0,
       estimatedTime: 0,
       id: 0,
-      isCompleted: false,
+      status: 'not_started',
       isFullScreen: false,
       isLastLecture: false,
       isPaused: true,

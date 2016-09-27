@@ -46,11 +46,11 @@ describe('CourseList reducer', () => {
       lectures,
     };
     expect(state.lectureProgress).toEqual(3);
-    expect(state.currentLecture.isCompleted).toBeFalsy();
+    expect(state.currentLecture.status).toBeFalsy();
 
     state = reducer(state, { type: types.COMPLETE_CURRENT_LECTURE });
 
     expect(state.lectureProgress).toEqual(4);
-    expect(state.currentLecture.isCompleted).toBeTruthy();
+    expect(state.currentLecture.status).toBeTruthy();
   });
 });

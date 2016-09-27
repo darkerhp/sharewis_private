@@ -8,7 +8,7 @@ const initialState = {
   currentTime: 0,
   estimatedTime: 0,
   id: 0,
-  isCompleted: false,
+  status: 'not_started',
   isFullScreen: false,  // TODO
   isLastLecture: false,
   isPaused: true,
@@ -24,7 +24,7 @@ const lecture = (state = initialState, action) => {
   switch (action.type) {
     case types.COMPLETE_CURRENT_LECTURE: {
       let { lectures, ...currentLecture } = state;
-      currentLecture.isCompleted = true;
+      currentLecture.status = 'finished';
       lectures = replaceInList(lectures, currentLecture);
       return {
         lectures,

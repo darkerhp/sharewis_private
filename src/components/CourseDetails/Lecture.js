@@ -3,11 +3,12 @@ import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BaseStyles from '../../baseStyles';
+import * as ApiConstants from '../../constants/Api';
 import * as LectureUtils from '../../utils/lecture';
 import Duration from '../Duration';
 
 const { PropTypes } = React;
-const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
+const { Platform, StyleSheet, Text, TouchableOpacity, View } = ReactNative;
 
 const lectureRowHeight = 48;
 const styles = StyleSheet.create({
@@ -18,6 +19,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderColor: BaseStyles.borderColor,
     borderBottomWidth: 1,
+  },
+  durationStyle: {
+    ...Platform.select({
+      android: {
+        color: BaseStyles.textColor,
+        width: 30,  // or seconds will be trimmed in android
+      },
+    }),
   },
   lectureNoTextWrapper: {
     flex: 1,
@@ -52,8 +61,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  lectureIcon: {},
-  estimatedTimeWrapper: {
+  lectureIcon: {
+    color: BaseStyles.textColor,
+  },
+  durationWrapper: {
     flex: 1,
   },
   lectureTitleTextWrapper: {
@@ -90,11 +101,11 @@ const renderDownloadAction = () =>
   </TouchableOpacity>;
 
 const Lecture = ({ lectures, currentLecture, handlePressLecture }) => {
-  const isAccessibleLecture = currentLecture.type === 'VideoLecture';
+  const isAccessibleLecture = currentLecture.type === ApiConstants.LECTURE_TYPE_VIDEO;
   return (
     <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
       <View
-        style={currentLecture.isCompleted
+        style={currentLecture.status
                 ? styles.lectureNoTextWrapperCompleted
                 : styles.lectureNoTextWrapper}
       >
@@ -110,7 +121,8 @@ const Lecture = ({ lectures, currentLecture, handlePressLecture }) => {
         </View>
         <Duration
           estimatedTime={currentLecture.estimatedTime}
-          containerStyleId={styles.estimatedTimeWrapper}
+          containerStyleId={styles.durationWrapper}
+          durationStyleId={styles.durationStyle}
         />
       </View>
 
@@ -136,7 +148,7 @@ Lecture.propTypes = {
     title: PropTypes.string,
     kind: PropTypes.string,
     estimatedTime: PropTypes.number,
-    isCompleted: PropTypes.bool,
+    status: PropTypes.string,
     type: PropTypes.string,
     /* eslint-enable react/no-unused-prop-types */
   }).isRequired,

@@ -1,6 +1,7 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
 import {
+  fetchCourseDetailsSuccess,
   loadCurrentLecture,
   completeCurrentLecture,
   updateCurrentCourse,
@@ -39,6 +40,10 @@ const courseListReducer = (state = initialState, action) => {
         })),
         isFetching: false,
       };
+    case types.FETCH_COURSE_DETAILS_SUCCESS: {
+      const currentCourse = fetchCourseDetailsSuccess(state.currentCourse, action);
+      return updateCurrentCourse(state, currentCourse);
+    }
     case types.LOAD_CURRENT_COURSE:
       return {
         ...state,

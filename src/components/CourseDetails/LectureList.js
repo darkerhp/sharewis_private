@@ -61,7 +61,7 @@ LectureList.propTypes = {
     title: PropTypes.string,
     kind: PropTypes.string,
     estimatedTime: PropTypes.number,
-    isCompleted: PropTypes.bool,
+    status: PropTypes.string,
     type: PropTypes.string,
     /* eslint-enable react/no-unused-prop-types */
   })).isRequired,
