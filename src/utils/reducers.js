@@ -40,8 +40,8 @@ export const fetchCourseDetailsSuccess = (state, { course, lectures }) => ({
     ({ course_id, estimated_time, video_url, ...lecture }) => ({
       ...lecture,
       courseId: course_id,
-      estimatedTime: estimated_time,
-      // estimatedTime: 400,  // fake estimatedTime doesn't match real fake video time
+      // estimatedTime: estimated_time,  // TODO
+      estimatedTime: 1000,  // fake estimatedTime doesn't match real fake video time
       videoUrl: video_url,
     }),
   ),
