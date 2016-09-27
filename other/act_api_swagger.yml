@@ -1,0 +1,188 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: ShareWis ACT API
+  description: |
+    API to allow the iOS and Android mobile
+    applications to fetch user data from the server
+    
+    ## Good to know
+    User API specification is not included here.
+    Please confer to the **sharewis-account** 
+    repository to access the list of serverless 
+    endpoints available.
+
+# staging endpoint for development
+host: staging-act.share-wis.com
+basePath: /api
+schemes:
+  - https
+produces: 
+  - application/json
+consumes:
+  - application/json
+    
+tags:
+  - name: Courses
+  - name: Lectures
+
+#################
+securityDefinitions:
+  apikey_security:
+    type: apiKey
+    in: header
+    name: APP-API-KEY
+  user_security:
+    type: apiKey
+    in: header
+    name: user-id
+
+parameters:
+  course-slug:
+    name: course-slug
+    in: path
+    description: slug or id representing the course
+    type: string
+    required: true
+  lecture-id:
+    name: lecture-id
+    in: path
+    description: the lecture identifier number
+    type: number
+    required: true
+
+# Describe your paths here
+paths:
+  # 1. we fetch the list of courses for the user (title, summary, free_description, image_url, lecture_count, lecture_progress)
+  /my_courses:
+    get:
+      tags:
+        - Courses
+      security:
+        - apikey_security: []
+        - user_security: []
+      description: Gets the user's list of courses
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfCourses
+            type: array
+            items:
+              title: Course
+              type: object
+              properties:
+                $ref: '#/definitions/Course'
+  # 2. We fetch the details of 1 course + list of lectures for that course (title, estimated_time, lecture type, lecture status)
+  /courses/{course-slug}:
+    parameters:
+      - $ref: '#/parameters/course-slug'
+    get:
+      tags:
+        - Courses
+      security:
+        - apikey_security: []
+        - user_security: []
+      description: Gets `Course` object including the list of lectures for that course
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            title: CourseDetails
+            properties:
+              $ref: '#/definitions/CourseDetails'
+  /courses/{course-slug}/lectures/{lecture-id}:
+    parameters:
+      - $ref: '#/parameters/course-slug'
+      - $ref: '#/parameters/lecture-id'
+    put:
+      tags:
+        - Lectures
+      security:
+        - apikey_security: []
+        - user_security: []
+      description: Update the status of a lecture. postリクエストとしているが実際には patch
+      parameters:
+        - name: status
+          in: body
+          description: new state of the lecture
+          schema:
+            type: string
+            enum: &lecture-status
+              - not_started
+              - viewed
+              - finished
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: object
+            title: LectureStatus
+            properties:
+              $ref: '#/definitions/Lecture'
+
+definitions:
+  Course:
+    type: object
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      image_url:
+        type: string
+      lecture_count:
+        type: integer
+      lecture_progress:
+        type: integer
+  CourseDetails:
+    allOf:
+      - $ref: '#/definitions/Course'
+      - type: object
+        properties:
+          lectures:
+            type: array
+            items:
+              title: Lecture
+              type: object
+              properties:
+                $ref: '#/definitions/Lecture'
+  Lecture:
+    type: object
+    properties:
+      id:
+        type: integer
+      course_id:
+        type: integer
+      title:
+        type: string
+      estimated_time:
+        type: integer
+      order:
+        type: integer
+      kind:
+        type: string
+        enum:
+          - lecture
+          - section
+      type:
+        type: string
+        enum:
+          - video
+          - quiz
+          - text
+          - pdf
+          - attachment
+          - audio
+      status:
+        type: string
+        enum: *lecture-status
+      video_url:
+        type: string
+
