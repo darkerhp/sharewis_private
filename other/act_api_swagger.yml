@@ -77,8 +77,7 @@ paths:
               title: Course
               type: object
               properties:
-                data:
-                  $ref: '#/definitions/Course'
+                $ref: '#/definitions/Course'
   # 2. We fetch the details of 1 course + list of lectures for that course (title, estimated_time, lecture type, lecture status)
   /courses/{course-slug}:
     parameters:
@@ -97,8 +96,7 @@ paths:
             type: object
             title: CourseDetails
             properties:
-              data:
-                $ref: '#/definitions/CourseDetails'
+              $ref: '#/definitions/CourseDetails'
   /courses/{course-slug}/lectures/{lecture-id}:
     parameters:
       - $ref: '#/parameters/course-slug'
@@ -127,8 +125,7 @@ paths:
             type: object
             title: LectureStatus
             properties:
-              data:
-                $ref: '#/definitions/Lecture'
+              $ref: '#/definitions/Lecture'
 
 definitions:
   Course:
@@ -155,8 +152,7 @@ definitions:
               title: Lecture
               type: object
               properties:
-                data:
-                  $ref: '#/definitions/Lecture' 
+                $ref: '#/definitions/Lecture'
   Lecture:
     type: object
     properties:
