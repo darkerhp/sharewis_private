@@ -43,11 +43,11 @@ securityDefinitions:
     name: user-id
 
 parameters:
-  course-slug:
-    name: course-slug
+  id:
+    name: id
     in: path
-    description: slug or id representing the course
-    type: string
+    description: the course identifier number
+    type: number
     required: true
   lecture-id:
     name: lecture-id
@@ -76,9 +76,9 @@ paths:
             items:
               $ref: '#/definitions/Course'
   # 2. We fetch the details of 1 course + list of lectures for that course (title, estimated_time, lecture type, lecture status)
-  /courses/{course-slug}:
+  /courses/{id}:
     parameters:
-      - $ref: '#/parameters/course-slug'
+        - $ref: '#/parameters/id'
     get:
       tags:
         - Courses
@@ -91,9 +91,9 @@ paths:
           description: Successful response
           schema:
             $ref: '#/definitions/CourseDetails'
-  /courses/{course-slug}/lectures/{lecture-id}:
+  /courses/{id}/lectures/{lecture-id}:
     parameters:
-      - $ref: '#/parameters/course-slug'
+      - $ref: '#/parameters/id'
       - $ref: '#/parameters/lecture-id'
     put:
       tags:
