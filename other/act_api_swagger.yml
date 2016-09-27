@@ -74,10 +74,7 @@ paths:
             title: ArrayOfCourses
             type: array
             items:
-              title: Course
-              type: object
-              properties:
-                $ref: '#/definitions/Course'
+              $ref: '#/definitions/Course'
   # 2. We fetch the details of 1 course + list of lectures for that course (title, estimated_time, lecture type, lecture status)
   /courses/{course-slug}:
     parameters:
@@ -93,10 +90,7 @@ paths:
         200:
           description: Successful response
           schema:
-            type: object
-            title: CourseDetails
-            properties:
-              $ref: '#/definitions/CourseDetails'
+            $ref: '#/definitions/CourseDetails'
   /courses/{course-slug}/lectures/{lecture-id}:
     parameters:
       - $ref: '#/parameters/course-slug'
@@ -122,10 +116,7 @@ paths:
         200:
           description: Successful response
           schema:
-            type: object
-            title: LectureStatus
-            properties:
-              $ref: '#/definitions/Lecture'
+            $ref: '#/definitions/Lecture'
 
 definitions:
   Course:
@@ -142,6 +133,7 @@ definitions:
       lecture_progress:
         type: integer
   CourseDetails:
+    type: object
     allOf:
       - $ref: '#/definitions/Course'
       - type: object
@@ -149,10 +141,7 @@ definitions:
           lectures:
             type: array
             items:
-              title: Lecture
-              type: object
-              properties:
-                $ref: '#/definitions/Lecture'
+              $ref: '#/definitions/Lecture'
   Lecture:
     type: object
     properties:
