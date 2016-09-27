@@ -9,19 +9,27 @@ import {
 const initialState = {
   courses: [],
   error: null,
+  isFetching: false,
 };
 
 const courseListReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.FETCH_COURSES_LIST_START:
+      return {
+        ...state,
+        isFetching: true,
+      };
     case types.FETCH_COURSES_LIST_FAILURE:
       return {
         ...state,
         error: action.error,
+        isFetching: false,
       };
     case types.FETCH_COURSES_LIST_SUCCESS:
       return {
         ...state,
         courses: action.courses,
+        isFetching: false,
       };
     case types.LOAD_CURRENT_COURSE:
       return {

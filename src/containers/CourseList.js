@@ -4,6 +4,7 @@ import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
@@ -15,6 +16,7 @@ import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const {
+  Alert,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -60,11 +62,16 @@ class CourseList extends Component {
   static propTypes = {
     courses: PropTypes.arrayOf(PropTypes.shape({})),
     fetchCourseList: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired,
     loadCurrentCourse: PropTypes.func.isRequired,
   };
 
-  componentWillMount() {
-    this.props.fetchCourseList();
+  async componentWillMount() {
+    try {
+      await this.props.fetchCourseList();
+    } catch (error) {
+      Alert.alert(I18n.t('errorTitle'), I18n.t('errorFetchingCourses'));
+    }
   }
 
   handlePressCourse(course) {
@@ -73,7 +80,7 @@ class CourseList extends Component {
   }
 
   render() {
-    const { courses } = this.props;
+    const { isFetching, courses } = this.props;
 
     if (!courses) {
       return <EmptyList />;
@@ -84,6 +91,7 @@ class CourseList extends Component {
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
       >
+        <Spinner visible={isFetching} />
         <View style={styles.courseList}>
           {courses.map((course, key) =>
             <CourseSummary

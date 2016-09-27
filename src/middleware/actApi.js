@@ -18,11 +18,16 @@ export const getUserCourses = async (userId) => {
   const result = await fetch(`${ACT_API_URL}/my_courses`, {
     headers: getHeaders(userId),
   });
-  console.log('headers', getHeaders(userId));
   // Verify results
   await checkStatus(result);
   const json = await result.json();
-  await checkResult(json, courses => courses.data);
+  await checkResult(json, (courses) => {
+    if (courses.length > 0) {
+      const { id, title, image_url, lecture_count, lecture_progress } = courses[0];
+      return typeof id === 'number';
+    }
+    return true;  // empty result without errors
+  });
 
   // Parse and return results
   return json.data;
