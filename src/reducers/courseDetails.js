@@ -4,13 +4,16 @@ import { loadCurrentLecture, completeCurrentLecture } from '../utils/reducers';
 
 
 const initialState = {
+  currentLecture: null,
   id: 0,
-  currentLecture: undefined,
+  imageUrl: null,  // TODO unused
+  isFetching: false,
+  isLectureDownloading: false,
+  jobId: -1,
   lectureCount: 0,
   lectureProgress: 0,
   lectures: [],
-  jobId: -1,
-  isLectureDownloading: false,
+  title: null,
 };
 
 // TODO 移動する
@@ -58,8 +61,39 @@ const lectureListReducer = (state, action) => {
   }
 };
 
+
 const courseDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.FETCH_COURSE_DETAILS_START:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case types.FETCH_COURSE_DETAILS_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isFetching: false,
+      };
+    case types.FETCH_COURSE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        courseId: action.id,
+        imageUrl: action.image_url,
+        isFetching: false,
+        lectureCount: action.lecture_count,
+        lectureProgress: action.lecture_progress,
+        lectures: action.lectures.map(
+          ({ course_id, estimated_time, video_url, ...lecture }) => ({
+            ...lecture,
+            courseId: lecture.course_id,
+            estimatedTime: lecture.estimated_time,
+            videoUrl: lecture.video_url,
+          }),
+        ),
+        title: action.title,
+      };
+
     case types.LOAD_CURRENT_COURSE:
       return {
         ...state,

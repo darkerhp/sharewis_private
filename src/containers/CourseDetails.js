@@ -5,6 +5,7 @@ import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import RNFS from 'react-native-fs';
 import I18n from 'react-native-i18n';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import * as Actions from '../actions/courseDetails';
 import LectureList from '../components/CourseDetails/LectureList';
@@ -37,21 +38,33 @@ const styles = StyleSheet.create({
 @connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
-    // props
+    // states
+    courseId: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    isLectureDownloading: PropTypes.bool.isRequired,
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
-    loadCurrentLecture: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    isLectureDownloading: PropTypes.bool.isRequired,
     // actions
-    pressDownloadVideo: PropTypes.func.isRequired,
     beginDownloadVideo: PropTypes.func.isRequired,
-    progressDownloadVideo: PropTypes.func.isRequired,
-    finishDownloadVideo: PropTypes.func.isRequired,
+    fetchCourseDetails: PropTypes.func.isRequired,
     fetchDownloadStatus: PropTypes.func.isRequired,
+    finishDownloadVideo: PropTypes.func.isRequired,
+    loadCurrentLecture: PropTypes.func.isRequired,
+    pressDownloadVideo: PropTypes.func.isRequired,
+    progressDownloadVideo: PropTypes.func.isRequired,
   };
+
+  async componentWillMount() {
+    try {
+      const { courseId, fetchCourseDetails } = this.props;
+      await fetchCourseDetails(courseId);
+    } catch (error) {
+      Alert.alert(I18n.t('errorTitle'), I18n.t('errorFetchingLectures'));
+    }
+  }
 
   @autobind
   handlePressNextLecture() {
@@ -111,7 +124,15 @@ class CourseDetails extends Component {
   }
 
   render() {
-    const { id, lectures, lectureCount, lectureProgress, title, fetchDownloadStatus } = this.props;
+    const {
+      fetchDownloadStatus,
+      id,
+      isFetching,
+      lectures,
+      lectureCount,
+      lectureProgress,
+      title,
+    } = this.props;
     const isCompleted = lectureCount === lectureProgress;
     const courseInfo = {
       totalLectureCount: lectureCount,
@@ -127,6 +148,7 @@ class CourseDetails extends Component {
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
       >
+        <Spinner visible={isFetching} />
         <View style={BaseStyles.ContainerWithNavbar}>
           <StatusBar barStyle="light-content" />
           <CourseInfoSection
