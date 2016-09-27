@@ -8,3 +8,25 @@ export const loadCurrentLecture = (lectures, currentLecture) => ({
   lectures,
   currentLecture,
 });
+export const pressDownloadVideo = () => ({
+  type: types.PRESS_DOWNLOAD_VIDEO,
+});
+export const beginDownloadVideo = (lectures, lectureId, jobId, statusCode) => ({
+  type: types.BEGIN_DOWNLOAD_VIDEO,
+  lectures,
+  lectureId,
+  jobId,
+  statusCode,
+});
+export const progressDownloadVideo = (lectures, lectureId, percentage) => ({
+  type: types.PROGRESS_DOWNLOAD_VIDEO,
+  lectures,
+  lectureId,
+  percentage,
+});
+export const finishDownloadVideo = (lectures, lectureId) => ({
+  type: types.FINISH_DOWNLOAD_VIDEO,
+  jobId: -1,
+  lectures,
+  lectureId,
+});

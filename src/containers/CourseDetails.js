@@ -14,7 +14,7 @@ import { connectActions, connectState } from '../utils/redux';
 import * as FileUtils from '../utils/file';
 import connectToProps from '../utils/redux';
 import BaseStyles from '../baseStyles';
-import * as Actions from '../actions/course';
+// import * as Actions from '../actions/course';
 
 const { Component, PropTypes } = React;
 const {
@@ -51,6 +51,11 @@ class CourseDetails extends Component {
     finishDownloadVideo: PropTypes.func.isRequired,
   };
 
+  // componentWillMount() {
+  //   const { course, loadCourse } = this.props;
+  //   loadCourse(course);
+  // }
+
   @autobind
   handlePressNextLecture() {
     const { lectures } = this.props;
@@ -68,21 +73,24 @@ class CourseDetails extends Component {
   @autobind
   handlePressDownload(lecture) {
     const {
-      course,
+      id,
+      lectures,
       isLectureDownloading,
       pressDownloadVideo,
       beginDownloadVideo,
       progressDownloadVideo,
       finishDownloadVideo,
     } = this.props;
+
     if (isLectureDownloading) {
-      Alert.alert('エラー', '現在他のレクチャーをダウンロード中です。'); // TODO
+      Alert.alert('エラー', '現在他のレクチャーをダウンロード中です'); // TODO
       return;
     }
+
     pressDownloadVideo();
 
-    const videoDirPath = FileUtils.getCourseVideosDirPath(course.id);
-    const toFile = FileUtils.createVideoFileName(lecture.id, course.id);
+    const videoDirPath = FileUtils.getCourseVideosDirPath(id);
+    const toFile = FileUtils.createVideoFileName(lecture.id, id);
 
     RNFS.exists(videoDirPath)
       .then(res => res || RNFS.mkdir(videoDirPath))
@@ -92,11 +100,11 @@ class CourseDetails extends Component {
           toFile,
           begin: (res) => {
             const { jobId, statusCode } = res;
-            beginDownloadVideo(course, lecture.id, jobId, statusCode);
+            beginDownloadVideo(lecture.id, jobId, statusCode);
           },
           progress: (data) => {
             const percentage = Math.ceil((100 * data.bytesWritten) / data.contentLength);
-            progressDownloadVideo(course, lecture.id, percentage);
+            progressDownloadVideo(lectures, lecture.id, percentage);
           },
           progressDivider: 2,
         }).promise
@@ -104,9 +112,9 @@ class CourseDetails extends Component {
       .then(res => console.log(res))
       .catch(err => {
         console.error(err);
-        Alert.alert('エラー', 'ダウンロード中にエラーが発生しました。');
-      }) // TODO
-      .then(() => finishDownloadVideo(course, lecture.id));
+        Alert.alert('エラー', 'ダウンロード中にエラーが発生しました。'); // TODO
+      })
+      .then(() => finishDownloadVideo(lectures, lecture.id));
   }
 
   render() {
