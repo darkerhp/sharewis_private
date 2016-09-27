@@ -15,7 +15,7 @@ const initialState = {
   lectures: [],
   speed: 1,
   title: undefined,
-  url: undefined,
+  videoUrl: undefined,
 };
 
 const speedList = [1, 1.2, 1.5, 2];

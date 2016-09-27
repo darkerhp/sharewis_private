@@ -4,7 +4,10 @@ import replaceInList from './list';
 // Returns state.currentCourse
 export const loadCurrentLecture = (currentCourse, action) => {
   const currentLecture = action.currentLecture;
-  const lectures = replaceInList(currentCourse.lectures, currentLecture);
+  let lectures = action.lectures;
+  if (currentCourse.lectures) {
+    lectures = replaceInList(currentCourse.lectures, currentLecture);
+  }
   return {
     ...currentCourse,
     lectures,
@@ -38,6 +41,7 @@ export const fetchCourseDetailsSuccess = (state, { course, lectures }) => ({
       ...lecture,
       courseId: course_id,
       estimatedTime: estimated_time,
+      // estimatedTime: 400,  // fake estimatedTime doesn't match real fake video time
       videoUrl: video_url,
     }),
   ),

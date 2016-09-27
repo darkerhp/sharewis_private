@@ -66,7 +66,7 @@ class Lecture extends Component {
     isPaused: PropTypes.bool.isRequired,
     speed: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
+    videoUrl: PropTypes.string.isRequired,
     // actions
     loadCurrentLecture: PropTypes.func.isRequired,
     pressPlay: PropTypes.func.isRequired,
@@ -113,7 +113,7 @@ class Lecture extends Component {
   render() {
     const {
       // state
-      currentTime, estimatedTime, isLastLecture, isPaused, speed, title, url,
+      currentTime, estimatedTime, isLastLecture, isPaused, speed, title, videoUrl,
       // actions
       pressPlay, pressSpeed, updateVideoProgress,
     } = this.props;
@@ -124,7 +124,7 @@ class Lecture extends Component {
           <Video
             ref={ref => (this.video = ref)}
             // source can be a URL or a local file
-            source={{ uri: url }}
+            source={{ uri: videoUrl }}
             rate={speed}
             volume={1.0}
             muted={false}
