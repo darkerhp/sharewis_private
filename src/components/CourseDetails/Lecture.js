@@ -105,7 +105,7 @@ const Lecture = ({ lectures, currentLecture, handlePressLecture }) => {
   return (
     <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
       <View
-        style={currentLecture.status
+        style={currentLecture.status === 'finished'}
                 ? styles.lectureNoTextWrapperCompleted
                 : styles.lectureNoTextWrapper}
       >
