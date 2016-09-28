@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import RNFS from 'react-native-fs';
@@ -52,23 +51,6 @@ class CourseDetails extends Component {
     fetchDownloadStatus: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    // console.log('componentDidMount');
-    // const { id, lectures } = this.props;
-    //
-    // lectures.filter(l => l.kind == 'lecture').map(l => {
-    //   const path = FileUtils.createVideoFileName(l.id, id);
-    //   console.log(path);
-    //   RNFS.exists(path).then(res => {
-    //     console.log(res);
-    //     if (res) {
-    //       l.isDownloaded = true;
-    //     }
-    //   })
-    // });
-    // this.props.fetchDownloadStatus(id, );
-  }
-
   @autobind
   handlePressNextLecture() {
     const { lectures } = this.props;
@@ -96,7 +78,8 @@ class CourseDetails extends Component {
     } = this.props;
 
     if (isLectureDownloading) {
-      Alert.alert('エラー', '現在他のレクチャーをダウンロード中です'); // TODO
+      // TODO
+      Alert.alert('エラー', '現在他のレクチャーをダウンロード中です');
       return;
     }
 
@@ -105,10 +88,12 @@ class CourseDetails extends Component {
     const videoDirPath = FileUtils.getCourseVideosDirPath(id);
     const toFile = FileUtils.createVideoFileName(lecture.id, id);
     console.log(videoDirPath);
-    RNFS.exists(videoDirPath)
-      .then(res => res || RNFS.mkdir(videoDirPath))
-      .then(() =>
-        RNFS.downloadFile({
+
+    (async () => {
+      const isExistsDir = await RNFS.exists(videoDirPath);
+      if (!isExistsDir) await RNFS.mkdir(videoDirPath);
+      try {
+        await RNFS.downloadFile({
           fromUrl: lecture.url,
           toFile,
           begin: (res) => {
@@ -120,14 +105,13 @@ class CourseDetails extends Component {
             progressDownloadVideo(lectures, lecture.id, percentage);
           },
           progressDivider: 2,
-        }).promise
-      )
-      .then(res => console.log(res))
-      .catch((err) => {
+        });
+      } catch (err) {
         console.error(err);
         Alert.alert('エラー', 'ダウンロード中にエラーが発生しました。'); // TODO
-      })
-      .then(() => finishDownloadVideo(lectures, lecture.id));
+      }
+      finishDownloadVideo(lectures, lecture.id);
+    })();
   }
 
   render() {
@@ -169,20 +153,3 @@ class CourseDetails extends Component {
 }
 
 export default CourseDetails;
-// const mapStateToProps = (state) => ({
-//   ...state['currentCourse'],
-//   // airports: state.airports
-//   //   .map(airport => ({
-//   //       value: airport.code,
-//   //       label: `${airport.city} - ${airport.country} (${airport.code})`,
-//   //     })
-//   //   ),
-//   // origin: state.route.origin,
-//   // destination: state.route.destination,
-// });
-//
-// const mapDispatchToProps = (dispatch) => ({
-//   ...bindActionCreators(Actions, dispatch),
-//   fetchDownloadStatus: () => dispatch(Actions.fetchAirports()),
-// });
-// export default connect(mapStateToProps, mapDispatchToProps)(CourseDetails);

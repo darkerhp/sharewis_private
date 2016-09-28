@@ -4,7 +4,6 @@ import Video from 'react-native-video';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import { Actions as RouterActions } from 'react-native-router-flux';
-import { bindActionCreators } from 'redux';
 import I18n from 'react-native-i18n';
 
 import * as Actions from '../actions/lecture';

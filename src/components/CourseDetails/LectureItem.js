@@ -106,7 +106,6 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
 
 class LectureItem extends Component {
   componentDidMount() {
-    console.log('LectureItem componentDidMount');
     const { courseId, lectures, currentLecture, fetchDownloadStatus } = this.props;
     fetchDownloadStatus(courseId, currentLecture.id, lectures);
   }
@@ -163,6 +162,8 @@ LectureItem.propTypes = {
   }).isRequired,
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDownload: PropTypes.func.isRequired,
+  fetchDownloadStatus: PropTypes.func.isRequired,
+  courseId: PropTypes.number.isRequired,
 };
 
 export default LectureItem;

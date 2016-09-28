@@ -62,6 +62,8 @@ LectureList.propTypes = {
   handlePressLecture: PropTypes.func.isRequired,
   containerStyleId: PropTypes.number.isRequired,
   handlePressDownload: PropTypes.func.isRequired,
+  fetchDownloadStatus: PropTypes.func.isRequired,
+  courseId: PropTypes.number.isRequired,
 };
 
 export default LectureList;
