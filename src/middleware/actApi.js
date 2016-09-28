@@ -48,3 +48,20 @@ export const getCourseDetails = async (userId, courseId) => {
   // Parse and return results
   return json;
 };
+
+
+export const updateLectureStatus = async (userId, courseId, lectureId, newStatus) => {
+  // Run query
+  const result = await fetch(`${ACT_API_URL}/courses/${courseId}/lectures/${lectureId}`, {
+    method: 'PATCH',
+    headers: getHeaders(userId),
+    body: `status="${newStatus}"`,
+  });
+  // Verify results
+  await checkStatus(result);
+  const json = await result.json();
+  await checkResult(json, l => l.status === newStatus);
+
+  // Parse and return results
+  return json;
+};
