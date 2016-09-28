@@ -4,6 +4,7 @@ import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import RNFS from 'react-native-fs';
+import I18n from 'react-native-i18n';
 
 import * as Actions from '../actions/courseDetails';
 import LectureList from '../components/CourseDetails/LectureList';
@@ -69,7 +70,6 @@ class CourseDetails extends Component {
   async handlePressDownload(lecture) {
     const {
       id,
-      lectures,
       isLectureDownloading,
       pressDownloadVideo,
       beginDownloadVideo,
@@ -78,8 +78,7 @@ class CourseDetails extends Component {
     } = this.props;
 
     if (isLectureDownloading) {
-      // TODO
-      Alert.alert('エラー', '現在他のレクチャーをダウンロード中です');
+      Alert.alert(I18n.t('errorTitle'), I18n.t('downloadAlreadyInProgress'));
       return;
     }
 
@@ -87,8 +86,8 @@ class CourseDetails extends Component {
 
     const videoDirPath = FileUtils.getCourseVideosDirPath(id);
     const toFile = FileUtils.createVideoFileName(lecture.id, id);
-    console.log(videoDirPath);
 
+    // TODO Utils & async/await化
     RNFS.exists(videoDirPath)
       .then(res => res || RNFS.mkdir(videoDirPath))
       .then(() =>
@@ -109,7 +108,7 @@ class CourseDetails extends Component {
       .then(res => console.log(res))
       .catch((err) => {
         console.error(err);
-        Alert.alert('エラー', 'ダウンロード中にエラーが発生しました。'); // TODO
+        Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
       })
       .then(() => finishDownloadVideo(lecture.id));
   }

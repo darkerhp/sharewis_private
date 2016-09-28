@@ -18,30 +18,23 @@ const lecture = (state, action) => {
   if (state.id !== action.lectureId) return state;
   switch (action.type) {
     case types.BEGIN_DOWNLOAD_VIDEO:
-
       return {
         ...state,
         isDownloading: true,
       };
     case types.PROGRESS_DOWNLOAD_VIDEO:
-      if (state.id !== action.lectureId) return state;
-
       return {
         ...state,
         isDownloading: true,
         percentage: action.percentage,
       };
     case types.FINISH_DOWNLOAD_VIDEO:
-      if (state.id !== action.lectureId) return state;
-
       return {
         ...state,
         isDownloading: false,
         isDownloaded: true,
       };
     case types.UPDATE_DOWNLOAD_STATUS:
-      if (state.id !== action.lectureId) return state;
-
       return {
         ...state,
         isDownloaded: action.isDownloaded,

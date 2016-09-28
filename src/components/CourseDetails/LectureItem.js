@@ -150,16 +150,7 @@ class LectureItem extends Component {
 
 LectureItem.propTypes = {
   lectures: PropTypes.arrayOf(PropTypes.shape({})),
-  currentLecture: PropTypes.shape({
-    /* eslint-disable react/no-unused-prop-types */
-    order: PropTypes.number,
-    title: PropTypes.string,
-    kind: PropTypes.string,
-    duration: PropTypes.number,
-    isCompleted: PropTypes.bool,
-    type: PropTypes.string,
-    /* eslint-enable react/no-unused-prop-types */
-  }).isRequired,
+  currentLecture: PropTypes.shape({}).isRequired,
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDownload: PropTypes.func.isRequired,
   fetchDownloadStatus: PropTypes.func.isRequired,
