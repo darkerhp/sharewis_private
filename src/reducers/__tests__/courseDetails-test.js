@@ -7,13 +7,16 @@ import { courses, lectures } from '../../data/dummyData';
 describe('CourseList reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
+      currentLecture: null,
       id: 0,
-      currentLecture: undefined,
+      imageUrl: null,  // TODO unused
+      isFetching: false,
+      isLectureDownloading: false,
+      jobId: -1,
       lectureCount: 0,
       lectureProgress: 0,
       lectures: [],
-      jobId: -1,
-      isLectureDownloading: false,
+      title: null,
     });
   });
 
@@ -46,7 +49,7 @@ describe('CourseList reducer', () => {
       lectures,
     };
     expect(state.lectureProgress).toEqual(3);
-    expect(state.currentLecture.status).toBeFalsy();
+    expect(state.currentLecture.status).toEqual('not_started');
 
     state = reducer(state, { type: types.COMPLETE_CURRENT_LECTURE });
 

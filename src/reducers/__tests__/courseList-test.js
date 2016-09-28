@@ -9,6 +9,7 @@ describe('CourseList reducer', () => {
     expect(reducer(undefined, {})).toEqual({
       courses: [],
       error: null,
+      isFetching: false,
     });
   });
 
@@ -19,15 +20,30 @@ describe('CourseList reducer', () => {
     })).toEqual({
       courses: null,
       error: 'no internet',
+      isFetching: false,
     });
   });
 
-  it('should add received courses to the props', () => {
+  it('should receive courses from api, camelCase the results and add them to the props', () => {
+    apiResult = [{
+      id: 0,
+      image_url: 'http://a',
+      lecture_count: 3,
+      lecture_progress: 0,
+      title: 'a',
+    }];
     expect(reducer({ courses: null }, {
       type: types.FETCH_COURSES_LIST_SUCCESS,
-      courses: ['コース１', 'コース２'],
+      courses: apiResult,
     })).toEqual({
-      courses: ['コース１', 'コース２'],
+      courses: [{
+        id: 0,
+        imageUrl: 'http://a',
+        lectureCount: 3,
+        lectureProgress: 0,
+        title: 'a',
+      }],
+      isFetching: false,
     });
   });
 

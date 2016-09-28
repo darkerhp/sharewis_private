@@ -4,7 +4,7 @@ import { lectures } from '../../data/dummyData';
 
 describe('List Utils', () => {
   it('can update an object in a list based on its id', () => {
-    expect(lectures[10].status).toEqual(false);
+    expect(lectures[10].status).toEqual('not_started');
     const lecture = {
       ...lectures[10],
       status: 'finished',
@@ -13,7 +13,7 @@ describe('List Utils', () => {
 
     const updatedLectures = replaceInList(lectures, lecture);
 
-    expect(updatedLectures[10].status).toEqual(true);
+    expect(updatedLectures[10].status).toEqual('finished');
   });
 
   it('cannot update a list if passed object has no id', () => {
