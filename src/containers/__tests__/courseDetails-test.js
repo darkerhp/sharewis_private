@@ -31,9 +31,7 @@ jest.mock('react-native-router-flux', () => ({
 }));
 // Mock the RNFS
 jest.mock('react-native-fs', () => ({
-  RNFS: {
-    exists: path => new Promise(resolve => resolve(path)),
-  },
+  exists: path => new Promise(resolve => resolve(path)),
 }));
 
 
