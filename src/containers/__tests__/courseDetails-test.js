@@ -6,7 +6,13 @@ import 'react-native';
 import renderer from 'react-test-renderer';
 import CourseDetails from '../CourseDetails';
 import { courses } from '../../data/dummyData';
-import { loadCurrentLecture } from '../../actions/courseDetails';
+import {
+  loadCurrentLecture,
+  pressDownloadVideo,
+  beginDownloadVideo,
+  progressDownloadVideo,
+  finishDownloadVideo,
+} from '../../actions/courseDetails';
 
 global.Promise = require.requireActual('promise');
 
@@ -23,12 +29,22 @@ jest.mock('react-native-router-flux', () => ({
       new Promise(resolve => resolve(kwargs)),
   },
 }));
+// Mock the RNFS
+jest.mock('react-native-fs', () => ({
+  RNFS: {
+    exists: path => new Promise(resolve => resolve(path)),
+  },
+}));
 
 
 describe('CourseDetails', () => {
   beforeEach(() => {
     instance = new CourseDetails({ ...courses[0] });
     instance.props.loadCurrentLecture = loadCurrentLecture;
+    instance.props.pressDownloadVideo = pressDownloadVideo;
+    instance.props.beginDownloadVideo = beginDownloadVideo;
+    instance.props.progressDownloadVideo = progressDownloadVideo;
+    instance.props.finishDownloadVideo = finishDownloadVideo;
   });
 
   it('should have a pressLecture handler', async () => {
@@ -42,6 +58,12 @@ describe('CourseDetails', () => {
     const result = await instance.handlePressNextLecture();
     expect(result).toEqual({
       title: 'レクチャーH',
+    });
+  });
+
+  it('should have a pressDownload handler', async () => {
+    await instance.handlePressDownload({
+      id: 1, url: 'hoge',
     });
   });
 });
