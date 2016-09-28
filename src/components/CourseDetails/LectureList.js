@@ -16,24 +16,35 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (key, lecture, handlePressLecture, handlePressDownload) => (
+const renderLecture = (key, courseId, lecture, handlePressLecture, handlePressDownload,
+                       fetchDownloadStatus) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
     : <LectureItem
       key={key}
+      courseId={courseId}
       currentLecture={lecture}
       handlePressLecture={handlePressLecture}
       handlePressDownload={handlePressDownload}
+      fetchDownloadStatus={fetchDownloadStatus}
     />
 );
 
-const LectureList = ({ lectures, containerStyleId, handlePressLecture, handlePressDownload }) =>
+const LectureList = ({
+  courseId,
+  lectures,
+  containerStyleId,
+  handlePressLecture,
+  handlePressDownload,
+  fetchDownloadStatus }) =>
   <View style={[styles.container, containerStyleId]}>
     {lectures.map((lecture, i) => renderLecture(
       i,
+      courseId,
       lecture,
       handlePressLecture,
-      handlePressDownload)
+      handlePressDownload,
+      fetchDownloadStatus)
     )}
   </View>;
 

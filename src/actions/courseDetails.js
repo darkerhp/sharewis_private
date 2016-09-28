@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-
+import * as FileUtils from '../utils/file';
 
 // Used in courseDetails and lecture reducers TODO 移動する
 // eslint-disable-next-line import/prefer-default-export
@@ -30,3 +30,19 @@ export const finishDownloadVideo = (lectures, lectureId) => ({
   lectures,
   lectureId,
 });
+// TODO lectureに移動
+export const updateDownloadStatus = (lectures, lectureId, isDownloaded) => ({
+  type: types.UPDATE_DOWNLOAD_STATUS,
+  lectures,
+  lectureId,
+  isDownloaded,
+});
+
+// thunk action creators
+export const fetchDownloadStatus = (courseId, lectureId, lectures) => {
+  return async (dispatch) => {
+    const path = FileUtils.createVideoFileName(lectureId, courseId);
+    const result = await FileUtils.exists(path);
+    dispatch(updateDownloadStatus(lectures, lectureId, result));
+  };
+};

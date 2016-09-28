@@ -12,3 +12,5 @@ export const getCourseVideosDirPath = courseId =>
 // ARCHIVE_PATH/archive/{course_id}/videos/{lecture_id}.mp4
 export const createVideoFileName = (lectureId, courseId) =>
   `${getCourseVideosDirPath(courseId)}/${lectureId}.mp4`;
+
+export const exists = path => RNFS.exists(path);

@@ -39,6 +39,13 @@ const lecture = (state, action) => {
         isDownloading: false,
         isDownloaded: true,
       };
+    case types.UPDATE_DOWNLOAD_STATUS:
+      if (state.id !== action.lectureId) return state;
+
+      return {
+        ...state,
+        isDownloaded: action.isDownloaded,
+      };
     default:
       return state;
   }
@@ -51,6 +58,7 @@ const lectures = (state, action) => {
     case types.BEGIN_DOWNLOAD_VIDEO:
     case types.FINISH_DOWNLOAD_VIDEO:
     case types.PROGRESS_DOWNLOAD_VIDEO:
+    case types.UPDATE_DOWNLOAD_STATUS:
       return state.map(l => lecture(l, action));
     default:
       return state;
@@ -91,6 +99,11 @@ const courseDetailsReducer = (state = initialState, action) => {
         isLectureDownloading: false,
         lectures: lectures(state.lectures, action),
         jobId: -1,
+      };
+    case types.UPDATE_DOWNLOAD_STATUS:
+      return {
+        ...state,
+        lectures: lectures(state.lectures, action),
       };
     default:
       return state;
