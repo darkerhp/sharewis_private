@@ -89,7 +89,7 @@ class CourseDetails extends Component {
     const toFile = FileUtils.createVideoFileName(lecture.id, id);
     console.log(videoDirPath);
 
-    (async () => {
+    (async() => {
       const isExistsDir = await RNFS.exists(videoDirPath);
       if (!isExistsDir) await RNFS.mkdir(videoDirPath);
       try {
@@ -115,7 +115,7 @@ class CourseDetails extends Component {
   }
 
   render() {
-    const { id, lectures, lectureCount, lectureProgress, title } = this.props;
+    const { id, lectures, lectureCount, lectureProgress, title, fetchDownloadStatus } = this.props;
     const isCompleted = lectureCount === lectureProgress;
     const courseInfo = {
       totalLectureCount: lectureCount,
@@ -144,7 +144,7 @@ class CourseDetails extends Component {
             courseId={id}
             handlePressLecture={this.handlePressLecture}
             handlePressDownload={this.handlePressDownload}
-            fetchDownloadStatus={this.props.fetchDownloadStatus}
+            fetchDownloadStatus={fetchDownloadStatus}
           />
         </View>
       </ScrollView>
