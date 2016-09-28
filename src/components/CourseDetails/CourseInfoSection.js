@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   totalDuration: {
-    width: 125,  // Or text will be trimmed in english
+    width: 130,  // Or text will be trimmed in english
     textAlign: 'center',
     color: 'black',
     fontSize: 10,
