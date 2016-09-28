@@ -67,7 +67,7 @@ class CourseDetails extends Component {
   }
 
   @autobind
-  async handlePressDownload(lecture) {
+  handlePressDownload(lecture) {
     const {
       id,
       isLectureDownloading,
