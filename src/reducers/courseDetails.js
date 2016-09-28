@@ -15,9 +15,9 @@ const initialState = {
 
 // TODO 移動する
 const lecture = (state, action) => {
+  if (state.id !== action.lectureId) return state;
   switch (action.type) {
     case types.BEGIN_DOWNLOAD_VIDEO:
-      if (state.id !== action.lectureId) return state;
 
       return {
         ...state,

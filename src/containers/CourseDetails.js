@@ -66,7 +66,7 @@ class CourseDetails extends Component {
   }
 
   @autobind
-  handlePressDownload(lecture) {
+  async handlePressDownload(lecture) {
     const {
       id,
       lectures,
@@ -89,29 +89,29 @@ class CourseDetails extends Component {
     const toFile = FileUtils.createVideoFileName(lecture.id, id);
     console.log(videoDirPath);
 
-    (async() => {
-      const isExistsDir = await RNFS.exists(videoDirPath);
-      if (!isExistsDir) await RNFS.mkdir(videoDirPath);
-      try {
-        await RNFS.downloadFile({
+    RNFS.exists(videoDirPath)
+      .then(res => res || RNFS.mkdir(videoDirPath))
+      .then(() =>
+        RNFS.downloadFile({
           fromUrl: lecture.url,
           toFile,
           begin: (res) => {
             const { jobId, statusCode } = res;
-            beginDownloadVideo(lectures, lecture.id, jobId, statusCode);
+            beginDownloadVideo(lecture.id, jobId, statusCode);
           },
           progress: (data) => {
             const percentage = Math.ceil((100 * data.bytesWritten) / data.contentLength);
-            progressDownloadVideo(lectures, lecture.id, percentage);
+            progressDownloadVideo(lecture.id, percentage);
           },
           progressDivider: 2,
-        });
-      } catch (err) {
+        }).promise
+      )
+      .then(res => console.log(res))
+      .catch((err) => {
         console.error(err);
         Alert.alert('エラー', 'ダウンロード中にエラーが発生しました。'); // TODO
-      }
-      finishDownloadVideo(lectures, lecture.id);
-    })();
+      })
+      .then(() => finishDownloadVideo(lecture.id));
   }
 
   render() {

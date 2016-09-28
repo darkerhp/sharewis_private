@@ -86,7 +86,7 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
     style={styles.actionIconWrapper}
     onPress={() => handlePressDownload(lecture)}
   >
-    {lecture.isDownloading === true
+    {lecture.isDownloading
       ?
       <AnimatedCircularProgress
         size={30}
@@ -98,7 +98,7 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
       />
       :
       <Icon
-        name={lecture.isDownloaded === true ? 'delete' : 'cloud-download'}
+        name={lecture.isDownloaded ? 'delete' : 'cloud-download'}
         style={styles.actionIcon}
       />
     }
