@@ -65,7 +65,7 @@
     "actWebsite": "trang web ShareWis ACT",
     "back": "Trở lại",
     "courseList": "các khóa học của tôi",
-    "downloadAlreadyInProgress": "だうんろーどなう",//TODO
+    "downloadAlreadyInProgress": "",
     "downloadAvailable": "Bài giảng tải về đã tồn tại",
     "emailOrUsername": "Địa chỉ email hoặc tên tài khoản",
     "emailOrUsernameLabel": "Đăng nhập với email",
@@ -76,7 +76,7 @@
     "login": "Đăng nhập",
     "loginEmailError": "Đăng nhập thất bại sử dụng các email và mật khẩu.",
     "loginFacebookError": "Đăng nhập với Facebook thất bại.",
-    "networkFailure": "ネットワークエラー",//TODO
+    "networkFailure": "",
     "next": "kế tiếp",
     "nextLecture": "bài giảng tiếp theo",
     "noCourses": "Nếu bạn chưa mua bất kỳ khóa học nào, vui lòng vào trang web ShareWis ACT.",
