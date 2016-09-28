@@ -23,10 +23,14 @@ export const ACT_API_KEY = actApiKey;
 
 export const PASSWORD_FORGOTTEN_URL = `${ACT_API_URL}/users/password/new`;
 
-
+// Lecture.type
 export const LECTURE_TYPE_VIDEO = 'video';
 export const LECTURE_TYPE_QUIZ = 'quiz';
 export const LECTURE_TYPE_TEXT = 'text';
 export const LECTURE_TYPE_PDF = 'pdf';
 export const LECTURE_TYPE_ATTACHMENT = 'attachment';
 export const LECTURE_TYPE_AUDIO = 'audio';
+// Lecture.status
+export const LECTURE_STATUS_NOT_STARTED = 'not_started';
+export const LECTURE_STATUS_VIEWED = 'viewed';
+export const LECTURE_STATUS_FINISHED = 'finished';

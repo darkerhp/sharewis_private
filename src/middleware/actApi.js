@@ -50,7 +50,7 @@ export const getCourseDetails = async (userId, courseId) => {
 };
 
 
-export const updateLectureStatus = async (userId, courseId, lectureId, newStatus) => {
+export const patchLectureStatus = async (userId, courseId, lectureId, newStatus) => {
   // Run query
   const result = await fetch(`${ACT_API_URL}/courses/${courseId}/lectures/${lectureId}`, {
     method: 'PATCH',

@@ -1,6 +1,7 @@
 /* @flow */
 // TODO video と lecture, lectures分けたほうがよさげ
 import * as types from '../constants/ActionTypes';
+import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
 import replaceInList from '../utils/list';
 
@@ -24,7 +25,7 @@ const lecture = (state = initialState, action) => {
   switch (action.type) {
     case types.COMPLETE_CURRENT_LECTURE: {
       let { lectures, ...currentLecture } = state;
-      currentLecture.status = 'finished';
+      currentLecture.status = ApiConstants.LECTURE_STATUS_FINISHED;
       lectures = replaceInList(lectures, currentLecture);
       return {
         lectures,
