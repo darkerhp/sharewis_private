@@ -105,9 +105,9 @@ class CourseDetails extends Component {
           progressDivider: 2,
         }).promise
       )
-      .then(res => console.log(res))
+      .then(res => res) //
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
       })
       .then(() => finishDownloadVideo(lecture.id));

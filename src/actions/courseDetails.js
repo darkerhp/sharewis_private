@@ -5,7 +5,7 @@ import * as FileUtils from '../utils/file';
 // eslint-disable-next-line import/prefer-default-export
 export const loadCurrentLecture = (lectures, currentLecture) => ({
   type: types.LOAD_CURRENT_LECTURE,
-  lectures,// lecture reducers
+  lectures, // lecture reducers
   currentLecture,
 });
 export const pressDownloadVideo = () => ({
@@ -22,7 +22,7 @@ export const progressDownloadVideo = (lectureId, percentage) => ({
   lectureId,
   percentage,
 });
-export const finishDownloadVideo = (lectureId) => ({
+export const finishDownloadVideo = lectureId => ({
   type: types.FINISH_DOWNLOAD_VIDEO,
   jobId: -1,
   lectureId,
