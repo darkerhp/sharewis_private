@@ -63,10 +63,11 @@ class Lecture extends Component {
     currentTime: PropTypes.number.isRequired,
     estimatedTime: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
-    status: PropTypes.string.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
+    order: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     videoUrl: PropTypes.string.isRequired,
     // actions
@@ -111,6 +112,7 @@ class Lecture extends Component {
       courseId,
       fetchLectureStatus,
       id,
+      order,
       lectures,
       loadCurrentLecture,
       status,
@@ -120,7 +122,7 @@ class Lecture extends Component {
       fetchLectureStatus(courseId, id, ApiConstants.LECTURE_STATUS_FINISHED);
     }
 
-    const nextLecture = LectureUtils.getLectureById(lectures, id + 1);
+    const nextLecture = LectureUtils.getLectureByOrder(lectures, order + 1);
     loadCurrentLecture(lectures, nextLecture);
   }
 

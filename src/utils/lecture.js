@@ -33,7 +33,7 @@ export const getNextVideoLecture = (lectures, skipCompleted = true) => {
   return videoLectures.sort(sortByOrder)[0] || {};
 };
 
-export const getLectureById = (lectures, lectureId) =>
+export const getLectureByOrder = (lectures, order) =>
   lectures
     .filter(l => l.kind === 'lecture')
-    .find(lecture => lecture.id === lectureId);
+    .find(lecture => lecture.order === order);
