@@ -8,7 +8,7 @@ import * as LectureUtils from '../../utils/lecture';
 import Duration from '../Duration';
 
 const { Component, PropTypes } = React;
-const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
+const { Platform, StyleSheet, Text, TouchableOpacity, View } = ReactNative;
 
 const lectureRowHeight = 48;
 const styles = StyleSheet.create({
@@ -55,6 +55,14 @@ const styles = StyleSheet.create({
   },
   durationWrapper: {
     flex: 1,
+  },
+  durationStyle: {
+    ...Platform.select({
+      android: {
+        color: BaseStyles.textColor,
+        width: 30,  // or seconds will be trimmed in android
+      },
+    }),
   },
   lectureTitleTextWrapper: {
     flex: 5,
@@ -135,7 +143,11 @@ class LectureItem extends Component {
           <View style={styles.lectureIconWrapper}>
             <Icon name={LectureUtils.getLectureIconName(currentLecture)} />
           </View>
-          <Duration duration={currentLecture.duration} containerStyleId={styles.durationWrapper} />
+          <Duration
+            duration={currentLecture.duration}
+            containerStyleId={styles.durationWrapper}
+            durationStyleId={styles.durationStyle}
+          />
         </View>
 
         <TouchableOpacity
