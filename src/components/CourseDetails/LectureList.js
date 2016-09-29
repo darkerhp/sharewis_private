@@ -16,8 +16,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (key, courseId, lecture, handlePressLecture, handlePressDownload,
-                       fetchDownloadStatus) => (
+const renderLecture = (
+  key,
+  courseId,
+  lecture,
+  handlePressLecture,
+  handlePressDownload,
+  fetchDownloadStatus
+) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
     : <LectureItem
