@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
 class CourseDetails extends Component {
   static propTypes = {
     // states
+    id: PropTypes.bool.isRequired,
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
