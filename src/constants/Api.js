@@ -34,3 +34,7 @@ export const LECTURE_TYPE_AUDIO = 'audio';
 export const LECTURE_STATUS_NOT_STARTED = 'not_started';
 export const LECTURE_STATUS_VIEWED = 'viewed';
 export const LECTURE_STATUS_FINISHED = 'finished';
+
+
+// Set 1h of caching (in ms)
+export const ACT_API_CACHE = 60 * 60 * 1000;

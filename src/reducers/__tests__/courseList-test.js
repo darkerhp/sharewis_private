@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import * as types from '../../constants/ActionTypes';
+import { ACT_API_CACHE } from '../../constants/Api';
 import reducer from '../courseList';
 import { courses as dummyCourses } from '../../data/dummyData';
 
@@ -13,7 +14,7 @@ describe('CourseList reducer', () => {
     expect(reducer(undefined, {})).toEqual({
       courses: [],
       error: null,
-      fetchedAt: -3600000,
+      fetchedAt: -ACT_API_CACHE,
       isFetching: false,
     });
   });

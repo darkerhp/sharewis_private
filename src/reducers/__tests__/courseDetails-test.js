@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 import * as types from '../../constants/ActionTypes';
-import reducer from '../courseDetails';
+import { ACT_API_CACHE } from '../../constants/Api';
 import { courses, lectures } from '../../data/dummyData';
+import reducer from '../courseDetails';
 
 
 describe('CourseDetails reducer', () => {
@@ -12,7 +13,7 @@ describe('CourseDetails reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       currentLecture: null,
-      fetchedAt: -3600000,
+      fetchedAt: -ACT_API_CACHE,
       id: 0,
       imageUrl: null,  // TODO unused
       isFetching: false,

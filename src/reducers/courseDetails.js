@@ -1,5 +1,6 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
+import { ACT_API_CACHE } from '../constants/Api';
 import {
   fetchCourseDetailsSuccess,
   loadCurrentLecture,
@@ -9,7 +10,7 @@ import {
 
 const getInitialState = () => ({
   currentLecture: null,
-  fetchedAt: Date.now() - 3600000, // 1h ago
+  fetchedAt: Date.now() - ACT_API_CACHE, // 1h ago
   id: 0,
   imageUrl: null,  // TODO unused
   isFetching: false,

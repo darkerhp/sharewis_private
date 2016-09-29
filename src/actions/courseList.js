@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes';
+import { ACT_API_CACHE } from '../constants/Api';
 import { getUserCourses } from '../middleware/actApi';
 
 
@@ -33,8 +34,8 @@ export const fetchCourseList = () =>
       const state = getState();
       const userId = state.user.userId;
       const courseList = state.courseList;
-      if (courseList.courses.length == 0 ||
-          courseList.fetchedAt - Date.now() > 3600000) {
+      if (courseList.courses.length === 0 ||
+          courseList.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseListStart());
         const courses = await getUserCourses(userId);
         dispatch(fetchCourseListSuccess(courses));
