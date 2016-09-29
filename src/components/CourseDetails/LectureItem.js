@@ -5,10 +5,11 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 import BaseStyles from '../../baseStyles';
 import * as LectureUtils from '../../utils/lecture';
+import { LECTURE_TYPE_VIDEO } from '../../constants/Api';
 import Duration from '../Duration';
 
 const { Component, PropTypes } = React;
-const { View, StyleSheet, Text, TouchableOpacity } = ReactNative;
+const { Platform, StyleSheet, Text, TouchableOpacity, View } = ReactNative;
 
 const lectureRowHeight = 48;
 const styles = StyleSheet.create({
@@ -55,6 +56,14 @@ const styles = StyleSheet.create({
   },
   durationWrapper: {
     flex: 1,
+  },
+  durationStyle: {
+    ...Platform.select({
+      android: {
+        color: BaseStyles.textColor,
+        width: 30,  // or seconds will be trimmed in android
+      },
+    }),
   },
   lectureTitleTextWrapper: {
     flex: 5,
@@ -120,7 +129,7 @@ class LectureItem extends Component {
 
   render() {
     const { lectures, currentLecture, handlePressLecture, handlePressDownload } = this.props;
-    const isAccessibleLecture = currentLecture.type === 'VideoLecture';
+    const isAccessibleLecture = currentLecture.type === LECTURE_TYPE_VIDEO;
     return (
       <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
         <View
@@ -135,7 +144,11 @@ class LectureItem extends Component {
           <View style={styles.lectureIconWrapper}>
             <Icon name={LectureUtils.getLectureIconName(currentLecture)} />
           </View>
-          <Duration duration={currentLecture.duration} containerStyleId={styles.durationWrapper} />
+          <Duration
+            estimatedTime={currentLecture.estimatedTime}
+            containerStyleId={styles.durationWrapper}
+            durationStyleId={styles.durationStyle}
+          />
         </View>
 
         <TouchableOpacity
