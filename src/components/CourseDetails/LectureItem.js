@@ -145,7 +145,7 @@ class LectureItem extends Component {
             <Icon name={LectureUtils.getLectureIconName(currentLecture)} />
           </View>
           <Duration
-            duration={currentLecture.duration}
+            estimatedTime={currentLecture.estimatedTime}
             containerStyleId={styles.durationWrapper}
             durationStyleId={styles.durationStyle}
           />
