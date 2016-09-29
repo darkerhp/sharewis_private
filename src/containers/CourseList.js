@@ -72,7 +72,7 @@ class CourseList extends Component {
     try {
       await this.props.fetchCourseList();
     } catch (error) {
-      Alert.alert(I18n.t('errorTitle'), I18n.t('errorFetchingCourses'));
+      Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
   }
 
