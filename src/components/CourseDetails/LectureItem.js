@@ -114,11 +114,14 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
 
 class LectureItem extends Component {
   static propTypes = {
+    // values
+    courseId: PropTypes.number.isRequired,
     currentLecture: PropTypes.shape({}).isRequired,
+    // actions
     handlePressLecture: PropTypes.func.isRequired,
+    handlePressDelete: PropTypes.func.isRequired,
     handlePressDownload: PropTypes.func.isRequired,
     fetchDownloadStatus: PropTypes.func.isRequired,
-    courseId: PropTypes.number.isRequired,
   };
 
   componentDidMount() {
@@ -127,7 +130,12 @@ class LectureItem extends Component {
   }
 
   render() {
-    const { currentLecture, handlePressLecture, handlePressDownload } = this.props;
+    const {
+      currentLecture,
+      handlePressDelete,
+      handlePressLecture,
+      handlePressDownload,
+    } = this.props;
     const isAccessibleLecture = currentLecture.type === LECTURE_TYPE_VIDEO;
     return (
       <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
@@ -158,7 +166,9 @@ class LectureItem extends Component {
           <Text style={styles.lectureTitleText}>{currentLecture.title}</Text>
         </TouchableOpacity>
 
-        {isAccessibleLecture && renderDownloadAction(handlePressDownload, currentLecture)}
+        {isAccessibleLecture && renderDownloadAction(
+          handlePressDelete, handlePressDownload, currentLecture
+        )}
       </View>
     );
   }

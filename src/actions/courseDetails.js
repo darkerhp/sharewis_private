@@ -47,6 +47,11 @@ export const finishDownloadVideo = lectureId => ({
   jobId: -1,
   lectureId,
 });
+export const finishDeleteVideo = lectureId => ({
+  type: types.FINISH_DELETE_VIDEO,
+  jobId: -1,
+  lectureId,
+});
 // TODO lectureに移動
 export const updateDownloadStatus = (lectureId, hasVideoInDevice) => ({
   type: types.UPDATE_DOWNLOAD_STATUS,
