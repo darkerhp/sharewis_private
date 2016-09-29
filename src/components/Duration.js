@@ -25,13 +25,15 @@ const Duration = ({
   prefixText = '',
 }) =>
   <View style={[styles.container, containerStyleId]}>
-    <Text style={[styles.duration, durationStyleId]}>
-      {prefixText}{moment.duration(estimatedTime, 'seconds').format(format, { trim: false })}
-    </Text>
+    { estimatedTime > 0 &&
+      <Text style={[styles.duration, durationStyleId]}>
+        {prefixText}{moment.duration(estimatedTime, 'seconds').format(format, { trim: false })}
+      </Text>
+    }
   </View>;
 
 Duration.propTypes = {
-  estimatedTime: PropTypes.number.isRequired,
+  estimatedTime: PropTypes.number,
   format: PropTypes.string,
   containerStyleId: PropTypes.number,
   durationStyleId: PropTypes.number,
