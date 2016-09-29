@@ -70,7 +70,6 @@ const getScenes = loggedIn =>
     <Scene
       key="lecture"
       component={Lecture}
-      title={I18n.t('profile')}
       hideNavBar={false}
       {...baseNavBarProps}
       backButtonImage={backButtonWhiteImage}

@@ -76,7 +76,11 @@ class CourseDetails extends Component {
   handlePressLecture(lecture) {
     const { lectures, loadCurrentLecture } = this.props;
     loadCurrentLecture(lectures, lecture);
-    return RouterActions.lecture({ title: lecture.title });
+    return RouterActions.lecture({
+      title: lecture.title.length > 18
+        ? `${lecture.title.substr(0, 17)}…`
+        : lecture.title,
+    });
   }
 
   @autobind
