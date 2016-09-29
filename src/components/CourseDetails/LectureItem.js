@@ -5,6 +5,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 import BaseStyles from '../../baseStyles';
 import * as LectureUtils from '../../utils/lecture';
+import { LECTURE_TYPE_VIDEO } from '../../constants/Api';
 import Duration from '../Duration';
 
 const { Component, PropTypes } = React;
@@ -128,7 +129,7 @@ class LectureItem extends Component {
 
   render() {
     const { lectures, currentLecture, handlePressLecture, handlePressDownload } = this.props;
-    const isAccessibleLecture = currentLecture.type === 'VideoLecture';
+    const isAccessibleLecture = currentLecture.type === LECTURE_TYPE_VIDEO;
     return (
       <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
         <View
