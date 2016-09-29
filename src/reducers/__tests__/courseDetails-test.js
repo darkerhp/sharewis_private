@@ -7,10 +7,13 @@ import { courses, lectures } from '../../data/dummyData';
 describe('CourseList reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
+      id: 0,
       currentLecture: undefined,
       lectureCount: 0,
       lectureProgress: 0,
-      lectures: {},
+      lectures: [],
+      jobId: -1,
+      isLectureDownloading: false,
     });
   });
 

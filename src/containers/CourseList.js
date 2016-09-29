@@ -22,7 +22,6 @@ const {
   View,
 } = ReactNative;
 
-
 const styles = StyleSheet.create({
   courseList: {
     ...BaseStyles.ContainerWithNavbar,

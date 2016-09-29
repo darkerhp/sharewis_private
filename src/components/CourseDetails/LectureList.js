@@ -3,7 +3,7 @@ import ReactNative from 'react-native';
 
 import BaseStyles from '../../baseStyles';
 
-import Lecture from './Lecture';
+import LectureItem from './LectureItem';
 import Section from './Section';
 
 const { PropTypes } = React;
@@ -16,19 +16,42 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (key, lecture, handlePressLecture) => (
+const renderLecture = (
+  key,
+  courseId,
+  lecture,
+  handlePressLecture,
+  handlePressDownload,
+  fetchDownloadStatus
+) => (
   lecture.kind === 'section'
     ? <Section key={key} lecture={lecture} />
-    : <Lecture
+    : <LectureItem
       key={key}
+      courseId={courseId}
       currentLecture={lecture}
       handlePressLecture={handlePressLecture}
+      handlePressDownload={handlePressDownload}
+      fetchDownloadStatus={fetchDownloadStatus}
     />
 );
 
-const LectureList = ({ lectures, containerStyleId, handlePressLecture }) =>
+const LectureList = ({
+  courseId,
+  lectures,
+  containerStyleId,
+  handlePressLecture,
+  handlePressDownload,
+  fetchDownloadStatus }) =>
   <View style={[styles.container, containerStyleId]}>
-    {lectures.map((lecture, i) => renderLecture(i, lecture, handlePressLecture))}
+    {lectures.map((lecture, i) => renderLecture(
+      i,
+      courseId,
+      lecture,
+      handlePressLecture,
+      handlePressDownload,
+      fetchDownloadStatus)
+    )}
   </View>;
 
 LectureList.propTypes = {
@@ -44,6 +67,9 @@ LectureList.propTypes = {
   })).isRequired,
   handlePressLecture: PropTypes.func.isRequired,
   containerStyleId: PropTypes.number.isRequired,
+  handlePressDownload: PropTypes.func.isRequired,
+  fetchDownloadStatus: PropTypes.func.isRequired,
+  courseId: PropTypes.number.isRequired,
 };
 
 export default LectureList;
