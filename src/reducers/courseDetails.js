@@ -1,17 +1,26 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
-import { loadCurrentLecture, completeCurrentLecture } from '../utils/reducers';
+import { ACT_API_CACHE } from '../constants/Api';
+import {
+  fetchCourseDetailsSuccess,
+  loadCurrentLecture,
+  completeCurrentLecture,
+} from '../utils/reducers';
 
 
-const initialState = {
+const getInitialState = () => ({
+  currentLecture: null,
+  fetchedAt: Date.now() - ACT_API_CACHE, // 1h ago
   id: 0,
-  currentLecture: undefined,
+  imageUrl: null,  // TODO unused
+  isFetching: false,
+  isLectureDownloading: false,
+  jobId: -1,
   lectureCount: 0,
   lectureProgress: 0,
   lectures: [],
-  jobId: -1,
-  isLectureDownloading: false,
-};
+  title: null,
+});
 
 // TODO 移動する
 const lectureItemReducer = (state, action) => {
@@ -58,8 +67,22 @@ const lectureListReducer = (state, action) => {
   }
 };
 
-const courseDetailsReducer = (state = initialState, action) => {
+
+const courseDetailsReducer = (state = getInitialState(), action) => {
   switch (action.type) {
+    case types.FETCH_COURSE_DETAILS_START:
+      return {
+        ...state,
+        isFetching: state.lectures.length === 0,
+      };
+    case types.FETCH_COURSE_DETAILS_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isFetching: false,
+      };
+    case types.FETCH_COURSE_DETAILS_SUCCESS:
+      return fetchCourseDetailsSuccess(state, action);
     case types.LOAD_CURRENT_COURSE:
       return {
         ...state,

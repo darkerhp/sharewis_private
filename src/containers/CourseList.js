@@ -4,6 +4,7 @@ import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
@@ -15,6 +16,7 @@ import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const {
+  Alert,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -58,32 +60,29 @@ const styles = StyleSheet.create({
 @connectState('courseList')
 class CourseList extends Component {
   static propTypes = {
-    courses: PropTypes.arrayOf(PropTypes.shape({
-      /* eslint-disable react/no-unused-prop-types */
-      title: PropTypes.string.required,
-      lectures: PropTypes.array.required,
-      /* eslint-enable react/no-unused-prop-types */
-    })),
-    fetchCoursesListFailure: PropTypes.func.isRequired,
-    fetchCoursesListSuccess: PropTypes.func.isRequired,
+    // states
+    courses: PropTypes.arrayOf(PropTypes.shape({})),
+    isFetching: PropTypes.bool.isRequired,
+    // actions
+    fetchCourseList: PropTypes.func.isRequired,
     loadCurrentCourse: PropTypes.func.isRequired,
   };
 
-  componentWillMount() {
+  async componentWillMount() {
     try {
-      this.props.fetchCoursesListSuccess();
+      await this.props.fetchCourseList();
     } catch (error) {
-      this.props.fetchCoursesListFailure(error);
+      Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
   }
 
   handlePressCourse(course) {
     this.props.loadCurrentCourse(course);
-    RouterActions.courseDetails({ course });
+    RouterActions.courseDetails();
   }
 
   render() {
-    const { courses } = this.props;
+    const { isFetching, courses } = this.props;
 
     if (!courses) {
       return <EmptyList />;
@@ -94,11 +93,13 @@ class CourseList extends Component {
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
       >
+        <Spinner visible={isFetching} />
         <View style={styles.courseList}>
           {courses.map((course, key) =>
             <CourseSummary
               style={styles.container}
               onPress={() => this.handlePressCourse(course)}
+
               course={course}
               key={key}
             />

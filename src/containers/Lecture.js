@@ -9,11 +9,12 @@ import I18n from 'react-native-i18n';
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
+import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
 import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
-const { View, StyleSheet, StatusBar, Text } = ReactNative;
+const { Alert, StatusBar, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -58,22 +59,37 @@ class Lecture extends Component {
   static propTypes = {
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     // state
+    courseId: PropTypes.number.isRequired,
     currentTime: PropTypes.number.isRequired,
-    duration: PropTypes.number.isRequired,
+    estimatedTime: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
-    isCompleted: PropTypes.bool.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
+    order: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
+    videoUrl: PropTypes.string.isRequired,
     // actions
+    fetchLectureStatus: PropTypes.func.isRequired,
     loadCurrentLecture: PropTypes.func.isRequired,
     pressPlay: PropTypes.func.isRequired,
     pressSpeed: PropTypes.func.isRequired,
-    completeCurrentLecture: PropTypes.func.isRequired,
     updateVideoProgress: PropTypes.func.isRequired,
   };
+
+  async componentDidMount() {
+    try {
+      const { courseId, id, fetchLectureStatus, status } = this.props;
+
+      if (status === ApiConstants.LECTURE_STATUS_NOT_STARTED) {
+        fetchLectureStatus(courseId, id, ApiConstants.LECTURE_STATUS_VIEWED);
+      }
+    } catch (error) {
+      Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
+    }
+  }
+
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.id) return;
@@ -92,13 +108,21 @@ class Lecture extends Component {
 
   @autobind
   handlePressNextLecture() {
-    const { id, isCompleted, lectures, loadCurrentLecture, completeCurrentLecture } = this.props;
+    const {
+      courseId,
+      fetchLectureStatus,
+      id,
+      order,
+      lectures,
+      loadCurrentLecture,
+      status,
+    } = this.props;
 
-    if (!isCompleted) {
-      completeCurrentLecture();
+    if (status !== ApiConstants.LECTURE_STATUS_FINISHED) {
+      fetchLectureStatus(courseId, id, ApiConstants.LECTURE_STATUS_FINISHED);
     }
 
-    const nextLecture = LectureUtils.getLectureById(lectures, id + 1);
+    const nextLecture = LectureUtils.getLectureByOrder(lectures, order + 1);
     loadCurrentLecture(lectures, nextLecture);
   }
 
@@ -113,7 +137,7 @@ class Lecture extends Component {
   render() {
     const {
       // state
-      currentTime, duration, isLastLecture, isPaused, speed, title, url,
+      currentTime, estimatedTime, isLastLecture, isPaused, speed, title, videoUrl,
       // actions
       pressPlay, pressSpeed, updateVideoProgress,
     } = this.props;
@@ -124,7 +148,7 @@ class Lecture extends Component {
           <Video
             ref={ref => (this.video = ref)}
             // source can be a URL or a local file
-            source={{ uri: url }}
+            source={{ uri: videoUrl }}
             rate={speed}
             volume={1.0}
             muted={false}
@@ -142,7 +166,7 @@ class Lecture extends Component {
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
             currentTime={currentTime}
-            duration={duration}
+            estimatedTime={estimatedTime}
             onValueChange={this.handleValueChange}
             video={this.video}
           />

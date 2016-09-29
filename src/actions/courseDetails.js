@@ -1,8 +1,28 @@
 import * as types from '../constants/ActionTypes';
+import { ACT_API_CACHE } from '../constants/Api';
 import * as FileUtils from '../utils/file';
 
-// Used in courseDetails and lecture reducers TODO 移動する
-// eslint-disable-next-line import/prefer-default-export
+import { getCourseDetails } from '../middleware/actApi';
+
+
+// Actions Creators
+
+export const fetchCourseDetailsFailure = error => ({
+  type: types.FETCH_COURSE_DETAILS_FAILURE,
+  error,
+});
+
+export const fetchCourseDetailsStart = () => ({
+  type: types.FETCH_COURSE_DETAILS_START,
+});
+
+export const fetchCourseDetailsSuccess = ({ course, lectures }) => ({
+  type: types.FETCH_COURSE_DETAILS_SUCCESS,
+  course,
+  lectures,
+});
+
+// Used in courseDetails and lecture reducers
 export const loadCurrentLecture = (lectures, currentLecture) => ({
   type: types.LOAD_CURRENT_LECTURE,
   lectures, // lecture reducers
@@ -34,7 +54,9 @@ export const updateDownloadStatus = (lectureId, hasVideoInDevice) => ({
   hasVideoInDevice,
 });
 
-// thunk action creators
+
+// Thunks
+
 export const fetchDownloadStatus = (courseId, lectureId) => (
   async (dispatch) => {
     const path = FileUtils.createVideoFileName(lectureId, courseId);
@@ -42,3 +64,21 @@ export const fetchDownloadStatus = (courseId, lectureId) => (
     dispatch(updateDownloadStatus(lectureId, result));
   }
 );
+
+export const fetchCourseDetails = () =>
+  async (dispatch, getState) => {
+    try {
+      const state = getState();
+      const userId = state.user.userId;
+      const currentCourse = state.currentCourse;
+      if (currentCourse.lectures.length === 0 ||
+          currentCourse.fetchedAt - Date.now() > ACT_API_CACHE) {
+        dispatch(fetchCourseDetailsStart());
+        const result = await getCourseDetails(userId, currentCourse.id);
+        dispatch(fetchCourseDetailsSuccess(result));
+      }
+    } catch (error) {
+      dispatch(fetchCourseDetailsFailure());
+      throw error;
+    }
+  };

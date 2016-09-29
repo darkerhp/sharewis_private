@@ -95,13 +95,13 @@ paths:
     parameters:
       - $ref: '#/parameters/id'
       - $ref: '#/parameters/lecture-id'
-    put:
+    patch:
       tags:
         - Lectures
       security:
         - apikey_security: []
         - user_security: []
-      description: Update the status of a lecture. postリクエストとしているが実際には patch
+      description: Update the status of a lecture.
       parameters:
         - name: status
           in: body

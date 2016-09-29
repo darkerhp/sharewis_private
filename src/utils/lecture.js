@@ -1,18 +1,22 @@
+import * as ApiConstants from '../constants/Api';
+
 // @flow
 export const getLectureIconName = (lecture) => {
   switch (lecture.type) {
-    case 'VideoLecture':
+    case ApiConstants.LECTURE_TYPE_VIDEO:
       return 'play-circle-filled';
-    case 'TextLecture':
+    case ApiConstants.LECTURE_TYPE_TEXT:
       return 'text-format';
-    case 'PdfLecture':
+    case ApiConstants.LECTURE_TYPE_PDF:
       return 'picture-as-pdf';
-    case 'AudioLecture':
+    case ApiConstants.LECTURE_TYPE_AUDIO:
       return 'audiotrack';
-    case 'QuizLecture':
+    case ApiConstants.LECTURE_TYPE_QUIZ:
       return 'question-answer';
+    case ApiConstants.LECTURE_TYPE_ATTACHMENT:
+      return ApiConstants.LECTURE_TYPE_ATTACHMENT;
     default:
-      return null; // TODO
+      return 'error';  // TODO
   }
 };
 
@@ -22,14 +26,14 @@ const sortByOrder = (a, b) => {
 };
 
 export const getNextVideoLecture = (lectures, skipCompleted = true) => {
-  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === 'VideoLecture');
+  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === ApiConstants.LECTURE_TYPE_VIDEO);
   if (skipCompleted) {
-    videoLectures = videoLectures.filter(l => l.isCompleted === false);
+    videoLectures = videoLectures.filter(l => l.status === 'not_started');
   }
   return videoLectures.sort(sortByOrder)[0] || {};
 };
 
-export const getLectureById = (lectures, lectureId) =>
+export const getLectureByOrder = (lectures, order) =>
   lectures
     .filter(l => l.kind === 'lecture')
-    .find(lecture => lecture.id === lectureId);
+    .find(lecture => lecture.order === order);

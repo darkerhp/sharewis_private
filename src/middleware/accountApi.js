@@ -25,6 +25,7 @@ const getUserData = async (credentials) => {
 
   // Parse and return results
   return {
+    userId: json.id,
     userName: json.username,
     nickName: json.nickname,
   };

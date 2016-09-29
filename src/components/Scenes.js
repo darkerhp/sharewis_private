@@ -1,6 +1,6 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
-import { ActionConst, Scene } from 'react-native-router-flux';
+import { Actions, ActionConst, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
@@ -52,7 +52,7 @@ const getScenes = loggedIn =>
       initial={loggedIn}
       type={ActionConst.RESET}
       hideNavBar={false}
-      duration={0}
+      estimatedTime={0}
       {...baseNavBarProps}
       onLeft={() => console.log('onLeft')}
       leftButtonImage={menuWhiteImage}
@@ -70,10 +70,10 @@ const getScenes = loggedIn =>
     <Scene
       key="lecture"
       component={Lecture}
-      title={I18n.t('profile')}
       hideNavBar={false}
       {...baseNavBarProps}
       backButtonImage={backButtonWhiteImage}
+      onBack={() => Actions.courseDetails()}
     />
     <Scene
       key="profile"

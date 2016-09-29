@@ -1,19 +1,28 @@
 /* eslint-disable no-undef */
 import * as types from '../../constants/ActionTypes';
-import reducer from '../courseDetails';
+import { ACT_API_CACHE } from '../../constants/Api';
 import { courses, lectures } from '../../data/dummyData';
+import reducer from '../courseDetails';
 
 
-describe('CourseList reducer', () => {
+describe('CourseDetails reducer', () => {
+  beforeAll(() => {
+    Date.now = jest.fn(() => 0);
+  });
+
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
+      currentLecture: null,
+      fetchedAt: -ACT_API_CACHE,
       id: 0,
-      currentLecture: undefined,
+      imageUrl: null,  // TODO unused
+      isFetching: false,
+      isLectureDownloading: false,
+      jobId: -1,
       lectureCount: 0,
       lectureProgress: 0,
       lectures: [],
-      jobId: -1,
-      isLectureDownloading: false,
+      title: null,
     });
   });
 
@@ -46,11 +55,11 @@ describe('CourseList reducer', () => {
       lectures,
     };
     expect(state.lectureProgress).toEqual(3);
-    expect(state.currentLecture.isCompleted).toBeFalsy();
+    expect(state.currentLecture.status).toEqual('not_started');
 
     state = reducer(state, { type: types.COMPLETE_CURRENT_LECTURE });
 
     expect(state.lectureProgress).toEqual(4);
-    expect(state.currentLecture.isCompleted).toBeTruthy();
+    expect(state.currentLecture.status).toBeTruthy();
   });
 });
