@@ -23,7 +23,6 @@ const renderLecture = (
   handlePressLecture,
   handlePressDownload,
   handlePressDelete,
-  fetchDownloadStatus
 ) => (
   lecture.kind === LECTURE_KIND_SECTION
     ? <Section key={key} lecture={lecture} />
@@ -35,7 +34,6 @@ const renderLecture = (
       handlePressLecture={handlePressLecture}
       handlePressDownload={handlePressDownload}
       handlePressDelete={handlePressDelete}
-      fetchDownloadStatus={fetchDownloadStatus}
     />
 );
 
@@ -44,9 +42,8 @@ const LectureList = ({
   lectures,
   containerStyleId,
   handlePressLecture,
-  handlePressDelete,
   handlePressDownload,
-  fetchDownloadStatus }) =>
+  handlePressDelete}) =>
   <View style={[styles.container, containerStyleId]}>
     {lectures.map((lecture, i) => renderLecture(
       i,
@@ -54,8 +51,7 @@ const LectureList = ({
       lecture,
       handlePressLecture,
       handlePressDownload,
-      handlePressDelete,
-      fetchDownloadStatus)
+      handlePressDelete)
     )}
   </View>;
 
@@ -68,7 +64,6 @@ LectureList.propTypes = {
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDelete: PropTypes.func.isRequired,
   handlePressDownload: PropTypes.func.isRequired,
-  fetchDownloadStatus: PropTypes.func.isRequired,
 };
 
 export default LectureList;

@@ -121,13 +121,7 @@ class LectureItem extends Component {
     handlePressLecture: PropTypes.func.isRequired,
     handlePressDelete: PropTypes.func.isRequired,
     handlePressDownload: PropTypes.func.isRequired,
-    fetchDownloadStatus: PropTypes.func.isRequired,
   };
-
-  componentDidMount() {
-    const { courseId, currentLecture, fetchDownloadStatus } = this.props;
-    fetchDownloadStatus(courseId, currentLecture.id);
-  }
 
   render() {
     const {
