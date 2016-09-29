@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  lectureIcon: {},
   durationWrapper: {
     flex: 1,
   },
@@ -105,6 +104,15 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
   </TouchableOpacity>;
 
 class LectureItem extends Component {
+  static propTypes = {
+    lectures: PropTypes.arrayOf(PropTypes.shape({})),
+    currentLecture: PropTypes.shape({}).isRequired,
+    handlePressLecture: PropTypes.func.isRequired,
+    handlePressDownload: PropTypes.func.isRequired,
+    fetchDownloadStatus: PropTypes.func.isRequired,
+    courseId: PropTypes.number.isRequired,
+  }
+
   componentDidMount() {
     const { courseId, lectures, currentLecture, fetchDownloadStatus } = this.props;
     fetchDownloadStatus(courseId, currentLecture.id, lectures);
@@ -125,10 +133,7 @@ class LectureItem extends Component {
 
         <View style={styles.lectureInfoWrapper}>
           <View style={styles.lectureIconWrapper}>
-            <Icon
-              name={LectureUtils.getLectureIconName(currentLecture)}
-              style={styles.lectureIcon}
-            />
+            <Icon name={LectureUtils.getLectureIconName(currentLecture)} />
           </View>
           <Duration duration={currentLecture.duration} containerStyleId={styles.durationWrapper} />
         </View>
@@ -146,15 +151,5 @@ class LectureItem extends Component {
     );
   }
 }
-
-
-LectureItem.propTypes = {
-  lectures: PropTypes.arrayOf(PropTypes.shape({})),
-  currentLecture: PropTypes.shape({}).isRequired,
-  handlePressLecture: PropTypes.func.isRequired,
-  handlePressDownload: PropTypes.func.isRequired,
-  fetchDownloadStatus: PropTypes.func.isRequired,
-  courseId: PropTypes.number.isRequired,
-};
 
 export default LectureItem;
