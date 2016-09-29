@@ -195,3 +195,23 @@ And build ipa with xcode.
 
 1. Login to [DeployGate](https://deploygate.com/dashboard). (ID & Password are [here](https://launchpad.meldium.com/#/launchpad?edit=c01f6779-d5a9-440e-880a-284ac87fe443))
 2. Drag & Drop the apk or ipa 
+
+## API Specs
+
+### Account API
+Cf repo `sharewis-account` and serverless endpoints
+
+### ACT API
+
+#### Read online
+1. Go to [other/act_api_swagger.yml](https://github.com/ShareWis/sharewis-act-mobile/blob/master/other/act_api_swagger.yml),
+   then click on the **Raw** button.
+2. Copy the page url, then access `http://editor.swagger.io/#/?import=<GITHUB_RAW_PAGE_URL>`.
+3. You should now see the ShareWis ACT API specifications
+
+#### Read locally (recommended)
+```
+$ docker pull swaggerapi/swagger-editor
+$ docker run -p 80:8080 --name swagger swaggerapi/swagger-editor
+$ xdg-open http://172.17.0.2:8080  # Or whatever url is output by docker run
+$ Go to `file > Import File`, then load `other/act_api_swagger.yml`
