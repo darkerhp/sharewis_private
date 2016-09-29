@@ -32,7 +32,9 @@ export const fetchCourseList = () =>
     try {
       const state = getState();
       const userId = state.user.userId;
-      if (state.courseList.fetchedAt - new Date() > 3600000) {
+      const courseList = state.courseList;
+      if (courseList.courses.length == 0 ||
+          courseList.fetchedAt - Date.now() > 3600000) {
         dispatch(fetchCourseListStart());
         const courses = await getUserCourses(userId);
         dispatch(fetchCourseListSuccess(courses));
