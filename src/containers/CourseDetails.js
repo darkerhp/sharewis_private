@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
   lectureContainer: { flex: 1 },
 });
 
-
 @connectActions(Actions)
 @connectState('currentCourse')
 class CourseDetails extends Component {
@@ -89,7 +88,7 @@ class CourseDetails extends Component {
     const toFile = FileUtils.createVideoFileName(lecture.id, id);
 
     // TODO Utils & async/await化
-    RNFS.exists(videoDirPath)
+    return RNFS.exists(videoDirPath)
       .then(res => res || RNFS.mkdir(videoDirPath))
       .then(() =>
         RNFS.downloadFile({
