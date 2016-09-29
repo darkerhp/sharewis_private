@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
 @connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
+    // props
     id: PropTypes.number.isRequired,
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     lectureCount: PropTypes.number.isRequired,
@@ -45,6 +46,7 @@ class CourseDetails extends Component {
     loadCurrentLecture: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
+    // actions
     pressDownloadVideo: PropTypes.func.isRequired,
     beginDownloadVideo: PropTypes.func.isRequired,
     progressDownloadVideo: PropTypes.func.isRequired,
@@ -78,8 +80,7 @@ class CourseDetails extends Component {
     } = this.props;
 
     if (isLectureDownloading) {
-      Alert.alert(I18n.t('errorTitle'), I18n.t('downloadAlreadyInProgress'));
-      return;
+      return Alert.alert(I18n.t('errorTitle'), I18n.t('downloadAlreadyInProgress'));
     }
 
     pressDownloadVideo();
@@ -105,11 +106,8 @@ class CourseDetails extends Component {
           progressDivider: 2,
         }).promise
       )
-      .then(res => res) //
-      .catch((err) => {
-        // console.error(err);
-        Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
-      })
+      .then(res => res)
+      .catch(err => Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure')))
       .then(() => finishDownloadVideo(lecture.id));
   }
 
