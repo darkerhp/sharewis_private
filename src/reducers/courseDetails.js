@@ -45,7 +45,7 @@ const lectureItemReducer = (state, action) => {
 };
 
 // TODO 移動する
-const lecturesListReducer = (state, action) => {
+const lectureListReducer = (state, action) => {
   switch (action.type) {
     case types.LOAD_COURSE:
     case types.BEGIN_DOWNLOAD_VIDEO:
@@ -78,25 +78,25 @@ const courseDetailsReducer = (state = initialState, action) => {
     case types.BEGIN_DOWNLOAD_VIDEO:
       return {
         ...state,
-        lectures: lecturesListReducer(state.lectures, action),
+        lectures: lectureListReducer(state.lectures, action),
         jobId: action.jobId,
       };
     case types.PROGRESS_DOWNLOAD_VIDEO:
       return {
         ...state,
-        lectures: lecturesListReducer(state.lectures, action),
+        lectures: lectureListReducer(state.lectures, action),
       };
     case types.FINISH_DOWNLOAD_VIDEO:
       return {
         ...state,
         isLectureDownloading: false,
-        lectures: lecturesListReducer(state.lectures, action),
+        lectures: lectureListReducer(state.lectures, action),
         jobId: -1,
       };
     case types.UPDATE_DOWNLOAD_STATUS:
       return {
         ...state,
-        lectures: lecturesListReducer(state.lectures, action),
+        lectures: lectureListReducer(state.lectures, action),
       };
     default:
       return state;

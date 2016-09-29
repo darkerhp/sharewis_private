@@ -35,10 +35,10 @@ export const updateDownloadStatus = (lectureId, isDownloaded) => ({
 });
 
 // thunk action creators
-export const fetchDownloadStatus = (courseId, lectureId, lectures) => (
+export const fetchDownloadStatus = (courseId, lectureId) => (
   async (dispatch) => {
     const path = FileUtils.createVideoFileName(lectureId, courseId);
     const result = await FileUtils.exists(path);
-    dispatch(updateDownloadStatus(lectures, lectureId, result));
+    dispatch(updateDownloadStatus(lectureId, result));
   }
 );

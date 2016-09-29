@@ -113,9 +113,19 @@ class LectureItem extends Component {
     courseId: PropTypes.number.isRequired,
   }
 
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
   componentDidMount() {
-    const { courseId, lectures, currentLecture, fetchDownloadStatus } = this.props;
-    fetchDownloadStatus(courseId, currentLecture.id, lectures);
+    console.log('componentDidMount');
+    const { courseId, currentLecture, fetchDownloadStatus } = this.props;
+    fetchDownloadStatus(courseId, currentLecture.id);
+  }
+
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps');
+
   }
 
   render() {
