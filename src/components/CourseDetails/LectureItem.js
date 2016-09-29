@@ -97,7 +97,7 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
       />
       :
       <Icon
-        name={lecture.isDownloaded ? 'delete' : 'cloud-download'}
+        name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
         style={styles.actionIcon}
       />
     }

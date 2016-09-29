@@ -28,10 +28,10 @@ export const finishDownloadVideo = lectureId => ({
   lectureId,
 });
 // TODO lectureに移動
-export const updateDownloadStatus = (lectureId, isDownloaded) => ({
+export const updateDownloadStatus = (lectureId, hasVideoInDevice) => ({
   type: types.UPDATE_DOWNLOAD_STATUS,
   lectureId,
-  isDownloaded,
+  hasVideoInDevice,
 });
 
 // thunk action creators

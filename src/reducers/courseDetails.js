@@ -32,12 +32,12 @@ const lectureItemReducer = (state, action) => {
       return {
         ...state,
         isDownloading: false,
-        isDownloaded: true,
+        hasVideoInDevice: true,
       };
     case types.UPDATE_DOWNLOAD_STATUS:
       return {
         ...state,
-        isDownloaded: action.isDownloaded,
+        hasVideoInDevice: action.hasVideoInDevice,
       };
     default:
       return state;
