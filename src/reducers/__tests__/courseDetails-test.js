@@ -4,10 +4,15 @@ import reducer from '../courseDetails';
 import { courses, lectures } from '../../data/dummyData';
 
 
-describe('CourseList reducer', () => {
+describe('CourseDetails reducer', () => {
+  beforeAll(() => {
+    Date.now = jest.fn(() => 0);
+  });
+
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       currentLecture: null,
+      fetchedAt: -3600000,
       id: 0,
       imageUrl: null,  // TODO unused
       isFetching: false,

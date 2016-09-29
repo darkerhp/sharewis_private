@@ -29,11 +29,14 @@ export const loadCurrentCourse = currentCourse => ({
 
 export const fetchCourseList = () =>
   async (dispatch, getState) => {
-    dispatch(fetchCourseListStart());
     try {
-      const userId = getState().user.userId;
-      const courses = await getUserCourses(userId);
-      dispatch(fetchCourseListSuccess(courses));
+      const state = getState();
+      const userId = state.user.userId;
+      if (state.courseList.fetchedAt - new Date() > 3600000) {
+        dispatch(fetchCourseListStart());
+        const courses = await getUserCourses(userId);
+        dispatch(fetchCourseListSuccess(courses));
+      }
     } catch (error) {
       dispatch(fetchCourseListFailure());
       throw error;

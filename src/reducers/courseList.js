@@ -7,13 +7,14 @@ import {
   updateCurrentCourse,
 } from '../utils/reducers';
 
-const initialState = {
+const getInitialState = () => ({
   courses: [],
   error: null,
   isFetching: false,
-};
+  fetchedAt: Date.now() - 3600000, // 1h ago
+});
 
-const courseListReducer = (state = initialState, action) => {
+const courseListReducer = (state = getInitialState(), action) => {
   switch (action.type) {
     case types.FETCH_COURSES_LIST_START:
       return {

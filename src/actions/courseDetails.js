@@ -56,7 +56,6 @@ export const updateDownloadStatus = (lectureId, hasVideoInDevice) => ({
 
 // Thunks
 
-
 export const fetchDownloadStatus = (courseId, lectureId) => (
   async (dispatch) => {
     const path = FileUtils.createVideoFileName(lectureId, courseId);
@@ -65,13 +64,17 @@ export const fetchDownloadStatus = (courseId, lectureId) => (
   }
 );
 
-export const fetchCourseDetails = courseId =>
+export const fetchCourseDetails = () =>
   async (dispatch, getState) => {
-    dispatch(fetchCourseDetailsStart());
     try {
-      const userId = getState().user.userId;
-      const result = await getCourseDetails(userId, courseId);
-      dispatch(fetchCourseDetailsSuccess(result));
+      const state = getState();
+      const userId = state.user.userId;
+      const courseId = state.currentCourse.id;
+      if (state.currentCourse.fetchedAt - Date.now() > 3600000) {
+        dispatch(fetchCourseDetailsStart());
+        const result = await getCourseDetails(userId, courseId);
+        dispatch(fetchCourseDetailsSuccess(result));
+      }
     } catch (error) {
       dispatch(fetchCourseDetailsFailure());
       throw error;

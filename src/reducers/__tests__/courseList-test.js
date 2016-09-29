@@ -5,10 +5,15 @@ import { courses as dummyCourses } from '../../data/dummyData';
 
 
 describe('CourseList reducer', () => {
+  beforeAll(() => {
+    Date.now = jest.fn(() => 0);
+  });
+
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       courses: [],
       error: null,
+      fetchedAt: -3600000,
       isFetching: false,
     });
   });

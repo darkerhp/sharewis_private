@@ -7,8 +7,9 @@ import {
 } from '../utils/reducers';
 
 
-const initialState = {
+const getInitialState = () => ({
   currentLecture: null,
+  fetchedAt: Date.now() - 3600000, // 1h ago
   id: 0,
   imageUrl: null,  // TODO unused
   isFetching: false,
@@ -18,7 +19,7 @@ const initialState = {
   lectureProgress: 0,
   lectures: [],
   title: null,
-};
+});
 
 // TODO 移動する
 const lectureItemReducer = (state, action) => {
@@ -66,7 +67,7 @@ const lectureListReducer = (state, action) => {
 };
 
 
-const courseDetailsReducer = (state = initialState, action) => {
+const courseDetailsReducer = (state = getInitialState(), action) => {
   switch (action.type) {
     case types.FETCH_COURSE_DETAILS_START:
       return {
