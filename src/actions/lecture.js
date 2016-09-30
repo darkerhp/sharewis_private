@@ -64,11 +64,16 @@ export const fetchLectureStatus = (courseId, lectureId, status) =>
         course,
         lectures: course.lectures,
       };
+      if (status === 'not_started') {
+        status = 'viewed';  // eslint-disable-line no-param-reassign
+      } else {
+        status = 'finished';  // eslint-disable-line no-param-reassign
+      }
       // END TODO
       if (status === ApiConstants.LECTURE_STATUS_FINISHED) {
-        completeCurrentLecture();
+        dispatch(completeCurrentLecture());
       } else {
-        loadCurrentLecture();
+        dispatch(loadCurrentLecture());
       }
       dispatch(fetchLectureStatusSuccess(result));
     } catch (error) {
