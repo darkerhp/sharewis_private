@@ -74,17 +74,7 @@ const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyleId
   </View>;
 
 NextLectureArea.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  nextLecture: PropTypes.shape({
-    /* eslint-disable react/no-unused-prop-types */
-    order: PropTypes.number,
-    title: PropTypes.string,
-    kind: PropTypes.string,
-    estimatedTime: PropTypes.number,
-    status: PropTypes.string,
-    type: PropTypes.string,
-    /* eslint-enable react/no-unused-prop-types */
-  }).isRequired,
+  nextLecture: PropTypes.shape({}).isRequired,
   handlePressNextLecture: PropTypes.func.isRequired,
   containerStyleId: PropTypes.number.isRequired,
 };
