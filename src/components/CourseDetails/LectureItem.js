@@ -114,60 +114,57 @@ const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =
     }
   </TouchableOpacity>;
 
-class LectureItem extends Component {
-  static propTypes = {
-    // values
-    courseId: PropTypes.number.isRequired,
-    currentLecture: PropTypes.shape({}).isRequired,
-    // actions
-    handlePressLecture: PropTypes.func.isRequired,
-    handlePressDelete: PropTypes.func.isRequired,
-    handlePressDownload: PropTypes.func.isRequired,
-  };
+const LectureItem = ({
+  currentLecture,
+  handlePressDelete,
+  handlePressLecture,
+  handlePressDownload,
 
-  render() {
-    const {
-      currentLecture,
-      handlePressDelete,
-      handlePressLecture,
-      handlePressDownload,
-    } = this.props;
-    const isAccessibleLecture = currentLecture.type === LECTURE_TYPE_VIDEO;
-    return (
-      <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
-        <View
-          style={currentLecture.status === LECTURE_STATUS_FINISHED
-            ? styles.lectureNoTextWrapperCompleted
-            : styles.lectureNoTextWrapper}
-        >
-          <Text style={styles.lectureNoText}>{currentLecture.order}</Text>
-        </View>
-
-        <View style={styles.lectureInfoWrapper}>
-          <View style={styles.lectureIconWrapper}>
-            <Icon name={LectureUtils.getLectureIconName(currentLecture)} />
-          </View>
-          <Duration
-            estimatedTime={currentLecture.estimatedTime}
-            containerStyleId={styles.durationWrapper}
-            durationStyleId={styles.durationStyle}
-          />
-        </View>
-
-        <TouchableOpacity
-          style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
-          onPress={() => handlePressLecture(currentLecture)}
-          disabled={!isAccessibleLecture}
-        >
-          <Text style={styles.lectureTitleText}>{currentLecture.title}</Text>
-        </TouchableOpacity>
-
-        {isAccessibleLecture && renderDownloadAction(
-          handlePressDelete, handlePressDownload, currentLecture
-        )}
+}) => {
+  const isAccessibleLecture = currentLecture.type === LECTURE_TYPE_VIDEO;
+  return (
+    <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
+      <View
+        style={currentLecture.status === LECTURE_STATUS_FINISHED
+          ? styles.lectureNoTextWrapperCompleted
+          : styles.lectureNoTextWrapper}
+      >
+        <Text style={styles.lectureNoText}>{currentLecture.order}</Text>
       </View>
-    );
-  }
-}
+
+      <View style={styles.lectureInfoWrapper}>
+        <View style={styles.lectureIconWrapper}>
+          <Icon name={LectureUtils.getLectureIconName(currentLecture)} />
+        </View>
+        <Duration
+          estimatedTime={currentLecture.estimatedTime}
+          containerStyleId={styles.durationWrapper}
+          durationStyleId={styles.durationStyle}
+        />
+      </View>
+
+      <TouchableOpacity
+        style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
+        onPress={() => handlePressLecture(currentLecture)}
+        disabled={!isAccessibleLecture}
+      >
+        <Text style={styles.lectureTitleText}>{currentLecture.title}</Text>
+      </TouchableOpacity>
+
+      {isAccessibleLecture && renderDownloadAction(
+        handlePressDelete, handlePressDownload, currentLecture
+      )}
+    </View>
+  );
+};
+
+LectureItem.propTypes = {
+  // values
+  currentLecture: PropTypes.shape({}).isRequired,
+  // actions
+  handlePressLecture: PropTypes.func.isRequired,
+  handlePressDelete: PropTypes.func.isRequired,
+  handlePressDownload: PropTypes.func.isRequired,
+};
 
 export default LectureItem;
