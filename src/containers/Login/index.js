@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     flex: 1,
     color: '#222',
     fontSize: 10.5,
-    fontWeight: '100',
     marginTop: 30,
   },
   footer: {
