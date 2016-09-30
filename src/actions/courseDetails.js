@@ -61,14 +61,13 @@ export const updateVideoInDeviceStatus = lectures => ({
 // thunk action creators
 export const fetchVideoInDeviceStatus = (courseId, lectures) => (
   async(dispatch) => {
-    Promise.all(lectures.map(async(l) => {
+    const promises = lectures.map(async(l) => {
       const path = FileUtils.createVideoFileName(l.id, courseId);
-      const result = await FileUtils.exists(path);
-      return {
-        ...l,
-        hasVideoInDevice: result,
-      };
-    })).then(res => dispatch(updateVideoInDeviceStatus(res)));
+      const hasVideoInDevice = await FileUtils.exists(path);
+      return { ...l, hasVideoInDevice };
+    });
+    const updateLectures = await Promise.all(promises);
+    dispatch(updateVideoInDeviceStatus(updateLectures));
   }
 );
 
