@@ -32,12 +32,19 @@ const lecture = (state = initialState, action) => {
         ...currentLecture,
       };
     }
-    case types.LOAD_CURRENT_LECTURE:
+    case types.LOAD_CURRENT_LECTURE: {
+      const currentLecture = {
+        ...action.currentLecture,
+        status: action.status === ApiConstants.LECTURE_STATUS_NOT_STARTED
+        ? ApiConstants.LECTURE_STATUS_VIEWED
+        : action.status,
+      };
       return {
         ...state,
         lectures: action.lectures,
-        ...action.currentLecture,
+        currentLecture,
       };
+    }
     case types.PRESS_PLAY:
       return {
         ...state,

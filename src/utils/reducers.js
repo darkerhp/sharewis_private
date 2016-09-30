@@ -1,9 +1,18 @@
 import replaceInList from './list';
+import {
+  LECTURE_STATUS_NOT_STARTED,
+  LECTURE_STATUS_VIEWED,
+} from '../constants/Api';
 
 
 // Returns state.currentCourse
 export const loadCurrentLecture = (currentCourse, action) => {
-  const currentLecture = action.currentLecture;
+  const currentLecture = {
+    ...action.currentLecture,
+    status: action.status === LECTURE_STATUS_NOT_STARTED
+    ? LECTURE_STATUS_VIEWED
+    : action.status,
+  };
   let lectures = action.lectures;
   if (currentCourse.lectures) {
     lectures = replaceInList(currentCourse.lectures, currentLecture);
