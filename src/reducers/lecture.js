@@ -17,7 +17,7 @@ const initialState = {
   order: 0,
   lectures: [],
   speed: 1,
-  status: 'not_started',
+  status: ApiConstants.LECTURE_STATUS_NOT_STARTED,
   title: undefined,
   type: null,
   videoUrl: undefined,

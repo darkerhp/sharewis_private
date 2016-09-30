@@ -2,7 +2,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 
 import BaseStyles from '../../baseStyles';
-
+import { LECTURE_KIND_SECTION } from '../../constants/Api';
 import LectureItem from './LectureItem';
 import Section from './Section';
 
@@ -24,7 +24,7 @@ const renderLecture = (
   handlePressDownload,
   fetchDownloadStatus
 ) => (
-  lecture.kind === 'section'
+  lecture.kind === LECTURE_KIND_SECTION
     ? <Section key={key} lecture={lecture} />
     : <LectureItem
       key={key}

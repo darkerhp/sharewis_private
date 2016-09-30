@@ -26,14 +26,20 @@ const sortByOrder = (a, b) => {
 };
 
 export const getNextVideoLecture = (lectures, skipCompleted = true) => {
-  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === ApiConstants.LECTURE_TYPE_VIDEO);
+  let videoLectures = lectures.filter(l =>
+    l.kind === ApiConstants.LECTURE_KIND_LECTURE &&
+    l.type === ApiConstants.LECTURE_TYPE_VIDEO
+  );
   if (skipCompleted) {
-    videoLectures = videoLectures.filter(l => l.status === 'not_started');
+    videoLectures = videoLectures.filter(l =>
+      l.status === ApiConstants.LECTURE_STATUS_NOT_STARTED
+    );
   }
   return videoLectures.sort(sortByOrder)[0] || {};
 };
 
 export const getLectureByOrder = (lectures, order) =>
   lectures
-    .filter(l => l.kind === 'lecture')
+    .filter(l => l.kind === ApiConstants.LECTURE_KIND_LECTURE)
+    .filter(l => l.type === ApiConstants.LECTURE_TYPE_VIDEO)  // TODO enable other types
     .find(lecture => lecture.order === order);

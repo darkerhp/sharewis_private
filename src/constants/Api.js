@@ -23,6 +23,9 @@ export const ACT_API_KEY = actApiKey;
 
 export const PASSWORD_FORGOTTEN_URL = `${ACT_API_URL}/users/password/new`;
 
+// Lecture.kind
+export const LECTURE_KIND_LECTURE = 'lecture';
+export const LECTURE_KIND_SECTION = 'section';
 // Lecture.type
 export const LECTURE_TYPE_VIDEO = 'video';
 export const LECTURE_TYPE_QUIZ = 'quiz';
