@@ -40,7 +40,7 @@ export const getNextVideoLecture = (lectures, skipCompleted = true, currentOrder
 };
 
 
-const getLastLectureId = (lectures) => {
+export const getLastLectureId = (lectures) => {
   const videoLectures = lectures.filter(l =>
     l.kind === ApiConstants.LECTURE_KIND_LECTURE &&
     l.type === ApiConstants.LECTURE_TYPE_VIDEO  // TODO enable other lecture types
