@@ -9,6 +9,7 @@ import Login from './Login';
 
 
 const {
+  Platform,
   StyleSheet,
   Text,
   View,
@@ -16,6 +17,11 @@ const {
 
 const styles = StyleSheet.create({
   buttonText: {
+    ...Platform.select({
+      android: {
+        marginBottom: 20,
+      },
+    }),
     fontSize: 17,
     color: '#007aff',
   },
@@ -35,7 +41,6 @@ const styles = StyleSheet.create({
   },
   pagination: {
     top: 40,
-    bottom: 0,
     alignItems: 'flex-start',
   },
 });
