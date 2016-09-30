@@ -33,7 +33,7 @@ export const getNextVideoLecture = (lectures, skipCompleted = true, currentOrder
   );
   if (skipCompleted) {
     videoLectures = videoLectures.filter(l =>
-      l.status === ApiConstants.LECTURE_STATUS_NOT_STARTED
+      l.status !== ApiConstants.LECTURE_STATUS_FINISHED
     );
   }
   return videoLectures.sort(sortByOrder)[0] || {};
