@@ -6,7 +6,7 @@ import courseDetails from './courseDetails';
 import lecture from './lecture';
 import routes from './routes';
 import user from './user';
-
+import netInfo from './netInfo';
 
 const rootReducer: Function = combineReducers({
   courseList,
@@ -15,7 +15,7 @@ const rootReducer: Function = combineReducers({
   form,
   routes,
   user,
+  netInfo,
 });
-
 
 export default rootReducer;
