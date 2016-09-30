@@ -1,5 +1,6 @@
 /* @flow */
 import * as types from '../constants/ActionTypes';
+import * as ApiConstants from '../constants/Api';
 import { patchLectureStatus } from '../middleware/actApi';
 
 
@@ -55,9 +56,22 @@ export const fetchLectureStatus = (courseId, lectureId, status) =>
   async (dispatch, getState) => {
     dispatch(fetchLectureStatusStart());
     try {
-      const userId = getState().user.userId;
-      const result = await patchLectureStatus(userId, courseId, lectureId, status);
-      completeCurrentLecture();
+      const state = getState();
+      const userId = state.user.userId;
+      const currentLecture = state.currentLecture;
+      // START TODO: uncomment api query after api is fixed
+      // const result = await patchLectureStatus(userId, courseId, lectureId, status);
+      const course = state.currentCourse;
+      const result = {
+        course,
+        lectures: course.lectures,
+      };
+      // END TODO
+      if (status === ApiConstants.LECTURE_STATUS_FINISHED) {
+        dispatch(completeCurrentLecture());
+      } else {
+        dispatch(loadCurrentLecture(result.lectures, { ...currentLecture, status }));
+      }
       dispatch(fetchLectureStatusSuccess(result));
     } catch (error) {
       dispatch(fetchLectureStatusFailure());

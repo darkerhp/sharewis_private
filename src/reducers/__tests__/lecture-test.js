@@ -6,16 +6,20 @@ describe('Lecture reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       currentTime: 0,
+      courseId: 0,
       estimatedTime: 0,
       id: 0,
-      status: 'not_started',
+      kind: null,
       isFullScreen: false,
       isLastLecture: false,
       isPaused: true,
+      order: 0,
       lectures: [],
       speed: 1,
+      status: 'not_started',
       title: undefined,
-      url: undefined,
+      type: null,
+      videoUrl: undefined,
     });
   });
 

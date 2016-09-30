@@ -25,15 +25,25 @@ const sortByOrder = (a, b) => {
   return a.order < b.order ? -1 : 1;
 };
 
-export const getNextVideoLecture = (lectures, skipCompleted = true) => {
-  let videoLectures = lectures.filter(l => l.kind === 'lecture' && l.type === ApiConstants.LECTURE_TYPE_VIDEO);
+export const getNextVideoLecture = (lectures, skipCompleted = true, currentOrder = 0) => {
+  let videoLectures = lectures.filter(l =>
+    l.kind === ApiConstants.LECTURE_KIND_LECTURE &&
+    l.type === ApiConstants.LECTURE_TYPE_VIDEO &&  // TODO enable other lecture types
+    l.order > currentOrder
+  );
   if (skipCompleted) {
-    videoLectures = videoLectures.filter(l => l.status === 'not_started');
+    videoLectures = videoLectures.filter(l =>
+      l.status !== ApiConstants.LECTURE_STATUS_FINISHED
+    );
   }
   return videoLectures.sort(sortByOrder)[0] || {};
 };
 
-export const getLectureByOrder = (lectures, order) =>
-  lectures
-    .filter(l => l.kind === 'lecture')
-    .find(lecture => lecture.order === order);
+
+export const getLastLectureId = (lectures) => {
+  const videoLectures = lectures.filter(l =>
+    l.kind === ApiConstants.LECTURE_KIND_LECTURE &&
+    l.type === ApiConstants.LECTURE_TYPE_VIDEO  // TODO enable other lecture types
+  );
+  return videoLectures.sort(sortByOrder)[videoLectures.length - 1].id;
+};
