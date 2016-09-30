@@ -56,24 +56,21 @@ export const fetchLectureStatus = (courseId, lectureId, status) =>
   async (dispatch, getState) => {
     dispatch(fetchLectureStatusStart());
     try {
-      const userId = getState().user.userId;
+      const state = getState();
+      const userId = state.user.userId;
+      const currentLecture = state.currentLecture;
       // START TODO: uncomment api query after api is fixed
       // const result = await patchLectureStatus(userId, courseId, lectureId, status);
-      const course = getState().currentCourse;
+      const course = state.currentCourse;
       const result = {
         course,
         lectures: course.lectures,
       };
-      if (status === 'not_started') {
-        status = 'viewed';  // eslint-disable-line no-param-reassign
-      } else {
-        status = 'finished';  // eslint-disable-line no-param-reassign
-      }
       // END TODO
       if (status === ApiConstants.LECTURE_STATUS_FINISHED) {
         dispatch(completeCurrentLecture());
       } else {
-        dispatch(loadCurrentLecture());
+        dispatch(loadCurrentLecture(result.lectures, { ...currentLecture, status }));
       }
       dispatch(fetchLectureStatusSuccess(result));
     } catch (error) {

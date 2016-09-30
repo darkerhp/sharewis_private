@@ -10,9 +10,9 @@ import replaceInList from './list';
 export const loadCurrentLecture = (currentCourse, action) => {
   const currentLecture = {
     ...action.currentLecture,
-    status: action.status === LECTURE_STATUS_NOT_STARTED
+    status: action.currentLecture.status === LECTURE_STATUS_NOT_STARTED
     ? LECTURE_STATUS_VIEWED
-    : action.status,
+    : action.currentLecture.status,
   };
   let lectures = action.lectures;
   if (currentCourse.lectures) {
