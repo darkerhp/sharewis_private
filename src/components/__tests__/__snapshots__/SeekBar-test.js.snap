@@ -1,0 +1,60 @@
+exports[`SeekBar renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-around"
+    }
+  }>
+  <Duration
+    containerStyleId={
+      Object {
+        "justifyContent": "center",
+        "width": 45
+      }
+    }
+    durationStyle={
+      Object {
+        "backgroundColor": "white",
+        "fontSize": 13,
+        "fontWeight": "normal",
+        "opacity": 0.6,
+        "padding": 0,
+        "textAlign": "center"
+      }
+    }
+    estimatedTime={10}
+    format="mm:ss" />
+  <Slider
+    maximumValue={100}
+    onValueChange={[Function onValueChange]}
+    style={
+      Object {
+        "width": 256.5
+      }
+    }
+    value={10} />
+  <Duration
+    containerStyleId={
+      Object {
+        "justifyContent": "center",
+        "width": 45
+      }
+    }
+    durationStyle={
+      Object {
+        "backgroundColor": "white",
+        "fontSize": 13,
+        "fontWeight": "normal",
+        "opacity": 0.6,
+        "padding": 0,
+        "textAlign": "center"
+      }
+    }
+    estimatedTime={90}
+    format="mm:ss"
+    prefixText="-" />
+</View>
+`;

@@ -6,13 +6,11 @@ import React from 'react';
 import Slide from '../Onboarding/Slide';
 
 
-describe('Onboarding', () => {
-  describe('Slide', () => {
-    it('renders correctly', () => {
-      const tree = renderer.create(
-        <Slide />
-      ).toJSON();
-      expect(tree).toMatchSnapshot();
-    });
+describe('Slide', () => {
+  it('renders correctly', () => {
+    const tree = renderer.create(
+      <Slide />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });

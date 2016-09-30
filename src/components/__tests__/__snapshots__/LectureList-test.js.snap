@@ -1,0 +1,12 @@
+exports[`LectureList renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#ddd",
+        "borderTopWidth": 1
+      },
+      0
+    ]
+  } />
+`;

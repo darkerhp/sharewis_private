@@ -35,14 +35,16 @@ const styles = StyleSheet.create({
 
 
 const CourseInfoSection = ({
-  courseTitle,
-  totalLectureCount,
+  // values
   completeLectureCount,
-  totalDuration,
+  containerStyle,
+  courseTitle,
   isCompleted,
   nextLecture,
+  totalLectureCount,
+  totalDuration,
+  // actions
   handlePressNextLecture,
-  containerStyle,
 }) =>
   <View style={[styles.container, containerStyle]}>
     <View style={styles.courseTitleWrapper}>

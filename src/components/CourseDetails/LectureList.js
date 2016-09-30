@@ -38,12 +38,14 @@ const renderLecture = (
 );
 
 const LectureList = ({
+  // values
+  containerStyleId,
   courseId,
   lectures,
-  containerStyleId,
-  handlePressLecture,
+  // actions
+  handlePressDelete,
   handlePressDownload,
-  handlePressDelete }) =>
+  handlePressLecture }) =>
   <View style={[styles.container, containerStyleId]}>
     {lectures.map((lecture, i) => renderLecture(
       i,

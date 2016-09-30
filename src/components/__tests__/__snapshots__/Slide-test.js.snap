@@ -1,4 +1,4 @@
-exports[`Onboarding Slide renders correctly 1`] = `
+exports[`Slide renders correctly 1`] = `
 <View
   style={
     Object {

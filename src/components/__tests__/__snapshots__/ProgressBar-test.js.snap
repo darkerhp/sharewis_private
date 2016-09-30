@@ -1,0 +1,30 @@
+exports[`ProgressBar renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#cdcdcd",
+      "borderColor": "#cdcdcd",
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "height": 18
+    }
+  }>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#427fda"
+        },
+        Object {
+          "flex": 20
+        }
+      ]
+    } />
+  <View
+    style={
+      Object {
+        "flex": -19
+      }
+    } />
+</View>
+`;

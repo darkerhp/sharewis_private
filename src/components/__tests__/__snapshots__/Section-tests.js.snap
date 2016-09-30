@@ -1,0 +1,27 @@
+exports[`Section renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "flex-start",
+      "backgroundColor": "#F5F5F5",
+      "borderBottomWidth": 1,
+      "borderColor": "#ddd",
+      "flexDirection": "row",
+      "justifyContent": "flex-start",
+      "padding": 7
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#525252",
+        "fontSize": 14
+      }
+    }>
+    Title
+  </Text>
+</View>
+`;
