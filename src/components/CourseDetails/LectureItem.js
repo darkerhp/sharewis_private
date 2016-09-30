@@ -114,7 +114,6 @@ const renderDownloadAction = (handlePressDownload, lecture) =>
 
 class LectureItem extends Component {
   static propTypes = {
-    lectures: PropTypes.arrayOf(PropTypes.shape({})),
     currentLecture: PropTypes.shape({}).isRequired,
     handlePressLecture: PropTypes.func.isRequired,
     handlePressDownload: PropTypes.func.isRequired,
@@ -128,7 +127,7 @@ class LectureItem extends Component {
   }
 
   render() {
-    const { lectures, currentLecture, handlePressLecture, handlePressDownload } = this.props;
+    const { currentLecture, handlePressLecture, handlePressDownload } = this.props;
     const isAccessibleLecture = currentLecture.type === LECTURE_TYPE_VIDEO;
     return (
       <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
@@ -153,7 +152,7 @@ class LectureItem extends Component {
 
         <TouchableOpacity
           style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
-          onPress={() => handlePressLecture(currentLecture, lectures)}
+          onPress={() => handlePressLecture(currentLecture)}
           disabled={!isAccessibleLecture}
         >
           <Text style={styles.lectureTitleText}>{currentLecture.title}</Text>
