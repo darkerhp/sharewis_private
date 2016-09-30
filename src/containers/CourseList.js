@@ -84,7 +84,7 @@ class CourseList extends Component {
   render() {
     const { isFetching, courses } = this.props;
 
-    if (!courses) {
+    if (courses.length === 0) {
       return <EmptyList />;
     }
     return (
