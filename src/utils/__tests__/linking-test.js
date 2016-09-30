@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import redirectTo from '../linking';
 import { ACT_API_URL } from '../../constants/Api';
 
