@@ -122,7 +122,7 @@ class Lecture extends Component {
       fetchLectureStatus(courseId, id, ApiConstants.LECTURE_STATUS_FINISHED);
     }
 
-    const nextLecture = LectureUtils.getNextVideoLecture(lectures, false, order + 1);
+    const nextLecture = LectureUtils.getNextVideoLecture(lectures, false, order);
     loadCurrentLecture(lectures, nextLecture);
   }
 
