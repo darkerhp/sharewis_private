@@ -1,0 +1,169 @@
+exports[`LectureItem renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "flex-start",
+        "borderBottomWidth": 1,
+        "borderColor": "#ddd",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "flex-start"
+      },
+      Object {}
+    ]
+  }>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderColor": "#ddd",
+        "borderRightWidth": 1,
+        "flex": 1,
+        "height": 48,
+        "justifyContent": "center"
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#525252",
+          "fontSize": 14,
+          "fontWeight": "600"
+        }
+      }>
+      1
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "height": 48,
+        "justifyContent": "center"
+      }
+    }>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "center"
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontFamily": "Material Icons",
+              "fontSize": 12,
+              "fontStyle": "normal",
+              "fontWeight": "normal"
+            },
+            undefined
+          ]
+        }>
+        
+      </Text>
+    </View>
+    <Duration
+      containerStyleId={
+        Object {
+          "flex": 1
+        }
+      }
+      durationStyleId={Object {}}
+      estimatedTime={30} />
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function bound touchableHandleResponderGrant]}
+    onResponderMove={[Function bound touchableHandleResponderMove]}
+    onResponderRelease={[Function bound touchableHandleResponderRelease]}
+    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flex": 5,
+        "height": 48,
+        "justifyContent": "center",
+        "opacity": 1
+      }
+    }
+    testID={undefined}>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#525252",
+          "fontSize": 12,
+          "fontWeight": "bold"
+        }
+      }>
+      Title
+    </Text>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function bound touchableHandleResponderGrant]}
+    onResponderMove={[Function bound touchableHandleResponderMove]}
+    onResponderRelease={[Function bound touchableHandleResponderRelease]}
+    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "height": 48,
+        "justifyContent": "center",
+        "opacity": 1
+      }
+    }
+    testID={undefined}>
+    <Text
+      accessible={true}
+      allowFontScaling={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontFamily": "Material Icons",
+            "fontSize": 12,
+            "fontStyle": "normal",
+            "fontWeight": "normal"
+          },
+          Object {
+            "color": "#757575",
+            "fontSize": 32
+          }
+        ]
+      }>
+      
+    </Text>
+  </View>
+</View>
+`;
