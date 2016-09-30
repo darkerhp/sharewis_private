@@ -1,4 +1,4 @@
-exports[`CourseList CourseSummary renders correctly 1`] = `
+exports[`CourseSummary renders correctly 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
@@ -173,49 +173,6 @@ exports[`CourseList CourseSummary renders correctly 1`] = `
         </Text>
       </View>
     </View>
-  </View>
-</View>
-`;
-
-exports[`CourseList EmptyList renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center"
-    }
-  }>
-  <View
-    linkStyle={
-      Object {
-        "color": "#2980b9"
-      }
-    }
-    linkText="[missing \"en.actWebsite\" translation]"
-    onPress={[Function redirectTo]}
-    style={
-      Object {
-        "flex": 1,
-        "margin": 30
-      }
-    }>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "color": "#222",
-          "flex": 1,
-          "fontSize": 17,
-          "lineHeight": 22,
-          "textAlign": "center",
-          "textAlignVertical": "center"
-        }
-      }>
-      [missing \"en.noCourses\" translation]
-    </Text>
   </View>
 </View>
 `;
