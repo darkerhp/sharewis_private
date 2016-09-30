@@ -5,7 +5,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 import BaseStyles from '../../baseStyles';
 import * as LectureUtils from '../../utils/lecture';
-import { LECTURE_TYPE_VIDEO } from '../../constants/Api';
+import { LECTURE_TYPE_VIDEO, LECTURE_STATUS_FINISHED } from '../../constants/Api';
 import Duration from '../Duration';
 
 const { Component, PropTypes } = React;
@@ -132,7 +132,7 @@ class LectureItem extends Component {
     return (
       <View style={[styles.container, (!isAccessibleLecture ? { backgroundColor: 'lightgray' } : {})]}>
         <View
-          style={currentLecture.isCompleted
+          style={currentLecture.status === LECTURE_STATUS_FINISHED
             ? styles.lectureNoTextWrapperCompleted
             : styles.lectureNoTextWrapper}
         >
