@@ -1,0 +1,7 @@
+exports[`TextField renders correctly 1`] = `
+<TextInput
+  onChangeText={[Function onChangeText]}
+  selectTextOnFocus={true}
+  underlineColorAndroid="transparent"
+  value="text" />
+`;
