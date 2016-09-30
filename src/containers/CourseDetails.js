@@ -38,19 +38,16 @@ const styles = StyleSheet.create({
 @connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
-    // props
+    // values
     id: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
-    loadCurrentLecture: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    isLectureDownloading: PropTypes.bool.isRequired,
     // actions
     beginDownloadVideo: PropTypes.func.isRequired,
-    fetchDownloadStatus: PropTypes.func.isRequired,
     fetchCourseDetails: PropTypes.func.isRequired,
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
