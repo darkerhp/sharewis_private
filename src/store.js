@@ -8,8 +8,8 @@ import createLogger from 'redux-logger';
 import Reactotron from 'reactotron-react-native';
 import createReactotronEnhancer from 'reactotron-redux';
 import { autoRehydrate } from 'redux-persist';
-import { netInfoMiddleware } from './middleware/netInfo';
 
+import netInfoMiddleware from './middleware/netInfo';
 import rootReducer from './reducers';
 
 
@@ -19,7 +19,6 @@ const middleWare = applyMiddleware(
   netInfoMiddleware,
   loggerMiddleware
 );
-
 
 const configureStore = (initialState) => {
   let composition = compose(middleWare, autoRehydrate());
