@@ -7,15 +7,19 @@ import replaceInList from '../utils/list';
 
 const initialState = {
   currentTime: 0,
+  courseId: 0,
   estimatedTime: 0,
   id: 0,
-  status: 'not_started',
+  kind: null,
   isFullScreen: false,  // TODO
   isLastLecture: false,
   isPaused: true,
+  order: 0,
   lectures: [],
   speed: 1,
+  status: 'not_started',
   title: undefined,
+  type: null,
   videoUrl: undefined,
 };
 
@@ -35,14 +39,14 @@ const lecture = (state = initialState, action) => {
     case types.LOAD_CURRENT_LECTURE: {
       const currentLecture = {
         ...action.currentLecture,
-        status: action.status === ApiConstants.LECTURE_STATUS_NOT_STARTED
+        status: action.currentLecture.status === ApiConstants.LECTURE_STATUS_NOT_STARTED
         ? ApiConstants.LECTURE_STATUS_VIEWED
-        : action.status,
+        : action.currentLecture.status,
       };
       return {
         ...state,
         lectures: action.lectures,
-        currentLecture,
+        ...currentLecture,
       };
     }
     case types.PRESS_PLAY:
