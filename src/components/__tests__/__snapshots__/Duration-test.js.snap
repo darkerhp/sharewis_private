@@ -1,0 +1,9 @@
+exports[`Duration renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {},
+      null
+    ]
+  } />
+`;
