@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import LectureList from '../CourseDetails/LectureList';
 
-jest.mock('./LectureItem', () => 'LectureItem');
+jest.mock('../CourseDetails/LectureItem', () => 'LectureItem');
 
 describe('LectureList', () => {
   it('renders correctly', () => {

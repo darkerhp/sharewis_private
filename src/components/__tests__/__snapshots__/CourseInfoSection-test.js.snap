@@ -1,0 +1,64 @@
+exports[`CourseInfoSection renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "padding": 10
+      },
+      Object {}
+    ]
+  }>
+  <View
+    style={
+      Object {
+        "flex": 1
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "black",
+          "fontSize": 16,
+          "fontWeight": "900"
+        }
+      }>
+      Title
+    </Text>
+  </View>
+  <NextLectureArea
+    containerStyleId={
+      Object {
+        "flex": 3
+      }
+    }
+    handlePressNextLecture={[Function handlePressNextLecture]}
+    hidden={true}
+    nextLecture={Object {}} />
+  <Progress
+    completeLectureCount={0}
+    totalLectureCount={10} />
+  <Duration
+    containerStyleId={
+      Object {
+        "alignItems": "flex-end",
+        "flex": 1,
+        "justifyContent": "flex-end"
+      }
+    }
+    durationStyleId={
+      Object {
+        "backgroundColor": "#F2F2F2",
+        "color": "black",
+        "fontSize": 10,
+        "padding": 5,
+        "textAlign": "center",
+        "width": 130
+      }
+    }
+    estimatedTime={100}
+    format="[missing \"en.totalDurationFormat\" translation]" />
+</View>
+`;
