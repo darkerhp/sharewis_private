@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 @connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
-    // states
+    // values
     id: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
@@ -49,8 +49,9 @@ class CourseDetails extends Component {
     // actions
     beginDownloadVideo: PropTypes.func.isRequired,
     fetchCourseDetails: PropTypes.func.isRequired,
-    fetchDownloadStatus: PropTypes.func.isRequired,
+    finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
+    fetchVideoInDeviceStatus: PropTypes.func.isRequired,
     loadCurrentLecture: PropTypes.func.isRequired,
     pressDownloadVideo: PropTypes.func.isRequired,
     progressDownloadVideo: PropTypes.func.isRequired,
@@ -62,6 +63,11 @@ class CourseDetails extends Component {
     } catch (error) {
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
+  }
+
+  componentDidMount() {
+    const { id, lectures, fetchVideoInDeviceStatus } = this.props;
+    fetchVideoInDeviceStatus(id, lectures);
   }
 
   @autobind
@@ -80,6 +86,15 @@ class CourseDetails extends Component {
         ? `${lecture.title.substr(0, 17)}…`
         : lecture.title,
     });
+  }
+
+  @autobind
+  handlePressDelete(lecture) {
+    const { id, finishDeleteVideo } = this.props;
+    const path = FileUtils.createVideoFileName(lecture.id, id);
+    return RNFS.unlink(path)
+      .then(() => finishDeleteVideo(lecture.id))
+      .catch(err => Alert.alert(I18n.t('errorTitle'), I18n.t('deleteVideoFailure')));
   }
 
   @autobind
@@ -127,7 +142,6 @@ class CourseDetails extends Component {
 
   render() {
     const {
-      fetchDownloadStatus,
       id,
       isFetching,
       lectures,
@@ -163,8 +177,8 @@ class CourseDetails extends Component {
             lectures={lectures}
             courseId={id}
             handlePressLecture={this.handlePressLecture}
+            handlePressDelete={this.handlePressDelete}
             handlePressDownload={this.handlePressDownload}
-            fetchDownloadStatus={fetchDownloadStatus}
           />
         </View>
       </ScrollView>

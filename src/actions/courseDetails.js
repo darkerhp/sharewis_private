@@ -47,21 +47,27 @@ export const finishDownloadVideo = lectureId => ({
   jobId: -1,
   lectureId,
 });
-// TODO lectureに移動
-export const updateDownloadStatus = (lectureId, hasVideoInDevice) => ({
-  type: types.UPDATE_DOWNLOAD_STATUS,
+export const finishDeleteVideo = lectureId => ({
+  type: types.FINISH_DELETE_VIDEO,
+  jobId: -1,
   lectureId,
-  hasVideoInDevice,
+});
+// TODO lectureに移動
+export const updateVideoInDeviceStatus = lectures => ({
+  type: types.UPDATE_VIDEO_IN_DEVICE_STATUS,
+  lectures,
 });
 
-
-// Thunks
-
-export const fetchDownloadStatus = (courseId, lectureId) => (
-  async (dispatch) => {
-    const path = FileUtils.createVideoFileName(lectureId, courseId);
-    const result = await FileUtils.exists(path);
-    dispatch(updateDownloadStatus(lectureId, result));
+// thunk action creators
+export const fetchVideoInDeviceStatus = (courseId, lectures) => (
+  async(dispatch) => {
+    const promises = lectures.map(async(l) => {
+      const path = FileUtils.createVideoFileName(l.id, courseId);
+      const hasVideoInDevice = await FileUtils.exists(path);
+      return { ...l, hasVideoInDevice };
+    });
+    const updateLectures = await Promise.all(promises);
+    dispatch(updateVideoInDeviceStatus(updateLectures));
   }
 );
 

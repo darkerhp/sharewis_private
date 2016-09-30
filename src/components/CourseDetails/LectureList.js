@@ -22,17 +22,18 @@ const renderLecture = (
   lecture,
   handlePressLecture,
   handlePressDownload,
-  fetchDownloadStatus
+  handlePressDelete,
 ) => (
   lecture.kind === LECTURE_KIND_SECTION
     ? <Section key={key} lecture={lecture} />
-    : <LectureItem
+    :
+    <LectureItem
       key={key}
       courseId={courseId}
       currentLecture={lecture}
       handlePressLecture={handlePressLecture}
       handlePressDownload={handlePressDownload}
-      fetchDownloadStatus={fetchDownloadStatus}
+      handlePressDelete={handlePressDelete}
     />
 );
 
@@ -42,7 +43,7 @@ const LectureList = ({
   containerStyleId,
   handlePressLecture,
   handlePressDownload,
-  fetchDownloadStatus }) =>
+  handlePressDelete }) =>
   <View style={[styles.container, containerStyleId]}>
     {lectures.map((lecture, i) => renderLecture(
       i,
@@ -50,26 +51,19 @@ const LectureList = ({
       lecture,
       handlePressLecture,
       handlePressDownload,
-      fetchDownloadStatus)
+      handlePressDelete)
     )}
   </View>;
 
 LectureList.propTypes = {
-  lectures: PropTypes.arrayOf(PropTypes.shape({
-    /* eslint-disable react/no-unused-prop-types */
-    order: PropTypes.number,
-    title: PropTypes.string,
-    kind: PropTypes.string,
-    estimatedTime: PropTypes.number,
-    status: PropTypes.string,
-    type: PropTypes.string,
-    /* eslint-enable react/no-unused-prop-types */
-  })).isRequired,
-  handlePressLecture: PropTypes.func.isRequired,
+  // values
   containerStyleId: PropTypes.number.isRequired,
-  handlePressDownload: PropTypes.func.isRequired,
-  fetchDownloadStatus: PropTypes.func.isRequired,
   courseId: PropTypes.number.isRequired,
+  lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  // actions
+  handlePressLecture: PropTypes.func.isRequired,
+  handlePressDelete: PropTypes.func.isRequired,
+  handlePressDownload: PropTypes.func.isRequired,
 };
 
 export default LectureList;

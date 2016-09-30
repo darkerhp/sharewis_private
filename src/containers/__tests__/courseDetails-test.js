@@ -32,6 +32,7 @@ jest.mock('react-native-router-flux', () => ({
 // Mock the RNFS
 jest.mock('react-native-fs', () => ({
   exists: path => new Promise(resolve => resolve(path)),
+  unlink: path => new Promise(resolve => resolve(path)),
 }));
 
 
@@ -61,6 +62,12 @@ describe('CourseDetails', () => {
 
   it('should have a pressDownload handler', async () => {
     await instance.handlePressDownload({
+      id: 1, url: 'hoge',
+    });
+  });
+
+  it('should have a pressDelete handler', async () => {
+    await instance.handlePressDelete({
       id: 1, url: 'hoge',
     });
   });
