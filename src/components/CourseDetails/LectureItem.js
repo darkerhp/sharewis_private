@@ -89,10 +89,12 @@ const styles = StyleSheet.create({
 });
 
 // TODO components化
-const renderDownloadAction = (handlePressDownload, lecture) =>
+const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =>
   <TouchableOpacity
     style={styles.actionIconWrapper}
-    onPress={() => handlePressDownload(lecture)}
+    onPress={() => (
+      lecture.hasVideoInDevice ? handlePressDelete(lecture) : handlePressDownload(lecture)
+    )}
   >
     {lecture.isDownloading
       ?

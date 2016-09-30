@@ -43,7 +43,7 @@ const LectureList = ({
   containerStyleId,
   handlePressLecture,
   handlePressDownload,
-  handlePressDelete}) =>
+  handlePressDelete }) =>
   <View style={[styles.container, containerStyleId]}>
     {lectures.map((lecture, i) => renderLecture(
       i,
@@ -56,7 +56,7 @@ const LectureList = ({
   </View>;
 
 LectureList.propTypes = {
-  // props
+  // values
   containerStyleId: PropTypes.number.isRequired,
   courseId: PropTypes.number.isRequired,
   lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
