@@ -62,4 +62,53 @@ describe('CourseDetails reducer', () => {
     expect(state.lectureProgress).toEqual(4);
     expect(state.currentLecture.status).toBeTruthy();
   });
+
+  it('should handle PRESS_DOWNLOAD_VIDEO', () => {
+    expect(
+      reducer({ isLectureDownloading: false }, { type: types.PRESS_DOWNLOAD_VIDEO }))
+      .toEqual({ isLectureDownloading: true }
+      );
+  });
+
+  it('should handle BEGIN_DOWNLOAD_VIDEO', () => {
+    const state = { ...courses[0], lectures };
+    const action = { type: types.BEGIN_DOWNLOAD_VIDEO, lectureId: 1, jobId: 1 };
+    const reducedState = reducer(state, action);
+
+    expect(reducedState.lectures[1].isDownloading).toBeTruthy();
+    expect(reducedState.jobId).toEqual(1);
+  });
+
+  it('should handle PROGRESS_DOWNLOAD_VIDEO', () => {
+    const state = { ...courses[0], lectures };
+    const action = { type: types.PROGRESS_DOWNLOAD_VIDEO, lectureId: 1, percentage: 99 };
+    const reducedState = reducer(state, action);
+
+    expect(reducedState.lectures[1].isDownloading).toBeTruthy();
+    expect(reducedState.lectures[1].percentage).toEqual(99);
+  });
+
+  it('should handle FINISH_DOWNLOAD_VIDEO', () => {
+    const state = { ...courses[0], lectures };
+    const action = { type: types.FINISH_DOWNLOAD_VIDEO, lectureId: 1 };
+    const reducedState = reducer(state, action);
+
+    expect(reducedState.lectures[1].isDownloading).toBeFalsy();
+    expect(reducedState.lectures[1].hasVideoInDevice).toBeTruthy();
+  });
+
+  it('should handle UPDATE_VIDEO_IN_DEVICE_STATUS', () => {
+    const state = { ...courses[0], lectures };
+    const action = { type: types.UPDATE_VIDEO_IN_DEVICE_STATUS, lectures };
+    const reducedState = reducer(state, action);
+    expect(reducedState.lectures).toEqual(lectures);
+  });
+
+  it('should handle FINISH_DELETE_VIDEO', () => {
+    const state = { ...courses[0], lectures };
+    const action = { type: types.FINISH_DELETE_VIDEO, lectureId: 1 };
+    const reducedState = reducer(state, action);
+
+    expect(reducedState.lectures[1].hasVideoInDevice).toBeFalsy();
+  });
 });
