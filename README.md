@@ -1,5 +1,18 @@
 # ShareWis ACT Mobile Application
 
+
+**Table of contents:**
+1. [Installation](#installation)
+2. [DeployGate](#deploygate)
+3. [Facebook](#facebook)
+4. [Scripts](#scripts)
+5. [Debugging](#debugging)
+6. [Upgrading](#upgrading)
+7. [Api Specs](#api-specs)
+
+
+----
+
 [![wercker
 status](https://app.wercker.com/status/41122a6a18051d09232b2fb51ffc9d57/m/master
 "wercker status")](https://app.wercker.com/project/bykey/41122a6a18051d09232b2fb51ffc9d57)
@@ -8,19 +21,9 @@ status](https://app.wercker.com/status/41122a6a18051d09232b2fb51ffc9d57/m/master
 
 ![uses js](http://forthebadge.com/images/badges/uses-js.svg)
 
+----
 
-## DeployGate
 
-To test the applications from a real device, install using the following QR
-codes
-
-### Android
-
-![android qrcode](https://chart.googleapis.com/chart?chs=178x178&cht=qr&chl=https%3A%2F%2Fdeploygate.com%2Fusers%2FShareWisInc%2Fapps%2Fcom.sharewis.ShareWisAct)
-
-### iOS
-
-![ios qrcode](https://chart.googleapis.com/chart?chs=178x178&cht=qr&chl=https%3A%2F%2Fdeploygate.com%2Fconnect%2Fiphones%3Ffrom_qr%3D1)
 
 
 ## Installation
@@ -64,6 +67,69 @@ $ react-native run-android
 $ react-native log-android
 ```
 
+
+
+
+## DeployGate
+
+### User testing
+
+To test the applications from a real device, install using the following QR codes
+
+#### Android
+
+![android qrcode](https://chart.googleapis.com/chart?chs=178x178&cht=qr&chl=https%3A%2F%2Fdeploygate.com%2Fusers%2FShareWisInc%2Fapps%2Fcom.sharewis.ShareWisAct)
+
+#### iOS
+
+![ios qrcode](https://chart.googleapis.com/chart?chs=178x178&cht=qr&chl=https%3A%2F%2Fdeploygate.com%2Fconnect%2Fiphones%3Ffrom_qr%3D1)
+
+### Deploy staging app to [DeployGate](https://deploygate.com/dashboard) 
+
+How to deploy staging app to DeployGate manually.
+
+#### Build apk file (Android)
+
+Run below commands.
+
+```
+$ cd sharewis-act-mobile
+$ git pull origin master
+$ npm install
+$ cd android && ./gradlew assembleRelease
+```
+
+The generated apk files are in `android/app/build/outputs/apk`.
+Upload `app-release.apk` to DeployGate.
+
+#### Build ipa file (iOS)
+
+Run below commands.
+
+```
+$ cd sharewis-act-mobile
+$ git pull origin master
+$ npm install
+```
+
+And build ipa with xcode.
+
+1. Open xcode project.
+2. Set scheme `SharewisActMobile` and `Generic iOS Device`
+3. `Product` -> `Archive...`
+4. After archiving, the organization window is opened.
+5. Check latest archive in the organization window and click `Export...`
+6. Check `Save for AdHoc Deployment` and go next and next...
+8. Upload exported `SharewisActMobile.ipa` to DeployGate.
+
+#### Upload
+
+1. Login to [DeployGate](https://deploygate.com/dashboard). (ID & Password are [here](https://launchpad.meldium.com/#/launchpad?edit=c01f6779-d5a9-440e-880a-284ac87fe443))
+2. Drag & Drop the apk or ipa 
+
+
+
+
 ## Facebook
 
 ### Android
@@ -79,6 +145,8 @@ Add the generated 28-char hash to the Android -> Key Hashes in
 ### iOS
 [Download](https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip)
 the Facebook SDK and unzip it to `~/Documents/FacebookSDK/`
+
+
 
 
 ## Scripts
@@ -109,6 +177,8 @@ $ npm test -- --watch   # continuous testing
 ```
 
 
+
+
 ## Debugging
 
 ### Reactotron
@@ -125,6 +195,8 @@ By default, data are stored on the device via AsyncStorage (redux-persist).
 If you need to reset the data (eg to see the onboarding view), temporarily edit
 the `src/store.js` file and set `PURGE_STORAGE = 1` (then revert it after
 reloading the simulator)
+
+
 
 
 ## Upgrading
@@ -153,48 +225,8 @@ reloading the simulator)
 ### For react native video
    - Info.plistの `App Transport Security Settings` に `Allow Arbitrary Loads` を追加してYESを設定する。（For Dev）
 
-## Deploy staging app to [DeployGate](https://deploygate.com/dashboard) 
 
-How to deploy staging app to DeployGate manually.
 
-### Build apk file (Android)
-
-Run below commands.
-
-```
-$ cd sharewis-act-mobile
-$ git pull origin master
-$ npm install
-$ cd android && ./gradlew assembleRelease
-```
-
-The generated apk files are in `android/app/build/outputs/apk`.
-Upload `app-release.apk` to DeployGate.
-
-### Build ipa file (iOS)
-
-Run below commands.
-
-```
-$ cd sharewis-act-mobile
-$ git pull origin master
-$ npm install
-```
-
-And build ipa with xcode.
-
-1. Open xcode project.
-2. Set scheme `SharewisActMobile` and `Generic iOS Device`
-3. `Product` -> `Archive...`
-4. After archiving, the organization window is opened.
-5. Check latest archive in the organization window and click `Export...`
-6. Check `Save for AdHoc Deployment` and go next and next...
-8. Upload exported `SharewisActMobile.ipa` to DeployGate.
-
-### Upload
-
-1. Login to [DeployGate](https://deploygate.com/dashboard). (ID & Password are [here](https://launchpad.meldium.com/#/launchpad?edit=c01f6779-d5a9-440e-880a-284ac87fe443))
-2. Drag & Drop the apk or ipa 
 
 ## API Specs
 
