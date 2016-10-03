@@ -39,7 +39,6 @@ export const getNextVideoLecture = (lectures, skipCompleted = true, currentOrder
   return videoLectures.sort(sortByOrder)[0] || {};
 };
 
-
 export const getLastLectureId = (lectures) => {
   const videoLectures = lectures.filter(l =>
     l.kind === ApiConstants.LECTURE_KIND_LECTURE &&
