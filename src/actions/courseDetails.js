@@ -83,6 +83,7 @@ export const fetchCourseDetails = () =>
       const userId = state.user.userId;
       const currentCourse = state.currentCourse;
       if (currentCourse.lectures.length === 0 ||
+          currentCourse.lectures[0].courseId !== currentCourse.id ||
           currentCourse.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
         const result = await getCourseDetails(userId, currentCourse.id);
