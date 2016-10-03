@@ -52,6 +52,7 @@ class CourseDetails extends Component {
     fetchCourseDetails: PropTypes.func.isRequired,
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
+    errorDownloadVideo: PropTypes.func.isRequired,
     fetchVideoInDeviceStatus: PropTypes.func.isRequired,
     loadCurrentLecture: PropTypes.func.isRequired,
     pressDownloadVideo: PropTypes.func.isRequired,
@@ -107,6 +108,7 @@ class CourseDetails extends Component {
       beginDownloadVideo,
       progressDownloadVideo,
       finishDownloadVideo,
+      errorDownloadVideo,
     } = this.props;
 
     if (isLectureDownloading) {
@@ -139,8 +141,8 @@ class CourseDetails extends Component {
       .then(() => finishDownloadVideo(lecture.id))
       .catch((err) => {
         console.error(err); // eslint-disable-line
+        errorDownloadVideo(lecture.id);
         Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
-        errorDownloadVideo(lecture.id)
       });
   }
 
