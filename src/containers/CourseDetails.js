@@ -40,6 +40,7 @@ class CourseDetails extends Component {
   static propTypes = {
     // values
     id: PropTypes.number.isRequired,
+    isOnline: PropTypes.bool.isRequired,
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -135,15 +136,19 @@ class CourseDetails extends Component {
           progressDivider: 2,
         }).promise
       )
-      .then(res => res)
-      .catch(err => Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure')))
-      .then(() => finishDownloadVideo(lecture.id));
+      .then(() => finishDownloadVideo(lecture.id))
+      .catch((err) => {
+        console.error(err); // eslint-disable-line
+        Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
+        errorDownloadVideo(lecture.id)
+      });
   }
 
   render() {
     const {
       id,
       isFetching,
+      isOnline,
       lectures,
       lectureCount,
       lectureProgress,
@@ -176,6 +181,7 @@ class CourseDetails extends Component {
             containerStyleId={styles.lectureContainer}
             lectures={lectures}
             courseId={id}
+            isOnline={isOnline}
             handlePressLecture={this.handlePressLecture}
             handlePressDelete={this.handlePressDelete}
             handlePressDownload={this.handlePressDownload}

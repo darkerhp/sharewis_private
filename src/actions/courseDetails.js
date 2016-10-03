@@ -47,6 +47,11 @@ export const finishDownloadVideo = lectureId => ({
   jobId: -1,
   lectureId,
 });
+export const errorDownloadVideo = lectureId => ({
+  type: types.ERROR_DOWNLOAD_VIDEO,
+  jobId: -1,
+  lectureId,
+});
 export const finishDeleteVideo = lectureId => ({
   type: types.FINISH_DELETE_VIDEO,
   jobId: -1,
