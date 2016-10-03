@@ -11,27 +11,22 @@ const { PropTypes } = React;
 const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
-  courseList: {
+  emptyList: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   contentText: {
     ...BaseStyles.Text,
-    textAlignVertical: 'center',
-  },
-  emptyList: {
-    flex: 1,
     margin: 30,
   },
 });
 
 
 const emptyList = ({ isFetching }) =>
-  <View style={styles.courseList}>
+  <View style={styles.emptyList}>
     <Spinner visible={isFetching} />
     <Hyperlink
-      style={styles.emptyList}
       linkStyle={{ color: BaseStyles.hyperlink }}
       linkText={I18n.t('actWebsite')}
       onPress={redirectTo}
