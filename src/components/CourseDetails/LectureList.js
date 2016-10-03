@@ -16,27 +16,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (
-  key,
-  courseId,
-  isOnline,
-  lecture,
-  handlePressLecture,
-  handlePressDownload,
-  handlePressDelete,
-) => (
-  lecture.kind === LECTURE_KIND_SECTION
-    ? <Section key={key} lecture={lecture} />
-    :
-    <LectureItem
-      key={key}
-      courseId={courseId}
-      currentLecture={lecture}
-      isOnline={isOnline}
-      handlePressLecture={handlePressLecture}
-      handlePressDownload={handlePressDownload}
-      handlePressDelete={handlePressDelete}
-    />
+const renderLecture = params => (
+  params.currentLecture.kind === LECTURE_KIND_SECTION
+    ? <Section key={params.key} lecture={params.lecture} />
+    : <LectureItem {...params} />
 );
 
 const LectureList = ({
@@ -50,15 +33,15 @@ const LectureList = ({
   handlePressDownload,
   handlePressLecture }) =>
   <View style={[styles.container, containerStyleId]}>
-    {lectures.map((lecture, i) => renderLecture(
-      i,
+    {lectures.map((lecture, i) => renderLecture({
+      key: i,
       courseId,
       isOnline,
-      lecture,
+      currentLecture: lecture,
       handlePressLecture,
       handlePressDownload,
-      handlePressDelete)
-    )}
+      handlePressDelete,
+    }))}
   </View>;
 
 LectureList.propTypes = {
