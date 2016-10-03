@@ -125,7 +125,7 @@ class CourseDetails extends Component {
       .then(res => res || RNFS.mkdir(videoDirPath))
       .then(() =>
         RNFS.downloadFile({
-          fromUrl: lecture.url,
+          fromUrl: lecture.videoUrl,
           toFile,
           begin: (res) => {
             const { jobId, statusCode } = res;
