@@ -2,7 +2,6 @@ package com.sharewis.ShareWisAct;
 
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.brentvatne.react.ReactVideoPackage;
 import android.content.Intent;
 
 public class MainActivity extends ReactActivity {

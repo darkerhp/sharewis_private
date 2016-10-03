@@ -37,10 +37,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeI18n(),
-          new ReactVideoPackage(),
+          new ReactNativeI18n(),
           new FBSDKPackage(mCallbackManager),
-          new RNFSPackage()
+          new RNFSPackage(),
+          new ReactVideoPackage()
       );
     }
   };

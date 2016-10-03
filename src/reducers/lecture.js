@@ -5,22 +5,28 @@ import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
 import replaceInList from '../utils/list';
 
-const initialState = {
-  currentTime: 0,
+// export for unittesting
+export const apiData = {
   courseId: 0,
   estimatedTime: 0,
+  hasVideoInDevice: false,  // added in course reducer
   id: 0,
+  isLastLecture: false,  // added in course reducer utils
   kind: null,
-  isFullScreen: false,  // TODO
-  isLastLecture: false,
-  isPaused: true,
   order: 0,
-  lectures: [],
-  speed: 1,
   status: ApiConstants.LECTURE_STATUS_NOT_STARTED,
   title: undefined,
   type: null,
   videoUrl: undefined,
+};
+
+const initialState = {
+  ...apiData,
+  currentTime: 0,
+  isFullScreen: false,  // TODO
+  isPaused: true,
+  lectures: [],
+  speed: 1,
 };
 
 const speedList = [1, 1.2, 1.5, 2];
