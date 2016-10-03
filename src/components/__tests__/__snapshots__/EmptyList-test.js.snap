@@ -17,12 +17,7 @@ exports[`EmptyList renders correctly 1`] = `
     }
     linkText="[missing \"en.actWebsite\" translation]"
     onPress={[Function redirectTo]}
-    style={
-      Object {
-        "flex": 1,
-        "margin": 30
-      }
-    }>
+    style={undefined}>
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -33,8 +28,8 @@ exports[`EmptyList renders correctly 1`] = `
           "flex": 1,
           "fontSize": 17,
           "lineHeight": 22,
-          "textAlign": "center",
-          "textAlignVertical": "center"
+          "margin": 30,
+          "textAlign": "center"
         }
       }>
       [missing \"en.noCourses\" translation]
