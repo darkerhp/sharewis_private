@@ -30,11 +30,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
+    marginTop: 64,
   },
   lectureTitleTextWrapper: {
     flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  lectureTitle: {
+    fontSize: 17,
+    color: '#e0e0e0',
+    fontWeight: 'bold',
   },
   nextLectureButtonWrapper: {
     flex: 3,
@@ -103,6 +109,7 @@ class Lecture extends Component {
   handleValueChange(value) {
     if (this.video) {
       this.video.seek(value);
+      this.props.updateVideoProgress(value);
     }
   }
 
@@ -144,7 +151,7 @@ class Lecture extends Component {
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
-        <View style={[styles.videoContainer, { marginTop: 64 }]}>
+        <View style={styles.videoContainer}>
           <Video
             ref={ref => (this.video = ref)}
             // source can be a URL or a local file
@@ -171,7 +178,7 @@ class Lecture extends Component {
             video={this.video}
           />
           <View style={styles.lectureTitleTextWrapper}>
-            <Text>{title}</Text>
+            <Text style={styles.lectureTitle}>{title}</Text>
           </View>
           <VideoControls
             isPaused={isPaused}
