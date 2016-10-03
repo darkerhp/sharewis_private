@@ -218,9 +218,12 @@ reloading the simulator)
    $ # update sharewis/ files if needed, then delete untracked files
    $ git clean -df
    ```
-3. Resolve conflicting files with git add patch. On large chunks, use `s` to
+3. If needed, resolve conflicting files with git add patch. On large chunks, use `s` to
    split chunks further. On smaller chunks that still have conflicts, use `e`
    then remove related `-` or `+` signs.
+   Please keep in mind that libs in `project.pbxproj` will be rehashed, so you
+   need to make sure that each lib is referenced with the same hash across the
+   code after your conflict resolution.
    ```
    $ git add -p ios/SharewisActMobile.xcodeproj/project.pbxproj
    $ git add -p ios/SharewisActMobile/Info.plist
@@ -230,6 +233,11 @@ reloading the simulator)
    ```
    $ git checkout -- <files containing unwanted changes>
    ```
+5. Re-link packages in case:
+   ```
+   $ react-native link
+   ```
+
 ### For react native video
    - Info.plistの `App Transport Security Settings` に `Allow Arbitrary Loads` を追加してYESを設定する。（For Dev）
 
