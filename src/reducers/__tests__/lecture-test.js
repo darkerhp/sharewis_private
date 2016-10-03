@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
-import reducer from '../lecture';
+import reducer, { apiData } from '../lecture';
 import * as types from '../../constants/ActionTypes';
+import { lectures } from '../../data/dummyData';
+
 
 describe('Lecture reducer', () => {
   it('should return the initial state', () => {
@@ -8,6 +10,7 @@ describe('Lecture reducer', () => {
       currentTime: 0,
       courseId: 0,
       estimatedTime: 0,
+      hasVideoInDevice: false,
       id: 0,
       kind: null,
       isFullScreen: false,
@@ -20,6 +23,38 @@ describe('Lecture reducer', () => {
       title: undefined,
       type: null,
       videoUrl: undefined,
+    });
+  });
+
+  it('should have test data matching api results', () => {
+    // eslint-disable-next-line guard-for-in,no-restricted-syntax
+    for (key in apiData) {
+      expect(Object.keys(lectures[1])).toContain(key);
+    }
+  });
+
+  it('should handle LOAD_CURRENT_LECTURE', () => {
+    expect(reducer(undefined, {
+      type: types.LOAD_CURRENT_LECTURE,
+      currentLecture: lectures[2],
+      lectures,
+    })).toEqual({
+      currentTime: 0,
+      courseId: 1,
+      estimatedTime: 107,
+      hasVideoInDevice: false,
+      id: 2,
+      isFullScreen: false,
+      isLastLecture: false,
+      isPaused: true,
+      kind: 'lecture',
+      lectures,
+      order: 2,
+      speed: 1,
+      status: 'finished',
+      title: 'レクチャーB',
+      type: 'video',
+      videoUrl: 'http://embed.wistia.com/deliveries/442c0200e6412dc5fbf26d3f89dc9bfa8fd4e76c.bin',
     });
   });
 
