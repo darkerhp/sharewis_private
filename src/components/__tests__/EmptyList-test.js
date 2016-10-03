@@ -5,11 +5,13 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import EmptyList from '../CourseList/EmptyList';
 
+jest.mock('react-native-loading-spinner-overlay', () => 'Spinner');
+
 
 describe('EmptyList', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      <EmptyList />
+      <EmptyList isFetching />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

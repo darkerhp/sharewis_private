@@ -7,6 +7,8 @@ exports[`EmptyList renders correctly 1`] = `
       "justifyContent": "center"
     }
   }>
+  <Spinner
+    visible={true} />
   <View
     linkStyle={
       Object {
