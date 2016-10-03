@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 const renderLecture = (
   key,
   courseId,
+  isOnline,
   lecture,
   handlePressLecture,
   handlePressDownload,
@@ -31,6 +32,7 @@ const renderLecture = (
       key={key}
       courseId={courseId}
       currentLecture={lecture}
+      isOnline={isOnline}
       handlePressLecture={handlePressLecture}
       handlePressDownload={handlePressDownload}
       handlePressDelete={handlePressDelete}
@@ -41,6 +43,7 @@ const LectureList = ({
   // values
   containerStyleId,
   courseId,
+  isOnline,
   lectures,
   // actions
   handlePressDelete,
@@ -50,6 +53,7 @@ const LectureList = ({
     {lectures.map((lecture, i) => renderLecture(
       i,
       courseId,
+      isOnline,
       lecture,
       handlePressLecture,
       handlePressDownload,
@@ -61,6 +65,7 @@ LectureList.propTypes = {
   // values
   containerStyleId: PropTypes.number.isRequired,
   courseId: PropTypes.number.isRequired,
+  isOnline: PropTypes.bool.isRequired,
   lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   // actions
   handlePressLecture: PropTypes.func.isRequired,
