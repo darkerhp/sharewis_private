@@ -11,15 +11,16 @@ exports[`SeekBar renders correctly 1`] = `
   <Duration
     containerStyleId={
       Object {
+        "flex": 1,
         "justifyContent": "center",
-        "width": 45
+        "width": 60
       }
     }
-    durationStyle={
+    durationStyleId={
       Object {
-        "backgroundColor": "white",
-        "fontSize": 13,
-        "fontWeight": "normal",
+        "color": "#bdbdbd",
+        "fontSize": 16,
+        "fontWeight": "bold",
         "opacity": 0.6,
         "padding": 0,
         "textAlign": "center"
@@ -32,22 +33,24 @@ exports[`SeekBar renders correctly 1`] = `
     onValueChange={[Function onValueChange]}
     style={
       Object {
-        "width": 256.5
+        "backgroundColor": "#eee",
+        "width": 228
       }
     }
     value={10} />
   <Duration
     containerStyleId={
       Object {
+        "flex": 1,
         "justifyContent": "center",
-        "width": 45
+        "width": 60
       }
     }
-    durationStyle={
+    durationStyleId={
       Object {
-        "backgroundColor": "white",
-        "fontSize": 13,
-        "fontWeight": "normal",
+        "color": "#bdbdbd",
+        "fontSize": 16,
+        "fontWeight": "bold",
         "opacity": 0.6,
         "padding": 0,
         "textAlign": "center"
