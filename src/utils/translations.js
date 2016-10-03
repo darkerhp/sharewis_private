@@ -1,5 +1,5 @@
 import I18n from 'react-native-i18n';
-import rawTranslations from '../data/translations';
+import rawTranslations from '../data/translations.json';
 import { ACT_API_URL } from '../constants/Api';
 
 
