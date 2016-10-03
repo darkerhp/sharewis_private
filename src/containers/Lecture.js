@@ -11,6 +11,7 @@ import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
+import * as FileUtils from '../utils/file';
 import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
@@ -70,6 +71,7 @@ class Lecture extends Component {
     estimatedTime: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
+    isOnline: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
     order: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
@@ -103,6 +105,12 @@ class Lecture extends Component {
       const { id, title } = nextProps;
       RouterActions.lecture({ title });
     }
+  }
+
+  @autobind
+  getVideoUrl() {
+    const { courseId, id, isOnline, videoUrl } = this.props;
+    return isOnline ? videoUrl : `file://${FileUtils.createVideoFileName(id, courseId)}`;
   }
 
   @autobind
@@ -144,7 +152,7 @@ class Lecture extends Component {
   render() {
     const {
       // state
-      currentTime, estimatedTime, isLastLecture, isPaused, speed, title, videoUrl,
+      courseId, currentTime, estimatedTime, id, isLastLecture, isPaused, speed, title, videoUrl,
       // actions
       pressPlay, pressSpeed, updateVideoProgress,
     } = this.props;
@@ -155,7 +163,7 @@ class Lecture extends Component {
           <Video
             ref={ref => (this.video = ref)}
             // source can be a URL or a local file
-            source={{ uri: videoUrl }}
+            source={{ uri: this.getVideoUrl() }}
             rate={speed}
             volume={1.0}
             muted={false}
@@ -164,7 +172,7 @@ class Lecture extends Component {
             repeat={false}
             playInBackground={false}
             playWhenInactive={false}
-            // onError={e => console.log(e)
+            onError={e => console.log(e)}
             style={styles.backgroundVideo}
             onProgress={this.handleVideoProgress}
             onEnd={this.handlePressNextLecture}
