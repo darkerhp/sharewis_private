@@ -2,6 +2,6 @@
 import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
 
-const netInfo = createAction(types.NET_INFO);
+const fetchNetInfo = createAction(types.MIDDLEWARE_NETINFO);
 
-export default netInfo;
+export default fetchNetInfo;
