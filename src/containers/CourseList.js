@@ -85,7 +85,7 @@ class CourseList extends Component {
     const { isFetching, courses } = this.props;
 
     if (courses.length === 0) {
-      return <EmptyList />;
+      return <EmptyList isFetching={isFetching} />;
     }
     return (
       <ScrollView
