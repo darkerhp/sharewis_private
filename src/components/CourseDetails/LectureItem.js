@@ -22,7 +22,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   lectureDisabled: {
-    opacity: 0.2,
+    ...Platform.select({
+      android: {
+        opacity: 0.2,
+      },
+      ios: {
+        opacity: 0.4,
+      },
+    }),
   },
   lectureNoTextWrapper: {
     flex: 1,
