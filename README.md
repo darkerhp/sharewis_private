@@ -202,14 +202,21 @@ reloading the simulator)
 
 ## Upgrading
 
-1. Install the new version of react-native
+1. Read the release notes for your new version in
+   [Github](https://github.com/facebook/react-native/releases)
+
+2. Install the new version of react-native
    ```
-   $ npm install -save react-native@0.32.1
+   $ npm install --save react-native@0.34.1
    ```
 2. Run upgrade script. Always read the diff when prompted and decided whether to
-   override the file or not. When conflicts appear, choose override.
+   override the file or not.
    ```
    $ react-native upgrade
+   $ diff android/app/src/main/java/com/sharewisactmobile/MainActivity.java android/app/src/main/java/com/sharewis/ShareWisAct/MainActivity.java
+   $ diff android/app/src/main/java/com/sharewisactmobile/MainApplication android/app/src/main/java/com/sharewis/ShareWisAct/MainApplication
+   $ # update sharewis/ files if needed, then delete untracked files
+   $ git clean -df
    ```
 3. Resolve conflicting files with git add patch. On large chunks, use `s` to
    split chunks further. On smaller chunks that still have conflicts, use `e`
