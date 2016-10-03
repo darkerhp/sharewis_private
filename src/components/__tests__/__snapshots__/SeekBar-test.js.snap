@@ -21,7 +21,7 @@ exports[`SeekBar renders correctly 1`] = `
         "color": "#bdbdbd",
         "fontSize": 16,
         "fontWeight": "bold",
-        "opacity": 0.6,
+        "opacity": 0.8,
         "padding": 0,
         "textAlign": "center"
       }
@@ -33,7 +33,6 @@ exports[`SeekBar renders correctly 1`] = `
     onValueChange={[Function onValueChange]}
     style={
       Object {
-        "backgroundColor": "#eee",
         "width": 228
       }
     }
@@ -51,7 +50,7 @@ exports[`SeekBar renders correctly 1`] = `
         "color": "#bdbdbd",
         "fontSize": 16,
         "fontWeight": "bold",
-        "opacity": 0.6,
+        "opacity": 0.8,
         "padding": 0,
         "textAlign": "center"
       }
