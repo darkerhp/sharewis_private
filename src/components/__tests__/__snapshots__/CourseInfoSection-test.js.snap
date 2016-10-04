@@ -56,7 +56,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
         "fontWeight": "bold",
         "padding": 5,
         "textAlign": "center",
-        "width": 130
+        "width": 140
       }
     }
     estimatedTime={100}

@@ -1,17 +1,14 @@
 exports[`LectureItem renders correctly 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "alignItems": "flex-start",
-        "borderBottomWidth": 1,
-        "borderColor": "#ddd",
-        "flex": 1,
-        "flexDirection": "row",
-        "justifyContent": "flex-start"
-      },
-      Object {}
-    ]
+    Object {
+      "alignItems": "flex-start",
+      "borderBottomWidth": 1,
+      "borderColor": "#ddd",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "flex-start"
+    }
   }>
   <View
     style={
@@ -29,24 +26,30 @@ exports[`LectureItem renders correctly 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#525252",
-          "fontSize": 14,
-          "fontWeight": "600"
-        }
+        Array [
+          Object {
+            "color": "#525252",
+            "fontSize": 14,
+            "fontWeight": "600"
+          },
+          Object {}
+        ]
       }>
       1
     </Text>
   </View>
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "flexDirection": "column",
-        "height": 48,
-        "justifyContent": "center"
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+          "height": 48,
+          "justifyContent": "center"
+        },
+        Object {}
+      ]
     }>
     <View
       style={
@@ -68,7 +71,10 @@ exports[`LectureItem renders correctly 1`] = `
               "fontStyle": "normal",
               "fontWeight": "normal"
             },
-            undefined
+            Object {
+              "color": "#525252",
+              "fontSize": 15
+            }
           ]
         }>
         
@@ -84,8 +90,9 @@ exports[`LectureItem renders correctly 1`] = `
         Object {
           "backgroundColor": "#f2f2f2",
           "fontSize": 8,
-          "fontWeight": "600",
-          "padding": 3
+          "fontWeight": "bold",
+          "padding": 3,
+          "textAlign": "center"
         }
       }
       estimatedTime={30} />
@@ -118,11 +125,14 @@ exports[`LectureItem renders correctly 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#525252",
-          "fontSize": 12,
-          "fontWeight": "bold"
-        }
+        Array [
+          Object {
+            "color": "#525252",
+            "fontSize": 12,
+            "fontWeight": "bold"
+          },
+          Object {}
+        ]
       }>
       Title
     </Text>

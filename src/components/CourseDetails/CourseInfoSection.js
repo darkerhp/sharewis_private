@@ -8,7 +8,7 @@ import Duration from '../Duration';
 import Progress from './Progress';
 
 const { PropTypes } = React;
-const { View, StyleSheet, Text } = ReactNative;
+const { Platform, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: { padding: 10 },
@@ -25,7 +25,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   totalDuration: {
-    width: 130,  // Or text will be trimmed in english
+    ...Platform.select({
+      android: {
+        width: 130,  // Or text will be trimmed in english
+      },
+      ios: {
+        width: 140,
+      },
+    }),
     textAlign: 'center',
     color: BaseStyles.textColor,
     fontSize: 10,
