@@ -34,6 +34,7 @@ jest.mock('react-native-router-flux', () => ({
 jest.mock('react-native-fs', () => ({
   exists: path => new Promise(resolve => resolve(path)),
   unlink: path => new Promise(resolve => resolve(path)),
+  downloadFile: path => new Promise(resolve => resolve(path)),
 }));
 
 
