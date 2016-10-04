@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
+import BaseStyles from '../../baseStyles';
 import Duration from '../Duration';
 
 const { PropTypes } = React;
-const { View, StyleSheet, Slider, Dimensions } = ReactNative;
+const { Platform, View, StyleSheet, Slider, Dimensions } = ReactNative;
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
@@ -16,19 +17,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   slider: {
-    width: (DEVICE_WIDTH - 90) * 0.9,
+    width: (DEVICE_WIDTH - 90) * 0.8,
+    ...Platform.select({
+      android: {
+        backgroundColor: '#eee',
+      },
+    }),
   },
   timeTextContainer: {
+    flex: 1,
     justifyContent: 'center',
-    width: 45,
+    width: 60,
   },
   timeText: {
-    fontSize: 13,
-    opacity: 0.6,
-    textAlign: 'center',
-    backgroundColor: 'white',
-    fontWeight: 'normal',
+    color: '#bdbdbd',
+    fontSize: 16,
+    fontWeight: 'bold',
+    opacity: 0.8,
     padding: 0,
+    textAlign: 'center',
   },
 });
 
@@ -40,7 +47,7 @@ const SeekBar = ({ currentTime, estimatedTime, onValueChange }) => {
         estimatedTime={currentTime}
         format={'mm:ss'}
         containerStyleId={styles.timeTextContainer}
-        durationStyle={styles.timeText}
+        durationStyleId={styles.timeText}
       />
       <Slider
         maximumValue={estimatedTime}
@@ -52,7 +59,7 @@ const SeekBar = ({ currentTime, estimatedTime, onValueChange }) => {
         estimatedTime={timeEnd < 0 ? 0 : timeEnd}
         format={'mm:ss'}
         containerStyleId={styles.timeTextContainer}
-        durationStyle={styles.timeText}
+        durationStyleId={styles.timeText}
         prefixText={'-'}
       />
     </View>

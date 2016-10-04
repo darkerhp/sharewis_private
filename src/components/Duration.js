@@ -5,17 +5,8 @@ import momentDurationFormat from 'moment-duration-format';
 import BaseStyles from '../baseStyles';
 
 const { PropTypes } = React;
-const { StyleSheet, Text, View } = ReactNative;
+const { Text, View } = ReactNative;
 
-const styles = StyleSheet.create({
-  container: {},
-  duration: {
-    fontSize: 8,
-    padding: 3,
-    backgroundColor: '#F2F2F2',
-    fontWeight: '600',
-  },
-});
 
 const Duration = ({
   estimatedTime,
@@ -24,9 +15,9 @@ const Duration = ({
   durationStyleId = null,
   prefixText = '',
 }) =>
-  <View style={[styles.container, containerStyleId]}>
+  <View style={containerStyleId}>
     { estimatedTime > 0 &&
-      <Text style={[styles.duration, durationStyleId]}>
+      <Text style={durationStyleId}>
         {prefixText}{moment.duration(estimatedTime, 'seconds').format(format, { trim: false })}
       </Text>
     }

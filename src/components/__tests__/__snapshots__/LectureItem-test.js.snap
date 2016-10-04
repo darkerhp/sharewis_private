@@ -80,7 +80,14 @@ exports[`LectureItem renders correctly 1`] = `
           "flex": 1
         }
       }
-      durationStyleId={Object {}}
+      durationStyleId={
+        Object {
+          "backgroundColor": "#f2f2f2",
+          "fontSize": 8,
+          "fontWeight": "600",
+          "padding": 3
+        }
+      }
       estimatedTime={30} />
   </View>
   <View

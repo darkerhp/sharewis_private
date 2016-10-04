@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   durationStyle: {
+    fontSize: 8,
+    padding: 3,
+    fontWeight: '600',
+    backgroundColor: '#f2f2f2',
     ...Platform.select({
       android: {
         color: BaseStyles.textColor,

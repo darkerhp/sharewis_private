@@ -20,7 +20,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
       ellipsizeMode="tail"
       style={
         Object {
-          "color": "black",
+          "color": "#525252",
           "fontSize": 16,
           "fontWeight": "900"
         }
@@ -51,8 +51,9 @@ exports[`CourseInfoSection renders correctly 1`] = `
     durationStyleId={
       Object {
         "backgroundColor": "#F2F2F2",
-        "color": "black",
+        "color": "#525252",
         "fontSize": 10,
+        "fontWeight": "bold",
         "padding": 5,
         "textAlign": "center",
         "width": 130

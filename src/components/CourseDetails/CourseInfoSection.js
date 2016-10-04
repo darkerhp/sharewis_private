@@ -2,6 +2,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 
+import BaseStyles from '../../baseStyles';
 import NextLectureArea from './NextLectureArea';
 import Duration from '../Duration';
 import Progress from './Progress';
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
   lectureAreaContainer: { flex: 3 },
   courseTitleWrapper: { flex: 1 },
   courseTitleText: {
-    color: 'black',
+    color: BaseStyles.textColor,
     fontSize: 16,
     fontWeight: '900',
   },
@@ -26,8 +27,9 @@ const styles = StyleSheet.create({
   totalDuration: {
     width: 130,  // Or text will be trimmed in english
     textAlign: 'center',
-    color: 'black',
+    color: BaseStyles.textColor,
     fontSize: 10,
+    fontWeight: 'bold',
     padding: 5,
     backgroundColor: '#F2F2F2',
   },
