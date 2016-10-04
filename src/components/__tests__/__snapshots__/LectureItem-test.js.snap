@@ -32,9 +32,7 @@ exports[`LectureItem renders correctly 1`] = `
             "fontSize": 14,
             "fontWeight": "600"
           },
-          Object {
-            "opacity": 0.4
-          }
+          Object {}
         ]
       }>
       1
@@ -50,9 +48,7 @@ exports[`LectureItem renders correctly 1`] = `
           "height": 48,
           "justifyContent": "center"
         },
-        Object {
-          "opacity": 0.4
-        }
+        Object {}
       ]
     }>
     <View
@@ -117,7 +113,7 @@ exports[`LectureItem renders correctly 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
-        "flex": 6,
+        "flex": 5,
         "height": 48,
         "justifyContent": "center",
         "opacity": 1
@@ -135,12 +131,55 @@ exports[`LectureItem renders correctly 1`] = `
             "fontSize": 12,
             "fontWeight": "bold"
           },
-          Object {
-            "opacity": 0.4
-          }
+          Object {}
         ]
       }>
       Title
+    </Text>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function bound touchableHandleResponderGrant]}
+    onResponderMove={[Function bound touchableHandleResponderMove]}
+    onResponderRelease={[Function bound touchableHandleResponderRelease]}
+    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "height": 48,
+        "justifyContent": "center",
+        "opacity": 1
+      }
+    }
+    testID={undefined}>
+    <Text
+      accessible={true}
+      allowFontScaling={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontFamily": "Material Icons",
+            "fontSize": 12,
+            "fontStyle": "normal",
+            "fontWeight": "normal"
+          },
+          Object {
+            "color": "#757575",
+            "fontSize": 32
+          }
+        ]
+      }>
+      
     </Text>
   </View>
 </View>
