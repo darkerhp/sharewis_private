@@ -6,6 +6,9 @@ import React from 'react';
 import EmptyList from '../CourseList/EmptyList';
 
 jest.mock('react-native-loading-spinner-overlay', () => 'Spinner');
+jest.mock('../../utils/linking', () =>
+  () => 'redirectTo'
+);
 
 
 describe('EmptyList', () => {
