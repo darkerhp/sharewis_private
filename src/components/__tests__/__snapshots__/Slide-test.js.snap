@@ -45,7 +45,7 @@ exports[`Slide renders correctly 1`] = `
         }
       }
       linkText={[Function linkText]}
-      onPress={[Function redirectTo]}
+      onPress={[Function anonymous]}
       style={
         Object {
           "flex": 1

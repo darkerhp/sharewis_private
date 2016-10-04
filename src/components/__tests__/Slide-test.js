@@ -5,6 +5,10 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import Slide from '../Onboarding/Slide';
 
+jest.mock('../../utils/linking', () =>
+  () => 'redirectTo'
+);
+
 
 describe('Slide', () => {
   it('renders correctly', () => {

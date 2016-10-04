@@ -16,7 +16,7 @@ exports[`EmptyList renders correctly 1`] = `
       }
     }
     linkText="[missing \"en.actWebsite\" translation]"
-    onPress={[Function redirectTo]}
+    onPress={[Function anonymous]}
     style={undefined}>
     <Text
       accessible={true}
