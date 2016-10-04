@@ -15,7 +15,7 @@ export default function netInfoReducer(state = initialState, action) {
         ...state,
         queuedActions: [
           ...state.queuedActions,
-          action.queueAction,
+          action.queuedAction,
         ],
       };
     default:
