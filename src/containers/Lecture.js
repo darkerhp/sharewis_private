@@ -71,7 +71,7 @@ class Lecture extends Component {
     estimatedTime: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
-    isOnline: PropTypes.bool.isRequired,
+    hasVideoInDevice: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
     order: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
@@ -102,15 +102,15 @@ class Lecture extends Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.id) return;
     if (nextProps.id !== this.props.id) {
-      const { id, title } = nextProps;
+      const { title } = nextProps;
       RouterActions.lecture({ title });
     }
   }
 
   @autobind
   getVideoUrl() {
-    const { courseId, id, isOnline, videoUrl } = this.props;
-    return isOnline ? videoUrl : `file://${FileUtils.createVideoFileName(id, courseId)}`;
+    const { courseId, id, hasVideoInDevice, videoUrl } = this.props;
+    return hasVideoInDevice ? `file://${FileUtils.createVideoFileName(id, courseId)}` : videoUrl;
   }
 
   @autobind
@@ -151,10 +151,10 @@ class Lecture extends Component {
 
   render() {
     const {
-      // state
-      courseId, currentTime, estimatedTime, id, isLastLecture, isPaused, speed, title, videoUrl,
+      // values
+      currentTime, estimatedTime, isLastLecture, isPaused, speed, title,
       // actions
-      pressPlay, pressSpeed, updateVideoProgress,
+      pressPlay, pressSpeed,
     } = this.props;
     return (
       <View style={{ flex: 1 }}>
@@ -172,7 +172,7 @@ class Lecture extends Component {
             repeat={false}
             playInBackground={false}
             playWhenInactive={false}
-            onError={e => console.log(e)}
+            onError={e => console.error(e)} // eslint-disable-line
             style={styles.backgroundVideo}
             onProgress={this.handleVideoProgress}
             onEnd={this.handlePressNextLecture}
