@@ -1,6 +1,6 @@
 import { NetInfo } from 'react-native';
 
-import fetchNetInfo from '../actions/netInfo';
+import { fetchNetInfo } from '../actions/netInfo';
 
 const createOneShotMiddleware = (middleware) => {
   let hasBeenTriggered = false;

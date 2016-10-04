@@ -2,6 +2,12 @@
 import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
 
-const fetchNetInfo = createAction(types.MIDDLEWARE_NETINFO);
 
-export default fetchNetInfo;
+export const fetchNetInfo = createAction(types.MIDDLEWARE_NETINFO);
+
+
+export const queueAction = (action, params) => ({
+  type: types.QUEUE_ACTION,
+  action,
+  params,
+});
