@@ -8,6 +8,5 @@ export const fetchNetInfo = createAction(types.MIDDLEWARE_NETINFO);
 
 export const queueAction = (action, params) => ({
   type: types.QUEUE_ACTION,
-  action,
-  params,
+  queuedAction: [action, params],
 });
