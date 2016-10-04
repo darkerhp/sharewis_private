@@ -1,4 +1,5 @@
 /* @flow */
+import { queueAction } from '../actions/netInfo';
 import * as types from '../constants/ActionTypes';
 import * as ApiConstants from '../constants/Api';
 import { patchLectureStatus } from '../middleware/actApi';
@@ -59,14 +60,18 @@ export const fetchLectureStatus = (courseId, lectureId, status) =>
       const state = getState();
       const userId = state.user.userId;
       const currentLecture = state.currentLecture;
-      // START TODO: uncomment api query after api is fixed
-      // const result = await patchLectureStatus(userId, courseId, lectureId, status);
-      const course = state.currentCourse;
-      const result = {
-        course,
-        lectures: course.lectures,
-      };
-      // END TODO
+      let result;
+
+      if (state.netInfo.isConnected) {
+        result = await patchLectureStatus(userId, courseId, lectureId, status);
+      } else {
+        queueAction(fetchLectureStatus, [courseId, lectureId, status]);
+        result = {
+          course: state.course,
+          lectures: state.course.lectures,
+        };
+      }
+
       if (status === ApiConstants.LECTURE_STATUS_FINISHED) {
         dispatch(completeCurrentLecture());
       } else {
