@@ -1,6 +1,6 @@
 import { NetInfo } from 'react-native';
 
-import { fetchNetInfo } from '../actions/netInfo';
+import { fetchNetInfo, triggerActions } from '../actions/netInfo';
 
 const createOneShotMiddleware = (middleware) => {
   let hasBeenTriggered = false;
@@ -14,7 +14,10 @@ const createOneShotMiddleware = (middleware) => {
 };
 
 const netInfoMiddleware = createOneShotMiddleware(async (dispatch) => {
-  const handle = isConnected => dispatch(fetchNetInfo({ isConnected }));
+  const handle = (isConnected) => {
+    dispatch(fetchNetInfo({ isConnected }));
+    dispatch(triggerActions());
+  };
   const isConnected = await NetInfo.isConnected.fetch();
   handle(isConnected);
   NetInfo.isConnected.addEventListener('change', handle);
