@@ -146,7 +146,6 @@ const LectureItem = ({
   handlePressDownload,
 
 }) => {
-  // const isAccessibleLecture = currentLecture.type === LECTURE_TYPE_VIDEO;
   const isAccessibleLecture = (() => {
     if (currentLecture.type !== LECTURE_TYPE_VIDEO) return false;
     return isOnline || currentLecture.hasVideoInDevice;

@@ -12,6 +12,7 @@ import {
   beginDownloadVideo,
   progressDownloadVideo,
   finishDownloadVideo,
+  errorDownloadVideo,
 } from '../../actions/courseDetails';
 
 global.Promise = require.requireActual('promise');
@@ -44,6 +45,7 @@ describe('CourseDetails', () => {
     instance.props.beginDownloadVideo = beginDownloadVideo;
     instance.props.progressDownloadVideo = progressDownloadVideo;
     instance.props.finishDownloadVideo = finishDownloadVideo;
+    instance.props.errorDownloadVideo = errorDownloadVideo;
   });
 
   it('should have a pressLecture handler', async () => {
