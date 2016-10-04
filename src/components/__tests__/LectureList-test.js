@@ -12,6 +12,7 @@ describe('LectureList', () => {
     const tree = renderer.create(
       <LectureList
         courseId={0}
+        isOnline
         lectures={[]}
         containerStyleId={0}
         handlePressDelete={() => null}

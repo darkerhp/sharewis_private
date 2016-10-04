@@ -11,6 +11,7 @@ describe('LectureItem', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <LectureItem
+        isOnline
         handlePressDelete={() => null}
         handlePressDownload={() => null}
         handlePressLecture={() => null}

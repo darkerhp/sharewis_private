@@ -42,6 +42,7 @@ class CourseDetails extends Component {
     id: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
+    isOnline: PropTypes.bool.isRequired,
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
@@ -51,6 +52,7 @@ class CourseDetails extends Component {
     fetchCourseDetails: PropTypes.func.isRequired,
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
+    errorDownloadVideo: PropTypes.func.isRequired,
     fetchVideoInDeviceStatus: PropTypes.func.isRequired,
     loadCurrentLecture: PropTypes.func.isRequired,
     pressDownloadVideo: PropTypes.func.isRequired,
@@ -101,11 +103,12 @@ class CourseDetails extends Component {
   handlePressDownload(lecture) {
     const {
       id,
+      beginDownloadVideo,
+      errorDownloadVideo,
+      finishDownloadVideo,
       isLectureDownloading,
       pressDownloadVideo,
-      beginDownloadVideo,
       progressDownloadVideo,
-      finishDownloadVideo,
     } = this.props;
 
     if (isLectureDownloading) {
@@ -122,7 +125,7 @@ class CourseDetails extends Component {
       .then(res => res || RNFS.mkdir(videoDirPath))
       .then(() =>
         RNFS.downloadFile({
-          fromUrl: lecture.url,
+          fromUrl: lecture.videoUrl,
           toFile,
           begin: (res) => {
             const { jobId, statusCode } = res;
@@ -135,15 +138,19 @@ class CourseDetails extends Component {
           progressDivider: 2,
         }).promise
       )
-      .then(res => res)
-      .catch(err => Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure')))
-      .then(() => finishDownloadVideo(lecture.id));
+      .then(() => finishDownloadVideo(lecture.id))
+      .catch((err) => {
+        console.error(err); // eslint-disable-line
+        errorDownloadVideo(lecture.id);
+        Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
+      });
   }
 
   render() {
     const {
       id,
       isFetching,
+      isOnline,
       lectures,
       lectureCount,
       lectureProgress,
@@ -176,6 +183,7 @@ class CourseDetails extends Component {
             containerStyleId={styles.lectureContainer}
             lectures={lectures}
             courseId={id}
+            isOnline={isOnline}
             handlePressLecture={this.handlePressLecture}
             handlePressDelete={this.handlePressDelete}
             handlePressDownload={this.handlePressDownload}

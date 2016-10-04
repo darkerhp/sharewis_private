@@ -16,51 +16,39 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderLecture = (
-  key,
-  courseId,
-  lecture,
-  handlePressLecture,
-  handlePressDownload,
-  handlePressDelete,
-) => (
-  lecture.kind === LECTURE_KIND_SECTION
-    ? <Section key={key} lecture={lecture} />
-    :
-    <LectureItem
-      key={key}
-      courseId={courseId}
-      currentLecture={lecture}
-      handlePressLecture={handlePressLecture}
-      handlePressDownload={handlePressDownload}
-      handlePressDelete={handlePressDelete}
-    />
+const renderLecture = params => (
+  params.currentLecture.kind === LECTURE_KIND_SECTION
+    ? <Section key={params.key} lecture={params.lecture} />
+    : <LectureItem {...params} />
 );
 
 const LectureList = ({
   // values
   containerStyleId,
   courseId,
+  isOnline,
   lectures,
   // actions
   handlePressDelete,
   handlePressDownload,
   handlePressLecture }) =>
   <View style={[styles.container, containerStyleId]}>
-    {lectures.map((lecture, i) => renderLecture(
-      i,
+    {lectures.map((lecture, i) => renderLecture({
+      key: i,
       courseId,
-      lecture,
+      isOnline,
+      currentLecture: lecture,
       handlePressLecture,
       handlePressDownload,
-      handlePressDelete)
-    )}
+      handlePressDelete,
+    }))}
   </View>;
 
 LectureList.propTypes = {
   // values
   containerStyleId: PropTypes.number.isRequired,
   courseId: PropTypes.number.isRequired,
+  isOnline: PropTypes.bool.isRequired,
   lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   // actions
   handlePressLecture: PropTypes.func.isRequired,

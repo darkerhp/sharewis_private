@@ -12,6 +12,7 @@ import {
   beginDownloadVideo,
   progressDownloadVideo,
   finishDownloadVideo,
+  errorDownloadVideo,
 } from '../../actions/courseDetails';
 
 global.Promise = require.requireActual('promise');
@@ -33,6 +34,7 @@ jest.mock('react-native-router-flux', () => ({
 jest.mock('react-native-fs', () => ({
   exists: path => new Promise(resolve => resolve(path)),
   unlink: path => new Promise(resolve => resolve(path)),
+  downloadFile: path => new Promise(resolve => resolve(path)),
 }));
 
 
@@ -44,6 +46,7 @@ describe('CourseDetails', () => {
     instance.props.beginDownloadVideo = beginDownloadVideo;
     instance.props.progressDownloadVideo = progressDownloadVideo;
     instance.props.finishDownloadVideo = finishDownloadVideo;
+    instance.props.errorDownloadVideo = errorDownloadVideo;
   });
 
   it('should have a pressLecture handler', async () => {

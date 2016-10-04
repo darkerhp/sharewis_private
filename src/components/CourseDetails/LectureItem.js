@@ -140,12 +140,17 @@ const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =
 
 const LectureItem = ({
   currentLecture,
+  isOnline,
   handlePressDelete,
   handlePressLecture,
   handlePressDownload,
 
 }) => {
-  const isAccessibleLecture = currentLecture.type === LECTURE_TYPE_VIDEO;
+  const isAccessibleLecture = (() => {
+    if (currentLecture.type !== LECTURE_TYPE_VIDEO) return false;
+    return isOnline || currentLecture.hasVideoInDevice;
+  })();
+
   return (
     <View style={styles.container}>
       <View
@@ -199,6 +204,7 @@ const LectureItem = ({
 LectureItem.propTypes = {
   // values
   currentLecture: PropTypes.shape({}).isRequired,
+  isOnline: PropTypes.bool.isRequired,
   // actions
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDelete: PropTypes.func.isRequired,

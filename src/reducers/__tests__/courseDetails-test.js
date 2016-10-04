@@ -97,6 +97,15 @@ describe('CourseDetails reducer', () => {
     expect(reducedState.lectures[1].hasVideoInDevice).toBeTruthy();
   });
 
+  it('should handle ERROR_DOWNLOAD_VIDEO', () => {
+    const state = { ...courses[0], lectures };
+    const action = { type: types.ERROR_DOWNLOAD_VIDEO, lectureId: 1 };
+    const reducedState = reducer(state, action);
+
+    expect(reducedState.lectures[1].isDownloading).toBeFalsy();
+    expect(reducedState.lectures[1].hasVideoInDevice).toBeFalsy();
+  });
+
   it('should handle UPDATE_VIDEO_IN_DEVICE_STATUS', () => {
     const state = { ...courses[0], lectures };
     const action = { type: types.UPDATE_VIDEO_IN_DEVICE_STATUS, lectures };

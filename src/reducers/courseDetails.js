@@ -43,6 +43,12 @@ const lectureItemReducer = (state, action) => {
         isDownloading: false,
         hasVideoInDevice: true,
       };
+    case types.ERROR_DOWNLOAD_VIDEO:
+      return {
+        ...state,
+        isDownloading: false,
+        hasVideoInDevice: false,
+      };
     case types.FINISH_DELETE_VIDEO:
       return {
         ...state,
@@ -60,13 +66,13 @@ const lectureListReducer = (state, action) => {
     case types.BEGIN_DOWNLOAD_VIDEO:
     case types.FINISH_DOWNLOAD_VIDEO:
     case types.PROGRESS_DOWNLOAD_VIDEO:
+    case types.ERROR_DOWNLOAD_VIDEO:
     case types.FINISH_DELETE_VIDEO:
       return state.map(l => lectureItemReducer(l, action));
     default:
       return state;
   }
 };
-
 
 const courseDetailsReducer = (state = getInitialState(), action) => {
   switch (action.type) {
@@ -110,6 +116,13 @@ const courseDetailsReducer = (state = getInitialState(), action) => {
         lectures: lectureListReducer(state.lectures, action),
       };
     case types.FINISH_DOWNLOAD_VIDEO:
+      return {
+        ...state,
+        isLectureDownloading: false,
+        lectures: lectureListReducer(state.lectures, action),
+        jobId: -1,
+      };
+    case types.ERROR_DOWNLOAD_VIDEO:
       return {
         ...state,
         isLectureDownloading: false,

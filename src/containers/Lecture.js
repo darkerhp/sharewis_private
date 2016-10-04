@@ -11,6 +11,7 @@ import SeekBar from '../components/Lecture/SeekBar';
 import VideoControls from '../components/Lecture/VideoControls';
 import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
+import * as FileUtils from '../utils/file';
 import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
@@ -70,6 +71,7 @@ class Lecture extends Component {
     estimatedTime: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
+    hasVideoInDevice: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
     order: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
@@ -100,9 +102,15 @@ class Lecture extends Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.id) return;
     if (nextProps.id !== this.props.id) {
-      const { id, title } = nextProps;
+      const { title } = nextProps;
       RouterActions.lecture({ title });
     }
+  }
+
+  @autobind
+  getVideoUrl() {
+    const { courseId, id, hasVideoInDevice, videoUrl } = this.props;
+    return hasVideoInDevice ? `file://${FileUtils.createVideoFileName(id, courseId)}` : videoUrl;
   }
 
   @autobind
@@ -143,10 +151,10 @@ class Lecture extends Component {
 
   render() {
     const {
-      // state
-      currentTime, estimatedTime, isLastLecture, isPaused, speed, title, videoUrl,
+      // values
+      currentTime, estimatedTime, isLastLecture, isPaused, speed, title,
       // actions
-      pressPlay, pressSpeed, updateVideoProgress,
+      pressPlay, pressSpeed,
     } = this.props;
     return (
       <View style={{ flex: 1 }}>
@@ -155,7 +163,7 @@ class Lecture extends Component {
           <Video
             ref={ref => (this.video = ref)}
             // source can be a URL or a local file
-            source={{ uri: videoUrl }}
+            source={{ uri: this.getVideoUrl() }}
             rate={speed}
             volume={1.0}
             muted={false}
@@ -164,7 +172,7 @@ class Lecture extends Component {
             repeat={false}
             playInBackground={false}
             playWhenInactive={false}
-            // onError={e => console.log(e)
+            onError={e => console.error(e)} // eslint-disable-line
             style={styles.backgroundVideo}
             onProgress={this.handleVideoProgress}
             onEnd={this.handlePressNextLecture}
