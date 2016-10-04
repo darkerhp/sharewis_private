@@ -40,9 +40,9 @@ class CourseDetails extends Component {
   static propTypes = {
     // values
     id: PropTypes.number.isRequired,
-    isOnline: PropTypes.bool.isRequired,
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
+    isOnline: PropTypes.bool.isRequired,
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
@@ -103,12 +103,12 @@ class CourseDetails extends Component {
   handlePressDownload(lecture) {
     const {
       id,
+      beginDownloadVideo,
+      errorDownloadVideo,
+      finishDownloadVideo,
       isLectureDownloading,
       pressDownloadVideo,
-      beginDownloadVideo,
       progressDownloadVideo,
-      finishDownloadVideo,
-      errorDownloadVideo,
     } = this.props;
 
     if (isLectureDownloading) {
