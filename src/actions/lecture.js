@@ -3,6 +3,7 @@ import { syncQueueAction } from '../actions/netInfo';
 import * as types from '../constants/ActionTypes';
 import * as ApiConstants from '../constants/Api';
 import { patchLectureStatus } from '../middleware/actApi';
+import { replaceInList } from '../utils/list';
 
 
 // Actions Creators
@@ -57,20 +58,21 @@ export const fetchLectureStatus = (courseId, lectureId, status) =>
   async (dispatch, getState) => {
     dispatch(fetchLectureStatusStart());
     try {
-      const state = getState();
-      const userId = state.user.userId;
-      const currentLecture = state.currentLecture;
+      const { course, currentLecture, user, netInfo } = getState();
+      const userId = user.userId;
+      const lectures = replaceInList(course.lectures, {
+        ...currentLecture,
+        status,
+      });
       let result = {};
 
-      if (state.netInfo.isConnected) {
+      if (netInfo.isConnected) {
         result = await patchLectureStatus(userId, courseId, lectureId, status);
       } else {
         syncQueueAction(fetchLectureStatus, [courseId, lectureId, status]);
-        result = {
-          course: state.course,
-          lectures: state.course.lectures,
-        };
       }
+      // TODO Move back l.75 in else condition once API results are fixed
+      result = { course, lectures };
 
       if (status === ApiConstants.LECTURE_STATUS_FINISHED) {
         dispatch(completeCurrentLecture());
