@@ -23,8 +23,9 @@ const Duration = ({
     }
   </View>;
 
+
 Duration.propTypes = {
-  estimatedTime: PropTypes.number,
+  estimatedTime: PropTypes.number.isRequired,
   format: PropTypes.string,
   containerStyleId: PropTypes.number,
   durationStyleId: PropTypes.number,

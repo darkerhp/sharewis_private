@@ -50,6 +50,7 @@ class CourseDetails extends Component {
     // actions
     beginDownloadVideo: PropTypes.func.isRequired,
     fetchCourseDetails: PropTypes.func.isRequired,
+    fetchVideoInDeviceStatus: PropTypes.func.isRequired,
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
     errorDownloadVideo: PropTypes.func.isRequired,
@@ -64,6 +65,11 @@ class CourseDetails extends Component {
     } catch (error) {
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
+  }
+
+  componentDidMount() {
+    const { id, lectures, fetchVideoInDeviceStatus } = this.props;
+    fetchVideoInDeviceStatus(id, lectures);
   }
 
   @autobind
@@ -105,6 +111,10 @@ class CourseDetails extends Component {
       progressDownloadVideo,
     } = this.props;
 
+    if (!lecture.videoUrl) {
+      Alert.alert('WTF?', lecture);
+      return false;
+    }
     if (isLectureDownloading) {
       return Alert.alert(I18n.t('errorTitle'), I18n.t('downloadAlreadyInProgress'));
     }
