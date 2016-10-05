@@ -29,9 +29,6 @@ const styles = StyleSheet.create({
       android: {
         width: 130,  // Or text will be trimmed in english
       },
-      ios: {
-        width: 140,
-      },
     }),
     textAlign: 'center',
     color: BaseStyles.textColor,
