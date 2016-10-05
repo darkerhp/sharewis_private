@@ -74,7 +74,6 @@ const getScenes = loggedIn =>
       hideNavBar={false}
       {...baseNavBarProps}
       backButtonImage={backButtonWhiteImage}
-      onBack={() => Actions.courseDetails()}
     />
     <Scene
       key="profile"
