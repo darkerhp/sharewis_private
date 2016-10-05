@@ -111,10 +111,6 @@ class CourseDetails extends Component {
       progressDownloadVideo,
     } = this.props;
 
-    if (!lecture.videoUrl) {
-      Alert.alert('WTF?', lecture);
-      return false;
-    }
     if (isLectureDownloading) {
       return Alert.alert(I18n.t('errorTitle'), I18n.t('downloadAlreadyInProgress'));
     }
