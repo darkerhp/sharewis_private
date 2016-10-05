@@ -60,7 +60,7 @@ export const fetchLectureStatus = (courseId, lectureId, status) =>
       const state = getState();
       const userId = state.user.userId;
       const currentLecture = state.currentLecture;
-      let result;
+      let result = {};
 
       if (state.netInfo.isConnected) {
         result = await patchLectureStatus(userId, courseId, lectureId, status);

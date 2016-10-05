@@ -55,7 +55,9 @@ export const patchLectureStatus = async (userId, courseId, lectureId, newStatus)
   const result = await fetch(`${ACT_API_URL}/courses/${courseId}/lectures/${lectureId}`, {
     method: 'PATCH',
     headers: getHeaders(userId),
-    body: `status="${newStatus}"`,
+    body: JSON.stringify({
+      status: newStatus,
+    }),
   });
   // Verify results
   await checkStatus(result);
