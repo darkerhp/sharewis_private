@@ -6,8 +6,8 @@ import * as types from '../constants/ActionTypes';
 export const fetchNetInfo = createAction(types.MIDDLEWARE_NETINFO);
 
 
-export const queueAction = (action, params) => ({
-  type: types.QUEUE_ACTION,
+export const syncQueueAction = (action, params) => ({
+  type: types.SYNC_QUEUE_ACTION,
   queuedAction: [action, params],
 });
 

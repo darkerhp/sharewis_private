@@ -1,5 +1,5 @@
 /* @flow */
-import { queueAction } from '../actions/netInfo';
+import { syncQueueAction } from '../actions/netInfo';
 import * as types from '../constants/ActionTypes';
 import * as ApiConstants from '../constants/Api';
 import { patchLectureStatus } from '../middleware/actApi';
@@ -65,7 +65,7 @@ export const fetchLectureStatus = (courseId, lectureId, status) =>
       if (state.netInfo.isConnected) {
         result = await patchLectureStatus(userId, courseId, lectureId, status);
       } else {
-        queueAction(fetchLectureStatus, [courseId, lectureId, status]);
+        syncQueueAction(fetchLectureStatus, [courseId, lectureId, status]);
         result = {
           course: state.course,
           lectures: state.course.lectures,

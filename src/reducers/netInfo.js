@@ -10,7 +10,7 @@ export default function netInfoReducer(state = initialState, action) {
   switch (action.type) {
     case types.MIDDLEWARE_NETINFO:
       return { ...state, ...action.payload };
-    case types.QUEUE_ACTION:
+    case types.SYNC_QUEUE_ACTION:
       return {
         ...state,
         queuedActions: [
