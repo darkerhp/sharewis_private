@@ -150,12 +150,13 @@ class Lecture extends Component {
     loadCurrentLecture(lectures, nextLecture);
   }
 
+  // 250ms毎に呼び出される
   @autobind
   handleVideoProgress(data) {
     const { currentTime, updateVideoProgress } = this.props;
-    if (currentTime !== data.currentTime) {
-      updateVideoProgress(data.currentTime);
-    }
+    if (Math.ceil(currentTime) === Math.ceil(data.currentTime)) return;
+    // 秒次でactionを実行
+    updateVideoProgress(data.currentTime);
   }
 
   render() {
