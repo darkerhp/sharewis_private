@@ -88,6 +88,7 @@ export const fetchCourseDetails = () =>
         dispatch(fetchCourseDetailsStart());
         const result = await getCourseDetails(userId, currentCourse.id);
         dispatch(fetchCourseDetailsSuccess(result));
+        dispatch(fetchVideoInDeviceStatus(currentCourse.id, result.lectures));
       }
     } catch (error) {
       dispatch(fetchCourseDetailsFailure());
