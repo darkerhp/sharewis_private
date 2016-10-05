@@ -3,6 +3,7 @@ import ReactNative from 'react-native';
 import Video from 'react-native-video';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
+import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
@@ -86,6 +87,11 @@ class Lecture extends Component {
     updateVideoProgress: PropTypes.func.isRequired,
   };
 
+  state = {
+    loading: false,
+  };
+
+  @autobind
   async componentDidMount() {
     try {
       const { courseId, id, fetchLectureStatus, status } = this.props;
@@ -98,12 +104,12 @@ class Lecture extends Component {
     }
   }
 
-
+  @autobind
   componentWillReceiveProps(nextProps) {
     if (!nextProps.id) return;
     if (nextProps.id !== this.props.id) {
       const { title } = nextProps;
-      RouterActions.lecture({ title });
+      RouterActions.refresh({ title });
     }
   }
 
@@ -117,12 +123,15 @@ class Lecture extends Component {
   handleValueChange(value) {
     if (this.video) {
       this.video.seek(value);
-      this.props.updateVideoProgress(value);
     }
   }
 
   @autobind
   handlePressNextLecture() {
+    // 一瞬Spinnerを表示する
+    this.setState({ loading: true });
+    setTimeout(() => this.setState({ loading: false }), 300);
+
     const {
       courseId,
       fetchLectureStatus,
@@ -141,12 +150,13 @@ class Lecture extends Component {
     loadCurrentLecture(lectures, nextLecture);
   }
 
+  // 250ms毎に呼び出される
   @autobind
   handleVideoProgress(data) {
     const { currentTime, updateVideoProgress } = this.props;
-    if (currentTime !== data.currentTime) {
-      updateVideoProgress(data.currentTime);
-    }
+    if (Math.ceil(currentTime) === Math.ceil(data.currentTime)) return;
+    // 秒次でactionを実行
+    updateVideoProgress(data.currentTime);
   }
 
   render() {
@@ -158,11 +168,11 @@ class Lecture extends Component {
     } = this.props;
     return (
       <View style={{ flex: 1 }}>
+        <Spinner visible={this.state.loading} />
         <StatusBar barStyle="light-content" />
         <View style={styles.videoContainer}>
           <Video
             ref={ref => (this.video = ref)}
-            // source can be a URL or a local file
             source={{ uri: this.getVideoUrl() }}
             rate={speed}
             volume={1.0}
