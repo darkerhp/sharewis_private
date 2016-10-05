@@ -103,7 +103,9 @@ class Lecture extends Component {
     if (!nextProps.id) return;
     if (nextProps.id !== this.props.id) {
       const { title } = nextProps;
-      RouterActions.lecture({ title });
+      // FIXME or replace or reset. pushだとSceneがmountされてクリック回数分lecture viewが残る
+      // TODO animation for refresh or replace or reset RouterAction
+      RouterActions.refresh({ title });
     }
   }
 
