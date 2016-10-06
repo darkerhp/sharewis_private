@@ -70,9 +70,8 @@ export const fetchLectureStatus = (courseId, lectureId, status) =>
         result = await patchLectureStatus(userId, courseId, lectureId, status);
       } else {
         syncQueueAction(fetchLectureStatus, [courseId, lectureId, status]);
+        result = { course, lectures };
       }
-      // TODO Move back l.75 in else condition once API results are fixed
-      result = { course, lectures };
 
       if (status === ApiConstants.LECTURE_STATUS_FINISHED) {
         dispatch(completeCurrentLecture());

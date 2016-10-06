@@ -62,9 +62,7 @@ export const patchLectureStatus = async (userId, courseId, lectureId, newStatus)
   // Verify results
   await checkStatus(result);
   const json = await result.json();
-  // TODO readd proper checkResult after API fix
-  await checkResult(json, l => l.status);
-  // await checkResult(json, l => l.status === newStatus);
+  await checkResult(json, l => l.status === newStatus);
 
   // Parse and return results
   return json;
