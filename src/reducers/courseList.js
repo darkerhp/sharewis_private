@@ -59,6 +59,13 @@ const courseListReducer = (state = getInitialState(), action) => {
       const currentCourse = completeCurrentLecture(state.currentCourse);
       return updateCurrentCourse(state, currentCourse);
     }
+    case types.UPDATE_VIDEO_IN_DEVICE_STATUS: {
+      const currentCourse = {
+        ...state.currentCourse,
+        lectures: action.lectures,
+      };
+      return updateCurrentCourse(state, currentCourse);
+    }
     default:
       return state;
   }

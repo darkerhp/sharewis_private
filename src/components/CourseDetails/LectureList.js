@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const renderLecture = params => (
   params.currentLecture.kind === LECTURE_KIND_SECTION
-    ? <Section key={params.key} lecture={params.lecture} />
+    ? <Section key={params.key} lecture={params.currentLecture} />
     : <LectureItem {...params} />
 );
 

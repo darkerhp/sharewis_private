@@ -1,4 +1,13 @@
 exports[`Duration renders correctly 1`] = `
 <View
-  style={null} />
+  style={null}>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={null}>
+    
+    01:40
+  </Text>
+</View>
 `;

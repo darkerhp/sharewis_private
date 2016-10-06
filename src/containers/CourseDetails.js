@@ -50,10 +50,10 @@ class CourseDetails extends Component {
     // actions
     beginDownloadVideo: PropTypes.func.isRequired,
     fetchCourseDetails: PropTypes.func.isRequired,
+    fetchVideoInDeviceStatus: PropTypes.func.isRequired,
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
     errorDownloadVideo: PropTypes.func.isRequired,
-    fetchVideoInDeviceStatus: PropTypes.func.isRequired,
     loadCurrentLecture: PropTypes.func.isRequired,
     pressDownloadVideo: PropTypes.func.isRequired,
     progressDownloadVideo: PropTypes.func.isRequired,
@@ -179,15 +179,17 @@ class CourseDetails extends Component {
             handlePressNextLecture={this.handlePressNextLecture}
             containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
           />
-          <LectureList
-            containerStyleId={styles.lectureContainer}
-            lectures={lectures}
-            courseId={id}
-            isOnline={isOnline}
-            handlePressLecture={this.handlePressLecture}
-            handlePressDelete={this.handlePressDelete}
-            handlePressDownload={this.handlePressDownload}
-          />
+          {lectures.length > 0 &&
+            <LectureList
+              containerStyleId={styles.lectureContainer}
+              lectures={lectures}
+              courseId={id}
+              isOnline={isOnline}
+              handlePressLecture={this.handlePressLecture}
+              handlePressDelete={this.handlePressDelete}
+              handlePressDownload={this.handlePressDownload}
+            />
+          }
         </View>
       </ScrollView>
     );
