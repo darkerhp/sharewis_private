@@ -2,11 +2,10 @@
 // TODO video と lecture, lectures分けたほうがよさげ
 import * as types from '../constants/ActionTypes';
 import * as ApiConstants from '../constants/Api';
-import * as LectureUtils from '../utils/lecture';
 import replaceInList from '../utils/list';
 
 // export for unittesting
-export const apiData = {
+export const initialState = {
   courseId: 0,
   estimatedTime: 0,
   hasVideoInDevice: false,  // added in course reducer
@@ -19,17 +18,6 @@ export const apiData = {
   type: null,
   videoUrl: undefined,
 };
-
-const initialState = {
-  ...apiData,
-  currentTime: 0,
-  isFullScreen: false,  // TODO
-  isPaused: true,
-  lectures: [],
-  speed: 1,
-};
-
-const speedList = [1, 1.2, 1.5, 2];
 
 const lecture = (state = initialState, action) => {
   switch (action.type) {
@@ -55,24 +43,6 @@ const lecture = (state = initialState, action) => {
         ...currentLecture,
       };
     }
-    case types.PRESS_PLAY:
-      return {
-        ...state,
-        isPaused: !state.isPaused,
-      };
-    case types.PRESS_SPEED: {
-      const currentIndex = speedList.indexOf(state.speed);
-      const index = (currentIndex === speedList.length - 1) ? 0 : currentIndex + 1;
-      return {
-        ...state,
-        speed: speedList[index],
-      };
-    }
-    case types.UPDATE_VIDEO_PROGRESS:
-      return {
-        ...state,
-        currentTime: action.currentTime,
-      };
     default:
       return state;
   }

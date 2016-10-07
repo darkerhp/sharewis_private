@@ -7,6 +7,7 @@ import lecture from './lecture';
 import routes from './routes';
 import user from './user';
 import netInfo from './netInfo';
+import videoPlayer from './videoPlayer';
 
 const rootReducer: Function = combineReducers({
   courseList,
@@ -16,6 +17,7 @@ const rootReducer: Function = combineReducers({
   routes,
   user,
   netInfo,
+  videoPlayer,
 });
 
 export default rootReducer;

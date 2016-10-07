@@ -13,7 +13,9 @@ import VideoControls from '../components/Lecture/VideoControls';
 import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
 import * as FileUtils from '../utils/file';
-import { connectActions, connectState } from '../utils/redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 
 const { Component, PropTypes } = React;
 const { Alert, StatusBar, StyleSheet, Text, View } = ReactNative;
@@ -61,8 +63,6 @@ const styles = StyleSheet.create({
 });
 
 
-@connectActions(Actions)
-@connectState('currentLecture')
 class Lecture extends Component {
   static propTypes = {
     lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -221,5 +221,12 @@ class Lecture extends Component {
   }
 }
 
+const mapStateToProps = (state, props) => ({
+  ...state.currentLecture,
+  ...state.videoPlayer,
+  isOnline: state.netInfo.isConnected,
+});
 
-export default Lecture;
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lecture);
