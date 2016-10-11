@@ -57,6 +57,7 @@ export const fetchUserBy = (loginMethod, credentials) =>
       const data = await getUserData(credentials);
       return dispatch(fetchActLoginSuccess(data));
     } catch (error) {
+      console.error(error); // eslint-disable-line
       dispatch(fetchActLoginFailure);
       throw error;
     }
