@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
 
 
 const CourseSummary = ({ course, ...props }) => {
-  console.log(course);
   return (
     <TouchableHighlight {...props}>
       <View style={{ flex: 1 }}>
@@ -84,7 +83,7 @@ const CourseSummary = ({ course, ...props }) => {
       </View>
     </TouchableHighlight>
   );
-}
+};
 
 CourseSummary.propTypes = {
   course: PropTypes.shape({
