@@ -20,7 +20,7 @@ export const fetchCourseDetailsStart = () => ({
   type: types.FETCH_COURSE_DETAILS_START,
 });
 
-export const fetchCourseDetailsSuccess = (response) => ({
+export const fetchCourseDetailsSuccess = response => ({
   type: types.FETCH_COURSE_DETAILS_SUCCESS,
   response,
 });
@@ -66,7 +66,7 @@ export const updateVideoInDeviceStatus = lectures => ({
 });
 
 // thunk action creators
-export const fetchVideoInDeviceStatus = (courseId) => (
+export const fetchVideoInDeviceStatus = courseId => (
   async(dispatch, getState) => {
     const state = getState();
     const promises = Object.keys(state.entities.lectures).map(async(lectureId) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import _ from 'lodash';
+import { _ } from 'lodash';
 import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import RNFS from 'react-native-fs';
