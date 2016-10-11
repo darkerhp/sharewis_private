@@ -1,6 +1,5 @@
 /* @flow */
 import * as types from '../../constants/ActionTypes';
-import { ACT_API_CACHE } from '../../constants/Api';
 
 const initialState = {
   isFetching: false,
@@ -12,12 +11,17 @@ const courseDetailsReducer = (state = initialState, action) => {
     case types.FETCH_COURSE_DETAILS_START:
       return {
         ...state,
-        isFetching: state.entities.lectures.length === 0,
+        isFetching: true,
       };
     case types.FETCH_COURSE_DETAILS_FAILURE:
       return {
         ...state,
         error: action.error,
+        isFetching: false,
+      };
+    case types.FETCH_COURSE_DETAILS_SUCCESS:
+      return {
+        ...state,
         isFetching: false,
       };
     case types.PRESS_DOWNLOAD_VIDEO:

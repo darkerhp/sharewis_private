@@ -1,8 +1,8 @@
 /* @flow */
 // TODO video と lecture, lectures分けたほうがよさげ
-import * as types from '../constants/ActionTypes';
-import * as ApiConstants from '../constants/Api';
-import replaceInList from '../utils/list';
+import * as types from '../../constants/ActionTypes';
+import * as ApiConstants from '../../constants/Api';
+import replaceInList from '../../utils/list';
 
 // export for unittesting
 export const initialState = {

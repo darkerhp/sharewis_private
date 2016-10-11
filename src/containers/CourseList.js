@@ -7,7 +7,7 @@ import I18n from 'react-native-i18n';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import _ from 'lodash';
 import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 class CourseList extends Component {
   static propTypes = {
     // states
-    courses: PropTypes.arrayOf(PropTypes.shape({})),
+    courses: PropTypes.shape({}),
     isFetching: PropTypes.bool.isRequired,
     // actions
     fetchCourseList: PropTypes.func.isRequired,
@@ -79,14 +79,14 @@ class CourseList extends Component {
   }
 
   handlePressCourse(course) {
-    this.props.loadCurrentCourse(course);
-    RouterActions.courseDetails();
+    this.props.loadCurrentCourse(course); // TODO いらん？
+    RouterActions.courseDetails({ courseId: course.id });
   }
 
   render() {
     const { isFetching, courses } = this.props;
 
-    if (courses.length === 0) {
+    if (_.isEmpty(courses)) {
       return <EmptyList isFetching={isFetching} />;
     }
     return (

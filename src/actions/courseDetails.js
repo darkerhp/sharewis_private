@@ -1,8 +1,12 @@
+import _ from 'lodash';
+import { normalize } from 'normalizr';
+
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
 import * as FileUtils from '../utils/file';
 
 import { getCourseDetails } from '../middleware/actApi';
+import * as schema from '../schema';
 
 
 // Actions Creators
@@ -16,10 +20,9 @@ export const fetchCourseDetailsStart = () => ({
   type: types.FETCH_COURSE_DETAILS_START,
 });
 
-export const fetchCourseDetailsSuccess = ({ course, lectures }) => ({
+export const fetchCourseDetailsSuccess = (response) => ({
   type: types.FETCH_COURSE_DETAILS_SUCCESS,
-  course,
-  lectures,
+  response,
 });
 
 // Used in courseDetails and lecture reducers
@@ -57,39 +60,40 @@ export const finishDeleteVideo = lectureId => ({
   jobId: -1,
   lectureId,
 });
-// TODO lectureに移動
 export const updateVideoInDeviceStatus = lectures => ({
   type: types.UPDATE_VIDEO_IN_DEVICE_STATUS,
   lectures,
 });
 
 // thunk action creators
-export const fetchVideoInDeviceStatus = (courseId, lectures) => (
-  async(dispatch) => {
-    const promises = lectures.map(async(l) => {
-      const path = FileUtils.createVideoFileName(l.id, courseId);
+export const fetchVideoInDeviceStatus = (courseId) => (
+  async(dispatch, getState) => {
+    const state = getState();
+    const promises = Object.keys(state.entities.lectures).map(async(lectureId) => {
+      const path = FileUtils.createVideoFileName(lectureId, courseId);
       const hasVideoInDevice = await FileUtils.exists(path);
-      return { ...l, hasVideoInDevice };
+      return { lectureId, hasVideoInDevice };
     });
     const updateLectures = await Promise.all(promises);
     dispatch(updateVideoInDeviceStatus(updateLectures));
   }
 );
 
-export const fetchCourseDetails = () =>
+export const fetchCourseDetails = courseId =>
   async (dispatch, getState) => {
     try {
       const state = getState();
       const userId = state.user.userId;
-      const currentCourse = state.currentCourse;
-      if (currentCourse.lectures.length === 0 ||
-          currentCourse.lectures[0].courseId !== currentCourse.id ||
-          currentCourse.fetchedAt - Date.now() > ACT_API_CACHE) {
+      const courseView = state.ui.courseView;
+      if (_.isEmpty(state.entities.lectures)
+        || courseView.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
-        const result = await getCourseDetails(userId, currentCourse.id);
-        dispatch(fetchCourseDetailsSuccess(result));
+        const response = await getCourseDetails(userId, courseId);
+        dispatch(fetchCourseDetailsSuccess(normalize(response.lectures, schema.arrayOfLectures)));
+        dispatch(fetchVideoInDeviceStatus());
       }
     } catch (error) {
+      console.error(error); // eslint-disable-line
       dispatch(fetchCourseDetailsFailure());
       throw error;
     }

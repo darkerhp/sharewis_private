@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import RNFS from 'react-native-fs';
 import I18n from 'react-native-i18n';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import * as Actions from '../actions/courseDetails';
 import LectureList from '../components/CourseDetails/LectureList';
@@ -34,8 +37,8 @@ const styles = StyleSheet.create({
   lectureContainer: { flex: 1 },
 });
 
-@connectActions(Actions)
-@connectState('currentCourse')
+// @connectActions(Actions)
+// @connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
     // values
@@ -43,7 +46,7 @@ class CourseDetails extends Component {
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
-    lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    lectures: PropTypes.shape({}).isRequired,
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -60,8 +63,9 @@ class CourseDetails extends Component {
   };
 
   async componentWillMount() {
+    const { id } = this.props;
     try {
-      await this.props.fetchCourseDetails();
+      await this.props.fetchCourseDetails(id);
     } catch (error) {
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
@@ -69,7 +73,7 @@ class CourseDetails extends Component {
 
   componentDidMount() {
     const { id, lectures, fetchVideoInDeviceStatus } = this.props;
-    fetchVideoInDeviceStatus(id, lectures);
+    _.isEmpty(lectures) || fetchVideoInDeviceStatus(id, lectures);
   }
 
   @autobind
@@ -156,6 +160,7 @@ class CourseDetails extends Component {
       lectureProgress,
       title,
     } = this.props;
+
     const isCompleted = lectureCount === lectureProgress;
     const courseInfo = {
       totalLectureCount: lectureCount,
@@ -179,7 +184,7 @@ class CourseDetails extends Component {
             handlePressNextLecture={this.handlePressNextLecture}
             containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
           />
-          {lectures.length > 0 &&
+          {!_.isEmpty(lectures) &&
             <LectureList
               containerStyleId={styles.lectureContainer}
               lectures={lectures}
@@ -196,4 +201,13 @@ class CourseDetails extends Component {
   }
 }
 
-export default CourseDetails;
+const mapStateToProps = (state, props) => ({
+  ...state.entities.courses[state.routes.scene.courseId],
+  lectures: state.entities.lectures,
+  isOnline: state.netInfo.isConnected,
+  ...state.ui.courseView,
+});
+
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseDetails);

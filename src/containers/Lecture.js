@@ -6,6 +6,8 @@ import Button from 'react-native-button';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
@@ -13,8 +15,6 @@ import VideoControls from '../components/Lecture/VideoControls';
 import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
 import * as FileUtils from '../utils/file';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 
 const { Component, PropTypes } = React;

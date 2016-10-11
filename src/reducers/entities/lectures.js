@@ -1,4 +1,6 @@
 /* @flow */
+import normalize from 'normalize-object';
+import _ from 'lodash';
 import * as types from '../../constants/ActionTypes';
 import { ACT_API_CACHE } from '../../constants/Api';
 import {
@@ -92,41 +94,51 @@ const lecture = (state, action) => {
 };
 
 
-const courseDetailsReducer = (state = getInitialState(), action) => {
+const courseDetailsReducer = (state = {}, action) => {
   switch (action.type) {
     case types.FETCH_COURSE_DETAILS_SUCCESS:
-      return fetchCourseDetailsSuccess(state, action);
+      return {
+        ...state,
+        ...normalize(action.response.entities.lectures), // プロパティをキャメルケースに変換
+      };
+
     case types.COMPLETE_CURRENT_LECTURE: {
       return completeCurrentLecture(state);
     }
     case types.BEGIN_DOWNLOAD_VIDEO:
       return {
         ...state,
-        lectures: lectureListReducer(state.entities.lectures, action),
+        lectures: lectureListReducer(state, action),
         jobId: action.jobId,
       };
     case types.PROGRESS_DOWNLOAD_VIDEO:
       return {
         ...state,
-        lectures: lectureListReducer(state.entities.lectures, action),
+        lectures: lectureListReducer(state, action),
       };
     case types.FINISH_DOWNLOAD_VIDEO:
       return {
         ...state,
-        lectures: lectureListReducer(state.entities.lectures, action),
+        lectures: lectureListReducer(state, action),
         jobId: -1,
       };
     case types.ERROR_DOWNLOAD_VIDEO:
       return {
         ...state,
-        lectures: lectureListReducer(state.entities.lectures, action),
+        lectures: lectureListReducer(state, action),
         jobId: -1,
       };
-    case types.UPDATE_VIDEO_IN_DEVICE_STATUS:
+    case types.UPDATE_VIDEO_IN_DEVICE_STATUS: {
+      if (_.isEmpty(state)) return state;
+      let newLectures = { ...state }; // eslint-disable-line
+      action.lectures.forEach(l =>
+        (newLectures[l.lectureId].hasVideoInDevice = l.hasVideoInDevice)
+      );
       return {
         ...state,
-        lectures: action.entities.lectures,
+        ...newLectures,
       };
+    }
     default:
       return state;
   }

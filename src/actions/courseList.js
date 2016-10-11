@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { normalize } from 'normalizr';
+
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
 import { getUserCourses } from '../middleware/actApi';
@@ -38,11 +39,8 @@ export const fetchCourseList = () =>
       const courseList = state.ui.myCourseView;
       if (_.isEmpty(state.entities.courses) || courseList.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseListStart());
-        const courses = await getUserCourses(userId);
-        console.log('normalized response',
-          normalize(courses, schema.arrayOfCourses));
-
-        dispatch(fetchCourseListSuccess(normalize(courses, schema.arrayOfCourses)));
+        const response = await getUserCourses(userId);
+        dispatch(fetchCourseListSuccess(normalize(response, schema.arrayOfCourses)));
       }
     } catch (error) {
       dispatch(fetchCourseListFailure());

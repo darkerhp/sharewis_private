@@ -6,7 +6,6 @@ const initialState = {};
 const coursesReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_COURSES_LIST_SUCCESS:
-      console.log('action:', action);
       return {
         ...state,
         ...normalize(action.response.entities.courses), // プロパティをキャメルケースに変換
