@@ -21,11 +21,6 @@ export const getLectureIconName = (lecture) => {
   }
 };
 
-const sortByOrder = (a, b) => {
-  if (a.order === b.order) return 0;
-  return a.order < b.order ? -1 : 1;
-};
-
 export const getNextVideoLecture = (lectures, skipCompleted = true, currentOrder = 0) => {
   let videoLectures = _.filter(lectures, lecture => (
     lecture.kind === ApiConstants.LECTURE_KIND_LECTURE &&
