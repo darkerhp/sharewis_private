@@ -5,6 +5,8 @@ import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
@@ -56,8 +58,8 @@ const styles = StyleSheet.create({
 });
 
 
-@connectActions(Actions)
-@connectState('courseList')
+// @connectActions(Actions)
+// @connectState('courseList')
 class CourseList extends Component {
   static propTypes = {
     // states
@@ -95,13 +97,12 @@ class CourseList extends Component {
       >
         <Spinner visible={isFetching} />
         <View style={styles.courseList}>
-          {courses.map((course, key) =>
+          {Object.keys(courses).map((courseId, index) =>
             <CourseSummary
               style={styles.container}
-              onPress={() => this.handlePressCourse(course)}
-
-              course={course}
-              key={key}
+              onPress={() => this.handlePressCourse(courses[courseId])}
+              course={courses[courseId]}
+              key={index}
             />
           )}
           <View style={[styles.container, { height: 150 }]}>
@@ -125,4 +126,14 @@ class CourseList extends Component {
 }
 
 
-export default CourseList;
+// export default CourseList;
+
+const mapStateToProps = (state, props) => ({
+  courses: state.entities.courses,
+  ...state.ui.myCourseView,
+  isOnline: state.netInfo.isConnected,
+});
+
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseList);

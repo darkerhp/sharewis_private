@@ -1,7 +1,9 @@
+import _ from 'lodash';
+import { normalize } from 'normalizr';
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
 import { getUserCourses } from '../middleware/actApi';
-
+import * as schema from '../schema';
 
 // Actions Creators
 
@@ -14,9 +16,9 @@ export const fetchCourseListStart = () => ({
   type: types.FETCH_COURSES_LIST_START,
 });
 
-export const fetchCourseListSuccess = courses => ({
+export const fetchCourseListSuccess = response => ({
   type: types.FETCH_COURSES_LIST_SUCCESS,
-  courses,
+  response,
 });
 
 // used in courseList and courseDetails reducers
@@ -29,16 +31,18 @@ export const loadCurrentCourse = currentCourse => ({
 // Thunks
 
 export const fetchCourseList = () =>
-  async (dispatch, getState) => {
+  async(dispatch, getState) => {
     try {
       const state = getState();
       const userId = state.user.userId;
-      const courseList = state.courseList;
-      if (courseList.courses.length === 0 ||
-          courseList.fetchedAt - Date.now() > ACT_API_CACHE) {
+      const courseList = state.ui.myCourseView;
+      if (_.isEmpty(state.entities.courses) || courseList.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseListStart());
         const courses = await getUserCourses(userId);
-        dispatch(fetchCourseListSuccess(courses));
+        console.log('normalized response',
+          normalize(courses, schema.arrayOfCourses));
+
+        dispatch(fetchCourseListSuccess(normalize(courses, schema.arrayOfCourses)));
       }
     } catch (error) {
       dispatch(fetchCourseListFailure());
