@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as ApiConstants from '../constants/Api';
 
 // @flow
@@ -26,23 +27,26 @@ const sortByOrder = (a, b) => {
 };
 
 export const getNextVideoLecture = (lectures, skipCompleted = true, currentOrder = 0) => {
-  let videoLectures = lectures.filter(l =>
-    l.kind === ApiConstants.LECTURE_KIND_LECTURE &&
-    l.type === ApiConstants.LECTURE_TYPE_VIDEO &&  // TODO enable other lecture types
-    l.order > currentOrder
-  );
+  let videoLectures = _.filter(lectures, lecture => (
+    lecture.kind === ApiConstants.LECTURE_KIND_LECTURE &&
+    // TODO enable other lecture types
+    lecture.type === ApiConstants.LECTURE_TYPE_VIDEO &&
+    lecture.order > currentOrder
+  ));
+
   if (skipCompleted) {
-    videoLectures = videoLectures.filter(l =>
-      l.status !== ApiConstants.LECTURE_STATUS_FINISHED
-    );
+    videoLectures = _.filter(videoLectures, { status: ApiConstants.LECTURE_STATUS_FINISHED });
   }
-  return videoLectures.sort(sortByOrder)[0] || {};
+
+  return _.sortBy(videoLectures, ['order'])[0] || {};
 };
 
 export const getLastLectureId = (lectures) => {
-  const videoLectures = lectures.filter(l =>
-    l.kind === ApiConstants.LECTURE_KIND_LECTURE &&
-    l.type === ApiConstants.LECTURE_TYPE_VIDEO  // TODO enable other lecture types
-  );
-  return videoLectures.sort(sortByOrder)[videoLectures.length - 1].id;
+  const videoLectures = _.filter(lectures, lecture => (
+    lecture.kind === ApiConstants.LECTURE_KIND_LECTURE &&
+    // TODO enable other lecture types
+    lecture.type === ApiConstants.LECTURE_TYPE_VIDEO
+  ));
+
+  return _.sortBy(videoLectures, ['order'])[videoLectures.length - 1].id;
 };
