@@ -85,7 +85,7 @@ export const fetchCourseDetails = courseId =>
       const state = getState();
       const userId = state.user.userId;
       const courseView = state.ui.courseView;
-      if (_.isEmpty(state.entities.lectures)
+      if (_.isEmpty(_.filter(state.entities.lectures, { courseId }))
         || courseView.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
         const response = await getCourseDetails(userId, courseId);

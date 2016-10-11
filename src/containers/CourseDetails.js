@@ -201,12 +201,19 @@ class CourseDetails extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  ...state.entities.courses[state.routes.scene.courseId],
-  lectures: state.entities.lectures,
-  isOnline: state.netInfo.isConnected,
-  ...state.ui.courseView,
-});
+const mapStateToProps = (state, props) => {
+  const { entities, netInfo, ui, routes } = state;
+  const { courses, lectures } = entities;
+  const courseId = routes.scene.courseId;
+  return {
+    ...courses[routes.scene.courseId],
+    lectures: _.transform(
+      _.filter(lectures, { courseId }),
+      (result, value, key) => (result[value.id] = value), {}), // eslint-disable-line
+    isOnline: netInfo.isConnected,
+    ...ui.courseView,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 
