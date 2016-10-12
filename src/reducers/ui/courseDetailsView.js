@@ -1,5 +1,5 @@
 /* @flow */
-import * as types from '../../constants/ActionTypes';
+import { handleActions } from 'redux-actions';
 
 const initialState = {
   currentCourseId: 0,
@@ -7,47 +7,36 @@ const initialState = {
   isLectureDownloading: false,
 };
 
-const courseDetailsViewReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.FETCH_COURSE_DETAILS_START:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case types.FETCH_COURSE_DETAILS_FAILURE:
-      return {
-        ...state,
-        error: action.error,
-        isFetching: false,
-      };
-    case types.FETCH_COURSE_DETAILS_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-      };
-    case types.PRESS_DOWNLOAD_VIDEO:
-      return {
-        ...state,
-        isLectureDownloading: true,
-      };
-    case types.FINISH_DOWNLOAD_VIDEO:
-      return {
-        ...state,
-        isLectureDownloading: false,
-      };
-    case types.ERROR_DOWNLOAD_VIDEO:
-      return {
-        ...state,
-        isLectureDownloading: false,
-      };
-    case types.SET_CURRENT_COURSE_ID:
-      return {
-        ...state,
-        currentCourseId: action.courseId,
-      };
-    default:
-      return state;
-  }
-};
+const courseDetailsViewReducer = handleActions({
+  FETCH_COURSE_DETAILS_START: (state, action) => ({
+    ...state,
+    isFetching: true,
+  }),
+  FETCH_COURSE_DETAILS_FAILURE: (state, action) => ({
+    ...state,
+    error: action.payload,
+    isFetching: false,
+  }),
+  FETCH_COURSE_DETAILS_SUCCESS: (state, action) => ({
+    ...state,
+    isFetching: false,
+  }),
+  PRESS_DOWNLOAD_VIDEO: (state, action) => ({
+    ...state,
+    isLectureDownloading: true,
+  }),
+  FINISH_DOWNLOAD_VIDEO: (state, action) => ({
+    ...state,
+    isLectureDownloading: false,
+  }),
+  ERROR_DOWNLOAD_VIDEO: (state, action) => ({
+    ...state,
+    isLectureDownloading: false,
+  }),
+  SET_CURRENT_COURSE_ID: (state, action) => ({
+    ...state,
+    currentCourseId: action.payload,
+  }),
+}, initialState);
 
 export default courseDetailsViewReducer;

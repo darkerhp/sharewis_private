@@ -125,7 +125,7 @@ class Lecture extends Component {
   handlePressNextLecture() {
     // 一瞬Spinnerを表示する
     this.setState({ loading: true });
-    setTimeout(() => this.setState({ loading: false }), 300);
+    setTimeout(() => this.setState({ loading: false }), 500);
 
     const {
       courseId,

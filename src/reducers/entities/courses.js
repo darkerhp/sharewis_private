@@ -1,18 +1,13 @@
 import normalize from 'normalize-object';
-import * as types from '../../constants/ActionTypes';
+import { handleActions } from 'redux-actions';
 
 const initialState = {};
 
-const coursesReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.FETCH_COURSES_LIST_SUCCESS:
-      return {
-        ...state,
-        ...normalize(action.response.entities.courses), // プロパティをキャメルケースに変換
-      };
-    default:
-      return state;
-  }
-};
+const coursesReducer = handleActions({
+  FETCH_COURSES_LIST_SUCCESS: (state, action) => ({
+    ...state,
+    ...normalize(action.payload.entities.courses), // プロパティをキャメルケースに変換
+  }),
+}, initialState);
 
 export default coursesReducer;

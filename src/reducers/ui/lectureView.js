@@ -1,22 +1,16 @@
 /* @flow */
-import * as types from '../../constants/ActionTypes';
+import { handleActions } from 'redux-actions';
 
-export const initialState = {
+const initialState = {
   currentLectureId: 0,
   isLastLecture: false,
 };
 
-const lectureViewReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.SET_CURRENT_LECTURE_ID: {
-      return {
-        ...state,
-        currentLectureId: action.lectureId,
-      };
-    }
-    default:
-      return state;
-  }
-};
+const lectureViewReducer = handleActions({
+  SET_CURRENT_LECTURE_ID: (state, action) => ({
+    ...state,
+    currentLectureId: action.payload,
+  }),
+}, initialState);
 
 export default lectureViewReducer;

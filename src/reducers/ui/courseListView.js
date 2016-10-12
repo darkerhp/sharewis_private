@@ -1,29 +1,21 @@
-import _ from 'lodash';
-import * as types from '../../constants/ActionTypes';
+import { handleActions } from 'redux-actions';
 
 const initialState = { isFetching: false };
 
-const courseListViewReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.FETCH_COURSES_LIST_START:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case types.FETCH_COURSES_LIST_FAILURE:
-      return {
-        ...state,
-        error: action.error,
-        isFetching: false,
-      };
-    case types.FETCH_COURSES_LIST_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-      };
-    default:
-      return state;
-  }
-};
+const courseListViewReducer = handleActions({
+  FETCH_COURSES_LIST_START: (state, action) => ({
+    ...state,
+    isFetching: true,
+  }),
+  FETCH_COURSES_LIST_FAILURE: (state, action) => ({
+    ...state,
+    error: action.payload,
+    isFetching: false,
+  }),
+  FETCH_COURSES_LIST_SUCCESS: (state, action) => ({
+    ...state,
+    isFetching: false,
+  }),
+}, initialState);
 
 export default courseListViewReducer;
