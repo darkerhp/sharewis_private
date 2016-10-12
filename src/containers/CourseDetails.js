@@ -85,6 +85,7 @@ class CourseDetails extends Component {
 
   @autobind
   handlePressLecture(lecture) {
+    console.log(lecture);
     const { setCurrentLectureId } = this.props;
     setCurrentLectureId(lecture.id);
     RouterActions.lecture();
@@ -156,11 +157,9 @@ class CourseDetails extends Component {
       lectureProgress,
       title,
     } = this.props;
-    const isCompleted = lectureCount === lectureProgress;
     const courseInfo = {
       totalLectureCount: lectureCount,
       completeLectureCount: lectureProgress,
-      isCompleted,
       courseTitle: title,
       totalDuration: totalDuration(lectures),
       nextLecture: LectureUtils.getNextVideoLecture(id, lectures),
@@ -177,7 +176,8 @@ class CourseDetails extends Component {
           <CourseInfoSection
             {...courseInfo}
             handlePressNextLecture={this.handlePressNextLecture}
-            containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
+            containerStyle={{ height: _.isEmpty(courseInfo.nextLecture)
+              ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
           />
           {!_.isEmpty(lectures) &&
             <LectureList
