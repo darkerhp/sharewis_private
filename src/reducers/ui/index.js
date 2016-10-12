@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import myCourseView from './myCourseView';
-import courseView from './courseView';
+import courseListView from './courseListView';
+import courseDetailsView from './courseDetailsView';
 import lectureView from './lectureView';
 import videoPlayer from './videoPlayer';
 
 export const reducers = {
-  myCourseView,
-  courseView,
+  courseListView,
+  courseDetailsView,
   lectureView,
   videoPlayer,
 };

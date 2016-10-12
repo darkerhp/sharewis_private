@@ -6,20 +6,10 @@ import replaceInList from '../../utils/list';
 
 // export for unittesting
 export const initialState = {
-  courseId: 0,
-  estimatedTime: 0,
-  hasVideoInDevice: false,  // added in course reducer
-  id: 0,
   isLastLecture: false,  // added in course reducer utils
-  kind: null,
-  order: 0,
-  status: ApiConstants.LECTURE_STATUS_NOT_STARTED,
-  title: undefined,
-  type: null,
-  videoUrl: undefined,
 };
 
-const lecture = (state = initialState, action) => {
+const lectureViewReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.COMPLETE_CURRENT_LECTURE: {
       let { lectures, ...currentLecture } = state;
@@ -30,17 +20,10 @@ const lecture = (state = initialState, action) => {
         ...currentLecture,
       };
     }
-    case types.LOAD_CURRENT_LECTURE: {
-      const currentLecture = {
-        ...action.currentLecture,
-        status: action.currentLecture.status === ApiConstants.LECTURE_STATUS_NOT_STARTED
-        ? ApiConstants.LECTURE_STATUS_VIEWED
-        : action.currentLecture.status,
-      };
+    case types.LOAD_LECTURE: {
       return {
         ...state,
-        lectures: action.lectures,
-        ...currentLecture,
+        ...action.lecture,
       };
     }
     default:
@@ -48,4 +31,4 @@ const lecture = (state = initialState, action) => {
   }
 };
 
-export default lecture;
+export default lectureViewReducer;

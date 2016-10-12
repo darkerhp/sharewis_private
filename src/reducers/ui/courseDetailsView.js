@@ -6,7 +6,7 @@ const initialState = {
   isLectureDownloading: false,
 };
 
-const courseDetailsReducer = (state = initialState, action) => {
+const courseDetailsViewReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_COURSE_DETAILS_START:
       return {
@@ -44,4 +44,4 @@ const courseDetailsReducer = (state = initialState, action) => {
   }
 };
 
-export default courseDetailsReducer;
+export default courseDetailsViewReducer;
