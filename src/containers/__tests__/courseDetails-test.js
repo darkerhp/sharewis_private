@@ -7,7 +7,7 @@ import renderer from 'react-test-renderer';
 import CourseDetails from '../CourseDetails';
 import { courses } from '../../data/dummyData';
 import {
-  loadCurrentLecture,
+  loadLecture,
   pressDownloadVideo,
   beginDownloadVideo,
   progressDownloadVideo,
@@ -41,7 +41,7 @@ jest.mock('react-native-fs', () => ({
 describe('CourseDetails', () => {
   beforeEach(() => {
     instance = new CourseDetails({ ...courses[0] });
-    instance.props.loadCurrentLecture = loadCurrentLecture;
+    instance.props.loadLecture = loadLecture;
     instance.props.pressDownloadVideo = pressDownloadVideo;
     instance.props.beginDownloadVideo = beginDownloadVideo;
     instance.props.progressDownloadVideo = progressDownloadVideo;

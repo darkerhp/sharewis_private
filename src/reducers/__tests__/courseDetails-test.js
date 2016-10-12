@@ -38,7 +38,7 @@ describe('CourseDetails reducer', () => {
 
   it('should load current lecture', () => {
     expect(reducer({ lectures, currentLecture: null }, {
-      type: types.LOAD_CURRENT_LECTURE,
+      type: types.LOAD_LECTURE,
       currentLecture: lectures[0],
     })).toEqual({
       lectures,
