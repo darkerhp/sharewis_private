@@ -3,30 +3,27 @@ import { syncQueueAction } from '../actions/netInfo';
 import * as types from '../constants/ActionTypes';
 import * as ApiConstants from '../constants/Api';
 import { patchLectureStatus } from '../middleware/actApi';
-import { replaceInList } from '../utils/list';
-
 
 // Actions Creators
 
-export const fetchLectureStatusFailure = error => ({
-  type: types.FETCH_LECTURE_STATUS_FAILURE,
+export const updateLectureStatusFailure = error => ({
+  type: types.UPDATE_LECTURE_STATUS_FAILURE,
   error,
 });
 
-export const fetchLectureStatusStart = () => ({
-  type: types.FETCH_LECTURE_STATUS_START,
+export const updateLectureStatusStart = () => ({
+  type: types.UPDATE_LECTURE_STATUS_START,
 });
 
-export const fetchLectureStatusSuccess = ({ course, lectures }) => ({
-  type: types.FETCH_LECTURE_STATUS_SUCCESS,
-  course,
-  lectures,
+export const updateLectureStatusSuccess = (lectureId, status) => ({
+  type: types.UPDATE_LECTURE_STATUS_SUCCESS,
+  lectureId,
+  status,
 });
 
-export const loadCurrentLecture = (lectures, currentLecture) => ({
-  type: types.LOAD_CURRENT_LECTURE,
-  lectures,
-  currentLecture,
+export const setCurrentLectureId = lectureId => ({
+  type: types.SET_CURRENT_LECTURE_ID,
+  lectureId,
 });
 
 export const pressFullScreen = () => ({
@@ -47,40 +44,36 @@ export const updateVideoProgress = currentTime => ({
 });
 
 // Used in courseList and courseDetails reducers
-export const completeCurrentLecture = () => ({
-  type: types.COMPLETE_CURRENT_LECTURE,
+export const completeLecture = () => ({
+  type: types.COMPLETE_LECTURE,
 });
 
 
 // Thunks
-
-export const fetchLectureStatus = (courseId, lectureId, status) =>
+export const updateLectureStatus = (lectureId, status) =>
   async (dispatch, getState) => {
-    dispatch(fetchLectureStatusStart());
+    dispatch(updateLectureStatusStart());
     try {
-      const { course, currentLecture, user, netInfo } = getState();
+      const { entities, user, netInfo } = getState();
+      const { courses, lectures } = entities;
       const userId = user.userId;
-      const lectures = replaceInList(course.lectures, {
-        ...currentLecture,
-        status,
-      });
-      let result = {};
-
+      const lecture = lectures[lectureId];
+      console.log(lectureId, status);
       if (netInfo.isConnected) {
-        result = await patchLectureStatus(userId, courseId, lectureId, status);
+        await patchLectureStatus(userId, lecture.courseId, lectureId, status);
       } else {
-        syncQueueAction(fetchLectureStatus, [courseId, lectureId, status]);
-        result = { course, lectures };
+        syncQueueAction(patchLectureStatus, [userId, lecture.courseId, lectureId, status]);
       }
 
       if (status === ApiConstants.LECTURE_STATUS_FINISHED) {
-        dispatch(completeCurrentLecture());
+        dispatch(completeLecture(lectureId));
       } else {
-        dispatch(loadCurrentLecture(result.lectures, { ...currentLecture, status }));
+        dispatch(setCurrentLectureId(lectureId));
       }
-      dispatch(fetchLectureStatusSuccess(result));
+      dispatch(updateLectureStatusSuccess(lectureId, status));
     } catch (error) {
-      dispatch(fetchLectureStatusFailure());
+      console.error(error); // eslint-disable-line
+      dispatch(updateLectureStatusFailure());
       throw error;
     }
   };

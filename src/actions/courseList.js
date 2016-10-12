@@ -22,10 +22,9 @@ export const fetchCourseListSuccess = response => ({
   response,
 });
 
-// used in courseList and courseDetails reducers
-export const loadCurrentCourse = currentCourse => ({
-  type: types.LOAD_CURRENT_COURSE,
-  currentCourse,
+export const setCurrentCourseId = courseId => ({
+  type: types.SET_CURRENT_COURSE_ID,
+  courseId,
 });
 
 
@@ -36,8 +35,9 @@ export const fetchCourseList = () =>
     try {
       const state = getState();
       const userId = state.user.userId;
-      const courseList = state.ui.myCourseView;
-      if (_.isEmpty(state.entities.courses) || courseList.fetchedAt - Date.now() > ACT_API_CACHE) {
+      const courseListView = state.ui.courseListView;
+      if (_.isEmpty(state.entities.courses)
+        || courseListView.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseListStart());
         const response = await getUserCourses(userId);
         dispatch(fetchCourseListSuccess(normalize(response, schema.arrayOfCourses)));

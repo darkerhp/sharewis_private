@@ -24,13 +24,6 @@ export const fetchCourseDetailsSuccess = response => ({
   type: types.FETCH_COURSE_DETAILS_SUCCESS,
   response,
 });
-
-// Used in courseDetails and lecture reducers
-export const loadCurrentLecture = (lectures, currentLecture) => ({
-  type: types.LOAD_CURRENT_LECTURE,
-  lectures, // lecture reducers
-  currentLecture,
-});
 export const pressDownloadVideo = () => ({
   type: types.PRESS_DOWNLOAD_VIDEO,
 });
@@ -84,9 +77,9 @@ export const fetchCourseDetails = courseId =>
     try {
       const state = getState();
       const userId = state.user.userId;
-      const courseView = state.ui.courseView;
+      const courseDetailsView = state.ui.courseDetailsView;
       if (_.isEmpty(_.filter(state.entities.lectures, { courseId }))
-        || courseView.fetchedAt - Date.now() > ACT_API_CACHE) {
+        || courseDetailsView.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
         const response = await getCourseDetails(userId, courseId);
         dispatch(fetchCourseDetailsSuccess(normalize(response.lectures, schema.arrayOfLectures)));

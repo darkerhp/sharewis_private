@@ -28,7 +28,7 @@ describe('CourseDetails reducer', () => {
 
   it('should load current course when action is triggered from CourseList', () => {
     expect(reducer({ currentLecture: null }, {
-      type: types.LOAD_CURRENT_COURSE,
+      type: types.SET_CURRENT_COURSE_ID,
       currentCourse: courses[0],
     })).toEqual({
       currentLecture: null,
@@ -38,7 +38,7 @@ describe('CourseDetails reducer', () => {
 
   it('should load current lecture', () => {
     expect(reducer({ lectures, currentLecture: null }, {
-      type: types.LOAD_LECTURE,
+      type: types.SET_CURRENT_LECTURE_ID,
       currentLecture: lectures[0],
     })).toEqual({
       lectures,
@@ -57,7 +57,7 @@ describe('CourseDetails reducer', () => {
     expect(state.lectureProgress).toEqual(3);
     expect(state.currentLecture.status).toEqual('not_started');
 
-    state = reducer(state, { type: types.COMPLETE_CURRENT_LECTURE });
+    state = reducer(state, { type: types.COMPLETE_LECTURE });
 
     expect(state.lectureProgress).toEqual(4);
     expect(state.currentLecture.status).toBeTruthy();

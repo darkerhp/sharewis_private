@@ -55,7 +55,7 @@ describe('CourseList reducer', () => {
 
   it('should load currentCourse when pressing a course', () => {
     expect(reducer({ courses: dummyCourses, currentCourse: null }, {
-      type: types.LOAD_CURRENT_COURSE,
+      type: types.SET_CURRENT_COURSE_ID,
       currentCourse: dummyCourses[0],
     })).toEqual({
       courses: dummyCourses,
@@ -75,7 +75,7 @@ describe('CourseList reducer', () => {
     };
     expect(state.currentCourse.lectureProgress).toEqual(3);
 
-    state = reducer(state, { type: types.COMPLETE_CURRENT_LECTURE });
+    state = reducer(state, { type: types.COMPLETE_LECTURE });
 
     expect(state.currentCourse.lectureProgress).toEqual(4);
   });

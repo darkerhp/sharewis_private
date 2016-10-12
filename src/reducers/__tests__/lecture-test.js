@@ -33,9 +33,9 @@ describe('Lecture reducer', () => {
     }
   });
 
-  it('should handle LOAD_LECTURE', () => {
+  it('should handle SET_CURRENT_LECTURE_ID', () => {
     expect(reducer(undefined, {
-      type: types.LOAD_LECTURE,
+      type: types.SET_CURRENT_LECTURE_ID,
       currentLecture: lectures[2],
       lectures,
     })).toEqual({

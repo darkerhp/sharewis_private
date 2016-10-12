@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions/courseDetails';
+import * as LectureActions from '../actions/lecture';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import totalDuration from '../utils/courseDetails';
@@ -57,16 +58,17 @@ class CourseDetails extends Component {
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
     errorDownloadVideo: PropTypes.func.isRequired,
-    loadCurrentLecture: PropTypes.func.isRequired,
+    setCurrentLectureId: PropTypes.func.isRequired,
     pressDownloadVideo: PropTypes.func.isRequired,
     progressDownloadVideo: PropTypes.func.isRequired,
   };
 
   async componentWillMount() {
-    const { id } = this.props;
+    const { fetchCourseDetails, id } = this.props;
     try {
-      await this.props.fetchCourseDetails(id);
+      await fetchCourseDetails(id);
     } catch (error) {
+      console.error(error); // eslint-disable-line
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
   }
@@ -78,20 +80,16 @@ class CourseDetails extends Component {
 
   @autobind
   handlePressNextLecture() {
-    const { lectures } = this.props;
-    const lecture = LectureUtils.getNextVideoLecture(lectures);
-    return this.handlePressLecture(lecture);
+    const { id, lectures } = this.props;
+    const lecture = LectureUtils.getNextVideoLecture(id, lectures);
+    this.handlePressLecture(lecture);
   }
 
   @autobind
   handlePressLecture(lecture) {
-    const { lectures, loadCurrentLecture } = this.props;
-    loadCurrentLecture(lectures, lecture);
-    return RouterActions.lecture({
-      title: lecture.title.length > 18
-        ? `${lecture.title.substr(0, 17)}…`
-        : lecture.title,
-    });
+    const { setCurrentLectureId } = this.props;
+    setCurrentLectureId(lecture.id);
+    RouterActions.lecture();
   }
 
   @autobind
@@ -160,7 +158,6 @@ class CourseDetails extends Component {
       lectureProgress,
       title,
     } = this.props;
-
     const isCompleted = lectureCount === lectureProgress;
     const courseInfo = {
       totalLectureCount: lectureCount,
@@ -168,7 +165,7 @@ class CourseDetails extends Component {
       isCompleted,
       courseTitle: title,
       totalDuration: totalDuration(lectures),
-      nextLecture: LectureUtils.getNextVideoLecture(lectures),
+      nextLecture: LectureUtils.getNextVideoLecture(id, lectures),
     };
     return (
       <ScrollView
@@ -201,20 +198,22 @@ class CourseDetails extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  const { entities, netInfo, ui, routes } = state;
+const mapStateToProps = (state) => {
+  const { entities, netInfo, ui } = state;
   const { courses, lectures } = entities;
-  const courseId = routes.scene.courseId;
+  const { currentCourseId } = ui.courseDetailsView;
   return {
-    ...courses[routes.scene.courseId],
+    ...courses[currentCourseId],
     lectures: _.transform(
-      _.filter(lectures, { courseId }),
+      _.filter(lectures, { courseId: currentCourseId }),
       (result, value, key) => (result[value.id] = value), {}), // eslint-disable-line
     isOnline: netInfo.isConnected,
-    ...ui.courseView,
+    ...ui.courseDetailsView,
   };
 };
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ ...Actions, ...LectureActions }, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseDetails);

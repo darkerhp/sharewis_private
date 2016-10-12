@@ -2,6 +2,7 @@
 import * as types from '../../constants/ActionTypes';
 
 const initialState = {
+  currentCourseId: 0,
   isFetching: false,
   isLectureDownloading: false,
 };
@@ -38,6 +39,11 @@ const courseDetailsViewReducer = (state = initialState, action) => {
       return {
         ...state,
         isLectureDownloading: false,
+      };
+    case types.SET_CURRENT_COURSE_ID:
+      return {
+        ...state,
+        currentCourseId: action.courseId,
       };
     default:
       return state;

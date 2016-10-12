@@ -67,7 +67,7 @@ class CourseList extends Component {
     isFetching: PropTypes.bool.isRequired,
     // actions
     fetchCourseList: PropTypes.func.isRequired,
-    loadCurrentCourse: PropTypes.func.isRequired,
+    setCurrentCourseId: PropTypes.func.isRequired,
   };
 
   async componentWillMount() {
@@ -79,11 +79,12 @@ class CourseList extends Component {
   }
 
   handlePressCourse(course) {
-    this.props.loadCurrentCourse(course); // TODO いらん？
-    RouterActions.courseDetails({ courseId: course.id });
+    this.props.setCurrentCourseId(course.id);
+    RouterActions.courseDetails();
   }
 
   render() {
+    console.log('CourseList render()');
     const { isFetching, courses } = this.props;
 
     if (_.isEmpty(courses)) {
@@ -128,11 +129,14 @@ class CourseList extends Component {
 
 // export default CourseList;
 
-const mapStateToProps = (state, props) => ({
-  courses: state.entities.courses,
-  ...state.ui.myCourseView,
-  isOnline: state.netInfo.isConnected,
-});
+const mapStateToProps = (state, props) => {
+  console.log('CourseList mapStateToProps', state);
+  return {
+    courses: state.entities.courses,
+    ...state.ui.courseListView,
+    isOnline: state.netInfo.isConnected,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 

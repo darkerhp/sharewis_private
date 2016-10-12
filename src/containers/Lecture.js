@@ -65,8 +65,7 @@ const styles = StyleSheet.create({
 
 class Lecture extends Component {
   static propTypes = {
-    lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    // state
+    // values
     courseId: PropTypes.number.isRequired,
     currentTime: PropTypes.number.isRequired,
     estimatedTime: PropTypes.number.isRequired,
@@ -74,14 +73,15 @@ class Lecture extends Component {
     isLastLecture: PropTypes.bool.isRequired,
     hasVideoInDevice: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
+    lectures: PropTypes.shape({}).isRequired,
     order: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     videoUrl: PropTypes.string.isRequired,
     // actions
-    fetchLectureStatus: PropTypes.func.isRequired,
-    loadCurrentLecture: PropTypes.func.isRequired,
+    updateLectureStatus: PropTypes.func.isRequired,
+    setCurrentLectureId: PropTypes.func.isRequired,
     pressPlay: PropTypes.func.isRequired,
     pressSpeed: PropTypes.func.isRequired,
     updateVideoProgress: PropTypes.func.isRequired,
@@ -92,15 +92,10 @@ class Lecture extends Component {
   };
 
   @autobind
-  async componentDidMount() {
-    try {
-      const { courseId, id, fetchLectureStatus, status } = this.props;
-
-      if (status === ApiConstants.LECTURE_STATUS_NOT_STARTED) {
-        fetchLectureStatus(courseId, id, ApiConstants.LECTURE_STATUS_VIEWED);
-      }
-    } catch (error) {
-      Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
+  componentWillMount() {
+    const { currentLectureId, status, updateLectureStatus } = this.props;
+    if (status === ApiConstants.LECTURE_STATUS_NOT_STARTED) {
+      updateLectureStatus(currentLectureId, ApiConstants.LECTURE_STATUS_VIEWED);
     }
   }
 
@@ -109,7 +104,7 @@ class Lecture extends Component {
     if (!nextProps.id) return;
     if (nextProps.id !== this.props.id) {
       const { title } = nextProps;
-      RouterActions.refresh({ title });
+      RouterActions.refresh({});
     }
   }
 
@@ -134,20 +129,20 @@ class Lecture extends Component {
 
     const {
       courseId,
-      fetchLectureStatus,
+      updateLectureStatus,
       id,
       order,
       lectures,
-      loadCurrentLecture,
+      setCurrentLectureId,
       status,
     } = this.props;
 
     if (status !== ApiConstants.LECTURE_STATUS_FINISHED) {
-      fetchLectureStatus(courseId, id, ApiConstants.LECTURE_STATUS_FINISHED);
+      updateLectureStatus(id, ApiConstants.LECTURE_STATUS_FINISHED);
     }
 
-    const nextLecture = LectureUtils.getNextVideoLecture(lectures, false, order);
-    loadCurrentLecture(lectures, nextLecture);
+    const nextLecture = LectureUtils.getNextVideoLecture(courseId, lectures, false, order);
+    setCurrentLectureId(nextLecture.id);
   }
 
   // 250ms毎に呼び出される
@@ -160,6 +155,8 @@ class Lecture extends Component {
   }
 
   render() {
+    console.log('Lecture render()', this.props);
+
     const {
       // values
       currentTime, estimatedTime, isLastLecture, isPaused, speed, title,
@@ -206,13 +203,13 @@ class Lecture extends Component {
           />
           <View style={styles.nextLectureButtonWrapper}>
             { isLastLecture ||
-              <Button
-                containerStyle={styles.nextLectureButton}
-                style={styles.nextLectureButtonText}
-                onPress={this.handlePressNextLecture}
-              >
-                {I18n.t('nextLecture')}
-              </Button>
+            <Button
+              containerStyle={styles.nextLectureButton}
+              style={styles.nextLectureButtonText}
+              onPress={this.handlePressNextLecture}
+            >
+              {I18n.t('nextLecture')}
+            </Button>
             }
           </View>
         </View>
@@ -221,11 +218,20 @@ class Lecture extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  ...state.currentLecture,
-  ...state.videoPlayer,
-  isOnline: state.netInfo.isConnected,
-});
+const mapStateToProps = (state) => {
+  const { entities, netInfo, ui, routes } = state;
+  const { lectures } = entities;
+  const lectureId = ui.lectureView.currentLectureId;
+  const currentLecture = lectures[lectureId];
+  return {
+    lectures,
+    ...currentLecture,
+    ...ui.lectureView,
+    ...ui.videoPlayer,
+    isOnline: netInfo.isConnected,
+    isLastLecture: lectureId === LectureUtils.getLastLectureId(currentLecture.courseId, lectures),
+  };
+};
 
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 
