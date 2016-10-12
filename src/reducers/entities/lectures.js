@@ -9,15 +9,16 @@ const courseDetailsReducer = (state = {}, action) => {
     case types.FETCH_COURSE_DETAILS_SUCCESS:
       return {
         ...state,
-        ...normalize(action.response.entities.lectures), // プロパティをキャメルケースに変換
+        ...normalize(action.payload.entities.lectures), // プロパティをキャメルケースに変換
       };
 
     case types.COMPLETE_LECTURE: {
-      const targetLecture = state[action.lectureId];
+      const lectureId = action.payload;
+      const targetLecture = state[lectureId];
 
       return {
         ...state,
-        [action.lectureId]: {
+        [lectureId]: {
           ...targetLecture,
           status: LECTURE_STATUS_FINISHED,
         },
@@ -25,48 +26,56 @@ const courseDetailsReducer = (state = {}, action) => {
     }
     case types.BEGIN_DOWNLOAD_VIDEO:
       return state;
-    case types.PROGRESS_DOWNLOAD_VIDEO:
+    case types.PROGRESS_DOWNLOAD_VIDEO: {
+      const { lectureId, percentage } = action.payload;
       return {
         ...state,
-        [action.lectureId]: {
-          ...state[action.lectureId],
-          percentage: action.percentage,
+        [lectureId]: {
+          ...state[lectureId],
+          percentage,
           isDownloading: true,
         },
-        jobId: action.jobId,
       };
-    case types.FINISH_DOWNLOAD_VIDEO:
+    }
+    case types.FINISH_DOWNLOAD_VIDEO: {
+      const lectureId = action.payload;
       return {
         ...state,
-        [action.lectureId]: {
-          ...state[action.lectureId],
+        [lectureId]: {
+          ...state[lectureId],
           hasVideoInDevice: true,
           isDownloading: false,
         },
         jobId: -1,
       };
-    case types.ERROR_DOWNLOAD_VIDEO:
+    }
+    case types.ERROR_DOWNLOAD_VIDEO: {
+      const lectureId = action.payload;
       return {
         ...state,
-        [action.lectureId]: {
-          ...state[action.lectureId],
+        [lectureId]: {
+          ...state[lectureId],
           hasVideoInDevice: false,
           isDownloading: false,
         },
         jobId: -1,
       };
-    case types.FINISH_DELETE_VIDEO:
+      }
+    case types.FINISH_DELETE_VIDEO: {
+      const lectureId = action.payload;
       return {
         ...state,
-        [action.lectureId]: {
-          ...state[action.lectureId],
+        [lectureId]: {
+          ...state[lectureId],
           hasVideoInDevice: false,
         },
       };
+    }
     case types.UPDATE_VIDEO_IN_DEVICE_STATUS: {
       if (_.isEmpty(state)) return state;
+      const lectures = action.payload;
       let newLectures = { ...state }; // eslint-disable-line
-      action.lectures.forEach(l =>
+      lectures.forEach(l =>
         (newLectures[l.lectureId].hasVideoInDevice = l.hasVideoInDevice)
       );
       return {

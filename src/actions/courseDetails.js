@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { normalize } from 'normalizr';
-
+import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
 import * as FileUtils from '../utils/file';
@@ -10,55 +10,20 @@ import * as schema from '../schema';
 
 
 // Actions Creators
+export const fetchCourseDetailsFailure = createAction(types.FETCH_COURSE_DETAILS_FAILURE);
+export const fetchCourseDetailsStart = createAction(types.FETCH_COURSE_DETAILS_START);
+export const fetchCourseDetailsSuccess = createAction(types.FETCH_COURSE_DETAILS_SUCCESS);
+export const pressDownloadVideo = createAction(types.PRESS_DOWNLOAD_VIDEO);
+export const beginDownloadVideo = createAction(types.BEGIN_DOWNLOAD_VIDEO,
+  (lectureId, jobId, statusCode) => ({ lectureId, jobId, statusCode }));
+export const progressDownloadVideo = createAction(types.PROGRESS_DOWNLOAD_VIDEO,
+  (lectureId, percentage) => ({ lectureId, percentage }));
+export const finishDownloadVideo = createAction(types.FINISH_DOWNLOAD_VIDEO);
+export const errorDownloadVideo = createAction(types.ERROR_DOWNLOAD_VIDEO);
+export const finishDeleteVideo = createAction(types.FINISH_DELETE_VIDEO);
+export const updateVideoInDeviceStatus = createAction(types.UPDATE_VIDEO_IN_DEVICE_STATUS);
 
-export const fetchCourseDetailsFailure = error => ({
-  type: types.FETCH_COURSE_DETAILS_FAILURE,
-  error,
-});
-
-export const fetchCourseDetailsStart = () => ({
-  type: types.FETCH_COURSE_DETAILS_START,
-});
-
-export const fetchCourseDetailsSuccess = response => ({
-  type: types.FETCH_COURSE_DETAILS_SUCCESS,
-  response,
-});
-export const pressDownloadVideo = () => ({
-  type: types.PRESS_DOWNLOAD_VIDEO,
-});
-export const beginDownloadVideo = (lectureId, jobId, statusCode) => ({
-  type: types.BEGIN_DOWNLOAD_VIDEO,
-  lectureId,
-  jobId,
-  statusCode,
-});
-export const progressDownloadVideo = (lectureId, percentage) => ({
-  type: types.PROGRESS_DOWNLOAD_VIDEO,
-  lectureId,
-  percentage,
-});
-export const finishDownloadVideo = lectureId => ({
-  type: types.FINISH_DOWNLOAD_VIDEO,
-  jobId: -1,
-  lectureId,
-});
-export const errorDownloadVideo = lectureId => ({
-  type: types.ERROR_DOWNLOAD_VIDEO,
-  jobId: -1,
-  lectureId,
-});
-export const finishDeleteVideo = lectureId => ({
-  type: types.FINISH_DELETE_VIDEO,
-  jobId: -1,
-  lectureId,
-});
-export const updateVideoInDeviceStatus = lectures => ({
-  type: types.UPDATE_VIDEO_IN_DEVICE_STATUS,
-  lectures,
-});
-
-// thunk action creators
+// Thunks
 export const fetchVideoInDeviceStatus = courseId => (
   async(dispatch, getState) => {
     const state = getState();
@@ -73,7 +38,7 @@ export const fetchVideoInDeviceStatus = courseId => (
 );
 
 export const fetchCourseDetails = courseId =>
-  async (dispatch, getState) => {
+  async(dispatch, getState) => {
     try {
       const state = getState();
       const userId = state.user.userId;
