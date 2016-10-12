@@ -54,36 +54,33 @@ const styles = StyleSheet.create({
 });
 
 
-const CourseSummary = ({ course, ...props }) => {
-  return (
-    <TouchableHighlight {...props}>
-      <View style={{ flex: 1 }}>
-        <Image
-          style={styles.image}
-          source={{ uri: course.imageUrl }}
-        />
-        <View style={styles.detailsWrapper}>
-          <Text style={styles.title}>
-            {course.title}
+const CourseSummary = ({ course, ...props }) =>
+  <TouchableHighlight {...props}>
+    <View style={{ flex: 1 }}>
+      <Image
+        style={styles.image}
+        source={{ uri: course.imageUrl }}
+      />
+      <View style={styles.detailsWrapper}>
+        <Text style={styles.title}>
+          {course.title}
+        </Text>
+        <View style={styles.hr}>
+          <Hr lineColor={'#dadada'} />
+        </View>
+        <Text style={styles.progress}>
+          {`${course.lectureProgress}/${course.lectureCount} ${I18n.t('progressText')}`}
+        </Text>
+        <ProgressBar progress={course.lectureProgress / course.lectureCount} />
+        <View style={styles.download}>
+          <Text style={styles.downloadText}>
+            {I18n.t('downloadAvailable')}
           </Text>
-          <View style={styles.hr}>
-            <Hr lineColor={'#dadada'} />
-          </View>
-          <Text style={styles.progress}>
-            {`${course.lectureProgress}/${course.lectureCount} ${I18n.t('progressText')}`}
-          </Text>
-          <ProgressBar progress={course.lectureProgress / course.lectureCount} />
-          <View style={styles.download}>
-            <Text style={styles.downloadText}>
-              {I18n.t('downloadAvailable')}
-            </Text>
-            <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
-          </View>
+          <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
         </View>
       </View>
-    </TouchableHighlight>
-  );
-};
+    </View>
+  </TouchableHighlight>;
 
 CourseSummary.propTypes = {
   course: PropTypes.shape({

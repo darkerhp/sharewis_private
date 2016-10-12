@@ -14,7 +14,6 @@ import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
 import { ACT_API_URL } from '../constants/Api';
 import redirectTo from '../utils/linking';
-import { connectActions, connectState } from '../utils/redux';
 
 const { Component, PropTypes } = React;
 const {
@@ -57,9 +56,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
-// @connectActions(Actions)
-// @connectState('courseList')
 class CourseList extends Component {
   static propTypes = {
     // states
@@ -84,7 +80,6 @@ class CourseList extends Component {
   }
 
   render() {
-    console.log('CourseList render()');
     const { isFetching, courses } = this.props;
 
     if (_.isEmpty(courses)) {
@@ -126,17 +121,11 @@ class CourseList extends Component {
   }
 }
 
-
-// export default CourseList;
-
-const mapStateToProps = (state, props) => {
-  console.log('CourseList mapStateToProps', state);
-  return {
-    courses: state.entities.courses,
-    ...state.ui.courseListView,
-    isOnline: state.netInfo.isConnected,
-  };
-};
+const mapStateToProps = state => ({
+  courses: state.entities.courses,
+  ...state.ui.courseListView,
+  isOnline: state.netInfo.isConnected,
+});
 
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 

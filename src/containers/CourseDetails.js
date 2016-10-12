@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
 
@@ -16,7 +17,6 @@ import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import totalDuration from '../utils/courseDetails';
 import * as LectureUtils from '../utils/lecture';
-import { connectActions, connectState } from '../utils/redux';
 import * as FileUtils from '../utils/file';
 import BaseStyles from '../baseStyles';
 
@@ -38,8 +38,6 @@ const styles = StyleSheet.create({
   lectureContainer: { flex: 1 },
 });
 
-// @connectActions(Actions)
-// @connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
     // values
@@ -68,14 +66,14 @@ class CourseDetails extends Component {
     try {
       await fetchCourseDetails(id);
     } catch (error) {
-      console.error(error); // eslint-disable-line
+      console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
   }
 
   componentDidMount() {
     const { id, lectures, fetchVideoInDeviceStatus } = this.props;
-    _.isEmpty(lectures) || fetchVideoInDeviceStatus(id, lectures);
+    _.isEmpty(lectures) || fetchVideoInDeviceStatus(id, lectures); // eslint-disable-line
   }
 
   @autobind

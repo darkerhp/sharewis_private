@@ -2,10 +2,7 @@
 import normalize from 'normalize-object';
 import _ from 'lodash';
 import * as types from '../../constants/ActionTypes';
-import {
-  ACT_API_CACHE,
-  LECTURE_STATUS_FINISHED,
-} from '../../constants/Api';
+import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 
 const courseDetailsReducer = (state = {}, action) => {
   switch (action.type) {

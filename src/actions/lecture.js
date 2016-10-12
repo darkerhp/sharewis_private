@@ -58,7 +58,6 @@ export const updateLectureStatus = (lectureId, status) =>
       const { courses, lectures } = entities;
       const userId = user.userId;
       const lecture = lectures[lectureId];
-      console.log(lectureId, status);
       if (netInfo.isConnected) {
         await patchLectureStatus(userId, lecture.courseId, lectureId, status);
       } else {

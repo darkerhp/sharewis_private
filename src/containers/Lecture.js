@@ -93,9 +93,9 @@ class Lecture extends Component {
 
   @autobind
   componentWillMount() {
-    const { currentLectureId, status, updateLectureStatus } = this.props;
+    const { id, status, updateLectureStatus } = this.props;
     if (status === ApiConstants.LECTURE_STATUS_NOT_STARTED) {
-      updateLectureStatus(currentLectureId, ApiConstants.LECTURE_STATUS_VIEWED);
+      updateLectureStatus(id, ApiConstants.LECTURE_STATUS_VIEWED);
     }
   }
 
@@ -155,8 +155,6 @@ class Lecture extends Component {
   }
 
   render() {
-    console.log('Lecture render()', this.props);
-
     const {
       // values
       currentTime, estimatedTime, isLastLecture, isPaused, speed, title,
@@ -203,13 +201,13 @@ class Lecture extends Component {
           />
           <View style={styles.nextLectureButtonWrapper}>
             { isLastLecture ||
-            <Button
-              containerStyle={styles.nextLectureButton}
-              style={styles.nextLectureButtonText}
-              onPress={this.handlePressNextLecture}
-            >
-              {I18n.t('nextLecture')}
-            </Button>
+              <Button
+                containerStyle={styles.nextLectureButton}
+                style={styles.nextLectureButtonText}
+                onPress={this.handlePressNextLecture}
+              >
+                {I18n.t('nextLecture')}
+              </Button>
             }
           </View>
         </View>

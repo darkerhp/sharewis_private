@@ -62,7 +62,6 @@ export const patchLectureStatus = async (userId, courseId, lectureId, newStatus)
   // Verify results
   await checkStatus(result);
   const json = await result.json();
-  console.log(result);
   await checkResult(json, l => l.status === newStatus);
 
   // Parse and return results
