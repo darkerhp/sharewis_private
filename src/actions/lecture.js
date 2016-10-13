@@ -14,7 +14,7 @@ export const updateLectureStatusSuccess = createAction(types.UPDATE_LECTURE_STAT
 export const setCurrentLectureId = createAction(types.SET_CURRENT_LECTURE_ID);
 export const pressFullScreen = createAction(types.PRESS_FULL_SCREEN);
 export const togglePlay = createAction(types.TOGGLE_PLAY);
-export const pressSpeed = createAction(types.PRESS_SPEED);
+export const changeVideoPlaySpeed = createAction(types.CHANGE_VIDEO_PLAY_SPEED);
 export const updateVideoProgress = createAction(types.UPDATE_VIDEO_PROGRESS);
 export const completeLecture = createAction(types.COMPLETE_LECTURE);
 

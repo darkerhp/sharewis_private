@@ -15,7 +15,7 @@ const videoPlayerReducer = handleActions({
     ...state,
     isPaused: !state.isPaused,
   }),
-  PRESS_SPEED: (state, action) => {
+  CHANGE_VIDEO_PLAY_SPEED: (state, action) => {
     const currentIndex = speedList.indexOf(state.speed);
     const index = (currentIndex === speedList.length - 1) ? 0 : currentIndex + 1;
     return {
