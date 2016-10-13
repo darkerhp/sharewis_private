@@ -11,7 +11,7 @@ const initialState = {
 const speedList = [1, 1.2, 1.5, 2];
 
 const videoPlayerReducer = handleActions({
-  PRESS_PLAY: (state, action) => ({
+  TOGGLE_PLAY: (state, action) => ({
     ...state,
     isPaused: !state.isPaused,
   }),

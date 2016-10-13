@@ -82,7 +82,7 @@ class Lecture extends Component {
     // actions
     updateLectureStatus: PropTypes.func.isRequired,
     setCurrentLectureId: PropTypes.func.isRequired,
-    pressPlay: PropTypes.func.isRequired,
+    togglePlay: PropTypes.func.isRequired,
     pressSpeed: PropTypes.func.isRequired,
     updateVideoProgress: PropTypes.func.isRequired,
   };
@@ -159,7 +159,7 @@ class Lecture extends Component {
       // values
       currentTime, estimatedTime, isLastLecture, isPaused, speed, title,
       // actions
-      pressPlay, pressSpeed,
+      togglePlay, pressSpeed,
     } = this.props;
     return (
       <View style={{ flex: 1 }}>
@@ -196,7 +196,7 @@ class Lecture extends Component {
           <VideoControls
             isPaused={isPaused}
             speed={speed}
-            onPressPlay={pressPlay}
+            onPressPlay={togglePlay}
             onPressSpeed={pressSpeed}
           />
           <View style={styles.nextLectureButtonWrapper}>
