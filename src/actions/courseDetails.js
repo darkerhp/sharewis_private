@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
-import { ACT_API_CACHE } from '../constants/Api';
+import { ACT_API_CACHE, LECTURE_KIND_LECTURE, LECTURE_KIND_SECTION } from '../constants/Api';
 import * as FileUtils from '../utils/file';
 
 import { getCourseDetails } from '../middleware/actApi';
@@ -37,6 +37,7 @@ export const fetchVideoInDeviceStatus = courseId => (
   }
 );
 
+// lecturesとsectionsを取得する async action
 export const fetchCourseDetails = courseId =>
   async(dispatch, getState) => {
     try {
@@ -47,7 +48,15 @@ export const fetchCourseDetails = courseId =>
         || courseDetailsView.fetchedAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
         const response = await getCourseDetails(userId, courseId);
-        dispatch(fetchCourseDetailsSuccess(normalize(response.lectures, schema.arrayOfLectures)));
+        dispatch(fetchCourseDetailsSuccess({
+          // TODO もうちょいいい感じにできるはず
+          lectures: normalize(
+            response.lectures.filter(l => l.kind === LECTURE_KIND_LECTURE),
+            schema.arrayOfLectures),
+          sections: normalize(
+            response.lectures.filter(l => l.kind === LECTURE_KIND_SECTION),
+            schema.arrayOfSections),
+        }));
         dispatch(fetchVideoInDeviceStatus());
       }
     } catch (error) {

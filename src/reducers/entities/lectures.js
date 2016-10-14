@@ -4,10 +4,10 @@ import _ from 'lodash';
 import { handleActions } from 'redux-actions';
 import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 
-const courseDetailsReducer = handleActions({
+const lecturesReducer = handleActions({
   FETCH_COURSE_DETAILS_SUCCESS: (state, action) => ({
     ...state,
-    ...normalize(action.payload.entities.lectures), // プロパティをキャメルケースに変換
+    ...normalize(action.payload.lectures.entities.lectures), // プロパティをキャメルケースに変換
   }),
   COMPLETE_LECTURE: (state, action) => {
     const lectureId = action.payload;
@@ -83,4 +83,4 @@ const courseDetailsReducer = handleActions({
   },
 }, {});
 
-export default courseDetailsReducer;
+export default lecturesReducer;
