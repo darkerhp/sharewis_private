@@ -12,7 +12,7 @@ import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
-import { ACT_API_URL } from '../constants/Api';
+import { ACT_SITE_URL } from '../constants/Api';
 import redirectTo from '../utils/linking';
 
 const { Component, PropTypes } = React;
@@ -110,7 +110,7 @@ class CourseList extends Component {
                 onPress={redirectTo}
               >
                 <Text style={styles.contentText}>
-                  {ACT_API_URL}
+                  {ACT_SITE_URL}
                 </Text>
               </Hyperlink>
             </View>

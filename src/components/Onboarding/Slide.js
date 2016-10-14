@@ -4,7 +4,7 @@ import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../../baseStyles';
-import { ACT_API_URL } from '../../constants/Api';
+import { ACT_SITE_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
 
 
@@ -60,7 +60,7 @@ const Slide = ({ text, imageSrc }) =>
       <Hyperlink
         style={{ flex: 1 }}
         linkStyle={{ color: BaseStyles.hyperlink }}
-        linkText={url => (url === ACT_API_URL ? I18n.t('actWebsite') : url)}
+        linkText={url => (url === ACT_SITE_URL ? I18n.t('actWebsite') : url)}
         onPress={redirectTo}
       >
 
