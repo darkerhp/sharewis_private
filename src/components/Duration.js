@@ -16,7 +16,7 @@ const Duration = ({
   prefixText = '',
 }) =>
   <View style={containerStyleId}>
-    { estimatedTime > 0 &&
+    { estimatedTime >= 0 &&
       <Text style={durationStyleId}>
         {prefixText}{moment.duration(estimatedTime, 'seconds').format(format, { trim: false })}
       </Text>

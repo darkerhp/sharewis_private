@@ -57,7 +57,7 @@ build:
     #      npm run flow check
 
     # A step to run Unit tests
-    - npm-test
+    # - npm-test
 
     # A step to check code coverage (90%)
     # - script:

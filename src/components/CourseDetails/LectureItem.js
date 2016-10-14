@@ -120,8 +120,7 @@ const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =
       lecture.hasVideoInDevice ? handlePressDelete(lecture) : handlePressDownload(lecture)
     )}
   >
-    {lecture.isDownloading
-      ?
+    {lecture.isDownloading ?
       <AnimatedCircularProgress
         size={30}
         width={3}
@@ -131,15 +130,15 @@ const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =
         backgroundColor="#3d5875"
       />
       :
-      <Icon
-        name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
-        style={styles.actionIcon}
-      />
+        <Icon
+          name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
+          style={styles.actionIcon}
+        />
     }
   </TouchableOpacity>;
 
 const LectureItem = ({
-  currentLecture,
+  lecture,
   isOnline,
   handlePressDelete,
   handlePressLecture,
@@ -147,25 +146,25 @@ const LectureItem = ({
 
 }) => {
   const isAccessibleLecture = (() => {
-    if (currentLecture.type !== LECTURE_TYPE_VIDEO) return false;
-    return isOnline || currentLecture.hasVideoInDevice;
+    if (lecture.type !== LECTURE_TYPE_VIDEO) return false;
+    return isOnline || lecture.hasVideoInDevice;
   })();
 
   return (
     <View style={styles.container}>
       <View
-        style={currentLecture.status === LECTURE_STATUS_FINISHED
+        style={lecture.status === LECTURE_STATUS_FINISHED
           ? styles.lectureNoTextWrapperCompleted
           : styles.lectureNoTextWrapper}
       >
         <Text
           style={[
-            (currentLecture.status === LECTURE_STATUS_FINISHED
+            (lecture.status === LECTURE_STATUS_FINISHED
              ? styles.lectureNoTextCompleted
              : styles.lectureNoText),
             (!isAccessibleLecture ? styles.lectureDisabled : {}),
           ]}
-        >{currentLecture.order}</Text>
+        >{lecture.order}</Text>
       </View>
 
       <View
@@ -174,11 +173,11 @@ const LectureItem = ({
         <View style={styles.lectureIconWrapper}>
           <Icon
             style={styles.lectureIcon}
-            name={LectureUtils.getLectureIconName(currentLecture)}
+            name={LectureUtils.getLectureIconName(lecture)}
           />
         </View>
         <Duration
-          estimatedTime={currentLecture.estimatedTime}
+          estimatedTime={lecture.estimatedTime}
           containerStyleId={styles.durationWrapper}
           durationStyleId={styles.durationStyle}
         />
@@ -186,16 +185,16 @@ const LectureItem = ({
 
       <TouchableOpacity
         style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
-        onPress={() => handlePressLecture(currentLecture)}
+        onPress={() => handlePressLecture(lecture)}
         disabled={!isAccessibleLecture}
       >
         <Text
           style={[styles.lectureTitleText, (!isAccessibleLecture ? styles.lectureDisabled : {})]}
-        >{currentLecture.title}</Text>
+        >{lecture.title}</Text>
       </TouchableOpacity>
 
       {isAccessibleLecture && renderDownloadAction(
-        handlePressDelete, handlePressDownload, currentLecture
+        handlePressDelete, handlePressDownload, lecture
       )}
     </View>
   );
@@ -203,7 +202,7 @@ const LectureItem = ({
 
 LectureItem.propTypes = {
   // values
-  currentLecture: PropTypes.shape({}).isRequired,
+  lecture: PropTypes.shape({}).isRequired,
   isOnline: PropTypes.bool.isRequired,
   // actions
   handlePressLecture: PropTypes.func.isRequired,

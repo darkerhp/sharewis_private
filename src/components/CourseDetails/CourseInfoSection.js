@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
+import { _ } from 'lodash';
 
 import BaseStyles from '../../baseStyles';
 import NextLectureArea from './NextLectureArea';
@@ -45,7 +46,6 @@ const CourseInfoSection = ({
   completeLectureCount,
   containerStyle,
   courseTitle,
-  isCompleted,
   nextLecture,
   totalLectureCount,
   totalDuration,
@@ -57,7 +57,7 @@ const CourseInfoSection = ({
       <Text style={styles.courseTitleText}>{courseTitle}</Text>
     </View>
 
-    {!isCompleted ?
+    {!_.isEmpty(nextLecture) ?
       <NextLectureArea
         nextLecture={nextLecture}
         handlePressNextLecture={handlePressNextLecture}
@@ -85,7 +85,6 @@ CourseInfoSection.propTypes = {
   totalLectureCount: PropTypes.number.isRequired,
   completeLectureCount: PropTypes.number.isRequired,
   totalDuration: PropTypes.number.isRequired,
-  isCompleted: PropTypes.bool.isRequired,
   nextLecture: PropTypes.shape({}).isRequired,
   handlePressNextLecture: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types

@@ -1,6 +1,6 @@
 /* @flow */
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
-import * as types from '../constants/ActionTypes';
+import { handleActions } from 'redux-actions';
 
 const initialState = {
   password: null,
@@ -12,52 +12,32 @@ const initialState = {
   loginDisabled: true,
 };
 
+const failure = (state, action) => ({
+  ...state,
+  ...action.payload,
+  isFetching: false,
+  loggedIn: false,
+});
 
-export default function user(state = initialState, action) {
-  const { type, ...newState } = action;
+const fetching = (state, action) => ({
+  ...state,
+  ...action.payload,
+  isFetching: true,
+  loggedIn: false,
+});
 
-  switch (type) {
-    // Handle Failures
-    case types.FETCH_FB_EMAIL_FAILURE:
-    case types.FETCH_ACT_LOGIN_FAILURE:
-      return {
-        ...state,
-        ...newState,
-        isFetching: false,
-        loggedIn: false,
-      };
-    // Facebook actions
-    case types.FETCH_FB_EMAIL_SUCCESS:
-      return {
-        ...state,
-        ...newState,
-        isFetching: true,
-        loggedIn: false,
-      };
-    case types.START_ACT_FACEBOOK_LOGIN:
-      return {
-        ...state,
-        ...newState,
-        isFetching: true,
-        loggedIn: false,
-      };
-    // Email actions
-    case types.START_ACT_EMAIL_LOGIN:
-      return {
-        ...state,
-        ...newState,
-        isFetching: true,
-        loggedIn: false,
-      };
-    // Handle Successes
-    case types.FETCH_ACT_LOGIN_SUCCESS:
-      return {
-        ...state,
-        ...newState,
-        isFetching: false,
-        loggedIn: true,
-      };
-    default:
-      return state;
-  }
-}
+export const userReducer = handleActions({
+  FETCH_FB_EMAIL_FAILURE: failure,
+  FETCH_ACT_LOGIN_FAILURE: failure,
+  FETCH_FB_EMAIL_SUCCESS: fetching,
+  START_ACT_FACEBOOK_LOGIN: fetching,
+  START_ACT_EMAIL_LOGIN: fetching,
+  FETCH_ACT_LOGIN_SUCCESS: (state, action) => ({
+    ...state,
+    ...action.payload,
+    isFetching: false,
+    loggedIn: true,
+  }),
+}, initialState);
+
+export default userReducer;

@@ -6,6 +6,8 @@ import Button from 'react-native-button';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import * as Actions from '../actions/lecture';
 import SeekBar from '../components/Lecture/SeekBar';
@@ -13,7 +15,7 @@ import VideoControls from '../components/Lecture/VideoControls';
 import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
 import * as FileUtils from '../utils/file';
-import { connectActions, connectState } from '../utils/redux';
+
 
 const { Component, PropTypes } = React;
 const { Alert, StatusBar, StyleSheet, Text, View } = ReactNative;
@@ -61,12 +63,9 @@ const styles = StyleSheet.create({
 });
 
 
-@connectActions(Actions)
-@connectState('currentLecture')
 class Lecture extends Component {
   static propTypes = {
-    lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    // state
+    // values
     courseId: PropTypes.number.isRequired,
     currentTime: PropTypes.number.isRequired,
     estimatedTime: PropTypes.number.isRequired,
@@ -74,16 +73,17 @@ class Lecture extends Component {
     isLastLecture: PropTypes.bool.isRequired,
     hasVideoInDevice: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
+    lectures: PropTypes.shape({}).isRequired,
     order: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     videoUrl: PropTypes.string.isRequired,
     // actions
-    fetchLectureStatus: PropTypes.func.isRequired,
-    loadCurrentLecture: PropTypes.func.isRequired,
-    pressPlay: PropTypes.func.isRequired,
-    pressSpeed: PropTypes.func.isRequired,
+    updateLectureStatus: PropTypes.func.isRequired,
+    setCurrentLectureId: PropTypes.func.isRequired,
+    togglePlay: PropTypes.func.isRequired,
+    changeVideoPlaySpeed: PropTypes.func.isRequired,
     updateVideoProgress: PropTypes.func.isRequired,
   };
 
@@ -92,15 +92,10 @@ class Lecture extends Component {
   };
 
   @autobind
-  async componentDidMount() {
-    try {
-      const { courseId, id, fetchLectureStatus, status } = this.props;
-
-      if (status === ApiConstants.LECTURE_STATUS_NOT_STARTED) {
-        fetchLectureStatus(courseId, id, ApiConstants.LECTURE_STATUS_VIEWED);
-      }
-    } catch (error) {
-      Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
+  componentWillMount() {
+    const { id, status, updateLectureStatus } = this.props;
+    if (status === ApiConstants.LECTURE_STATUS_NOT_STARTED) {
+      updateLectureStatus(id, ApiConstants.LECTURE_STATUS_VIEWED);
     }
   }
 
@@ -109,7 +104,7 @@ class Lecture extends Component {
     if (!nextProps.id) return;
     if (nextProps.id !== this.props.id) {
       const { title } = nextProps;
-      RouterActions.refresh({ title });
+      RouterActions.refresh({});
     }
   }
 
@@ -130,24 +125,24 @@ class Lecture extends Component {
   handlePressNextLecture() {
     // 一瞬Spinnerを表示する
     this.setState({ loading: true });
-    setTimeout(() => this.setState({ loading: false }), 300);
+    setTimeout(() => this.setState({ loading: false }), 500);
 
     const {
       courseId,
-      fetchLectureStatus,
+      updateLectureStatus,
       id,
       order,
       lectures,
-      loadCurrentLecture,
+      setCurrentLectureId,
       status,
     } = this.props;
 
     if (status !== ApiConstants.LECTURE_STATUS_FINISHED) {
-      fetchLectureStatus(courseId, id, ApiConstants.LECTURE_STATUS_FINISHED);
+      updateLectureStatus(id, ApiConstants.LECTURE_STATUS_FINISHED);
     }
 
-    const nextLecture = LectureUtils.getNextVideoLecture(lectures, false, order);
-    loadCurrentLecture(lectures, nextLecture);
+    const nextLecture = LectureUtils.getNextVideoLecture(courseId, lectures, false, order);
+    setCurrentLectureId(nextLecture.id);
   }
 
   // 250ms毎に呼び出される
@@ -164,7 +159,7 @@ class Lecture extends Component {
       // values
       currentTime, estimatedTime, isLastLecture, isPaused, speed, title,
       // actions
-      pressPlay, pressSpeed,
+      togglePlay, changeVideoPlaySpeed,
     } = this.props;
     return (
       <View style={{ flex: 1 }}>
@@ -201,8 +196,8 @@ class Lecture extends Component {
           <VideoControls
             isPaused={isPaused}
             speed={speed}
-            onPressPlay={pressPlay}
-            onPressSpeed={pressSpeed}
+            onPressPlay={togglePlay}
+            onPressSpeed={changeVideoPlaySpeed}
           />
           <View style={styles.nextLectureButtonWrapper}>
             { isLastLecture ||
@@ -221,5 +216,21 @@ class Lecture extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  const { entities, netInfo, ui, routes } = state;
+  const { lectures } = entities;
+  const lectureId = ui.lectureView.currentLectureId;
+  const currentLecture = lectures[lectureId];
+  return {
+    lectures,
+    ...currentLecture,
+    ...ui.lectureView,
+    ...ui.videoPlayer,
+    isOnline: netInfo.isConnected,
+    isLastLecture: lectureId === LectureUtils.getLastLectureId(currentLecture.courseId, lectures),
+  };
+};
 
-export default Lecture;
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lecture);

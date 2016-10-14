@@ -1,51 +1,34 @@
 /**
-* @flow
-*/
+ * @flow
+ */
+import { createAction } from 'redux-actions';
 
 import * as types from '../constants/ActionTypes';
 import getUserData from '../middleware/accountApi';
 
 
 // Actions Creators
-
-export const startActEmailLogin = ([email, password]) => ({
-  type: types.START_ACT_EMAIL_LOGIN,
-  email,
-  password,
-});
-
-export const startActFacebookLogin = ([email, facebookId]) => ({
-  type: types.START_ACT_FACEBOOK_LOGIN,
-  email,
-  facebookId,
-});
-
-export const fetchActLoginFailure = {
-  type: types.FETCH_ACT_LOGIN_FAILURE,
-};
-
-export const fetchActLoginSuccess = result => ({
-  type: types.FETCH_ACT_LOGIN_SUCCESS,
-  userName: result.userName,
-  nickName: result.nickName,
-  userId: result.userId,
-});
-
-export const fetchFBEmailFailure = () => ({
-  type: types.FETCH_FB_EMAIL_FAILURE,
-});
-
-export const fetchFBEmailSuccess = ([email, facebookId]) => ({
-  type: types.FETCH_FB_EMAIL_SUCCESS,
-  email,
-  facebookId,
-});
-
+export const startActEmailLogin = createAction(types.START_ACT_EMAIL_LOGIN,
+  ([email, password]) => ({ email, password }));
+export const startActFacebookLogin = createAction(types.START_ACT_FACEBOOK_LOGIN,
+  ([email, facebookId]) => ({ email, facebookId }));
+export const fetchActLoginFailure = createAction(types.FETCH_ACT_LOGIN_FAILURE);
+export const fetchActLoginSuccess = createAction(types.FETCH_ACT_LOGIN_SUCCESS,
+  (result) => {
+    const { userName, nickName, userId } = result;
+    return {
+      userName,
+      nickName,
+      userId,
+    };
+  });
+export const fetchFBEmailFailure = createAction(types.FETCH_FB_EMAIL_FAILURE);
+export const fetchFBEmailSuccess = createAction(types.FETCH_FB_EMAIL_SUCCESS,
+  ([email, facebookId]) => ({ email, facebookId }));
 
 // Thunks
-
 export const fetchUserBy = (loginMethod, credentials) =>
-  async (dispatch) => {
+  async(dispatch) => {
     if (loginMethod === 'facebook') {
       dispatch(fetchFBEmailSuccess(credentials));
       dispatch(startActFacebookLogin(credentials));
@@ -57,6 +40,7 @@ export const fetchUserBy = (loginMethod, credentials) =>
       const data = await getUserData(credentials);
       return dispatch(fetchActLoginSuccess(data));
     } catch (error) {
+      console.error(error); // eslint-disable-line
       dispatch(fetchActLoginFailure);
       throw error;
     }

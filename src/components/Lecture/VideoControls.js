@@ -61,7 +61,7 @@ const VideoControls = ({ isPaused, speed, onPressPlay, onPressSpeed }) =>
     <Button
       containerStyle={styles.playButton}
       style={styles.buttonText}
-      onPress={onPressPlay}
+      onPress={() => onPressPlay()}
     >
       <Icon
         name={isPaused ? 'play-arrow' : 'pause'}
@@ -71,7 +71,7 @@ const VideoControls = ({ isPaused, speed, onPressPlay, onPressSpeed }) =>
     <Button
       containerStyle={styles.speedButton}
       style={styles.buttonText}
-      onPress={onPressSpeed}
+      onPress={() => onPressSpeed()}
     >
       x{speed}{speed % 1 === 0 ? '.0' : ''}
     </Button>

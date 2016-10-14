@@ -70,6 +70,7 @@ const getScenes = loggedIn =>
     />
     <Scene
       key="lecture"
+      backTitle={I18n.t('courseList')}
       component={Lecture}
       hideNavBar={false}
       {...baseNavBarProps}

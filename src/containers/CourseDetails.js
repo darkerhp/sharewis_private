@@ -1,18 +1,22 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
 
+import { _ } from 'lodash';
 import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import RNFS from 'react-native-fs';
 import I18n from 'react-native-i18n';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import * as Actions from '../actions/courseDetails';
+import * as LectureActions from '../actions/lecture';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import totalDuration from '../utils/courseDetails';
 import * as LectureUtils from '../utils/lecture';
-import { connectActions, connectState } from '../utils/redux';
 import * as FileUtils from '../utils/file';
 import BaseStyles from '../baseStyles';
 
@@ -34,8 +38,6 @@ const styles = StyleSheet.create({
   lectureContainer: { flex: 1 },
 });
 
-@connectActions(Actions)
-@connectState('currentCourse')
 class CourseDetails extends Component {
   static propTypes = {
     // values
@@ -54,40 +56,39 @@ class CourseDetails extends Component {
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
     errorDownloadVideo: PropTypes.func.isRequired,
-    loadCurrentLecture: PropTypes.func.isRequired,
+    setCurrentLectureId: PropTypes.func.isRequired,
     pressDownloadVideo: PropTypes.func.isRequired,
     progressDownloadVideo: PropTypes.func.isRequired,
   };
 
   async componentWillMount() {
+    const { fetchCourseDetails, id } = this.props;
     try {
-      await this.props.fetchCourseDetails();
+      await fetchCourseDetails(id);
     } catch (error) {
+      console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
   }
 
   componentDidMount() {
     const { id, lectures, fetchVideoInDeviceStatus } = this.props;
-    fetchVideoInDeviceStatus(id, lectures);
+    _.isEmpty(lectures) || fetchVideoInDeviceStatus(id, lectures); // eslint-disable-line
   }
 
   @autobind
   handlePressNextLecture() {
-    const { lectures } = this.props;
-    const lecture = LectureUtils.getNextVideoLecture(lectures);
-    return this.handlePressLecture(lecture);
+    const { id, lectures } = this.props;
+    const lecture = LectureUtils.getNextVideoLecture(id, lectures);
+    this.handlePressLecture(lecture);
   }
 
   @autobind
   handlePressLecture(lecture) {
-    const { lectures, loadCurrentLecture } = this.props;
-    loadCurrentLecture(lectures, lecture);
-    return RouterActions.lecture({
-      title: lecture.title.length > 18
-        ? `${lecture.title.substr(0, 17)}…`
-        : lecture.title,
-    });
+    console.log(lecture);
+    const { setCurrentLectureId } = this.props;
+    setCurrentLectureId(lecture.id);
+    RouterActions.lecture();
   }
 
   @autobind
@@ -156,14 +157,12 @@ class CourseDetails extends Component {
       lectureProgress,
       title,
     } = this.props;
-    const isCompleted = lectureCount === lectureProgress;
     const courseInfo = {
       totalLectureCount: lectureCount,
       completeLectureCount: lectureProgress,
-      isCompleted,
       courseTitle: title,
       totalDuration: totalDuration(lectures),
-      nextLecture: LectureUtils.getNextVideoLecture(lectures),
+      nextLecture: LectureUtils.getNextVideoLecture(id, lectures),
     };
     return (
       <ScrollView
@@ -177,9 +176,10 @@ class CourseDetails extends Component {
           <CourseInfoSection
             {...courseInfo}
             handlePressNextLecture={this.handlePressNextLecture}
-            containerStyle={{ height: isCompleted ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
+            containerStyle={{ height: _.isEmpty(courseInfo.nextLecture)
+              ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
           />
-          {lectures.length > 0 &&
+          {!_.isEmpty(lectures) &&
             <LectureList
               containerStyleId={styles.lectureContainer}
               lectures={lectures}
@@ -196,4 +196,29 @@ class CourseDetails extends Component {
   }
 }
 
-export default CourseDetails;
+// FIXME 定義場所
+const mergeSectionsAndLectures = (sections, lectures, courseId) => {
+  const currentCourseSectionsValues = _.values(_.filter(sections, { courseId }));
+  const currentCourseLecturesValues = _.values(_.filter(lectures, { courseId }));
+  return _.sortBy(currentCourseSectionsValues.concat(currentCourseLecturesValues), ['order']);
+};
+
+const mapStateToProps = (state) => {
+  const { entities, netInfo, ui } = state;
+  const { courses, lectures, sections } = entities;
+  const { currentCourseId } = ui.courseDetailsView;
+
+
+  return {
+    ...courses[currentCourseId],
+    lectures: mergeSectionsAndLectures(sections, lectures, currentCourseId),
+    isOnline: netInfo.isConnected,
+    ...ui.courseDetailsView,
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ ...Actions, ...LectureActions }, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseDetails);

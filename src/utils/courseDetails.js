@@ -1,10 +1,9 @@
 // @flow
-const totalDuration = (lectures) => {
-  if (lectures.length > 0) {
-    return lectures.map(l => l.estimatedTime || 0).reduce((a, b) => a + b);
-  }
-  return 0;
-};
+import _ from 'lodash';
 
+const totalDuration = (lectures) => {
+  if (_.isEmpty(lectures)) return 0;
+  return _.reduce(lectures, (result, value, key) => result + (value.estimatedTime || 0), 0);
+};
 
 export default totalDuration;
