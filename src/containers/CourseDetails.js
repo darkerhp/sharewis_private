@@ -45,7 +45,7 @@ class CourseDetails extends Component {
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
-    lectures: PropTypes.shape({}).isRequired,
+    lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -196,15 +196,22 @@ class CourseDetails extends Component {
   }
 }
 
+// FIXME 定義場所
+const mergeSectionsAndLectures = (sections, lectures, courseId) => {
+  const currentCourseSectionsValues = _.values(_.filter(sections, { courseId }));
+  const currentCourseLecturesValues = _.values(_.filter(lectures, { courseId }));
+  return _.sortBy(currentCourseSectionsValues.concat(currentCourseLecturesValues), ['order']);
+};
+
 const mapStateToProps = (state) => {
   const { entities, netInfo, ui } = state;
-  const { courses, lectures } = entities;
+  const { courses, lectures, sections } = entities;
   const { currentCourseId } = ui.courseDetailsView;
+
+
   return {
     ...courses[currentCourseId],
-    lectures: _.transform(
-      _.filter(lectures, { courseId: currentCourseId }),
-      (result, value, key) => (result[value.id] = value), {}), // eslint-disable-line
+    lectures: mergeSectionsAndLectures(sections, lectures, currentCourseId),
     isOnline: netInfo.isConnected,
     ...ui.courseDetailsView,
   };

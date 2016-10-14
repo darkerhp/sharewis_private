@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
 });
 
 const renderLecture = params => (
-  params.currentLecture.kind === LECTURE_KIND_SECTION
-    ? <Section key={params.key} lecture={params.currentLecture} />
+  params.lecture.kind === LECTURE_KIND_SECTION
+    ? <Section key={params.key} lecture={params.lecture} />
     : <LectureItem {...params} />
 );
 
@@ -34,11 +34,11 @@ const LectureList = ({
   handlePressLecture,
 }) =>
   <View style={[styles.container, containerStyleId]}>
-    {Object.keys(lectures).map((lectureId, i) => renderLecture({
+    {lectures.map((lecture, i) => renderLecture({
       key: i,
       courseId,
       isOnline,
-      currentLecture: lectures[lectureId],
+      lecture,
       handlePressLecture,
       handlePressDownload,
       handlePressDelete,
@@ -50,7 +50,7 @@ LectureList.propTypes = {
   containerStyleId: PropTypes.number.isRequired,
   courseId: PropTypes.number.isRequired,
   isOnline: PropTypes.bool.isRequired,
-  lectures: PropTypes.shape({}).isRequired,
+  lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   // actions
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDelete: PropTypes.func.isRequired,
