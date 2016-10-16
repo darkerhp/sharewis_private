@@ -18,7 +18,7 @@ export const ACCOUNT_API_URL = `https://${ACCOUNT_API_HOST}${ACCOUNT_API_BASE_PA
 export const ACT_API_URL = `https://${ACT_API_HOST}${ACT_API_BASE_PATH}`;
 export const ACT_API_KEY = actApiKey;
 
-export const ACT_SITE_URL = `https://${ACT_API_HOST}/`;
+export const ACT_SITE_URL = `https://${ACT_API_HOST}`;
 export const PASSWORD_FORGOTTEN_URL = `${ACT_SITE_URL}/users/password/new`;
 
 // Lecture.kind
