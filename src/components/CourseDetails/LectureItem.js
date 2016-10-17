@@ -120,18 +120,21 @@ const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =
       lecture.hasVideoInDevice ? handlePressDelete(lecture) : handlePressDownload(lecture)
     )}
   >
-    {lecture.isDownloading ? <AnimatedCircularProgress
-      size={30}
-      width={3}
-      fill={lecture.percentage}
-      rotation={0}
-      tintColor="#00e0ff"
-      backgroundColor="#3d5875"
-    /> :
-      <Icon
-        name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
-        style={styles.actionIcon}
-      />
+    {lecture.isDownloading
+      ?
+        <AnimatedCircularProgress
+          size={30}
+          width={3}
+          fill={lecture.percentage}
+          rotation={0}
+          tintColor="#00e0ff"
+          backgroundColor="#3d5875"
+        />
+      :
+        <Icon
+          name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
+          style={styles.actionIcon}
+        />
     }
   </TouchableOpacity>;
 
