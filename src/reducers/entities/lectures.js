@@ -10,7 +10,7 @@ const lecturesReducer = handleActions({
     ...normalize(action.payload.lectures.entities.lectures), // プロパティをキャメルケースに変換
   }),
   COMPLETE_LECTURE: (state, action) => {
-    const lectureId = action.payload;
+    const { lectureId } = action.payload;
     const targetLecture = state[lectureId];
 
     return {

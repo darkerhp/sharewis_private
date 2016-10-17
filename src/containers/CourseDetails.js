@@ -19,6 +19,10 @@ import totalDuration from '../utils/courseDetails';
 import * as LectureUtils from '../utils/lecture';
 import * as FileUtils from '../utils/file';
 import BaseStyles from '../baseStyles';
+import {
+  getSectionMergedLectures,
+  getLectureProgress,
+} from '../selectors/lectureSelectors';
 
 const { Component, PropTypes } = React;
 const {
@@ -176,8 +180,10 @@ class CourseDetails extends Component {
           <CourseInfoSection
             {...courseInfo}
             handlePressNextLecture={this.handlePressNextLecture}
-            containerStyle={{ height: _.isEmpty(courseInfo.nextLecture)
-              ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT }}
+            containerStyle={{
+              height: _.isEmpty(courseInfo.nextLecture)
+                ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT,
+            }}
           />
           {!_.isEmpty(lectures) &&
             <LectureList
@@ -196,22 +202,14 @@ class CourseDetails extends Component {
   }
 }
 
-// FIXME 定義場所
-const mergeSectionsAndLectures = (sections, lectures, courseId) => {
-  const currentCourseSectionsValues = _.values(_.filter(sections, { courseId }));
-  const currentCourseLecturesValues = _.values(_.filter(lectures, { courseId }));
-  return _.sortBy(currentCourseSectionsValues.concat(currentCourseLecturesValues), ['order']);
-};
-
-const mapStateToProps = (state) => {
-  const { entities, netInfo, ui } = state;
-  const { courses, lectures, sections } = entities;
+const mapStateToProps = (state, props) => {
+  const { entities: { courses }, netInfo, ui } = state;
   const { currentCourseId } = ui.courseDetailsView;
-
 
   return {
     ...courses[currentCourseId],
-    lectures: mergeSectionsAndLectures(sections, lectures, currentCourseId),
+    lectureProgress: getLectureProgress(state, props),
+    lectures: getSectionMergedLectures(state, props),
     isOnline: netInfo.isConnected,
     ...ui.courseDetailsView,
   };
