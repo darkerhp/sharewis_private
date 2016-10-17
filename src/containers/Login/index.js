@@ -8,7 +8,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../../baseStyles';
-import { connectActions, connectState } from '../../utils/redux';
+import { connectState } from '../../utils/redux';
 import redirectTo from '../../utils/linking';
 import Email from './Email';
 import Facebook from './Facebook';
