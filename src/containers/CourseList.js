@@ -60,6 +60,7 @@ class CourseList extends Component {
   static propTypes = {
     // states
     courses: PropTypes.shape({}),
+    lectures: PropTypes.shape({}),
     isFetching: PropTypes.bool.isRequired,
     // actions
     fetchCourseList: PropTypes.func.isRequired,
@@ -80,7 +81,7 @@ class CourseList extends Component {
   }
 
   render() {
-    const { isFetching, courses } = this.props;
+    const { isFetching, courses, lectures } = this.props;
 
     if (_.isEmpty(courses)) {
       return <EmptyList isFetching={isFetching} />;
@@ -98,6 +99,7 @@ class CourseList extends Component {
               style={styles.container}
               onPress={() => this.handlePressCourse(courses[courseId])}
               course={courses[courseId]}
+              lectures={_.filter(lectures, { courseId: parseInt(courseId, 10) })}
               key={index}
             />
           )}
@@ -123,6 +125,7 @@ class CourseList extends Component {
 
 const mapStateToProps = state => ({
   courses: state.entities.courses,
+  lectures: state.entities.lectures,
   ...state.ui.courseListView,
   isOnline: state.netInfo.isConnected,
 });
