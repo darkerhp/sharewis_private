@@ -47,21 +47,21 @@ const getScenes = loggedIn =>
     />
     <Scene
       key="courseList"
+      {...baseNavBarProps}
       component={CourseList}
       title={I18n.t('courseList')}
       initial={loggedIn}
       type={ActionConst.RESET}
       hideNavBar={false}
       estimatedTime={0}
-      {...baseNavBarProps}
       onLeft={() => console.log('onLeft')}
       leftButtonImage={menuWhiteImage}
     />
     <Scene
       key="courseDetails"
+      {...baseNavBarProps}
       component={CourseDetails}
       hideNavBar={false}
-      {...baseNavBarProps}
       backTitle={I18n.t('courseList')}
       onRight={() => console.log('onRight')}
       onBack={() => Actions.courseList()}
@@ -70,10 +70,10 @@ const getScenes = loggedIn =>
     />
     <Scene
       key="lecture"
-      backTitle={I18n.t('courseList')}
+      {...baseNavBarProps}
+      backTitle={I18n.t('back')}
       component={Lecture}
       hideNavBar={false}
-      {...baseNavBarProps}
       backButtonImage={backButtonWhiteImage}
     />
     <Scene
