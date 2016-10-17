@@ -128,8 +128,7 @@ const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =
         rotation={0}
         tintColor="#00e0ff"
         backgroundColor="#3d5875"
-      />
-      :
+      /> :
       <Icon
         name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
         style={styles.actionIcon}
