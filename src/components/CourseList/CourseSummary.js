@@ -3,7 +3,9 @@ import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import I18n from 'react-native-i18n';
+import _ from 'lodash';
 
+import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 import ProgressBar from '../ProgressBar';
 
 const { PropTypes } = React;
@@ -54,42 +56,44 @@ const styles = StyleSheet.create({
 });
 
 
-const CourseSummary = ({ course, ...props }) =>
-  <TouchableHighlight {...props}>
-    <View style={{ flex: 1 }}>
-      <Image
-        style={styles.image}
-        source={{ uri: course.imageUrl }}
-      />
-      <View style={styles.detailsWrapper}>
-        <Text style={styles.title}>
-          {course.title}
-        </Text>
-        <View style={styles.hr}>
-          <Hr lineColor={'#dadada'} />
-        </View>
-        <Text style={styles.progress}>
-          {`${course.lectureProgress}/${course.lectureCount} ${I18n.t('progressText')}`}
-        </Text>
-        <ProgressBar progress={course.lectureProgress / course.lectureCount} />
-        <View style={styles.download}>
-          <Text style={styles.downloadText}>
-            {I18n.t('downloadAvailable')}
+const CourseSummary = ({ course, lectures, ...props }) => {
+  const lectureProgress = _.isEmpty(lectures)
+    ? course.lectureProgress
+    : _.values(lectures).filter(l => l.status === LECTURE_STATUS_FINISHED).length;
+
+  return (
+    <TouchableHighlight {...props}>
+      <View style={{ flex: 1 }}>
+        <Image
+          style={styles.image}
+          source={{ uri: course.imageUrl }}
+        />
+        <View style={styles.detailsWrapper}>
+          <Text style={styles.title}>
+            {course.title}
           </Text>
-          <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
+          <View style={styles.hr}>
+            <Hr lineColor={'#dadada'} />
+          </View>
+          <Text style={styles.progress}>
+            {`${lectureProgress}/${course.lectureCount} ${I18n.t('progressText')}`}
+          </Text>
+          <ProgressBar progress={lectureProgress / course.lectureCount} />
+          <View style={styles.download}>
+            <Text style={styles.downloadText}>
+              {I18n.t('downloadAvailable')}
+            </Text>
+            <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
+          </View>
         </View>
       </View>
-    </View>
-  </TouchableHighlight>;
+    </TouchableHighlight>
+  );
+};
 
 CourseSummary.propTypes = {
-  course: PropTypes.shape({
-    /* eslint-disable react/no-unused-prop-types */
-    title: PropTypes.string.required,
-    imageUrl: PropTypes.string.required,
-    lectures: PropTypes.array.required,
-    /* eslint-enable react/no-unused-prop-types */
-  }),
+  course: PropTypes.shape({}),
+  lectures: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 export default CourseSummary;
