@@ -130,10 +130,10 @@ const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =
         backgroundColor="#3d5875"
       />
       :
-        <Icon
-          name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
-          style={styles.actionIcon}
-        />
+      <Icon
+        name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
+        style={styles.actionIcon}
+      />
     }
   </TouchableOpacity>;
 
