@@ -9,7 +9,7 @@ const TextField = (props) => {
     // style,
     input: { value, onChange },
     // meta: { error, touched },
-    ...otherProps,
+    ...otherProps
   } = props;
 
   return (
