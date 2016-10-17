@@ -15,13 +15,13 @@ import * as Actions from '../actions/courseDetails';
 import * as LectureActions from '../actions/lecture';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
-import totalDuration from '../utils/courseDetails';
 import * as LectureUtils from '../utils/lecture';
 import * as FileUtils from '../utils/file';
 import BaseStyles from '../baseStyles';
 import {
   getSectionMergedLectures,
   getLectureProgress,
+  getLectureTotalDuration,
 } from '../selectors/lectureSelectors';
 
 const { Component, PropTypes } = React;
@@ -53,6 +53,7 @@ class CourseDetails extends Component {
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    totalDuration: PropTypes.number.isRequired,
     // actions
     beginDownloadVideo: PropTypes.func.isRequired,
     fetchCourseDetails: PropTypes.func.isRequired,
@@ -160,12 +161,13 @@ class CourseDetails extends Component {
       lectureCount,
       lectureProgress,
       title,
+      totalDuration,
     } = this.props;
     const courseInfo = {
       totalLectureCount: lectureCount,
       completeLectureCount: lectureProgress,
       courseTitle: title,
-      totalDuration: totalDuration(lectures),
+      totalDuration,
       nextLecture: LectureUtils.getNextVideoLecture(id, lectures),
     };
     return (
@@ -210,6 +212,7 @@ const mapStateToProps = (state, props) => {
     ...courses[currentCourseId],
     lectureProgress: getLectureProgress(state, props),
     lectures: getSectionMergedLectures(state, props),
+    totalDuration: getLectureTotalDuration(state, props),
     isOnline: netInfo.isConnected,
     ...ui.courseDetailsView,
   };

@@ -24,7 +24,7 @@ export const updateLectureStatus = (lectureId, status) =>
     dispatch(updateLectureStatusStart());
     try {
       const { entities, user, netInfo } = getState();
-      const { courses, lectures } = entities;
+      const { lectures } = entities;
       const userId = user.userId;
       const lecture = lectures[lectureId];
       if (netInfo.isConnected) {

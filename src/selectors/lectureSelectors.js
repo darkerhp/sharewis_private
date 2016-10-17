@@ -25,3 +25,15 @@ export const getLectureProgress = createSelector(
     _.values(lectures).filter(l => l.status === LECTURE_STATUS_FINISHED).length
   )
 );
+
+// レクチャーの合計時間を取得する
+export const getLectureTotalDuration = createSelector(
+  [getCourseLectures],
+  (lectures) => {
+    if (_.isEmpty(lectures)) return 0;
+    return _.reduce(
+      _.values(lectures),
+      (result, value, key) => result + (value.estimatedTime || 0), 0);
+  }
+);
+
