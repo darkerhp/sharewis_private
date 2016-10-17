@@ -33,8 +33,7 @@ export const getLectureTotalDuration = createSelector(
     if (_.isEmpty(lectures)) return 0;
     return _.reduce(
       _.values(lectures),
-      (result, value, key) => result + (value.estimatedTime || 0),
-    0);
+      (result, value, key) => result + (value.estimatedTime || 0), 0);
   }
 );
 

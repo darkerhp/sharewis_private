@@ -136,8 +136,7 @@ class Email extends Component {
   async handlePress({ email, password }) {
     const { fetchUserBy } = this.props;
     try {
-      const data = await fetchUserBy('email', [email, password]);
-      return data;
+      return await fetchUserBy('email', [email, password]);
     } catch (error) {
       Alert.alert(I18n.t('errorTitle'), I18n.t('loginEmailError'));
       throw new SubmissionError({

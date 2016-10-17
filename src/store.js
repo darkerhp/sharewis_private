@@ -30,9 +30,7 @@ const configureStore = (initialState) => {
     composition = compose(reactotronEnhancer, composition);
   }
 
-  const store = createStore(rootReducer, initialState, composition);
-
-  return store;
+  return createStore(rootReducer, initialState, composition);
 };
 
 
