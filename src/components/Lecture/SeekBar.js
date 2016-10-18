@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import BaseStyles from '../../baseStyles';
 import Duration from '../Duration';
 
 const { PropTypes } = React;
