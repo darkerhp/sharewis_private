@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../actions/lecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
+import OfflineLecture from '../components/Lecture/OfflineLecture';
 import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
 
@@ -42,8 +43,10 @@ class Lecture extends Component {
   static propTypes = {
     // values
     courseId: PropTypes.number.isRequired,
+    hasVideoInDevice: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
+    isOnline: PropTypes.bool.isRequired,
     lectures: PropTypes.shape({}).isRequired,
     order: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
@@ -95,12 +98,16 @@ class Lecture extends Component {
   }
 
   render() {
-    const { isLastLecture } = this.props;
+    const { hasVideoInDevice, isLastLecture, isOnline } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <Spinner visible={this.state.loading} />
         <StatusBar barStyle="light-content" />
-        <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />
+        {(isOnline || (!isOnline && hasVideoInDevice))
+          ? <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />
+          : <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />
+        }
+
         <View style={styles.nextLectureButtonWrapper}>
           { isLastLecture ||
           <Button
