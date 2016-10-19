@@ -15,7 +15,7 @@ describe('LectureItem', () => {
         handlePressDelete={() => null}
         handlePressDownload={() => null}
         handlePressLecture={() => null}
-        currentLecture={{
+        lecture={{
           status: 'not_started',
           order: 1,
           estimatedTime: 30,

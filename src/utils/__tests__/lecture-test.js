@@ -39,10 +39,10 @@ describe('LectureUtils Utils', () => {
   });
 
   it('should return next video lecture', () => {
-    nextLecture = LectureUtils.getNextVideoLecture(lectures);
-    expect(nextLecture.order).toEqual(8);
+    nextLecture = LectureUtils.getNextVideoLecture(180, lectures);
+    expect(nextLecture.order).toEqual(5);
 
-    nextLecture = LectureUtils.getNextVideoLecture(lectures, false);
+    nextLecture = LectureUtils.getNextVideoLecture(180, lectures, false);
     expect(nextLecture.order).toEqual(1);
   });
 });
