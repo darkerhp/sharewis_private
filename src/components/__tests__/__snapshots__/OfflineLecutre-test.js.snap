@@ -1,0 +1,29 @@
+exports[`OfflineLecture renders correctly 1`] = `
+<View
+  style={
+    Array [
+      1,
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center"
+      }
+    ]
+  }>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#222",
+          "fontSize": 17,
+          "lineHeight": 22,
+          "textAlign": "center"
+        }
+      }>
+      [missing \"en.offlineLecture\" translation]
+    </Text>
+  </View>
+</View>
+`;
