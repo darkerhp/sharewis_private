@@ -1,7 +1,7 @@
 /* @flow */
 import { createAction } from 'redux-actions';
 
-import { syncQueueAction } from '../actions/netInfo';
+import { queueLectureProgress } from '../actions/netInfo';
 import * as types from '../constants/ActionTypes';
 import * as ApiConstants from '../constants/Api';
 import { patchLectureStatus } from '../middleware/actApi';
@@ -30,7 +30,7 @@ export const updateLectureStatus = (lectureId, status) =>
       if (netInfo.isConnected) {
         await patchLectureStatus(userId, lecture.courseId, lectureId, status);
       } else {
-        syncQueueAction(patchLectureStatus, [userId, lecture.courseId, lectureId, status]);
+        dispatch(queueLectureProgress({ lectureId, status }));
       }
 
       if (status === ApiConstants.LECTURE_STATUS_FINISHED) {

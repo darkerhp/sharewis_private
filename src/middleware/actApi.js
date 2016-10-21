@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /**
  * @flow
  */
@@ -24,7 +25,7 @@ export const getUserCourses = async (userId) => {
   const json = await result.json();
   await checkResult(json, (courses) => {
     if (courses.length > 0) {
-      const { id, title, image_url, lecture_count, lecture_progress } = courses[0];
+      const { id } = courses[0];
       return typeof id === 'number';
     }
     return true;  // empty result without errors
@@ -51,19 +52,25 @@ export const getCourseDetails = async (userId, courseId) => {
 
 
 export const patchLectureStatus = async (userId, courseId, lectureId, newStatus) => {
-  // Run query
-  const result = await fetch(`${ACT_API_URL}/courses/${courseId}/lectures/${lectureId}`, {
-    method: 'PATCH',
-    headers: getHeaders(userId),
-    body: JSON.stringify({
-      status: newStatus,
-    }),
-  });
-  // Verify results
-  await checkStatus(result);
-  const json = await result.json();
-  await checkResult(json, l => l.status === newStatus);
+  try {
+    // Run query
+    const result = await fetch(`${ACT_API_URL}/courses/${courseId}/lectures/${lectureId}`, {
+      method: 'PATCH',
+      headers: getHeaders(userId),
+      body: JSON.stringify({
+        status: newStatus,
+      }),
+    });
 
-  // Parse and return results
-  return json;
+    // Verify results
+    await checkStatus(result);
+    const json = await result.json();
+    // await checkResult(json, l => l.status === newStatus);
+
+    // Parse and return results
+    return json;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
