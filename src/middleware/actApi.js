@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /**
  * @flow
  */
@@ -24,7 +25,7 @@ export const getUserCourses = async (userId) => {
   const json = await result.json();
   await checkResult(json, (courses) => {
     if (courses.length > 0) {
-      const { id, title, image_url, lecture_count, lecture_progress } = courses[0];
+      const { id } = courses[0];
       return typeof id === 'number';
     }
     return true;  // empty result without errors

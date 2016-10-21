@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /* @flow */
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
@@ -22,13 +23,14 @@ export const syncLectureProgress = () =>
 
       if (_.isEmpty(queuedLectureProgress)) return;
 
-      const promises = Object.keys(queuedLectureProgress).map(async (lectureId) => {
-        return await patchLectureStatus(
+      const promises = Object.keys(queuedLectureProgress).map(async(lectureId) => {
+        const params = [
           userId,
           lectures[lectureId].courseId,
           lectureId,
-          queuedLectureProgress[lectureId]
-        );
+          queuedLectureProgress[lectureId],
+        ];
+        return await patchLectureStatus(...params);
       });
       await Promise.all(promises);
       dispatch(triggeredQueueActions());
