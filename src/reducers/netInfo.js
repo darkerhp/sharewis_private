@@ -1,23 +1,30 @@
-import * as types from '../constants/ActionTypes';
+import { handleActions } from 'redux-actions';
 
 const initialState = {
   isConnected: false,
-  queuedActions: [],
+  queuedLectureProgress: {}, // { [lectureId]: [status]  }
 };
 
-export default function netInfoReducer(state = initialState, action) {
-  switch (action.type) {
-    case types.MIDDLEWARE_NETINFO:
-      return { ...state, ...action.payload };
-    case types.SYNC_QUEUE_ACTION:
-      return {
-        ...state,
-        queuedActions: [
-          ...state.queuedActions,
-          action.queuedAction,
-        ],
-      };
-    default:
-      return state;
-  }
-}
+const netInfoReducer = handleActions({
+  MIDDLEWARE_NETINFO: (state, action) => ({
+    ...state,
+    ...action.payload,
+  }),
+  QUEUE_LECTURE_PROGRESS: (state, action) => {
+    const { lectureId, status } = action.payload;
+    return {
+      ...state,
+      queuedLectureProgress: {
+        ...state.queuedLectureProgress,
+        [lectureId]: status,
+      },
+    };
+  },
+  TRIGGERED_QUEUE_ACTIONS: (state, action) => ({
+    ...state,
+    queuedLectureProgress: {},
+  }),
+}, initialState);
+
+export default netInfoReducer;
+
