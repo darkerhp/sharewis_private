@@ -5,14 +5,14 @@ exports[`Slide renders correctly 1`] = `
       "alignItems": "center",
       "backgroundColor": "white",
       "flex": 1,
-      "justifyContent": "center"
+      "justifyContent": "center",
     }
   }>
   <View
     style={
       Object {
         "backgroundColor": "#ecf1f3",
-        "flex": 2
+        "flex": 2,
       }
     }>
     <Image
@@ -24,7 +24,7 @@ exports[`Slide renders correctly 1`] = `
           "justifyContent": "center",
           "marginBottom": 30,
           "marginTop": 90,
-          "width": 375
+          "width": 375,
         }
       } />
   </View>
@@ -35,20 +35,20 @@ exports[`Slide renders correctly 1`] = `
         "flex": 1,
         "justifyContent": "flex-start",
         "opacity": 0.6,
-        "padding": 25
+        "padding": 25,
       }
     }>
     <View
       linkStyle={
         Object {
-          "color": "#2980b9"
+          "color": "#2980b9",
         }
       }
-      linkText={[Function linkText]}
-      onPress={[Function anonymous]}
+      linkText={[Function]}
+      onPress={[Function]}
       style={
         Object {
-          "flex": 1
+          "flex": 1,
         }
       }>
       <Text
@@ -61,7 +61,7 @@ exports[`Slide renders correctly 1`] = `
             "flex": 1,
             "fontSize": 17,
             "lineHeight": 22,
-            "textAlign": "center"
+            "textAlign": "center",
           }
         } />
     </View>
