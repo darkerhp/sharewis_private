@@ -5,8 +5,8 @@ exports[`OfflineLecture renders correctly 1`] = `
       1,
       Object {
         "alignItems": "center",
-        "justifyContent": "center"
-      }
+        "justifyContent": "center",
+      },
     ]
   }>
   <View>
@@ -19,7 +19,7 @@ exports[`OfflineLecture renders correctly 1`] = `
           "color": "#222",
           "fontSize": 17,
           "lineHeight": 22,
-          "textAlign": "center"
+          "textAlign": "center",
         }
       }>
       [missing \"en.offlineLecture\" translation]

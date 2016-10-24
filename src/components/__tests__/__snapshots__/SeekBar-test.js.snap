@@ -5,7 +5,7 @@ exports[`SeekBar renders correctly 1`] = `
       "alignItems": "center",
       "flex": 1,
       "flexDirection": "row",
-      "justifyContent": "space-around"
+      "justifyContent": "space-around",
     }
   }>
   <Duration
@@ -13,7 +13,7 @@ exports[`SeekBar renders correctly 1`] = `
       Object {
         "flex": 1,
         "justifyContent": "center",
-        "width": 60
+        "width": 60,
       }
     }
     durationStyleId={
@@ -23,17 +23,17 @@ exports[`SeekBar renders correctly 1`] = `
         "fontWeight": "bold",
         "opacity": 0.8,
         "padding": 0,
-        "textAlign": "center"
+        "textAlign": "center",
       }
     }
     estimatedTime={10}
     format="mm:ss" />
   <Slider
     maximumValue={100}
-    onValueChange={[Function onValueChange]}
+    onValueChange={[Function]}
     style={
       Object {
-        "width": 228
+        "width": 228,
       }
     }
     value={10} />
@@ -42,7 +42,7 @@ exports[`SeekBar renders correctly 1`] = `
       Object {
         "flex": 1,
         "justifyContent": "center",
-        "width": 60
+        "width": 60,
       }
     }
     durationStyleId={
@@ -52,7 +52,7 @@ exports[`SeekBar renders correctly 1`] = `
         "fontWeight": "bold",
         "opacity": 0.8,
         "padding": 0,
-        "textAlign": "center"
+        "textAlign": "center",
       }
     }
     estimatedTime={90}

@@ -4,9 +4,9 @@ exports[`LectureList renders correctly 1`] = `
     Array [
       Object {
         "borderColor": "#ddd",
-        "borderTopWidth": 1
+        "borderTopWidth": 1,
       },
-      0
+      0,
     ]
   } />
 `;
