@@ -6,24 +6,24 @@ exports[`ProgressBar renders correctly 1`] = `
       "borderColor": "#cdcdcd",
       "borderWidth": 1,
       "flexDirection": "row",
-      "height": 18
+      "height": 18,
     }
   }>
   <View
     style={
       Array [
         Object {
-          "backgroundColor": "#427fda"
+          "backgroundColor": "#427fda",
         },
         Object {
-          "flex": 20
-        }
+          "flex": 20,
+        },
       ]
     } />
   <View
     style={
       Object {
-        "flex": -19
+        "flex": -19,
       }
     } />
 </View>

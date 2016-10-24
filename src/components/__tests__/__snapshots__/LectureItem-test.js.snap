@@ -7,7 +7,7 @@ exports[`LectureItem renders correctly 1`] = `
       "borderColor": "#ddd",
       "flex": 1,
       "flexDirection": "row",
-      "justifyContent": "flex-start"
+      "justifyContent": "flex-start",
     }
   }>
   <View
@@ -18,7 +18,7 @@ exports[`LectureItem renders correctly 1`] = `
         "borderRightWidth": 1,
         "flex": 1,
         "height": 48,
-        "justifyContent": "center"
+        "justifyContent": "center",
       }
     }>
     <Text
@@ -30,9 +30,9 @@ exports[`LectureItem renders correctly 1`] = `
           Object {
             "color": "#525252",
             "fontSize": 14,
-            "fontWeight": "600"
+            "fontWeight": "600",
           },
-          Object {}
+          Object {},
         ]
       }>
       1
@@ -46,16 +46,16 @@ exports[`LectureItem renders correctly 1`] = `
           "flex": 1,
           "flexDirection": "column",
           "height": 48,
-          "justifyContent": "center"
+          "justifyContent": "center",
         },
-        Object {}
+        Object {},
       ]
     }>
     <View
       style={
         Object {
           "flex": 1,
-          "justifyContent": "center"
+          "justifyContent": "center",
         }
       }>
       <Text
@@ -69,12 +69,12 @@ exports[`LectureItem renders correctly 1`] = `
               "fontFamily": "Material Icons",
               "fontSize": 12,
               "fontStyle": "normal",
-              "fontWeight": "normal"
+              "fontWeight": "normal",
             },
             Object {
               "color": "#525252",
-              "fontSize": 15
-            }
+              "fontSize": 15,
+            },
           ]
         }>
         
@@ -83,7 +83,7 @@ exports[`LectureItem renders correctly 1`] = `
     <Duration
       containerStyleId={
         Object {
-          "flex": 1
+          "flex": 1,
         }
       }
       durationStyleId={
@@ -92,7 +92,7 @@ exports[`LectureItem renders correctly 1`] = `
           "fontSize": 8,
           "fontWeight": "bold",
           "padding": 3,
-          "textAlign": "center"
+          "textAlign": "center",
         }
       }
       estimatedTime={30} />
@@ -104,19 +104,19 @@ exports[`LectureItem renders correctly 1`] = `
     accessible={true}
     hitSlop={undefined}
     onLayout={undefined}
-    onResponderGrant={[Function bound touchableHandleResponderGrant]}
-    onResponderMove={[Function bound touchableHandleResponderMove]}
-    onResponderRelease={[Function bound touchableHandleResponderRelease]}
-    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "flex-start",
         "flex": 5,
         "height": 48,
         "justifyContent": "center",
-        "opacity": 1
+        "opacity": 1,
       }
     }
     testID={undefined}>
@@ -129,9 +129,9 @@ exports[`LectureItem renders correctly 1`] = `
           Object {
             "color": "#525252",
             "fontSize": 12,
-            "fontWeight": "bold"
+            "fontWeight": "bold",
           },
-          Object {}
+          Object {},
         ]
       }>
       Title
@@ -144,19 +144,19 @@ exports[`LectureItem renders correctly 1`] = `
     accessible={true}
     hitSlop={undefined}
     onLayout={undefined}
-    onResponderGrant={[Function bound touchableHandleResponderGrant]}
-    onResponderMove={[Function bound touchableHandleResponderMove]}
-    onResponderRelease={[Function bound touchableHandleResponderRelease]}
-    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
         "flex": 1,
         "height": 48,
         "justifyContent": "center",
-        "opacity": 1
+        "opacity": 1,
       }
     }
     testID={undefined}>
@@ -171,12 +171,12 @@ exports[`LectureItem renders correctly 1`] = `
             "fontFamily": "Material Icons",
             "fontSize": 12,
             "fontStyle": "normal",
-            "fontWeight": "normal"
+            "fontWeight": "normal",
           },
           Object {
             "color": "#757575",
-            "fontSize": 32
-          }
+            "fontSize": 32,
+          },
         ]
       }>
       

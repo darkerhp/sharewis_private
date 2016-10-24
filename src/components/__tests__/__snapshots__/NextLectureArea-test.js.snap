@@ -4,9 +4,9 @@ exports[`NextLectureArea renders correctly 1`] = `
     Array [
       Object {
         "alignItems": "stretch",
-        "justifyContent": "center"
+        "justifyContent": "center",
       },
-      0
+      0,
     ]
   }>
   <View
@@ -16,15 +16,15 @@ exports[`NextLectureArea renders correctly 1`] = `
     accessible={true}
     hitSlop={undefined}
     onLayout={undefined}
-    onResponderGrant={[Function bound touchableHandleResponderGrant]}
-    onResponderMove={[Function bound touchableHandleResponderMove]}
-    onResponderRelease={[Function bound touchableHandleResponderRelease]}
-    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "opacity": 1
+        "opacity": 1,
       }
     }
     testID={undefined}>
@@ -34,7 +34,7 @@ exports[`NextLectureArea renders correctly 1`] = `
           "alignItems": "flex-start",
           "flex": 2,
           "justifyContent": "center",
-          "overflow": "hidden"
+          "overflow": "hidden",
         }
       }>
       <Image
@@ -51,7 +51,7 @@ exports[`NextLectureArea renders correctly 1`] = `
             "color": "white",
             "left": 75,
             "position": "absolute",
-            "top": 30
+            "top": 30,
           }
         } />
     </View>
@@ -61,7 +61,7 @@ exports[`NextLectureArea renders correctly 1`] = `
           "alignItems": "center",
           "backgroundColor": "#579eff",
           "flex": 1,
-          "justifyContent": "center"
+          "justifyContent": "center",
         }
       }>
       <Text
@@ -71,7 +71,7 @@ exports[`NextLectureArea renders correctly 1`] = `
         style={
           Object {
             "color": "white",
-            "fontWeight": "900"
+            "fontWeight": "900",
           }
         }>
         [missing \"en.nextLecture\" translation]

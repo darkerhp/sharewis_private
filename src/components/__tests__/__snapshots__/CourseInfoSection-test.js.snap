@@ -3,15 +3,15 @@ exports[`CourseInfoSection renders correctly 1`] = `
   style={
     Array [
       Object {
-        "padding": 10
+        "padding": 10,
       },
-      Object {}
+      Object {},
     ]
   }>
   <View
     style={
       Object {
-        "flex": 1
+        "flex": 1,
       }
     }>
     <Text
@@ -22,7 +22,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
         Object {
           "color": "#525252",
           "fontSize": 16,
-          "fontWeight": "900"
+          "fontWeight": "900",
         }
       }>
       Title
@@ -36,7 +36,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
       Object {
         "alignItems": "flex-end",
         "flex": 1,
-        "justifyContent": "flex-end"
+        "justifyContent": "flex-end",
       }
     }
     durationStyleId={
@@ -46,7 +46,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
         "fontSize": 10,
         "fontWeight": "bold",
         "padding": 5,
-        "textAlign": "center"
+        "textAlign": "center",
       }
     }
     estimatedTime={100}
