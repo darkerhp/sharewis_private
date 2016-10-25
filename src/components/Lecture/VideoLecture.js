@@ -9,8 +9,7 @@ import SeekBar from './SeekBar';
 import VideoControls from './VideoControls';
 
 const { Component, PropTypes } = React;
-const { View, StyleSheet, Text } = ReactNative;
-
+const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -40,15 +39,14 @@ const styles = StyleSheet.create({
   },
 });
 
-
 class VideoLecture extends Component {
   static propTypes = {
     // values
     courseId: PropTypes.number.isRequired,
     currentTime: PropTypes.number.isRequired,
     estimatedTime: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
     hasVideoInDevice: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
     isPaused: PropTypes.bool.isRequired,
     lectureContentStyleId: PropTypes.number.isRequired,
     lectures: PropTypes.shape({}).isRequired,
@@ -56,8 +54,8 @@ class VideoLecture extends Component {
     title: PropTypes.string.isRequired,
     videoUrl: PropTypes.string.isRequired,
     // actions
-    togglePlay: PropTypes.func.isRequired,
     changeVideoPlaySpeed: PropTypes.func.isRequired,
+    togglePlay: PropTypes.func.isRequired,
     updateVideoProgress: PropTypes.func.isRequired,
   };
 
@@ -86,29 +84,35 @@ class VideoLecture extends Component {
   render() {
     const {
       // values
-      currentTime, estimatedTime, isPaused, speed, title, lectureContentStyleId,
+      currentTime,
+      estimatedTime,
+      isPaused,
+      lectureContentStyleId,
+      speed,
+      title,
       // actions
-      togglePlay, changeVideoPlaySpeed,
+      changeVideoPlaySpeed,
+      togglePlay,
     } = this.props;
 
     return (
       <View style={lectureContentStyleId}>
         <View style={styles.videoContainer}>
           <Video
-            ref={ref => (this.video = ref)}
-            source={{ uri: this.getVideoUrl() }}
-            rate={speed}
-            volume={1.0}
             muted={false}
+            onEnd={this.handlePressNextLecture}
+            onError={e => console.error(e)} // eslint-disable-line
+            onProgress={this.handleVideoProgress}
             paused={isPaused}
-            resizeMode="contain"
-            repeat={false}
             playInBackground={false}
             playWhenInactive={false}
-            onError={e => console.error(e)} // eslint-disable-line
+            rate={speed}
+            ref={ref => (this.video = ref)}
+            repeat={false}
+            resizeMode="contain"
+            source={{ uri: this.getVideoUrl() }}
             style={styles.backgroundVideo}
-            onProgress={this.handleVideoProgress}
-            onEnd={this.handlePressNextLecture}
+            volume={1.0}
           />
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
@@ -133,6 +137,5 @@ class VideoLecture extends Component {
   }
 
 }
-
 
 export default VideoLecture;
