@@ -6,11 +6,10 @@ import * as actions from '../../actions/login';
 describe('User reducer', () => {
   describe('Facebook graph request actions', () => {
     beforeEach(() => {
-      loggedOut = { isFetching: false, loggedIn: false };
+      loggedOut = { loggedIn: false };
       loggedIn = {
         // NOTE: successful facebook login does not set loggedIn to true,
         // we still need to query ACT API.
-        isFetching: true,
         loggedIn: false,
         facebookId: '12345',
         email: 'a@example.com',
@@ -31,15 +30,13 @@ describe('User reducer', () => {
 
   describe('ACT login facebook actions', () => {
     beforeEach(() => {
-      loggedOut = { isFetching: false, loggedIn: false };
+      loggedOut = { loggedIn: false };
       fetching = {
-        isFetching: true,
         loggedIn: false,
         email: 'user@example.com',
         facebookId: '1234567890',
       };
       loggedIn = {
-        isFetching: false,
         loggedIn: true,
         email: 'user@example.com',
         facebookId: '1234567890',

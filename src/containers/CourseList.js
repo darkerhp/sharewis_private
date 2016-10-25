@@ -126,7 +126,7 @@ class CourseList extends Component {
 const mapStateToProps = state => ({
   courses: state.entities.courses,
   lectures: state.entities.lectures,
-  ...state.ui.courseListView,
+  ...state.ui,
   isOnline: state.netInfo.isConnected,
 });
 
