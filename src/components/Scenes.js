@@ -63,10 +63,10 @@ const getScenes = loggedIn =>
       component={CourseDetails}
       hideNavBar={false}
       backTitle={I18n.t('courseList')}
-      onRight={() => console.log('onRight')}
+      // onRight={() => console.log('onRight')}
       onBack={() => Actions.courseList()}
       backButtonImage={backButtonWhiteImage}
-      rightButtonImage={moreHorizWhiteImage}
+      // rightButtonImage={moreHorizWhiteImage}
     />
     <Scene
       key="lecture"
