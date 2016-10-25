@@ -29,6 +29,7 @@
     "react-native": "^0.35.0",
     "react-native-button": "^1.7.0",
     "react-native-circular-progress": "0.0.7",
+    "react-native-drawer": "^2.3.0",
     "react-native-fbsdk": "^0.3.0",
     "react-native-fs": "^2.0.1-rc.2",
     "react-native-hr": "^1.1.3",
