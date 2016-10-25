@@ -163,6 +163,7 @@ class Email extends Component {
               component={TextField}
               placeholder={I18n.t('passwordPlaceHolder')}
               placeholderTextColor={'#dadada'}
+              keyboardType="email-address"
               autoCapitalize={'none'}
               autoCorrect={false}
               returnKeyType="next"
