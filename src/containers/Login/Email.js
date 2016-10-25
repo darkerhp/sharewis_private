@@ -3,24 +3,23 @@ import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
+import I18n from 'react-native-i18n';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
   formValueSelector,
   Field,
   reduxForm,
   SubmissionError,
 } from 'redux-form';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import I18n from 'react-native-i18n';
 
 import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
-import TextField from '../../components/TextField';
-import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
-import { connectActions, connectState } from '../../utils/redux';
+import TextField from '../../components/TextField';
 import validateEmailLogin from '../../utils/validate';
+import { connectActions, connectState } from '../../utils/redux';
+import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
 const { Component, PropTypes } = React;
 const {
@@ -108,27 +107,10 @@ const formOptions = {
   validate: validateEmailLogin,
 };
 
-const checkInput = (states) => {
-  // We extract form from the state because returning it will cause
-  // a bug "form must be a string, not an object"
-  // eslint-disable-next-line no-unused-vars
-  const { form, ...otherStates } = states;
-  const selector = formValueSelector('email');
-  const hasEmail = selector(states, 'email') !== undefined;
-  const hasPassword = selector(states, 'password') !== undefined;
-  return {
-    ...otherStates,
-    loginDisabled: !(hasEmail && hasPassword),
-  };
-};
-
-
-// @connectActions(Actions)
-// @connectState('user')
-@connect(checkInput)
 @reduxForm(formOptions)
 class Email extends Component {
   static propTypes = {
+    fetchActLoginFailure: PropTypes.func.isRequired,
     fetchUserBy: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     loginDisabled: PropTypes.bool.isRequired,
@@ -211,9 +193,6 @@ class Email extends Component {
     );
   }
 }
-
-
-// export default Email;
 
 const mapStateToProps = (state) => {
   const { form, user, netInfo, ui, ...otherStates } = state;
