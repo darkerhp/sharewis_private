@@ -10,6 +10,8 @@ import {
   SubmissionError,
 } from 'redux-form';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import I18n from 'react-native-i18n';
 
 import * as Actions from '../../actions/login';
@@ -121,8 +123,8 @@ const checkInput = (states) => {
 };
 
 
-@connectActions(Actions)
-@connectState('user')
+// @connectActions(Actions)
+// @connectState('user')
 @connect(checkInput)
 @reduxForm(formOptions)
 class Email extends Component {
@@ -134,10 +136,11 @@ class Email extends Component {
 
   @autobind
   async handlePress({ email, password }) {
-    const { fetchUserBy } = this.props;
+    const { fetchUserBy, fetchActLoginFailure } = this.props;
     try {
       return await fetchUserBy('email', [email, password]);
     } catch (error) {
+      fetchActLoginFailure();
       Alert.alert(I18n.t('errorTitle'), I18n.t('loginEmailError'));
       throw new SubmissionError({
         _error: I18n.t('loginEmailError'),
@@ -210,4 +213,24 @@ class Email extends Component {
 }
 
 
-export default Email;
+// export default Email;
+
+const mapStateToProps = (state) => {
+  const { form, user, netInfo, ui, ...otherStates } = state;
+  const selector = formValueSelector('email');
+  const hasEmail = selector(state, 'email') !== undefined;
+  const hasPassword = selector(state, 'password') !== undefined;
+  return {
+    ...user,
+    ...ui,
+    isOnline: netInfo.isConnected,
+    ...otherStates,
+    loginDisabled: !(hasEmail && hasPassword),
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ ...Actions }, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Email);
