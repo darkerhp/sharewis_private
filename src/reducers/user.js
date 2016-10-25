@@ -7,22 +7,18 @@ const initialState = {
   facebookId: null,
   userName: null,
   nickName: null,
-  isFetching: false,
   loggedIn: false,
-  loginDisabled: true,
 };
 
 const failure = (state, action) => ({
   ...state,
   ...action.payload,
-  isFetching: false,
   loggedIn: false,
 });
 
 const fetching = (state, action) => ({
   ...state,
   ...action.payload,
-  isFetching: true,
   loggedIn: false,
 });
 
@@ -35,7 +31,6 @@ export const userReducer = handleActions({
   FETCH_ACT_LOGIN_SUCCESS: (state, action) => ({
     ...state,
     ...action.payload,
-    isFetching: false,
     loggedIn: true,
   }),
 }, initialState);

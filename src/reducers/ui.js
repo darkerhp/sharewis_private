@@ -18,12 +18,17 @@ const initialState = {
 
 const speedList = [1, 1.2, 1.5, 2];
 
+const startFetching = state => ({ ...state, isFetching: true });
+const stopFetching = state => ({ ...state, isFetching: false });
+
 const uiReducer = handleActions({
-  // TODO アクションを移植する 10/24
-  FETCH_COURSES_LIST_START: (state, action) => ({
-    ...state,
-    isFetching: true,
-  }),
+  FETCH_FB_EMAIL_FAILURE: stopFetching,
+  FETCH_ACT_LOGIN_FAILURE: stopFetching,
+  FETCH_FB_EMAIL_SUCCESS: startFetching,
+  START_ACT_FACEBOOK_LOGIN: startFetching,
+  START_ACT_EMAIL_LOGIN: startFetching,
+  FETCH_ACT_LOGIN_SUCCESS: stopFetching,
+  FETCH_COURSES_LIST_START: startFetching,
   FETCH_COURSES_LIST_FAILURE: (state, action) => ({
     ...state,
     error: action.payload,
@@ -34,10 +39,7 @@ const uiReducer = handleActions({
     isFetching: false,
     fetchedCourseListAt: Date.now(),
   }),
-  FETCH_COURSE_DETAILS_START: (state, action) => ({
-    ...state,
-    isFetching: true,
-  }),
+  FETCH_COURSE_DETAILS_START: startFetching,
   FETCH_COURSE_DETAILS_FAILURE: (state, action) => ({
     ...state,
     error: action.payload,
