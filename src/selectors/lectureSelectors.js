@@ -4,10 +4,10 @@ import { createSelector } from 'reselect';
 import { LECTURE_STATUS_FINISHED } from '../constants/Api';
 
 const getCourseSections = (state, props) => _.filter(
-  state.entities.sections, { courseId: state.ui.courseDetailsView.currentCourseId }
+  state.entities.sections, { courseId: state.ui.currentCourseId }
 );
 const getCourseLectures = (state, props) => _.filter(
-  state.entities.lectures, { courseId: state.ui.courseDetailsView.currentCourseId }
+  state.entities.lectures, { courseId: state.ui.currentCourseId }
 );
 
 // sectionとlectureをマージした配列を取得する
