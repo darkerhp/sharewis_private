@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 5,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#dadada',
+    backgroundColor: BaseStyles.disabledButtonColor,
     justifyContent: 'center',
     marginVertical: 10,
   },

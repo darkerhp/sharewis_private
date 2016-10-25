@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import BaseStyles from '../../baseStyles';
 
 const { PropTypes } = React;
-const { View, StyleSheet } = ReactNative;
+const { StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.backgroundColor,
+    backgroundColor: BaseStyles.disabledButtonColor,
   },
   fullScreenButtonIcon: {
     fontSize: 28,
@@ -77,8 +77,9 @@ const VideoControls = ({ isPaused, speed, onPressPlay, onPressSpeed }) =>
     </Button>
     {/* TODO fullScreenButton 実装する */}
     <Button
-      containerStyle={styles.speedButton}
+      containerStyle={styles.fullScreenButton}
       style={styles.buttonText}
+      disabled // TODO 未実装のため無効に
       // onPress={(e) => console.log(e)}
     >
       <Icon
@@ -92,8 +93,8 @@ const VideoControls = ({ isPaused, speed, onPressPlay, onPressSpeed }) =>
 VideoControls.propTypes = {
   isPaused: PropTypes.bool.isRequired,
   onPressPlay: PropTypes.func.isRequired,
-  speed: PropTypes.number.isRequired,
   onPressSpeed: PropTypes.func.isRequired,
+  speed: PropTypes.number.isRequired,
   // isFullScreen: PropTypes.bool.isRequired,
   // onPressFullScreen: PropTypes.func.isRequired,
 };
