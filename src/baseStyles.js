@@ -16,6 +16,7 @@ const Variables = {
     android: 55,
   }),
   navBarBackgroundColor: '#1288d8',
+  disabledButtonColor: '#dadada',
 };
 
 const DefaultComponents = {
