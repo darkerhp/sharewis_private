@@ -206,7 +206,7 @@ class CourseDetails extends Component {
 
 const mapStateToProps = (state, props) => {
   const { entities: { courses }, netInfo, ui } = state;
-  const { currentCourseId } = ui.courseDetailsView;
+  const { currentCourseId } = ui;
 
   return {
     ...courses[currentCourseId],
@@ -214,7 +214,7 @@ const mapStateToProps = (state, props) => {
     lectures: getSectionMergedLectures(state, props),
     totalDuration: getLectureTotalDuration(state, props),
     isOnline: netInfo.isConnected,
-    ...ui.courseDetailsView,
+    ...ui,
   };
 };
 

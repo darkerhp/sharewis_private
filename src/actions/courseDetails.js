@@ -41,11 +41,13 @@ export const fetchVideoInDeviceStatus = courseId => (
 export const fetchCourseDetails = courseId =>
   async(dispatch, getState) => {
     try {
-      const state = getState();
-      const userId = state.user.userId;
-      const courseDetailsView = state.ui.courseDetailsView;
-      if (_.isEmpty(_.filter(state.entities.lectures, { courseId }))
-        || courseDetailsView.fetchedAt - Date.now() > ACT_API_CACHE) {
+      const {
+        entities: { lectures },
+        ui: { fetchedCourseDetailsAt },
+        user: { userId },
+      } = getState();
+      if (_.isEmpty(_.filter(lectures, { courseId }))
+        || fetchedCourseDetailsAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
         const response = await getCourseDetails(userId, courseId);
         dispatch(fetchCourseDetailsSuccess({

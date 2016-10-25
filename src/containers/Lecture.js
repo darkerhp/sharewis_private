@@ -127,13 +127,12 @@ class Lecture extends Component {
 const mapStateToProps = (state) => {
   const { entities, netInfo, ui } = state;
   const { lectures } = entities;
-  const lectureId = ui.lectureView.currentLectureId;
+  const lectureId = ui.currentLectureId;
   const currentLecture = lectures[lectureId];
   return {
     lectures,
     ...currentLecture,
-    ...ui.lectureView,
-    ...ui.videoPlayer,
+    ...ui,
     isOnline: netInfo.isConnected,
     isLastLecture: lectureId === LectureUtils.getLastLectureId(currentLecture.courseId, lectures),
   };
