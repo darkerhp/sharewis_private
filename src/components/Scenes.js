@@ -56,7 +56,7 @@ const getScenes = loggedIn =>
           type={ActionConst.RESET}
           hideNavBar={false}
           estimatedTime={0}
-          onLeft={() => Actions.refresh({ key: 'drawer', open: true })}
+          onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
           leftButtonImage={menuWhiteImage}
         />
         <Scene
