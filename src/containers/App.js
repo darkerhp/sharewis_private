@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 
 import Styles from '../baseStyles';
 import getScenes from '../components/Scenes';
-import { connectState } from '../utils/redux';
 
-const { Component, PropTypes } = React;
+const { Component } = React;
 const RouterWithRedux = connect()(Router);
 
 const styles = StyleSheet.create({
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
 });
 
 
-@connectState('user')
+@connect(({ user }) => ({ user }))
 class App extends Component {
   componentWillMount() {
     this.scenes = Actions.create(getScenes());

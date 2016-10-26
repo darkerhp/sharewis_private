@@ -4,9 +4,10 @@ import ReactNative from 'react-native';
 import FBSDK from 'react-native-fbsdk';
 import autobind from 'autobind-decorator';
 import I18n from 'react-native-i18n';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import * as Actions from '../../actions/login';
-import { connectActions, connectState } from '../../utils/redux';
 
 const { Component, PropTypes } = React;
 const { Alert, StyleSheet, Text, View } = ReactNative;
@@ -38,9 +39,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
-@connectActions(Actions)
-@connectState('user')
+@connect(({ user }) => ({ user }), dispatch => ({ ...bindActionCreators(Actions, dispatch) }))
 class Facebook extends Component {
   static propTypes = {
     fetchUserBy: PropTypes.func.isRequired,
