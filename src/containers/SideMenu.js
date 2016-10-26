@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ACT_INQUIRIES_URL } from '../constants/Api';
+
 const { Component, PropTypes } = React;
 const { Image, Linking, StyleSheet, Text, View } = ReactNative;
 
