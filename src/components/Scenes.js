@@ -6,8 +6,8 @@ import I18n from 'react-native-i18n';
 import BaseStyles from '../baseStyles';
 import CourseList from '../containers/CourseList';
 import CourseDetails from '../containers/CourseDetails';
+import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
-import Profile from '../containers/Profile';
 import Lecture from '../containers/Lecture';
 
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
@@ -45,42 +45,40 @@ const getScenes = loggedIn =>
       component={Onboarding}
       initial={!loggedIn}
     />
-    <Scene
-      key="courseList"
-      {...baseNavBarProps}
-      component={CourseList}
-      title={I18n.t('courseList')}
-      initial={loggedIn}
-      type={ActionConst.RESET}
-      hideNavBar={false}
-      estimatedTime={0}
-      onLeft={() => console.log('onLeft')}
-      leftButtonImage={menuWhiteImage}
-    />
-    <Scene
-      key="courseDetails"
-      {...baseNavBarProps}
-      component={CourseDetails}
-      hideNavBar={false}
-      backTitle={I18n.t('courseList')}
-      // onRight={() => console.log('onRight')}
-      onBack={() => Actions.courseList()}
-      backButtonImage={backButtonWhiteImage}
-      // rightButtonImage={moreHorizWhiteImage}
-    />
-    <Scene
-      key="lecture"
-      {...baseNavBarProps}
-      backTitle={I18n.t('back')}
-      component={Lecture}
-      hideNavBar={false}
-      backButtonImage={backButtonWhiteImage}
-    />
-    <Scene
-      key="profile"
-      component={Profile}
-      title={I18n.t('profile')}
-    />
+    <Scene key="drawer" initial={loggedIn} component={NavigationDrawer} open={false}>
+      <Scene key="main">
+        <Scene
+          key="courseList"
+          {...baseNavBarProps}
+          component={CourseList}
+          title={I18n.t('courseList')}
+          type={ActionConst.RESET}
+          hideNavBar={false}
+          estimatedTime={0}
+          onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
+          leftButtonImage={menuWhiteImage}
+        />
+        <Scene
+          key="courseDetails"
+          {...baseNavBarProps}
+          component={CourseDetails}
+          hideNavBar={false}
+          backTitle={I18n.t('courseList')}
+          // onRight={() => console.log('onRight')}
+          onBack={() => Actions.courseList()}
+          backButtonImage={backButtonWhiteImage}
+          // rightButtonImage={moreHorizWhiteImage}
+        />
+        <Scene
+          key="lecture"
+          {...baseNavBarProps}
+          backTitle={I18n.t('back')}
+          component={Lecture}
+          hideNavBar={false}
+          backButtonImage={backButtonWhiteImage}
+        />
+      </Scene>
+    </Scene>
   </Scene>;
 
 
