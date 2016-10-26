@@ -12,7 +12,6 @@ import BaseStyles from '../../baseStyles';
 import Email from './Email';
 import Facebook from './Facebook';
 import redirectTo from '../../utils/linking';
-import { connectState } from '../../utils/redux';
 
 const { Component, PropTypes } = React;
 const { StyleSheet, Text, View } = ReactNative;
@@ -36,8 +35,13 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = ({ user, netInfo, ui }) => ({
+  ...user,
+  ...ui,
+  isOnline: netInfo.isConnected,
+});
 
-@connectState('user')
+@connect(mapStateToProps)
 class Login extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
@@ -76,16 +80,4 @@ class Login extends Component {
   }
 }
 
-// export default Login;
-
-const mapStateToProps = (state) => {
-  const { user, netInfo, ui } = state;
-  return {
-    ...user,
-    ...ui,
-    isOnline: netInfo.isConnected,
-  };
-};
-
-export default connect(mapStateToProps)(Login);
-
+export default Login;

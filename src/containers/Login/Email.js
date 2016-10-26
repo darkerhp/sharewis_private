@@ -18,7 +18,6 @@ import BaseStyles from '../../baseStyles';
 import redirectTo from '../../utils/linking';
 import TextField from '../../components/TextField';
 import validateEmailLogin from '../../utils/validate';
-import { connectActions, connectState } from '../../utils/redux';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
 const { Component, PropTypes } = React;
