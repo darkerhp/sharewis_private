@@ -1,5 +1,6 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
+import ReactNative from 'react-native';
 import { Actions, ActionConst, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
@@ -9,6 +10,8 @@ import CourseDetails from '../containers/CourseDetails';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
 import Lecture from '../containers/Lecture';
+
+const { Platform } = ReactNative;
 
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
 const menuWhiteImage = require('./images/ic_menu_white.png');
@@ -28,12 +31,19 @@ const baseNavBarProps = {
   rightButtonTextStyle: { color: 'white' },
   rightButtonIconStyle: {
     width: 25,
-    height: 17,
+    height: 21,
   },
   leftButtonTextStyle: { color: 'white' },
   leftButtonIconStyle: {
     width: 25,
-    height: 17,
+    height: 21,
+  },
+  leftButtonStyle: {
+    ...Platform.select({
+      android: {
+        width: 200,
+      },
+    }),
   },
 };
 
