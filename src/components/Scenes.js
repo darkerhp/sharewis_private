@@ -58,6 +58,7 @@ const getScenes = loggedIn =>
           estimatedTime={0}
           onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
           leftButtonImage={menuWhiteImage}
+          getPanHandlers={() => console.log('URYYY')}
         />
         <Scene
           key="courseDetails"
@@ -77,11 +78,6 @@ const getScenes = loggedIn =>
           component={Lecture}
           hideNavBar={false}
           backButtonImage={backButtonWhiteImage}
-        />
-        <Scene
-          key="profile"
-          component={Profile}
-          title={I18n.t('profile')}
         />
       </Scene>
     </Scene>
