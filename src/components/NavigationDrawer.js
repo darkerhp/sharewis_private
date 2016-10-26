@@ -20,7 +20,7 @@ export default class NavigationDrawer extends Component {
         onClose={() => Actions.refresh({ key, open: false })}
         content={<SideMenu />}
         tapToClose
-        openDrawerOffset={0.6}
+        openDrawerOffset={0.15}
         panCloseMask={0.2}
         negotiatePan
         tweenHandler={ratio => ({
