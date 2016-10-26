@@ -3,8 +3,9 @@ import ReactNative from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { ACT_INQUIRIES_URL } from '../constants/Api';
 const { Component, PropTypes } = React;
-const { Image, StyleSheet, Text, View } = ReactNative;
+const { Image, Linking, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -83,7 +84,12 @@ class SideMenu extends Component { // eslint-disable-line
               style={styles.menuIcon}
               name={'mail'}
             />
-            <Text style={styles.menuText}>お問い合わせ</Text>
+            <Text
+              style={styles.menuText}
+              onPress={() => Linking.openURL(ACT_INQUIRIES_URL)}
+            >
+              お問い合わせ
+            </Text>
           </View>
         </View>
       </View>
