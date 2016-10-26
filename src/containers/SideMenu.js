@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
-
-import BaseStyles from '../baseStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const { Component, PropTypes } = React;
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class SideMenu extends Component {
+class SideMenu extends Component { // eslint-disable-line
   static propTypes = {
     user: PropTypes.shape({}).isRequired,
   };
