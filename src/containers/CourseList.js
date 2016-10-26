@@ -20,6 +20,7 @@ const {
   Alert,
   Dimensions,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -92,6 +93,7 @@ class CourseList extends Component {
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
       >
+        <StatusBar barStyle="light-content" />
         <Spinner visible={isFetching} />
         <View style={styles.courseList}>
           {Object.keys(courses).map((courseId, index) =>
