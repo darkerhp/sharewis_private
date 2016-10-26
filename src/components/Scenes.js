@@ -8,7 +8,6 @@ import CourseList from '../containers/CourseList';
 import CourseDetails from '../containers/CourseDetails';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
-import Profile from '../containers/Profile';
 import Lecture from '../containers/Lecture';
 
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
