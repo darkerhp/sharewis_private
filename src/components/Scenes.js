@@ -58,7 +58,6 @@ const getScenes = loggedIn =>
           estimatedTime={0}
           onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
           leftButtonImage={menuWhiteImage}
-          getPanHandlers={() => console.log('URYYY')}
         />
         <Scene
           key="courseDetails"
