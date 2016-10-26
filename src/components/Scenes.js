@@ -48,7 +48,7 @@ const baseNavBarProps = {
 };
 
 
-const getScenes = loggedIn =>
+const getScenes = () =>
   <Scene key="root" hideNavBar>
     <Scene key="drawer" component={NavigationDrawer} open={false}>
       <Scene key="main" hideNavBar>
