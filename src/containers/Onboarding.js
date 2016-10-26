@@ -51,6 +51,7 @@ const slide1ImageSrc = require('../components/Onboarding/images/slide1.png');
 const slide2ImageSrc = require('../components/Onboarding/images/slide2.png');
 const slide3ImageSrc = require('../components/Onboarding/images/slide3.png');
 
+@connect(({ user, routes }) => ({ user, routes }))
 class Onboarding extends Component {
   static propTypes = {
     user: PropTypes.shape({}).isRequired,
@@ -94,4 +95,4 @@ class Onboarding extends Component {
   }
 }
 
-export default connect(({ user, routes }) => ({ user, routes }))(Onboarding);
+export default Onboarding;

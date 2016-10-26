@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   },
 });
 
+@connect(({ ui, user }) => ({ ui, user }))
 class SideMenu extends Component { // eslint-disable-line
   static propTypes = {
     user: PropTypes.shape({}).isRequired,
@@ -98,13 +99,5 @@ class SideMenu extends Component { // eslint-disable-line
   }
 }
 
-const mapStateToProps = (state) => {
-  const { user, ui } = state;
-  return {
-    ui,
-    user,
-  };
-};
-
-export default connect(mapStateToProps)(SideMenu);
+export default SideMenu;
 

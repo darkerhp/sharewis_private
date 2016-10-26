@@ -57,6 +57,16 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = ({ entities, netInfo, ui }) => ({
+  courses: entities.courses,
+  lectures: entities.lectures,
+  ...ui,
+  isOnline: netInfo.isConnected,
+});
+
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+
+@connect(mapStateToProps, mapDispatchToProps)
 class CourseList extends Component {
   static propTypes = {
     // states
@@ -125,13 +135,4 @@ class CourseList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  courses: state.entities.courses,
-  lectures: state.entities.lectures,
-  ...state.ui,
-  isOnline: state.netInfo.isConnected,
-});
-
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
-
-export default connect(mapStateToProps, mapDispatchToProps)(CourseList);
+export default CourseList;
