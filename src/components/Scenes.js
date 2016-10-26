@@ -50,13 +50,13 @@ const baseNavBarProps = {
 
 const getScenes = loggedIn =>
   <Scene key="root" hideNavBar>
-    <Scene
-      key="onboarding"
-      component={Onboarding}
-      initial={!loggedIn}
-    />
-    <Scene key="drawer" initial={loggedIn} component={NavigationDrawer} open={false}>
-      <Scene key="main">
+    <Scene key="drawer" component={NavigationDrawer} open={false}>
+      <Scene key="main" hideNavBar>
+        <Scene
+          key="onboarding"
+          component={Onboarding}
+          initial
+        />
         <Scene
           key="courseList"
           {...baseNavBarProps}

@@ -3,11 +3,12 @@ import ReactNative from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
 import Slide from '../components/Onboarding/Slide';
 import Login from './Login';
 
-
+const { Component, PropTypes } = React;
 const {
   Platform,
   StyleSheet,
@@ -50,33 +51,47 @@ const slide1ImageSrc = require('../components/Onboarding/images/slide1.png');
 const slide2ImageSrc = require('../components/Onboarding/images/slide2.png');
 const slide3ImageSrc = require('../components/Onboarding/images/slide3.png');
 
-const Onboarding = () =>
-  <Swiper
-    showsButtons
-    loop={false}
-    dot={<View style={[{ backgroundColor: 'rgba(0,0,0,.2)' }, styles.dotStyles]} />}
-    activeDot={<View style={[{ backgroundColor: 'gray' }, styles.dotStyles]} />}
-    paginationStyle={styles.pagination}
-    prevButton={<Text style={styles.buttonText}>{I18n.t('back')}</Text>}
-    nextButton={<Text style={styles.buttonText}>{I18n.t('next')}</Text>}
-    buttonWrapperStyle={styles.buttonWrapper}
-  >
-    <Slide
-      text={I18n.t('slide1Text')}
-      imageSrc={slide1ImageSrc}
-    />
-    <Slide
-      text={I18n.t('slide2Text')}
-      imageSrc={slide2ImageSrc}
-    />
-    <Slide
-      text={I18n.t('slide3Text')}
-      imageSrc={slide3ImageSrc}
-    />
-    <Login />
-  </Swiper>;
+class Onboarding extends Component {
+  static propTypes = {
+    user: PropTypes.shape({}).isRequired,
+    routes: PropTypes.shape({}).isRequired,
+  };
 
+  componentWillMount() {
+    const { user } = this.props;
+    if (user.loggedIn) {
+      RouterActions.courseList();
+    }
+  }
 
-export default connect(
-  ({ routes }) => ({ routes })
-)(Onboarding);
+  render() {
+    return (
+      <Swiper
+        showsButtons
+        loop={false}
+        dot={<View style={[{ backgroundColor: 'rgba(0,0,0,.2)' }, styles.dotStyles]} />}
+        activeDot={<View style={[{ backgroundColor: 'gray' }, styles.dotStyles]} />}
+        paginationStyle={styles.pagination}
+        prevButton={<Text style={styles.buttonText}>{I18n.t('back')}</Text>}
+        nextButton={<Text style={styles.buttonText}>{I18n.t('next')}</Text>}
+        buttonWrapperStyle={styles.buttonWrapper}
+      >
+        <Slide
+          text={I18n.t('slide1Text')}
+          imageSrc={slide1ImageSrc}
+        />
+        <Slide
+          text={I18n.t('slide2Text')}
+          imageSrc={slide2ImageSrc}
+        />
+        <Slide
+          text={I18n.t('slide3Text')}
+          imageSrc={slide3ImageSrc}
+        />
+        <Login />
+      </Swiper>
+    );
+  }
+}
+
+export default connect(({ user, routes }) => ({ user, routes }))(Onboarding);
