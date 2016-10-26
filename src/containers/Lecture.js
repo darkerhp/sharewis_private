@@ -39,6 +39,21 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = ({ entities: { lectures }, netInfo, ui }) => {
+  const lectureId = ui.currentLectureId;
+  const currentLecture = lectures[lectureId];
+  return {
+    lectures,
+    ...currentLecture,
+    ...ui,
+    isOnline: netInfo.isConnected,
+    isLastLecture: lectureId === LectureUtils.getLastLectureId(currentLecture.courseId, lectures),
+  };
+};
+
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Lecture extends Component {
   static propTypes = {
     // values
@@ -124,20 +139,4 @@ class Lecture extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { entities, netInfo, ui } = state;
-  const { lectures } = entities;
-  const lectureId = ui.currentLectureId;
-  const currentLecture = lectures[lectureId];
-  return {
-    lectures,
-    ...currentLecture,
-    ...ui,
-    isOnline: netInfo.isConnected,
-    isLastLecture: lectureId === LectureUtils.getLastLectureId(currentLecture.courseId, lectures),
-  };
-};
-
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
-
-export default connect(mapStateToProps, mapDispatchToProps)(Lecture);
+export default Lecture;

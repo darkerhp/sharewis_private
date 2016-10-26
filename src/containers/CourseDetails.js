@@ -42,6 +42,25 @@ const styles = StyleSheet.create({
   lectureContainer: { flex: 1 },
 });
 
+const mapStateToProps = (state, props) => {
+  const { entities: { courses }, netInfo, ui } = state;
+  const { currentCourseId } = ui;
+
+  return {
+    ...courses[currentCourseId],
+    lectureProgress: getLectureProgress(state, props),
+    lectures: getSectionMergedLectures(state, props),
+    totalDuration: getLectureTotalDuration(state, props),
+    isOnline: netInfo.isConnected,
+    ...ui,
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ ...Actions, ...LectureActions }, dispatch),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 class CourseDetails extends Component {
   static propTypes = {
     // values
@@ -67,18 +86,16 @@ class CourseDetails extends Component {
   };
 
   async componentWillMount() {
-    const { fetchCourseDetails, id } = this.props;
+    const { fetchCourseDetails, id, lectures, fetchVideoInDeviceStatus } = this.props;
     try {
       await fetchCourseDetails(id);
+      if (!_.isEmpty(lectures)) {
+        await fetchVideoInDeviceStatus(id, lectures);
+      }
     } catch (error) {
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
-  }
-
-  componentDidMount() {
-    const { id, lectures, fetchVideoInDeviceStatus } = this.props;
-    _.isEmpty(lectures) || fetchVideoInDeviceStatus(id, lectures); // eslint-disable-line
   }
 
   @autobind
@@ -204,22 +221,4 @@ class CourseDetails extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  const { entities: { courses }, netInfo, ui } = state;
-  const { currentCourseId } = ui;
-
-  return {
-    ...courses[currentCourseId],
-    lectureProgress: getLectureProgress(state, props),
-    lectures: getSectionMergedLectures(state, props),
-    totalDuration: getLectureTotalDuration(state, props),
-    isOnline: netInfo.isConnected,
-    ...ui,
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions, ...LectureActions }, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CourseDetails);
+export default CourseDetails;
