@@ -16,7 +16,6 @@ export default class NavigationDrawer extends Component {
         ref={ref => (this.navigator = ref)}
         type="displace"
         open={open}
-        onOpen={() => Actions.refresh({ key, open: true })}
         onClose={() => Actions.refresh({ key, open: false })}
         content={<SideMenu />}
         tapToClose

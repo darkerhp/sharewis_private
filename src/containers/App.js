@@ -20,14 +20,8 @@ const styles = StyleSheet.create({
 
 @connectState('user')
 class App extends Component {
-  static propTypes = {
-    loggedIn: PropTypes.bool.isRequired,
-  };
-
   componentWillMount() {
-    this.scenes = Actions.create(
-      getScenes(this.props.loggedIn)
-    );
+    this.scenes = Actions.create(getScenes());
   }
 
   render() {
