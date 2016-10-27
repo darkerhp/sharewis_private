@@ -114,17 +114,18 @@ class Lecture extends Component {
 
   render() {
     const { hasVideoInDevice, isLastLecture, isOnline } = this.props;
+    const isOfflineAndUnsavedLecture = !isOnline && !hasVideoInDevice;
     return (
       <View style={{ flex: 1 }}>
         <Spinner visible={this.state.loading} />
         <StatusBar barStyle="light-content" />
-        {(isOnline || (!isOnline && hasVideoInDevice))
-          ? <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />
-          : <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />
+        {isOfflineAndUnsavedLecture
+          ? <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />
+          : <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />
         }
 
         <View style={styles.nextLectureButtonWrapper}>
-          { isLastLecture ||
+          { isLastLecture || isOfflineAndUnsavedLecture ||
           <Button
             containerStyle={styles.nextLectureButton}
             style={styles.nextLectureButtonText}
