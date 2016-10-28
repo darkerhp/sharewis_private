@@ -2,8 +2,14 @@ import React from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import I18n from 'react-native-i18n';
 
-import { ACT_INQUIRIES_URL } from '../constants/Api';
+import MenuItem from '../components/SideMenu/MenuItem';
+import {
+  ACT_INQUIRIES_URL,
+  ACT_TOS_URL,
+  ACT_PRIVACY_URL,
+} from '../constants/Api';
 
 const { Component, PropTypes } = React;
 const { Image, Linking, StyleSheet, Text, View } = ReactNative;
@@ -56,6 +62,7 @@ class SideMenu extends Component { // eslint-disable-line
 
   render() {
     const { user } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
@@ -67,32 +74,11 @@ class SideMenu extends Component { // eslint-disable-line
           </View>
         </View>
         <View style={styles.mainContainer}>
-          <View style={styles.menuWrapper}>
-            <Icon
-              style={styles.menuIcon}
-              name={'home'}
-            />
-            <Text style={styles.menuText}>マイコース</Text>
-          </View>
-          <View style={styles.menuWrapper}>
-            <Icon
-              style={styles.menuIcon}
-              name={'account-circle'}
-            />
-            <Text style={styles.menuText}>アカウント・通知設定</Text>
-          </View>
-          <View style={styles.menuWrapper}>
-            <Icon
-              style={styles.menuIcon}
-              name={'mail'}
-            />
-            <Text
-              style={styles.menuText}
-              onPress={() => Linking.openURL(ACT_INQUIRIES_URL)}
-            >
-              お問い合わせ
-            </Text>
-          </View>
+          <MenuItem text={'マイコース'} iconName={'home'} linkingUrl={null} />
+          <MenuItem text={'アカウント・通知設定'} iconName={'account-circle'} linkingUrl={null} />
+          <MenuItem text={'お問い合わせ'} iconName={'mail'} linkingUrl={ACT_INQUIRIES_URL} />
+          <MenuItem text={'利用規約'} iconName={'description'} linkingUrl={ACT_TOS_URL} />
+          <MenuItem text={'プライバシーポリシー'} iconName={'lock'} linkingUrl={ACT_PRIVACY_URL} />
         </View>
       </View>
     );
