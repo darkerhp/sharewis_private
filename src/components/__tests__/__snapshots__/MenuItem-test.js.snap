@@ -1,0 +1,47 @@
+exports[`MenuItem renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "flex-start",
+      "marginBottom": 30,
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": undefined,
+          "fontFamily": "Material Icons",
+          "fontSize": 12,
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {
+          "color": "#999",
+          "fontSize": 32,
+          "marginRight": 10,
+        },
+      ]
+    }>
+    
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    onPress={[Function]}
+    style={
+      Object {
+        "color": "#33bcd0",
+        "fontSize": 17,
+      }
+    }>
+    text
+  </Text>
+</View>
+`;

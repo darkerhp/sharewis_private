@@ -20,6 +20,8 @@ export const ACT_API_KEY = actApiKey;
 
 export const ACT_SITE_URL = `https://${ACT_API_HOST}`;
 export const ACT_INQUIRIES_URL = `${ACT_SITE_URL}/inquiries/new`;
+export const ACT_TOS_URL = `${ACT_SITE_URL}/tos`;
+export const ACT_PRIVACY_URL = `${ACT_SITE_URL}/privacy`;
 export const PASSWORD_FORGOTTEN_URL = `${ACT_SITE_URL}/users/password/new`;
 
 // Lecture.kind
