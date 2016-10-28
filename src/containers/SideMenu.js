@@ -3,6 +3,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
 import MenuItem from '../components/SideMenu/MenuItem';
 import {
@@ -74,11 +75,31 @@ class SideMenu extends Component { // eslint-disable-line
           </View>
         </View>
         <View style={styles.mainContainer}>
-          <MenuItem text={I18n.t('courseList')} iconName={'home'} handlePress={() => console.log('myCourse')} />
-          <MenuItem text={I18n.t('accountSettings')} iconName={'account-circle'} handlePress={() => console.log('settings')} />
-          <MenuItem text={I18n.t('inquiry')} iconName={'mail'} handlePress={() => Linking.openURL(ACT_INQUIRIES_URL)} />
-          <MenuItem text={I18n.t('tos')} iconName={'description'} handlePress={() => Linking.openURL(ACT_TOS_URL)} />
-          <MenuItem text={I18n.t('privacy')} iconName={'lock'} handlePress={() => Linking.openURL(ACT_PRIVACY_URL)} />
+          <MenuItem
+            text={I18n.t('courseList')}
+            iconName={'home'}
+            handlePress={() => RouterActions.refresh({ key: 'drawer', open: false })}
+          />
+          <MenuItem
+            text={I18n.t('accountSettings')}
+            iconName={'account-circle'}
+            handlePress={() => RouterActions.account()}
+          />
+          <MenuItem
+            text={I18n.t('inquiry')}
+            iconName={'mail'}
+            handlePress={() => Linking.openURL(ACT_INQUIRIES_URL)}
+          />
+          <MenuItem
+            text={I18n.t('tos')}
+            iconName={'description'}
+            handlePress={() => Linking.openURL(ACT_TOS_URL)}
+          />
+          <MenuItem
+            text={I18n.t('privacy')}
+            iconName={'lock'}
+            handlePress={() => Linking.openURL(ACT_PRIVACY_URL)}
+          />
         </View>
       </View>
     );
