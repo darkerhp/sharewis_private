@@ -37,8 +37,8 @@
     "slide2Text": "アプリを使えば、コースの動画を事前にダウンロードして、通信費を気にすることなく受講することができます。",
     "slide3Text": "アカウントをお持ちでない方、購入済みのコースがない方は、 ACT_SITE_URL よりお手続きを進めてください。",
     "tos": "利用規約",
-    "totalDurationFormat": "計 h時間m分"
-    "userName": "アカウント名",
+    "totalDurationFormat": "計 h時間m分",
+    "userName": "アカウント名"
   },
   "en": {
     "accountSettings": "****要翻訳*****",
@@ -78,8 +78,8 @@
     "slide2Text": "No worry about mobile roaming costs. Download your videos in advance via WiFi, and watch them offline whenever you want!",
     "slide3Text": "If you don't have a ShareWis ACT account or haven't purchased any courses yet, please go to the ACT_SITE_URL.",
     "tos": "Terms of use",
-    "totalDurationFormat": "[Total ]h[ hours ]m[ minutes]"
-    "userName": "Account Name",
+    "totalDurationFormat": "[Total ]h[ hours ]m[ minutes]",
+    "userName": "Account Name"
   },
   "vi": {
     "accountSettings": "****要翻訳*****",
@@ -119,7 +119,7 @@
     "slide2Text": "Không cần lo lắng về chi phí chuyển vùng di động. Tải video của bạn trước qua WiFi, và xem chúng offline bất cứ khi nào bạn muốn!",
     "slide3Text": "Nếu bạn không có tài khoản ShareWis ACT hoặc chưa mua bất kỳ khóa học nào, vui lòng vào ACT_SITE_URL.",
     "tos": "Điều khoản sử dụng",
-    "totalDurationFormat": "[Tổng cộng ]h[ giờ ]m[ phút]"
-    "userName": "Tên tài khoản",
+    "totalDurationFormat": "[Tổng cộng ]h[ giờ ]m[ phút]",
+    "userName": "Tên tài khoản"
   }
 }
