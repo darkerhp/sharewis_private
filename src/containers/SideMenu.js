@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import I18n from 'react-native-i18n';
 
 import MenuItem from '../components/SideMenu/MenuItem';
