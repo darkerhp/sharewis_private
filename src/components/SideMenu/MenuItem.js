@@ -2,10 +2,8 @@ import React from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// import BaseStyles from '../baseStyles';
-
 const { PropTypes } = React;
-const { Linking, StyleSheet, Text, View } = ReactNative;
+const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   menuWrapper: {
@@ -25,18 +23,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const MenuItem = ({ text, iconName, linkingUrl }) =>
+const MenuItem = ({ text, iconName, handlePress }) =>
   <View style={styles.menuWrapper}>
     <Icon style={styles.menuIcon} name={iconName} />
-    <Text style={styles.menuText} onPress={() => linkingUrl && Linking.openURL(linkingUrl)}>
+    <Text style={styles.menuText} onPress={handlePress}>
       {text}
     </Text>
   </View>;
 
 MenuItem.propTypes = {
-  text: PropTypes.string,
-  iconName: PropTypes.string,
-  linkingUrl: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  iconName: PropTypes.string.isRequired,
+  handlePress: PropTypes.func.isRequired,
 };
 
 export default MenuItem;

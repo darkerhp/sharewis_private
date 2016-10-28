@@ -74,11 +74,11 @@ class SideMenu extends Component { // eslint-disable-line
           </View>
         </View>
         <View style={styles.mainContainer}>
-          <MenuItem text={I18n.t('courseList')} iconName={'home'} linkingUrl={null} />
-          <MenuItem text={I18n.t('accountSettings')} iconName={'account-circle'} linkingUrl={null} />
-          <MenuItem text={I18n.t('inquiry')} iconName={'mail'} linkingUrl={ACT_INQUIRIES_URL} />
-          <MenuItem text={I18n.t('tos')} iconName={'description'} linkingUrl={ACT_TOS_URL} />
-          <MenuItem text={I18n.t('privacy')} iconName={'lock'} linkingUrl={ACT_PRIVACY_URL} />
+          <MenuItem text={I18n.t('courseList')} iconName={'home'} handlePress={() => console.log('myCourse')} />
+          <MenuItem text={I18n.t('accountSettings')} iconName={'account-circle'} handlePress={() => console.log('settings')} />
+          <MenuItem text={I18n.t('inquiry')} iconName={'mail'} handlePress={() => Linking.openURL(ACT_INQUIRIES_URL)} />
+          <MenuItem text={I18n.t('tos')} iconName={'description'} handlePress={() => Linking.openURL(ACT_TOS_URL)} />
+          <MenuItem text={I18n.t('privacy')} iconName={'lock'} handlePress={() => Linking.openURL(ACT_PRIVACY_URL)} />
         </View>
       </View>
     );
