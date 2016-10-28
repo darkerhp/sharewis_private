@@ -1,8 +1,5 @@
 {
   "ja": {
-    "userName": "アカウント名",
-    "nickName": "ニックネーム",
-    "email": "メールアドレス",
     "accountSettings": "アカウント・通知設定",
     "actWebsite": "ShareWis ACTのWebサイト",
     "back": "戻る",
@@ -10,6 +7,7 @@
     "courseList": "マイコース",
     "downloadAlreadyInProgress": "現在他のレクチャーをダウンロード中です",
     "downloadAvailable": "ダウンロード済みレクチャーあり",
+    "email": "メールアドレス",
     "emailNotFound": "Facebookからメールアドレスを取得することができませんでした。Facebookの共有設定をご確認ください",
     "emailOrUsername": "メールアドレスまたはアカウント名",
     "emailOrUsernameLabel": "メールアドレスでログインする",
@@ -24,6 +22,7 @@
     "networkFailure": "ネットワークエラー",
     "next": "次へ",
     "nextLecture": "次のレクチャーへ",
+    "nickName": "ニックネーム",
     "noCourses": "購入済みのコースがない方は、 ACT_SITE_URL よりお手続きを進めてください。",
     "offlineLecture": "このレクチャーはオフラインで受講できません",
     "passwordForgotten": "パスワードを忘れた方はこちら",
@@ -39,11 +38,9 @@
     "slide3Text": "アカウントをお持ちでない方、購入済みのコースがない方は、 ACT_SITE_URL よりお手続きを進めてください。",
     "tos": "利用規約",
     "totalDurationFormat": "計 h時間m分"
+    "userName": "アカウント名",
   },
   "en": {
-    "userName": "Account Name",
-    "nickName": "Nickname",
-    "email": "E-mail",
     "accountSettings": "****要翻訳*****",
     "actWebsite": "ShareWis ACT's website",
     "back": "Back",
@@ -51,6 +48,7 @@
     "courseList": "My courses",
     "downloadAlreadyInProgress": "download already in progress.",
     "downloadAvailable": "Downloaded lectures exist",
+    "email": "E-mail",
     "emailNotFound": "We were unable to fetch your email from Facebook. Please review your Facebook settings to allow sharing your email.",
     "emailOrUsername": "E-mail or Username",
     "emailOrUsernameLabel": "Login with your e-mail",
@@ -65,6 +63,7 @@
     "networkFailure": "Network error.",
     "next": "Next",
     "nextLecture": "Next lecture",
+    "nickName": "Nickname",
     "noCourses": "If you haven't purchased any courses yet, please go to the ACT_SITE_URL.",
     "offlineLecture": "Sorry, this lecture is not available offline",
     "passwordForgotten": "Forgot your password?",
@@ -80,11 +79,9 @@
     "slide3Text": "If you don't have a ShareWis ACT account or haven't purchased any courses yet, please go to the ACT_SITE_URL.",
     "tos": "Terms of use",
     "totalDurationFormat": "[Total ]h[ hours ]m[ minutes]"
+    "userName": "Account Name",
   },
   "vi": {
-    "userName": "Tên tài khoản",
-    "nickName": "Nickname",
-    "email": "Địa chỉ email",
     "accountSettings": "****要翻訳*****",
     "actWebsite": "trang web ShareWis ACT",
     "back": "Trở lại",
@@ -92,6 +89,7 @@
     "courseList": "các khóa học của tôi",
     "downloadAlreadyInProgress": "Tải về đã được tiến hành",
     "downloadAvailable": "Bài giảng tải về đã tồn tại",
+    "email": "Địa chỉ email",
     "emailNotFound": "Chúng tôi không thể tìm nạp email của bạn từ Facebook. Hãy xem xét cài đặt Facebook của bạn để cho phép chia sẻ email của bạn.",
     "emailOrUsername": "Địa chỉ email hoặc tên tài khoản",
     "emailOrUsernameLabel": "Đăng nhập với email",
@@ -106,6 +104,7 @@
     "networkFailure": "Đã xảy ra lỗi mạng. Vui lòng thử lại sau.",
     "next": "kế tiếp",
     "nextLecture": "bài giảng tiếp theo",
+    "nickName": "Nickname",
     "noCourses": "Nếu bạn chưa mua bất kỳ khóa học nào, vui lòng vào ACT_SITE_URL.",
     "offlineLecture": "Xin lỗi, bài giảng này không có sẵn ở chế độ offline",
     "passwordForgotten": "Quên mật khẩu",
@@ -121,5 +120,6 @@
     "slide3Text": "Nếu bạn không có tài khoản ShareWis ACT hoặc chưa mua bất kỳ khóa học nào, vui lòng vào ACT_SITE_URL.",
     "tos": "Điều khoản sử dụng",
     "totalDurationFormat": "[Tổng cộng ]h[ giờ ]m[ phút]"
+    "userName": "Tên tài khoản",
   }
 }
