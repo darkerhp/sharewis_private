@@ -92,7 +92,19 @@ const getScenes = () =>
         </Scene>
       </Scene>
       <Scene key="account" direction="vertical" >
-        <Scene key="accountModal" component={Account} direction="vertical" />
+        <Scene
+          key="accountModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f',
+          }}
+          component={Account}
+          direction="vertical"
+          backTitle={I18n.t('close')}
+          onBack={Actions.pop}
+          title={I18n.t('accountSettings')}
+        />
       </Scene>
     </Scene>
   </Scene>;
