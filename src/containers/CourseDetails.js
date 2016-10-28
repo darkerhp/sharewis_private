@@ -89,9 +89,7 @@ class CourseDetails extends Component {
     const { fetchCourseDetails, id, lectures, fetchVideoInDeviceStatus } = this.props;
     try {
       await fetchCourseDetails(id);
-      if (!_.isEmpty(lectures)) {
-        await fetchVideoInDeviceStatus(id, lectures);
-      }
+      await fetchVideoInDeviceStatus(id);
     } catch (error) {
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
