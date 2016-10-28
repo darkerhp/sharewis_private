@@ -74,11 +74,11 @@ class SideMenu extends Component { // eslint-disable-line
           </View>
         </View>
         <View style={styles.mainContainer}>
-          <MenuItem text={'マイコース'} iconName={'home'} linkingUrl={null} />
-          <MenuItem text={'アカウント・通知設定'} iconName={'account-circle'} linkingUrl={null} />
-          <MenuItem text={'お問い合わせ'} iconName={'mail'} linkingUrl={ACT_INQUIRIES_URL} />
-          <MenuItem text={'利用規約'} iconName={'description'} linkingUrl={ACT_TOS_URL} />
-          <MenuItem text={'プライバシーポリシー'} iconName={'lock'} linkingUrl={ACT_PRIVACY_URL} />
+          <MenuItem text={I18n.t('courseList')} iconName={'home'} linkingUrl={null} />
+          <MenuItem text={I18n.t('accountSettings')} iconName={'account-circle'} linkingUrl={null} />
+          <MenuItem text={I18n.t('inquiry')} iconName={'mail'} linkingUrl={ACT_INQUIRIES_URL} />
+          <MenuItem text={I18n.t('tos')} iconName={'description'} linkingUrl={ACT_TOS_URL} />
+          <MenuItem text={I18n.t('privacy')} iconName={'lock'} linkingUrl={ACT_PRIVACY_URL} />
         </View>
       </View>
     );

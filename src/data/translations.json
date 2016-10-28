@@ -15,6 +15,10 @@
     "login": "ログイン",
     "loginEmailError": "メールアドレス、ユーザー名またはパスワードが正しくありません",
     "loginFacebookError": "Facebookログインが失敗しました",
+    "accountSettings": "アカウント・通知設定",
+    "tos": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "inquiry": "お問い合わせ",
     "networkFailure": "ネットワークエラー",
     "next": "次へ",
     "nextLecture": "次のレクチャーへ",
@@ -33,6 +37,10 @@
     "totalDurationFormat": "計 h時間m分"
   },
   "en": {
+    "accountSettings": "****要翻訳*****",
+    "tos": "Terms of use",
+    "privacy": "Privacy policy",
+    "inquiry": "Contact us",
     "actWebsite": "ShareWis ACT's website",
     "back": "Back",
     "courseList": "My courses",
@@ -66,6 +74,10 @@
     "totalDurationFormat": "[Total ]h[ hours ]m[ minutes]"
   },
   "vi": {
+    "accountSettings": "****要翻訳*****",
+    "tos": "Điều khoản sử dụng",
+    "privacy": "Chính sách bảo mật",
+    "inquiry": "Liền hề",
     "actWebsite": "trang web ShareWis ACT",
     "back": "Trở lại",
     "courseList": "các khóa học của tôi",
