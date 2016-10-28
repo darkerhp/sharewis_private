@@ -91,13 +91,13 @@ class Account extends Component {// eslint-disable-line
         <View style={styles.profileContainer}>
           <View style={styles.labelWrapper}>
             <Text style={styles.label}>
-              プロフィール
+              {I18n.t('profile')}
             </Text>
           </View>
           <View style={styles.profileContentWrapper}>
             <View style={styles.rowWrapper}>
               <View style={styles.fieldNameWrapper}>
-                <Text>ユーザー名</Text>
+                <Text>{I18n.t('userName')}</Text>
               </View>
               <View style={styles.fieldValueWrapper}>
                 <Text>{user.userName}</Text>
@@ -105,7 +105,7 @@ class Account extends Component {// eslint-disable-line
             </View>
             <View style={styles.rowWrapper}>
               <View style={styles.fieldNameWrapper}>
-                <Text>ニックネーム</Text>
+                <Text>{I18n.t('nickName')}</Text>
               </View>
               <View style={styles.fieldValueWrapper}>
                 <Text>{user.nickName}</Text>
@@ -113,7 +113,7 @@ class Account extends Component {// eslint-disable-line
             </View>
             <View style={[styles.rowWrapper, { borderBottomWidth: 0 }]}>
               <View style={styles.fieldNameWrapper}>
-                <Text>メールアドレス</Text>
+                <Text>{I18n.t('email')}</Text>
               </View>
               <View style={styles.fieldValueWrapper}>
                 <Text>{user.email}</Text>

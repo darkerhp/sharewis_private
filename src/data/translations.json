@@ -1,5 +1,8 @@
 {
   "ja": {
+    "userName": "アカウント名",
+    "nickName": "ニックネーム",
+    "email": "メールアドレス",
     "accountSettings": "アカウント・通知設定",
     "actWebsite": "ShareWis ACTのWebサイト",
     "back": "戻る",
@@ -38,6 +41,9 @@
     "totalDurationFormat": "計 h時間m分"
   },
   "en": {
+    "userName": "Account Name",
+    "nickName": "Nickname",
+    "email": "E-mail",
     "accountSettings": "****要翻訳*****",
     "actWebsite": "ShareWis ACT's website",
     "back": "Back",
@@ -76,6 +82,9 @@
     "totalDurationFormat": "[Total ]h[ hours ]m[ minutes]"
   },
   "vi": {
+    "userName": "Tên tài khoản",
+    "nickName": "Nickname",
+    "email": "Địa chỉ email",
     "accountSettings": "****要翻訳*****",
     "actWebsite": "trang web ShareWis ACT",
     "back": "Trở lại",
