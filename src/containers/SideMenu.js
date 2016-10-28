@@ -83,7 +83,7 @@ class SideMenu extends Component { // eslint-disable-line
           <MenuItem
             text={I18n.t('accountSettings')}
             iconName={'account-circle'}
-            handlePress={() => console.log('settings')}
+            handlePress={() => RouterActions.account()}
           />
           <MenuItem
             text={I18n.t('inquiry')}

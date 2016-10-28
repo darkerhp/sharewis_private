@@ -1,7 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React from 'react';
 import ReactNative from 'react-native';
-import { Actions, ActionConst, Scene } from 'react-native-router-flux';
+import { Actions, ActionConst, Modal, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
@@ -10,6 +10,7 @@ import CourseDetails from '../containers/CourseDetails';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
 import Lecture from '../containers/Lecture';
+import Account from '../containers/Account';
 
 const { Platform } = ReactNative;
 
@@ -49,44 +50,49 @@ const baseNavBarProps = {
 
 
 const getScenes = () =>
-  <Scene key="root" hideNavBar>
-    <Scene key="drawer" component={NavigationDrawer} open={false}>
-      <Scene key="main" hideNavBar>
-        <Scene
-          key="onboarding"
-          component={Onboarding}
-          initial
-        />
-        <Scene
-          key="courseList"
-          {...baseNavBarProps}
-          component={CourseList}
-          title={I18n.t('courseList')}
-          type={ActionConst.RESET}
-          hideNavBar={false}
-          estimatedTime={0}
-          onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
-          leftButtonImage={menuWhiteImage}
-        />
-        <Scene
-          key="courseDetails"
-          {...baseNavBarProps}
-          component={CourseDetails}
-          hideNavBar={false}
-          backTitle={I18n.t('courseList')}
-          // onRight={() => console.log('onRight')}
-          onBack={() => Actions.courseList()}
-          backButtonImage={backButtonWhiteImage}
-          // rightButtonImage={moreHorizWhiteImage}
-        />
-        <Scene
-          key="lecture"
-          {...baseNavBarProps}
-          backTitle={I18n.t('back')}
-          component={Lecture}
-          hideNavBar={false}
-          backButtonImage={backButtonWhiteImage}
-        />
+  <Scene key="modal" component={Modal}>
+    <Scene key="root" hideNavBar>
+      <Scene key="drawer" component={NavigationDrawer} open={false}>
+        <Scene key="main" hideNavBar>
+          <Scene
+            key="onboarding"
+            component={Onboarding}
+            initial
+          />
+          <Scene
+            key="courseList"
+            {...baseNavBarProps}
+            component={CourseList}
+            title={I18n.t('courseList')}
+            type={ActionConst.RESET}
+            hideNavBar={false}
+            estimatedTime={0}
+            onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
+            leftButtonImage={menuWhiteImage}
+          />
+          <Scene
+            key="courseDetails"
+            {...baseNavBarProps}
+            component={CourseDetails}
+            hideNavBar={false}
+            backTitle={I18n.t('courseList')}
+            // onRight={() => console.log('onRight')}
+            onBack={() => Actions.courseList()}
+            backButtonImage={backButtonWhiteImage}
+            // rightButtonImage={moreHorizWhiteImage}
+          />
+          <Scene
+            key="lecture"
+            {...baseNavBarProps}
+            backTitle={I18n.t('back')}
+            component={Lecture}
+            hideNavBar={false}
+            backButtonImage={backButtonWhiteImage}
+          />
+        </Scene>
+      </Scene>
+      <Scene key="account" direction="vertical" >
+        <Scene key="accountModal" component={Account} direction="vertical" />
       </Scene>
     </Scene>
   </Scene>;
