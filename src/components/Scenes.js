@@ -101,8 +101,8 @@ const getScenes = () =>
           }}
           component={Account}
           direction="vertical"
-          backTitle={I18n.t('close')}
-          onBack={Actions.pop}
+          leftTitle={I18n.t('close')}
+          onLeft={Actions.pop}
           title={I18n.t('accountSettings')}
         />
       </Scene>
