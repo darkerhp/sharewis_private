@@ -1,19 +1,12 @@
 import React from 'react';
 import ReactNative from 'react-native';
-
-import Button from 'react-native-button';
-import { Actions } from 'react-native-router-flux';
-
 import I18n from 'react-native-i18n';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import TextField from '../components/TextField';
 
 import BaseStyles from '../baseStyles';
 
 const { Component, PropTypes } = React;
-const { View, Text, StyleSheet, Platform, TextInput, Dimensions } = ReactNative;
+const { View, Text, StyleSheet, Platform, Dimensions } = ReactNative;
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
@@ -81,9 +74,7 @@ class Account extends Component {// eslint-disable-line
   };
 
   render() {
-
     const { user } = this.props;
-
     return (
       <View style={styles.container}>
         {/* <View style={styles.profileImageContainer} /> */}
