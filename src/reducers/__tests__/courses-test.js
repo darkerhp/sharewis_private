@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
+import { createAction } from 'redux-actions';
+
 import reducer from '../entities/courses';
 import * as types from '../../constants/ActionTypes';
-import { createAction } from 'redux-actions';
 
 
 describe('courses reducer', () => {
