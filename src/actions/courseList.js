@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
-import Immutable from 'immutable';
 
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
@@ -42,10 +41,9 @@ export const fetchCoursesDownloadStatus = () =>
   async(dispatch, getState) => {
     const { entities: { courses } } = getState();
     if (_.isEmpty(courses)) return;
-
     const promises = Object.keys(courses).map(async(id) => {
       const hasDownloadedLecture = await FileUtils.hasVideoByCourse(id);
-      return { id, hasDownloadedLecture };
+      return { id: Number(id), hasDownloadedLecture }; // Note: idが文字列になってしまうので明示的にキャスト
     });
     const results = await Promise.all(promises);
     // stateに合わせてobjectに変換 { [courseId]: { id, hasDownloadedLecture }, ... }
