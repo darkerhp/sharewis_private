@@ -14,3 +14,11 @@ export const createVideoFileName = (lectureId, courseId) =>
   `${getCourseVideosDirPath(courseId)}/${lectureId}.mp4`;
 
 export const exists = path => RNFS.exists(path);
+
+export async function hasVideoByCourse(courseId) {
+  const courseVideoDirPath = getCourseVideosDirPath(courseId);
+  const isExists = await exists(courseVideoDirPath);
+  if (!isExists) return false;
+  const readDirItemResult = await RNFS.readDir();
+  return readDirItemResult.size > 0;
+}
