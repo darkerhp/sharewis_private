@@ -74,6 +74,7 @@ class CourseList extends Component {
     lectures: PropTypes.shape({}),
     isFetching: PropTypes.bool.isRequired,
     // actions
+    fetchCoursesDownloadStatus: PropTypes.func.isRequired,
     fetchCourseList: PropTypes.func.isRequired,
     setCurrentCourseId: PropTypes.func.isRequired,
   };
