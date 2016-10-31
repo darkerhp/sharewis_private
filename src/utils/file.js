@@ -15,10 +15,22 @@ export const createVideoFileName = (lectureId, courseId) =>
 
 export const exists = path => RNFS.exists(path);
 
+const getFileExtension = (fileName) => {
+  const f = fileName.split('.');
+  return f[f.length - 1].toLowerCase();
+};
+
 export async function hasVideoByCourse(courseId) {
-  const courseVideoDirPath = getCourseVideosDirPath(courseId);
-  const isExists = await exists(courseVideoDirPath);
-  if (!isExists) return false;
-  const readDirItemResult = await RNFS.readDir();
-  return readDirItemResult.size > 0;
+  try {
+    const courseVideoDirPath = getCourseVideosDirPath(courseId);
+    const isExists = await exists(courseVideoDirPath);
+    if (!isExists) return false;
+    const readDirItemResults = await RNFS.readDir(courseVideoDirPath);
+    return readDirItemResults.some(
+      readDirItem => getFileExtension(readDirItem.name) === 'mp4'
+    );
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
