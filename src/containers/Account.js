@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
   fieldNameWrapper: {
     flex: 1,
   },
+  fieldText: {
+    color: '#222',
+  },
   fieldValueWrapper: {
     flex: 2,
   },
@@ -88,26 +91,26 @@ class Account extends Component {// eslint-disable-line
           <View style={styles.profileContentWrapper}>
             <View style={styles.rowWrapper}>
               <View style={styles.fieldNameWrapper}>
-                <Text>{I18n.t('userName')}</Text>
+                <Text style={styles.fieldText}>{I18n.t('userName')}</Text>
               </View>
               <View style={styles.fieldValueWrapper}>
-                <Text>{user.userName}</Text>
+                <Text style={styles.fieldText}>{user.userName}</Text>
               </View>
             </View>
             <View style={styles.rowWrapper}>
               <View style={styles.fieldNameWrapper}>
-                <Text>{I18n.t('nickName')}</Text>
+                <Text style={styles.fieldText}>{I18n.t('nickName')}</Text>
               </View>
               <View style={styles.fieldValueWrapper}>
-                <Text>{user.nickName}</Text>
+                <Text style={styles.fieldText}>{user.nickName}</Text>
               </View>
             </View>
             <View style={[styles.rowWrapper, { borderBottomWidth: 0 }]}>
               <View style={styles.fieldNameWrapper}>
-                <Text>{I18n.t('email')}</Text>
+                <Text style={styles.fieldText}>{I18n.t('email')}</Text>
               </View>
               <View style={styles.fieldValueWrapper}>
-                <Text>{user.email}</Text>
+                <Text style={styles.fieldText}>{user.email}</Text>
               </View>
             </View>
           </View>
