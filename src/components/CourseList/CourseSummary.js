@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   detailsWrapper: {
     flex: 3,
-    marginHorizontal: 10,
+    margin: 10,
   },
   title: {
     flex: 2,
@@ -37,16 +37,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   progress: {
-    flex: 1,
     fontSize: 12,
     color: '#222',
     marginBottom: 3,
     textDecorationLine: 'underline',
   },
   download: {
-    flex: 2,
+    flex: 1,
     alignItems: 'center',
     flexDirection: 'row-reverse',
+    marginTop: 5,
   },
   downloadText: {
     color: '#7fc8ed',
@@ -79,12 +79,14 @@ const CourseSummary = ({ course, lectures, ...props }) => {
             {`${lectureProgress}/${course.lectureCount} ${I18n.t('progressText')}`}
           </Text>
           <ProgressBar progress={lectureProgress / course.lectureCount} />
-          <View style={styles.download}>
-            <Text style={styles.downloadText}>
-              {I18n.t('downloadAvailable')}
-            </Text>
-            <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
-          </View>
+          {course.hasDownloadedLecture &&
+            <View style={styles.download}>
+              <Text style={styles.downloadText}>
+                {I18n.t('downloadAvailable')}
+              </Text>
+              <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
+            </View>
+          }
         </View>
       </View>
     </TouchableHighlight>

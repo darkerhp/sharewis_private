@@ -74,14 +74,18 @@ class CourseList extends Component {
     lectures: PropTypes.shape({}),
     isFetching: PropTypes.bool.isRequired,
     // actions
+    fetchCoursesDownloadStatus: PropTypes.func.isRequired,
     fetchCourseList: PropTypes.func.isRequired,
     setCurrentCourseId: PropTypes.func.isRequired,
   };
 
   async componentWillMount() {
+    const { fetchCourseList, fetchCoursesDownloadStatus } = this.props;
     try {
-      await this.props.fetchCourseList();
+      await fetchCourseList();
+      await fetchCoursesDownloadStatus();
     } catch (error) {
+      console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
   }

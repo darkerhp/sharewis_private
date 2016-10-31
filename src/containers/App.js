@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 
 import Styles from '../baseStyles';
 import getScenes from '../components/Scenes';
+import { initApp } from '../actions/ui';
 
-const { Component } = React;
+const { Component, PropTypes } = React;
 const RouterWithRedux = connect()(Router);
 
 const styles = StyleSheet.create({
@@ -17,10 +18,19 @@ const styles = StyleSheet.create({
 });
 
 
-@connect(({ user }) => ({ user }))
+@connect(({ user }) => ({ user }), dispatch => ({
+  initialize() {
+    dispatch(initApp());
+  },
+}))
 class App extends Component {
+  static propTypes = {
+    initialize: PropTypes.func.isRequired,
+  };
+
   componentWillMount() {
     this.scenes = Actions.create(getScenes());
+    this.props.initialize();
   }
 
   render() {
