@@ -59,6 +59,10 @@ const lecturesReducer = handleActions({
       jobId: -1,
     };
   },
+  CANCEL_DOWNLOAD_VIDEO: (state, action) => {
+    // TODO 実装する
+    return state;
+  },
   FINISH_DELETE_VIDEO: (state, action) => {
     const lectureId = action.payload;
     return {

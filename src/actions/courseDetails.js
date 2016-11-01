@@ -20,6 +20,7 @@ export const progressDownloadVideo = createAction(types.PROGRESS_DOWNLOAD_VIDEO,
   (lectureId, percentage) => ({ lectureId, percentage }));
 export const finishDownloadVideo = createAction(types.FINISH_DOWNLOAD_VIDEO);
 export const errorDownloadVideo = createAction(types.ERROR_DOWNLOAD_VIDEO);
+export const cancelDownloadVideo = createAction(types.CANCEL_DOWNLOAD_VIDEO);
 export const finishDeleteVideo = createAction(types.FINISH_DELETE_VIDEO);
 export const updateVideoInDeviceStatus = createAction(types.UPDATE_VIDEO_IN_DEVICE_STATUS);
 
