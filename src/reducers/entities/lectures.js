@@ -21,17 +21,28 @@ const lecturesReducer = handleActions({
       },
     };
   },
-  BEGIN_DOWNLOAD_VIDEO: (state, action) => (
-    state // TODO
-  ),
-  PROGRESS_DOWNLOAD_VIDEO: (state, action) => {
-    const { lectureId, percentage } = action.payload;
+  BEGIN_DOWNLOAD_VIDEO: (state, action) => {
+    const { lectureId, jobId } = action.payload;
     return {
       ...state,
       [lectureId]: {
         ...state[lectureId],
-        percentage,
         isDownloading: true,
+        jobId,
+      },
+    };
+  },
+  PROGRESS_DOWNLOAD_VIDEO: (state, action) => {
+    const { lectureId, jobId, percentage } = action.payload;
+    const lecture = state[lectureId];
+    if (lecture.jobId === -1) return state;
+    return {
+      ...state,
+      [lectureId]: {
+        ...state[lectureId],
+        isDownloading: true,
+        jobId,
+        percentage,
       },
     };
   },
@@ -43,8 +54,9 @@ const lecturesReducer = handleActions({
         ...state[lectureId],
         hasVideoInDevice: true,
         isDownloading: false,
+        jobId: -1,
+        percentage: 0,
       },
-      jobId: -1,
     };
   },
   ERROR_DOWNLOAD_VIDEO: (state, action) => {
@@ -55,8 +67,20 @@ const lecturesReducer = handleActions({
         ...state[lectureId],
         hasVideoInDevice: false,
         isDownloading: false,
+        jobId: -1,
+        percentage: 0,
       },
-      jobId: -1,
+    };
+  },
+  CANCEL_DOWNLOAD_VIDEO: (state, action) => {
+    const lectureId = action.payload;
+    return {
+      ...state,
+      [lectureId]: {
+        ...state[lectureId],
+        isDownloading: false,
+        jobId: -1,
+      },
     };
   },
   FINISH_DELETE_VIDEO: (state, action) => {
@@ -66,6 +90,7 @@ const lecturesReducer = handleActions({
       [lectureId]: {
         ...state[lectureId],
         hasVideoInDevice: false,
+        percentage: 0,
       },
     };
   },

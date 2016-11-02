@@ -17,9 +17,10 @@ export const pressDownloadVideo = createAction(types.PRESS_DOWNLOAD_VIDEO);
 export const beginDownloadVideo = createAction(types.BEGIN_DOWNLOAD_VIDEO,
   (lectureId, jobId, statusCode) => ({ lectureId, jobId, statusCode }));
 export const progressDownloadVideo = createAction(types.PROGRESS_DOWNLOAD_VIDEO,
-  (lectureId, percentage) => ({ lectureId, percentage }));
+  (lectureId, jobId, percentage) => ({ lectureId, jobId, percentage }));
 export const finishDownloadVideo = createAction(types.FINISH_DOWNLOAD_VIDEO);
 export const errorDownloadVideo = createAction(types.ERROR_DOWNLOAD_VIDEO);
+export const cancelDownloadVideo = createAction(types.CANCEL_DOWNLOAD_VIDEO);
 export const finishDeleteVideo = createAction(types.FINISH_DELETE_VIDEO);
 export const updateVideoInDeviceStatus = createAction(types.UPDATE_VIDEO_IN_DEVICE_STATUS);
 
@@ -62,7 +63,7 @@ export const fetchCourseDetails = courseId =>
         }));
       }
     } catch (error) {
-      console.error(error); // eslint-disable-line
+      console.error(error);
       dispatch(fetchCourseDetailsFailure());
       throw error;
     }

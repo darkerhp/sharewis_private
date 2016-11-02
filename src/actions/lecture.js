@@ -40,7 +40,7 @@ export const updateLectureStatus = (lectureId, status) =>
       }
       dispatch(updateLectureStatusSuccess(lectureId, status));
     } catch (error) {
-      console.error(error); // eslint-disable-line
+      console.error(error);
       dispatch(updateLectureStatusFailure());
       throw error;
     }

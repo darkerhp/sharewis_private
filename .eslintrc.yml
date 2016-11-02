@@ -41,6 +41,8 @@ rules:
   #    "^([A-Z][a-z0-9]+)+Type$"
   #  ]
   #  flowtype/valid-syntax: 1
+
   # Disable
   react/jsx-filename-extension: 0  # unsupported by react-native
   react/require-extension: 0  # deprecated. use eslint-plugin-import instead
+  no-console: ["error", { allow: ["warn", "error"] }]

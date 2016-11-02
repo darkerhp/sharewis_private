@@ -6,6 +6,7 @@ import ui from './ui';
 import routes from './routes';
 import user from './user';
 import netInfo from './netInfo';
+import videoDownload from './videoDownload';
 
 const rootReducer = combineReducers({
   entities,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   routes,
   user,
   netInfo,
+  //videoDownload,
 });
 
 export default rootReducer;
