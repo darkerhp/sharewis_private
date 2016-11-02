@@ -79,6 +79,7 @@ class CourseDetails extends Component {
     fetchVideoInDeviceStatus: PropTypes.func.isRequired,
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
+    cancelDownloadVideo: PropTypes.func.isRequired,
     errorDownloadVideo: PropTypes.func.isRequired,
     setCurrentLectureId: PropTypes.func.isRequired,
     pressDownloadVideo: PropTypes.func.isRequired,
@@ -121,18 +122,23 @@ class CourseDetails extends Component {
   }
 
   @autobind
-  handlePressDownload(lecture) {
+  async handlePressDownload(lecture) {
     const {
       id,
       beginDownloadVideo,
       errorDownloadVideo,
       finishDownloadVideo,
+      cancelDownloadVideo,
       isLectureDownloading,
       pressDownloadVideo,
       progressDownloadVideo,
     } = this.props;
 
-    if (isLectureDownloading) {
+    if (lecture.isDownloading) {
+      await RNFS.stopDownload(lecture.jobId);
+      this.handlePressDelete(lecture);
+      return cancelDownloadVideo(lecture.id);
+    } else if (isLectureDownloading) {
       return Alert.alert(I18n.t('errorTitle'), I18n.t('downloadAlreadyInProgress'));
     }
 
@@ -141,30 +147,32 @@ class CourseDetails extends Component {
     const videoDirPath = FileUtils.getCourseVideosDirPath(id);
     const toFile = FileUtils.createVideoFileName(lecture.id, id);
 
-    // TODO Utils & async/await化
-    return RNFS.exists(videoDirPath)
-      .then(res => res || RNFS.mkdir(videoDirPath))
-      .then(() =>
-        RNFS.downloadFile({
-          fromUrl: lecture.videoUrl,
-          toFile,
-          begin: (res) => {
-            const { jobId, statusCode } = res;
-            beginDownloadVideo(lecture.id, jobId, statusCode);
-          },
-          progress: (data) => {
-            const percentage = Math.ceil((100 * data.bytesWritten) / data.contentLength);
-            progressDownloadVideo(lecture.id, percentage);
-          },
-          progressDivider: 2,
-        }).promise
-      )
-      .then(() => finishDownloadVideo(lecture.id))
-      .catch((err) => {
-        console.error(err); // eslint-disable-line
+    try {
+      const isExists = await RNFS.exists(videoDirPath);
+      if (!isExists) {
+        await RNFS.mkdir(videoDirPath);
+      }
+      await RNFS.downloadFile({
+        fromUrl: lecture.videoUrl,
+        toFile,
+        begin: (res) => {
+          const { jobId, statusCode } = res;
+          beginDownloadVideo(lecture.id, jobId, statusCode);
+        },
+        progress: ({ bytesWritten, contentLength, jobId }) => {
+          const percentage = Math.ceil((100 * bytesWritten) / contentLength);
+          progressDownloadVideo(lecture.id, jobId, percentage);
+        },
+        progressDivider: 10,
+      }).promise;
+      finishDownloadVideo(lecture.id);
+    } catch (error) {
+      if (error.message !== 'Download has been aborted') {
         errorDownloadVideo(lecture.id);
         Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
-      });
+        console.error(error); // eslint-disable-line
+      }
+    }
   }
 
   render() {
