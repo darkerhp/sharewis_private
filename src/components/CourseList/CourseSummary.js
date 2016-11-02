@@ -19,14 +19,14 @@ const {
 
 const styles = StyleSheet.create({
   image: {
-    flex: 4,
+    flex: 2,
   },
   detailsWrapper: {
-    flex: 3,
+    flex: 1,
     margin: 10,
   },
   title: {
-    flex: 2,
+    flex: 1,
     marginTop: 10,
     fontSize: 13,
     fontWeight: '900',
