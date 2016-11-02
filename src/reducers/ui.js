@@ -63,6 +63,10 @@ const uiReducer = handleActions({
     ...state,
     isLectureDownloading: false,
   }),
+  CANCEL_DOWNLOAD_VIDEO: (state, action) => ({
+    ...state,
+    isLectureDownloading: false,
+  }),
   SET_CURRENT_COURSE_ID: (state, action) => ({
     ...state,
     currentCourseId: action.payload,
