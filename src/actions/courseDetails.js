@@ -63,7 +63,7 @@ export const fetchCourseDetails = courseId =>
         }));
       }
     } catch (error) {
-      console.error(error); // eslint-disable-line
+      console.error(error);
       dispatch(fetchCourseDetailsFailure());
       throw error;
     }

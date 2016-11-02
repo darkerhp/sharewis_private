@@ -122,7 +122,7 @@ class CourseDetails extends Component {
   }
 
   @autobind
-  async handlePressDownload(lecture) {
+  async handlePressDownload(lecture) { // eslint-disable-line
     const {
       id,
       beginDownloadVideo,
@@ -170,7 +170,7 @@ class CourseDetails extends Component {
       if (error.message !== 'Download has been aborted') {
         errorDownloadVideo(lecture.id);
         Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
-        console.error(error); // eslint-disable-line
+        console.error(error);
       }
     }
   }

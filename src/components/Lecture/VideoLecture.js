@@ -101,7 +101,7 @@ class VideoLecture extends Component {
           <Video
             muted={false}
             onEnd={this.handlePressNextLecture}
-            onError={e => console.error(e)} // eslint-disable-line
+            onError={e => console.error(e)}
             onProgress={this.handleVideoProgress}
             paused={isPaused}
             playInBackground={false}
