@@ -1,6 +1,6 @@
 {
   "ja": {
-    "accountSettings": "アカウント・通知設定",
+    "accountSettings": "アカウント情報",
     "actWebsite": "ShareWis ACTのWebサイト",
     "back": "戻る",
     "close": "閉じる",
@@ -41,7 +41,7 @@
     "userName": "アカウント名"
   },
   "en": {
-    "accountSettings": "****要翻訳*****",
+    "accountSettings": "Account Info",
     "actWebsite": "ShareWis ACT's website",
     "back": "Back",
     "close": "close",
@@ -82,7 +82,7 @@
     "userName": "Account Name"
   },
   "vi": {
-    "accountSettings": "****要翻訳*****",
+    "accountSettings": "Thông tin tài khoản",
     "actWebsite": "trang web ShareWis ACT",
     "back": "Trở lại",
     "close": "Đóng",
