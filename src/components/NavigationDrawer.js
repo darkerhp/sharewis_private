@@ -21,7 +21,7 @@ export default class NavigationDrawer extends Component {
         tapToClose
         openDrawerOffset={0.15}
         panCloseMask={0.2}
-        panOpenMask={0.9}
+        // panOpenMask={0.9} FIXME swipeで開かないように
         negotiatePan
         tweenHandler={ratio => ({
           main: { opacity: Math.max(0.54, 1 - ratio) },
