@@ -17,6 +17,7 @@ const { Platform } = ReactNative;
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
 const menuWhiteImage = require('./images/ic_menu_white.png');
 const backButtonWhiteImage = require('./images/ic_chevron_left_white.png');
+const closeWhiteImage = require('./images/ic_close_white.png');
 
 const baseNavBarProps = {
   navigationBarStyle: {
@@ -91,7 +92,7 @@ const getScenes = () =>
           />
         </Scene>
       </Scene>
-      <Scene key="account" direction="vertical" >
+      <Scene key="account">
         <Scene
           key="accountModal"
           {...baseNavBarProps}
@@ -100,8 +101,7 @@ const getScenes = () =>
             borderBottomColor: '#4c4d4f',
           }}
           component={Account}
-          direction="vertical"
-          leftTitle={I18n.t('close')}
+          leftButtonImage={closeWhiteImage}
           onLeft={Actions.pop}
           title={I18n.t('accountSettings')}
         />
