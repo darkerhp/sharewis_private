@@ -106,7 +106,26 @@ const formOptions = {
   validate: validateEmailLogin,
 };
 
+const mapStateToProps = (state) => {
+  const { form, user, netInfo, ui, ...otherStates } = state;
+  const selector = formValueSelector('email');
+  const hasEmail = selector(state, 'email') !== undefined;
+  const hasPassword = selector(state, 'password') !== undefined;
+  return {
+    ...user,
+    ...ui,
+    isOnline: netInfo.isConnected,
+    ...otherStates,
+    loginDisabled: !(hasEmail && hasPassword),
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ ...Actions }, dispatch),
+});
+
 @reduxForm(formOptions)
+@connect(mapStateToProps, mapDispatchToProps)
 class Email extends Component {
   static propTypes = {
     fetchActLoginFailure: PropTypes.func.isRequired,
@@ -193,22 +212,4 @@ class Email extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { form, user, netInfo, ui, ...otherStates } = state;
-  const selector = formValueSelector('email');
-  const hasEmail = selector(state, 'email') !== undefined;
-  const hasPassword = selector(state, 'password') !== undefined;
-  return {
-    ...user,
-    ...ui,
-    isOnline: netInfo.isConnected,
-    ...otherStates,
-    loginDisabled: !(hasEmail && hasPassword),
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions }, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Email);
+export default Email;
