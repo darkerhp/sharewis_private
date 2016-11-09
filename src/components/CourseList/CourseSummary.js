@@ -11,9 +11,10 @@ import ProgressBar from '../ProgressBar';
 const { PropTypes } = React;
 const {
   Image,
+  Platform,
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   View,
 } = ReactNative;
 
@@ -24,6 +25,16 @@ const styles = StyleSheet.create({
   detailsWrapper: {
     flex: 1,
     margin: 10,
+  },
+  disabledCourse: {
+    ...Platform.select({
+      android: {
+        opacity: 0.2,
+      },
+      ios: {
+        opacity: 0.4,
+      },
+    }),
   },
   title: {
     flex: 1,
@@ -56,14 +67,13 @@ const styles = StyleSheet.create({
 });
 
 
-const CourseSummary = ({ course, lectures, ...props }) => {
+const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
   const lectureProgress = _.isEmpty(lectures)
     ? course.lectureProgress
     : _.values(lectures).filter(l => l.status === LECTURE_STATUS_FINISHED).length;
-
   return (
-    <TouchableHighlight {...props}>
-      <View style={{ flex: 1 }}>
+    <TouchableOpacity {...props} disabled={isDisabledCourse}>
+      <View style={[{ flex: 1 }, (isDisabledCourse ? styles.disabledCourse : {})]}>
         <Image
           style={styles.image}
           source={{ uri: course.imageUrl }}
@@ -89,13 +99,14 @@ const CourseSummary = ({ course, lectures, ...props }) => {
           }
         </View>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
 CourseSummary.propTypes = {
   course: PropTypes.shape({}),
   lectures: PropTypes.arrayOf(PropTypes.shape({})),
+  isDisabledCourse: PropTypes.bool.isRequired,
 };
 
 export default CourseSummary;

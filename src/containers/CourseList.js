@@ -8,17 +8,20 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+
 import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
 import { ACT_SITE_URL } from '../constants/Api';
+import alertOfflineError from '../utils/alert';
 import redirectTo from '../utils/linking';
 
 const { Component, PropTypes } = React;
 const {
   Alert,
   Dimensions,
+  Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -73,6 +76,7 @@ class CourseList extends Component {
     courses: PropTypes.shape({}),
     lectures: PropTypes.shape({}),
     isFetching: PropTypes.bool.isRequired,
+    isOnline: PropTypes.bool.isRequired,
     // actions
     fetchCoursesDownloadStatus: PropTypes.func.isRequired,
     fetchCourseList: PropTypes.func.isRequired,
@@ -91,12 +95,14 @@ class CourseList extends Component {
   }
 
   handlePressCourse(course) {
-    this.props.setCurrentCourseId(course.id);
+    const { isOnline, setCurrentCourseId } = this.props;
+    if (!isOnline && !course.hasDownloadedLecture) return;
+    setCurrentCourseId(course.id);
     RouterActions.courseDetails();
   }
 
   render() {
-    const { isFetching, courses, lectures } = this.props;
+    const { isFetching, isOnline, courses, lectures } = this.props;
 
     if (_.isEmpty(courses)) {
       return <EmptyList isFetching={isFetching} />;
@@ -110,22 +116,26 @@ class CourseList extends Component {
         <StatusBar barStyle="light-content" />
         <Spinner visible={isFetching} />
         <View style={styles.courseList}>
-          {Object.keys(courses).map((courseId, index) =>
-            <CourseSummary
-              style={styles.container}
-              onPress={() => this.handlePressCourse(courses[courseId])}
-              course={courses[courseId]}
-              lectures={_.filter(lectures, { courseId: parseInt(courseId, 10) })}
-              key={index}
-            />
-          )}
+          {Object.keys(courses).map((courseId, index) => {
+            const isDisabledCourse = !isOnline && !courses[courseId].hasDownloadedLecture;
+            return (
+              <CourseSummary
+                style={styles.container}
+                onPress={() => this.handlePressCourse(courses[courseId])}
+                course={courses[courseId]}
+                lectures={_.filter(lectures, { courseId: parseInt(courseId, 10) })}
+                key={index}
+                isDisabledCourse={isDisabledCourse}
+              />
+            );
+          })}
           <View style={[styles.container, { height: 150 }]}>
             <View style={styles.hyperlinkWrapper}>
               <Hyperlink
                 style={styles.searchMore}
                 linkStyle={styles.hyperlink}
                 linkText={I18n.t('searchMore')}
-                onPress={redirectTo}
+                onPress={isOnline ? redirectTo : alertOfflineError}
               >
                 <Text style={styles.contentText}>
                   {ACT_SITE_URL}

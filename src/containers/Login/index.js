@@ -11,6 +11,7 @@ import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import BaseStyles from '../../baseStyles';
 import Email from './Email';
 import Facebook from './Facebook';
+import alertOfflineError from '../../utils/alert';
 import redirectTo from '../../utils/linking';
 
 const { Component, PropTypes } = React;
@@ -45,6 +46,7 @@ const mapStateToProps = ({ user, netInfo, ui }) => ({
 class Login extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
+    isOnline: PropTypes.bool.isRequired,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -55,8 +57,9 @@ class Login extends Component {
   }
 
   render() {
-    if (this.props.isFetching) {
-      return (<SleekLoadingIndicator loading={this.props.isFetching} text={I18n.t('loading')} />);
+    const { isFetching, isOnline } = this.props;
+    if (isFetching) {
+      return (<SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />);
     }
 
     return (
@@ -68,7 +71,7 @@ class Login extends Component {
           <Hyperlink
             linkStyle={{ color: BaseStyles.hyperlink }}
             linkText={I18n.t('actWebsite')}
-            onPress={redirectTo}
+            onPress={isOnline ? redirectTo : alertOfflineError}
           >
             <Text style={styles.contentText}>
               {I18n.t('signupText')}

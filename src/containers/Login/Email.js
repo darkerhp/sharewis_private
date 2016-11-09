@@ -17,6 +17,7 @@ import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
 import redirectTo from '../../utils/linking';
 import TextField from '../../components/TextField';
+import alertOfflineError from '../../utils/alert';
 import validateEmailLogin from '../../utils/validate';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
@@ -106,20 +107,46 @@ const formOptions = {
   validate: validateEmailLogin,
 };
 
+const mapStateToProps = (state) => {
+  const { form, user, netInfo, ui, ...otherStates } = state;
+  const selector = formValueSelector('email');
+  const hasEmail = selector(state, 'email') !== undefined;
+  const hasPassword = selector(state, 'password') !== undefined;
+  return {
+    ...user,
+    ...ui,
+    isOnline: netInfo.isConnected,
+    ...otherStates,
+    loginDisabled: !(hasEmail && hasPassword),
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ ...Actions }, dispatch),
+});
+
 @reduxForm(formOptions)
+@connect(mapStateToProps, mapDispatchToProps)
 class Email extends Component {
   static propTypes = {
     fetchActLoginFailure: PropTypes.func.isRequired,
     fetchUserBy: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
+    isOnline: PropTypes.bool.isRequired,
     loginDisabled: PropTypes.bool.isRequired,
   };
 
   @autobind
   async handlePress({ email, password }) {
-    const { fetchUserBy, fetchActLoginFailure } = this.props;
+    const { fetchUserBy, fetchActLoginFailure, isOnline } = this.props;
+
+    if (!isOnline) {
+      alertOfflineError();
+      return;
+    }
+
     try {
-      return await fetchUserBy('email', [email, password]);
+      await fetchUserBy('email', [email, password]);
     } catch (error) {
       fetchActLoginFailure();
       Alert.alert(I18n.t('errorTitle'), I18n.t('loginEmailError'));
@@ -130,7 +157,7 @@ class Email extends Component {
   }
 
   render() {
-    const { handleSubmit, loginDisabled } = this.props;
+    const { handleSubmit, isOnline, loginDisabled } = this.props;
 
     return (
       <View style={styles.view}>
@@ -181,7 +208,7 @@ class Email extends Component {
           <Hyperlink
             style={styles.textWrapper}
             linkText={I18n.t('passwordForgotten')}
-            onPress={redirectTo}
+            onPress={isOnline ? redirectTo : alertOfflineError}
           >
             <Text style={styles.text}>
               {PASSWORD_FORGOTTEN_URL}
@@ -193,22 +220,4 @@ class Email extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { form, user, netInfo, ui, ...otherStates } = state;
-  const selector = formValueSelector('email');
-  const hasEmail = selector(state, 'email') !== undefined;
-  const hasPassword = selector(state, 'password') !== undefined;
-  return {
-    ...user,
-    ...ui,
-    isOnline: netInfo.isConnected,
-    ...otherStates,
-    loginDisabled: !(hasEmail && hasPassword),
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions }, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Email);
+export default Email;
