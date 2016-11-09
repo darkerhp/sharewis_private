@@ -13,7 +13,7 @@ const {
   Image,
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   View,
 } = ReactNative;
 
@@ -62,7 +62,7 @@ const CourseSummary = ({ course, lectures, ...props }) => {
     : _.values(lectures).filter(l => l.status === LECTURE_STATUS_FINISHED).length;
 
   return (
-    <TouchableHighlight {...props}>
+    <TouchableOpacity {...props}>
       <View style={{ flex: 1 }}>
         <Image
           style={styles.image}
@@ -89,7 +89,7 @@ const CourseSummary = ({ course, lectures, ...props }) => {
           }
         </View>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
