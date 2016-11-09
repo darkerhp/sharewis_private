@@ -142,7 +142,6 @@ const LectureItem = ({
   handlePressDelete,
   handlePressLecture,
   handlePressDownload,
-
 }) => {
   const isAccessibleLecture = (() => {
     if (lecture.type !== LECTURE_TYPE_VIDEO) return false;
