@@ -21,6 +21,7 @@ const { Component, PropTypes } = React;
 const {
   Alert,
   Dimensions,
+  Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -43,6 +44,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: BaseStyles.borderColor,
     marginBottom: 13,
+  },
+  disabledCourse: {
+    ...Platform.select({
+      android: {
+        opacity: 0.2,
+      },
+      ios: {
+        opacity: 0.4,
+      },
+    }),
   },
   hyperlinkWrapper: {
     flex: 1,
@@ -94,7 +105,9 @@ class CourseList extends Component {
   }
 
   handlePressCourse(course) {
-    this.props.setCurrentCourseId(course.id);
+    const { isOnline, setCurrentCourseId } = this.props;
+    if (!isOnline && !course.hasDownloadedLecture) return;
+    setCurrentCourseId(course.id);
     RouterActions.courseDetails();
   }
 
@@ -115,7 +128,12 @@ class CourseList extends Component {
         <View style={styles.courseList}>
           {Object.keys(courses).map((courseId, index) =>
             <CourseSummary
-              style={styles.container}
+              style={[
+                styles.container,
+                (!isOnline && !courses[courseId].hasDownloadedLecture
+                  ? styles.disabledCourse
+                  : {}),
+              ]}
               onPress={() => this.handlePressCourse(courses[courseId])}
               course={courses[courseId]}
               lectures={_.filter(lectures, { courseId: parseInt(courseId, 10) })}
