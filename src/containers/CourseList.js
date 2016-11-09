@@ -45,16 +45,6 @@ const styles = StyleSheet.create({
     borderColor: BaseStyles.borderColor,
     marginBottom: 13,
   },
-  disabledCourse: {
-    ...Platform.select({
-      android: {
-        opacity: 0.2,
-      },
-      ios: {
-        opacity: 0.4,
-      },
-    }),
-  },
   hyperlinkWrapper: {
     flex: 1,
     justifyContent: 'center',
@@ -126,20 +116,20 @@ class CourseList extends Component {
         <StatusBar barStyle="light-content" />
         <Spinner visible={isFetching} />
         <View style={styles.courseList}>
-          {Object.keys(courses).map((courseId, index) =>
-            <CourseSummary
-              style={[
-                styles.container,
-                (!isOnline && !courses[courseId].hasDownloadedLecture
-                  ? styles.disabledCourse
-                  : {}),
-              ]}
-              onPress={() => this.handlePressCourse(courses[courseId])}
-              course={courses[courseId]}
-              lectures={_.filter(lectures, { courseId: parseInt(courseId, 10) })}
-              key={index}
-            />
-          )}
+          {Object.keys(courses).map((courseId, index) => {
+            const isDisabledCourse = !isOnline && !courses[courseId].hasDownloadedLecture;
+            console.log(isDisabledCourse);
+            return (
+              <CourseSummary
+                style={styles.container}
+                onPress={() => this.handlePressCourse(courses[courseId])}
+                course={courses[courseId]}
+                lectures={_.filter(lectures, { courseId: parseInt(courseId, 10) })}
+                key={index}
+                isDisabledCourse={isDisabledCourse}
+              />
+            );
+          })}
           <View style={[styles.container, { height: 150 }]}>
             <View style={styles.hyperlinkWrapper}>
               <Hyperlink
