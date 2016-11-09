@@ -118,7 +118,6 @@ class CourseList extends Component {
         <View style={styles.courseList}>
           {Object.keys(courses).map((courseId, index) => {
             const isDisabledCourse = !isOnline && !courses[courseId].hasDownloadedLecture;
-            console.log(isDisabledCourse);
             return (
               <CourseSummary
                 style={styles.container}
