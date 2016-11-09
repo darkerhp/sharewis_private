@@ -57,7 +57,6 @@ class Login extends Component {
   }
 
   render() {
-
     const { isFetching, isOnline } = this.props;
     if (isFetching) {
       return (<SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />);
