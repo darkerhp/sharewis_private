@@ -8,11 +8,13 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+
 import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
 import { ACT_SITE_URL } from '../constants/Api';
+import alertOfflineError from '../../utils/alert';
 import redirectTo from '../utils/linking';
 
 const { Component, PropTypes } = React;
@@ -73,6 +75,7 @@ class CourseList extends Component {
     courses: PropTypes.shape({}),
     lectures: PropTypes.shape({}),
     isFetching: PropTypes.bool.isRequired,
+    isOnline: PropTypes.bool.isRequired,
     // actions
     fetchCoursesDownloadStatus: PropTypes.func.isRequired,
     fetchCourseList: PropTypes.func.isRequired,
@@ -96,7 +99,7 @@ class CourseList extends Component {
   }
 
   render() {
-    const { isFetching, courses, lectures } = this.props;
+    const { isFetching, isOnline, courses, lectures } = this.props;
 
     if (_.isEmpty(courses)) {
       return <EmptyList isFetching={isFetching} />;
@@ -125,7 +128,7 @@ class CourseList extends Component {
                 style={styles.searchMore}
                 linkStyle={styles.hyperlink}
                 linkText={I18n.t('searchMore')}
-                onPress={redirectTo}
+                onPress={isOnline ? redirectTo : alertOfflineError}
               >
                 <Text style={styles.contentText}>
                   {ACT_SITE_URL}
