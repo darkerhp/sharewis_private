@@ -13,19 +13,19 @@ exports[`CourseSummary renders correctly 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      undefined,
-    ]
+    Object {
+      "opacity": 1,
+    }
   }
   testID={undefined}>
   <View
     style={
-      Object {
-        "flex": 1,
-      }
+      Array [
+        Object {
+          "flex": 1,
+        },
+        Object {},
+      ]
     }>
     <Image
       source={
