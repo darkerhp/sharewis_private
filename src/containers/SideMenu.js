@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
+import alertOfflineError from '../utils/alert';
 import MenuItem from '../components/SideMenu/MenuItem';
 import {
   ACT_INQUIRIES_URL,
@@ -55,14 +56,15 @@ const styles = StyleSheet.create({
   },
 });
 
-@connect(({ ui, user }) => ({ ui, user }))
+@connect(({ netInfo, ui, user }) => ({ isOnline: netInfo.isConnected, ui, user }))
 class SideMenu extends Component { // eslint-disable-line
   static propTypes = {
+    isOnline: PropTypes.bool.isRequired,
     user: PropTypes.shape({}).isRequired,
   };
 
   render() {
-    const { user } = this.props;
+    const { isOnline, user } = this.props;
 
     return (
       <View style={styles.container}>
@@ -83,22 +85,30 @@ class SideMenu extends Component { // eslint-disable-line
           <MenuItem
             text={I18n.t('accountSettings')}
             iconName={'account-circle'}
-            handlePress={() => RouterActions.account()}
+            handlePress={() => (
+              isOnline ? RouterActions.account() : alertOfflineError()
+            )}
           />
           <MenuItem
             text={I18n.t('inquiry')}
             iconName={'mail'}
-            handlePress={() => Linking.openURL(ACT_INQUIRIES_URL)}
+            handlePress={() => (
+              isOnline ? Linking.openURL(ACT_INQUIRIES_URL) : alertOfflineError()
+            )}
           />
           <MenuItem
             text={I18n.t('tos')}
             iconName={'description'}
-            handlePress={() => Linking.openURL(ACT_TOS_URL)}
+            handlePress={() => (
+              isOnline ? Linking.openURL(ACT_TOS_URL) : alertOfflineError()
+            )}
           />
           <MenuItem
             text={I18n.t('privacy')}
             iconName={'lock'}
-            handlePress={() => Linking.openURL(ACT_PRIVACY_URL)}
+            handlePress={() => (
+              isOnline ? Linking.openURL(ACT_PRIVACY_URL) : alertOfflineError()
+            )}
           />
         </View>
       </View>
