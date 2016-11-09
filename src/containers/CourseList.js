@@ -14,7 +14,7 @@ import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
 import { ACT_SITE_URL } from '../constants/Api';
-import alertOfflineError from '../../utils/alert';
+import alertOfflineError from '../utils/alert';
 import redirectTo from '../utils/linking';
 
 const { Component, PropTypes } = React;
