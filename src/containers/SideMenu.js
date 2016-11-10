@@ -65,6 +65,10 @@ class SideMenu extends Component { // eslint-disable-line
 
   render() {
     const { isOnline, user } = this.props;
+    let displayUsername = user.nickName || user.userName;
+    if (I18n.currentLocale().indexOf('ja') !== -1) {
+      displayUsername += ' さん';
+    }
 
     return (
       <View style={styles.container}>
@@ -72,7 +76,7 @@ class SideMenu extends Component { // eslint-disable-line
           <View style={styles.profileWrapper}>
             {/* TODO プロフィール画像 */}
             <Text style={styles.userNameText}>
-              {`${user.nickName || user.userName} さん`}
+              {displayUsername}
             </Text>
           </View>
         </View>
