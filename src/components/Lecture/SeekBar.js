@@ -70,6 +70,7 @@ const SeekBar = ({ currentTime, estimatedTime, onValueChange, onSlidingComplete 
 SeekBar.propTypes = {
   currentTime: PropTypes.number.isRequired,
   estimatedTime: PropTypes.number.isRequired,
+  onValueChange: PropTypes.func.isRequired,
   onSlidingComplete: PropTypes.func.isRequired,
 };
 
