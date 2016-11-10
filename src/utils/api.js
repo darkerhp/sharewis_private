@@ -2,6 +2,7 @@
  * @flow
  */
 export function checkStatus(result) {
+  console.log('checkStatus', result);
   if (result.ok) {
     return result;
   }
@@ -9,6 +10,7 @@ export function checkStatus(result) {
 }
 
 export function checkResult(json, ok) {
+  console.log('checkResult', json);
   if (ok(json)) {
     return json;
   }

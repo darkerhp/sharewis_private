@@ -74,6 +74,7 @@ const uiReducer = handleActions({
   SET_CURRENT_LECTURE_ID: (state, action) => ({
     ...state,
     currentLectureId: action.payload,
+    currentTime: 0,
   }),
   TOGGLE_PLAY: (state, action) => ({
     ...state,
