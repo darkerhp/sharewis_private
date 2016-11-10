@@ -66,7 +66,7 @@ class VideoLecture extends Component {
   }
 
   @autobind
-  handleValueChange(value) {
+  handleSlidingComplete(value) {
     if (this.video) {
       this.video.seek(value);
     }
@@ -119,8 +119,7 @@ class VideoLecture extends Component {
           <SeekBar
             currentTime={currentTime}
             estimatedTime={estimatedTime}
-            onValueChange={this.handleValueChange}
-            video={this.video}
+            onSlidingComplete={this.handleSlidingComplete}
           />
           <View style={styles.lectureTitleTextWrapper}>
             <Text style={styles.lectureTitle}>{title}</Text>
