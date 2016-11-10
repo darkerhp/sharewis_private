@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SeekBar = ({ currentTime, estimatedTime, onSlidingComplete }) => {
+const SeekBar = ({ currentTime, estimatedTime, onValueChange, onSlidingComplete }) => {
   const timeEnd = estimatedTime - currentTime;
   return (
     <View style={styles.container}>
@@ -52,6 +52,7 @@ const SeekBar = ({ currentTime, estimatedTime, onSlidingComplete }) => {
         maximumValue={estimatedTime}
         value={currentTime}
         onSlidingComplete={value => onSlidingComplete(value)}
+        onValueChange={value => onValueChange(value)}
         style={styles.slider}
       />
       <Duration

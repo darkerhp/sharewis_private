@@ -59,6 +59,10 @@ class VideoLecture extends Component {
     updateVideoProgress: PropTypes.func.isRequired,
   };
 
+  state = {
+    seeking: false,
+  };
+
   @autobind
   getVideoUrl() {
     const { courseId, id, hasVideoInDevice, videoUrl } = this.props;
@@ -66,7 +70,13 @@ class VideoLecture extends Component {
   }
 
   @autobind
+  handleValueChange() {
+    this.setState({ seeking: true }); // 再生位置調整中はビデオを止める
+  }
+
+  @autobind
   handleSlidingComplete(value) {
+    this.setState({ seeking: false });
     if (this.video) {
       this.video.seek(value);
     }
@@ -76,8 +86,7 @@ class VideoLecture extends Component {
   @autobind
   handleVideoProgress(data) {
     const { currentTime, updateVideoProgress } = this.props;
-    if (Math.ceil(currentTime) === Math.ceil(data.currentTime)) return;
-    // 秒次でactionを実行
+    if (currentTime === data.currentTime) return;
     updateVideoProgress(data.currentTime);
   }
 
@@ -103,7 +112,7 @@ class VideoLecture extends Component {
             onEnd={this.handlePressNextLecture}
             onError={e => console.error(e)}
             onProgress={this.handleVideoProgress}
-            paused={isPaused}
+            paused={this.state.seeking || isPaused}
             playInBackground={false}
             playWhenInactive={false}
             rate={speed}
@@ -120,6 +129,7 @@ class VideoLecture extends Component {
             currentTime={currentTime}
             estimatedTime={estimatedTime}
             onSlidingComplete={this.handleSlidingComplete}
+            onValueChange={this.handleValueChange}
           />
           <View style={styles.lectureTitleTextWrapper}>
             <Text style={styles.lectureTitle}>{title}</Text>
