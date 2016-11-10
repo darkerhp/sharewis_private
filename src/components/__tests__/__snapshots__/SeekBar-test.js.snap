@@ -30,6 +30,7 @@ exports[`SeekBar renders correctly 1`] = `
     format="mm:ss" />
   <Slider
     maximumValue={100}
+    onSlidingComplete={[Function]}
     onValueChange={[Function]}
     style={
       Object {
