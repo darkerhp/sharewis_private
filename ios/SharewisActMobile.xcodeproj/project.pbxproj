@@ -41,6 +41,9 @@
 		6AEC9A761D7295911B3A466D /* libPods-SharewisActMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD89FCDCA0121A5168A224AA /* libPods-SharewisActMobile.a */; };
 		802367315597B293B9106ED7 /* libPods-SharewisActMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F75AED71D0874106920C44 /* libPods-SharewisActMobile.a */; };
 		812C61BE3568D9CCE482C735 /* libPods-SharewisActMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB68D909A0DC72903DACC0C /* libPods-SharewisActMobileTests.a */; };
+		82A464B61D791B6A004918D5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A464B31D791B6A004918D5 /* FBSDKCoreKit.framework */; };
+		82A464B71D791B6A004918D5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A464B41D791B6A004918D5 /* FBSDKLoginKit.framework */; };
+		82A464B81D791B6A004918D5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A464B51D791B6A004918D5 /* FBSDKShareKit.framework */; };
 		832341BD1AAA6AB300B99B32 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AA2CD3664C88463C8AE94405 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED9085FD625744738AD7C61B /* FontAwesome.ttf */; };
 		DF04F09181914AB8BBE58D8C /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19709BB94086482295F4848E /* libRNI18n.a */; };

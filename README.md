@@ -41,7 +41,10 @@ $ npm install
 This project use CocoaPods to manage ios libraries.
 Please install CocoaPods in your pc. [CocoaPods | GettingStarted](https://guides.cocoapods.org/using/getting-started.html)
 
-```
+```sh
+# install cocoapods and dependencies
+$ bundle install
+
 $ cd ios
 
 # install libraries 
