@@ -9,7 +9,7 @@ import SeekBar from './SeekBar';
 import VideoControls from './VideoControls';
 
 const { Component, PropTypes } = React;
-const { StyleSheet, Text, View } = ReactNative;
+const { Image, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -48,9 +48,11 @@ class VideoLecture extends Component {
     hasVideoInDevice: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired,
     isPaused: PropTypes.bool.isRequired,
+    isStarted: PropTypes.bool.isRequired,
     lectureContentStyleId: PropTypes.number.isRequired,
     lectures: PropTypes.shape({}).isRequired,
     speed: PropTypes.number.isRequired,
+    thumbnailUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     videoUrl: PropTypes.string.isRequired,
     // actions
@@ -96,8 +98,10 @@ class VideoLecture extends Component {
       currentTime,
       estimatedTime,
       isPaused,
+      isStarted,
       lectureContentStyleId,
       speed,
+      thumbnailUrl,
       title,
       // actions
       changeVideoPlaySpeed,
@@ -107,22 +111,28 @@ class VideoLecture extends Component {
     return (
       <View style={lectureContentStyleId}>
         <View style={styles.videoContainer}>
-          <Video
-            muted={false}
-            onEnd={this.handlePressNextLecture}
-            onError={e => console.error(e)}
-            onProgress={this.handleVideoProgress}
-            paused={this.state.seeking || isPaused}
-            playInBackground={false}
-            playWhenInactive={false}
-            rate={speed}
-            ref={ref => (this.video = ref)}
-            repeat={false}
-            resizeMode="contain"
-            source={{ uri: this.getVideoUrl() }}
-            style={styles.backgroundVideo}
-            volume={1.0}
-          />
+          {isStarted ?
+            <Video
+              muted={false}
+              onEnd={this.handlePressNextLecture}
+              onError={e => console.error(e)}
+              onProgress={this.handleVideoProgress}
+              paused={this.state.seeking || isPaused}
+              playInBackground={false}
+              playWhenInactive={false}
+              rate={speed}
+              ref={ref => (this.video = ref)}
+              repeat={false}
+              resizeMode="contain"
+              source={{ uri: this.getVideoUrl() }}
+              style={styles.backgroundVideo}
+              volume={1.0}
+            /> :
+            <Image
+              style={styles.backgroundVideo}
+              source={{ uri: thumbnailUrl }}
+            />
+          }
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar

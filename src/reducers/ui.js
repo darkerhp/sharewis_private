@@ -7,9 +7,13 @@ const initialState = {
   isLastLecture: false,
   isLectureDownloading: false,
   // VideoPlayer
+  // NOTE:
+  // VideoLectureにプロパティを持たない理由は、RNRFのrefreshによる画面の再描画時に
+  // ReactのLifecycleメソッドによるstateの初期化処理が出来ないため
   currentTime: 0,
   isFullScreen: false,
   isPaused: true,
+  isStarted: false,
   speed: 1,
   //
   fetchedCourseDetailsAt: null,
@@ -72,13 +76,16 @@ const uiReducer = handleActions({
     currentCourseId: action.payload,
   }),
   SET_CURRENT_LECTURE_ID: (state, action) => ({
+    // レクチャー画面表示前に呼ばれるアクション
     ...state,
     currentLectureId: action.payload,
     currentTime: 0,
+    isStarted: false,
   }),
   TOGGLE_PLAY: (state, action) => ({
     ...state,
     isPaused: !state.isPaused,
+    isStarted: true,
   }),
   CHANGE_VIDEO_PLAY_SPEED: (state, action) => {
     const currentIndex = speedList.indexOf(state.speed);
