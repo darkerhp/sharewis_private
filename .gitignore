@@ -49,3 +49,7 @@ coverage
 
 # CocoaPods
 ios/Pods/
+
+# bundler
+.bundle
+vendor
