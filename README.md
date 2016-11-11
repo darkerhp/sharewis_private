@@ -36,6 +36,24 @@ $ cd sharewis-act-mobile
 $ npm install
 ```
 
+### Notes about iOS
+
+This project use CocoaPods to manage ios libraries.
+Please install CocoaPods in your pc. [CocoaPods | GettingStarted](https://guides.cocoapods.org/using/getting-started.html)
+
+```sh
+# install cocoapods and dependencies
+$ bundle install
+
+$ cd ios
+
+# install libraries 
+$ pod install
+
+# update  libraries
+$ pod udpate
+```
+
 ### Notes about Android
 
 After installing the required packages (android sdk, android studio ...), in
@@ -261,3 +279,22 @@ $ docker pull swaggerapi/swagger-editor
 $ docker run -p 80:8080 --name swagger swaggerapi/swagger-editor
 $ xdg-open http://172.17.0.2:8080  # Or whatever url is output by docker run
 $ Go to `file > Import File`, then load `other/act_api_swagger.yml`
+$ cd sharewis-act-mobile
+$ git pull origin master
+$ npm install
+```
+
+And build ipa with xcode.
+
+1. Open `ios/SharewisActMobile.xcworkspace` with xcode. 
+2. Set scheme `SharewisActMobile` and `Generic iOS Device`
+3. `Product` -> `Archive...`
+4. After archiving, the organization window is opened.
+5. Check latest archive in the organization window and click `Export...`
+6. Check `Save for AdHoc Deployment` and go next and next...
+8. Upload exported `SharewisActMobile.ipa` to DeployGate.
+
+### Upload
+
+1. Login to [DeployGate](https://deploygate.com/dashboard). (ID & Password are [here](https://launchpad.meldium.com/#/launchpad?edit=c01f6779-d5a9-440e-880a-284ac87fe443))
+2. Drag & Drop the apk or ipa 

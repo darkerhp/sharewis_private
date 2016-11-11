@@ -46,3 +46,10 @@ android/keystores/debug.keystore
 
 # jest
 coverage
+
+# CocoaPods
+ios/Pods/
+
+# bundler
+.bundle
+vendor

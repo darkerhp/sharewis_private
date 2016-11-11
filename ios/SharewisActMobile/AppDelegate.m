@@ -12,6 +12,7 @@
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Repro/Repro.h>
 
 
 @implementation AppDelegate
@@ -38,6 +39,10 @@
   [[FBSDKApplicationDelegate sharedInstance] application:application
           didFinishLaunchingWithOptions:launchOptions];
   // Add any custom logic here.
+
+  [Repro setup:@"a3ec35c0-af7a-47ac-a10f-866ba354bd33"];
+  [Repro startRecording];
+  
   return YES;
 }
 
