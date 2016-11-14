@@ -28,6 +28,8 @@ const getUserData = async (credentials) => {
     userId: json.id,
     userName: json.username,
     nickName: json.nickname,
+    email: json.email,
+    isPremium: json.is_premium,
   };
 };
 
