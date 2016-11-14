@@ -50,24 +50,17 @@ exports[`CourseSummary renders correctly 1`] = `
           Object {},
         ]
       }>
-      <View
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
         style={
           Object {
-            "justifyContent": "center",
+            "color": "#222",
+            "fontSize": 13,
+            "fontWeight": "900",
           }
-        }>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "color": "#222",
-              "fontSize": 13,
-              "fontWeight": "900",
-            }
-          } />
-      </View>
+        } />
       <View
         style={
           Object {
