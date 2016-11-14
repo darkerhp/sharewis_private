@@ -14,14 +14,7 @@ export const startActFacebookLogin = createAction(types.START_ACT_FACEBOOK_LOGIN
   ([email, facebookId]) => ({ email, facebookId }));
 export const fetchActLoginFailure = createAction(types.FETCH_ACT_LOGIN_FAILURE);
 export const fetchActLoginSuccess = createAction(types.FETCH_ACT_LOGIN_SUCCESS,
-  (result) => {
-    const { userName, nickName, userId } = result;
-    return {
-      userName,
-      nickName,
-      userId,
-    };
-  });
+  result => ({ ...result }));
 export const fetchFBEmailFailure = createAction(types.FETCH_FB_EMAIL_FAILURE);
 export const fetchFBEmailSuccess = createAction(types.FETCH_FB_EMAIL_SUCCESS,
   ([email, facebookId]) => ({ email, facebookId }));
