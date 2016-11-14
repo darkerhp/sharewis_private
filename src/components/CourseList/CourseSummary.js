@@ -20,11 +20,17 @@ const {
 
 const styles = StyleSheet.create({
   image: {
-    flex: 2,
+    flex: 5,
   },
   detailsWrapper: {
-    flex: 1,
-    margin: 10,
+    flex: 3,
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    justifyContent: 'space-around',
+  },
+  detailsWrapperHasDownloaded: {
+    paddingBottom: 0,
+    paddingTop: 10,
   },
   disabledCourse: {
     ...Platform.select({
@@ -37,14 +43,11 @@ const styles = StyleSheet.create({
     }),
   },
   title: {
-    flex: 1,
-    marginTop: 10,
-    fontSize: 13,
     fontWeight: '900',
     color: '#222',
+    fontSize: 13,
   },
   hr: {
-    flex: 1,
     justifyContent: 'center',
   },
   progress: {
@@ -54,10 +57,8 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   download: {
-    flex: 1,
     alignItems: 'center',
     flexDirection: 'row-reverse',
-    marginTop: 5,
   },
   downloadText: {
     color: '#7fc8ed',
@@ -78,7 +79,12 @@ const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
           style={styles.image}
           source={{ uri: course.imageUrl }}
         />
-        <View style={styles.detailsWrapper}>
+        <View
+          style={[
+            styles.detailsWrapper,
+            (course.hasDownloadedLecture ? styles.detailsWrapperHasDownloaded : {}),
+          ]}
+        >
           <Text style={styles.title}>
             {course.title}
           </Text>
