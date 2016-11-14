@@ -80,6 +80,7 @@ const uiReducer = handleActions({
     ...state,
     currentLectureId: action.payload,
     currentTime: 0,
+    isPaused: true,
     isStarted: false,
   }),
   TOGGLE_PLAY: (state, action) => ({
