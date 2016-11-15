@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Progress from 'react-native-progress';
 
 import BaseStyles from '../../baseStyles';
-import * as LectureUtils from '../../utils/lecture';
-import { LECTURE_TYPE_VIDEO, LECTURE_STATUS_FINISHED } from '../../constants/Api';
-import Duration from '../Duration';
-import DownloadAction from './DownloadAction';
 
 const { PropTypes } = React;
-const { Platform, StyleSheet, Text, TouchableOpacity, View } = ReactNative;
+const { Platform, StyleSheet, TouchableOpacity } = ReactNative;
 
 const lectureRowHeight = 48;
 const styles = StyleSheet.create({
@@ -112,83 +109,42 @@ const styles = StyleSheet.create({
   },
 });
 
-const LectureItem = ({
-  lecture,
-  isOnline,
-  handlePressDelete,
-  handlePressLecture,
-  handlePressDownload,
-}) => {
-  const isAccessibleLecture = (() => {
-    if (lecture.type !== LECTURE_TYPE_VIDEO) return false;
-    return isOnline || lecture.hasVideoInDevice;
-  })();
-
+const renderIcon = (lecture) => {
+  if (lecture.isDownloading) {
+    return (
+      <Progress.Circle
+        size={30}
+        thickness={3}
+        progress={lecture.progress}
+        color={BaseStyles.navBarBackgroundColor}
+      />
+    );
+  }
   return (
-    <View style={styles.container}>
-      <View
-        style={lecture.status === LECTURE_STATUS_FINISHED
-          ? styles.lectureNoTextWrapperCompleted
-          : styles.lectureNoTextWrapper}
-      >
-        <Text
-          style={[
-            (lecture.status === LECTURE_STATUS_FINISHED
-              ? styles.lectureNoTextCompleted
-              : styles.lectureNoText),
-            (!isAccessibleLecture ? styles.lectureDisabled : {}),
-          ]}
-        >{lecture.order}</Text>
-      </View>
-
-      <View
-        style={[
-          styles.lectureInfoWrapper,
-          (!isAccessibleLecture ? styles.lectureDisabled : {}),
-        ]}
-      >
-        <View style={styles.lectureIconWrapper}>
-          <Icon
-            style={styles.lectureIcon}
-            name={LectureUtils.getLectureIconName(lecture)}
-          />
-        </View>
-        <Duration
-          estimatedTime={lecture.estimatedTime}
-          containerStyleId={styles.durationWrapper}
-          durationStyleId={styles.durationStyle}
-        />
-      </View>
-
-      <TouchableOpacity
-        style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
-        onPress={() => handlePressLecture(lecture)}
-        disabled={!isAccessibleLecture}
-      >
-        <Text
-          style={[styles.lectureTitleText, (!isAccessibleLecture ? styles.lectureDisabled : {})]}
-        >{lecture.title}</Text>
-      </TouchableOpacity>
-
-      {isAccessibleLecture &&
-        <DownloadAction
-          handlePressDelete={handlePressDelete}
-          handlePressDownload={handlePressDownload}
-          lecture={lecture}
-        />
-      }
-    </View>
+    <Icon
+      name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
+      style={styles.actionIcon}
+    />
   );
 };
 
-LectureItem.propTypes = {
+const DownloadAction = ({ handlePressDelete, handlePressDownload, lecture }) => (
+  <TouchableOpacity
+    style={styles.actionIconWrapper}
+    onPress={() => (
+      lecture.hasVideoInDevice ? handlePressDelete(lecture) : handlePressDownload(lecture)
+    )}
+  >
+    {renderIcon(lecture)}
+  </TouchableOpacity>
+);
+
+DownloadAction.propTypes = {
   // values
   lecture: PropTypes.shape({}).isRequired,
-  isOnline: PropTypes.bool.isRequired,
   // actions
-  handlePressLecture: PropTypes.func.isRequired,
   handlePressDelete: PropTypes.func.isRequired,
   handlePressDownload: PropTypes.func.isRequired,
 };
 
-export default LectureItem;
+export default DownloadAction;
