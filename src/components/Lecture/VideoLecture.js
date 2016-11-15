@@ -92,16 +92,45 @@ class VideoLecture extends Component {
     updateVideoProgress(data.currentTime);
   }
 
+  @autobind
+  renderVideo() {
+    const { isStarted, isPaused, speed, thumbnailUrl } = this.props;
+    if (isStarted) {
+      return (
+        <Video
+          muted={false}
+          onEnd={this.handlePressNextLecture}
+          onError={e => console.error(e)}
+          onProgress={this.handleVideoProgress}
+          paused={this.state.seeking || isPaused}
+          playInBackground={false}
+          playWhenInactive={false}
+          rate={speed}
+          ref={ref => (this.video = ref)}
+          repeat={false}
+          resizeMode="contain"
+          source={{ uri: this.getVideoUrl() }}
+          style={styles.backgroundVideo}
+          volume={1.0}
+        />
+      );
+    }
+    return (
+      <Image
+        style={styles.backgroundVideo}
+        source={{ uri: thumbnailUrl }}
+      />
+    );
+  }
+
   render() {
     const {
       // values
       currentTime,
       estimatedTime,
       isPaused,
-      isStarted,
       lectureContentStyleId,
       speed,
-      thumbnailUrl,
       title,
       // actions
       changeVideoPlaySpeed,
@@ -111,28 +140,7 @@ class VideoLecture extends Component {
     return (
       <View style={lectureContentStyleId}>
         <View style={styles.videoContainer}>
-          {isStarted ?
-            <Video
-              muted={false}
-              onEnd={this.handlePressNextLecture}
-              onError={e => console.error(e)}
-              onProgress={this.handleVideoProgress}
-              paused={this.state.seeking || isPaused}
-              playInBackground={false}
-              playWhenInactive={false}
-              rate={speed}
-              ref={ref => (this.video = ref)}
-              repeat={false}
-              resizeMode="contain"
-              source={{ uri: this.getVideoUrl() }}
-              style={styles.backgroundVideo}
-              volume={1.0}
-            /> :
-            <Image
-              style={styles.backgroundVideo}
-              source={{ uri: thumbnailUrl }}
-            />
-          }
+          {this.renderVideo()}
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
@@ -154,7 +162,6 @@ class VideoLecture extends Component {
       </View>
     );
   }
-
 }
 
 export default VideoLecture;
