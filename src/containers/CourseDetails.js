@@ -160,10 +160,10 @@ class CourseDetails extends Component {
           beginDownloadVideo(lecture.id, jobId, statusCode);
         },
         progress: ({ bytesWritten, contentLength, jobId }) => {
-          const percentage = Math.ceil((100 * bytesWritten) / contentLength);
-          progressDownloadVideo(lecture.id, jobId, percentage);
+          const progress = bytesWritten / contentLength;
+          progressDownloadVideo(lecture.id, jobId, progress);
         },
-        progressDivider: 10,
+        progressDivider: 2,
       }).promise;
       finishDownloadVideo(lecture.id);
     } catch (error) {

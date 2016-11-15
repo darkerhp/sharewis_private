@@ -8,7 +8,7 @@ const initialState = {
    * {
    *   [jobId] : {
    *     lectureId,
-   *     percentage,
+   *     progress,
    *   }
    * }
    * */
@@ -27,7 +27,7 @@ const videoDownloadReducer = handleActions({
       ...state,
       [jobId]: {
         ...state[lectureId],
-        percentage: status,
+        progress: status,
       },
     };
   },

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 import BaseStyles from '../../baseStyles';
 import * as LectureUtils from '../../utils/lecture';
 import { LECTURE_TYPE_VIDEO, LECTURE_STATUS_FINISHED } from '../../constants/Api';
 import Duration from '../Duration';
+import DownloadAction from './DownloadAction';
 
-const { Component, PropTypes } = React;
+const { PropTypes } = React;
 const { Platform, StyleSheet, Text, TouchableOpacity, View } = ReactNative;
 
 const lectureRowHeight = 48;
@@ -112,30 +112,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// TODO components化
-const renderDownloadAction = (handlePressDelete, handlePressDownload, lecture) =>
-  <TouchableOpacity
-    style={styles.actionIconWrapper}
-    onPress={() => (
-      lecture.hasVideoInDevice ? handlePressDelete(lecture) : handlePressDownload(lecture)
-    )}
-  >
-    {lecture.isDownloading ?
-      <AnimatedCircularProgress
-        size={30}
-        width={3}
-        fill={lecture.percentage}
-        rotation={0}
-        tintColor="#00e0ff"
-        backgroundColor="#3d5875"
-      /> :
-      <Icon
-        name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
-        style={styles.actionIcon}
-      />
-    }
-  </TouchableOpacity>;
-
 const LectureItem = ({
   lecture,
   isOnline,
@@ -166,7 +142,10 @@ const LectureItem = ({
       </View>
 
       <View
-        style={[styles.lectureInfoWrapper, (!isAccessibleLecture ? styles.lectureDisabled : {})]}
+        style={[
+          styles.lectureInfoWrapper,
+          (!isAccessibleLecture ? styles.lectureDisabled : {}),
+        ]}
       >
         <View style={styles.lectureIconWrapper}>
           <Icon
@@ -191,9 +170,13 @@ const LectureItem = ({
         >{lecture.title}</Text>
       </TouchableOpacity>
 
-      {isAccessibleLecture && renderDownloadAction(
-        handlePressDelete, handlePressDownload, lecture
-      )}
+      {isAccessibleLecture &&
+        <DownloadAction
+          handlePressDelete={handlePressDelete}
+          handlePressDownload={handlePressDownload}
+          lecture={lecture}
+        />
+      }
     </View>
   );
 };

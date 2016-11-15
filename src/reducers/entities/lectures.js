@@ -33,7 +33,7 @@ const lecturesReducer = handleActions({
     };
   },
   PROGRESS_DOWNLOAD_VIDEO: (state, action) => {
-    const { lectureId, jobId, percentage } = action.payload;
+    const { lectureId, jobId, progress } = action.payload;
     const lecture = state[lectureId];
     if (lecture.jobId === -1) return state;
     return {
@@ -42,7 +42,7 @@ const lecturesReducer = handleActions({
         ...state[lectureId],
         isDownloading: true,
         jobId,
-        percentage,
+        progress,
       },
     };
   },
@@ -55,7 +55,7 @@ const lecturesReducer = handleActions({
         hasVideoInDevice: true,
         isDownloading: false,
         jobId: -1,
-        percentage: 0,
+        progress: 0,
       },
     };
   },
@@ -68,7 +68,7 @@ const lecturesReducer = handleActions({
         hasVideoInDevice: false,
         isDownloading: false,
         jobId: -1,
-        percentage: 0,
+        progress: 0,
       },
     };
   },
@@ -90,7 +90,7 @@ const lecturesReducer = handleActions({
       [lectureId]: {
         ...state[lectureId],
         hasVideoInDevice: false,
-        percentage: 0,
+        progress: 0,
       },
     };
   },
