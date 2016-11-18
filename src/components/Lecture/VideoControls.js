@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import BaseStyles from '../../baseStyles';
 
 const { PropTypes } = React;
-const { StyleSheet, View } = ReactNative;
+const { Platform, StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -35,7 +35,15 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.backgroundColor,
+    // FIXME androidは速度変更不可
+    ...Platform.select({
+      ios: {
+        backgroundColor: BaseStyles.backgroundColor,
+      },
+      android: {
+        backgroundColor: BaseStyles.disabledButtonColor,
+      },
+    }),
   },
   buttonText: {
     fontSize: 18,
@@ -72,6 +80,7 @@ const VideoControls = ({ isPaused, speed, onPressPlay, onPressSpeed }) =>
       containerStyle={styles.speedButton}
       style={styles.buttonText}
       onPress={() => onPressSpeed()}
+      disabled={Platform.OS === 'android'} // FIXME androidは速度変更不可
     >
       x{speed}{speed % 1 === 0 ? '.0' : ''}
     </Button>
