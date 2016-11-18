@@ -15,6 +15,7 @@ import com.facebook.react.shell.MainReactPackage;
 
 import com.brentvatne.react.ReactVideoPackage;
 import com.rnfs.RNFSPackage;
+import io.repro.android.Repro;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,6 +55,11 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     FacebookSdk.sdkInitialize(getApplicationContext());
+
+    // Setup Repro
+    Repro.setup(this, "a3ec35c0-af7a-47ac-a10f-866ba354bd33");
+    // Start Recording
+    Repro.startRecording();
     // If you want to use AppEventsLogger to log events.
     //AppEventsLogger.activateApp(this);
   }
