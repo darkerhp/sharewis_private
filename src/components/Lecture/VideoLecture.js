@@ -63,6 +63,7 @@ class VideoLecture extends Component {
 
   state = {
     seeking: false,
+    isLoadingThumbnail: true,
   };
 
   @autobind
@@ -119,6 +120,8 @@ class VideoLecture extends Component {
       <Image
         style={styles.backgroundVideo}
         source={{ uri: thumbnailUrl }}
+        onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
+        onLoadEnd={() => this.setState({ isLoadingThumbnail: false })}
       />
     );
   }
@@ -157,6 +160,7 @@ class VideoLecture extends Component {
             speed={speed}
             onPressPlay={togglePlay}
             onPressSpeed={changeVideoPlaySpeed}
+            isLoadingThumbnail={this.state.isLoadingThumbnail}
           />
         </View>
       </View>
