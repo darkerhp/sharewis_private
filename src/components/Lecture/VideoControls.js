@@ -64,12 +64,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const VideoControls = ({ isPaused, speed, onPressPlay, onPressSpeed }) =>
+const VideoControls = ({ isLoadingThumbnail, isPaused, speed, onPressPlay, onPressSpeed }) =>
   <View style={styles.container}>
     <Button
-      containerStyle={styles.playButton}
+      containerStyle={[
+        styles.playButton,
+        (isLoadingThumbnail ? { backgroundColor: BaseStyles.disabledButtonColor } : {}),
+      ]}
       style={styles.buttonText}
       onPress={() => onPressPlay()}
+      disabled={isLoadingThumbnail}
     >
       <Icon
         name={isPaused ? 'play-arrow' : 'pause'}
@@ -100,6 +104,7 @@ const VideoControls = ({ isPaused, speed, onPressPlay, onPressSpeed }) =>
 
 
 VideoControls.propTypes = {
+  isLoadingThumbnail: PropTypes.bool.isRequired,
   isPaused: PropTypes.bool.isRequired,
   onPressPlay: PropTypes.func.isRequired,
   onPressSpeed: PropTypes.func.isRequired,

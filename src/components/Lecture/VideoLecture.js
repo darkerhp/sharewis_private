@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import Video from 'react-native-video';
 import autobind from 'autobind-decorator';
+import Video from 'react-native-video';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import * as FileUtils from '../../utils/file';
 import SeekBar from './SeekBar';
@@ -63,6 +64,7 @@ class VideoLecture extends Component {
 
   state = {
     seeking: false,
+    isLoadingThumbnail: true,
   };
 
   @autobind
@@ -119,6 +121,8 @@ class VideoLecture extends Component {
       <Image
         style={styles.backgroundVideo}
         source={{ uri: thumbnailUrl }}
+        onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
+        onLoadEnd={() => this.setState({ isLoadingThumbnail: false })}
       />
     );
   }
@@ -139,6 +143,7 @@ class VideoLecture extends Component {
 
     return (
       <View style={lectureContentStyleId}>
+        <Spinner visible={this.state.isLoadingThumbnail} />
         <View style={styles.videoContainer}>
           {this.renderVideo()}
         </View>
@@ -157,6 +162,7 @@ class VideoLecture extends Component {
             speed={speed}
             onPressPlay={togglePlay}
             onPressSpeed={changeVideoPlaySpeed}
+            isLoadingThumbnail={this.state.isLoadingThumbnail}
           />
         </View>
       </View>
