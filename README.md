@@ -247,11 +247,17 @@ reloading the simulator)
 1. Xcodeを開き、以下の設定を行う。
     1. General -> Bundle Identifierに「com.share-wis.ShareWisACT」を設定する
     1. FacebookSDKをXcodeに追加する。[ドキュメント](https://developers.facebook.com/docs/ios/getting-started/#sdk-project)
-    
+    1. Build Settingsに環境変数[FACEBOOK_APP_ID]を追加する。[詳細](https://gyazo.com/0e7b6d30655fb82bc2e87c442825db9a)
+    1. LaunchImageが
 
 ### For react native video
    - Info.plistの `App Transport Security Settings` に `Allow Arbitrary Loads` を追加してYESを設定する。（For Dev）
 
+### トラブルシューティング
+ Facebookログインに失敗する場合（エラーコード308）
+ XcodeからCapabilities -> Keychain Sharing をONにする
+- http://stackoverflow.com/questions/30643122/ios-parse-facebook-login-error-308-fbsdkloginbadchallengestring
+- https://github.com/facebook/facebook-sdk-swift/issues/51
 
 
 
