@@ -1143,6 +1143,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 92C4787KCQ;
+				FACEBOOK_APP_ID = 739140542810010;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Repro/Repro.embeddedframework\"",
@@ -1180,6 +1181,7 @@
 				CODE_SIGN_ENTITLEMENTS = SharewisActMobile/SharewisActMobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92C4787KCQ;
+				FACEBOOK_APP_ID = 1491866444383166;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Repro/Repro.embeddedframework\"",
