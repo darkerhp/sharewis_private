@@ -8,7 +8,7 @@ const { View, StyleSheet, Text, Image, TouchableOpacity } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   courseImageWrapper: {

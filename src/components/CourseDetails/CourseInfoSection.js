@@ -57,13 +57,13 @@ const CourseInfoSection = ({
       <Text style={styles.courseTitleText}>{courseTitle}</Text>
     </View>
 
-    {!_.isEmpty(nextLecture) ?
+    {!_.isEmpty(nextLecture) &&
       <NextLectureArea
         nextLecture={nextLecture}
         handlePressNextLecture={handlePressNextLecture}
         hidden
         containerStyleId={styles.lectureAreaContainer}
-      /> : null
+      />
     }
 
     <Progress
