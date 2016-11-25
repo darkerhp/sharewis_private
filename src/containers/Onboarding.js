@@ -55,7 +55,6 @@ const slide3ImageSrc = require('../components/Onboarding/images/slide3.png');
 class Onboarding extends Component {
   static propTypes = {
     user: PropTypes.shape({}).isRequired,
-    routes: PropTypes.shape({}).isRequired,
   };
 
   componentWillMount() {

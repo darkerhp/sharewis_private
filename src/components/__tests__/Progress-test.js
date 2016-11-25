@@ -13,7 +13,7 @@ describe('Progress', () => {
       <Progress
         completeLectureCount={0}
         totalLectureCount={10}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

@@ -15,7 +15,7 @@ describe('NextLectureArea', () => {
         nextLecture={{
           type: 'lecture',
         }}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

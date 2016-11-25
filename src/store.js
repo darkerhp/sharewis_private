@@ -17,7 +17,7 @@ const loggerMiddleware = createLogger();
 const middleWare = applyMiddleware(
   thunkMiddleware,
   netInfoMiddleware,
-  loggerMiddleware
+  loggerMiddleware,
 );
 
 const configureStore = (initialState) => {

@@ -7,14 +7,14 @@ import EmptyList from '../CourseList/EmptyList';
 
 jest.mock('react-native-loading-spinner-overlay', () => 'Spinner');
 jest.mock('../../utils/linking', () =>
-  () => 'redirectTo'
+  () => 'redirectTo',
 );
 
 
 describe('EmptyList', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      <EmptyList isFetching />
+      <EmptyList isFetching />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

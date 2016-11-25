@@ -14,7 +14,7 @@ describe('TextField', () => {
           value: 'text',
           onChange: () => null,
         }}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

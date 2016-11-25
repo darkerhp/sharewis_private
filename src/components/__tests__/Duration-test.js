@@ -9,7 +9,7 @@ import Duration from '../Duration';
 describe('Duration', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      <Duration estimatedTime={100} />
+      <Duration estimatedTime={100} />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

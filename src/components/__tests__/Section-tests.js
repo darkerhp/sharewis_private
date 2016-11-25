@@ -13,7 +13,7 @@ describe('Section', () => {
         lecture={{
           title: 'Title',
         }}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
