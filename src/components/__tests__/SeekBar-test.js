@@ -15,7 +15,7 @@ describe('SeekBar', () => {
         currentTime={10}
         estimatedTime={100}
         onValueChange={() => null}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

@@ -17,7 +17,7 @@ describe('courses reducer', () => {
           73: { id: '73', hasDownloadedLecture: true },
           180: { id: '180', hasDownloadedLecture: false },
         }),
-      )
+      ),
     ).toEqual({
       73: { id: '73', hasDownloadedLecture: true },
       180: { id: '180', hasDownloadedLecture: false },

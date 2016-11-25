@@ -22,7 +22,7 @@ describe('LectureItem', () => {
           title: 'Title',
           type: 'video',
         }}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

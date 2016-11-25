@@ -21,7 +21,7 @@ describe('CourseInfoSection', () => {
         totalLectureCount={10}
         totalDuration={100}
         handlePressNextLecture={() => null}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

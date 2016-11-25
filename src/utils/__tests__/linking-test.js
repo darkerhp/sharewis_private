@@ -15,7 +15,7 @@ jest.mock('Linking', () => ({
 describe('Linking Utils', () => {
   it('should redirect to the given url', () =>
     redirectTo(ACT_API_URL).then(result =>
-      expect(result).toEqual(ACT_API_URL)
-    )
+      expect(result).toEqual(ACT_API_URL),
+    ),
   );
 });

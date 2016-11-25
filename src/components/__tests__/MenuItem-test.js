@@ -13,7 +13,7 @@ describe('MenuItem', () => {
         text={'text'}
         iconName={'mail'}
         handlePress={() => null}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

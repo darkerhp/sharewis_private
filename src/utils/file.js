@@ -27,7 +27,7 @@ export async function hasVideoByCourse(courseId) {
     if (!isExists) return false;
     const readDirItemResults = await RNFS.readDir(courseVideoDirPath);
     return readDirItemResults.some(
-      readDirItem => getFileExtension(readDirItem.name) === 'mp4'
+      readDirItem => getFileExtension(readDirItem.name) === 'mp4',
     );
   } catch (error) {
     console.error(error);

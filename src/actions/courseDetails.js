@@ -26,10 +26,10 @@ export const updateVideoInDeviceStatus = createAction(types.UPDATE_VIDEO_IN_DEVI
 
 // Thunks
 export const fetchVideoInDeviceStatus = courseId => (
-  async(dispatch, getState) => {
+  async (dispatch, getState) => {
     const { entities: { lectures } } = getState();
     if (_.isEmpty(lectures)) return;
-    const promises = Object.keys(lectures).map(async(lectureId) => {
+    const promises = Object.keys(lectures).map(async (lectureId) => {
       const path = FileUtils.createVideoFileName(lectureId, courseId);
       const hasVideoInDevice = await FileUtils.exists(path);
       return { lectureId, hasVideoInDevice };
@@ -41,7 +41,7 @@ export const fetchVideoInDeviceStatus = courseId => (
 
 // lecturesとsectionsを取得する async action
 export const fetchCourseDetails = courseId =>
-  async(dispatch, getState) => {
+  async (dispatch, getState) => {
     try {
       const {
         entities: { lectures },

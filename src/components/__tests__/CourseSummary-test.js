@@ -13,7 +13,7 @@ describe('CourseSummary', () => {
     const tree = renderer.create(
       <CourseSummary
         course={{ imageUrl: base64Icon }}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

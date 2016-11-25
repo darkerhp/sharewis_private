@@ -51,7 +51,6 @@ class VideoLecture extends Component {
     isPaused: PropTypes.bool.isRequired,
     isStarted: PropTypes.bool.isRequired,
     lectureContentStyleId: PropTypes.number.isRequired,
-    lectures: PropTypes.shape({}).isRequired,
     speed: PropTypes.number.isRequired,
     thumbnailUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

@@ -11,7 +11,7 @@ describe('ProgressBar', () => {
     const tree = renderer.create(
       <ProgressBar
         progress={20}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
