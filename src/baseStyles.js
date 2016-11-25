@@ -26,7 +26,6 @@ const DefaultComponents = {
     paddingBottom: Variables.navbarHeight,
   },
   Text: {
-    flex: 1,
     textAlign: 'center',
     lineHeight: 22,
     fontSize: 17,
