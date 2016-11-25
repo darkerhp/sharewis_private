@@ -248,7 +248,8 @@ reloading the simulator)
     1. General -> Bundle Identifierに「com.share-wis.ShareWisACT」を設定する
     1. FacebookSDKをXcodeに追加する。[ドキュメント](https://developers.facebook.com/docs/ios/getting-started/#sdk-project)
     1. Build Settingsに環境変数[FACEBOOK_APP_ID]を追加する。[詳細](https://gyazo.com/0e7b6d30655fb82bc2e87c442825db9a)
-    1. LaunchImageが
+    1. LaunchImageの設定がされていなければ再設定する。
+    1. ARTライブラリを追加する。（https://github.com/bgryszko/react-native-circular-progress/issues/23）
 
 ### For react native video
    - Info.plistの `App Transport Security Settings` に `Allow Arbitrary Loads` を追加してYESを設定する。（For Dev）
