@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.disabledButtonColor,
+    backgroundColor: BaseStyles.backgroundColor,
   },
   fullScreenButtonIcon: {
     fontSize: 28,
@@ -64,7 +64,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const VideoControls = ({ isLoadingThumbnail, isPaused, speed, onPressPlay, onPressSpeed }) =>
+const VideoControls = ({
+  isLoadingThumbnail,
+  isPaused,
+  onPressFullScreen,
+  onPressPlay,
+  onPressSpeed,
+  speed,
+}) =>
   <View style={styles.container}>
     <Button
       containerStyle={[
@@ -92,8 +99,7 @@ const VideoControls = ({ isLoadingThumbnail, isPaused, speed, onPressPlay, onPre
     <Button
       containerStyle={styles.fullScreenButton}
       style={styles.buttonText}
-      disabled // TODO 未実装のため無効に
-      // onPress={(e) => console.log(e)}
+      onPress={() => onPressFullScreen()}
     >
       <Icon
         name={'fullscreen'}
@@ -110,7 +116,7 @@ VideoControls.propTypes = {
   onPressSpeed: PropTypes.func.isRequired,
   speed: PropTypes.number.isRequired,
   // isFullScreen: PropTypes.bool.isRequired,
-  // onPressFullScreen: PropTypes.func.isRequired,
+  onPressFullScreen: PropTypes.func.isRequired,
 };
 
 export default VideoControls;

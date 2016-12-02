@@ -94,6 +94,14 @@ class VideoLecture extends Component {
   }
 
   @autobind
+  handlePressFullScreen() {
+    console.log('handlePressFullScreen');
+    if (this.video) {
+      this.video.presentFullscreenPlayer();
+    }
+  }
+
+  @autobind
   renderVideo() {
     const { isStarted, isPaused, speed, thumbnailUrl } = this.props;
     if (isStarted) {
@@ -159,6 +167,7 @@ class VideoLecture extends Component {
           <VideoControls
             isPaused={isPaused}
             speed={speed}
+            onPressFullScreen={this.handlePressFullScreen}
             onPressPlay={togglePlay}
             onPressSpeed={changeVideoPlaySpeed}
             isLoadingThumbnail={this.state.isLoadingThumbnail}
