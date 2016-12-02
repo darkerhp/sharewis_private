@@ -16,15 +16,17 @@ exports[`MenuItem renders correctly 1`] = `
       Array [
         Object {
           "color": undefined,
-          "fontFamily": "Material Icons",
           "fontSize": 12,
-          "fontStyle": "normal",
-          "fontWeight": "normal",
         },
         Object {
           "color": "#999",
           "fontSize": 32,
           "marginRight": 10,
+        },
+        Object {
+          "fontFamily": "Material Icons",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
         },
       ]
     }>

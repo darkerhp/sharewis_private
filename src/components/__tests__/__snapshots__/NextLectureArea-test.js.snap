@@ -3,31 +3,15 @@ exports[`NextLectureArea renders correctly 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "stretch",
+        "alignItems": "center",
         "justifyContent": "center",
       },
       0,
     ]
   }>
-  <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
-    accessible={true}
-    hitSlop={undefined}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
-    testID={undefined}>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}>
     <View
       style={
         Object {
@@ -77,6 +61,6 @@ exports[`NextLectureArea renders correctly 1`] = `
         [missing \"en.nextLecture\" translation]
       </Text>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;
