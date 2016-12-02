@@ -3852,13 +3852,13 @@ mime-db@~1.23.0:
   version "1.23.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.23.0.tgz#a31b4070adaea27d732ea333740a64d0ec9a6659"
 
-mime-types@2.1.11:
+mime-types@2.1.11, mime-types@~2.1.9:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.11.tgz#c259c471bda808a85d6cd193b430a5fae4473b3c"
   dependencies:
     mime-db "~1.23.0"
 
-mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.13, mime-types@~2.1.6, mime-types@~2.1.7, mime-types@~2.1.9:
+mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.13, mime-types@~2.1.6, mime-types@~2.1.7:
   version "2.1.13"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.13.tgz#e07aaa9c6c6b9a7ca3012c69003ad25a39e92a88"
   dependencies:
@@ -4486,6 +4486,10 @@ react-native-i18n@^0.1.1:
 react-native-loading-spinner-overlay@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.3.0.tgz#3659c7c35523087e8db8f04c9e526d519f907b2b"
+
+react-native-orientation@^1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/react-native-orientation/-/react-native-orientation-1.17.0.tgz#bfbeba17e20f7f96d09042e31fbe5d479f1d5b94"
 
 react-native-progress@^3.1.0:
   version "3.1.0"

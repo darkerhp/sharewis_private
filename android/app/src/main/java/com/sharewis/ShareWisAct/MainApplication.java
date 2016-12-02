@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.github.yamill.orientation.OrientationPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -39,6 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new OrientationPackage(this),
           new ReactNativeI18n(),
           new FBSDKPackage(mCallbackManager),
           new RNFSPackage(),
