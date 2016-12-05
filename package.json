@@ -35,7 +35,7 @@
     "react-native-hyperlink": "^0.0.7",
     "react-native-i18n": "^0.1.1",
     "react-native-loading-spinner-overlay": "^0.3.0",
-    "react-native-orientation": "^1.17.0",
+    "react-native-orientation": "yamill/react-native-orientation",
     "react-native-progress": "^3.1.0",
     "react-native-router-flux": "^3.35.0",
     "react-native-sleek-loading-indicator": "^0.1.2",

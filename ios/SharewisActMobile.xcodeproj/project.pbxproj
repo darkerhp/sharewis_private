@@ -43,8 +43,8 @@
 		CBAF4A210B25467C8176558B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C2718E5CB1546168954DBD8 /* Foundation.ttf */; };
 		EFC0A34B539F7C1008CB45FC /* libPods-SharewisActMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDBC9AC04EDD90B51C66791 /* libPods-SharewisActMobileTests.a */; };
 		F055C36AF1844E708F79D0C6 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2368494B6B864C989645E129 /* Zocial.ttf */; };
-		A4A2C58717F14D93A14C7A74 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EA200D98DA45AEBFF52BF2 /* libRCTOrientation.a */; };
 		DD6FA39C86624F979B0F7361 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD4DDE9C43451F94095E86 /* SimpleLineIcons.ttf */; };
+		61F18CFCA2ED42548ECCD5B2 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AEBC3CD6F54D63B10DA81D /* libRCTOrientation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -292,9 +292,9 @@
 		D37F2D8330AC460DBEB8284F /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		EFF6891505F0423DA66C4D1A /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		F3216B7B96F643898708A410 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; };
-		0570BCF0A0164E3E9D426EEA /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; name = "RCTOrientation.xcodeproj"; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		26EA200D98DA45AEBFF52BF2 /* libRCTOrientation.a */ = {isa = PBXFileReference; name = "libRCTOrientation.a"; path = "libRCTOrientation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		4EDD4DDE9C43451F94095E86 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		328FA117AD7D4D85B2B60D53 /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; name = "RCTOrientation.xcodeproj"; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		15AEBC3CD6F54D63B10DA81D /* libRCTOrientation.a */ = {isa = PBXFileReference; name = "libRCTOrientation.a"; path = "libRCTOrientation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,7 +333,7 @@
 				8966BC9233754764BCED8EBE /* libRNVectorIcons.a in Frameworks */,
 				A01855966BF941CD80868E13 /* libRCTVideo.a in Frameworks */,
 				073A1D4B71A1BBE083A56FCF /* libPods-SharewisActMobile.a in Frameworks */,
-				A4A2C58717F14D93A14C7A74 /* libRCTOrientation.a in Frameworks */,
+				61F18CFCA2ED42548ECCD5B2 /* libRCTOrientation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,7 +544,7 @@
 				F3216B7B96F643898708A410 /* RNI18n.xcodeproj */,
 				5F1897687DD94AAE84DBF813 /* RNVectorIcons.xcodeproj */,
 				EFF6891505F0423DA66C4D1A /* RCTVideo.xcodeproj */,
-				0570BCF0A0164E3E9D426EEA /* RCTOrientation.xcodeproj */,
+				328FA117AD7D4D85B2B60D53 /* RCTOrientation.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1139,11 +1139,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SharewisActMobile.app/SharewisActMobile";
@@ -1161,11 +1156,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
