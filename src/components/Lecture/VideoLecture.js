@@ -4,6 +4,7 @@ import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Video from 'react-native-video';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
 import * as FileUtils from '../../utils/file';
 import SeekBar from './SeekBar';
@@ -57,6 +58,7 @@ class VideoLecture extends Component {
     videoUrl: PropTypes.string.isRequired,
     // actions
     changeVideoPlaySpeed: PropTypes.func.isRequired,
+    toggleFullScreen: PropTypes.func.isRequired,
     togglePlay: PropTypes.func.isRequired,
     updateVideoProgress: PropTypes.func.isRequired,
   };
@@ -95,10 +97,9 @@ class VideoLecture extends Component {
 
   @autobind
   handlePressFullScreen() {
-    console.log('handlePressFullScreen');
-    if (this.video) {
-      this.video.presentFullscreenPlayer();
-    }
+    const { toggleFullScreen } = this.props;
+    toggleFullScreen();
+    RouterActions.refresh({ hideNavBar: true });
   }
 
   @autobind
@@ -145,6 +146,7 @@ class VideoLecture extends Component {
       title,
       // actions
       changeVideoPlaySpeed,
+      toggleFullScreen,
       togglePlay,
     } = this.props;
 
