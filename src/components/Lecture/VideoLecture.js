@@ -157,6 +157,16 @@ class VideoLecture extends Component {
     );
   }
 
+  @autobind
+  renderIndicator() {
+    if (!this.state.isLoadingThumbnail) return null;
+    return (
+      <View style={styles.loadingIndicatorWrapper}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
   render() {
     const {
       // values
@@ -175,11 +185,7 @@ class VideoLecture extends Component {
       <View style={lectureContentStyleId}>
         <View style={styles.videoContainer}>
           {this.renderVideo()}
-          {this.state.isLoadingThumbnail &&
-            <View style={styles.loadingIndicatorWrapper}>
-              <ActivityIndicator />
-            </View>
-          }
+          {this.renderIndicator()}
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
