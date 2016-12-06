@@ -3,7 +3,6 @@ import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
 import Video from 'react-native-video';
-import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import Orientation from 'react-native-orientation';
 
@@ -12,7 +11,7 @@ import SeekBar from './SeekBar';
 import VideoControls from './VideoControls';
 
 const { Component, PropTypes } = React;
-const { Image, StyleSheet, Text, View } = ReactNative;
+const { ActivityIndicator, Image, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -39,6 +38,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#e0e0e0',
     fontWeight: 'bold',
+  },
+  loadingIndicatorWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
@@ -122,32 +126,33 @@ class VideoLecture extends Component {
   @autobind
   renderVideo() {
     const { isStarted, isPaused, speed, thumbnailUrl } = this.props;
-    if (isStarted) {
+    if (!isStarted) {
       return (
-        <Video
-          muted={false}
-          onEnd={this.handlePressNextLecture}
-          onError={e => console.error(e)}
-          onProgress={this.handleVideoProgress}
-          paused={this.state.seeking || isPaused}
-          playInBackground={false}
-          playWhenInactive={false}
-          rate={speed}
-          ref={ref => (this.video = ref)}
-          repeat={false}
-          resizeMode="contain"
-          source={{ uri: this.getVideoUrl() }}
+        <Image
           style={styles.backgroundVideo}
-          volume={1.0}
+          source={{ uri: thumbnailUrl }}
+          onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
+          onLoadEnd={() => this.setState({ isLoadingThumbnail: false })}
         />
       );
     }
+
     return (
-      <Image
+      <Video
+        muted={false}
+        onEnd={this.handlePressNextLecture}
+        onError={e => console.error(e)}
+        onProgress={this.handleVideoProgress}
+        paused={this.state.seeking || isPaused}
+        playInBackground={false}
+        playWhenInactive={false}
+        rate={speed}
+        ref={ref => (this.video = ref)}
+        repeat={false}
+        resizeMode="contain"
+        source={{ uri: this.getVideoUrl() }}
         style={styles.backgroundVideo}
-        source={{ uri: thumbnailUrl }}
-        onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
-        onLoadEnd={() => this.setState({ isLoadingThumbnail: false })}
+        volume={1.0}
       />
     );
   }
@@ -163,15 +168,18 @@ class VideoLecture extends Component {
       title,
       // actions
       changeVideoPlaySpeed,
-      toggleFullScreen,
       togglePlay,
     } = this.props;
 
     return (
       <View style={lectureContentStyleId}>
-        <Spinner visible={this.state.isLoadingThumbnail} />
         <View style={styles.videoContainer}>
           {this.renderVideo()}
+          {this.state.isLoadingThumbnail &&
+            <View style={styles.loadingIndicatorWrapper}>
+              <ActivityIndicator />
+            </View>
+          }
         </View>
         <View style={{ flex: 1.5, backgroundColor: 'white' }}>
           <SeekBar
