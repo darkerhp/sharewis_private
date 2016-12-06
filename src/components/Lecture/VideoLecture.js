@@ -5,6 +5,7 @@ import autobind from 'autobind-decorator';
 import Video from 'react-native-video';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Actions as RouterActions } from 'react-native-router-flux';
+import Orientation from 'react-native-orientation';
 
 import * as FileUtils from '../../utils/file';
 import SeekBar from './SeekBar';
@@ -49,6 +50,7 @@ class VideoLecture extends Component {
     estimatedTime: PropTypes.number.isRequired,
     hasVideoInDevice: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired,
+    isFullScreen: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
     isStarted: PropTypes.bool.isRequired,
     lectureContentStyleId: PropTypes.number.isRequired,
@@ -62,6 +64,16 @@ class VideoLecture extends Component {
     togglePlay: PropTypes.func.isRequired,
     updateVideoProgress: PropTypes.func.isRequired,
   };
+
+  static toFullScreen() {
+    Orientation.lockToLandscape();
+    RouterActions.refresh({ hideNavBar: true });
+  }
+
+  static toPortrait() {
+    Orientation.lockToPortrait();
+    RouterActions.refresh({ hideNavBar: false });
+  }
 
   state = {
     seeking: false,
@@ -97,10 +109,15 @@ class VideoLecture extends Component {
 
   @autobind
   handlePressFullScreen() {
-    const { toggleFullScreen } = this.props;
+    const { isFullScreen, toggleFullScreen } = this.props;
+    if (isFullScreen) {
+      VideoLecture.toPortrait();
+    } else {
+      VideoLecture.toFullScreen();
+    }
     toggleFullScreen();
-    RouterActions.refresh({ hideNavBar: true });
   }
+
 
   @autobind
   renderVideo() {
