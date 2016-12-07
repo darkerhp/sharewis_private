@@ -136,7 +136,7 @@ const LectureItem = ({
             (lecture.status === LECTURE_STATUS_FINISHED
               ? styles.lectureNoTextCompleted
               : styles.lectureNoText),
-            (!isAccessibleLecture ? styles.lectureDisabled : {}),
+            !isAccessibleLecture && styles.lectureDisabled,
           ]}
         >{lecture.order}</Text>
       </View>
@@ -144,7 +144,7 @@ const LectureItem = ({
       <View
         style={[
           styles.lectureInfoWrapper,
-          (!isAccessibleLecture ? styles.lectureDisabled : {}),
+          !isAccessibleLecture && styles.lectureDisabled,
         ]}
       >
         <View style={styles.lectureIconWrapper}>
@@ -161,12 +161,12 @@ const LectureItem = ({
       </View>
 
       <TouchableOpacity
-        style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
+        style={[styles.lectureTitleTextWrapper, !isAccessibleLecture && { flex: 6 }]}
         onPress={() => handlePressLecture(lecture)}
         disabled={!isAccessibleLecture}
       >
         <Text
-          style={[styles.lectureTitleText, (!isAccessibleLecture ? styles.lectureDisabled : {})]}
+          style={[styles.lectureTitleText, !isAccessibleLecture && styles.lectureDisabled]}
         >{lecture.title}</Text>
       </TouchableOpacity>
 
