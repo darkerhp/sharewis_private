@@ -9,9 +9,18 @@ import Orientation from 'react-native-orientation';
 import * as FileUtils from '../../utils/file';
 import SeekBar from './SeekBar';
 import VideoControls from './VideoControls';
+import FullScreenVideoControls from './FullScreenVideoControls';
 
 const { Component, PropTypes } = React;
-const { ActivityIndicator, Image, StyleSheet, Text, View } = ReactNative;
+const {
+  ActivityIndicator,
+  Image,
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+} = ReactNative;
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -108,7 +117,8 @@ class VideoLecture extends Component {
   handleVideoProgress(data) {
     const { currentTime, updateVideoProgress } = this.props;
     if (currentTime === data.currentTime) return;
-    updateVideoProgress(data.currentTime);
+    // TODO DEBUG
+    //updateVideoProgress(data.currentTime);
   }
 
   @autobind
@@ -133,6 +143,7 @@ class VideoLecture extends Component {
           source={{ uri: thumbnailUrl }}
           onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
           onLoadEnd={() => this.setState({ isLoadingThumbnail: false })}
+          resizeMode="contain"
         />
       );
     }
@@ -169,43 +180,42 @@ class VideoLecture extends Component {
 
   render() {
     const {
-      // values
       currentTime,
       estimatedTime,
+      isFullScreen,
       isPaused,
       lectureContentStyleId,
       speed,
       title,
-      // actions
       changeVideoPlaySpeed,
       togglePlay,
     } = this.props;
 
+    const videoControlesProps = {
+      currentTime,
+      estimatedTime,
+      isFullScreen,
+      isLoadingThumbnail: this.state.isLoadingThumbnail,
+      isPaused,
+      onPressFullScreen: this.handlePressFullScreen,
+      onPressPlay: togglePlay,
+      onPressSpeed: changeVideoPlaySpeed,
+      onSlidingComplete: this.handleSlidingComplete,
+      onValueChange: this.handleValueChange,
+      speed,
+      title,
+    };
+
     return (
-      <View style={lectureContentStyleId}>
-        <View style={styles.videoContainer}>
+      <View style={[lectureContentStyleId, isFullScreen && { flex: 1 }]}>
+        <View style={(isFullScreen ? { flex: 1 } : styles.videoContainer)}>
           {this.renderVideo()}
           {this.renderIndicator()}
         </View>
-        <View style={{ flex: 1.5, backgroundColor: 'white' }}>
-          <SeekBar
-            currentTime={currentTime}
-            estimatedTime={estimatedTime}
-            onSlidingComplete={this.handleSlidingComplete}
-            onValueChange={this.handleValueChange}
-          />
-          <View style={styles.lectureTitleTextWrapper}>
-            <Text style={styles.lectureTitle}>{title}</Text>
-          </View>
-          <VideoControls
-            isPaused={isPaused}
-            speed={speed}
-            onPressFullScreen={this.handlePressFullScreen}
-            onPressPlay={togglePlay}
-            onPressSpeed={changeVideoPlaySpeed}
-            isLoadingThumbnail={this.state.isLoadingThumbnail}
-          />
-        </View>
+
+        {isFullScreen
+          ? <FullScreenVideoControls {...videoControlesProps} />
+          : <VideoControls {...videoControlesProps} />}
       </View>
     );
   }

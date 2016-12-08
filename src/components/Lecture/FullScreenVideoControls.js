@@ -30,22 +30,6 @@ const styles = StyleSheet.create({
     height: 44,
     color: 'white',
   },
-  speedButton: {
-    width: 62,
-    height: 62,
-    borderRadius: 62 / 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // FIXME androidは速度変更不可
-    ...Platform.select({
-      ios: {
-        backgroundColor: BaseStyles.backgroundColor,
-      },
-      android: {
-        backgroundColor: BaseStyles.disabledButtonColor,
-      },
-    }),
-  },
   buttonText: {
     fontSize: 18,
     color: 'white',
@@ -65,7 +49,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const VideoControls = ({
+const FullScreenVideoControls = ({
   currentTime,
   estimatedTime,
   isFullScreen,
@@ -81,14 +65,15 @@ const VideoControls = ({
 }) => {
   return (
     <View
-      style={(isFullScreen ? {
+      style={{
         backgroundColor: 'transparent',
         borderRadius: 5,
+        position: 'absolute',
         bottom: 20,
         left: 20,
-        position: 'absolute',
         right: 20,
-      } : { flex: 1.5, backgroundColor: 'white' })}>
+      }}
+    >
       <SeekBar
         currentTime={currentTime}
         estimatedTime={estimatedTime}
@@ -98,11 +83,12 @@ const VideoControls = ({
       <View style={styles.lectureTitleTextWrapper}>
         <Text style={styles.lectureTitle}>{title}</Text>
       </View>
+
       <View style={styles.container}>
         <Button
           containerStyle={[
             styles.playButton,
-            (isLoadingThumbnail ? { backgroundColor: BaseStyles.disabledButtonColor } : {}),
+            isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
           ]}
           style={styles.buttonText}
           onPress={() => onPressPlay()}
@@ -112,14 +98,6 @@ const VideoControls = ({
             name={isPaused ? 'play-arrow' : 'pause'}
             style={styles.playButtonIcon}
           />
-        </Button>
-        <Button
-          containerStyle={styles.speedButton}
-          style={styles.buttonText}
-          onPress={() => onPressSpeed()}
-          disabled={Platform.OS === 'android'} // FIXME androidは速度変更不可
-        >
-          x{speed}{speed % 1 === 0 ? '.0' : ''}
         </Button>
         <Button
           containerStyle={styles.fullScreenButton}
@@ -137,7 +115,7 @@ const VideoControls = ({
 };
 
 
-VideoControls.propTypes = {
+FullScreenVideoControls.propTypes = {
   currentTime: PropTypes.number.isRequired,
   estimatedTime: PropTypes.number.isRequired,
   isFullScreen: PropTypes.bool.isRequired,
@@ -153,4 +131,4 @@ VideoControls.propTypes = {
   onValueChange: PropTypes.func.isRequired,
 };
 
-export default VideoControls;
+export default FullScreenVideoControls;
