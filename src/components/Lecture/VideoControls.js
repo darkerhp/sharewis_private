@@ -50,6 +50,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   },
+  lectureTitleTextWrapper: {
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  lectureTitle: {
+    fontSize: 17,
+    color: '#e0e0e0',
+    fontWeight: 'bold',
+  },
   fullScreenButton: {
     width: 62,
     height: 62,

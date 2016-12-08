@@ -38,16 +38,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     marginTop: 64,
   },
-  lectureTitleTextWrapper: {
-    flex: 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  lectureTitle: {
-    fontSize: 17,
-    color: '#e0e0e0',
-    fontWeight: 'bold',
-  },
   loadingIndicatorWrapper: {
     flex: 1,
     alignItems: 'center',
