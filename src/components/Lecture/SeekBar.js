@@ -4,9 +4,7 @@ import ReactNative from 'react-native';
 import Duration from '../Duration';
 
 const { PropTypes } = React;
-const { Platform, View, StyleSheet, Slider, Dimensions } = ReactNative;
-
-const DEVICE_WIDTH = Dimensions.get('window').width;
+const { Platform, View, StyleSheet, Slider } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +14,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   slider: {
-    width: (DEVICE_WIDTH - 90) * 0.8,
+    flex: 1,
     ...Platform.select({
       android: {
         backgroundColor: '#eee',
@@ -24,9 +22,9 @@ const styles = StyleSheet.create({
     }),
   },
   timeTextContainer: {
-    flex: 1,
     justifyContent: 'center',
     width: 60,
+    marginHorizontal: 10,
   },
   timeText: {
     color: '#bdbdbd',
