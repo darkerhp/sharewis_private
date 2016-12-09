@@ -112,7 +112,7 @@ const VideoControls = ({
         <Button
           containerStyle={[
             styles.playButton,
-            (isLoadingThumbnail ? { backgroundColor: BaseStyles.disabledButtonColor } : {}),
+            isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
           ]}
           style={styles.buttonText}
           onPress={() => onPressPlay()}
@@ -132,9 +132,13 @@ const VideoControls = ({
           x{speed}{speed % 1 === 0 ? '.0' : ''}
         </Button>
         <Button
-          containerStyle={styles.fullScreenButton}
+          containerStyle={[
+            styles.fullScreenButton,
+            isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
+          ]}
           style={styles.buttonText}
           onPress={() => onPressFullScreen()}
+          disabled={isLoadingThumbnail}
         >
           <Icon
             name={'fullscreen'}
