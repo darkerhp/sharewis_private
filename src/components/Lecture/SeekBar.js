@@ -30,21 +30,28 @@ const styles = StyleSheet.create({
     color: '#bdbdbd',
     fontSize: 16,
     fontWeight: 'bold',
-    opacity: 0.8,
+    opacity: 0.9,
     padding: 0,
     textAlign: 'center',
   },
 });
 
-const SeekBar = ({ currentTime, estimatedTime, onValueChange, onSlidingComplete }) => {
+const SeekBar = ({
+  currentTime,
+  estimatedTime,
+  isFullScreen,
+  onValueChange,
+  onSlidingComplete,
+}) => {
+
   const timeEnd = estimatedTime - currentTime;
   return (
     <View style={styles.container}>
       <Duration
         estimatedTime={currentTime}
         format={'mm:ss'}
-        containerStyleId={styles.timeTextContainer}
-        durationStyleId={styles.timeText}
+        containerStyle={styles.timeTextContainer}
+        durationStyle={[styles.timeText, isFullScreen && { color: 'white' }]}
       />
       <Slider
         maximumValue={estimatedTime}
@@ -56,8 +63,8 @@ const SeekBar = ({ currentTime, estimatedTime, onValueChange, onSlidingComplete 
       <Duration
         estimatedTime={timeEnd < 0 ? 0 : timeEnd}
         format={'mm:ss'}
-        containerStyleId={styles.timeTextContainer}
-        durationStyleId={styles.timeText}
+        containerStyle={styles.timeTextContainer}
+        durationStyle={[styles.timeText, isFullScreen && { color: 'white' }]}
         prefixText={'-'}
       />
     </View>
@@ -68,6 +75,7 @@ const SeekBar = ({ currentTime, estimatedTime, onValueChange, onSlidingComplete 
 SeekBar.propTypes = {
   currentTime: PropTypes.number.isRequired,
   estimatedTime: PropTypes.number.isRequired,
+  isFullScreen: PropTypes.bool.isRequired,
   onValueChange: PropTypes.func.isRequired,
   onSlidingComplete: PropTypes.func.isRequired,
 };

@@ -155,8 +155,8 @@ const LectureItem = ({
         </View>
         <Duration
           estimatedTime={lecture.estimatedTime}
-          containerStyleId={styles.durationWrapper}
-          durationStyleId={styles.durationStyle}
+          containerStyle={styles.durationWrapper}
+          durationStyle={styles.durationStyle}
         />
       </View>
 
