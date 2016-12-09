@@ -65,6 +65,7 @@
   [FBSDKAppEvents activateApp];
 }
 
+// for react-native-orientation https://github.com/yamill/react-native-orientation#ios
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   return [Orientation getOrientation];
 }
