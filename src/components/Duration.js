@@ -2,7 +2,6 @@ import React from 'react';
 import ReactNative from 'react-native';
 import moment from 'moment';
 import momentDurationFormat from 'moment-duration-format';
-import BaseStyles from '../baseStyles';
 
 const { PropTypes } = React;
 const { Text, View } = ReactNative;
@@ -27,8 +26,8 @@ const Duration = ({
 Duration.propTypes = {
   estimatedTime: PropTypes.number.isRequired,
   format: PropTypes.string,
-  containerStyle: PropTypes.any,
-  durationStyle: PropTypes.any,
+  containerStyle: PropTypes.any, // eslint-disable-line
+  durationStyle: PropTypes.any, // eslint-disable-line
   prefixText: PropTypes.string,
 };
 
