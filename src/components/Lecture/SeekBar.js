@@ -43,7 +43,6 @@ const SeekBar = ({
   onValueChange,
   onSlidingComplete,
 }) => {
-
   const timeEnd = estimatedTime - currentTime;
   return (
     <View style={styles.container}>

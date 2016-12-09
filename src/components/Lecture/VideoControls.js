@@ -102,6 +102,7 @@ const VideoControls = ({
       <SeekBar
         currentTime={currentTime}
         estimatedTime={estimatedTime}
+        isFullScreen={isFullScreen}
         onSlidingComplete={onSlidingComplete}
         onValueChange={onValueChange}
       />
