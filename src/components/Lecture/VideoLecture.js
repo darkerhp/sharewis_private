@@ -7,7 +7,6 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import Orientation from 'react-native-orientation';
 
 import * as FileUtils from '../../utils/file';
-import SeekBar from './SeekBar';
 import VideoControls from './VideoControls';
 import FullScreenVideoControls from './FullScreenVideoControls';
 
@@ -17,8 +16,6 @@ const {
   Image,
   StatusBar,
   StyleSheet,
-  TouchableOpacity,
-  Text,
   View,
 } = ReactNative;
 
@@ -70,11 +67,13 @@ class VideoLecture extends Component {
 
   static toFullScreen() {
     Orientation.lockToLandscape();
+    StatusBar.setHidden(true);
     RouterActions.refresh({ hideNavBar: true });
   }
 
   static toPortrait() {
     Orientation.lockToPortrait();
+    StatusBar.setHidden(false);
     RouterActions.refresh({ hideNavBar: false });
   }
 
@@ -141,6 +140,8 @@ class VideoLecture extends Component {
     return (
       <Video
         muted={false}
+        onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
+        onLoad={() => this.setState({ isLoadingThumbnail: false })}
         onEnd={this.handlePressNextLecture}
         onError={e => console.error(e)}
         onProgress={this.handleVideoProgress}
@@ -181,7 +182,7 @@ class VideoLecture extends Component {
       togglePlay,
     } = this.props;
 
-    const videoControlesProps = {
+    const videoControlsProps = {
       currentTime,
       estimatedTime,
       isFullScreen,
@@ -204,8 +205,8 @@ class VideoLecture extends Component {
         </View>
 
         {isFullScreen
-          ? <FullScreenVideoControls {...videoControlesProps} />
-          : <VideoControls {...videoControlesProps} />}
+          ? <FullScreenVideoControls {...videoControlsProps} />
+          : <VideoControls {...videoControlsProps} />}
       </View>
     );
   }
