@@ -106,8 +106,8 @@ class VideoLecture extends Component {
   handleVideoProgress(data) {
     const { currentTime, updateVideoProgress } = this.props;
     if (currentTime === data.currentTime) return;
-    // TODO DEBUG
-    //updateVideoProgress(data.currentTime);
+    // TODO パフォーマンスに問題があるため、actionの呼び出し回数を減らしたほうが良さそう
+    updateVideoProgress(data.currentTime);
   }
 
   @autobind

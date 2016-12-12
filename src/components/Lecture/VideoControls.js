@@ -88,68 +88,67 @@ const VideoControls = ({
   onValueChange,
   speed,
   title,
-}) => {
-  return (
-    <View
-      style={(isFullScreen ? {
-        backgroundColor: 'transparent',
-        borderRadius: 5,
-        bottom: 20,
-        left: 20,
-        position: 'absolute',
-        right: 20,
-      } : { flex: 1.5, backgroundColor: 'white' })}>
-      <SeekBar
-        currentTime={currentTime}
-        estimatedTime={estimatedTime}
-        isFullScreen={isFullScreen}
-        onSlidingComplete={onSlidingComplete}
-        onValueChange={onValueChange}
-      />
-      <View style={styles.lectureTitleTextWrapper}>
-        <Text style={styles.lectureTitle}>{title}</Text>
-      </View>
-      <View style={styles.container}>
-        <Button
-          containerStyle={[
-            styles.playButton,
-            isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
-          ]}
-          style={styles.buttonText}
-          onPress={() => onPressPlay()}
-          disabled={isLoadingThumbnail}
-        >
-          <Icon
-            name={isPaused ? 'play-arrow' : 'pause'}
-            style={styles.playButtonIcon}
-          />
-        </Button>
-        <Button
-          containerStyle={styles.speedButton}
-          style={styles.buttonText}
-          onPress={() => onPressSpeed()}
-          disabled={Platform.OS === 'android'} // FIXME androidは速度変更不可
-        >
-          x{speed}{speed % 1 === 0 ? '.0' : ''}
-        </Button>
-        <Button
-          containerStyle={[
-            styles.fullScreenButton,
-            isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
-          ]}
-          style={styles.buttonText}
-          onPress={() => onPressFullScreen()}
-          disabled={isLoadingThumbnail}
-        >
-          <Icon
-            name={'fullscreen'}
-            style={styles.fullScreenButtonIcon}
-          />
-        </Button>
-      </View>
+}) => (
+  <View
+    style={(isFullScreen ? {
+      backgroundColor: 'transparent',
+      borderRadius: 5,
+      bottom: 20,
+      left: 20,
+      position: 'absolute',
+      right: 20,
+    } : { flex: 1.5, backgroundColor: 'white' })}
+  >
+    <SeekBar
+      currentTime={currentTime}
+      estimatedTime={estimatedTime}
+      isFullScreen={isFullScreen}
+      onSlidingComplete={onSlidingComplete}
+      onValueChange={onValueChange}
+    />
+    <View style={styles.lectureTitleTextWrapper}>
+      <Text style={styles.lectureTitle}>{title}</Text>
     </View>
+    <View style={styles.container}>
+      <Button
+        containerStyle={[
+          styles.playButton,
+          isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
+        ]}
+        style={styles.buttonText}
+        onPress={() => onPressPlay()}
+        disabled={isLoadingThumbnail}
+      >
+        <Icon
+          name={isPaused ? 'play-arrow' : 'pause'}
+          style={styles.playButtonIcon}
+        />
+      </Button>
+      <Button
+        containerStyle={styles.speedButton}
+        style={styles.buttonText}
+        onPress={() => onPressSpeed()}
+        disabled={Platform.OS === 'android'}
+      >
+          x{speed}{speed % 1 === 0 ? '.0' : ''}
+      </Button>
+      <Button
+        containerStyle={[
+          styles.fullScreenButton,
+          isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
+        ]}
+        style={styles.buttonText}
+        onPress={() => onPressFullScreen()}
+        disabled={isLoadingThumbnail}
+      >
+        <Icon
+          name={'fullscreen'}
+          style={styles.fullScreenButtonIcon}
+        />
+      </Button>
+    </View>
+  </View>
   );
-};
 
 
 VideoControls.propTypes = {
