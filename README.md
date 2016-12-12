@@ -33,8 +33,9 @@ For this repository specific installation:
 ```
 $ git clone git@github.com:ShareWis/sharewis-act-mobile.git
 $ cd sharewis-act-mobile
-$ npm install
+$ yarn
 ```
+
 
 ### Notes about iOS
 

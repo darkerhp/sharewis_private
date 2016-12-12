@@ -4,6 +4,7 @@ import { AsyncStorage } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
+import Orientation from 'react-native-orientation';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import setupI18n from '../utils/translations';
@@ -32,6 +33,10 @@ export default class Root extends Component {
       LoginManager.logOut();
       persistor.purge();
     }
+  }
+
+  componentDidMount() {
+    Orientation.lockToPortrait();
   }
 
   render() {

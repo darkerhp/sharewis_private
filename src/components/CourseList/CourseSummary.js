@@ -74,7 +74,7 @@ const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
     : _.values(lectures).filter(l => l.status === LECTURE_STATUS_FINISHED).length;
   return (
     <TouchableOpacity {...props} disabled={isDisabledCourse}>
-      <View style={[{ flex: 1 }, (isDisabledCourse ? styles.disabledCourse : {})]}>
+      <View style={[{ flex: 1 }, isDisabledCourse && styles.disabledCourse]}>
         <Image
           style={styles.image}
           source={{ uri: course.imageUrl }}
@@ -82,7 +82,7 @@ const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
         <View
           style={[
             styles.detailsWrapper,
-            (course.hasDownloadedLecture ? styles.detailsWrapperHasDownloaded : {}),
+            course.hasDownloadedLecture && styles.detailsWrapperHasDownloaded,
           ]}
         >
           <Text style={styles.title}>

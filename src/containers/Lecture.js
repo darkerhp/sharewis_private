@@ -60,6 +60,7 @@ class Lecture extends Component {
     courseId: PropTypes.number.isRequired,
     hasVideoInDevice: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired,
+    isFullScreen: PropTypes.bool.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
     lectures: PropTypes.shape({}).isRequired,
@@ -113,7 +114,7 @@ class Lecture extends Component {
   }
 
   render() {
-    const { hasVideoInDevice, isLastLecture, isOnline } = this.props;
+    const { hasVideoInDevice, isFullScreen, isLastLecture, isOnline } = this.props;
     const isOfflineAndUnsavedLecture = !isOnline && !hasVideoInDevice;
     return (
       <View style={{ flex: 1 }}>
@@ -124,17 +125,19 @@ class Lecture extends Component {
           : <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />
         }
 
-        <View style={styles.nextLectureButtonWrapper}>
-          { isLastLecture || isOfflineAndUnsavedLecture ||
-          <Button
-            containerStyle={styles.nextLectureButton}
-            style={styles.nextLectureButtonText}
-            onPress={this.handlePressNextLecture}
-          >
-            {I18n.t('nextLecture')}
-          </Button>
-          }
-        </View>
+        {isFullScreen || /* フルスクリーン時には「次のレクチャーへ」ボタンは表示しない */
+          <View style={styles.nextLectureButtonWrapper}>
+            { isLastLecture || isOfflineAndUnsavedLecture ||
+              <Button
+                containerStyle={styles.nextLectureButton}
+                style={styles.nextLectureButtonText}
+                onPress={this.handlePressNextLecture}
+              >
+                {I18n.t('nextLecture')}
+              </Button>
+            }
+          </View>
+        }
       </View>
     );
   }

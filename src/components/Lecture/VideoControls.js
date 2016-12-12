@@ -4,10 +4,11 @@ import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import SeekBar from './SeekBar';
 import BaseStyles from '../../baseStyles';
 
 const { PropTypes } = React;
-const { Platform, StyleSheet, View } = ReactNative;
+const { Platform, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -49,13 +50,23 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   },
+  lectureTitleTextWrapper: {
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  lectureTitle: {
+    fontSize: 17,
+    color: '#e0e0e0',
+    fontWeight: 'bold',
+  },
   fullScreenButton: {
     width: 62,
     height: 62,
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.disabledButtonColor,
+    backgroundColor: BaseStyles.backgroundColor,
   },
   fullScreenButtonIcon: {
     fontSize: 28,
@@ -64,53 +75,96 @@ const styles = StyleSheet.create({
   },
 });
 
-const VideoControls = ({ isLoadingThumbnail, isPaused, speed, onPressPlay, onPressSpeed }) =>
-  <View style={styles.container}>
-    <Button
-      containerStyle={[
-        styles.playButton,
-        (isLoadingThumbnail ? { backgroundColor: BaseStyles.disabledButtonColor } : {}),
-      ]}
-      style={styles.buttonText}
-      onPress={() => onPressPlay()}
-      disabled={isLoadingThumbnail}
-    >
-      <Icon
-        name={isPaused ? 'play-arrow' : 'pause'}
-        style={styles.playButtonIcon}
-      />
-    </Button>
-    <Button
-      containerStyle={styles.speedButton}
-      style={styles.buttonText}
-      onPress={() => onPressSpeed()}
-      disabled={Platform.OS === 'android'} // FIXME androidは速度変更不可
-    >
-      x{speed}{speed % 1 === 0 ? '.0' : ''}
-    </Button>
-    {/* TODO fullScreenButton 実装する */}
-    <Button
-      containerStyle={styles.fullScreenButton}
-      style={styles.buttonText}
-      disabled // TODO 未実装のため無効に
-      // onPress={(e) => console.log(e)}
-    >
-      <Icon
-        name={'fullscreen'}
-        style={styles.fullScreenButtonIcon}
-      />
-    </Button>
-  </View>;
+const VideoControls = ({
+  currentTime,
+  estimatedTime,
+  isFullScreen,
+  isLoadingThumbnail,
+  isPaused,
+  onPressFullScreen,
+  onPressPlay,
+  onPressSpeed,
+  onSlidingComplete,
+  onValueChange,
+  speed,
+  title,
+}) => (
+  <View
+    style={(isFullScreen ? {
+      backgroundColor: 'transparent',
+      borderRadius: 5,
+      bottom: 20,
+      left: 20,
+      position: 'absolute',
+      right: 20,
+    } : { flex: 1.5, backgroundColor: 'white' })}
+  >
+    <SeekBar
+      currentTime={currentTime}
+      estimatedTime={estimatedTime}
+      isFullScreen={isFullScreen}
+      onSlidingComplete={onSlidingComplete}
+      onValueChange={onValueChange}
+    />
+    <View style={styles.lectureTitleTextWrapper}>
+      <Text style={styles.lectureTitle}>{title}</Text>
+    </View>
+    <View style={styles.container}>
+      <Button
+        containerStyle={[
+          styles.playButton,
+          isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
+        ]}
+        style={styles.buttonText}
+        onPress={() => onPressPlay()}
+        disabled={isLoadingThumbnail}
+      >
+        <Icon
+          name={isPaused ? 'play-arrow' : 'pause'}
+          style={styles.playButtonIcon}
+        />
+      </Button>
+      <Button
+        containerStyle={styles.speedButton}
+        style={styles.buttonText}
+        onPress={() => onPressSpeed()}
+        disabled={Platform.OS === 'android'}
+      >
+          x{speed}{speed % 1 === 0 ? '.0' : ''}
+      </Button>
+      <Button
+        containerStyle={[
+          styles.fullScreenButton,
+          isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
+        ]}
+        style={styles.buttonText}
+        onPress={() => onPressFullScreen()}
+        disabled={isLoadingThumbnail}
+      >
+        <Icon
+          name={'fullscreen'}
+          style={styles.fullScreenButtonIcon}
+        />
+      </Button>
+    </View>
+  </View>
+  );
 
 
 VideoControls.propTypes = {
+  currentTime: PropTypes.number.isRequired,
+  estimatedTime: PropTypes.number.isRequired,
+  isFullScreen: PropTypes.bool.isRequired,
   isLoadingThumbnail: PropTypes.bool.isRequired,
   isPaused: PropTypes.bool.isRequired,
+  speed: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  //
+  onPressFullScreen: PropTypes.func.isRequired,
   onPressPlay: PropTypes.func.isRequired,
   onPressSpeed: PropTypes.func.isRequired,
-  speed: PropTypes.number.isRequired,
-  // isFullScreen: PropTypes.bool.isRequired,
-  // onPressFullScreen: PropTypes.func.isRequired,
+  onSlidingComplete: PropTypes.func.isRequired,
+  onValueChange: PropTypes.func.isRequired,
 };
 
 export default VideoControls;
