@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "jest": {
-    "preset": "jest-react-native",
+    "preset": "react-native",
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|ios.js|android.js|json|node)$"
   },
   "engines": {
