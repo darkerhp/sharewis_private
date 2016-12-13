@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
@@ -16,7 +16,6 @@ import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
 
 
-const { Component, PropTypes } = React;
 const { StatusBar, StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({

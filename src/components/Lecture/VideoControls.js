@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import Button from 'react-native-button';
@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import SeekBar from './SeekBar';
 import BaseStyles from '../../baseStyles';
 
-const { PropTypes } = React;
 const { Platform, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({

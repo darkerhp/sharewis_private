@@ -1,5 +1,5 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
@@ -13,8 +13,7 @@ import {
   ACT_PRIVACY_URL,
 } from '../constants/Api';
 
-const { Component, PropTypes } = React;
-const { Image, Linking, StyleSheet, Text, View } = ReactNative;
+const { Linking, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {

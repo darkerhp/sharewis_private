@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 
 import BaseStyles from '../../baseStyles';
 
-const { PropTypes } = React;
 const { StyleSheet, TouchableOpacity } = ReactNative;
 
 const lectureRowHeight = 48;

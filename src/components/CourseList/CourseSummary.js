@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -8,7 +8,6 @@ import _ from 'lodash';
 import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 import ProgressBar from '../ProgressBar';
 
-const { PropTypes } = React;
 const {
   Image,
   Platform,

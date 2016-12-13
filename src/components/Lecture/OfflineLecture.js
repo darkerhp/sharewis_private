@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 
-const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
 
 

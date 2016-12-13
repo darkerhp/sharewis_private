@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import moment from 'moment';
 import momentDurationFormat from 'moment-duration-format';
 
-const { PropTypes } = React;
 const { Text, View } = ReactNative;
 
 

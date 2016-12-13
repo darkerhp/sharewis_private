@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import Duration from '../Duration';
 
-const { PropTypes } = React;
 const { Platform, View, StyleSheet, Slider } = ReactNative;
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
@@ -7,7 +7,6 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import BaseStyles from '../../baseStyles';
 import redirectTo from '../../utils/linking';
 
-const { PropTypes } = React;
 const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({

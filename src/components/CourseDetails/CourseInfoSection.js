@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 import { _ } from 'lodash';
@@ -8,7 +8,6 @@ import NextLectureArea from './NextLectureArea';
 import Duration from '../Duration';
 import Progress from './Progress';
 
-const { PropTypes } = React;
 const { Platform, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({

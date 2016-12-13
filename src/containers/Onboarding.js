@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
@@ -8,7 +8,6 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import Slide from '../components/Onboarding/Slide';
 import Login from './Login';
 
-const { Component, PropTypes } = React;
 const {
   Platform,
   StyleSheet,

@@ -1,5 +1,5 @@
 /* eslint no-console: ["error", { allow: ["warn", "log"] }] */
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import FBSDK from 'react-native-fbsdk';
 import autobind from 'autobind-decorator';
@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../../actions/login';
 
-const { Component, PropTypes } = React;
 const { Alert, StyleSheet, Text, View } = ReactNative;
 const { GraphRequest, GraphRequestManager, LoginButton, LoginManager } = FBSDK;
 

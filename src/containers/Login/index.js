@@ -1,5 +1,5 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import Hyperlink from 'react-native-hyperlink';
@@ -14,7 +14,6 @@ import Facebook from './Facebook';
 import alertOfflineError from '../../utils/alert';
 import redirectTo from '../../utils/linking';
 
-const { Component, PropTypes } = React;
 const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({

@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 import ProgressBar from '../ProgressBar';
 import BaseStyle from '../../baseStyles';
 
-const { PropTypes } = React;
 const { View, StyleSheet, Text } = ReactNative;
 
 const styles = StyleSheet.create({

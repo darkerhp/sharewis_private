@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions, Router } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -7,7 +7,6 @@ import Styles from '../baseStyles';
 import getScenes from '../components/Scenes';
 import { initApp } from '../actions/ui';
 
-const { Component, PropTypes } = React;
 const RouterWithRedux = connect()(Router);
 
 const styles = StyleSheet.create({

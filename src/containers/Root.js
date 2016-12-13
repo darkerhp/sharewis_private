@@ -1,5 +1,5 @@
 /* global __DEV__ */
-import React from 'react';
+import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import { Provider } from 'react-redux';
@@ -12,7 +12,6 @@ import PURGE_STORAGE from '../constants/Debug';
 import configureStore from '../store';
 import App from './App';
 
-const { Component } = React;
 const store = configureStore();
 setupI18n();
 

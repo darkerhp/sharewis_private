@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
@@ -10,7 +10,6 @@ import * as FileUtils from '../../utils/file';
 import VideoControls from './VideoControls';
 import FullScreenVideoControls from './FullScreenVideoControls';
 
-const { Component, PropTypes } = React;
 const {
   ActivityIndicator,
   Image,

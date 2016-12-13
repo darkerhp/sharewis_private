@@ -1,8 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { TextInput } from 'react-native';
-
-const { PropTypes } = React;
-
 
 const TextField = (props) => {
   const {

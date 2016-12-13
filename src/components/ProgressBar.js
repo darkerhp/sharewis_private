@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-const { PropTypes } = React;
 const { StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({

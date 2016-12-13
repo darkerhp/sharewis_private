@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -8,7 +8,6 @@ import { LECTURE_TYPE_VIDEO, LECTURE_STATUS_FINISHED } from '../../constants/Api
 import Duration from '../Duration';
 import DownloadAction from './DownloadAction';
 
-const { PropTypes } = React;
 const { Platform, StyleSheet, Text, TouchableOpacity, View } = ReactNative;
 
 const lectureRowHeight = 48;

@@ -1,5 +1,5 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import { _ } from 'lodash';
@@ -24,7 +24,6 @@ import {
   getLectureTotalDuration,
 } from '../selectors/lectureSelectors';
 
-const { Component, PropTypes } = React;
 const {
   Alert,
   Dimensions,
