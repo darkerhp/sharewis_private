@@ -23,7 +23,7 @@ export const syncLectureProgress = () =>
 
       if (_.isEmpty(queuedLectureProgress)) return;
 
-      const promises = Object.keys(queuedLectureProgress).map(async(lectureId) => {
+      const promises = Object.keys(queuedLectureProgress).map(async (lectureId) => {
         const params = [
           userId,
           lectures[lectureId].courseId,

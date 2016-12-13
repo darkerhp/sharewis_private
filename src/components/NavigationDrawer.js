@@ -16,7 +16,7 @@ export default class NavigationDrawer extends Component {
         ref={ref => (this.navigator = ref)}
         type="displace"
         open={open}
-        onClose={() => Actions.refresh({ key, open: false })}
+        onClose={() => Actions.refresh({ key, open: false })} // NOTE Landscape時に呼び出されてしまう。問題が起こるかも
         content={<SideMenu />}
         tapToClose
         openDrawerOffset={0.15}

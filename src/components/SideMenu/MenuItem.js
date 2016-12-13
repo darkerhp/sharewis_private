@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const { PropTypes } = React;
 const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({

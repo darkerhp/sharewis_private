@@ -25,7 +25,6 @@ exports[`EmptyList renders correctly 1`] = `
       style={
         Object {
           "color": "#222",
-          "flex": 1,
           "fontSize": 17,
           "lineHeight": 22,
           "margin": 30,

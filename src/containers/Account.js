@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from 'react-redux';
 
 import BaseStyles from '../baseStyles';
 
-const { Component, PropTypes } = React;
 const { View, Text, StyleSheet, Platform, Dimensions } = ReactNative;
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({

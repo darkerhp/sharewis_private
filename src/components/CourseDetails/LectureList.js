@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import BaseStyles from '../../baseStyles';
@@ -6,7 +6,6 @@ import { LECTURE_KIND_SECTION } from '../../constants/Api';
 import LectureItem from './LectureItem';
 import Section from './Section';
 
-const { PropTypes } = React;
 const { View, StyleSheet } = ReactNative;
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -8,7 +8,6 @@ import { LECTURE_TYPE_VIDEO, LECTURE_STATUS_FINISHED } from '../../constants/Api
 import Duration from '../Duration';
 import DownloadAction from './DownloadAction';
 
-const { PropTypes } = React;
 const { Platform, StyleSheet, Text, TouchableOpacity, View } = ReactNative;
 
 const lectureRowHeight = 48;
@@ -136,7 +135,7 @@ const LectureItem = ({
             (lecture.status === LECTURE_STATUS_FINISHED
               ? styles.lectureNoTextCompleted
               : styles.lectureNoText),
-            (!isAccessibleLecture ? styles.lectureDisabled : {}),
+            !isAccessibleLecture && styles.lectureDisabled,
           ]}
         >{lecture.order}</Text>
       </View>
@@ -144,7 +143,7 @@ const LectureItem = ({
       <View
         style={[
           styles.lectureInfoWrapper,
-          (!isAccessibleLecture ? styles.lectureDisabled : {}),
+          !isAccessibleLecture && styles.lectureDisabled,
         ]}
       >
         <View style={styles.lectureIconWrapper}>
@@ -155,18 +154,18 @@ const LectureItem = ({
         </View>
         <Duration
           estimatedTime={lecture.estimatedTime}
-          containerStyleId={styles.durationWrapper}
-          durationStyleId={styles.durationStyle}
+          containerStyle={styles.durationWrapper}
+          durationStyle={styles.durationStyle}
         />
       </View>
 
       <TouchableOpacity
-        style={[styles.lectureTitleTextWrapper, (!isAccessibleLecture ? { flex: 6 } : {})]}
+        style={[styles.lectureTitleTextWrapper, !isAccessibleLecture && { flex: 6 }]}
         onPress={() => handlePressLecture(lecture)}
         disabled={!isAccessibleLecture}
       >
         <Text
-          style={[styles.lectureTitleText, (!isAccessibleLecture ? styles.lectureDisabled : {})]}
+          style={[styles.lectureTitleText, !isAccessibleLecture && styles.lectureDisabled]}
         >{lecture.title}</Text>
       </TouchableOpacity>
 

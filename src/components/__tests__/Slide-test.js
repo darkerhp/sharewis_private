@@ -6,14 +6,14 @@ import React from 'react';
 import Slide from '../Onboarding/Slide';
 
 jest.mock('../../utils/linking', () =>
-  () => 'redirectTo'
+  () => 'redirectTo',
 );
 
 
 describe('Slide', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      <Slide />
+      <Slide />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

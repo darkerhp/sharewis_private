@@ -8,7 +8,7 @@ import OfflineLecture from '../Lecture/OfflineLecture';
 describe('OfflineLecture', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      <OfflineLecture lectureContentStyleId={1} />
+      <OfflineLecture lectureContentStyleId={1} />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

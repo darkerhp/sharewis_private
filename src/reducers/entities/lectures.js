@@ -99,7 +99,7 @@ const lecturesReducer = handleActions({
     const lectures = action.payload;
     let newLectures = { ...state }; // eslint-disable-line
     lectures.forEach(l =>
-      (newLectures[l.lectureId].hasVideoInDevice = l.hasVideoInDevice)
+      (newLectures[l.lectureId].hasVideoInDevice = l.hasVideoInDevice),
     );
     return {
       ...state,

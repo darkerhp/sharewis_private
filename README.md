@@ -33,8 +33,9 @@ For this repository specific installation:
 ```
 $ git clone git@github.com:ShareWis/sharewis-act-mobile.git
 $ cd sharewis-act-mobile
-$ npm install
+$ yarn
 ```
+
 
 ### Notes about iOS
 
@@ -221,42 +222,44 @@ reloading the simulator)
 1. Read the release notes for your new version in
    [Github](https://github.com/facebook/react-native/releases)
 
-2. Install the new version of react-native
+1. Install the new version of react-native
    ```
-   $ npm install --save react-native@0.34.1
+   $ npm install --save react-native@0.38.0
    ```
-2. Run upgrade script. Always read the diff when prompted and decided whether to
-   override the file or not.
+1. Run upgrade script. Always read the diff when prompted and decided whether to
+   override the file or not. **※ただし `project.pbxproj` は手動でマージするのは難しいので上書きする。**
    ```
    $ react-native upgrade
-   $ diff android/app/src/main/java/com/sharewisactmobile/MainActivity.java android/app/src/main/java/com/sharewis/ShareWisAct/MainActivity.java
-   $ diff android/app/src/main/java/com/sharewisactmobile/MainApplication android/app/src/main/java/com/sharewis/ShareWisAct/MainApplication
-   $ # update sharewis/ files if needed, then delete untracked files
-   $ git clean -df
    ```
-3. If needed, resolve conflicting files with git add patch. On large chunks, use `s` to
-   split chunks further. On smaller chunks that still have conflicts, use `e`
-   then remove related `-` or `+` signs.
-   Please keep in mind that libs in `project.pbxproj` will be rehashed, so you
-   need to make sure that each lib is referenced with the same hash across the
-   code after your conflict resolution.
+   
+   以下の2ファイルはそれぞれ対応するファイルと比較し、マージ後に削除する。
    ```
-   $ git add -p ios/SharewisActMobile.xcodeproj/project.pbxproj
-   $ git add -p ios/SharewisActMobile/Info.plist
-   $ # ...
+   android/app/src/main/java/com/sharewisactmobile/MainActivity.java --> android/app/src/main/java/com/sharewis/ShareWisAct/MainActivity.java
+   android/app/src/main/java/com/sharewisactmobile/MainApplication --> android/app/src/main/java/com/sharewis/ShareWisAct/MainApplication
    ```
-4. Remove unwanted changes
-   ```
-   $ git checkout -- <files containing unwanted changes>
-   ```
-5. Re-link packages in case:
+
+1. Re-link and Re-install dependency packages:
    ```
    $ react-native link
+   $ react-native install fbsdk
+   $ cd ios budle exec pod install
    ```
+
+1. Xcodeを開き、以下の設定を行う。
+    1. General -> Bundle Identifierに「com.share-wis.ShareWisACT」を設定する
+    1. FacebookSDKをXcodeに追加する。[ドキュメント](https://developers.facebook.com/docs/ios/getting-started/#sdk-project)
+    1. Build Settingsに環境変数[FACEBOOK_APP_ID]を追加する。[詳細](https://gyazo.com/0e7b6d30655fb82bc2e87c442825db9a)
+    1. LaunchImageの設定がされていなければ再設定する。
+    1. ARTライブラリを追加する。（https://github.com/bgryszko/react-native-circular-progress/issues/23）
 
 ### For react native video
    - Info.plistの `App Transport Security Settings` に `Allow Arbitrary Loads` を追加してYESを設定する。（For Dev）
 
+### トラブルシューティング
+ Facebookログインに失敗する場合（エラーコード308）
+ XcodeからCapabilities -> Keychain Sharing をONにする
+- http://stackoverflow.com/questions/30643122/ios-parse-facebook-login-error-308-fbsdkloginbadchallengestring
+- https://github.com/facebook/facebook-sdk-swift/issues/51
 
 
 

@@ -9,22 +9,25 @@ exports[`SeekBar renders correctly 1`] = `
     }
   }>
   <Duration
-    containerStyleId={
+    containerStyle={
       Object {
-        "flex": 1,
         "justifyContent": "center",
+        "marginHorizontal": 10,
         "width": 60,
       }
     }
-    durationStyleId={
-      Object {
-        "color": "#bdbdbd",
-        "fontSize": 16,
-        "fontWeight": "bold",
-        "opacity": 0.8,
-        "padding": 0,
-        "textAlign": "center",
-      }
+    durationStyle={
+      Array [
+        Object {
+          "color": "#bdbdbd",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "opacity": 0.9,
+          "padding": 0,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
     }
     estimatedTime={10}
     format="mm:ss" />
@@ -34,27 +37,30 @@ exports[`SeekBar renders correctly 1`] = `
     onValueChange={[Function]}
     style={
       Object {
-        "width": 228,
+        "flex": 1,
       }
     }
     value={10} />
   <Duration
-    containerStyleId={
+    containerStyle={
       Object {
-        "flex": 1,
         "justifyContent": "center",
+        "marginHorizontal": 10,
         "width": 60,
       }
     }
-    durationStyleId={
-      Object {
-        "color": "#bdbdbd",
-        "fontSize": 16,
-        "fontWeight": "bold",
-        "opacity": 0.8,
-        "padding": 0,
-        "textAlign": "center",
-      }
+    durationStyle={
+      Array [
+        Object {
+          "color": "#bdbdbd",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "opacity": 0.9,
+          "padding": 0,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
     }
     estimatedTime={90}
     format="mm:ss"

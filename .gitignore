@@ -38,7 +38,7 @@ npm-debug.log
 buck-out/
 \.buckd/
 android/app/libs
-android/keystores/debug.keystore
+*.keystore
 
 # vim
 *.swp
@@ -53,3 +53,6 @@ ios/Pods/
 # bundler
 .bundle
 vendor
+
+# Calabash iOS
+ios/calabash.framework/

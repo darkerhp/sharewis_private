@@ -17,7 +17,7 @@ export const updateCourseDownloadedStatus = createAction(types.UPDATE_COURSE_DOW
 
 // Thunks
 export const fetchCourseList = () =>
-  async(dispatch, getState) => {
+  async (dispatch, getState) => {
     try {
       const {
         entities: { courses },
@@ -38,10 +38,10 @@ export const fetchCourseList = () =>
   };
 
 export const fetchCoursesDownloadStatus = () =>
-  async(dispatch, getState) => {
+  async (dispatch, getState) => {
     const { entities: { courses } } = getState();
     if (_.isEmpty(courses)) return;
-    const promises = Object.keys(courses).map(async(id) => {
+    const promises = Object.keys(courses).map(async (id) => {
       const hasDownloadedLecture = await FileUtils.hasVideoByCourse(id);
       return { id: Number(id), hasDownloadedLecture }; // Note: idが文字列になってしまうので明示的にキャスト
     });

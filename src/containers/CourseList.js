@@ -1,5 +1,5 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
@@ -17,7 +17,6 @@ import { ACT_SITE_URL } from '../constants/Api';
 import alertOfflineError from '../utils/alert';
 import redirectTo from '../utils/linking';
 
-const { Component, PropTypes } = React;
 const {
   Alert,
   Dimensions,

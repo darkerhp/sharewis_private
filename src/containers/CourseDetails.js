@@ -1,5 +1,5 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import { _ } from 'lodash';
@@ -24,7 +24,6 @@ import {
   getLectureTotalDuration,
 } from '../selectors/lectureSelectors';
 
-const { Component, PropTypes } = React;
 const {
   Alert,
   Dimensions,
@@ -75,8 +74,6 @@ class CourseDetails extends Component {
     totalDuration: PropTypes.number.isRequired,
     // actions
     beginDownloadVideo: PropTypes.func.isRequired,
-    fetchCourseDetails: PropTypes.func.isRequired,
-    fetchVideoInDeviceStatus: PropTypes.func.isRequired,
     finishDeleteVideo: PropTypes.func.isRequired,
     finishDownloadVideo: PropTypes.func.isRequired,
     cancelDownloadVideo: PropTypes.func.isRequired,
@@ -87,7 +84,7 @@ class CourseDetails extends Component {
   };
 
   async componentWillMount() {
-    const { fetchCourseDetails, id, lectures, fetchVideoInDeviceStatus } = this.props;
+    const { fetchCourseDetails, fetchVideoInDeviceStatus, id } = this.props;
     try {
       await fetchCourseDetails(id);
       await fetchVideoInDeviceStatus(id);

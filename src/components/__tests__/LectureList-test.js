@@ -18,7 +18,7 @@ describe('LectureList', () => {
         handlePressDelete={() => null}
         handlePressDownload={() => null}
         handlePressLecture={() => null}
-      />
+      />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

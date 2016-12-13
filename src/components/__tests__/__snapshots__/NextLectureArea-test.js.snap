@@ -3,7 +3,7 @@ exports[`NextLectureArea renders correctly 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "stretch",
+        "alignItems": "center",
         "justifyContent": "center",
       },
       0,

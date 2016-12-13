@@ -1,9 +1,10 @@
 /* global __DEV__ */
-import React from 'react';
+import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
+import Orientation from 'react-native-orientation';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import setupI18n from '../utils/translations';
@@ -11,7 +12,6 @@ import PURGE_STORAGE from '../constants/Debug';
 import configureStore from '../store';
 import App from './App';
 
-const { Component } = React;
 const store = configureStore();
 setupI18n();
 
@@ -32,6 +32,10 @@ export default class Root extends Component {
       LoginManager.logOut();
       persistor.purge();
     }
+  }
+
+  componentDidMount() {
+    Orientation.lockToPortrait();
   }
 
   render() {

@@ -13,7 +13,7 @@
 #import "RCTRootView.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Repro/Repro.h>
-
+#import "Orientation.h"
 
 @implementation AppDelegate
 
@@ -42,7 +42,7 @@
 
   [Repro setup:@"a3ec35c0-af7a-47ac-a10f-866ba354bd33"];
   [Repro startRecording];
-  
+
   return YES;
 }
 
@@ -63,6 +63,11 @@
 // Log App Activations
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [FBSDKAppEvents activateApp];
+}
+
+// for react-native-orientation https://github.com/yamill/react-native-orientation#ios
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  return [Orientation getOrientation];
 }
 
 @end

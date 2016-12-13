@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
@@ -21,7 +21,6 @@ import alertOfflineError from '../../utils/alert';
 import validateEmailLogin from '../../utils/validate';
 import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
-const { Component, PropTypes } = React;
 const {
   Alert,
   Platform,

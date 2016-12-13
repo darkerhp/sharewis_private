@@ -13,7 +13,7 @@ describe('lectures reducer', () => {
       reducer(
         { [lectureId]: { status: null } },
         createAction(types.COMPLETE_LECTURE)(lectureId),
-      )
+      ),
     ).toEqual({ [lectureId]: { status: LECTURE_STATUS_FINISHED } });
   });
 });

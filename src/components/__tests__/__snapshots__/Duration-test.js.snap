@@ -1,11 +1,11 @@
 exports[`Duration renders correctly 1`] = `
 <View
-  style={null}>
+  style={Object {}}>
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={null}>
+    style={Object {}}>
     
     01:40
   </Text>

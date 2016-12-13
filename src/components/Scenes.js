@@ -41,11 +41,7 @@ const baseNavBarProps = {
     height: 21,
   },
   leftButtonStyle: {
-    ...Platform.select({
-      android: {
-        width: 200,
-      },
-    }),
+    width: 200,
   },
 };
 

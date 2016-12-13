@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -8,7 +8,6 @@ import _ from 'lodash';
 import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 import ProgressBar from '../ProgressBar';
 
-const { PropTypes } = React;
 const {
   Image,
   Platform,
@@ -74,7 +73,7 @@ const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
     : _.values(lectures).filter(l => l.status === LECTURE_STATUS_FINISHED).length;
   return (
     <TouchableOpacity {...props} disabled={isDisabledCourse}>
-      <View style={[{ flex: 1 }, (isDisabledCourse ? styles.disabledCourse : {})]}>
+      <View style={[{ flex: 1 }, isDisabledCourse && styles.disabledCourse]}>
         <Image
           style={styles.image}
           source={{ uri: course.imageUrl }}
@@ -82,7 +81,7 @@ const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
         <View
           style={[
             styles.detailsWrapper,
-            (course.hasDownloadedLecture ? styles.detailsWrapperHasDownloaded : {}),
+            course.hasDownloadedLecture && styles.detailsWrapperHasDownloaded,
           ]}
         >
           <Text style={styles.title}>

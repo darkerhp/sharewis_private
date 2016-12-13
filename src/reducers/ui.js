@@ -83,6 +83,10 @@ const uiReducer = handleActions({
     isPaused: true,
     isStarted: false,
   }),
+  TOGGLE_FULL_SCREEN: (state, action) => ({
+    ...state,
+    isFullScreen: !state.isFullScreen,
+  }),
   TOGGLE_PLAY: (state, action) => ({
     ...state,
     isPaused: !state.isPaused,
