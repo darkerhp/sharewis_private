@@ -7,8 +7,6 @@ import BaseStyles from '../../baseStyles';
 import { ACT_SITE_URL } from '../../constants/Api';
 import redirectTo from '../../utils/linking';
 
-
-const { PropTypes } = React;
 const {
   Dimensions,
   StyleSheet,
