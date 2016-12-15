@@ -4,7 +4,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BaseStyles from '../../baseStyles';
 import * as LectureUtils from '../../utils/lecture';
-import { LECTURE_TYPE_VIDEO, LECTURE_STATUS_FINISHED } from '../../constants/Api';
+import {
+  LECTURE_TYPE_VIDEO,
+  LECTURE_TYPE_TEXT,
+  LECTURE_TYPE_QUIZ,
+  LECTURE_TYPE_PDF,
+  LECTURE_TYPE_ATTACHMENT,
+  LECTURE_TYPE_AUDIO,
+  LECTURE_STATUS_FINISHED } from '../../constants/Api';
 import Duration from '../Duration';
 import DownloadAction from './DownloadAction';
 
@@ -119,8 +126,19 @@ const LectureItem = ({
   handlePressDownload,
 }) => {
   const isAccessibleLecture = (() => {
-    if (lecture.type !== LECTURE_TYPE_VIDEO) return false;
-    return isOnline || lecture.hasVideoInDevice;
+    switch (lecture.type) {
+      case LECTURE_TYPE_VIDEO:
+        return isOnline || lecture.hasVideoInDevice;
+      case LECTURE_TYPE_TEXT:
+        break;
+      case LECTURE_TYPE_QUIZ:
+      case LECTURE_TYPE_PDF:
+      case LECTURE_TYPE_ATTACHMENT:
+      case LECTURE_TYPE_AUDIO:
+      default:
+        return false;
+    }
+    return isOnline;
   })();
 
   return (
