@@ -4,8 +4,9 @@ import { AsyncStorage } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
+import I18n from 'react-native-i18n';
 import Orientation from 'react-native-orientation';
-import Spinner from 'react-native-loading-spinner-overlay';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import setupI18n from '../utils/translations';
 import PURGE_STORAGE from '../constants/Debug';
@@ -40,8 +41,9 @@ export default class Root extends Component {
 
   render() {
     if (!this.state.rehydrated) {
-      return <Spinner visible />;
+      return <SleekLoadingIndicator loading text={I18n.t('loading')} />;
     }
+
     return (
       <Provider store={store}>
         <App />
