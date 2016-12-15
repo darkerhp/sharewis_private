@@ -13,6 +13,10 @@ const LectureRecord = Record({
   videoUrl: '',
   thumbnailUrl: '',
   hasVideoInDevice: false,
+  isDownloading: false,
+  jobId: null,
+  progress: null,
+
 });
 
 export default class Lecture extends LectureRecord {
