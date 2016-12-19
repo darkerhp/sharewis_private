@@ -56,5 +56,4 @@ describe('LectureUtils Utils', () => {
     const lastLectureId = LectureUtils.getLastLectureId(180, lectureMap);
     expect(lastLectureId).toEqual(5930);
   });
-
 });

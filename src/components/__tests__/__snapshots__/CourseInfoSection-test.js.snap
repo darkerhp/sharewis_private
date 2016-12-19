@@ -28,6 +28,15 @@ exports[`CourseInfoSection renders correctly 1`] = `
       Title
     </Text>
   </View>
+  <NextLectureArea
+    containerStyleId={
+      Object {
+        "flex": 3,
+      }
+    }
+    handlePressNextLecture={[Function]}
+    hidden={true}
+    nextLecture={Object {}} />
   <Progress
     completeLectureCount={0}
     totalLectureCount={10} />

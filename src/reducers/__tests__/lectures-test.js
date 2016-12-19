@@ -42,7 +42,7 @@ describe('lectures reducer', () => {
     const lectureId = 1;
     expect(
       reducer(
-        factory(lectureId),
+        factory(lectureId, { jobId: 1 }),
         createAction(types.PROGRESS_DOWNLOAD_VIDEO)({
           lectureId,
           jobId: 1,
@@ -58,7 +58,7 @@ describe('lectures reducer', () => {
     const lectureId = 1;
     expect(
       reducer(
-        factory(lectureId),
+        factory(lectureId, { jobId: 1 }),
         createAction(types.FINISH_DOWNLOAD_VIDEO)(lectureId),
       ),
     ).toEqual(

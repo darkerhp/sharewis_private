@@ -47,7 +47,7 @@ exports[`CourseSummary renders correctly 1`] = `
             "paddingHorizontal": 10,
             "paddingVertical": 15,
           },
-          undefined,
+          false,
         ]
       }>
       <Text
@@ -60,7 +60,9 @@ exports[`CourseSummary renders correctly 1`] = `
             "fontSize": 13,
             "fontWeight": "900",
           }
-        } />
+        }>
+        
+      </Text>
       <View
         style={
           Object {
@@ -103,7 +105,7 @@ exports[`CourseSummary renders correctly 1`] = `
             "textDecorationLine": "underline",
           }
         }>
-        undefined/undefined [missing \"en.progressText\" translation]
+        null/null [missing \"en.progressText\" translation]
       </Text>
       <View
         style={
