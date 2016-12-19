@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import * as Const from '../constants/Api';
 
 // @flow
@@ -31,7 +30,7 @@ export const getNextVideoLecture = (courseId, lectures, skipCompleted = true, cu
   if (skipCompleted) {
     videoLectures = videoLectures.filterNot(l => l.status === Const.LECTURE_STATUS_FINISHED);
   }
-  return videoLectures.sortBy(l => l.order).first();
+  return videoLectures.sortBy(l => l.order).first() || null;
 };
 
 export const getLastLectureId = (courseId, lectures) => {

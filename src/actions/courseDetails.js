@@ -29,13 +29,13 @@ export const fetchVideoInDeviceStatus = courseId => (
   async (dispatch, getState) => {
     const { entities: { lectures } } = getState();
     if (_.isEmpty(lectures)) return;
-    const promises = Object.keys(lectures).map(async (lectureId) => {
-      const path = FileUtils.createVideoFileName(lectureId, courseId);
+    const promises = lectures.map(async (lecture) => {
+      const path = FileUtils.createVideoFileName(lecture.id, courseId);
       const hasVideoInDevice = await FileUtils.exists(path);
-      return { lectureId, hasVideoInDevice };
+      return lecture.set('hasVideoInDevice', hasVideoInDevice);
     });
-    const updateLectures = await Promise.all(promises);
-    dispatch(updateVideoInDeviceStatus(updateLectures));
+    const updatedLectures = await Promise.all(promises);
+    dispatch(updateVideoInDeviceStatus(updatedLectures));
   }
 );
 
@@ -48,7 +48,7 @@ export const fetchCourseDetails = courseId =>
         ui: { fetchedCourseDetailsAt },
         user: { userId },
       } = getState();
-      if (_.isEmpty(_.filter(lectures, { courseId }))
+      if (!lectures.find(l => l.courseId === courseId)
         || fetchedCourseDetailsAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
         const response = await getCourseDetails(userId, courseId);

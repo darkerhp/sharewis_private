@@ -7,7 +7,8 @@ import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import RNFS from 'react-native-fs';
 import I18n from 'react-native-i18n';
-import Spinner from 'react-native-loading-spinner-overlay';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -67,7 +68,7 @@ class CourseDetails extends Component {
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
-    lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    lectures: ImmutablePropTypes.list.isRequired,
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -103,7 +104,6 @@ class CourseDetails extends Component {
 
   @autobind
   handlePressLecture(lecture) {
-    console.log(lecture);
     const { setCurrentLectureId } = this.props;
     setCurrentLectureId(lecture.id);
     RouterActions.lecture();
@@ -183,6 +183,11 @@ class CourseDetails extends Component {
       title,
       totalDuration,
     } = this.props;
+
+    if (isFetching) {
+      return (<SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />);
+    }
+
     const courseInfo = {
       totalLectureCount: lectureCount,
       completeLectureCount: lectureProgress,
@@ -190,13 +195,13 @@ class CourseDetails extends Component {
       totalDuration,
       nextLecture: LectureUtils.getNextVideoLecture(id, lectures),
     };
+
     return (
       <ScrollView
         style={{ flex: 1 }}
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
       >
-        <Spinner visible={isFetching} />
         <View style={BaseStyles.ContainerWithNavbar}>
           <StatusBar barStyle="light-content" />
           <CourseInfoSection
