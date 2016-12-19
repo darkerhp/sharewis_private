@@ -1,11 +1,11 @@
 import { Record } from 'immutable';
 
 const LectureRecord = Record({
-  id: null,
-  courseId: null,
-  estimatedTime: null,
+  id: 0,
+  courseId: 0,
+  estimatedTime: 0,
   kind: '', // lecture or section
-  order: null,
+  order: 0,
   status: '',
   title: '',
   type: '',
@@ -14,8 +14,8 @@ const LectureRecord = Record({
   thumbnailUrl: '',
   hasVideoInDevice: false,
   isDownloading: false,
-  jobId: null,
-  progress: null,
+  jobId: -1,
+  progress: 0,
 
 });
 
