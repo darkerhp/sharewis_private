@@ -1,4 +1,3 @@
-// @flow
 import RNFS from 'react-native-fs';
 
 const ARCHIVE_PATH = `${RNFS.DocumentDirectoryPath}/archive`;

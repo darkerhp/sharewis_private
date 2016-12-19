@@ -4,7 +4,6 @@ import _ from 'lodash';
 import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
 import { REHYDRATE } from 'redux-persist/constants';
-import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 
 import Lecture from '../../models/Lecture';
 import LectureMap from '../../models/LectureMap';
@@ -29,7 +28,7 @@ const lecturesReducer = handleActions({
   COMPLETE_LECTURE: (state, action) => {
     const lectureId = action.payload;
     return state.update(lectureId.toString(), lecture => (
-      lecture.set('status', LECTURE_STATUS_FINISHED)
+      lecture.set('status', Lecture.STATUS_FINISHED)
     ));
   },
   BEGIN_DOWNLOAD_VIDEO: (state, action) => {

@@ -1,12 +1,11 @@
 import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
-import { ACT_API_CACHE, LECTURE_KIND_LECTURE, LECTURE_KIND_SECTION } from '../constants/Api';
+import { ACT_API_CACHE } from '../constants/Api';
 import * as FileUtils from '../utils/file';
 
 import { getCourseDetails } from '../middleware/actApi';
 import * as schema from '../schema';
-
 
 // Actions Creators
 export const fetchCourseDetailsFailure = createAction(types.FETCH_COURSE_DETAILS_FAILURE);
@@ -39,10 +38,10 @@ export const fetchCourseDetails = courseId =>
         dispatch(fetchCourseDetailsSuccess({
           // TODO もうちょいいい感じにできるはず
           lectures: normalize(
-            response.lectures.filter(l => l.kind === LECTURE_KIND_LECTURE),
+            response.lectures.filter(l => l.isLecture()),
             schema.arrayOfLectures),
           sections: normalize(
-            response.lectures.filter(l => l.kind === LECTURE_KIND_SECTION),
+            response.lectures.filter(l => l.isSection()),
             schema.arrayOfSections),
         }));
       }

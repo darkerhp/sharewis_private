@@ -3,8 +3,6 @@ import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BaseStyles from '../../baseStyles';
-import * as LectureUtils from '../../utils/lecture';
-import { LECTURE_TYPE_VIDEO, LECTURE_STATUS_FINISHED } from '../../constants/Api';
 import Duration from '../Duration';
 import DownloadAction from './DownloadAction';
 
@@ -117,68 +115,61 @@ const LectureItem = ({
   handlePressDelete,
   handlePressLecture,
   handlePressDownload,
-}) => {
-  const isAccessibleLecture = (() => {
-    if (lecture.type !== LECTURE_TYPE_VIDEO) return false;
-    return isOnline || lecture.hasVideoInDevice;
-  })();
-
-  return (
-    <View style={styles.container}>
-      <View
-        style={lecture.status === LECTURE_STATUS_FINISHED
+}) => (
+  <View style={styles.container}>
+    <View
+      style={lecture.isFinished()
           ? styles.lectureNoTextWrapperCompleted
           : styles.lectureNoTextWrapper}
-      >
-        <Text
-          style={[
-            (lecture.status === LECTURE_STATUS_FINISHED
+    >
+      <Text
+        style={[
+            (lecture.isFinished()
               ? styles.lectureNoTextCompleted
               : styles.lectureNoText),
-            !isAccessibleLecture && styles.lectureDisabled,
-          ]}
-        >{lecture.order}</Text>
-      </View>
-
-      <View
-        style={[
-          styles.lectureInfoWrapper,
-          !isAccessibleLecture && styles.lectureDisabled,
+          !lecture.canAccess(isOnline) && styles.lectureDisabled,
         ]}
-      >
-        <View style={styles.lectureIconWrapper}>
-          <Icon
-            style={styles.lectureIcon}
-            name={lecture.getLectureIconName()}
-          />
-        </View>
-        <Duration
-          estimatedTime={lecture.estimatedTime}
-          containerStyle={styles.durationWrapper}
-          durationStyle={styles.durationStyle}
+      >{lecture.order}</Text>
+    </View>
+
+    <View
+      style={[
+        styles.lectureInfoWrapper,
+        !lecture.canAccess(isOnline) && styles.lectureDisabled,
+      ]}
+    >
+      <View style={styles.lectureIconWrapper}>
+        <Icon
+          style={styles.lectureIcon}
+          name={lecture.getLectureIconName()}
         />
       </View>
-
-      <TouchableOpacity
-        style={[styles.lectureTitleTextWrapper, !isAccessibleLecture && { flex: 6 }]}
-        onPress={() => handlePressLecture(lecture)}
-        disabled={!isAccessibleLecture}
-      >
-        <Text
-          style={[styles.lectureTitleText, !isAccessibleLecture && styles.lectureDisabled]}
-        >{lecture.title}</Text>
-      </TouchableOpacity>
-
-      {isAccessibleLecture &&
-        <DownloadAction
-          handlePressDelete={handlePressDelete}
-          handlePressDownload={handlePressDownload}
-          lecture={lecture}
-        />
-      }
+      <Duration
+        estimatedTime={lecture.estimatedTime}
+        containerStyle={styles.durationWrapper}
+        durationStyle={styles.durationStyle}
+      />
     </View>
+
+    <TouchableOpacity
+      style={[styles.lectureTitleTextWrapper, !lecture.canAccess(isOnline) && { flex: 6 }]}
+      onPress={() => handlePressLecture(lecture)}
+      disabled={!lecture.canAccess(isOnline)}
+    >
+      <Text
+        style={[styles.lectureTitleText, !lecture.canAccess(isOnline) && styles.lectureDisabled]}
+      >{lecture.title}</Text>
+    </TouchableOpacity>
+
+    {lecture.canAccess(isOnline) &&
+      <DownloadAction
+        handlePressDelete={handlePressDelete}
+        handlePressDownload={handlePressDownload}
+        lecture={lecture}
+      />
+    }
+  </View>
   );
-};
 
 LectureItem.propTypes = {
   // values

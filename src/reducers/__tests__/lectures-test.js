@@ -3,7 +3,6 @@ import { createAction } from 'redux-actions';
 import { OrderedMap } from 'immutable';
 import reducer from '../entities/lectures';
 import * as types from '../../constants/ActionTypes';
-import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 
 import Lecture from '../../models/Lecture';
 
@@ -19,7 +18,7 @@ describe('lectures reducer', () => {
         factory(lectureId),
         createAction(types.COMPLETE_LECTURE)(lectureId),
       ),
-    ).toEqual(factory(lectureId, { status: LECTURE_STATUS_FINISHED }));
+    ).toEqual(factory(lectureId, { status: Lecture.STATUS_FINISHED }));
   });
 
   it('should handle BEGIN_DOWNLOAD_VIDEO', () => {

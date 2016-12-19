@@ -12,8 +12,8 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/lecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
-import * as ApiConstants from '../constants/Api';
 import * as LectureUtils from '../utils/lecture';
+import * as LectureModel from '../models/Lecture';
 
 
 const { StatusBar, StyleSheet, View } = ReactNative;
@@ -76,8 +76,8 @@ class Lecture extends Component {
 
   componentWillMount() {
     const { id, status, updateLectureStatus } = this.props;
-    if (status === ApiConstants.LECTURE_STATUS_NOT_STARTED) {
-      updateLectureStatus(id, ApiConstants.LECTURE_STATUS_VIEWED);
+    if (status === LectureModel.STATUS_NOT_STARTED) {
+      updateLectureStatus(id, LectureModel.STATUS_VIEWED);
     }
   }
 
@@ -104,8 +104,8 @@ class Lecture extends Component {
       status,
     } = this.props;
 
-    if (status !== ApiConstants.LECTURE_STATUS_FINISHED) {
-      updateLectureStatus(id, ApiConstants.LECTURE_STATUS_FINISHED);
+    if (status !== LectureModel.STATUS_FINISHED) {
+      updateLectureStatus(id, LectureModel.STATUS_FINISHED);
     }
 
     const nextLecture = LectureUtils.getNextVideoLecture(courseId, lectures, false, order);

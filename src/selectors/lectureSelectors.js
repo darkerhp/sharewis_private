@@ -1,7 +1,5 @@
 import { createSelector } from 'reselect';
 
-import { LECTURE_STATUS_FINISHED } from '../constants/Api';
-
 const getCourseSections = (state, props) =>
   state.entities.sections.filter(l => l.courseId === state.ui.currentCourseId);
 
@@ -21,7 +19,7 @@ export const getSectionMergedLectures = createSelector(
 export const getLectureProgress = createSelector(
   [getCourseLectures],
   lectures => (
-    lectures.count(l => l.status === LECTURE_STATUS_FINISHED)
+    lectures.count(l => l.isFinished())
   ),
 );
 
