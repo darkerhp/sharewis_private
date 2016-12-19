@@ -1,6 +1,7 @@
+/**
+ * @flow
+ */
 import { Record } from 'immutable';
-
-import * as Const from '../constants/Api';
 
 const LectureRecord = Record({
   id: 0,
@@ -22,26 +23,131 @@ const LectureRecord = Record({
 });
 
 export default class Lecture extends LectureRecord {
+  static KIND_LECTURE = 'lecture';
+  static KIND_SECTION = 'section';
+  static TYPE_VIDEO = 'video';
+  static TYPE_QUIZ = 'quiz';
+  static TYPE_TEXT = 'text';
+  static TYPE_PDF = 'pdf';
+  static TYPE_ATTACHMENT = 'attachment';
+  static TYPE_AUDIO = 'audio';
+  static STATUS_NOT_STARTED = 'not_started';
+  static STATUS_VIEWED = 'viewed';
+  static STATUS_FINISHED = 'finished';
+
   /**
    * アイコン名を取得する
    * @returns {*}
    */
   getLectureIconName() {
     switch (this.type) {
-      case Const.LECTURE_TYPE_VIDEO:
+      case Lecture.TYPE_VIDEO:
         return 'play-circle-filled';
-      case Const.LECTURE_TYPE_TEXT:
+      case Lecture.TYPE_TEXT:
         return 'text-format';
-      case Const.LECTURE_TYPE_PDF:
+      case Lecture.TYPE_PDF:
         return 'picture-as-pdf';
-      case Const.LECTURE_TYPE_AUDIO:
+      case Lecture.TYPE_AUDIO:
         return 'audiotrack';
-      case Const.LECTURE_TYPE_QUIZ:
+      case Lecture.TYPE_QUIZ:
         return 'question-answer';
-      case Const.LECTURE_TYPE_ATTACHMENT:
-        return Const.LECTURE_TYPE_ATTACHMENT;
+      case Lecture.TYPE_ATTACHMENT:
+        return 'attachment';
       default:
         return null;
     }
+  }
+
+  /**
+   * アクセス可能なレクチャーかどうか
+   * @param isOnline
+   * @returns {boolean}
+   */
+  canAccess(isOnline: boolean = true): boolean {
+    switch (this.type) {
+      case Lecture.TYPE_VIDEO:
+        return isOnline || this.hasVideoInDevice;
+      case Lecture.TYPE_TEXT:
+        break;
+      case Lecture.TYPE_QUIZ:
+      case Lecture.TYPE_PDF:
+      case Lecture.TYPE_ATTACHMENT:
+      case Lecture.TYPE_AUDIO:
+      default:
+        return false;
+    }
+    return isOnline;
+  }
+
+  /**
+   * レクチャーが終了済みかどうか
+   * @returns {boolean}
+   */
+  isFinished(): boolean {
+    return this.status === Lecture.STATUS_FINISHED;
+  }
+
+  /**
+   * セクションかどうか
+   * @returns {boolean}
+   */
+  isSection(): boolean {
+    return this.kind === Lecture.KIND_SECTION;
+  }
+
+  /**
+   * レクチャーかどうか
+   * @returns {boolean}
+   */
+  isLecture(): boolean {
+    return this.kind === Lecture.KIND_LECTURE;
+  }
+
+  /**
+   * 動画レクチャーかどうか
+   * @returns {boolean}
+   */
+  isVideo(): boolean {
+    return this.kind === Lecture.KIND_LECTURE;
+  }
+
+  /**
+   * テキストレクチャーかどうか
+   * @returns {boolean}
+   */
+  isText(): boolean {
+    return this.kind === Lecture.KIND_LECTURE;
+  }
+
+  /**
+   * クイズレクチャーかどうか
+   * @returns {boolean}
+   */
+  isQuiz(): boolean {
+    return this.kind === Lecture.KIND_LECTURE;
+  }
+
+  /**
+   * PDFレクチャーかどうか
+   * @returns {boolean}
+   */
+  isPdf(): boolean {
+    return this.kind === Lecture.KIND_LECTURE;
+  }
+
+  /**
+   * 添付レクチャーかどうか
+   * @returns {boolean}
+   */
+  isAttachment(): boolean {
+    return this.kind === Lecture.KIND_LECTURE;
+  }
+
+  /**
+   * 音声レクチャーかどうか
+   * @returns {boolean}
+   */
+  isAudio(): boolean {
+    return this.kind === Lecture.KIND_LECTURE;
   }
 }

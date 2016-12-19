@@ -1,10 +1,9 @@
-/* @flow */
 import { createAction } from 'redux-actions';
 
 import { queueLectureProgress } from '../actions/netInfo';
 import * as types from '../constants/ActionTypes';
-import * as ApiConstants from '../constants/Api';
 import { patchLectureStatus } from '../middleware/actApi';
+import Lecture from '../models/Lecture';
 
 // Actions Creators
 export const updateLectureStatusFailure = createAction(types.UPDATE_LECTURE_STATUS_FAILURE);
@@ -33,7 +32,7 @@ export const updateLectureStatus = (lectureId, status) =>
         dispatch(queueLectureProgress({ lectureId, status }));
       }
 
-      if (status === ApiConstants.LECTURE_STATUS_FINISHED) {
+      if (status === Lecture.STATUS_FINISHED) {
         dispatch(completeLecture(lectureId));
       } else {
         dispatch(setCurrentLectureId(lectureId));

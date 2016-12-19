@@ -4,7 +4,6 @@ import ReactNative from 'react-native';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import BaseStyles from '../../baseStyles';
-import { LECTURE_KIND_SECTION } from '../../constants/Api';
 import LectureItem from './LectureItem';
 import Section from './Section';
 
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
 });
 
 const renderLecture = params => (
-  params.lecture.kind === LECTURE_KIND_SECTION
+  params.lecture.isSection()
     ? <Section key={params.key} lecture={params.lecture} />
     : <LectureItem {...params} />
 );

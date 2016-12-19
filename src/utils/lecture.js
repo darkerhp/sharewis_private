@@ -1,14 +1,12 @@
-import * as Const from '../constants/Api';
-
 export const getNextVideoLecture = (courseId, lectures, skipCompleted = true, currentOrder = 0) => {
   let videoLectures = lectures.filter(l => (
     l.courseId === courseId &&
-    l.kind === Const.LECTURE_KIND_LECTURE &&
-    (l.type === Const.LECTURE_TYPE_VIDEO || l.type === Const.LECTURE_TYPE_TEXT) &&
+    l.isLecture() &&
+    (l.isVideo() || l.isText()) &&
     l.order > currentOrder
   ));
   if (skipCompleted) {
-    videoLectures = videoLectures.filterNot(l => l.status === Const.LECTURE_STATUS_FINISHED);
+    videoLectures = videoLectures.filterNot(l => l.isFinished());
   }
   return videoLectures.sortBy(l => l.order).first() || null;
 };
@@ -16,8 +14,8 @@ export const getNextVideoLecture = (courseId, lectures, skipCompleted = true, cu
 export const getLastLectureId = (courseId, lectures) => {
   const videoLectures = lectures.filter(l => (
     l.courseId === courseId &&
-    l.kind === Const.LECTURE_KIND_LECTURE &&
-    (l.type === Const.LECTURE_TYPE_VIDEO || l.type === Const.LECTURE_TYPE_TEXT)
+    l.isLecture() &&
+    (l.isVideo() || l.isText())
   ));
 
   return videoLectures.sortBy(l => l.order).last().id;

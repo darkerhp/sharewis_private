@@ -6,9 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
-import ProgressBar from '../ProgressBar';
 import Course from '../../models/Course';
+import ProgressBar from '../ProgressBar';
 
 const {
   Image,
@@ -78,7 +77,7 @@ const CourseSummary = ({
 }) => {
   const lectureProgress = lectures.isEmpty()
     ? course.lectureProgress
-    : lectures.filter(l => l.status === LECTURE_STATUS_FINISHED).size;
+    : lectures.filter(l => l.isFinished()).size;
   return (
     <TouchableOpacity
       style={courseSummaryStyleId}
