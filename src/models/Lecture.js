@@ -1,5 +1,7 @@
 import { Record } from 'immutable';
 
+import * as Const from '../constants/Api';
+
 const LectureRecord = Record({
   id: 0,
   courseId: 0,
@@ -20,8 +22,26 @@ const LectureRecord = Record({
 });
 
 export default class Lecture extends LectureRecord {
-  // FIXME スケルトン
-  getHoge() {
-    return this.get('hoge') || 'New Hoge';
+  /**
+   * アイコン名を取得する
+   * @returns {*}
+   */
+  getLectureIconName() {
+    switch (this.type) {
+      case Const.LECTURE_TYPE_VIDEO:
+        return 'play-circle-filled';
+      case Const.LECTURE_TYPE_TEXT:
+        return 'text-format';
+      case Const.LECTURE_TYPE_PDF:
+        return 'picture-as-pdf';
+      case Const.LECTURE_TYPE_AUDIO:
+        return 'audiotrack';
+      case Const.LECTURE_TYPE_QUIZ:
+        return 'question-answer';
+      case Const.LECTURE_TYPE_ATTACHMENT:
+        return Const.LECTURE_TYPE_ATTACHMENT;
+      default:
+        return null;
+    }
   }
 }

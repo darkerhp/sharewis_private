@@ -149,7 +149,7 @@ const LectureItem = ({
         <View style={styles.lectureIconWrapper}>
           <Icon
             style={styles.lectureIcon}
-            name={LectureUtils.getLectureIconName(lecture)}
+            name={lecture.getLectureIconName()}
           />
         </View>
         <Duration
