@@ -3,7 +3,7 @@ import normalize from 'normalize-object';
 import _ from 'lodash';
 import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
-
+import { REHYDRATE } from 'redux-persist/constants';
 import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 
 import Lecture from '../../models/Lecture';
@@ -24,7 +24,7 @@ const lecturesReducer = handleActions({
   UPDATE_VIDEO_IN_DEVICE_STATUS: (state, action) => {
     if (_.isEmpty(state)) return state;
     const lectures = action.payload;
-    return mergeEntities(state, fromJS(lectures));
+    return state.merge(lectures);
   },
   COMPLETE_LECTURE: (state, action) => {
     const lectureId = action.payload;
@@ -101,6 +101,14 @@ const lecturesReducer = handleActions({
         });
       },
     );
+  },
+  // redux-persistのrehydrate用のreducer
+  // Immutable.jsを仕様する場合、変換が必要
+  [REHYDRATE]: (state, action) => {
+    if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities')) return state;
+    const lectures = action.payload.entities.lectures;
+    if (!lectures) return state;
+    return mergeEntities(initialState, fromJS(normalize(lectures)));
   },
 }, initialState);
 
