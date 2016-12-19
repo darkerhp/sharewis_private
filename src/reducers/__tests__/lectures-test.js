@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { createAction } from 'redux-actions';
-import { fromJS, OrderedMap } from 'immutable';
+import { OrderedMap } from 'immutable';
 import reducer from '../entities/lectures';
 import * as types from '../../constants/ActionTypes';
 import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
