@@ -1,13 +1,5 @@
-import { Record } from 'immutable';
+import { OrderedMap } from 'immutable';
 
-const CourseRecord = Record({
-  id: null,
-  text: '',
-  completed: false,
-});
+const CourseMap = OrderedMap;
 
-export default class Course extends CourseRecord {
-  getText() {
-    return this.get('text') || 'New ToDo';
-  }
-}
+export default CourseMap;

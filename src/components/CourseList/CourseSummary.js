@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
+
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import I18n from 'react-native-i18n';
-import _ from 'lodash';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { LECTURE_STATUS_FINISHED } from '../../constants/Api';
 import ProgressBar from '../ProgressBar';
+import Course from '../../models/Course';
 
 const {
   Image,
@@ -67,12 +69,22 @@ const styles = StyleSheet.create({
 });
 
 
-const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
-  const lectureProgress = _.isEmpty(lectures)
+const CourseSummary = ({
+  course,
+  lectures,
+  isDisabledCourse,
+  onPressCourse,
+  courseSummaryStyleId,
+}) => {
+  const lectureProgress = lectures.isEmpty()
     ? course.lectureProgress
-    : _.values(lectures).filter(l => l.status === LECTURE_STATUS_FINISHED).length;
+    : lectures.filter(l => l.status === LECTURE_STATUS_FINISHED).size;
   return (
-    <TouchableOpacity {...props} disabled={isDisabledCourse}>
+    <TouchableOpacity
+      style={courseSummaryStyleId}
+      onPress={() => onPressCourse(course)}
+      disabled={isDisabledCourse}
+    >
       <View style={[{ flex: 1 }, isDisabledCourse && styles.disabledCourse]}>
         <Image
           style={styles.image}
@@ -95,12 +107,12 @@ const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
           </Text>
           <ProgressBar progress={lectureProgress / course.lectureCount} />
           {course.hasDownloadedLecture &&
-            <View style={styles.download}>
-              <Text style={styles.downloadText}>
-                {I18n.t('downloadAvailable')}
-              </Text>
-              <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
-            </View>
+          <View style={styles.download}>
+            <Text style={styles.downloadText}>
+              {I18n.t('downloadAvailable')}
+            </Text>
+            <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
+          </View>
           }
         </View>
       </View>
@@ -109,9 +121,11 @@ const CourseSummary = ({ course, lectures, isDisabledCourse, ...props }) => {
 };
 
 CourseSummary.propTypes = {
-  course: PropTypes.shape({}),
-  lectures: PropTypes.arrayOf(PropTypes.shape({})),
+  course: PropTypes.instanceOf(Course),
+  courseSummaryStyleId: PropTypes.number.isRequired,
+  lectures: ImmutablePropTypes.orderedMap,
   isDisabledCourse: PropTypes.bool.isRequired,
+  onPressCourse: PropTypes.func.isRequired,
 };
 
 export default CourseSummary;

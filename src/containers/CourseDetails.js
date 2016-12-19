@@ -45,9 +45,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state, props) => {
   const { entities: { courses }, netInfo, ui } = state;
   const { currentCourseId } = ui;
-
+  const currentCourse = courses.get(currentCourseId.toString());
   return {
-    ...courses[currentCourseId],
+    ...currentCourse.toJS(),
     lectureProgress: getLectureProgress(state, props),
     lectures: getSectionMergedLectures(state, props),
     totalDuration: getLectureTotalDuration(state, props),

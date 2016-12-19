@@ -1,13 +1,15 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
+
+import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
-import Spinner from 'react-native-loading-spinner-overlay';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 
 import * as Actions from '../actions/courseList';
 import BaseStyles from '../baseStyles';
@@ -20,7 +22,6 @@ import redirectTo from '../utils/linking';
 const {
   Alert,
   Dimensions,
-  Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -72,8 +73,8 @@ const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatc
 class CourseList extends Component {
   static propTypes = {
     // states
-    courses: PropTypes.shape({}),
-    lectures: PropTypes.shape({}),
+    courses: ImmutablePropTypes.orderedMap,
+    lectures: ImmutablePropTypes.orderedMap,
     isFetching: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
     // actions
@@ -93,6 +94,7 @@ class CourseList extends Component {
     }
   }
 
+  @autobind
   handlePressCourse(course) {
     const { isOnline, setCurrentCourseId } = this.props;
     if (!isOnline && !course.hasDownloadedLecture) return;
@@ -103,9 +105,14 @@ class CourseList extends Component {
   render() {
     const { isFetching, isOnline, courses, lectures } = this.props;
 
-    if (_.isEmpty(courses)) {
-      return <EmptyList isFetching={isFetching} />;
+    if (isFetching) {
+      return (<SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />);
     }
+
+    if (courses.isEmpty()) {
+      return <EmptyList />;
+    }
+
     return (
       <ScrollView
         style={{ flex: 1 }}
@@ -113,18 +120,17 @@ class CourseList extends Component {
         indicatorStyle={'white'}
       >
         <StatusBar barStyle="light-content" />
-        <Spinner visible={isFetching} />
         <View style={styles.courseList}>
-          {Object.keys(courses).map((courseId, index) => {
-            const isDisabledCourse = !isOnline && !courses[courseId].hasDownloadedLecture;
+          {courses.valueSeq().map((course) => {
+            const isDisabledCourse = !isOnline && !course.hasDownloadedLecture;
             return (
               <CourseSummary
-                style={styles.container}
-                onPress={() => this.handlePressCourse(courses[courseId])}
-                course={courses[courseId]}
-                lectures={_.filter(lectures, { courseId: parseInt(courseId, 10) })}
-                key={index}
+                key={course.id}
+                courseSummaryStyleId={styles.container}
+                course={course}
                 isDisabledCourse={isDisabledCourse}
+                lectures={lectures.filter(l => l.courseId === course.id)}
+                onPressCourse={this.handlePressCourse}
               />
             );
           })}
