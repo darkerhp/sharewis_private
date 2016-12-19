@@ -28,78 +28,56 @@ const lecturesReducer = handleActions({
   },
   COMPLETE_LECTURE: (state, action) => {
     const lectureId = action.payload;
-    return state.update(lectureId, lecture => lecture.set('status', LECTURE_STATUS_FINISHED));
+    return state.update(lectureId.toString(), lecture => (
+      lecture.set('status', LECTURE_STATUS_FINISHED)
+    ));
   },
   BEGIN_DOWNLOAD_VIDEO: (state, action) => {
     const { lectureId, jobId } = action.payload;
-    return state.update(lectureId,
-      (lecture) => {
-        lecture.merge({
-          isDownloading: true,
-          jobId,
-        });
-      },
+    return state.update(lectureId.toString(), lecture =>
+      lecture.merge({ isDownloading: true, jobId }),
     );
   },
   PROGRESS_DOWNLOAD_VIDEO: (state, action) => {
     const { lectureId, jobId, progress } = action.payload;
-    if (state[lectureId].jobId === -1) return state;
-    return state.update(lectureId,
-      (lecture) => {
-        lecture.merge({
-          isDownloading: true,
-          jobId,
-          progress,
-        });
-      },
+    const strLectureId = lectureId.toString();
+    if (state.get(strLectureId).jobId === -1) return state;
+    return state.update(strLectureId, lecture =>
+      lecture.merge({ isDownloading: true, jobId, progress }),
     );
   },
   FINISH_DOWNLOAD_VIDEO: (state, action) => {
     const lectureId = action.payload;
-    return state.update(lectureId,
-      (lecture) => {
-        lecture.merge({
-          hasVideoInDevice: true,
-          isDownloading: false,
-          jobId: -1,
-          progress: 0,
-        });
-      },
+    return state.update(lectureId.toString(), lecture =>
+      lecture.merge({
+        hasVideoInDevice: true,
+        isDownloading: false,
+        jobId: -1,
+        progress: 0,
+      }),
     );
   },
   ERROR_DOWNLOAD_VIDEO: (state, action) => {
     const lectureId = action.payload;
-    return state.update(lectureId,
-      (lecture) => {
-        lecture.merge({
-          hasVideoInDevice: false,
-          isDownloading: false,
-          jobId: -1,
-          progress: 0,
-        });
-      },
+    return state.update(lectureId.toString(), lecture =>
+      lecture.merge({
+        hasVideoInDevice: false,
+        isDownloading: false,
+        jobId: -1,
+        progress: 0,
+      }),
     );
   },
   CANCEL_DOWNLOAD_VIDEO: (state, action) => {
     const lectureId = action.payload;
-    return state.update(lectureId,
-      (lecture) => {
-        lecture.merge({
-          isDownloading: false,
-          jobId: -1,
-        });
-      },
+    return state.update(lectureId.toString(), lecture =>
+      lecture.merge({ isDownloading: false, jobId: -1 }),
     );
   },
   FINISH_DELETE_VIDEO: (state, action) => {
     const lectureId = action.payload;
-    return state.update(lectureId,
-      (lecture) => {
-        lecture.merge({
-          hasVideoInDevice: false,
-          progress: 0,
-        });
-      },
+    return state.update(lectureId.toString(), lecture =>
+      lecture.merge({ hasVideoInDevice: false, progress: 0 }),
     );
   },
   // redux-persistのrehydrate用のreducer
