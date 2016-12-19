@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
@@ -57,7 +56,7 @@ export const fetchCourseDetails = courseId =>
 export const fetchVideoInDeviceStatus = courseId => (
   async (dispatch, getState) => {
     const { entities: { lectures } } = getState();
-    if (_.isEmpty(lectures)) return;
+    if (lectures.isEmpty()) return;
     const promises = lectures.map(async (lecture) => {
       const path = FileUtils.createVideoFileName(lecture.id, courseId);
       const hasVideoInDevice = await FileUtils.exists(path);
