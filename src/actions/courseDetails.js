@@ -25,21 +25,6 @@ export const finishDeleteVideo = createAction(types.FINISH_DELETE_VIDEO);
 export const updateVideoInDeviceStatus = createAction(types.UPDATE_VIDEO_IN_DEVICE_STATUS);
 
 // Thunks
-export const fetchVideoInDeviceStatus = courseId => (
-  async (dispatch, getState) => {
-    const { entities: { lectures } } = getState();
-    if (_.isEmpty(lectures)) return;
-    const promises = lectures.map(async (lecture) => {
-      const path = FileUtils.createVideoFileName(lecture.id, courseId);
-      const hasVideoInDevice = await FileUtils.exists(path);
-      return lecture.set('hasVideoInDevice', hasVideoInDevice);
-    });
-    const updatedLectures = await Promise.all(promises);
-    dispatch(updateVideoInDeviceStatus(updatedLectures));
-  }
-);
-
-// lecturesとsectionsを取得する async action
 export const fetchCourseDetails = courseId =>
   async (dispatch, getState) => {
     try {
@@ -68,3 +53,17 @@ export const fetchCourseDetails = courseId =>
       throw error;
     }
   };
+
+export const fetchVideoInDeviceStatus = courseId => (
+  async (dispatch, getState) => {
+    const { entities: { lectures } } = getState();
+    if (_.isEmpty(lectures)) return;
+    const promises = lectures.map(async (lecture) => {
+      const path = FileUtils.createVideoFileName(lecture.id, courseId);
+      const hasVideoInDevice = await FileUtils.exists(path);
+      return lecture.set('hasVideoInDevice', hasVideoInDevice);
+    });
+    const updatedLectures = await Promise.all(promises);
+    dispatch(updateVideoInDeviceStatus(updatedLectures));
+  }
+);
