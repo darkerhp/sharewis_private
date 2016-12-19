@@ -108,7 +108,7 @@ export default class Lecture extends LectureRecord {
    * @returns {boolean}
    */
   isVideo(): boolean {
-    return this.kind === Lecture.KIND_LECTURE;
+    return this.type === Lecture.TYPE_VIDEO;
   }
 
   /**
@@ -116,7 +116,7 @@ export default class Lecture extends LectureRecord {
    * @returns {boolean}
    */
   isText(): boolean {
-    return this.kind === Lecture.KIND_LECTURE;
+    return this.type === Lecture.TYPE_TEXT;
   }
 
   /**
@@ -124,7 +124,7 @@ export default class Lecture extends LectureRecord {
    * @returns {boolean}
    */
   isQuiz(): boolean {
-    return this.kind === Lecture.KIND_LECTURE;
+    return this.type === Lecture.TYPE_QUIZ;
   }
 
   /**
@@ -132,7 +132,7 @@ export default class Lecture extends LectureRecord {
    * @returns {boolean}
    */
   isPdf(): boolean {
-    return this.kind === Lecture.KIND_LECTURE;
+    return this.type === Lecture.TYPE_PDF;
   }
 
   /**
@@ -140,7 +140,7 @@ export default class Lecture extends LectureRecord {
    * @returns {boolean}
    */
   isAttachment(): boolean {
-    return this.kind === Lecture.KIND_LECTURE;
+    return this.type === Lecture.TYPE_ATTACHMENT;
   }
 
   /**
@@ -148,6 +148,6 @@ export default class Lecture extends LectureRecord {
    * @returns {boolean}
    */
   isAudio(): boolean {
-    return this.kind === Lecture.KIND_LECTURE;
+    return this.type === Lecture.TYPE_AUDIO;
   }
 }
