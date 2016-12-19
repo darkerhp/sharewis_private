@@ -10,8 +10,8 @@ const CourseRecord = Record({
 });
 
 export default class Course extends CourseRecord {
-  // FIXME スケルトン
-  getHoge() {
+  // TODO 実装する
+  hasVideo() {
     return this.get('hoge') || 'New Hoge';
   }
 }
