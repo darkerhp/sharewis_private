@@ -5,6 +5,8 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import LectureItem from '../CourseDetails/LectureItem';
 
+import Lecture from '../../models/Lecture';
+
 jest.mock('../Duration', () => 'Duration');
 
 describe('LectureItem', () => {
@@ -15,13 +17,13 @@ describe('LectureItem', () => {
         handlePressDelete={() => null}
         handlePressDownload={() => null}
         handlePressLecture={() => null}
-        lecture={{
+        lecture={new Lecture({
           status: 'not_started',
           order: 1,
           estimatedTime: 30,
           title: 'Title',
           type: 'video',
-        }}
+        })}
       />,
     ).toJSON();
     expect(tree).toMatchSnapshot();

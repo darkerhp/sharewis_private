@@ -1,28 +1,27 @@
-import _ from 'lodash';
 import { createSelector } from 'reselect';
 
 import { LECTURE_STATUS_FINISHED } from '../constants/Api';
 
-const getCourseSections = (state, props) => _.filter(
-  state.entities.sections, { courseId: state.ui.currentCourseId },
-);
-const getCourseLectures = (state, props) => _.filter(
-  state.entities.lectures, { courseId: state.ui.currentCourseId },
-);
+const getCourseSections = (state, props) =>
+  state.entities.sections.filter(l => l.courseId === state.ui.currentCourseId);
+
+const getCourseLectures = (state, props) =>
+  state.entities.lectures.filter(l => l.courseId === state.ui.currentCourseId);
 
 // sectionとlectureをマージした配列を取得する
 export const getSectionMergedLectures = createSelector(
   [getCourseSections, getCourseLectures],
-  (sections, lectures) => (
-    _.sortBy(_.values(sections).concat(_.values(lectures)), ['order'])
-  ),
+  (sections, lectures) => {
+    if (!lectures) return {};
+    return sections.toList().merge(lectures.toList()).sortBy(l => l.order);
+  },
 );
 
 // lectureProgressを取得する
 export const getLectureProgress = createSelector(
   [getCourseLectures],
   lectures => (
-    _.values(lectures).filter(l => l.status === LECTURE_STATUS_FINISHED).length
+    lectures.count(l => l.status === LECTURE_STATUS_FINISHED)
   ),
 );
 
@@ -30,10 +29,8 @@ export const getLectureProgress = createSelector(
 export const getLectureTotalDuration = createSelector(
   [getCourseLectures],
   (lectures) => {
-    if (_.isEmpty(lectures)) return 0;
-    return _.reduce(
-      _.values(lectures),
-      (result, value, key) => result + (value.estimatedTime || 0), 0);
+    if (!lectures) return 0;
+    return lectures.reduce((r, v) => r + (v.estimatedTime || 0), 0);
   },
 );
 

@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import BaseStyles from '../../baseStyles';
 import { LECTURE_KIND_SECTION } from '../../constants/Api';
 import LectureItem from './LectureItem';
@@ -49,7 +51,7 @@ LectureList.propTypes = {
   containerStyleId: PropTypes.number.isRequired,
   courseId: PropTypes.number.isRequired,
   isOnline: PropTypes.bool.isRequired,
-  lectures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  lectures: ImmutablePropTypes.list.isRequired,
   // actions
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDelete: PropTypes.func.isRequired,

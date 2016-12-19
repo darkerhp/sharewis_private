@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
@@ -25,21 +24,6 @@ export const finishDeleteVideo = createAction(types.FINISH_DELETE_VIDEO);
 export const updateVideoInDeviceStatus = createAction(types.UPDATE_VIDEO_IN_DEVICE_STATUS);
 
 // Thunks
-export const fetchVideoInDeviceStatus = courseId => (
-  async (dispatch, getState) => {
-    const { entities: { lectures } } = getState();
-    if (_.isEmpty(lectures)) return;
-    const promises = Object.keys(lectures).map(async (lectureId) => {
-      const path = FileUtils.createVideoFileName(lectureId, courseId);
-      const hasVideoInDevice = await FileUtils.exists(path);
-      return { lectureId, hasVideoInDevice };
-    });
-    const updateLectures = await Promise.all(promises);
-    dispatch(updateVideoInDeviceStatus(updateLectures));
-  }
-);
-
-// lecturesとsectionsを取得する async action
 export const fetchCourseDetails = courseId =>
   async (dispatch, getState) => {
     try {
@@ -48,7 +32,7 @@ export const fetchCourseDetails = courseId =>
         ui: { fetchedCourseDetailsAt },
         user: { userId },
       } = getState();
-      if (_.isEmpty(_.filter(lectures, { courseId }))
+      if (!lectures.find(l => l.courseId === courseId)
         || fetchedCourseDetailsAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
         const response = await getCourseDetails(userId, courseId);
@@ -68,3 +52,17 @@ export const fetchCourseDetails = courseId =>
       throw error;
     }
   };
+
+export const fetchVideoInDeviceStatus = courseId => (
+  async (dispatch, getState) => {
+    const { entities: { lectures } } = getState();
+    if (lectures.isEmpty()) return;
+    const promises = lectures.map(async (lecture) => {
+      const path = FileUtils.createVideoFileName(lecture.id, courseId);
+      const hasVideoInDevice = await FileUtils.exists(path);
+      return lecture.set('hasVideoInDevice', hasVideoInDevice);
+    });
+    const updatedLectures = await Promise.all(promises);
+    dispatch(updateVideoInDeviceStatus(updatedLectures));
+  }
+);

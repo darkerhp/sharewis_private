@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import BaseStyles from '../../baseStyles';
 import redirectTo from '../../utils/linking';
@@ -22,9 +21,8 @@ const styles = StyleSheet.create({
 });
 
 
-const emptyList = ({ isFetching }) =>
+const emptyList = () =>
   <View style={styles.emptyList}>
-    <Spinner visible={isFetching} />
     <Hyperlink
       linkStyle={{ color: BaseStyles.hyperlink }}
       linkText={I18n.t('actWebsite')}
@@ -35,10 +33,5 @@ const emptyList = ({ isFetching }) =>
       </Text>
     </Hyperlink>
   </View>;
-
-emptyList.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
-};
-
 
 export default emptyList;

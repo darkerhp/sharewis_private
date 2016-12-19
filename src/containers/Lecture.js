@@ -40,10 +40,10 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ entities: { lectures }, netInfo, ui }) => {
   const lectureId = ui.currentLectureId;
-  const currentLecture = lectures[lectureId];
+  const currentLecture = lectures.get(lectureId.toString());
   return {
     lectures,
-    ...currentLecture,
+    ...currentLecture.toJS(),
     ...ui,
     isOnline: netInfo.isConnected,
     isLastLecture: lectureId === LectureUtils.getLastLectureId(currentLecture.courseId, lectures),

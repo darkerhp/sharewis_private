@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
-import { _ } from 'lodash';
 
 import BaseStyles from '../../baseStyles';
 import NextLectureArea from './NextLectureArea';
 import Duration from '../Duration';
 import Progress from './Progress';
+import Lecture from '../../models/Lecture';
 
 const { Platform, StyleSheet, Text, View } = ReactNative;
 
@@ -56,7 +56,7 @@ const CourseInfoSection = ({
       <Text style={styles.courseTitleText}>{courseTitle}</Text>
     </View>
 
-    {!_.isEmpty(nextLecture) &&
+    {nextLecture &&
       <NextLectureArea
         nextLecture={nextLecture}
         handlePressNextLecture={handlePressNextLecture}
@@ -84,10 +84,9 @@ CourseInfoSection.propTypes = {
   totalLectureCount: PropTypes.number.isRequired,
   completeLectureCount: PropTypes.number.isRequired,
   totalDuration: PropTypes.number.isRequired,
-  nextLecture: PropTypes.shape({}).isRequired,
+  nextLecture: PropTypes.instanceOf(Lecture),
   handlePressNextLecture: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  containerStyle: PropTypes.object.isRequired,
+  containerStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default CourseInfoSection;
