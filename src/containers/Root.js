@@ -26,7 +26,10 @@ export default class Root extends Component {
   componentWillMount() {
     const persistor = persistStore(
       store,
-      { storage: AsyncStorage },
+      {
+        storage: AsyncStorage,
+        blacklist: ['ui', 'routes'],
+      },
       () => this.setState({ rehydrated: true }),
     );
     if (__DEV__ && PURGE_STORAGE) {
