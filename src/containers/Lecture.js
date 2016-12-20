@@ -128,7 +128,7 @@ class Lecture extends Component {
           : <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />
         }
 
-        {isFullScreen || /* フルスクリーン時には「次のレクチャーへ」ボタンは表示しない */
+        {isFullScreen || /* フルスクリーン時には「次のレクチャーへ」ボタンの領域自体表示しない */
           <View style={styles.nextLectureButtonWrapper}>
             { isLastLecture || isOfflineAndUnsavedLecture ||
               <Button
