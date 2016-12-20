@@ -4,7 +4,7 @@ import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
 
-import Spinner from 'react-native-loading-spinner-overlay';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -114,10 +114,14 @@ class Lecture extends Component {
 
   render() {
     const { hasVideoInDevice, isFullScreen, isLastLecture, isOnline } = this.props;
+
+    if (this.state.loading) {
+      return <SleekLoadingIndicator loading={this.state.loading} text={I18n.t('loading')} />;
+    }
+
     const isOfflineAndUnsavedLecture = !isOnline && !hasVideoInDevice;
     return (
       <View style={{ flex: 1 }}>
-        <Spinner visible={this.state.loading} />
         <StatusBar barStyle="light-content" />
         {isOfflineAndUnsavedLecture
           ? <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />

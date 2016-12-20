@@ -19,7 +19,6 @@ const LectureRecord = Record({
   isDownloading: false,
   jobId: -1,
   progress: 0,
-
 });
 
 export default class Lecture extends LectureRecord {

@@ -185,7 +185,7 @@ class CourseDetails extends Component {
     } = this.props;
 
     if (isFetching) {
-      return (<SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />);
+      return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
     }
 
     const courseInfo = {
