@@ -212,7 +212,7 @@ class CourseDetails extends Component {
                 ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT,
             }}
           />
-          {!_.isEmpty(lectures) &&
+          {!lectures.isEmpty() &&
             <LectureList
               containerStyleId={styles.lectureContainer}
               lectures={lectures}
