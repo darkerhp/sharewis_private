@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   nextLectureButtonWrapper: {
-    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
@@ -129,6 +128,7 @@ class LectureContainer extends Component {
     const { currentLecture, isFullScreen, isLastLecture, isOnline } = this.props;
     // フルスクリーン時には「次のレクチャーへ」ボタンの領域自体表示しない
     if (isFullScreen) return null;
+    // アプリでは、コースを完了できないため最後のレクチャーの場合、ボタンを表示しない
     const isVisibleButton = !isLastLecture && currentLecture.canAccess(isOnline);
     return (
       <View style={styles.nextLectureButtonWrapper}>

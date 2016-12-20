@@ -96,7 +96,7 @@ const VideoControls = ({
       left: 20,
       position: 'absolute',
       right: 20,
-    } : { flex: 1.5, backgroundColor: 'white' })}
+    } : { flex: 2, paddingBottom: 40, backgroundColor: 'white' })}
   >
     <SeekBar
       currentTime={currentTime}
