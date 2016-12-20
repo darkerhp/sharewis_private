@@ -18,6 +18,8 @@ const LectureRecord = Record({
   videoUrl: '',
   thumbnailUrl: '',
   hasVideoInDevice: false,
+  // For TextLecture
+  body: '',
   // For downloading TODO
   isDownloading: false,
   jobId: -1,
