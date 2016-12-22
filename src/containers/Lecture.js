@@ -46,7 +46,7 @@ const mapStateToProps = ({ entities: { lectures }, netInfo, ui }) => {
     currentLecture,
     ...ui,
     isOnline: netInfo.isConnected,
-    isLastLecture: lectureId === LectureUtils.getLastLectureId(currentLecture.courseId, lectures),
+    isLastLecture: lectureId === lectures.getLastLectureId(currentLecture.courseId),
   };
 };
 
@@ -101,8 +101,8 @@ class LectureContainer extends Component {
       updateLectureStatus(currentLecture.id, Lecture.STATUS_FINISHED);
     }
 
-    const nextLecture = LectureUtils.getNextVideoLecture(
-      currentLecture.courseId, lectures, false, currentLecture.order);
+    const nextLecture = lectures.getNextLecture(
+      currentLecture.courseId, false, currentLecture.order);
     setCurrentLectureId(nextLecture.id);
   }
 
