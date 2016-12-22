@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../actions/lecture';
 import Lecture from '../models/Lecture';
-import * as LectureUtils from '../utils/lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import TextLecture from '../components/Lecture/TextLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
