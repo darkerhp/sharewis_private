@@ -2163,6 +2163,12 @@ extend@^3.0.0, extend@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
 
+extendable-immutable@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/extendable-immutable/-/extendable-immutable-1.3.0.tgz#3006be1af431072fc6eecf285b3c8bf45dc3b7f4"
+  dependencies:
+    invariant "^2.2.1"
+
 extglob@^0.3.1:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/extglob/-/extglob-0.3.2.tgz#2e18ff3d2f49ab2765cec9023f011daa8d8349a1"
