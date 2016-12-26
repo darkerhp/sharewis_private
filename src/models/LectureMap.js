@@ -26,6 +26,6 @@ export default class LectureMap extends OrderedMap {
     ));
 
     return videoLectures.sortBy(l => l.order).last().id;
-  };
+  }
 
 }
