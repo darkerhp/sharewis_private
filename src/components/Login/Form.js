@@ -34,24 +34,24 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     flexDirection: 'row',
     marginHorizontal: 13,
-    marginBottom: 4,
+    marginBottom: 5,
   },
   label: {
     flex: 1,
-    color: '#222',
-    fontSize: 10.5,
+    color: '#666',
+    fontSize: 12,
   },
   inputWrapper: {
     flex: 2,
     backgroundColor: 'white',
     paddingLeft: 13,
+    paddingBottom: 1,
     borderColor: '#dadada',
-    borderWidth: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
   },
   textInputWrapper: {
     flex: 1,
-    borderColor: '#dadada',
-    borderBottomWidth: 1,
   },
   buttonTextWrapper: {
     flex: 2,
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     ...Platform.select({
       ios: {
+        borderColor: '#dadada',
         borderLeftWidth: 0,
         borderBottomWidth: 1,
       },
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
     textAlignVertical: 'center',
-    fontSize: 10.5,
+    fontSize: 12,
     color: BaseStyles.hyperlink,
   },
 });
