@@ -60,13 +60,8 @@ const styles = StyleSheet.create({
   },
   innerTextInput: {
     flex: 1,
-    ...Platform.select({
-      ios: {
-        borderColor: '#dadada',
-        borderLeftWidth: 0,
-        borderBottomWidth: 1,
-      },
-    }),
+    borderColor: '#dadada',
+    borderBottomWidth: 1,
   },
   buttonWrapper: {
     flex: 5,
