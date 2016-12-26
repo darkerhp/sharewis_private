@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   label: {
     flex: 1,
     alignSelf: 'flex-end',
-    color: '#222',
-    fontSize: 10.5,
+    color: '#666',
+    fontSize: 12,
   },
   buttonWrapper: {
     flex: 1,
