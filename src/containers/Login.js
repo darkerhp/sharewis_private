@@ -5,14 +5,17 @@ import Hr from 'react-native-hr';
 import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
+import { formValueSelector } from 'redux-form';
 
-import BaseStyles from '../../baseStyles';
-import Email from './Email';
-import Facebook from './Facebook';
-import alertOfflineError from '../../utils/alert';
-import redirectTo from '../../utils/linking';
+import * as Actions from '../actions/login';
+import BaseStyles from '../baseStyles';
+import Email from '../components/Login/Form';
+import Facebook from '../components/Login/Facebook';
+import alertOfflineError from '../utils/alert';
+import redirectTo from '../utils/linking';
 
 const { StyleSheet, Text, View } = ReactNative;
 
@@ -34,13 +37,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ user, netInfo, ui }) => ({
-  ...user,
-  ...ui,
-  isOnline: netInfo.isConnected,
+const mapStateToProps = (state) => {
+  const { form, user, netInfo, ui } = state;
+  const selector = formValueSelector('email');
+  const hasEmail = selector(state, 'email') !== undefined;
+  const hasPassword = selector(state, 'password') !== undefined;
+  return {
+    ...user,
+    ...ui,
+    isOnline: netInfo.isConnected,
+    loginDisabled: !(hasEmail && hasPassword),
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ ...Actions }, dispatch),
 });
 
-@connect(mapStateToProps)
+@connect(mapStateToProps, mapDispatchToProps)
 class Login extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
@@ -62,8 +76,12 @@ class Login extends Component {
 
     return (
       <View style={styles.login}>
-        <Email />
-        <Facebook />
+        <Email
+          {...this.props}
+        />
+        <Facebook
+          {...this.props}
+        />
         <View style={styles.footer}>
           <Hr lineColor={'#dadada'} />
           <Hyperlink

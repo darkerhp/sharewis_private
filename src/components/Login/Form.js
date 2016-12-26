@@ -4,16 +4,12 @@ import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import {
-  formValueSelector,
   Field,
   reduxForm,
   SubmissionError,
 } from 'redux-form';
 
-import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
 import redirectTo from '../../utils/linking';
 import TextField from '../../components/TextField';
@@ -106,27 +102,8 @@ const formOptions = {
   validate: validateEmailLogin,
 };
 
-const mapStateToProps = (state) => {
-  const { form, user, netInfo, ui, ...otherStates } = state;
-  const selector = formValueSelector('email');
-  const hasEmail = selector(state, 'email') !== undefined;
-  const hasPassword = selector(state, 'password') !== undefined;
-  return {
-    ...user,
-    ...ui,
-    isOnline: netInfo.isConnected,
-    ...otherStates,
-    loginDisabled: !(hasEmail && hasPassword),
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions }, dispatch),
-});
-
 @reduxForm(formOptions)
-@connect(mapStateToProps, mapDispatchToProps)
-class Email extends Component {
+class Form extends Component {
   static propTypes = {
     fetchActLoginFailure: PropTypes.func.isRequired,
     fetchUserBy: PropTypes.func.isRequired,
@@ -219,4 +196,4 @@ class Email extends Component {
   }
 }
 
-export default Email;
+export default Form;
