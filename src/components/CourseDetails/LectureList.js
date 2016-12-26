@@ -27,14 +27,14 @@ const LectureList = ({
   containerStyleId,
   courseId,
   isOnline,
-  lectures,
+  lectureList,
   // actions
   handlePressDelete,
   handlePressDownload,
   handlePressLecture,
 }) =>
   <View style={[styles.container, containerStyleId]}>
-    {lectures.map((lecture, i) => renderLecture({
+    {lectureList.map((lecture, i) => renderLecture({
       key: i,
       courseId,
       isOnline,
@@ -50,7 +50,7 @@ LectureList.propTypes = {
   containerStyleId: PropTypes.number.isRequired,
   courseId: PropTypes.number.isRequired,
   isOnline: PropTypes.bool.isRequired,
-  lectures: ImmutablePropTypes.list.isRequired,
+  lectureList: ImmutablePropTypes.list.isRequired,
   // actions
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDelete: PropTypes.func.isRequired,

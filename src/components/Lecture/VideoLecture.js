@@ -6,9 +6,9 @@ import Video from 'react-native-video';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import Orientation from 'react-native-orientation';
 
-import * as FileUtils from '../../utils/file';
 import VideoControls from './VideoControls';
 import FullScreenVideoControls from './FullScreenVideoControls';
+import Lecture from '../../models/Lecture';
 
 const {
   ActivityIndicator,
@@ -44,19 +44,13 @@ const styles = StyleSheet.create({
 class VideoLecture extends Component {
   static propTypes = {
     // values
-    courseId: PropTypes.number.isRequired,
+    currentLecture: PropTypes.instanceOf(Lecture).isRequired,
     currentTime: PropTypes.number.isRequired,
-    estimatedTime: PropTypes.number.isRequired,
-    hasVideoInDevice: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
     isFullScreen: PropTypes.bool.isRequired,
     isPaused: PropTypes.bool.isRequired,
     isStarted: PropTypes.bool.isRequired,
     lectureContentStyleId: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
-    thumbnailUrl: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    videoUrl: PropTypes.string.isRequired,
     // actions
     changeVideoPlaySpeed: PropTypes.func.isRequired,
     toggleFullScreen: PropTypes.func.isRequired,
@@ -80,12 +74,6 @@ class VideoLecture extends Component {
     seeking: false,
     isLoadingThumbnail: true,
   };
-
-  @autobind
-  getVideoUrl() {
-    const { courseId, id, hasVideoInDevice, videoUrl } = this.props;
-    return hasVideoInDevice ? `file://${FileUtils.createVideoFileName(id, courseId)}` : videoUrl;
-  }
 
   @autobind
   handleValueChange() {
@@ -123,12 +111,12 @@ class VideoLecture extends Component {
 
   @autobind
   renderVideo() {
-    const { isStarted, isPaused, speed, thumbnailUrl } = this.props;
+    const { currentLecture, isStarted, isPaused, speed } = this.props;
     if (!isStarted) {
       return (
         <Image
           style={styles.backgroundVideo}
-          source={{ uri: thumbnailUrl }}
+          source={{ uri: currentLecture.thumbnailUrl }}
           onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
           onLoadEnd={() => this.setState({ isLoadingThumbnail: false })}
           resizeMode="contain"
@@ -151,7 +139,7 @@ class VideoLecture extends Component {
         ref={ref => (this.video = ref)}
         repeat={false}
         resizeMode="contain"
-        source={{ uri: this.getVideoUrl() }}
+        source={{ uri: currentLecture.getVideoUrl() }}
         style={styles.backgroundVideo}
         volume={1.0}
       />
@@ -171,19 +159,18 @@ class VideoLecture extends Component {
   render() {
     const {
       currentTime,
-      estimatedTime,
+      currentLecture,
       isFullScreen,
       isPaused,
       lectureContentStyleId,
       speed,
-      title,
       changeVideoPlaySpeed,
       togglePlay,
     } = this.props;
 
     const videoControlsProps = {
       currentTime,
-      estimatedTime,
+      estimatedTime: currentLecture.estimatedTime,
       isFullScreen,
       isLoadingThumbnail: this.state.isLoadingThumbnail,
       isPaused,
@@ -193,7 +180,7 @@ class VideoLecture extends Component {
       onSlidingComplete: this.handleSlidingComplete,
       onValueChange: this.handleValueChange,
       speed,
-      title,
+      title: currentLecture.title,
     };
 
     return (

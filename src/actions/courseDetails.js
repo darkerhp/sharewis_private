@@ -2,6 +2,7 @@ import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
+import Lecture from '../models/Lecture';
 import * as FileUtils from '../utils/file';
 
 import { getCourseDetails } from '../middleware/actApi';
@@ -38,10 +39,10 @@ export const fetchCourseDetails = courseId =>
         dispatch(fetchCourseDetailsSuccess({
           // TODO もうちょいいい感じにできるはず
           lectures: normalize(
-            response.lectures.filter(l => l.isLecture()),
+            response.lectures.filter(l => l.kind === Lecture.KIND_LECTURE),
             schema.arrayOfLectures),
           sections: normalize(
-            response.lectures.filter(l => l.isSection()),
+            response.lectures.filter(l => l.kind === Lecture.KIND_SECTION),
             schema.arrayOfSections),
         }));
       }

@@ -106,7 +106,7 @@ class CourseList extends Component {
     const { isFetching, isOnline, courses, lectures } = this.props;
 
     if (isFetching) {
-      return (<SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />);
+      return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
     }
 
     if (courses.isEmpty()) {

@@ -1,4 +1,6 @@
-/* @flow */
+/**
+ * @flow
+ */
 import normalize from 'normalize-object';
 import _ from 'lodash';
 import { handleActions } from 'redux-actions';

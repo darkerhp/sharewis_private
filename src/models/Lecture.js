@@ -3,11 +3,13 @@
  */
 import { Record } from 'immutable';
 
+import * as FileUtils from '../utils/file';
+
 const LectureRecord = Record({
   id: 0,
   courseId: 0,
   estimatedTime: 0,
-  kind: '', // lecture or section
+  kind: '', // lecture or section or snack
   order: 0,
   status: '',
   title: '',
@@ -16,10 +18,12 @@ const LectureRecord = Record({
   videoUrl: '',
   thumbnailUrl: '',
   hasVideoInDevice: false,
+  // For TextLecture
+  body: '',
+  // For downloading TODO
   isDownloading: false,
   jobId: -1,
   progress: 0,
-
 });
 
 export default class Lecture extends LectureRecord {
@@ -59,6 +63,18 @@ export default class Lecture extends LectureRecord {
   }
 
   /**
+   * 動画URLを取得する
+   * デバイスに保存してある場合、ファイルパスを返却する
+   * @returns {string}
+   */
+  getVideoUrl(): string {
+    if (this.hasVideoInDevice) {
+      return `file://${FileUtils.createVideoFileName(this.id, this.courseId)}`;
+    }
+    return this.videoUrl;
+  }
+
+  /**
    * アクセス可能なレクチャーかどうか
    * @param isOnline
    * @returns {boolean}
@@ -77,6 +93,15 @@ export default class Lecture extends LectureRecord {
         return false;
     }
     return isOnline;
+  }
+
+
+  /**
+   * レクチャーが開始済みかどうか
+   * @returns {boolean}
+   */
+  isNotStarted(): boolean {
+    return this.status === Lecture.STATUS_NOT_STARTED;
   }
 
   /**

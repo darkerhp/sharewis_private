@@ -1,14 +1,15 @@
 import { createSelector } from 'reselect';
 
-const getCourseSections = (state, props) =>
+const sectionsSelector = (state, props) =>
   state.entities.sections.filter(l => l.courseId === state.ui.currentCourseId);
 
-const getCourseLectures = (state, props) =>
+const lecturesSelector = (state, props) =>
   state.entities.lectures.filter(l => l.courseId === state.ui.currentCourseId);
 
-// sectionとlectureをマージした配列を取得する
-export const getSectionMergedLectures = createSelector(
-  [getCourseSections, getCourseLectures],
+// sectionとlectureをマージしたListを取得する
+export const getSectionMergedLectureList = createSelector(
+  sectionsSelector,
+  lecturesSelector,
   (sections, lectures) => {
     if (!lectures) return {};
     return sections.toList().merge(lectures.toList()).sortBy(l => l.order);
@@ -17,7 +18,7 @@ export const getSectionMergedLectures = createSelector(
 
 // lectureProgressを取得する
 export const getLectureProgress = createSelector(
-  [getCourseLectures],
+  lecturesSelector,
   lectures => (
     lectures.count(l => l.isFinished())
   ),
@@ -25,7 +26,7 @@ export const getLectureProgress = createSelector(
 
 // レクチャーの合計時間を取得する
 export const getLectureTotalDuration = createSelector(
-  [getCourseLectures],
+  lecturesSelector,
   (lectures) => {
     if (!lectures) return 0;
     return lectures.reduce((r, v) => r + (v.estimatedTime || 0), 0);

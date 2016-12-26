@@ -16,11 +16,10 @@ import * as Actions from '../actions/courseDetails';
 import * as LectureActions from '../actions/lecture';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
-import * as LectureUtils from '../utils/lecture';
 import * as FileUtils from '../utils/file';
 import BaseStyles from '../baseStyles';
 import {
-  getSectionMergedLectures,
+  getSectionMergedLectureList,
   getLectureProgress,
   getLectureTotalDuration,
 } from '../selectors/lectureSelectors';
@@ -43,13 +42,14 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, props) => {
-  const { entities: { courses }, netInfo, ui } = state;
+  const { entities: { courses, lectures }, netInfo, ui } = state;
   const { currentCourseId } = ui;
   const currentCourse = courses.get(currentCourseId.toString());
   return {
     ...currentCourse.toJS(),
     lectureProgress: getLectureProgress(state, props),
-    lectures: getSectionMergedLectures(state, props),
+    lectures,
+    sectionMergedLectureList: getSectionMergedLectureList(state, props),
     totalDuration: getLectureTotalDuration(state, props),
     isOnline: netInfo.isConnected,
     ...ui,
@@ -68,7 +68,8 @@ class CourseDetails extends Component {
     isFetching: PropTypes.bool.isRequired,
     isLectureDownloading: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
-    lectures: ImmutablePropTypes.list.isRequired,
+    lectures: ImmutablePropTypes.orderedMap.isRequired,
+    sectionMergedLectureList: ImmutablePropTypes.list.isRequired,
     lectureCount: PropTypes.number.isRequired,
     lectureProgress: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -98,7 +99,7 @@ class CourseDetails extends Component {
   @autobind
   handlePressNextLecture() {
     const { id, lectures } = this.props;
-    const lecture = LectureUtils.getNextVideoLecture(id, lectures);
+    const lecture = lectures.getNextLecture(id);
     this.handlePressLecture(lecture);
   }
 
@@ -178,6 +179,7 @@ class CourseDetails extends Component {
       isFetching,
       isOnline,
       lectures,
+      sectionMergedLectureList,
       lectureCount,
       lectureProgress,
       title,
@@ -185,7 +187,7 @@ class CourseDetails extends Component {
     } = this.props;
 
     if (isFetching) {
-      return (<SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />);
+      return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
     }
 
     const courseInfo = {
@@ -193,7 +195,7 @@ class CourseDetails extends Component {
       completeLectureCount: lectureProgress,
       courseTitle: title,
       totalDuration,
-      nextLecture: LectureUtils.getNextVideoLecture(id, lectures),
+      nextLecture: lectures.getNextLecture(id),
     };
 
     return (
@@ -212,10 +214,10 @@ class CourseDetails extends Component {
                 ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT,
             }}
           />
-          {!_.isEmpty(lectures) &&
+          {!lectures.isEmpty() &&
             <LectureList
               containerStyleId={styles.lectureContainer}
-              lectures={lectures}
+              lectureList={sectionMergedLectureList}
               courseId={id}
               isOnline={isOnline}
               handlePressLecture={this.handlePressLecture}

@@ -1,3 +1,6 @@
+/**
+ * @flow
+ */
 import { createAction } from 'redux-actions';
 
 import { queueLectureProgress } from '../actions/netInfo';
@@ -18,14 +21,14 @@ export const updateVideoProgress = createAction(types.UPDATE_VIDEO_PROGRESS);
 export const completeLecture = createAction(types.COMPLETE_LECTURE);
 
 // Thunks
-export const updateLectureStatus = (lectureId, status) =>
-  async (dispatch, getState) => {
+export const updateLectureStatus = (lectureId: number, status: string) =>
+  async (dispatch: Function, getState: Function) => {
     dispatch(updateLectureStatusStart());
     try {
       const { entities, user, netInfo } = getState();
       const { lectures } = entities;
       const userId = user.userId;
-      const lecture = lectures[lectureId];
+      const lecture = lectures.get(lectureId.toString());
       if (netInfo.isConnected) {
         await patchLectureStatus(userId, lecture.courseId, lectureId, status);
       } else {

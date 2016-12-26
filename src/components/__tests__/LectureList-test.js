@@ -13,7 +13,7 @@ describe('LectureList', () => {
       <LectureList
         courseId={0}
         isOnline
-        lectures={[]}
+        lectureList={[]}
         containerStyleId={0}
         handlePressDelete={() => null}
         handlePressDownload={() => null}

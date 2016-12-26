@@ -1,20 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
+
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
-
-import Spinner from 'react-native-loading-spinner-overlay';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions/lecture';
-import VideoLecture from '../components/Lecture/VideoLecture';
+import Lecture from '../models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
-import * as LectureUtils from '../utils/lecture';
-import * as LectureModel from '../models/Lecture';
-
+import TextLecture from '../components/Lecture/TextLecture';
+import VideoLecture from '../components/Lecture/VideoLecture';
 
 const { StatusBar, StyleSheet, View } = ReactNative;
 
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   nextLectureButtonWrapper: {
-    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
@@ -43,28 +42,24 @@ const mapStateToProps = ({ entities: { lectures }, netInfo, ui }) => {
   const currentLecture = lectures.get(lectureId.toString());
   return {
     lectures,
-    ...currentLecture.toJS(),
+    currentLecture,
     ...ui,
     isOnline: netInfo.isConnected,
-    isLastLecture: lectureId === LectureUtils.getLastLectureId(currentLecture.courseId, lectures),
+    isLastLecture: lectureId === lectures.getLastLectureId(currentLecture.courseId),
   };
 };
 
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
-class Lecture extends Component {
+class LectureContainer extends Component {
   static propTypes = {
     // values
-    courseId: PropTypes.number.isRequired,
-    hasVideoInDevice: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
+    currentLecture: PropTypes.instanceOf(Lecture).isRequired,
     isFullScreen: PropTypes.bool.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
-    lectures: PropTypes.shape({}).isRequired,
-    order: PropTypes.number.isRequired,
-    status: PropTypes.string.isRequired,
+    lectures: ImmutablePropTypes.orderedMap.isRequired,
     // actions
     updateLectureStatus: PropTypes.func.isRequired,
     setCurrentLectureId: PropTypes.func.isRequired,
@@ -75,15 +70,15 @@ class Lecture extends Component {
   };
 
   componentWillMount() {
-    const { id, status, updateLectureStatus } = this.props;
-    if (status === LectureModel.STATUS_NOT_STARTED) {
-      updateLectureStatus(id, LectureModel.STATUS_VIEWED);
+    const { currentLecture, updateLectureStatus } = this.props;
+    if (currentLecture.isNotStarted()) {
+      updateLectureStatus(currentLecture.id, Lecture.STATUS_VIEWED);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.id) return;
-    if (nextProps.id !== this.props.id) {
+    if (!nextProps.currentLecture.id) return;
+    if (nextProps.currentLecture.id !== this.props.currentLecture.id) {
       RouterActions.refresh({});
     }
   }
@@ -95,51 +90,73 @@ class Lecture extends Component {
     setTimeout(() => this.setState({ loading: false }), 1000);
 
     const {
-      courseId,
-      updateLectureStatus,
-      id,
-      order,
+      currentLecture,
       lectures,
+      updateLectureStatus,
       setCurrentLectureId,
-      status,
     } = this.props;
 
-    if (status !== LectureModel.STATUS_FINISHED) {
-      updateLectureStatus(id, LectureModel.STATUS_FINISHED);
+    if (currentLecture.isFinished()) {
+      updateLectureStatus(currentLecture.id, Lecture.STATUS_FINISHED);
     }
 
-    const nextLecture = LectureUtils.getNextVideoLecture(courseId, lectures, false, order);
+    const nextLecture = lectures.getNextLecture(
+      currentLecture.courseId, false, currentLecture.order);
     setCurrentLectureId(nextLecture.id);
   }
 
+  @autobind
+  renderLectureContent() {
+    const { currentLecture, isOnline } = this.props;
+
+    if (!currentLecture.canAccess(isOnline)) {
+      return <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />;
+    }
+    if (currentLecture.isVideo()) {
+      return <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />;
+    }
+    if (currentLecture.isText()) {
+      return <TextLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />;
+    }
+
+    return null;
+  }
+
+  @autobind
+  renderNextLectureArea() {
+    const { currentLecture, isFullScreen, isLastLecture, isOnline } = this.props;
+    // フルスクリーン時には「次のレクチャーへ」ボタンの領域自体表示しない
+    if (isFullScreen) return null;
+    // アプリでは、コースを完了できないため最後のレクチャーの場合、ボタンを表示しない
+    const isVisibleButton = !isLastLecture && currentLecture.canAccess(isOnline);
+    return (
+      <View style={styles.nextLectureButtonWrapper}>
+        { isVisibleButton &&
+          <Button
+            containerStyle={styles.nextLectureButton}
+            style={styles.nextLectureButtonText}
+            onPress={this.handlePressNextLecture}
+          >
+            {I18n.t('nextLecture')}
+          </Button>
+        }
+      </View>
+    );
+  }
+
   render() {
-    const { hasVideoInDevice, isFullScreen, isLastLecture, isOnline } = this.props;
-    const isOfflineAndUnsavedLecture = !isOnline && !hasVideoInDevice;
+    if (this.state.loading) {
+      return <SleekLoadingIndicator loading={this.state.loading} text={I18n.t('loading')} />;
+    }
+
     return (
       <View style={{ flex: 1 }}>
-        <Spinner visible={this.state.loading} />
         <StatusBar barStyle="light-content" />
-        {isOfflineAndUnsavedLecture
-          ? <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />
-          : <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />
-        }
-
-        {isFullScreen || /* フルスクリーン時には「次のレクチャーへ」ボタンは表示しない */
-          <View style={styles.nextLectureButtonWrapper}>
-            { isLastLecture || isOfflineAndUnsavedLecture ||
-              <Button
-                containerStyle={styles.nextLectureButton}
-                style={styles.nextLectureButtonText}
-                onPress={this.handlePressNextLecture}
-              >
-                {I18n.t('nextLecture')}
-              </Button>
-            }
-          </View>
-        }
+        {this.renderLectureContent()}
+        {this.renderNextLectureArea()}
       </View>
     );
   }
 }
 
-export default Lecture;
+export default LectureContainer;
