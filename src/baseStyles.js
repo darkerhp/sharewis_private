@@ -38,11 +38,6 @@ const DefaultComponents = {
     color: '#222',
     backgroundColor: 'white',
   },
-  Button: {
-    flex: 1,
-    fontSize: 15,
-    color: 'white',
-  },
 };
 
 export default {
