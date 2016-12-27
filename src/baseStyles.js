@@ -20,11 +20,6 @@ const Variables = {
 };
 
 const DefaultComponents = {
-  ContainerWithNavbar: {
-    flex: 1,
-    paddingTop: Variables.navbarHeight,
-    paddingBottom: Variables.navbarHeight,
-  },
   Text: {
     textAlign: 'center',
     lineHeight: 22,

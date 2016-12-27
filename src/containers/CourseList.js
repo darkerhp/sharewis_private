@@ -31,7 +31,9 @@ const {
 
 const styles = StyleSheet.create({
   courseList: {
-    ...BaseStyles.ContainerWithNavbar,
+    flex: 1,
+    paddingTop: BaseStyles.navbarHeight,
+    paddingBottom: BaseStyles.navbarHeight,
     margin: 13,
   },
   contentText: {
