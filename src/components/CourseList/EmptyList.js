@@ -15,7 +15,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   contentText: {
-    ...BaseStyles.Text,
+    textAlign: 'center',
+    lineHeight: 22,
+    fontSize: 17,
+    color: '#222',
     margin: 30,
   },
 });

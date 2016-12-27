@@ -37,7 +37,10 @@ const styles = StyleSheet.create({
     margin: 13,
   },
   contentText: {
-    ...BaseStyles.Text,
+    textAlign: 'center',
+    lineHeight: 22,
+    fontSize: 17,
+    color: '#222',
     textAlignVertical: 'center',
   },
   container: {

@@ -41,7 +41,12 @@ const styles = StyleSheet.create({
     padding: 25,
     opacity: 0.6,
   },
-  contentText: BaseStyles.Text,
+  contentText: {
+    textAlign: 'center',
+    lineHeight: 22,
+    fontSize: 17,
+    color: '#222',
+  },
 });
 
 

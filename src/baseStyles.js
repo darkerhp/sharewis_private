@@ -19,23 +19,5 @@ const Variables = {
   disabledButtonColor: '#dadada',
 };
 
-const DefaultComponents = {
-  Text: {
-    textAlign: 'center',
-    lineHeight: 22,
-    fontSize: 17,
-    color: '#222',
-  },
-  TextInput: {
-    flex: 1,
-    padding: 4,
-    fontSize: 13,
-    color: '#222',
-    backgroundColor: 'white',
-  },
-};
+export default Variables;
 
-export default {
-  ...Variables,
-  ...DefaultComponents,
-};

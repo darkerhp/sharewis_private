@@ -83,6 +83,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: BaseStyles.hyperlink,
   },
+  TextInput: {
+    flex: 1,
+    padding: 4,
+    fontSize: 13,
+    color: '#222',
+    backgroundColor: 'white',
+  },
 });
 
 
@@ -134,7 +141,7 @@ class Form extends Component {
         <View style={styles.inputWrapper}>
           <View style={[styles.textInputWrapper, styles.innerTextInput]}>
             <Field
-              style={BaseStyles.TextInput}
+              style={styles.TextInput}
               name="email"
               type="email"
               component={TextField}
@@ -148,7 +155,7 @@ class Form extends Component {
           </View>
           <View style={styles.textInputWrapper}>
             <Field
-              style={BaseStyles.TextInput}
+              style={styles.TextInput}
               name="password"
               type="password"
               component={TextField}
