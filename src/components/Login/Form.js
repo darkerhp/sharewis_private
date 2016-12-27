@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
-import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 import {
   Field,
@@ -11,7 +10,6 @@ import {
 } from 'redux-form';
 
 import BaseStyles from '../../baseStyles';
-import redirectTo from '../../utils/linking';
 import TextField from '../../components/TextField';
 import alertOfflineError from '../../utils/alert';
 import validateEmailLogin from '../../utils/validate';
@@ -19,7 +17,7 @@ import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
 const {
   Alert,
-  Platform,
+  Linking,
   StyleSheet,
   Text,
   View,
@@ -64,22 +62,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   buttonWrapper: {
-    flex: 5,
-    flexDirection: 'row',
+    flex: 2,
     alignItems: 'center',
     backgroundColor: '#96D243',
     justifyContent: 'center',
-    marginVertical: 10,
+    marginBottom: 15,
   },
-  buttonWrapperDisabled: {
-    flex: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: BaseStyles.disabledButtonColor,
-    justifyContent: 'center',
-    marginVertical: 10,
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    fontFamily: null, // react-native-buttonのfontFamilyをリセット
   },
-  button: BaseStyles.Button,
   textWrapper: {
     flex: 3,
   },
@@ -170,22 +163,23 @@ class Form extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyle={loginDisabled ? styles.buttonWrapperDisabled : styles.buttonWrapper}
-            style={styles.button}
+            containerStyle={[styles.buttonWrapper, loginDisabled && {
+              backgroundColor: BaseStyles.disabledButtonColor,
+            }]}
+            style={styles.buttonText}
             onPress={handleSubmit(this.handlePress)}
             disabled={loginDisabled}
           >
             { I18n.t('login') }
           </Button>
-          <Hyperlink
-            style={styles.textWrapper}
-            linkText={I18n.t('passwordForgotten')}
-            onPress={isOnline ? redirectTo : alertOfflineError}
+          <Text
+            style={styles.text}
+            onPress={() => (
+              isOnline ? Linking.openURL(PASSWORD_FORGOTTEN_URL) : alertOfflineError()
+            )}
           >
-            <Text style={styles.text}>
-              {PASSWORD_FORGOTTEN_URL}
-            </Text>
-          </Hyperlink>
+            {I18n.t('passwordForgotten')}
+          </Text>
         </View>
       </View>
     );
