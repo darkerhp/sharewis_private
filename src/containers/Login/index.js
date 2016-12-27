@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     backgroundColor: BaseStyles.onboardingBackgroundColor,
   },
   contentText: {
-    flex: 1,
     color: '#222',
     fontSize: 10.5,
     marginTop: 30,
