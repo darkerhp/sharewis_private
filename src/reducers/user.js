@@ -25,6 +25,7 @@ const fetching = (state, action) => ({
 export const userReducer = handleActions({
   FETCH_FB_EMAIL_FAILURE: failure,
   FETCH_ACT_LOGIN_FAILURE: failure,
+  FETCH_ACT_SIGNUP_FAILURE: failure,
   FETCH_FB_EMAIL_SUCCESS: fetching,
   START_ACT_FACEBOOK_LOGIN: fetching,
   START_ACT_EMAIL_LOGIN: fetching,
