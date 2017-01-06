@@ -162,7 +162,7 @@ class VideoLecture extends Component {
       currentLecture,
       isFullScreen,
       lectureContentStyleId,
-      speed
+      speed,
     } = this.props;
 
     const videoControlsProps = {
