@@ -45,17 +45,12 @@ class VideoLecture extends Component {
   static propTypes = {
     // values
     currentLecture: PropTypes.instanceOf(Lecture).isRequired,
-    currentTime: PropTypes.number.isRequired,
     isFullScreen: PropTypes.bool.isRequired,
-    isPaused: PropTypes.bool.isRequired,
-    isStarted: PropTypes.bool.isRequired,
     lectureContentStyleId: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
     // actions
     changeVideoPlaySpeed: PropTypes.func.isRequired,
     toggleFullScreen: PropTypes.func.isRequired,
-    togglePlay: PropTypes.func.isRequired,
-    updateVideoProgress: PropTypes.func.isRequired,
   };
 
   static toFullScreen() {
@@ -73,6 +68,9 @@ class VideoLecture extends Component {
   state = {
     seeking: false,
     isLoadingThumbnail: true,
+    currentTime: 0,
+    isPaused: true,
+    isStarted: false,
   };
 
   @autobind
@@ -91,10 +89,8 @@ class VideoLecture extends Component {
   // 250ms毎に呼び出される
   @autobind
   handleVideoProgress(data) {
-    const { currentTime, updateVideoProgress } = this.props;
-    if (currentTime === data.currentTime) return;
-    // TODO パフォーマンスに問題があるため、actionの呼び出し回数を減らしたほうが良さそう
-    updateVideoProgress(data.currentTime);
+    if (this.state.currentTime === data.currentTime) return;
+    this.setState({ currentTime: data.currentTime });
   }
 
   @autobind
@@ -108,11 +104,15 @@ class VideoLecture extends Component {
     toggleFullScreen();
   }
 
+  @autobind
+  handlePressPlay() {
+    this.setState({ isPaused: !this.state.isPaused, isStarted: true });
+  }
 
   @autobind
   renderVideo() {
-    const { currentLecture, isStarted, isPaused, speed } = this.props;
-    if (!isStarted) {
+    const { currentLecture, speed } = this.props;
+    if (!this.state.isStarted) {
       return (
         <Image
           style={styles.backgroundVideo}
@@ -132,7 +132,7 @@ class VideoLecture extends Component {
         onEnd={this.handlePressNextLecture}
         onError={e => console.error(e)}
         onProgress={this.handleVideoProgress}
-        paused={this.state.seeking || isPaused}
+        paused={this.state.seeking || this.state.isPaused}
         playInBackground={false}
         playWhenInactive={false}
         rate={speed}
@@ -158,24 +158,21 @@ class VideoLecture extends Component {
 
   render() {
     const {
-      currentTime,
+      changeVideoPlaySpeed,
       currentLecture,
       isFullScreen,
-      isPaused,
       lectureContentStyleId,
-      speed,
-      changeVideoPlaySpeed,
-      togglePlay,
+      speed
     } = this.props;
 
     const videoControlsProps = {
-      currentTime,
+      currentTime: this.state.currentTime,
       estimatedTime: currentLecture.estimatedTime,
       isFullScreen,
       isLoadingThumbnail: this.state.isLoadingThumbnail,
-      isPaused,
+      isPaused: this.state.isPaused,
       onPressFullScreen: this.handlePressFullScreen,
-      onPressPlay: togglePlay,
+      onPressPlay: this.handlePressPlay,
       onPressSpeed: changeVideoPlaySpeed,
       onSlidingComplete: this.handleSlidingComplete,
       onValueChange: this.handleValueChange,
