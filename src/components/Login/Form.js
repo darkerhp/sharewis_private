@@ -74,10 +74,11 @@ const styles = StyleSheet.create({
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
   },
   textWrapper: {
-    flex: 3,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    flex: 1,
     textAlign: 'center',
     textAlignVertical: 'center',
     fontSize: 12,
@@ -179,14 +180,16 @@ class Form extends Component {
           >
             { I18n.t('login') }
           </Button>
-          <Text
-            style={styles.text}
-            onPress={() => (
+          <View style={styles.textWrapper}>
+            <Text
+              style={styles.text}
+              onPress={() => (
               isOnline ? Linking.openURL(PASSWORD_FORGOTTEN_URL) : alertOfflineError()
             )}
-          >
-            {I18n.t('passwordForgotten')}
-          </Text>
+            >
+              {I18n.t('passwordForgotten')}
+            </Text>
+          </View>
         </View>
       </View>
     );
