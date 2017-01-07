@@ -145,7 +145,7 @@ class Form extends Component {
       <View style={styles.container}>
         <View style={styles.labelWrapper}>
           <Text style={styles.label}>
-            { I18n.t('emailSignupLabel') }
+            { I18n.t('signupWithEmail') }
           </Text>
         </View>
         <View style={styles.inputWrapper}>

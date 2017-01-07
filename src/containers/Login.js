@@ -123,7 +123,7 @@ class Login extends Component {
             style={styles.signupButtonText}
             onPress={() => RouterActions.pop()}
           >
-            { I18n.t('signupText') }
+            { I18n.t('noAccountYet') }
           </Button>
         </View>
       </View>

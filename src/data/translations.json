@@ -12,7 +12,7 @@
     "emailOrUsername": "メールアドレスまたはアカウント名",
     "emailLoginLabel": "メールアドレスでログインする",
     "errorTitle": "エラー",
-    "facebookLabel": "Facebookアカウントでログイン",
+    "facebookLabel": "Facebookアカウントでログインする",
     "facebookUserDoesNotExist": "登録されていないFacebookアカウントです。ShareWis ACTのサイトからアカウントを作成してください",
     "inquiry": "お問い合わせ",
     "loading": "読み込み中",
@@ -41,11 +41,15 @@
     "totalDurationFormat": "計 h時間m分",
     "userName": "アカウント名",
     // FIXME 新規登録
-    "signup": "ユーザー登録（無料）",
-    "signupText": "ユーザー登録（無料）はこちら",
-    "alreadyHaveAccount": "すでにアカウントをお持ちの方はこちら",
-    "emailSignupLabel": "メールアドレスでユーザー登録する",
-    "signupEmailError": "ユーザー登録に失敗しました"
+    "signup": "アカウント登録",
+    "noAccountYet": "新規登録の方はこちら",
+    "alreadyHaveAnAccount": "すでにアカウントをお持ちの方はこちら",
+    "signupWithEmail": "メールアドレスで登録する",
+    "signupEmailError": "ユーザー登録に失敗しました",
+    "invalidEmail": "正しいメールアドレスを入力してください。",
+    "invalidPassword": "パスワードは半角英数またはアンダースコアで入力してください。",
+    "tooShortPassword": "パスワードは6文字以上で入力してください。",
+    "agreeTosAndPolicy" : "登録を完了すると、ACT_TOS_URL 及び ACT_PRIVACY_URL に同意することになります。"
   },
   "en": {
     "accountSettings": "Account Info",
@@ -82,13 +86,23 @@
     "progressText": "lectures completed",
     "required": "Required",
     "searchMore": "Get more courses",
-    "signupText": "If you don't have a ShareWis ACT account, please sign up from the ACT_SITE_URL.",
+    "noAccountYet": "If you don't have a ShareWis ACT account, please sign up from the ACT_SITE_URL.",
     "slide1Text": "ShareWis ACT Viewer is an app to view courses purchased on ShareWis ACT.",
     "slide2Text": "No worry about mobile roaming costs. Download your videos in advance via WiFi, and watch them offline whenever you want!",
     "slide3Text": "If you don't have a ShareWis ACT account or haven't purchased any courses yet, please go to the ACT_SITE_URL.",
     "tos": "Terms of use",
     "totalDurationFormat": "[Total ]h[ hours ]m[ minutes]",
-    "userName": "Account Name"
+    "userName": "Account Name",
+    // FIXME 新規登録
+    "signup": "Sign up",
+    "noAccountYet": "No account yet?",
+    "alreadyHaveAnAccount": "Already have an account?",
+    "signupWithEmail": "Signup by e-mail",
+    "signupEmailError": "",
+    "invalidEmail": "Invalid value for the e-mail.",
+    "invalidPassword": "You can use alphabets or numbers for password.",
+    "tooShortPassword": "",
+    "agreeTosAndPolicy" : "By completing this sign up process, you agree to our ACT_TOS_URL and ACT_PRIVACY_URL."
   },
   "vi": {
     "accountSettings": "Thông tin tài khoản",
@@ -125,12 +139,22 @@
     "progressText": "bài giảng hoàn thành",
     "required": "Cần thiết",
     "searchMore": "Tìm kiếm nhiều",
-    "signupText": "Nếu bạn không có một tài khoản ShareWis ACT, xin vui lòng đăng ký từ ACT_SITE_URL.",
+    "noAccountYet": "Nếu bạn không có một tài khoản ShareWis ACT, xin vui lòng đăng ký từ ACT_SITE_URL.",
     "slide1Text": "ShareWis ACT Viewer là một ứng dụng để xem các khóa học mua trên ShareWis ACT.",
     "slide2Text": "Không cần lo lắng về chi phí chuyển vùng di động. Tải video của bạn trước qua WiFi, và xem chúng offline bất cứ khi nào bạn muốn!",
     "slide3Text": "Nếu bạn không có tài khoản ShareWis ACT hoặc chưa mua bất kỳ khóa học nào, vui lòng vào ACT_SITE_URL.",
     "tos": "Điều khoản sử dụng",
     "totalDurationFormat": "[Tổng cộng ]h[ giờ ]m[ phút]",
-    "userName": "Tên tài khoản"
+    "userName": "Tên tài khoản",
+    // FIXME 新規登録
+    "signup": "Đăng ký tài khoản",
+    "noAccountYet": "Đăng ký mới",
+    "alreadyHaveAnAccount": "Đã có tài khoản",
+    "signupWithEmail": "Đăng ký bằng địa chỉ email",
+    "signupEmailError": "",
+    "invalidEmail": "",
+    "invalidPassword": "",
+    "tooShortPassword": "",
+    "agreeTosAndPolicy" : "Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ACT_TOS_URL và ACT_PRIVACY_URL."
   }
 }
