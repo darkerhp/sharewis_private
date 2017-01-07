@@ -10,9 +10,9 @@ import {
 } from 'redux-form';
 import validator from 'validator';
 
+import alertOfflineError from '../../utils/alert';
 import BaseStyles from '../../baseStyles';
 import TextField from '../../components/TextField';
-import alertOfflineError from '../../utils/alert';
 import validateEmailLogin from '../../utils/validate';
 
 const {
@@ -108,7 +108,7 @@ class Form extends Component {
       return;
     }
 
-    // validation
+    // validation TODO util化
     let errorMessage = null;
     if (!validator.isEmail(email)) {
       errorMessage = I18n.t('invalidEmail');
