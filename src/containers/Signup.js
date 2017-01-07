@@ -81,7 +81,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-class Login extends Component {
+class Signup extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
@@ -135,4 +135,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;
