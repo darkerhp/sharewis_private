@@ -108,16 +108,7 @@ class Form extends Component {
       return;
     }
 
-    // validation TODO util化
-    let errorMessage = null;
-    if (!validator.isEmail(email)) {
-      errorMessage = I18n.t('invalidEmail');
-    } else if (password.length < 6) {
-      errorMessage = I18n.t('tooShortPassword');
-    } else if (!/^[0-9a-zA-Z_]+$/.test(password)) {
-      errorMessage = I18n.t('invalidPassword');
-    }
-
+    const errorMessage = this.validation(email, password);
     if (errorMessage) {
       Alert.alert(I18n.t('errorTitle'), errorMessage);
       return;
@@ -135,6 +126,17 @@ class Form extends Component {
     }
   }
 
+  validation(email, password) { // eslint-disable-line
+    let errorMessage = null;
+    if (!validator.isEmail(email)) {
+      errorMessage = I18n.t('invalidEmail');
+    } else if (password.length < 6) {
+      errorMessage = I18n.t('tooShortPassword');
+    } else if (!/^[0-9a-zA-Z_]+$/.test(password)) {
+      errorMessage = I18n.t('invalidPassword');
+    }
+    return errorMessage;
+  }
 
   render() {
     const { handleSubmit, loginDisabled } = this.props;
