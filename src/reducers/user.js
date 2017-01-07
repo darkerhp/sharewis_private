@@ -35,7 +35,7 @@ export const userReducer = handleActions({
     ...action.payload,
     loggedIn: true,
   }),
-  FETCH_ACT_SGINUP_SUCCESS: (state, action) => ({
+  FETCH_ACT_SIGNUP_SUCCESS: (state, action) => ({
     ...state,
     ...action.payload,
     loggedIn: true,
