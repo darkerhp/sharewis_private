@@ -56,10 +56,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: BaseStyles.hyperlink,
   },
-  hyperLink: {
-    flex: 1,
-    marginHorizontal: 13,
-  },
   footer: {
     flex: 2,
     marginHorizontal: 13,
@@ -111,7 +107,7 @@ class Login extends Component {
           {...this.props}
         />
         <Hyperlink
-          style={styles.hyperlink}
+          style={{ flex: 1, marginHorizontal: 13 }}
           linkStyle={{ color: BaseStyles.hyperlink }}
           linkText={(url) => {
             if (url === ACT_TOS_URL) return I18n.t('tos');
