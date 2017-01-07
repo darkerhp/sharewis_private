@@ -21,12 +21,15 @@ const stopFetching = state => ({ ...state, isFetching: false });
 
 const uiReducer = handleActions({
   INIT_APP: (state, action) => ({ ...initialState }),
-  FETCH_FB_EMAIL_FAILURE: stopFetching,
   FETCH_ACT_LOGIN_FAILURE: stopFetching,
-  FETCH_FB_EMAIL_SUCCESS: startFetching,
-  START_ACT_FACEBOOK_LOGIN: startFetching,
-  START_ACT_EMAIL_LOGIN: startFetching,
   FETCH_ACT_LOGIN_SUCCESS: stopFetching,
+  FETCH_ACT_SGINUP_FAILURE: stopFetching,
+  FETCH_ACT_SGINUP_SUCCESS: stopFetching,
+  FETCH_FB_EMAIL_FAILURE: stopFetching,
+  FETCH_FB_EMAIL_SUCCESS: startFetching,
+  START_ACT_EMAIL_LOGIN: startFetching,
+  START_ACT_EMAIL_SGINUP: startFetching,
+  START_ACT_FACEBOOK_LOGIN: startFetching,
   FETCH_COURSES_LIST_START: startFetching,
   FETCH_COURSES_LIST_FAILURE: (state, action) => ({
     ...state,
