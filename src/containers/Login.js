@@ -1,8 +1,9 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
+
+import Button from 'react-native-button';
 import Hr from 'react-native-hr';
-import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 import { bindActionCreators } from 'redux';
@@ -12,26 +13,49 @@ import { formValueSelector } from 'redux-form';
 
 import * as Actions from '../actions/login';
 import BaseStyles from '../baseStyles';
-import Email from '../components/Login/Form';
+import Form from '../components/Login/Form';
 import Facebook from '../components/Login/Facebook';
 import alertOfflineError from '../utils/alert';
-import redirectTo from '../utils/linking';
+import { PASSWORD_FORGOTTEN_URL } from '../constants/Api';
 
-const { StyleSheet, Text, View } = ReactNative;
+const { Linking, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
-  login: {
+  container: {
     flex: 1,
     paddingVertical: 70,
     backgroundColor: BaseStyles.onboardingBackgroundColor,
   },
-  contentText: {
-    color: '#222',
-    fontSize: 10.5,
-    marginTop: 30,
+  passwordForgottenTextWrapper: {
+    flex: 1,
+  },
+  passwordForgottenText: {
+    color: BaseStyles.hyperlink,
+    fontSize: 12,
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  signupButtonWrapper: {
+    height: 47,
+    borderRadius: 3,
+    marginTop: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  signupButtonText: {
+    fontSize: 16,
+    color: BaseStyles.textColor,
+    fontFamily: null, // react-native-buttonのfontFamilyをリセット
+    fontWeight: 'normal',
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 12,
+    color: BaseStyles.hyperlink,
   },
   footer: {
-    flex: 1,
+    flex: 2,
     marginHorizontal: 13,
     paddingVertical: 13,
   },
@@ -75,24 +99,32 @@ class Login extends Component {
     }
 
     return (
-      <View style={styles.login}>
-        <Email
+      <View style={styles.container}>
+        <Form
           {...this.props}
         />
+        <View style={styles.passwordForgottenTextWrapper}>
+          <Text
+            style={styles.passwordForgottenText}
+            onPress={() => (
+              isOnline ? Linking.openURL(PASSWORD_FORGOTTEN_URL) : alertOfflineError()
+            )}
+          >
+            {I18n.t('passwordForgotten')}
+          </Text>
+        </View>
         <Facebook
           {...this.props}
         />
         <View style={styles.footer}>
           <Hr lineColor={'#dadada'} />
-          <Hyperlink
-            linkStyle={{ color: BaseStyles.hyperlink }}
-            linkText={I18n.t('actWebsite')}
-            onPress={isOnline ? redirectTo : alertOfflineError}
+          <Button
+            containerStyle={styles.signupButtonWrapper}
+            style={styles.signupButtonText}
+            onPress={() => RouterActions.pop()}
           >
-            <Text style={styles.contentText}>
-              {I18n.t('signupText')}
-            </Text>
-          </Hyperlink>
+            { I18n.t('signupText') }
+          </Button>
         </View>
       </View>
     );

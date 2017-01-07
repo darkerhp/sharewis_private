@@ -9,38 +9,34 @@ import {
   SubmissionError,
 } from 'redux-form';
 
+import alertOfflineError from '../../utils/alert';
 import BaseStyles from '../../baseStyles';
 import TextField from '../../components/TextField';
-import alertOfflineError from '../../utils/alert';
 import validateEmailLogin from '../../utils/validate';
-import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
 const {
   Alert,
-  Linking,
   StyleSheet,
   Text,
   View,
 } = ReactNative;
 
 const styles = StyleSheet.create({
-  view: {
-    flex: 2,
+  container: {
+    flex: 3,
+    marginTop: 30,
   },
   labelWrapper: {
-    flex: 1,
     alignItems: 'flex-end',
     flexDirection: 'row',
     marginHorizontal: 13,
     marginBottom: 5,
   },
   label: {
-    flex: 1,
-    color: '#666',
+    color: BaseStyles.textColor,
     fontSize: 12,
   },
   inputWrapper: {
-    flex: 2,
     backgroundColor: 'white',
     paddingLeft: 13,
     paddingBottom: 1,
@@ -49,7 +45,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   textInputWrapper: {
-    flex: 1,
+    height: 47,
   },
   buttonTextWrapper: {
     flex: 2,
@@ -57,14 +53,14 @@ const styles = StyleSheet.create({
     marginTop: 13,
   },
   innerTextInput: {
-    flex: 1,
     borderColor: '#dadada',
     borderBottomWidth: 1,
   },
   buttonWrapper: {
-    flex: 2,
+    height: 47,
+    borderRadius: 3,
     alignItems: 'center',
-    backgroundColor: '#96D243',
+    backgroundColor: '#7be161',
     justifyContent: 'center',
     marginBottom: 15,
   },
@@ -74,21 +70,13 @@ const styles = StyleSheet.create({
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
   },
   textWrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    fontSize: 12,
-    color: BaseStyles.hyperlink,
+    flex: 3,
   },
   TextInput: {
     flex: 1,
     padding: 4,
     fontSize: 13,
-    color: '#222',
+    color: BaseStyles.textColor,
     backgroundColor: 'white',
   },
 });
@@ -133,7 +121,7 @@ class Form extends Component {
     const { handleSubmit, isOnline, loginDisabled } = this.props;
 
     return (
-      <View style={styles.view}>
+      <View style={styles.container}>
         <View style={styles.labelWrapper}>
           <Text style={styles.label}>
             { I18n.t('emailLoginLabel') }
@@ -180,16 +168,6 @@ class Form extends Component {
           >
             { I18n.t('login') }
           </Button>
-          <View style={styles.textWrapper}>
-            <Text
-              style={styles.text}
-              onPress={() => (
-              isOnline ? Linking.openURL(PASSWORD_FORGOTTEN_URL) : alertOfflineError()
-            )}
-            >
-              {I18n.t('passwordForgotten')}
-            </Text>
-          </View>
         </View>
       </View>
     );

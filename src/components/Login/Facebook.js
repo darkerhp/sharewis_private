@@ -14,18 +14,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 13,
   },
   labelWrapper: {
-    flex: 1,
     alignItems: 'flex-end',
     flexDirection: 'row',
   },
   label: {
-    flex: 1,
     alignSelf: 'flex-end',
     color: '#666',
     fontSize: 12,
   },
   buttonWrapper: {
-    flex: 1,
     alignItems: 'stretch',
   },
   button: {
