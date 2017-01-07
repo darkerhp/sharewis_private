@@ -10,7 +10,7 @@ const Variables = {
   backgroundColor: '#579eff',
   onboardingBackgroundColor: '#ecf1f3',
   borderColor: '#ddd',
-  textColor: '#525252',
+  textColor: '#4a4a4a',
   navbarHeight: Platform.select({
     ios: 65,
     android: 55,
