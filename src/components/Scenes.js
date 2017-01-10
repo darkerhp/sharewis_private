@@ -104,7 +104,7 @@ const getScenes = () =>
           }}
           component={Account}
           leftButtonImage={closeWhiteImage}
-          onLeft={Actions.pop}
+          onLeft={() => Actions.pop()}
           title={I18n.t('accountSettings')}
         />
       </Scene>
