@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import validateEmailLogin from '../validate';
-import setupI18n from '../translations';
+import setupI18n from '../../config/locales';
 
 setupI18n();
 
