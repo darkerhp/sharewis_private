@@ -40,7 +40,7 @@
     "tos": "利用規約",
     "totalDurationFormat": "計 h時間m分",
     "userName": "アカウント名",
-    // FIXME 新規登録
+    // 新規登録
     "signup": "アカウント登録",
     "noAccountYet": "新規登録の方はこちら",
     "alreadyHaveAnAccount": "すでにアカウントをお持ちの方はこちら",
@@ -93,15 +93,15 @@
     "tos": "Terms of use",
     "totalDurationFormat": "[Total ]h[ hours ]m[ minutes]",
     "userName": "Account Name",
-    // FIXME 新規登録
+    // 新規登録
     "signup": "Sign up",
     "noAccountYet": "No account yet?",
     "alreadyHaveAnAccount": "Already have an account?",
     "signupWithEmail": "Signup by e-mail",
-    "signupEmailError": "",
+    "signupEmailError": "**要翻訳**", // TODO 翻訳
     "invalidEmail": "Invalid value for the e-mail.",
     "invalidPassword": "You can use alphabets or numbers for password.",
-    "tooShortPassword": "",
+    "tooShortPassword": "**要翻訳**", // TODO 翻訳
     "agreeTosAndPolicy" : "By completing this sign up process, you agree to our ACT_TOS_URL and ACT_PRIVACY_URL."
   },
   "vi": {
@@ -146,15 +146,15 @@
     "tos": "Điều khoản sử dụng",
     "totalDurationFormat": "[Tổng cộng ]h[ giờ ]m[ phút]",
     "userName": "Tên tài khoản",
-    // FIXME 新規登録
+    // 新規登録
     "signup": "Đăng ký tài khoản",
     "noAccountYet": "Đăng ký mới",
     "alreadyHaveAnAccount": "Đã có tài khoản",
     "signupWithEmail": "Đăng ký bằng địa chỉ email",
-    "signupEmailError": "",
-    "invalidEmail": "",
-    "invalidPassword": "",
-    "tooShortPassword": "",
+    "signupEmailError": "**要翻訳**", // TODO 翻訳
+    "invalidEmail": "**要翻訳**", // TODO 翻訳
+    "invalidPassword": "**要翻訳**", // TODO 翻訳
+    "tooShortPassword": "**要翻訳**", // TODO 翻訳
     "agreeTosAndPolicy" : "Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ACT_TOS_URL và ACT_PRIVACY_URL."
   }
 }
