@@ -8,8 +8,8 @@ import I18n from 'react-native-i18n';
 import Orientation from 'react-native-orientation';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
-import setupI18n from '../utils/translations';
-import PURGE_STORAGE from '../constants/Debug';
+import setupI18n from '../config/locales';
+import PURGE_STORAGE from '../config';
 import configureStore from '../store';
 import App from './App';
 
