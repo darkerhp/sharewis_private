@@ -16,7 +16,7 @@ import BaseStyles from '../baseStyles';
 import Form from '../components/Login/Form';
 import Facebook from '../components/Login/Facebook';
 import alertOfflineError from '../utils/alert';
-import { PASSWORD_FORGOTTEN_URL } from '../constants/Api';
+import { ACT_PASSWORD_REMINDER_URL } from '../constants/Api';
 
 const { Linking, StyleSheet, Text, View } = ReactNative;
 
@@ -107,7 +107,7 @@ class Login extends Component {
           <Text
             style={styles.passwordForgottenText}
             onPress={() => (
-              isOnline ? Linking.openURL(PASSWORD_FORGOTTEN_URL) : alertOfflineError()
+              isOnline ? Linking.openURL(ACT_PASSWORD_REMINDER_URL) : alertOfflineError()
             )}
           >
             {I18n.t('passwordForgotten')}
