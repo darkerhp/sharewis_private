@@ -11,6 +11,7 @@ import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
 import Lecture from '../containers/Lecture';
 import Account from '../containers/Account';
+import Login from '../containers/Login';
 
 const { Platform } = ReactNative;
 
@@ -55,6 +56,11 @@ const getScenes = () =>
             key="onboarding"
             component={Onboarding}
             initial
+          />
+          <Scene
+            key="login"
+            component={Login}
+            hideNavBar
           />
           <Scene
             key="courseList"
@@ -104,6 +110,5 @@ const getScenes = () =>
       </Scene>
     </Scene>
   </Scene>;
-
 
 export default getScenes;

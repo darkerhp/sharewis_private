@@ -1,12 +1,13 @@
 /**
  * @flow
+ * これmiddlewareじゃない
  */
 /* global fetch */
 import { ACCOUNT_API_URL } from '../constants/Api';
 import { checkStatus, checkResult } from '../utils/api';
 
 
-const getUserData = async (credentials) => {
+export const getUserData = async (credentials: Array<string>) => {
   // Run query
   const result = await fetch(`${ACCOUNT_API_URL}/users/me`, {
     headers: {
@@ -33,5 +34,36 @@ const getUserData = async (credentials) => {
   };
 };
 
+export const signupByEmail = async (credentials: Array<string>) => {
+  console.log('start signup', credentials);
 
-export default getUserData;
+  const body = { email: credentials[0], password: credentials[1] };
+  console.log('body: ', body);
+
+  const result = await fetch(`${ACCOUNT_API_URL}/users/signup`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  // Verify results
+  await checkStatus(result);
+  await setTimeout(() => null, 200);
+  const json = await result.json();
+
+  console.log('signup done:', json);
+
+  await checkResult(json, user => user.username);
+
+  // Parse and return results
+  return {
+    userId: json.id,
+    userName: json.username,
+    nickName: json.nickname,
+    email: json.email,
+    isPremium: json.is_premium,
+  };
+};

@@ -31,11 +31,16 @@ const {
 
 const styles = StyleSheet.create({
   courseList: {
-    ...BaseStyles.ContainerWithNavbar,
+    flex: 1,
+    paddingTop: BaseStyles.navbarHeight,
+    paddingBottom: BaseStyles.navbarHeight,
     margin: 13,
   },
   contentText: {
-    ...BaseStyles.Text,
+    textAlign: 'center',
+    lineHeight: 22,
+    fontSize: 17,
+    color: '#222',
     textAlignVertical: 'center',
   },
   container: {

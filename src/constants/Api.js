@@ -22,7 +22,7 @@ export const ACT_SITE_URL = `https://${ACT_API_HOST}`;
 export const ACT_INQUIRIES_URL = `${ACT_SITE_URL}/inquiries/new`;
 export const ACT_TOS_URL = `${ACT_SITE_URL}/tos`;
 export const ACT_PRIVACY_URL = `${ACT_SITE_URL}/privacy`;
-export const PASSWORD_FORGOTTEN_URL = `${ACT_SITE_URL}/users/password/new`;
+export const ACT_PASSWORD_REMINDER_URL = `${ACT_SITE_URL}/users/password/new`;
 
 // Set 1h of caching (in ms)
 export const ACT_API_CACHE = 60 * 60 * 1000;

@@ -2,60 +2,51 @@ import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
-import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import {
-  formValueSelector,
   Field,
   reduxForm,
   SubmissionError,
 } from 'redux-form';
+import validator from 'validator';
 
-import * as Actions from '../../actions/login';
-import BaseStyles from '../../baseStyles';
-import redirectTo from '../../utils/linking';
-import TextField from '../../components/TextField';
 import alertOfflineError from '../../utils/alert';
+import BaseStyles from '../../baseStyles';
+import TextField from '../../components/TextField';
 import validateEmailLogin from '../../utils/validate';
-import { PASSWORD_FORGOTTEN_URL } from '../../constants/Api';
 
 const {
   Alert,
-  Platform,
   StyleSheet,
   Text,
   View,
 } = ReactNative;
 
 const styles = StyleSheet.create({
-  view: {
+  container: {
     flex: 2,
+    marginTop: 30,
   },
   labelWrapper: {
-    flex: 1,
     alignItems: 'flex-end',
     flexDirection: 'row',
     marginHorizontal: 13,
-    marginBottom: 4,
+    marginBottom: 5,
   },
   label: {
-    flex: 1,
-    color: '#222',
-    fontSize: 10.5,
+    color: BaseStyles.textColor,
+    fontSize: 12,
   },
   inputWrapper: {
-    flex: 2,
     backgroundColor: 'white',
     paddingLeft: 13,
+    paddingBottom: 1,
     borderColor: '#dadada',
-    borderWidth: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
   },
   textInputWrapper: {
-    flex: 1,
-    borderColor: '#dadada',
-    borderBottomWidth: 1,
+    height: 47,
   },
   buttonTextWrapper: {
     flex: 2,
@@ -63,40 +54,31 @@ const styles = StyleSheet.create({
     marginTop: 13,
   },
   innerTextInput: {
-    flex: 1,
-    ...Platform.select({
-      ios: {
-        borderLeftWidth: 0,
-        borderBottomWidth: 1,
-      },
-    }),
+    borderColor: '#dadada',
+    borderBottomWidth: 1,
   },
   buttonWrapper: {
-    flex: 5,
-    flexDirection: 'row',
+    height: 47,
+    borderRadius: 3,
     alignItems: 'center',
-    backgroundColor: '#96D243',
+    backgroundColor: '#7be161',
     justifyContent: 'center',
-    marginVertical: 10,
+    marginBottom: 15,
   },
-  buttonWrapperDisabled: {
-    flex: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: BaseStyles.disabledButtonColor,
-    justifyContent: 'center',
-    marginVertical: 10,
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    fontFamily: null, // react-native-buttonのfontFamilyをリセット
   },
-  button: BaseStyles.Button,
   textWrapper: {
     flex: 3,
   },
-  text: {
+  TextInput: {
     flex: 1,
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    fontSize: 10.5,
-    color: BaseStyles.hyperlink,
+    padding: 4,
+    fontSize: 13,
+    color: BaseStyles.textColor,
+    backgroundColor: 'white',
   },
 });
 
@@ -106,30 +88,12 @@ const formOptions = {
   validate: validateEmailLogin,
 };
 
-const mapStateToProps = (state) => {
-  const { form, user, netInfo, ui, ...otherStates } = state;
-  const selector = formValueSelector('email');
-  const hasEmail = selector(state, 'email') !== undefined;
-  const hasPassword = selector(state, 'password') !== undefined;
-  return {
-    ...user,
-    ...ui,
-    isOnline: netInfo.isConnected,
-    ...otherStates,
-    loginDisabled: !(hasEmail && hasPassword),
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions }, dispatch),
-});
-
 @reduxForm(formOptions)
-@connect(mapStateToProps, mapDispatchToProps)
-class Email extends Component {
+class Form extends Component {
   static propTypes = {
-    fetchActLoginFailure: PropTypes.func.isRequired,
+    fetchActSignupFailure: PropTypes.func.isRequired,
     fetchUserBy: PropTypes.func.isRequired,
+    signupUserBy: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     isOnline: PropTypes.bool.isRequired,
     loginDisabled: PropTypes.bool.isRequired,
@@ -137,42 +101,61 @@ class Email extends Component {
 
   @autobind
   async handlePress({ email, password }) {
-    const { fetchUserBy, fetchActLoginFailure, isOnline } = this.props;
+    const { fetchUserBy, signupUserBy, fetchActSignupFailure, isOnline } = this.props;
 
     if (!isOnline) {
       alertOfflineError();
       return;
     }
 
+    const errorMessage = this.validation(email, password);
+    if (errorMessage) {
+      Alert.alert(I18n.t('errorTitle'), errorMessage);
+      return;
+    }
+
     try {
+      await signupUserBy('email', [email, password]);
       await fetchUserBy('email', [email, password]);
     } catch (error) {
-      fetchActLoginFailure();
-      Alert.alert(I18n.t('errorTitle'), I18n.t('loginEmailError'));
+      fetchActSignupFailure();
+      Alert.alert(I18n.t('errorTitle'), I18n.t('signupEmailError'));
       throw new SubmissionError({
-        _error: I18n.t('loginEmailError'),
+        _error: I18n.t('signupEmailError'),
       });
     }
   }
 
+  validation(email, password) { // eslint-disable-line
+    let errorMessage = null;
+    if (!validator.isEmail(email)) {
+      errorMessage = I18n.t('invalidEmail');
+    } else if (password.length < 6) {
+      errorMessage = I18n.t('tooShortPassword');
+    } else if (!/^[0-9a-zA-Z_]+$/.test(password)) {
+      errorMessage = I18n.t('invalidPassword');
+    }
+    return errorMessage;
+  }
+
   render() {
-    const { handleSubmit, isOnline, loginDisabled } = this.props;
+    const { handleSubmit, loginDisabled } = this.props;
 
     return (
-      <View style={styles.view}>
+      <View style={styles.container}>
         <View style={styles.labelWrapper}>
           <Text style={styles.label}>
-            { I18n.t('emailOrUsernameLabel') }
+            { I18n.t('signupWithEmail') }
           </Text>
         </View>
         <View style={styles.inputWrapper}>
           <View style={[styles.textInputWrapper, styles.innerTextInput]}>
             <Field
-              style={BaseStyles.TextInput}
+              style={styles.TextInput}
               name="email"
               type="email"
               component={TextField}
-              placeholder={I18n.t('emailOrUsername')}
+              placeholder={I18n.t('email')}
               placeholderTextColor={'#dadada'}
               keyboardType="email-address"
               autoCapitalize={'none'}
@@ -182,7 +165,7 @@ class Email extends Component {
           </View>
           <View style={styles.textInputWrapper}>
             <Field
-              style={BaseStyles.TextInput}
+              style={styles.TextInput}
               name="password"
               type="password"
               component={TextField}
@@ -197,26 +180,19 @@ class Email extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyle={loginDisabled ? styles.buttonWrapperDisabled : styles.buttonWrapper}
-            style={styles.button}
+            containerStyle={[styles.buttonWrapper, loginDisabled && {
+              backgroundColor: BaseStyles.disabledButtonColor,
+            }]}
+            style={styles.buttonText}
             onPress={handleSubmit(this.handlePress)}
             disabled={loginDisabled}
           >
-            { I18n.t('login') }
+            { I18n.t('signup') }
           </Button>
-          <Hyperlink
-            style={styles.textWrapper}
-            linkText={I18n.t('passwordForgotten')}
-            onPress={isOnline ? redirectTo : alertOfflineError}
-          >
-            <Text style={styles.text}>
-              {PASSWORD_FORGOTTEN_URL}
-            </Text>
-          </Hyperlink>
         </View>
       </View>
     );
   }
 }
 
-export default Email;
+export default Form;

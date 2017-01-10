@@ -10,7 +10,7 @@ const Variables = {
   backgroundColor: '#579eff',
   onboardingBackgroundColor: '#ecf1f3',
   borderColor: '#ddd',
-  textColor: '#525252',
+  textColor: '#4a4a4a',
   navbarHeight: Platform.select({
     ios: 65,
     android: 55,
@@ -19,33 +19,5 @@ const Variables = {
   disabledButtonColor: '#dadada',
 };
 
-const DefaultComponents = {
-  ContainerWithNavbar: {
-    flex: 1,
-    paddingTop: Variables.navbarHeight,
-    paddingBottom: Variables.navbarHeight,
-  },
-  Text: {
-    textAlign: 'center',
-    lineHeight: 22,
-    fontSize: 17,
-    color: '#222',
-  },
-  TextInput: {
-    flex: 1,
-    padding: 4,
-    fontSize: 13,
-    color: '#222',
-    backgroundColor: 'white',
-  },
-  Button: {
-    flex: 1,
-    fontSize: 15,
-    color: 'white',
-  },
-};
+export default Variables;
 
-export default {
-  ...Variables,
-  ...DefaultComponents,
-};

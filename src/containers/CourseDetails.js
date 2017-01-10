@@ -204,7 +204,13 @@ class CourseDetails extends Component {
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
       >
-        <View style={BaseStyles.ContainerWithNavbar}>
+        <View
+          style={{
+            flex: 1,
+            paddingTop: BaseStyles.navbarHeight,
+            paddingBottom: BaseStyles.navbarHeight,
+          }}
+        >
           <StatusBar barStyle="light-content" />
           <CourseInfoSection
             {...courseInfo}

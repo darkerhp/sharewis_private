@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import I18n from 'react-native-i18n';
-import setupI18n from '../translations';
+import setupI18n from '../locales';
 
 
 describe('Course Utils', () => {
