@@ -24,7 +24,7 @@ const {
 const styles = StyleSheet.create({
   container: {
     flex: 3,
-    marginTop: 30,
+    marginTop: 10,
   },
   labelWrapper: {
     alignItems: 'flex-end',
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   inputWrapper: {
     backgroundColor: 'white',
     paddingLeft: 13,
-    paddingBottom: 1,
     borderColor: '#dadada',
     borderTopWidth: 1,
     borderBottomWidth: 1,
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   TextInput: {
-    flex: 1,
+    height: 45,
     padding: 4,
     fontSize: 13,
     color: BaseStyles.textColor,

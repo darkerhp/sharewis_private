@@ -18,7 +18,7 @@ import Facebook from '../components/Login/Facebook';
 import alertOfflineError from '../utils/alert';
 import { ACT_PASSWORD_REMINDER_URL } from '../constants/Api';
 
-const { Linking, StyleSheet, Text, View } = ReactNative;
+const { Linking, StatusBar, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     color: BaseStyles.hyperlink,
   },
   footer: {
-    flex: 2,
+    flex: 1.5,
     marginHorizontal: 13,
     paddingVertical: 13,
   },
@@ -100,6 +100,7 @@ class Login extends Component {
 
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="dark-content" />
         <Form
           {...this.props}
         />
