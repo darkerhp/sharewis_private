@@ -10,7 +10,7 @@ import CourseList from '../containers/CourseList';
 // デザイン妥協できない場合、CustomでScrollableTabBarを実装する必要がありそう。
 const renderScrollableTabBar = () =>
   <DefaultTabBar
-    underlineStyle={{ backgroundColor: '#ffff77', height: 2 }}
+    underlineStyle={{ backgroundColor: '#ffff77', height: 3 }}
     activeTextColor="#ffffff"
     inactiveTextColor="#ffffff"
     backgroundColor={BaseStyles.navBarBackgroundColor}
@@ -33,7 +33,7 @@ const ScrollableTabs = ({ initialPage }) => {
 };
 
 ScrollableTabs.propTypes = {
-  initialPage: PropTypes.number.isRequired,
+  initialPage: PropTypes.number,
 };
 
 export default ScrollableTabs;
