@@ -92,19 +92,19 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     // Redirect to Course List page if user is logged in
     if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
-      RouterActions.courseList();
+      RouterActions.top();
     }
   }
 
   render() {
     const { isFetching, isOnline } = this.props;
+    StatusBar.setBarStyle('dark-content');
     if (isFetching) {
       return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
     }
 
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
         <Form
           {...this.props}
         />
