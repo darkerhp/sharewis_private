@@ -14,7 +14,7 @@ import Account from '../containers/Account';
 import Login from '../containers/Login';
 import ScrollableTabs from './ScrollableTabs';
 
-const { Platform } = ReactNative;
+const { Image, Platform, StyleSheet, View } = ReactNative;
 
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
 const menuWhiteImage = require('./images/ic_menu_white.png');
@@ -47,6 +47,29 @@ const baseNavBarProps = {
   },
 };
 
+const styles = StyleSheet.create({
+  logoTitleImageWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoTitleImage: {
+    width: 70,
+    marginTop: 75,
+  },
+});
+
+const logoImageSrc = require('./images/logo.png');
+
+const logoTitle = () =>
+  <View style={styles.logoTitleImageWrapper}>
+    <Image
+      source={logoImageSrc}
+      resizeMode={'contain'}
+      style={styles.logoTitleImage}
+    />
+  </View>;
+
 
 const getScenes = () =>
   <Scene key="modal" component={Modal}>
@@ -71,6 +94,7 @@ const getScenes = () =>
             hideNavBar={false}
             onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
             leftButtonImage={menuWhiteImage}
+            renderTitle={logoTitle}
           />
           <Scene
             key="courseList"
