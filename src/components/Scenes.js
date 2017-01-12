@@ -12,6 +12,7 @@ import Onboarding from '../containers/Onboarding';
 import Lecture from '../containers/Lecture';
 import Account from '../containers/Account';
 import Login from '../containers/Login';
+import ScrollableTabs from './ScrollableTabs';
 
 const { Platform } = ReactNative;
 
@@ -61,6 +62,15 @@ const getScenes = () =>
             key="login"
             component={Login}
             hideNavBar
+          />
+          <Scene
+            key="top"
+            {...baseNavBarProps}
+            component={ScrollableTabs}
+            type={ActionConst.RESET}
+            hideNavBar={false}
+            onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
+            leftButtonImage={menuWhiteImage}
           />
           <Scene
             key="courseList"
