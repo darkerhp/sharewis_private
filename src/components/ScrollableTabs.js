@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { StatusBar, Text } from 'react-native';
 
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
@@ -16,13 +16,13 @@ const renderScrollableTabBar = () =>
     backgroundColor={BaseStyles.navBarBackgroundColor}
   />;
 
-const ScrollableTabs = () => {
+const ScrollableTabs = ({ initialPage }) => {
   StatusBar.setBarStyle('light-content');
 
   return (
     <ScrollableTabView
       style={{ marginTop: BaseStyles.navbarHeight - 1 }}
-      initialPage={1} // 0が開始位置
+      initialPage={initialPage !== undefined ? initialPage : 1} // 0が開始位置
       renderTabBar={() => renderScrollableTabBar()}
     >
       <CourseList tabLabel="マイコース" />
@@ -30,6 +30,10 @@ const ScrollableTabs = () => {
       <Text tabLabel="スナックコース">スナックコース</Text>
     </ScrollableTabView>
   );
+};
+
+ScrollableTabs.propTypes = {
+  initialPage: PropTypes.number.isRequired,
 };
 
 export default ScrollableTabs;

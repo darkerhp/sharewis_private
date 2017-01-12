@@ -114,7 +114,7 @@ const getScenes = () =>
             hideNavBar={false}
             backTitle={I18n.t('courseList')}
             // onRight={() => console.log('onRight')}
-            onBack={() => Actions.courseList()}
+            onBack={() => Actions.top({ initialPage: 0 })}
             backButtonImage={backButtonWhiteImage}
             // rightButtonImage={moreHorizWhiteImage}
           />
@@ -124,6 +124,7 @@ const getScenes = () =>
             backTitle={I18n.t('back')}
             component={Lecture}
             hideNavBar={false}
+            onBack={() => Actions.pop()}
             backButtonImage={backButtonWhiteImage}
           />
         </Scene>
