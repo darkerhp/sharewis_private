@@ -88,10 +88,10 @@ android {
 
     defaultConfig {
         applicationId "com.sharewis.ShareWisAct"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 22
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
