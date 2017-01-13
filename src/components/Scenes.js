@@ -12,8 +12,9 @@ import Onboarding from '../containers/Onboarding';
 import Lecture from '../containers/Lecture';
 import Account from '../containers/Account';
 import Login from '../containers/Login';
+import ScrollableTabs from './ScrollableTabs';
 
-const { Platform } = ReactNative;
+const { Image, Platform, StyleSheet, View } = ReactNative;
 
 const moreHorizWhiteImage = require('./images/ic_more_horiz_white.png');
 const menuWhiteImage = require('./images/ic_menu_white.png');
@@ -46,6 +47,29 @@ const baseNavBarProps = {
   },
 };
 
+const styles = StyleSheet.create({
+  logoTitleImageWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoTitleImage: {
+    width: 70,
+    marginTop: 75,
+  },
+});
+
+const logoImageSrc = require('./images/logo.png');
+
+const logoTitle = () =>
+  <View style={styles.logoTitleImageWrapper}>
+    <Image
+      source={logoImageSrc}
+      resizeMode={'contain'}
+      style={styles.logoTitleImage}
+    />
+  </View>;
+
 
 const getScenes = () =>
   <Scene key="modal" component={Modal}>
@@ -61,6 +85,16 @@ const getScenes = () =>
             key="login"
             component={Login}
             hideNavBar
+          />
+          <Scene
+            key="top"
+            {...baseNavBarProps}
+            component={ScrollableTabs}
+            type={ActionConst.RESET}
+            hideNavBar={false}
+            onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
+            leftButtonImage={menuWhiteImage}
+            renderTitle={logoTitle}
           />
           <Scene
             key="courseList"
@@ -80,7 +114,7 @@ const getScenes = () =>
             hideNavBar={false}
             backTitle={I18n.t('courseList')}
             // onRight={() => console.log('onRight')}
-            onBack={() => Actions.courseList()}
+            onBack={() => Actions.top({ initialPage: 0 })}
             backButtonImage={backButtonWhiteImage}
             // rightButtonImage={moreHorizWhiteImage}
           />
@@ -90,6 +124,7 @@ const getScenes = () =>
             backTitle={I18n.t('back')}
             component={Lecture}
             hideNavBar={false}
+            onBack={() => Actions.pop()}
             backButtonImage={backButtonWhiteImage}
           />
         </Scene>
@@ -104,7 +139,7 @@ const getScenes = () =>
           }}
           component={Account}
           leftButtonImage={closeWhiteImage}
-          onLeft={Actions.pop}
+          onLeft={() => Actions.pop()}
           title={I18n.t('accountSettings')}
         />
       </Scene>

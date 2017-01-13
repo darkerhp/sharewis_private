@@ -59,7 +59,7 @@ class Onboarding extends Component {
   componentWillMount() {
     const { user } = this.props;
     if (user.loggedIn) {
-      RouterActions.courseList();
+      RouterActions.top();
     }
   }
 

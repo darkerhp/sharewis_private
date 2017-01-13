@@ -15,7 +15,7 @@ const Variables = {
     ios: 65,
     android: 55,
   }),
-  navBarBackgroundColor: '#1288d8',
+  navBarBackgroundColor: '#149dbf',
   disabledButtonColor: '#dadada',
 };
 
