@@ -86,7 +86,7 @@ const lecturesReducer = handleActions({
     if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities')) return state;
     const lectures = action.payload.entities.lectures;
     if (!lectures) return state;
-    return mergeEntities(initialState, fromJS(normalize(lectures)));
+    return mergeEntities(initialState, fromJS(lectures));
   },
 }, initialState);
 
