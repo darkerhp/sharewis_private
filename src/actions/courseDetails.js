@@ -1,5 +1,7 @@
 import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
+import _ from 'lodash';
+
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
 import Lecture from '../models/Lecture';
@@ -24,6 +26,20 @@ export const finishDeleteVideo = createAction(types.FINISH_DELETE_VIDEO);
 export const updateVideoInDeviceStatus = createAction(types.UPDATE_VIDEO_IN_DEVICE_STATUS);
 
 // Thunks
+const normalizeLectures = response =>
+  normalize(
+    response.lectures.filter(l => l.kind === Lecture.KIND_LECTURE).map(lecture =>
+      _.mapKeys(lecture, (value, key) => _.camelCase(key)),
+    ), schema.arrayOfLectures,
+  );
+
+const normalizeSections = response =>
+  normalize(
+    response.lectures.filter(l => l.kind === Lecture.KIND_SECTION).map(section =>
+      _.mapKeys(section, (value, key) => _.camelCase(key)),
+    ), schema.arrayOfSections,
+  );
+
 export const fetchCourseDetails = courseId =>
   async (dispatch, getState) => {
     try {
@@ -36,15 +52,10 @@ export const fetchCourseDetails = courseId =>
         || fetchedCourseDetailsAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
         const response = await getCourseDetails(userId, courseId);
-        dispatch(fetchCourseDetailsSuccess({
-          // TODO もうちょいいい感じにできるはず
-          lectures: normalize(
-            response.lectures.filter(l => l.kind === Lecture.KIND_LECTURE),
-            schema.arrayOfLectures),
-          sections: normalize(
-            response.lectures.filter(l => l.kind === Lecture.KIND_SECTION),
-            schema.arrayOfSections),
-        }));
+        dispatch(fetchCourseDetailsSuccess(_.merge(
+          normalizeLectures(response),
+          normalizeSections(response),
+        )));
       }
     } catch (error) {
       console.error(error);

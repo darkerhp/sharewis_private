@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { fromJS } from 'immutable';
-import normalize from 'normalize-object';
 import { handleActions } from 'redux-actions';
 import { REHYDRATE } from 'redux-persist/constants';
 
@@ -16,7 +15,7 @@ const coursesReducer = handleActions({
   FETCH_COURSES_LIST_SUCCESS: (state, action) => {
     const courses = action.payload.entities.courses;
     if (!courses) return state;
-    return mergeEntities(state, fromJS(normalize(courses)));
+    return mergeEntities(state, fromJS(courses));
   },
   UPDATE_COURSE_DOWNLOADED_STATUS: (state, action) => {
     if (_.isEmpty(state)) return state;
@@ -29,7 +28,7 @@ const coursesReducer = handleActions({
     if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities')) return state;
     const courses = action.payload.entities.courses;
     if (!courses) return state;
-    return mergeEntities(initialState, fromJS(normalize(courses)));
+    return mergeEntities(initialState, fromJS(courses));
   },
 }, initialState);
 

@@ -16,6 +16,13 @@ export const setCurrentCourseId = createAction(types.SET_CURRENT_COURSE_ID);
 export const updateCourseDownloadedStatus = createAction(types.UPDATE_COURSE_DOWNLOADED_STATUS);
 
 // Thunks
+const normalizeCourses = response =>
+  normalize(
+    response.map(course =>
+      _.mapKeys(course, (value, key) => _.camelCase(key)),
+    ), schema.arrayOfCourses,
+  );
+
 export const fetchCourseList = () =>
   async (dispatch, getState) => {
     try {
@@ -29,7 +36,7 @@ export const fetchCourseList = () =>
         || fetchedCourseListAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseListStart());
         const response = await getUserCourses(userId);
-        dispatch(fetchCourseListSuccess(normalize(response, schema.arrayOfCourses)));
+        dispatch(fetchCourseListSuccess(normalizeCourses(response)));
       }
     } catch (error) {
       dispatch(fetchCourseListFailure());

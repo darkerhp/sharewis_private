@@ -12,7 +12,7 @@ export const getSectionMergedLectureList = createSelector(
   lecturesSelector,
   (sections, lectures) => {
     if (!lectures) return {};
-    return sections.toList().merge(lectures.toList()).sortBy(l => l.order);
+    return sections.toList().concat(lectures.toList()).sortBy(l => l.order);
   },
 );
 
