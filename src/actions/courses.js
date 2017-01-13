@@ -3,7 +3,6 @@ import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 
 import * as types from '../constants/ActionTypes';
-import { ACT_API_CACHE } from '../constants/Api';
 import { getUserCourses, getSnackCourses } from '../middleware/actApi';
 import * as schema from '../schema';
 import * as FileUtils from '../utils/file';
@@ -26,7 +25,7 @@ const normalizeCourses = response =>
     ), schema.arrayOfCourses,
   );
 
-export const fetchMyCourse = () =>
+export const fetchMyCourse = (force = false) =>
   async (dispatch, getState) => {
     try {
       const {
@@ -35,7 +34,7 @@ export const fetchMyCourse = () =>
         user: { userId },
       } = getState();
 
-      if (courses.getProCourses().isEmpty()) {
+      if (courses.getProCourses().isEmpty() || force) {
         dispatch(fetchMyCourseStart());
         const response = await getUserCourses(userId);
         dispatch(fetchMyCourseSuccess(normalizeCourses(response)));
