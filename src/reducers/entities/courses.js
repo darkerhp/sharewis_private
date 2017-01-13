@@ -11,6 +11,8 @@ const initialState = new CourseMap();
 const mergeEntities = (state, newCourses) =>
   state.merge(newCourses.map(course => new Course(course)));
 
+const refreshEntities = newCourses => mergeEntities(initialState, newCourses);
+
 const coursesReducer = handleActions({
   FETCH_MY_COURSE_SUCCESS: (state, action) => {
     const courses = action.payload.entities.courses;
@@ -20,7 +22,7 @@ const coursesReducer = handleActions({
   FETCH_SNACK_COURSE_SUCCESS: (state, action) => {
     const courses = action.payload.entities.courses;
     if (!courses) return state;
-    return mergeEntities(state, fromJS(courses));
+    return refreshEntities(fromJS(courses));
   },
   UPDATE_COURSE_DOWNLOADED_STATUS: (state, action) => {
     if (_.isEmpty(state)) return state;
@@ -33,7 +35,7 @@ const coursesReducer = handleActions({
     if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities')) return state;
     const courses = action.payload.entities.courses;
     if (!courses) return state;
-    return mergeEntities(initialState, fromJS(courses));
+    return refreshEntities(fromJS(courses));
   },
 }, initialState);
 
