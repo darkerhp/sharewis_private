@@ -1,7 +1,6 @@
 /**
  * @flow
  */
-import normalize from 'normalize-object';
 import _ from 'lodash';
 import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
@@ -18,9 +17,9 @@ const mergeEntities = (state, newLectures) =>
 const lecturesReducer = handleActions({
   // APIから取得したデータをstateに設定する
   FETCH_COURSE_DETAILS_SUCCESS: (state, action) => {
-    const lectures = action.payload.lectures.entities.lectures;
+    const lectures = action.payload.entities.lectures;
     if (!lectures) return state;
-    return mergeEntities(state, fromJS(normalize(lectures)));
+    return mergeEntities(state, fromJS(lectures));
   },
   UPDATE_VIDEO_IN_DEVICE_STATUS: (state, action) => {
     if (_.isEmpty(state)) return state;

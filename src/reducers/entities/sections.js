@@ -1,5 +1,4 @@
 /* @flow */
-import normalize from 'normalize-object';
 import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
 
@@ -13,9 +12,9 @@ const mergeEntities = (state, newLectures) =>
 
 const sectionsReducer = handleActions({
   FETCH_COURSE_DETAILS_SUCCESS: (state, action) => {
-    const sections = action.payload.lectures.entities.sections;
+    const sections = action.payload.entities.sections;
     if (!sections) return state;
-    return mergeEntities(state, fromJS(normalize(sections)));
+    return mergeEntities(state, fromJS(sections));
   },
 }, initialState);
 
