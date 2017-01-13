@@ -22,6 +22,7 @@ import redirectTo from '../utils/linking';
 const {
   Alert,
   Dimensions,
+  RefreshControl,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -87,10 +88,19 @@ class MyCourse extends Component {
     setCurrentCourseId: PropTypes.func.isRequired,
   };
 
+  state = {
+    isRefreshing: false,
+  };
+
   async componentWillMount() {
+    await this.refreshCourse();
+  }
+
+  @autobind
+  async refreshCourse(force = false) {
     const { fetchMyCourse, fetchCoursesDownloadStatus } = this.props;
     try {
-      await fetchMyCourse();
+      await fetchMyCourse(force);
       await fetchCoursesDownloadStatus();
     } catch (error) {
       console.error(error);
@@ -106,12 +116,19 @@ class MyCourse extends Component {
     RouterActions.courseDetails();
   }
 
+  @autobind
+  async handleRefresh() {
+    this.setState({ isRefreshing: true });
+    await this.refreshCourse(true);
+    this.setState({ isRefreshing: false });
+    RouterActions.refresh();
+  }
+
   render() {
     const { isFetching, isOnline, courses, lectures } = this.props;
-
     StatusBar.setBarStyle('light-content');
 
-    if (isFetching) {
+    if (!this.state.isRefreshing && isFetching) {
       return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
     }
 
@@ -124,6 +141,13 @@ class MyCourse extends Component {
         style={{ flex: 1 }}
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.isRefreshing}
+            onRefresh={this.handleRefresh}
+            title={I18n.t('loading')}
+          />
+        }
       >
         <View style={styles.courseList}>
           {courses.getProCourses().valueSeq().map((course) => {
