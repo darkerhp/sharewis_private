@@ -18,7 +18,7 @@ export const updateCourseDownloadedStatus = createAction(types.UPDATE_COURSE_DOW
 // Thunks
 const normalizeCourses = response =>
   normalize(
-    response.courses.map(course =>
+    response.map(course =>
       _.mapKeys(course, (value, key) => _.camelCase(key)),
     ), schema.arrayOfCourses,
   );
