@@ -12,7 +12,7 @@ const mergeEntities = (state, newCourses) =>
   state.merge(newCourses.map(course => new Course(course)));
 
 const coursesReducer = handleActions({
-  FETCH_COURSES_LIST_SUCCESS: (state, action) => {
+  FETCH_MY_COURSE_SUCCESS: (state, action) => {
     const courses = action.payload.entities.courses;
     if (!courses) return state;
     return mergeEntities(state, fromJS(courses));

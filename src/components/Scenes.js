@@ -5,7 +5,7 @@ import { Actions, ActionConst, Modal, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
-import CourseList from '../containers/CourseList';
+import MyCourse from '../containers/MyCourse';
 import CourseDetails from '../containers/CourseDetails';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
@@ -97,10 +97,10 @@ const getScenes = () =>
             renderTitle={logoTitle}
           />
           <Scene
-            key="courseList"
+            key="myCourse"
             {...baseNavBarProps}
-            component={CourseList}
-            title={I18n.t('courseList')}
+            component={MyCourse}
+            title={I18n.t('myCourse')}
             type={ActionConst.RESET}
             hideNavBar={false}
             estimatedTime={0}
@@ -112,7 +112,7 @@ const getScenes = () =>
             {...baseNavBarProps}
             component={CourseDetails}
             hideNavBar={false}
-            backTitle={I18n.t('courseList')}
+            backTitle={I18n.t('myCourse')}
             // onRight={() => console.log('onRight')}
             onBack={() => Actions.top({ initialPage: 0 })}
             backButtonImage={backButtonWhiteImage}

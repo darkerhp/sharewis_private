@@ -90,7 +90,7 @@ class Signup extends Component {
   componentWillReceiveProps(nextProps) {
     // Redirect to Course List page if user is logged in
     if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
-      RouterActions.courseList();
+      RouterActions.myCourse();
     }
   }
 

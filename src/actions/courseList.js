@@ -9,9 +9,9 @@ import * as schema from '../schema';
 import * as FileUtils from '../utils/file';
 
 // Actions Creators
-export const fetchCourseListFailure = createAction(types.FETCH_COURSES_LIST_FAILURE);
-export const fetchCourseListStart = createAction(types.FETCH_COURSES_LIST_START);
-export const fetchCourseListSuccess = createAction(types.FETCH_COURSES_LIST_SUCCESS);
+export const fetchMyCourseFailure = createAction(types.FETCH_MY_COURSE_FAILURE);
+export const fetchMyCourseStart = createAction(types.FETCH_MY_COURSE_START);
+export const fetchMyCourseSuccess = createAction(types.FETCH_MY_COURSE_SUCCESS);
 export const setCurrentCourseId = createAction(types.SET_CURRENT_COURSE_ID);
 export const updateCourseDownloadedStatus = createAction(types.UPDATE_COURSE_DOWNLOADED_STATUS);
 
@@ -23,23 +23,23 @@ const normalizeCourses = response =>
     ), schema.arrayOfCourses,
   );
 
-export const fetchCourseList = () =>
+export const fetchMyCourse = () =>
   async (dispatch, getState) => {
     try {
       const {
         entities: { courses },
-        ui: { fetchedCourseListAt },
+        ui: { fetchedMyCourseAt },
         user: { userId },
       } = getState();
 
       if (courses.isEmpty()
-        || fetchedCourseListAt - Date.now() > ACT_API_CACHE) {
-        dispatch(fetchCourseListStart());
+        || fetchedMyCourseAt - Date.now() > ACT_API_CACHE) {
+        dispatch(fetchMyCourseStart());
         const response = await getUserCourses(userId);
-        dispatch(fetchCourseListSuccess(normalizeCourses(response)));
+        dispatch(fetchMyCourseSuccess(normalizeCourses(response)));
       }
     } catch (error) {
-      dispatch(fetchCourseListFailure());
+      dispatch(fetchMyCourseFailure());
       throw error;
     }
   };
