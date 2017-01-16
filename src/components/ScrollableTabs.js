@@ -28,7 +28,7 @@ const ScrollableTabs = ({ initialPage }) => {
     >
       <MyCourse tabLabel={I18n.t('myCourse')} />
       <Text tabLabel="Top">Top</Text>
-      <Text tabLabel="スナックコース">スナックコース</Text>
+      <Text tabLabel={I18n.t('snackCourse')}>スナックコース</Text>
     </ScrollableTabView>
   );
 };

@@ -59,6 +59,8 @@ const locales = {
     invalidPassword: 'パスワードは半角英数またはアンダースコアで入力してください。',
     tooShortPassword: 'パスワードは6文字以上で入力してください。',
     agreeTosAndPolicy: `登録を完了すると、 ${ACT_TOS_URL} 及び ${ACT_PRIVACY_URL} に同意することになります。`,
+    // スナックコース
+    snackCourse: 'スナックコース', // TODO 翻訳
   },
   en: {
     accountSettings: 'Account Info',
@@ -112,6 +114,8 @@ const locales = {
     invalidPassword: 'You can use alphabets or numbers for password.',
     tooShortPassword: '**要翻訳**', // TODO 翻訳
     agreeTosAndPolicy: `By completing this sign up process, you agree to our ${ACT_TOS_URL} and ${ACT_PRIVACY_URL}.`,
+    // スナックコース
+    snackCourse: '**要翻訳**', // TODO 翻訳
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -165,6 +169,8 @@ const locales = {
     invalidPassword: '**要翻訳**', // TODO 翻訳
     tooShortPassword: '**要翻訳**', // TODO 翻訳
     agreeTosAndPolicy: `Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ${ACT_TOS_URL} và ${ACT_PRIVACY_URL}.`,
+    // スナックコース
+    snackCourse: '**要翻訳**', // TODO 翻訳
   },
 };
 
