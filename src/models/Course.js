@@ -2,11 +2,12 @@ import { Record } from 'immutable';
 
 const CourseRecord = Record({
   id: null,
+  hasDownloadedLecture: false,
   imageUrl: '',
   lectureCount: null,
   lectureProgress: null,
   title: '',
-  hasDownloadedLecture: false,
+  type: '',
 });
 
 export default class Course extends CourseRecord {
