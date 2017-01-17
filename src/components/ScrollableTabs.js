@@ -6,6 +6,7 @@ import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
 import MyCourse from '../containers/MyCourse';
+import SnackCourse from '../containers/SnackCourse';
 
 // TODO プロコースが増えた場合、DefaultTabBar > ScrollableTabBarで実装する。
 // デザイン妥協できない場合、CustomでScrollableTabBarを実装する必要がありそう。
@@ -28,7 +29,7 @@ const ScrollableTabs = ({ initialPage }) => {
     >
       <MyCourse tabLabel={I18n.t('myCourse')} />
       <Text tabLabel="Top">Top</Text>
-      <Text tabLabel={I18n.t('snackCourse')}>スナックコース</Text>
+      <SnackCourse tabLabel={I18n.t('snackCourse')} />
     </ScrollableTabView>
   );
 };
