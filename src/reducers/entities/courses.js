@@ -17,6 +17,11 @@ const coursesReducer = handleActions({
     if (!courses) return state;
     return mergeEntities(state, fromJS(courses));
   },
+  FETCH_SNACK_COURSE_SUCCESS: (state, action) => {
+    const courses = action.payload.entities.courses;
+    if (!courses) return state;
+    return mergeEntities(state, fromJS(courses));
+  },
   UPDATE_COURSE_DOWNLOADED_STATUS: (state, action) => {
     if (_.isEmpty(state)) return state;
     const updatedCourses = action.payload;
