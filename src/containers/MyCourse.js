@@ -126,7 +126,7 @@ class MyCourse extends Component {
         indicatorStyle={'white'}
       >
         <View style={styles.courseList}>
-          {courses.valueSeq().map((course) => {
+          {courses.getProCourses().valueSeq().map((course) => {
             const isDisabledCourse = !isOnline && !course.hasDownloadedLecture;
             return (
               <CourseSummary
