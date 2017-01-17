@@ -36,7 +36,7 @@ const uiReducer = handleActions({
     error: action.payload,
     isFetching: false,
   }),
-  FETCH_MY_COURSE_SUCCESS: (state, action) => ({
+  FETCH_MY_COURSE_SUCCESS: (state, action) => ({ // TODO isFetchingをLocal Stateに変更して削除予定
     ...state,
     isFetching: false,
     fetchedMyCourseAt: Date.now(),
