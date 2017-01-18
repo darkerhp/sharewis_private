@@ -7,12 +7,12 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
 
 const {
-  ActivityIndicator,
   Alert,
   StyleSheet,
   Text,
@@ -127,11 +127,7 @@ class SnackCourse extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <ActivityIndicator />
-        </View>
-      );
+      return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
     }
 
     return (
