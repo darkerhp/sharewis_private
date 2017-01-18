@@ -15,7 +15,7 @@ const getHeaders = userId => ({
 });
 
 
-export const getUserCourses = async (userId) => {
+export const getUserCourses = async (userId: number) => {
   // Run query
   const result = await fetch(`${ACT_API_URL}/my_courses`, {
     headers: getHeaders(userId),
@@ -35,8 +35,27 @@ export const getUserCourses = async (userId) => {
   return json;
 };
 
+export const getSnackCourses = async (userId: number) => {
+  // Run query
+  const result = await fetch(`${ACT_API_URL}/snack_courses`, {
+    headers: getHeaders(userId),
+  });
+  // Verify results
+  await checkStatus(result);
+  const json = await result.json();
+  await checkResult(json, (courses) => {
+    if (courses.length > 0) {
+      const { id } = courses[0];
+      return typeof id === 'number';
+    }
+    return true;  // empty result without errors
+  });
 
-export const getCourseDetails = async (userId, courseId) => {
+  // Parse and return results
+  return json;
+};
+
+export const getCourseDetails = async (userId: number, courseId: number) => {
   // Run query
   const result = await fetch(`${ACT_API_URL}/courses/${courseId}`, {
     headers: getHeaders(userId),
@@ -51,7 +70,12 @@ export const getCourseDetails = async (userId, courseId) => {
 };
 
 
-export const patchLectureStatus = async (userId, courseId, lectureId, newStatus) => {
+export const patchLectureStatus = async (
+  userId: number,
+  courseId: number,
+  lectureId: number,
+  newStatus: string,
+) => {
   try {
     // Run query
     const result = await fetch(`${ACT_API_URL}/courses/${courseId}/lectures/${lectureId}`, {

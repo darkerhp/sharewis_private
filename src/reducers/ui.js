@@ -11,7 +11,7 @@ const initialState = {
   speed: 1.0,
   //
   fetchedCourseDetailsAt: null,
-  fetchedCourseListAt: null,
+  fetchedMyCourseAt: null,
 };
 
 const speedList = [1.0, 1.2, 1.5, 2.0];
@@ -30,16 +30,16 @@ const uiReducer = handleActions({
   START_ACT_EMAIL_LOGIN: startFetching,
   START_ACT_EMAIL_SIGNUP: startFetching,
   START_ACT_FACEBOOK_LOGIN: startFetching,
-  FETCH_COURSES_LIST_START: startFetching,
-  FETCH_COURSES_LIST_FAILURE: (state, action) => ({
+  FETCH_MY_COURSE_START: startFetching,
+  FETCH_MY_COURSE_FAILURE: (state, action) => ({
     ...state,
     error: action.payload,
     isFetching: false,
   }),
-  FETCH_COURSES_LIST_SUCCESS: (state, action) => ({
+  FETCH_MY_COURSE_SUCCESS: (state, action) => ({ // TODO isFetchingをLocal Stateに変更して削除予定
     ...state,
     isFetching: false,
-    fetchedCourseListAt: Date.now(),
+    fetchedMyCourseAt: Date.now(),
   }),
   FETCH_COURSE_DETAILS_START: startFetching,
   FETCH_COURSE_DETAILS_FAILURE: (state, action) => ({

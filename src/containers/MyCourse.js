@@ -11,7 +11,7 @@ import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as Actions from '../actions/courseList';
+import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
@@ -74,7 +74,7 @@ const mapStateToProps = ({ entities, netInfo, ui }) => ({
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
-class CourseList extends Component {
+class MyCourse extends Component {
   static propTypes = {
     // states
     courses: ImmutablePropTypes.orderedMap,
@@ -83,14 +83,14 @@ class CourseList extends Component {
     isOnline: PropTypes.bool.isRequired,
     // actions
     fetchCoursesDownloadStatus: PropTypes.func.isRequired,
-    fetchCourseList: PropTypes.func.isRequired,
+    fetchMyCourse: PropTypes.func.isRequired,
     setCurrentCourseId: PropTypes.func.isRequired,
   };
 
   async componentWillMount() {
-    const { fetchCourseList, fetchCoursesDownloadStatus } = this.props;
+    const { fetchMyCourse, fetchCoursesDownloadStatus } = this.props;
     try {
-      await fetchCourseList();
+      await fetchMyCourse();
       await fetchCoursesDownloadStatus();
     } catch (error) {
       console.error(error);
@@ -109,6 +109,8 @@ class CourseList extends Component {
   render() {
     const { isFetching, isOnline, courses, lectures } = this.props;
 
+    StatusBar.setBarStyle('light-content');
+
     if (isFetching) {
       return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
     }
@@ -123,9 +125,8 @@ class CourseList extends Component {
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
       >
-        <StatusBar barStyle="light-content" />
         <View style={styles.courseList}>
-          {courses.valueSeq().map((course) => {
+          {courses.getProCourses().valueSeq().map((course) => {
             const isDisabledCourse = !isOnline && !course.hasDownloadedLecture;
             return (
               <CourseSummary
@@ -158,4 +159,4 @@ class CourseList extends Component {
   }
 }
 
-export default CourseList;
+export default MyCourse;

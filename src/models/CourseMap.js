@@ -1,5 +1,15 @@
-import { OrderedMap } from 'immutable';
+import { OrderedMap } from 'extendable-immutable';
 
-const CourseMap = OrderedMap;
+export default class CourseMap extends OrderedMap {
+  static isCourseMap(value) {
+    return value && value instanceof CourseMap;
+  }
 
-export default CourseMap;
+  getSnackCourses() {
+    return this.filter(c => c.type === 'SnackCourse');
+  }
+
+  getProCourses() {
+    return this.filter(c => c.type === 'ProCourse');
+  }
+}
