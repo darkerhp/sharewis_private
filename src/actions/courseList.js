@@ -4,7 +4,7 @@ import { createAction } from 'redux-actions';
 
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
-import { getUserCourses } from '../middleware/actApi';
+import { getUserCourses, getSnackCourses } from '../middleware/actApi';
 import * as schema from '../schema';
 import * as FileUtils from '../utils/file';
 
@@ -12,6 +12,9 @@ import * as FileUtils from '../utils/file';
 export const fetchMyCourseFailure = createAction(types.FETCH_MY_COURSE_FAILURE);
 export const fetchMyCourseStart = createAction(types.FETCH_MY_COURSE_START);
 export const fetchMyCourseSuccess = createAction(types.FETCH_MY_COURSE_SUCCESS);
+export const fetchSnackCourseFailure = createAction(types.FETCH_SNACK_COURSE_FAILURE);
+export const fetchSnackCourseStart = createAction(types.FETCH_SNACK_COURSE_START);
+export const fetchSnackCourseSuccess = createAction(types.FETCH_SNACK_COURSE_SUCCESS);
 export const setCurrentCourseId = createAction(types.SET_CURRENT_COURSE_ID);
 export const updateCourseDownloadedStatus = createAction(types.UPDATE_COURSE_DOWNLOADED_STATUS);
 
@@ -32,14 +35,32 @@ export const fetchMyCourse = () =>
         user: { userId },
       } = getState();
 
-      if (courses.isEmpty()
-        || fetchedMyCourseAt - Date.now() > ACT_API_CACHE) {
+      if (courses.getProCourses().isEmpty()) {
         dispatch(fetchMyCourseStart());
         const response = await getUserCourses(userId);
         dispatch(fetchMyCourseSuccess(normalizeCourses(response)));
       }
     } catch (error) {
       dispatch(fetchMyCourseFailure());
+      throw error;
+    }
+  };
+
+export const fetchSnackCourse = () =>
+  async (dispatch, getState) => {
+    try {
+      const {
+        entities: { courses },
+        user: { userId },
+      } = getState();
+
+      if (courses.getSnackCourses().isEmpty()) {
+        dispatch(fetchSnackCourseStart());
+        const response = await getSnackCourses(userId);
+        dispatch(fetchSnackCourseSuccess(normalizeCourses(response)));
+      }
+    } catch (error) {
+      dispatch(fetchSnackCourseFailure());
       throw error;
     }
   };
