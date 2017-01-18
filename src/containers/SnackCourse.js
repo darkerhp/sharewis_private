@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import * as Actions from '../actions/courseList';
+import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
 
 const {

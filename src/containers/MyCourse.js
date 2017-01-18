@@ -11,7 +11,7 @@ import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as Actions from '../actions/courseList';
+import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
