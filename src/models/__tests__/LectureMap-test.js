@@ -4,7 +4,7 @@ import { lectures } from '../../data/dummyData';
 import Lecture from '../../models/Lecture';
 import LectureMap from '../../models/LectureMap';
 
-describe('LectureUtils Utils', () => {
+describe('LectureMap', () => {
   it('should return next lecture', () => {
     const lectureMap = new LectureMap(lectures).map(lecture => new Lecture(lecture));
 
