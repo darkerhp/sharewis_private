@@ -5,6 +5,7 @@ export const courses = {
     imageUrl: 'https://act-staging.s3.amazonaws.com/uploads/course/image/73/fuwapo_banner.jpg',
     lectureCount: 7,
     lectureProgress: 3,
+    type: 'ProCourse',
   },
   180: {
     id: 180,
@@ -12,6 +13,15 @@ export const courses = {
     imageUrl: 'https://act-staging.s3.amazonaws.com/uploads/course/image/180/photoshopact_1_.png',
     lectureCount: 40,
     lectureProgress: 12,
+    type: 'ProCourse',
+  },
+  999: {
+    id: 999,
+    title: 'スナックコース',
+    imageUrl: 'https://act-staging.s3.amazonaws.com/uploads/course/image/180/photoshopact_1_.png',
+    lectureCount: 1,
+    lectureProgress: 0,
+    type: 'SnackCourse',
   },
 };
 
@@ -119,6 +129,18 @@ export const lectures = {
     kind: 'lecture',
     type: 'video',
     status: 'finished',
+    videoUrl: 'http://embed.wistia.com/deliveries/a2d9ccad60e78647fb0a376eb3b4859ef3640cff.bin',
+    hasVideoInDevice: false,
+  },
+  9999: {
+    id: 9999,
+    courseId: 999,
+    title: 'スナックレクチャー',
+    estimatedTime: 90,
+    order: 1,
+    kind: 'lecture',
+    type: 'video',
+    status: '',
     videoUrl: 'http://embed.wistia.com/deliveries/a2d9ccad60e78647fb0a376eb3b4859ef3640cff.bin',
     hasVideoInDevice: false,
   },
