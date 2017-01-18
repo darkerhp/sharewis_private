@@ -11,8 +11,22 @@ const CourseRecord = Record({
 });
 
 export default class Course extends CourseRecord {
-  // TODO 実装する
-  hasVideo() {
-    return this.get('hoge') || 'New Hoge';
+  static TYPE_SNACK = 'SnackCourse';
+  static TYPE_PRO = 'ProCourse';
+
+  /**
+   * プロコースかどうか
+   * @returns {boolean}
+   */
+  isProCourse(): boolean {
+    return this.type === Course.TYPE_PRO;
+  }
+
+  /**
+   * スナックコースかどうか
+   * @returns {boolean}
+   */
+  isSnackCourse(): boolean {
+    return this.type === Course.TYPE_SNACK;
   }
 }
