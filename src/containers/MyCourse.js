@@ -89,8 +89,6 @@ class MyCourse extends Component {
     isFetching: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
     // actions
-    fetchCoursesDownloadStatus: PropTypes.func.isRequired,
-    fetchMyCourse: PropTypes.func.isRequired,
     setCurrentCourseId: PropTypes.func.isRequired,
   };
 
