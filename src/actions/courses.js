@@ -45,7 +45,7 @@ export const fetchMyCourse = (force = false) =>
     }
   };
 
-export const fetchSnackCourse = () =>
+export const fetchSnackCourse = (force = false) =>
   async (dispatch, getState) => {
     try {
       const {
@@ -53,7 +53,7 @@ export const fetchSnackCourse = () =>
         user: { userId },
       } = getState();
 
-      if (courses.getSnackCourses().isEmpty()) {
+      if (courses.getSnackCourses().isEmpty() || force) {
         dispatch(fetchSnackCourseStart());
         const response = await getSnackCourses(userId);
         dispatch(fetchSnackCourseSuccess(normalizeCourses(response)));
@@ -68,7 +68,7 @@ export const fetchCoursesDownloadStatus = () =>
   async (dispatch, getState) => {
     const { entities: { courses } } = getState();
     if (courses.isEmpty()) return;
-    const promises = courses.map(async (course) => {
+    const promises = courses.getProCourses().map(async (course) => {
       const hasDownloadedLecture = await FileUtils.hasVideoByCourse(course.id);
       return course.set('hasDownloadedLecture', hasDownloadedLecture);
     });

@@ -1,3 +1,6 @@
+/**
+ * @flow
+ */
 import _ from 'lodash';
 import { fromJS } from 'immutable';
 import { handleActions } from 'redux-actions';
@@ -14,15 +17,15 @@ const mergeEntities = (state, newCourses) =>
 const refreshEntities = newCourses => mergeEntities(initialState, newCourses);
 
 const coursesReducer = handleActions({
-  FETCH_MY_COURSE_SUCCESS: (state, action) => {
+  FETCH_MY_COURSE_SUCCESS: (state: CourseMap, action) => {
     const courses = action.payload.entities.courses;
     if (!courses) return state;
-    return mergeEntities(state, fromJS(courses));
+    return mergeEntities(state.getSnackCourses(), fromJS(courses));
   },
-  FETCH_SNACK_COURSE_SUCCESS: (state, action) => {
+  FETCH_SNACK_COURSE_SUCCESS: (state: CourseMap, action) => {
     const courses = action.payload.entities.courses;
     if (!courses) return state;
-    return refreshEntities(fromJS(courses));
+    return mergeEntities(state.getProCourses(), fromJS(courses));
   },
   UPDATE_COURSE_DOWNLOADED_STATUS: (state, action) => {
     if (_.isEmpty(state)) return state;
