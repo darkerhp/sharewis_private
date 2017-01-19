@@ -5,7 +5,6 @@ import { Actions, ActionConst, Modal, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
-import MyCourse from '../containers/MyCourse';
 import CourseDetails from '../containers/CourseDetails';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
@@ -95,17 +94,6 @@ const getScenes = () =>
             onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
             leftButtonImage={menuWhiteImage}
             renderTitle={logoTitle}
-          />
-          <Scene
-            key="myCourse"
-            {...baseNavBarProps}
-            component={MyCourse}
-            title={I18n.t('myCourse')}
-            type={ActionConst.RESET}
-            hideNavBar={false}
-            estimatedTime={0}
-            onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
-            leftButtonImage={menuWhiteImage}
           />
           <Scene
             key="courseDetails"
