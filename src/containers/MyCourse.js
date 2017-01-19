@@ -149,7 +149,6 @@ class MyCourse extends Component {
           <RefreshControl
             refreshing={this.state.isRefreshing}
             onRefresh={this.handleRefresh}
-            title={I18n.t('loading')}
           />
         }
       >
