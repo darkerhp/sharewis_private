@@ -17,6 +17,7 @@ const {
   Dimensions,
   Image,
   ListView,
+  Platform,
   RefreshControl,
   StyleSheet,
   Text,
@@ -52,14 +53,22 @@ const styles = StyleSheet.create({
     height: (itemHeight / 10) * 8,
   },
   courseContentWrapper: {
-    padding: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
     height: (itemHeight / 10) * 2,
   },
   courseTitle: {
-    fontSize: 12,
-    fontWeight: '600',
+    fontWeight: '500',
     marginBottom: 5,
     color: BaseStyles.textColor,
+    ...Platform.select({
+      ios: {
+        fontSize: 10,
+      },
+      android: {
+        fontSize: 9,
+      },
+    }),
   },
 });
 
