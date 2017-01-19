@@ -45,6 +45,7 @@ class VideoLecture extends Component {
   static propTypes = {
     // values
     currentLecture: PropTypes.instanceOf(Lecture).isRequired,
+    handleEnd: PropTypes.func,
     isFullScreen: PropTypes.bool.isRequired,
     lectureContentStyleId: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
@@ -111,7 +112,7 @@ class VideoLecture extends Component {
 
   @autobind
   renderVideo() {
-    const { currentLecture, speed } = this.props;
+    const { currentLecture, handleEnd, speed } = this.props;
     if (!this.state.isStarted) {
       return (
         <Image
@@ -129,7 +130,7 @@ class VideoLecture extends Component {
         muted={false}
         onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
         onLoad={() => this.setState({ isLoadingThumbnail: false })}
-        onEnd={this.handlePressNextLecture}
+        onEnd={handleEnd}
         onError={e => console.error(e)}
         onProgress={this.handleVideoProgress}
         paused={this.state.seeking || this.state.isPaused}
