@@ -31,10 +31,15 @@ const {
 } = ReactNative;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: BaseStyles.courseListBackgroundColor,
+    paddingHorizontal: 10,
+    paddingTop: 15,
+  },
   courseList: {
     flex: 1,
     paddingBottom: BaseStyles.navbarHeight,
-    margin: 13,
   },
   contentText: {
     textAlign: 'center',
@@ -43,7 +48,7 @@ const styles = StyleSheet.create({
     color: '#222',
     textAlignVertical: 'center',
   },
-  container: {
+  box: {
     flex: 1,
     height: Dimensions.get('window').height / 2,
     borderWidth: 1,
@@ -139,7 +144,7 @@ class MyCourse extends Component {
 
     return (
       <ScrollView
-        style={{ flex: 1, backgroundColor: BaseStyles.courseListBackgroundColor }}
+        style={styles.container}
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
         refreshControl={
@@ -156,7 +161,7 @@ class MyCourse extends Component {
             return (
               <CourseSummary
                 key={course.id}
-                courseSummaryStyleId={styles.container}
+                courseSummaryStyleId={styles.box}
                 course={course}
                 isDisabledCourse={isDisabledCourse}
                 lectures={lectures.filter(l => l.courseId === course.id)}
@@ -164,7 +169,7 @@ class MyCourse extends Component {
               />
             );
           })}
-          <View style={[styles.container, { height: 150 }]}>
+          <View style={[styles.box, { height: 150 }]}>
             <View style={styles.hyperlinkWrapper}>
               <Hyperlink
                 style={styles.searchMore}
