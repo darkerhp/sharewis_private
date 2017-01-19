@@ -35,15 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    // FIXME androidは速度変更不可
-    ...Platform.select({
-      ios: {
-        backgroundColor: BaseStyles.backgroundColor,
-      },
-      android: {
-        backgroundColor: BaseStyles.disabledButtonColor,
-      },
-    }),
+    backgroundColor: BaseStyles.backgroundColor,
   },
   buttonText: {
     fontSize: 18,
@@ -127,7 +119,6 @@ const VideoControls = ({
         containerStyle={styles.speedButton}
         style={styles.buttonText}
         onPress={() => onPressSpeed()}
-        disabled={Platform.OS === 'android'}
       >
           x{speed}{speed % 1 === 0 ? '.0' : ''}
       </Button>
