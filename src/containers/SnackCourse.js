@@ -14,13 +14,15 @@ import BaseStyles from '../baseStyles';
 
 const {
   Alert,
-  StyleSheet,
-  Text,
-  View,
+  Dimensions,
   Image,
   ListView,
-  Dimensions,
+  Platform,
+  RefreshControl,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } = ReactNative;
 
 const itemWidth = (Dimensions.get('window').width - 15) / 2;
@@ -29,7 +31,7 @@ const itemHeight = (itemWidth / 3) * 4; // 4:3
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#dddddd',
+    backgroundColor: BaseStyles.courseListBackgroundColor,
     paddingBottom: BaseStyles.navbarHeight,
     paddingTop: 5,
   },
@@ -51,14 +53,22 @@ const styles = StyleSheet.create({
     height: (itemHeight / 10) * 8,
   },
   courseContentWrapper: {
-    padding: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
     height: (itemHeight / 10) * 2,
   },
   courseTitle: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontWeight: '500',
     marginBottom: 5,
     color: BaseStyles.textColor,
+    ...Platform.select({
+      ios: {
+        fontSize: 10,
+      },
+      android: {
+        fontSize: 9,
+      },
+    }),
   },
 });
 
@@ -73,25 +83,25 @@ const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatc
 
 @connect(mapStateToProps, mapDispatchToProps)
 class SnackCourse extends Component {
-  static propTypes = {
-    // states
-    courses: ImmutablePropTypes.orderedMap,
-  };
-
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
+      isRefreshing: false,
       isLoading: true,
       dataSource: ds.cloneWithRows([1, 2]),
     };
   }
 
-
   async componentWillMount() {
+    await this.refreshList();
+  }
+
+  @autobind
+  async refreshList(force = false) {
     const { fetchSnackCourse } = this.props;
     try {
-      await fetchSnackCourse();
+      await fetchSnackCourse(force);
     } catch (error) {
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
@@ -108,6 +118,14 @@ class SnackCourse extends Component {
   handlePressCourseItem() { // eslint-disable-line
     // TODO 実装する
     console.log('pressCourseItem');
+  }
+
+  @autobind
+  async handleRefresh() {
+    this.setState({ isRefreshing: true });
+    await this.refreshList(true);
+    this.setState({ isRefreshing: false });
+    RouterActions.refresh();
   }
 
   @autobind
@@ -136,6 +154,13 @@ class SnackCourse extends Component {
         contentContainerStyle={styles.contentContainer}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.isRefreshing}
+            onRefresh={this.handleRefresh}
+            title={I18n.t('loading')}
+          />
+        }
       />
     );
   }

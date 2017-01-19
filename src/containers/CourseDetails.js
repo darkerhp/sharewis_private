@@ -186,6 +186,8 @@ class CourseDetails extends Component {
       totalDuration,
     } = this.props;
 
+    StatusBar.setBarStyle('light-content');
+
     if (isFetching) {
       return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
     }
@@ -211,7 +213,6 @@ class CourseDetails extends Component {
             paddingBottom: BaseStyles.navbarHeight,
           }}
         >
-          <StatusBar barStyle="light-content" />
           <CourseInfoSection
             {...courseInfo}
             handlePressNextLecture={this.handlePressNextLecture}

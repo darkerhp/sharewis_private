@@ -11,7 +11,7 @@ exports[`Slide renders correctly 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#ecf1f3",
+        "backgroundColor": "#e7eef0",
         "flex": 2,
       }
     }>
