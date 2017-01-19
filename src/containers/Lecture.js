@@ -96,7 +96,7 @@ class LectureContainer extends Component {
       setCurrentLectureId,
     } = this.props;
 
-    if (currentLecture.isFinished()) {
+    if (!currentLecture.isFinished()) {
       updateLectureStatus(currentLecture.id, Lecture.STATUS_FINISHED);
     }
 
