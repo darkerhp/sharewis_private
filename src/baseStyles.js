@@ -8,14 +8,15 @@ const { Platform } = ReactNative;
 const Variables = {
   hyperlink: '#2980b9',
   backgroundColor: '#579eff',
-  onboardingBackgroundColor: '#ecf1f3',
+  onboardingBackgroundColor: '#e7eef0',
+  courseListBackgroundColor: '#e7eef0',
   borderColor: '#ddd',
   textColor: '#4a4a4a',
   navbarHeight: Platform.select({
     ios: 65,
     android: 55,
   }),
-  navBarBackgroundColor: '#149dbf',
+  navBarBackgroundColor: '#00abca',
   disabledButtonColor: '#dadada',
 };
 
