@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height / 2,
     borderWidth: 1,
     borderColor: BaseStyles.borderColor,
+    backgroundColor: 'white',
     marginBottom: 13,
   },
   hyperlinkWrapper: {
@@ -93,11 +94,11 @@ class MyCourse extends Component {
   };
 
   async componentWillMount() {
-    await this.refreshCourse();
+    await this.refreshList();
   }
 
   @autobind
-  async refreshCourse(force = false) {
+  async refreshList(force = false) {
     const { fetchMyCourse, fetchCoursesDownloadStatus } = this.props;
     try {
       await fetchMyCourse(force);
@@ -119,7 +120,7 @@ class MyCourse extends Component {
   @autobind
   async handleRefresh() {
     this.setState({ isRefreshing: true });
-    await this.refreshCourse(true);
+    await this.refreshList(true);
     this.setState({ isRefreshing: false });
     RouterActions.refresh();
   }
@@ -138,7 +139,7 @@ class MyCourse extends Component {
 
     return (
       <ScrollView
-        style={{ flex: 1 }}
+        style={{ flex: 1, backgroundColor: BaseStyles.courseListBackgroundColor }}
         showVerticalScrollIndicator={false}
         indicatorStyle={'white'}
         refreshControl={
