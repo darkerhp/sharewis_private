@@ -60,7 +60,8 @@ const locales = {
     tooShortPassword: 'パスワードは6文字以上で入力してください。',
     agreeTosAndPolicy: `登録を完了すると、 ${ACT_TOS_URL} 及び ${ACT_PRIVACY_URL} に同意することになります。`,
     // スナックコース
-    snackCourse: 'スナックコース', // TODO 翻訳
+    snackCourse: 'スナックコース',
+    backToCourseList: 'コース一覧に戻る',
   },
   en: {
     accountSettings: 'Account Info',
@@ -116,6 +117,7 @@ const locales = {
     agreeTosAndPolicy: `By completing this sign up process, you agree to our ${ACT_TOS_URL} and ${ACT_PRIVACY_URL}.`,
     // スナックコース
     snackCourse: '**要翻訳**', // TODO 翻訳
+    backToCourseList: '**要翻訳**', // TODO 翻訳
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -171,6 +173,7 @@ const locales = {
     agreeTosAndPolicy: `Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ${ACT_TOS_URL} và ${ACT_PRIVACY_URL}.`,
     // スナックコース
     snackCourse: '**要翻訳**', // TODO 翻訳
+    backToCourseList: '**要翻訳**', // TODO 翻訳
   },
 };
 
