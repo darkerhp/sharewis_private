@@ -9,7 +9,7 @@ import {
 const locales = {
   ja: {
     accountSettings: 'アカウント情報',
-    actWebsite: 'ShareWis ACTのWebサイト',
+    actWebsite: 'ShareWisのWebサイト',
     back: '戻る',
     close: '閉じる',
     myCourse: 'マイコース',
@@ -61,14 +61,16 @@ const locales = {
     agreeTosAndPolicy: `登録を完了すると、 ${ACT_TOS_URL} 及び ${ACT_PRIVACY_URL} に同意することになります。`,
     // スナックコース
     snackCourse: 'スナックコース',
+    proCourse: 'プロコース',
     backToCourseList: 'コース一覧に戻る',
     // トップページ
     top: 'トップ',
     recommendedSnackCourse: 'オススメのスナックコース',
+    noProCourses: `購入済みのプロコースがない方は、 ${ACT_SITE_URL} よりお手続きを進めてください。`,
   },
   en: {
     accountSettings: 'Account Info',
-    actWebsite: "ShareWis ACT's website",
+    actWebsite: "ShareWis's website",
     back: 'Back',
     close: 'close',
     myCourse: 'My courses',
@@ -119,15 +121,17 @@ const locales = {
     tooShortPassword: '**要翻訳**', // TODO 翻訳
     agreeTosAndPolicy: `By completing this sign up process, you agree to our ${ACT_TOS_URL} and ${ACT_PRIVACY_URL}.`,
     // スナックコース
-    snackCourse: '**要翻訳**', // TODO 翻訳
+    snackCourse: 'Snack Courses',
+    proCourse: 'Pro Courses',
     backToCourseList: '**要翻訳**', // TODO 翻訳
     // トップページ
     top: '**要翻訳**', // TODO 翻訳
     recommendedSnackCourse: '**要翻訳**', // TODO 翻訳
+    noProCourses: `If you haven't purchased any pro courses yet, please go to the ${ACT_SITE_URL}.`, // TODO 翻訳
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
-    actWebsite: 'trang web ShareWis ACT',
+    actWebsite: 'trang web ShareWis',
     back: 'Trở lại',
     close: 'Đóng',
     myCourse: 'các khóa học của tôi',
@@ -178,11 +182,13 @@ const locales = {
     tooShortPassword: '**要翻訳**', // TODO 翻訳
     agreeTosAndPolicy: `Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ${ACT_TOS_URL} và ${ACT_PRIVACY_URL}.`,
     // スナックコース
-    snackCourse: '**要翻訳**', // TODO 翻訳
+    snackCourse: 'Snack Courses',
+    proCourse: 'Pro Courses',
     backToCourseList: '**要翻訳**', // TODO 翻訳
     // トップページ
     top: '**要翻訳**', // TODO 翻訳
     recommendedSnackCourse: '**要翻訳**', // TODO 翻訳
+    noProCourses: '**要翻訳**', // TODO 翻訳
   },
 };
 
