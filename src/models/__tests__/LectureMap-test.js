@@ -21,4 +21,9 @@ describe('LectureMap', () => {
     const lastLectureId = lectureMap.getLastLectureId(180, lectureMap);
     expect(lastLectureId).toEqual(5930);
   });
+
+  it('should return only courseId lectures', () => {
+    const lectureMap = new LectureMap(lectures).map(lecture => new Lecture(lecture));
+    expect(lectureMap.byCourseId(999).size).toEqual(1);
+  });
 });
