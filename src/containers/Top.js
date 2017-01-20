@@ -195,7 +195,7 @@ class SnackCourse extends Component {
   renderSnackCourses() {
     const { courses } = this.props;
 
-    const snackCourseItems = courses.getSnackCourses().valueSeq().map(course =>
+    const snackCourseItems = courses.getSnackCourses().sortByRanking().valueSeq().map(course =>
       <TouchableOpacity
         key={course.id}
         onPress={() => this.handlePressSnackCourseItem(course.id)}
@@ -241,7 +241,7 @@ class SnackCourse extends Component {
         >
           { I18n.t('myCourse') }
         </Text>
-        {!proCourse ?
+        {proCourse ?
           <CourseSummary
             key={proCourse.id}
             courseSummaryStyleId={styles.box}
