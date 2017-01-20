@@ -11,6 +11,7 @@ import Onboarding from '../containers/Onboarding';
 import Lecture from '../containers/Lecture';
 import Account from '../containers/Account';
 import Login from '../containers/Login';
+import SnackLecture from '../containers/SnackLecture';
 import ScrollableTabs from './ScrollableTabs';
 
 const { Image, Platform, StyleSheet, View } = ReactNative;
@@ -113,6 +114,15 @@ const getScenes = () =>
             component={Lecture}
             hideNavBar={false}
             onBack={() => Actions.pop()}
+            backButtonImage={backButtonWhiteImage}
+          />
+          <Scene
+            key="snackLecture"
+            {...baseNavBarProps}
+            backTitle={I18n.t('snackCourse')}
+            component={SnackLecture}
+            hideNavBar={false}
+            onBack={() => Actions.top({ initialPage: 2 })}
             backButtonImage={backButtonWhiteImage}
           />
         </Scene>
