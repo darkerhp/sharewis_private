@@ -34,11 +34,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BaseStyles.courseListBackgroundColor,
-    paddingHorizontal: 10,
-    paddingTop: 15,
   },
   courseList: {
     flex: 1,
+    margin: 13,
     paddingBottom: BaseStyles.navbarHeight,
   },
   contentText: {
