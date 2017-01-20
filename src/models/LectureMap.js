@@ -1,11 +1,26 @@
+/**
+ * @flow
+ */
 import { OrderedMap } from 'extendable-immutable';
+import Lecture from './Lecture';
 
 export default class LectureMap extends OrderedMap {
   static isLectureMap(value) {
     return value && value instanceof LectureMap;
   }
 
-  getNextLecture(courseId, skipCompleted = true, currentOrder = 0) {
+  /**
+   * 次のレクチャーを取得する
+   * @param courseId
+   * @param skipCompleted
+   * @param currentOrder
+   * @returns Lecture
+   */
+  getNextLecture(
+    courseId: number,
+    skipCompleted: boolean = true,
+    currentOrder: number = 0,
+  ): Lecture {
     let filteredLectures = this.filter(l => (
       l.courseId === courseId &&
       l.isLecture() &&
@@ -18,7 +33,12 @@ export default class LectureMap extends OrderedMap {
     return filteredLectures.sortBy(l => l.order).first() || null;
   }
 
-  getLastLectureId(courseId) {
+  /**
+   * 最終レクチャーのIDを取得する
+   * @param courseId
+   * @return レクチャーID
+   */
+  getLastLectureId(courseId: number): number {
     const videoLectures = this.filter(l => (
       l.courseId === courseId &&
       l.isLecture() &&
@@ -28,4 +48,12 @@ export default class LectureMap extends OrderedMap {
     return videoLectures.sortBy(l => l.order).last().id;
   }
 
+  /**
+   * コースIDでフィルタリング
+   * @param courseId
+   * @return LectureMap
+   */
+  byCourseId(courseId: number): LectureMap {
+    return this.filter(l => l.courseId === courseId);
+  }
 }
