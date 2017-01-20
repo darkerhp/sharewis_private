@@ -62,6 +62,9 @@ const locales = {
     // スナックコース
     snackCourse: 'スナックコース',
     backToCourseList: 'コース一覧に戻る',
+    // トップページ
+    top: 'トップ',
+    recommendedSnackCourse: 'オススメのスナックコース',
   },
   en: {
     accountSettings: 'Account Info',
@@ -118,6 +121,9 @@ const locales = {
     // スナックコース
     snackCourse: '**要翻訳**', // TODO 翻訳
     backToCourseList: '**要翻訳**', // TODO 翻訳
+    // トップページ
+    top: '**要翻訳**', // TODO 翻訳
+    recommendedSnackCourse: '**要翻訳**', // TODO 翻訳
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -174,6 +180,9 @@ const locales = {
     // スナックコース
     snackCourse: '**要翻訳**', // TODO 翻訳
     backToCourseList: '**要翻訳**', // TODO 翻訳
+    // トップページ
+    top: '**要翻訳**', // TODO 翻訳
+    recommendedSnackCourse: '**要翻訳**', // TODO 翻訳
   },
 };
 
