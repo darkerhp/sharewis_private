@@ -5,13 +5,13 @@ import { Actions, ActionConst, Modal, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../baseStyles';
-import MyCourse from '../containers/MyCourse';
 import CourseDetails from '../containers/CourseDetails';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
 import Lecture from '../containers/Lecture';
 import Account from '../containers/Account';
 import Login from '../containers/Login';
+import SnackLecture from '../containers/SnackLecture';
 import ScrollableTabs from './ScrollableTabs';
 
 const { Image, Platform, StyleSheet, View } = ReactNative;
@@ -97,17 +97,6 @@ const getScenes = () =>
             renderTitle={logoTitle}
           />
           <Scene
-            key="myCourse"
-            {...baseNavBarProps}
-            component={MyCourse}
-            title={I18n.t('myCourse')}
-            type={ActionConst.RESET}
-            hideNavBar={false}
-            estimatedTime={0}
-            onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
-            leftButtonImage={menuWhiteImage}
-          />
-          <Scene
             key="courseDetails"
             {...baseNavBarProps}
             component={CourseDetails}
@@ -125,6 +114,15 @@ const getScenes = () =>
             component={Lecture}
             hideNavBar={false}
             onBack={() => Actions.pop()}
+            backButtonImage={backButtonWhiteImage}
+          />
+          <Scene
+            key="snackLecture"
+            {...baseNavBarProps}
+            backTitle={I18n.t('snackCourse')}
+            component={SnackLecture}
+            hideNavBar={false}
+            onBack={() => Actions.top({ initialPage: 2 })}
             backButtonImage={backButtonWhiteImage}
           />
         </Scene>

@@ -113,7 +113,13 @@ class LectureContainer extends Component {
       return <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />;
     }
     if (currentLecture.isVideo()) {
-      return <VideoLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />;
+      return (
+        <VideoLecture
+          lectureContentStyleId={styles.lectureContentStyle}
+          // handleEnd={this.handlePressNextLecture} TODO auto play
+          {...this.props}
+        />
+      );
     }
     if (currentLecture.isText()) {
       return <TextLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />;

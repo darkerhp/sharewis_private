@@ -83,6 +83,13 @@ const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatc
 
 @connect(mapStateToProps, mapDispatchToProps)
 class SnackCourse extends Component {
+  static propTypes = {
+    // states
+    isOnline: PropTypes.bool.isRequired,
+    // actions
+    setCurrentCourseId: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -115,9 +122,11 @@ class SnackCourse extends Component {
   }
 
   @autobind
-  handlePressCourseItem() { // eslint-disable-line
-    // TODO 実装する
-    console.log('pressCourseItem');
+  handlePressCourseItem(courseId) { // eslint-disable-line
+    const { isOnline, setCurrentCourseId } = this.props;
+    if (!isOnline) return;
+    setCurrentCourseId(courseId);
+    RouterActions.snackLecture();
   }
 
   @autobind
@@ -132,7 +141,7 @@ class SnackCourse extends Component {
   renderRow(data) {
     return (
       <TouchableOpacity
-        onPress={() => this.handlePressCourseItem()}
+        onPress={() => this.handlePressCourseItem(data.id)}
         style={styles.courseItemWrapper}
       >
         <Image source={{ uri: data.imageUrl }} style={styles.courseImage} />
