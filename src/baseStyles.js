@@ -6,7 +6,7 @@ import ReactNative from 'react-native';
 const { Platform } = ReactNative;
 
 const Variables = {
-  hyperlink: '#2980b9',
+  hyperlink: '#00abc9',
   backgroundColor: '#579eff',
   onboardingBackgroundColor: '#e7eef0',
   courseListBackgroundColor: '#e7eef0',
