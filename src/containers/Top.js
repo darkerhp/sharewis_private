@@ -23,7 +23,6 @@ const {
   Alert,
   Dimensions,
   Image,
-  ListView,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -42,13 +41,26 @@ const styles = StyleSheet.create({
   topImageWrapper: {
     overflow: 'hidden',
     width: displayWidth,
+    marginBottom: 10,
   },
   topImage: {
     width: displayWidth,
   },
-  recommendedSnackCourseWrapper: {},
-  myCourseWrapper: {},
-  // MyCouese
+  recommendedSnackCourseWrapper: {
+    flex: 1,
+  },
+  myCourseWrapper: {
+    flex: 1,
+    marginBottom: 10,
+  },
+  headerTextWrapper: {
+    marginLeft: 10,
+    marginBottom: 10,
+  },
+  headerText: {
+    fontSize: 14,
+    color: '#030304',
+  },
   contentText: {
     textAlign: 'center',
     lineHeight: 22,
@@ -81,7 +93,6 @@ class Top extends Component {
 
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       isRefreshing: false,
       isLoading: true,
@@ -104,12 +115,9 @@ class Top extends Component {
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
 
-    const snackCourses = this.props.courses.getSnackCourses().toJS();
     this.setState({
       isLoading: false,
     });
-    RouterActions.top({ initialPage: 2 });
-    RouterActions.top({ initialPage: 1 });
   }
 
   @autobind
@@ -145,29 +153,26 @@ class Top extends Component {
   @autobind
   renderSnackCourses() {
     const { courses } = this.props;
-
-    const snackCourseItems = courses.getSnackCourses().sortByRanking().valueSeq().map(course =>
-      <TwoColumnCourseItem
-        key={course.id}
-        course={course}
-        onPress={() => this.handlePressSnackCourseItem(course.id)}
-      />);
+    const snackCourseItems = courses
+      .getSnackCourses()
+      .sortByRanking()
+      .valueSeq()
+      .map(course =>
+        <TwoColumnCourseItem
+          key={course.id}
+          course={course}
+          onPress={() => this.handlePressSnackCourseItem(course.id)}
+        />);
 
     return (
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-        <Text style={{ fontSize: 14, padding: 10, color: '#030303' }}>{I18n.t('recommendedSnackCourse')}</Text>
-        <View
-          style={{ flexDirection: 'row' }}
-        >
+      <View>
+        <View style={styles.headerTextWrapper}>
+          <Text style={styles.headerText}>{I18n.t('recommendedSnackCourse')}</Text>
+        </View>
+        <View style={{ flexDirection: 'row' }}>
           {snackCourseItems.slice(0, 2)}
         </View>
-        <View
-          style={{ flexDirection: 'row' }}
-        >
+        <View style={{ flexDirection: 'row' }}>
           {snackCourseItems.slice(2, 4)}
         </View>
       </View>
@@ -177,16 +182,13 @@ class Top extends Component {
   @autobind
   renderMyCourses() {
     const { courses, isOnline, lectures } = this.props;
-
     const proCourse = courses.getProCourses().first();
 
     return (
       <View>
-        <Text
-          style={{ fontSize: 14, paddingLeft: 10, paddingBottom: 10, color: '#030303' }}
-        >
-          { I18n.t('myCourse') }
-        </Text>
+        <View style={styles.headerTextWrapper}>
+          <Text style={styles.headerText}>{I18n.t('myCourse')}</Text>
+        </View>
         {proCourse ?
           <CourseSummary
             course={proCourse}
