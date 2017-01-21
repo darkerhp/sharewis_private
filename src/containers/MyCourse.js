@@ -15,13 +15,13 @@ import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
+import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import { ACT_SITE_URL } from '../constants/Api';
 import alertOfflineError from '../utils/alert';
 import redirectTo from '../utils/linking';
 
 const {
   Alert,
-  Dimensions,
   RefreshControl,
   ScrollView,
   StatusBar,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   courseList: {
     flex: 1,
-    margin: 13,
+    marginVertical: 13,
     paddingBottom: BaseStyles.navbarHeight,
   },
   contentText: {
@@ -47,14 +47,6 @@ const styles = StyleSheet.create({
     color: '#222',
     textAlignVertical: 'center',
   },
-  box: {
-    flex: 1,
-    height: Dimensions.get('window').height / 2,
-    borderWidth: 1,
-    borderColor: BaseStyles.borderColor,
-    backgroundColor: 'white',
-    marginBottom: 13,
-  },
   hyperlinkWrapper: {
     flex: 1,
     justifyContent: 'center',
@@ -62,11 +54,8 @@ const styles = StyleSheet.create({
   },
   searchMore: {
     borderWidth: 1,
-    borderColor: 'blue',
+    borderColor: BaseStyles.hyperlink,
     paddingHorizontal: 5,
-  },
-  hyperlink: {
-    color: 'blue',
   },
 });
 
@@ -166,11 +155,11 @@ class MyCourse extends Component {
               />
             );
           })}
-          <View style={[styles.box, { height: 150 }]}>
+          <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
             <View style={styles.hyperlinkWrapper}>
               <Hyperlink
                 style={styles.searchMore}
-                linkStyle={styles.hyperlink}
+                linkStyle={{ color: BaseStyles.hyperlink }}
                 linkText={I18n.t('searchMore')}
                 onPress={isOnline ? redirectTo : alertOfflineError}
               >
@@ -179,7 +168,7 @@ class MyCourse extends Component {
                 </Text>
               </Hyperlink>
             </View>
-          </View>
+          </OneColumnItemBox>
         </View>
       </ScrollView>
     );

@@ -17,6 +17,7 @@ import { ACT_SITE_URL } from '../constants/Api';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import alertOfflineError from '../utils/alert';
 import redirectTo from '../utils/linking';
+import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 
 const {
   Alert,
@@ -87,17 +88,6 @@ const styles = StyleSheet.create({
     }),
   },
   // MyCouese
-  box: {
-    flex: 1,
-    height: Dimensions.get('window').height / 2,
-    borderWidth: 1,
-    borderColor: BaseStyles.borderColor,
-    borderRadius: 9,
-    backgroundColor: 'white',
-    marginBottom: 13,
-    marginHorizontal: 10,
-    overflow: 'hidden',
-  },
   contentText: {
     textAlign: 'center',
     lineHeight: 22,
@@ -118,7 +108,7 @@ const mapStateToProps = ({ entities, netInfo, ui }) => ({
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
-class SnackCourse extends Component {
+class Top extends Component {
   static propTypes = {
     // states
     courses: ImmutablePropTypes.orderedMap,
@@ -134,7 +124,6 @@ class SnackCourse extends Component {
     this.state = {
       isRefreshing: false,
       isLoading: true,
-      dataSource: ds.cloneWithRows([1, 2]),
     };
   }
 
@@ -156,9 +145,10 @@ class SnackCourse extends Component {
 
     const snackCourses = this.props.courses.getSnackCourses().toJS();
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(snackCourses),
       isLoading: false,
     });
+    RouterActions.top({ initialPage: 2 });
+    RouterActions.top({ initialPage: 1 });
   }
 
   @autobind
@@ -241,17 +231,15 @@ class SnackCourse extends Component {
         >
           { I18n.t('myCourse') }
         </Text>
-        {proCourse ?
+        {!proCourse ?
           <CourseSummary
-            key={proCourse.id}
-            courseSummaryStyleId={styles.box}
             course={proCourse}
             isDisabledCourse={false}
             lectures={lectures.filter(l => l.courseId === proCourse.id)}
             onPressCourse={this.handlePressMyCourseItem}
           />
           :
-          <View style={[styles.box, { height: 150, paddingHorizontal: 15 }]}>
+          <OneColumnItemBox style={{ height: 150, paddingHorizontal: 15 }} isTouchble={false}>
             <Hyperlink
               style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
               linkStyle={{ color: BaseStyles.hyperlink }}
@@ -262,7 +250,7 @@ class SnackCourse extends Component {
                 {I18n.t('noProCourses')}
               </Text>
             </Hyperlink>
-          </View>
+          </OneColumnItemBox>
         }
       </View>
     );
@@ -306,4 +294,4 @@ class SnackCourse extends Component {
   }
 }
 
-export default SnackCourse;
+export default Top;

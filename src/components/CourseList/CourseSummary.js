@@ -7,6 +7,7 @@ import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import Course from '../../models/Course';
+import OneColumnItemBox from './OneColumnItemBox';
 import ProgressBar from '../ProgressBar';
 
 const {
@@ -19,8 +20,11 @@ const {
 } = ReactNative;
 
 const styles = StyleSheet.create({
+  container: {},
   image: {
     flex: 5,
+    borderTopLeftRadius: 9,
+    borderTopRightRadius: 9,
   },
   detailsWrapper: {
     flex: 3,
@@ -73,14 +77,14 @@ const CourseSummary = ({
   lectures,
   isDisabledCourse,
   onPressCourse,
-  courseSummaryStyleId,
+  style,
 }) => {
   const lectureProgress = lectures.isEmpty()
     ? course.lectureProgress
     : lectures.filter(l => l.isFinished()).size;
   return (
-    <TouchableOpacity
-      style={courseSummaryStyleId}
+    <OneColumnItemBox
+      style={[styles.container, style]}
       onPress={() => onPressCourse(course)}
       disabled={isDisabledCourse}
     >
@@ -115,16 +119,16 @@ const CourseSummary = ({
           }
         </View>
       </View>
-    </TouchableOpacity>
+    </OneColumnItemBox>
   );
 };
 
 CourseSummary.propTypes = {
   course: PropTypes.instanceOf(Course),
-  courseSummaryStyleId: PropTypes.number.isRequired,
   lectures: ImmutablePropTypes.orderedMap,
   isDisabledCourse: PropTypes.bool.isRequired,
   onPressCourse: PropTypes.func.isRequired,
+  style: PropTypes.any, // eslint-disable-line
 };
 
 export default CourseSummary;
