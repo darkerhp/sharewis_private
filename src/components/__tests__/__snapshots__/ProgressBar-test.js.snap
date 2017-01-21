@@ -13,7 +13,7 @@ exports[`ProgressBar renders correctly 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#427fda",
+          "backgroundColor": "#00abca",
         },
         Object {
           "flex": 20,
