@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 78 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.backgroundColor,
+    backgroundColor: BaseStyles.navBarBackgroundColor,
   },
   playButtonIcon: {
     fontSize: 40,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     // FIXME androidは速度変更不可
     ...Platform.select({
       ios: {
-        backgroundColor: BaseStyles.backgroundColor,
+        backgroundColor: BaseStyles.navBarBackgroundColor,
       },
       android: {
         backgroundColor: BaseStyles.disabledButtonColor,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.backgroundColor,
+    backgroundColor: BaseStyles.navBarBackgroundColor,
   },
   fullScreenButtonIcon: {
     fontSize: 28,

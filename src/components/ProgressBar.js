@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import BaseStyles from '../baseStyles';
+
 const { StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
@@ -12,7 +14,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   currentProgress: {
-    backgroundColor: '#427fda',
+    backgroundColor: BaseStyles.navBarBackgroundColor,
   },
 });
 

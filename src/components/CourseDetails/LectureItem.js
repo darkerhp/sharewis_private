@@ -41,9 +41,9 @@ const styles = StyleSheet.create({
     height: lectureRowHeight,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: BaseStyles.backgroundColor,
+    borderColor: BaseStyles.navBarBackgroundColor,
     borderRightWidth: 1,
-    backgroundColor: BaseStyles.backgroundColor,
+    backgroundColor: BaseStyles.navBarBackgroundColor,
   },
   lectureNoText: {
     fontSize: 14,
