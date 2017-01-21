@@ -8,6 +8,7 @@ const CourseRecord = Record({
   lectureProgress: null,
   title: '',
   type: '',
+  ranking: 0,
 });
 
 export default class Course extends CourseRecord {

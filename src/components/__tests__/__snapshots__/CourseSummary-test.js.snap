@@ -14,7 +14,16 @@ exports[`CourseSummary renders correctly 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
+      "backgroundColor": "white",
+      "borderColor": "#ddd",
+      "borderRadius": 9,
+      "borderWidth": 1,
+      "flex": 1,
+      "height": 667,
+      "marginBottom": 13,
+      "marginHorizontal": 10,
       "opacity": 1,
+      "overflow": "hidden",
     }
   }
   testID={undefined}>
@@ -35,6 +44,8 @@ exports[`CourseSummary renders correctly 1`] = `
       }
       style={
         Object {
+          "borderTopLeftRadius": 9,
+          "borderTopRightRadius": 9,
           "flex": 5,
         }
       } />

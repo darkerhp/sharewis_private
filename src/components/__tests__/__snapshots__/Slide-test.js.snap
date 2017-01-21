@@ -41,7 +41,7 @@ exports[`Slide renders correctly 1`] = `
     <View
       linkStyle={
         Object {
-          "color": "#2980b9",
+          "color": "#00abc9",
         }
       }
       linkText={[Function]}

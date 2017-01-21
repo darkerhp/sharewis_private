@@ -6,27 +6,19 @@ import I18n from 'react-native-i18n';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
+import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
+import Course from '../models/Course';
 
 const {
   Alert,
-  Dimensions,
-  Image,
   ListView,
-  Platform,
   RefreshControl,
   StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
 } = ReactNative;
-
-const itemWidth = (Dimensions.get('window').width - 15) / 2;
-const itemHeight = (itemWidth / 3) * 4; // 4:3
 
 const styles = StyleSheet.create({
   container: {
@@ -38,37 +30,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-  },
-  courseItemWrapper: {
-    backgroundColor: 'white',
-    marginBottom: 5,
-    marginLeft: 5,
-    width: itemWidth,
-    height: itemHeight,
-    borderRadius: 2,
-    overflow: 'hidden',
-  },
-  courseImage: {
-    flex: 1,
-    height: (itemHeight / 10) * 8,
-  },
-  courseContentWrapper: {
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-    height: (itemHeight / 10) * 2,
-  },
-  courseTitle: {
-    fontWeight: '500',
-    marginBottom: 5,
-    color: BaseStyles.textColor,
-    ...Platform.select({
-      ios: {
-        fontSize: 10,
-      },
-      android: {
-        fontSize: 9,
-      },
-    }),
   },
 });
 
@@ -139,16 +100,12 @@ class SnackCourse extends Component {
 
   @autobind
   renderRow(data) {
+    const course = new Course(data);
     return (
-      <TouchableOpacity
+      <TwoColumnCourseItem
+        course={course}
         onPress={() => this.handlePressCourseItem(data.id)}
-        style={styles.courseItemWrapper}
-      >
-        <Image source={{ uri: data.imageUrl }} style={styles.courseImage} />
-        <View style={styles.courseContentWrapper}>
-          <Text style={styles.courseTitle}>{data.title}</Text>
-        </View>
-      </TouchableOpacity>
+      />
     );
   }
 

@@ -12,4 +12,8 @@ export default class CourseMap extends OrderedMap {
   getProCourses() {
     return this.filter(c => c.type === 'ProCourse');
   }
+
+  sortByRanking() {
+    return this.sortBy(c => c.ranking);
+  }
 }
