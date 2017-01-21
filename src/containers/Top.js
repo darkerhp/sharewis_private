@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
@@ -18,24 +17,21 @@ import CourseSummary from '../components/CourseList/CourseSummary';
 import alertOfflineError from '../utils/alert';
 import redirectTo from '../utils/linking';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
+import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 
 const {
   Alert,
   Dimensions,
   Image,
   ListView,
-  Platform,
   RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } = ReactNative;
 
 const displayWidth = Dimensions.get('window').width;
-const itemWidth = (displayWidth - 30) / 2;
-const itemHeight = (itemWidth / 3) * 4; // 4:3
 
 const styles = StyleSheet.create({
   container: {
@@ -52,41 +48,6 @@ const styles = StyleSheet.create({
   },
   recommendedSnackCourseWrapper: {},
   myCourseWrapper: {},
-  contentContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  courseItemWrapper: {
-    backgroundColor: 'white',
-    marginBottom: 10,
-    marginLeft: 10,
-    width: itemWidth,
-    height: itemHeight,
-    borderRadius: 9,
-    overflow: 'hidden',
-  },
-  courseImage: {
-    flex: 1,
-    height: (itemHeight / 10) * 8,
-  },
-  courseContentWrapper: {
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-    height: (itemHeight / 10) * 2,
-  },
-  courseTitle: {
-    fontWeight: '500',
-    marginBottom: 5,
-    color: BaseStyles.textColor,
-    ...Platform.select({
-      ios: {
-        fontSize: 10,
-      },
-      android: {
-        fontSize: 9,
-      },
-    }),
-  },
   // MyCouese
   contentText: {
     textAlign: 'center',
@@ -186,16 +147,11 @@ class Top extends Component {
     const { courses } = this.props;
 
     const snackCourseItems = courses.getSnackCourses().sortByRanking().valueSeq().map(course =>
-      <TouchableOpacity
+      <TwoColumnCourseItem
         key={course.id}
+        course={course}
         onPress={() => this.handlePressSnackCourseItem(course.id)}
-        style={styles.courseItemWrapper}
-      >
-        <Image source={{ uri: course.imageUrl }} style={styles.courseImage} />
-        <View style={styles.courseContentWrapper}>
-          <Text style={styles.courseTitle}>{course.title}</Text>
-        </View>
-      </TouchableOpacity>);
+      />);
 
     return (
       <View
@@ -231,7 +187,7 @@ class Top extends Component {
         >
           { I18n.t('myCourse') }
         </Text>
-        {!proCourse ?
+        {proCourse ?
           <CourseSummary
             course={proCourse}
             isDisabledCourse={false}
@@ -260,8 +216,6 @@ class Top extends Component {
     if (this.state.isLoading) {
       return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
     }
-
-    const { courses } = this.props;
 
     return (
       <ScrollView
