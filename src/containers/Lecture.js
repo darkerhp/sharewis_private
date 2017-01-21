@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions/lecture';
+import BaseStyles from '../baseStyles';
 import Lecture from '../models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import TextLecture from '../components/Lecture/TextLecture';
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
   nextLectureButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#579eff',
+    backgroundColor: BaseStyles.navBarBackgroundColor,
     minHeight: 60,
   },
   nextLectureButtonText: {

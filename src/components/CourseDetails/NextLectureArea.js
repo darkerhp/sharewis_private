@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 
+import BaseStyles from '../../baseStyles';
 import Lecture from '../../models/Lecture';
 
 const { View, StyleSheet, Text, Image, TouchableOpacity } = ReactNative;
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#579eff',
+    backgroundColor: BaseStyles.navBarBackgroundColor,
   },
   nextLectureText: {
     color: 'white',

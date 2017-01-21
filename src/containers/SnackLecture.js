@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 
 import * as lectureActions from '../actions/lecture';
 import * as courseDetailsActions from '../actions/courseDetails';
-import Course from '../models/Course';
+import BaseStyles from '../baseStyles';
 import Lecture from '../models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   nextLectureButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#579eff',
+    backgroundColor: BaseStyles.navBarBackgroundColor,
     minHeight: 60,
   },
   nextLectureButtonText: {
