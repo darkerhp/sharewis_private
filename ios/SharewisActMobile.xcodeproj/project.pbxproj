@@ -1227,7 +1227,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWisACT";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis";
 				PRODUCT_NAME = SharewisActMobile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1268,7 +1268,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWisACT";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis";
 				PRODUCT_NAME = SharewisActMobile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
