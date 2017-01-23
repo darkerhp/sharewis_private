@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
+import BaseStyles from '../baseStyles';
 import Slide from '../components/Onboarding/Slide';
 import Login from './Login';
 
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
       },
     }),
     fontSize: 17,
-    color: '#007aff',
+    color: BaseStyles.navBarBackgroundColor,
   },
   buttonWrapper: {
     paddingHorizontal: 15,
