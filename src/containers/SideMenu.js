@@ -81,11 +81,6 @@ class SideMenu extends Component { // eslint-disable-line
         </View>
         <View style={styles.mainContainer}>
           <MenuItem
-            text={I18n.t('myCourse')}
-            iconName={'home'}
-            handlePress={() => RouterActions.refresh({ key: 'drawer', open: false })}
-          />
-          <MenuItem
             text={I18n.t('accountSettings')}
             iconName={'account-circle'}
             handlePress={() => (
