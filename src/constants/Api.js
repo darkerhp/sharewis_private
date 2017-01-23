@@ -2,7 +2,7 @@
 
 let ACCOUNT_API_HOST = 'account.share-wis.com';
 let ACCOUNT_API_BASE_PATH = '';
-let ACT_API_HOST = 'act.share-wis.com';
+let ACT_API_HOST = 'share-wis.com';
 
 const ACT_API_BASE_PATH = '/api';
 const actApiKey = 'Pr4BP2BedViT6Gjm2aiwRJAy6ziTs2i6yGrsyTp9';
