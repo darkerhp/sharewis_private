@@ -64,7 +64,7 @@ const locales = {
     proCourse: 'プロコース',
     backToCourseList: 'コース一覧に戻る',
     // トップページ
-    top: 'トップ',
+    top: 'TOP',
     recommendedSnackCourse: 'オススメのスナックコース',
     noProCourses: `購入済みのプロコースがない方は、 ${ACT_SITE_URL} よりお手続きを進めてください。`,
   },
@@ -115,18 +115,18 @@ const locales = {
     noAccountYet: 'No account yet?',
     alreadyHaveAnAccount: 'Already have an account?',
     signupWithEmail: 'Signup by e-mail',
-    signupEmailError: '**要翻訳**', // TODO 翻訳
+    signupEmailError: 'Signup failed',
     invalidEmail: 'Invalid value for the e-mail.',
     invalidPassword: 'You can use alphabets or numbers for password.',
-    tooShortPassword: '**要翻訳**', // TODO 翻訳
+    tooShortPassword: 'Password must be at least 6 characters.',
     agreeTosAndPolicy: `By completing this sign up process, you agree to our ${ACT_TOS_URL} and ${ACT_PRIVACY_URL}.`,
     // スナックコース
     snackCourse: 'Snack Courses',
     proCourse: 'Pro Courses',
-    backToCourseList: '**要翻訳**', // TODO 翻訳
+    backToCourseList: 'Go back to course list',
     // トップページ
-    top: '**要翻訳**', // TODO 翻訳
-    recommendedSnackCourse: '**要翻訳**', // TODO 翻訳
+    top: 'TOP',
+    recommendedSnackCourse: 'Featured Snack Courses',
     noProCourses: `If you haven't purchased any pro courses yet, please go to the ${ACT_SITE_URL}.`, // TODO 翻訳
   },
   vi: {
@@ -176,19 +176,19 @@ const locales = {
     noAccountYet: 'Đăng ký mới',
     alreadyHaveAnAccount: 'Đã có tài khoản',
     signupWithEmail: 'Đăng ký bằng địa chỉ email',
-    signupEmailError: '**要翻訳**', // TODO 翻訳
-    invalidEmail: '**要翻訳**', // TODO 翻訳
-    invalidPassword: '**要翻訳**', // TODO 翻訳
-    tooShortPassword: '**要翻訳**', // TODO 翻訳
+    signupEmailError: 'Bạn đã đăng ký thất bại',
+    invalidEmail: 'Email có giá trị không hợp lệ.',
+    invalidPassword: 'Bạn có thể sử dụng bảng chữ cái hoặc số cho mật khẩu.',
+    tooShortPassword: 'Mật khẩu cần dài ít nhất 6 ký tự.',
     agreeTosAndPolicy: `Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ${ACT_TOS_URL} và ${ACT_PRIVACY_URL}.`,
     // スナックコース
     snackCourse: 'Snack Courses',
     proCourse: 'Pro Courses',
-    backToCourseList: '**要翻訳**', // TODO 翻訳
+    backToCourseList: 'Trở lại danh sách khoá học',
     // トップページ
-    top: '**要翻訳**', // TODO 翻訳
-    recommendedSnackCourse: '**要翻訳**', // TODO 翻訳
-    noProCourses: '**要翻訳**', // TODO 翻訳
+    top: 'TRANG ĐẦU',
+    recommendedSnackCourse: 'Snack Courses nổi bật',
+    noProCourses: `Nếu bạn không mua bất kỳ Pro Courses nào, vui lòng vào ${ACT_SITE_URL}.`,
   },
 };
 
