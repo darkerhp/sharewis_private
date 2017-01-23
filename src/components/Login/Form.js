@@ -43,8 +43,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
   },
-  textInputWrapper: {
+  emailInputWrapper: {
     height: 47,
+  },
+  passwordInputWrapper: {
+    height: 46,
   },
   buttonTextWrapper: {
     flex: 2,
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   TextInput: {
-    height: 45,
+    height: 46,
     padding: 4,
     fontSize: 13,
     color: BaseStyles.textColor,
@@ -127,9 +130,9 @@ class Form extends Component {
           </Text>
         </View>
         <View style={styles.inputWrapper}>
-          <View style={[styles.textInputWrapper, styles.innerTextInput]}>
+          <View style={[styles.emailInputWrapper, styles.innerTextInput]}>
             <Field
-              style={styles.TextInput}
+              style={[styles.TextInput]}
               name="email"
               type="email"
               component={TextField}
@@ -141,7 +144,7 @@ class Form extends Component {
               returnKeyType="next"
             />
           </View>
-          <View style={styles.textInputWrapper}>
+          <View style={styles.passwordInputWrapper}>
             <Field
               style={styles.TextInput}
               name="password"
