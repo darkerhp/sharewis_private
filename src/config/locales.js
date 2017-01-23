@@ -41,7 +41,7 @@ const locales = {
     profile: 'プロフィール',
     progressText: 'のレクチャーが完了しました',
     required: '必要です',
-    searchMore: '更にコースを探す',
+    searchMore: 'さらにコースを探す',
     signupText: `アカウントをお持ちでない方は ${ACT_SITE_URL} からアカウントを作成してください`,
     slide1Text: 'ShareWisは90秒で学べる無料のスナックコースとプロが教えるプロコースで学べる学習アプリです。',
     slide2Text: 'スナックコースの90秒動画でちょこっと賢くなろう！',

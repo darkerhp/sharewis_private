@@ -2,27 +2,27 @@ import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
+import FitImage from 'react-native-fit-image';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import * as Actions from '../actions/courses';
-import BaseStyles from '../baseStyles';
-import { ACT_SITE_URL } from '../constants/Api';
-import CourseSummary from '../components/CourseList/CourseSummary';
 import alertOfflineError from '../utils/alert';
-import redirectTo from '../utils/linking';
+import BaseStyles from '../baseStyles';
+import CourseSummary from '../components/CourseList/CourseSummary';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
+import redirectTo from '../utils/linking';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
+import { ACT_SITE_URL } from '../constants/Api';
 
 const {
   Alert,
   Dimensions,
-  Image,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -68,8 +68,6 @@ const styles = StyleSheet.create({
     color: '#222',
   },
 });
-
-const topImage = require('../components/Top/images/top.png');
 
 const mapStateToProps = ({ entities, netInfo, ui }) => ({
   courses: entities.courses,
@@ -233,10 +231,9 @@ class Top extends Component {
         }
       >
         <View style={styles.topImageWrapper}>
-          <Image
-            source={topImage}
-            resizeMode={Image.resizeMode.stretch}
-            style={styles.topImage}
+          <FitImage
+            // TODO ハードコード
+            source={{ uri: 'https://act-production.s3.amazonaws.com/uploads/editor_image/image/1129/app_topimage_750.png' }}
           />
         </View>
         <View style={styles.recommendedSnackCourseWrapper}>
