@@ -4470,6 +4470,10 @@ react-native-fbsdk@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-0.4.0.tgz#1c1db311202795db651b5c42a65dd90d487943c1"
 
+react-native-fit-image@^1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/react-native-fit-image/-/react-native-fit-image-1.4.7.tgz#4d9cdadeb850fe582981f8f2448e10e122b29d8b"
+
 react-native-fs@^2.0.1-rc.2:
   version "2.0.1-rc.2"
   resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.0.1-rc.2.tgz#e7e00b1d5c48c52c4ca8cd76b4ea62440ae54082"
