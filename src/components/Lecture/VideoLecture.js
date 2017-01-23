@@ -6,8 +6,8 @@ import Video from 'react-native-video';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import Orientation from 'react-native-orientation';
 
-import VideoControls from './VideoControls';
-import FullScreenVideoControls from './FullScreenVideoControls';
+import VideoControls from './VideoControls'; // eslint-disable-line
+import FullScreenVideoControls from './FullScreenVideoControls'; // eslint-disable-line
 import Lecture from '../../models/Lecture';
 
 const {
