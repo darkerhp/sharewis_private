@@ -4,6 +4,7 @@ import {
   ACT_SITE_URL,
   ACT_TOS_URL,
   ACT_PRIVACY_URL,
+  ACT_PRO_COURSES_URL,
 } from '../constants/Api';
 
 const locales = {
@@ -66,14 +67,14 @@ const locales = {
     // トップページ
     top: 'TOP',
     recommendedSnackCourse: 'オススメのスナックコース',
-    noProCourses: `購入済みのプロコースがない方は、 ${ACT_SITE_URL} よりお手続きを進めてください。`,
+    noProCourses: `購入済みのプロコースがない方は、 ${ACT_PRO_COURSES_URL} よりお手続きを進めてください。`,
   },
   en: {
     accountSettings: 'Account Info',
     actWebsite: "ShareWis's website",
     back: 'Back',
     close: 'close',
-    myCourse: 'My courses',
+    myCourse: 'My Courses',
     downloadAlreadyInProgress: 'download already in progress.',
     downloadAvailable: 'Downloaded lectures exist',
     email: 'E-mail',
@@ -127,7 +128,7 @@ const locales = {
     // トップページ
     top: 'TOP',
     recommendedSnackCourse: 'Featured Snack Courses',
-    noProCourses: `If you haven't purchased any pro courses yet, please go to the ${ACT_SITE_URL}.`,
+    noProCourses: `If you haven't purchased any pro courses yet, please go to the ${ACT_PRO_COURSES_URL}.`,
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -188,7 +189,7 @@ const locales = {
     // トップページ
     top: 'TRANG ĐẦU',
     recommendedSnackCourse: 'Snack Courses nổi bật',
-    noProCourses: `Nếu bạn không mua bất kỳ Pro Courses nào, vui lòng vào ${ACT_SITE_URL}.`,
+    noProCourses: `Nếu bạn không mua bất kỳ Pro Courses nào, vui lòng vào ${ACT_PRO_COURSES_URL}.`,
   },
 };
 

@@ -16,7 +16,7 @@ import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
-import { ACT_SITE_URL } from '../constants/Api';
+import { ACT_PRO_COURSES_URL } from '../constants/Api';
 import alertOfflineError from '../utils/alert';
 import redirectTo from '../utils/linking';
 
@@ -164,7 +164,7 @@ class MyCourse extends Component {
                 onPress={isOnline ? redirectTo : alertOfflineError}
               >
                 <Text style={styles.contentText}>
-                  {ACT_SITE_URL}
+                  {ACT_PRO_COURSES_URL}
                 </Text>
               </Hyperlink>
             </View>
