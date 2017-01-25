@@ -23,12 +23,10 @@ const {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 3,
+    flex: 1,
     marginTop: 10,
   },
   labelWrapper: {
-    alignItems: 'flex-end',
-    flexDirection: 'row',
     marginHorizontal: 13,
     marginBottom: 5,
   },
@@ -36,7 +34,9 @@ const styles = StyleSheet.create({
     color: BaseStyles.textColor,
     fontSize: 12,
   },
-  inputWrapper: {
+  inputsWrapper: {
+    flex: 2,
+    maxHeight: 95,
     backgroundColor: 'white',
     paddingLeft: 13,
     borderColor: '#dadada',
@@ -44,13 +44,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   emailInputWrapper: {
-    height: 47,
+    maxHeight: 47,
+    flex: 1,
   },
   passwordInputWrapper: {
-    height: 46,
+    maxHeight: 46,
+    flex: 1,
   },
   buttonTextWrapper: {
-    flex: 2,
+    flex: 1,
     marginHorizontal: 13,
     marginTop: 13,
   },
@@ -59,7 +61,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   buttonWrapper: {
-    height: 47,
+    minHeight: 30,
+    maxHeight: 47,
+    flex: 1,
     borderRadius: 3,
     alignItems: 'center',
     backgroundColor: '#7be161',
@@ -71,11 +75,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
   },
-  textWrapper: {
-    flex: 3,
-  },
   TextInput: {
-    height: 46,
+    flex: 1,
     padding: 4,
     fontSize: 13,
     color: BaseStyles.textColor,
@@ -129,7 +130,7 @@ class Form extends Component {
             { I18n.t('emailLoginLabel') }
           </Text>
         </View>
-        <View style={styles.inputWrapper}>
+        <View style={styles.inputsWrapper}>
           <View style={[styles.emailInputWrapper, styles.innerTextInput]}>
             <Field
               style={[styles.TextInput]}
