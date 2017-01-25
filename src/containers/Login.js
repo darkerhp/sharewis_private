@@ -25,8 +25,15 @@ const { Linking, StatusBar, StyleSheet, Text, View } = ReactNative;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 70,
+    paddingVertical: BaseStyles.navbarHeight,
     backgroundColor: BaseStyles.onboardingBackgroundColor,
+  },
+  formWrapper: {
+    flex: 3,
+    justifyContent: 'flex-start',
+  },
+  facebookWrapper: {
+    flex: 1,
   },
   passwordForgottenTextWrapper: {
     flex: 1,
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
     color: BaseStyles.textColor,
   },
   footer: {
-    flex: 1.5,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 13,
@@ -105,9 +112,11 @@ class Login extends Component {
 
     return (
       <View style={styles.container}>
-        <Form
-          {...this.props}
-        />
+        <View style={styles.formWrapper}>
+          <Form
+            {...this.props}
+          />
+        </View>
         <View style={styles.passwordForgottenTextWrapper}>
           <Text
             style={styles.passwordForgottenText}
@@ -118,9 +127,11 @@ class Login extends Component {
             {I18n.t('passwordForgotten')}
           </Text>
         </View>
-        <Facebook
-          {...this.props}
-        />
+        <View style={styles.facebookWrapper}>
+          <Facebook
+            {...this.props}
+          />
+        </View>
         <Hr lineColor={'#dadada'} />
         <View style={styles.footer}>
           <Hyperlink
