@@ -2,7 +2,7 @@
 
 let ACCOUNT_API_HOST = 'account.share-wis.com';
 let ACCOUNT_API_BASE_PATH = '';
-let ACT_API_HOST = 'share-wis.com';
+let ACT_API_HOST = 'act.share-wis.com';
 
 const ACT_API_BASE_PATH = '/api';
 const actApiKey = 'Pr4BP2BedViT6Gjm2aiwRJAy6ziTs2i6yGrsyTp9';
@@ -10,7 +10,7 @@ const actApiKey = 'Pr4BP2BedViT6Gjm2aiwRJAy6ziTs2i6yGrsyTp9';
 if (__DEV__) {
   ACCOUNT_API_HOST = 'dev-account.share-wis.com';
   ACCOUNT_API_BASE_PATH = '/dev';
-  ACT_API_HOST = 'staging1.share-wis.com'; // TODO 統合後、変更する
+  ACT_API_HOST = 'fusion.share-wis.com';
 }
 
 
