@@ -4,15 +4,16 @@ import { StatusBar, Text } from 'react-native';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import I18n from 'react-native-i18n';
 
-import BaseStyles from '../baseStyles';
-import MyCourse from '../containers/MyCourse';
-import SnackCourse from '../containers/SnackCourse';
-import Top from '../containers/Top';
+import BaseStyles from '../../baseStyles';
+import MyCourse from '../../containers/MyCourse';
+import SnackCourse from '../../containers/SnackCourse';
+import Top from '../../containers/Top';
+import ExScrollableTabBar from './ExScrollableTabBar';
 
 // TODO プロコースが増えた場合、DefaultTabBar > ScrollableTabBarで実装する。
 // デザイン妥協できない場合、CustomでScrollableTabBarを実装する必要がありそう。
 const renderScrollableTabBar = () =>
-  <DefaultTabBar
+  <ExScrollableTabBar
     underlineStyle={{ backgroundColor: '#ffff77', height: 3 }}
     activeTextColor="#ffffff"
     inactiveTextColor="#ffffff"
