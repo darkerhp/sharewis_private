@@ -234,10 +234,7 @@ class Top extends Component {
         }
       >
         <View style={styles.topImageWrapper}>
-          <FitImage
-
-            source={{ uri: topImageUrl }}
-          />
+          <FitImage source={{ uri: topImageUrl }} />
         </View>
         <View style={styles.recommendedSnackCourseWrapper}>
           {this.renderSnackCourses()}
