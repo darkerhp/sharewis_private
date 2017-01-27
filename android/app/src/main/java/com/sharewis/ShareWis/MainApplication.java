@@ -1,4 +1,4 @@
-package com.sharewis.ShareWisAct;
+package com.sharewis.ShareWis;
 
 import android.app.Application;
 import android.util.Log;
