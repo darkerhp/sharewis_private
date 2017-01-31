@@ -25,11 +25,9 @@ const {
 const styles = StyleSheet.create({
   container: {
     flex: 2,
-    marginTop: 30,
+    marginTop: 10,
   },
   labelWrapper: {
-    alignItems: 'flex-end',
-    flexDirection: 'row',
     marginHorizontal: 13,
     marginBottom: 5,
   },
@@ -37,19 +35,25 @@ const styles = StyleSheet.create({
     color: BaseStyles.textColor,
     fontSize: 12,
   },
-  inputWrapper: {
+  inputsWrapper: {
+    flex: 2,
+    maxHeight: 95,
     backgroundColor: 'white',
     paddingLeft: 13,
-    paddingBottom: 1,
     borderColor: '#dadada',
     borderTopWidth: 1,
     borderBottomWidth: 1,
   },
-  textInputWrapper: {
-    height: 47,
+  emailInputWrapper: {
+    maxHeight: 47,
+    flex: 1,
+  },
+  passwordInputWrapper: {
+    maxHeight: 46,
+    flex: 1,
   },
   buttonTextWrapper: {
-    flex: 2,
+    flex: 1,
     marginHorizontal: 13,
     marginTop: 13,
   },
@@ -58,7 +62,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   buttonWrapper: {
-    height: 47,
+    minHeight: 30,
+    maxHeight: 47,
+    flex: 1,
     borderRadius: 3,
     alignItems: 'center',
     backgroundColor: '#7be161',
@@ -69,9 +75,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
-  },
-  textWrapper: {
-    flex: 3,
   },
   TextInput: {
     flex: 1,
@@ -148,8 +151,8 @@ class Form extends Component {
             { I18n.t('signupWithEmail') }
           </Text>
         </View>
-        <View style={styles.inputWrapper}>
-          <View style={[styles.textInputWrapper, styles.innerTextInput]}>
+        <View style={styles.inputsWrapper}>
+          <View style={[styles.emailInputWrapper, styles.innerTextInput]}>
             <Field
               style={styles.TextInput}
               name="email"
@@ -163,7 +166,7 @@ class Form extends Component {
               returnKeyType="next"
             />
           </View>
-          <View style={styles.textInputWrapper}>
+          <View style={styles.passwordInputWrapper}>
             <Field
               style={styles.TextInput}
               name="password"
