@@ -4,9 +4,11 @@
  * TODO userに変更予定
  */
 import { createAction } from 'redux-actions';
+import I18n from 'react-native-i18n';
 
 import * as types from '../constants/ActionTypes';
 import { getUserData, signupByEmail } from '../middleware/accountApi';
+import { patchSignup } from '../middleware/actApi';
 
 
 // Actions Creators
@@ -59,8 +61,9 @@ export const signupUserBy = (loginMethod, credentials) =>
     }
 
     try {
-      const data = await signupByEmail(credentials);
-      return dispatch(fetchActSignupSuccess(data));
+      const userData = await signupByEmail(credentials);
+      await patchSignup(userData.userId, I18n.locale ? I18n.locale.split('-')[0] : null);
+      return dispatch(fetchActSignupSuccess(userData));
     } catch (error) {
       console.error(error);
       dispatch(fetchActSignupFailure);
