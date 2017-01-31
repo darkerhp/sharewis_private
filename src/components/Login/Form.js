@@ -121,7 +121,7 @@ class Form extends Component {
   }
 
   render() {
-    const { handleSubmit, isOnline, loginDisabled } = this.props;
+    const { handleSubmit, loginDisabled } = this.props;
 
     return (
       <View style={styles.container}>

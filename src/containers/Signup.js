@@ -24,7 +24,7 @@ const { StatusBar, StyleSheet, Text, View } = ReactNative;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 70,
+    paddingVertical: BaseStyles.navbarHeight,
     backgroundColor: BaseStyles.onboardingBackgroundColor,
   },
   contentText: {
@@ -36,7 +36,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   signupButtonWrapper: {
-    height: 47,
+    minHeight: 30,
+    maxHeight: 47,
+    flex: 1,
     borderRadius: 3,
     marginTop: 35,
     alignItems: 'center',
@@ -90,7 +92,7 @@ class Signup extends Component {
   componentWillReceiveProps(nextProps) {
     // Redirect to Course List page if user is logged in
     if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
-      RouterActions.myCourse();
+      RouterActions.top();
     }
   }
 

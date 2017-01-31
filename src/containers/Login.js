@@ -4,7 +4,6 @@ import ReactNative from 'react-native';
 
 import Button from 'react-native-button';
 import Hr from 'react-native-hr';
-import Hyperlink from 'react-native-hyperlink';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 import { bindActionCreators } from 'redux';
@@ -18,7 +17,6 @@ import Form from '../components/Login/Form';
 import Facebook from '../components/Login/Facebook';
 import alertOfflineError from '../utils/alert';
 import { ACT_PASSWORD_REMINDER_URL } from '../constants/Api';
-import redirectTo from '../utils/linking';
 
 const { Linking, StatusBar, StyleSheet, Text, View } = ReactNative;
 
@@ -45,9 +43,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   signupButtonWrapper: {
-    height: 47,
+    minHeight: 30,
+    maxHeight: 47,
+    flex: 1,
     borderRadius: 3,
-    marginTop: 35,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
@@ -134,15 +133,13 @@ class Login extends Component {
         </View>
         <Hr lineColor={'#dadada'} />
         <View style={styles.footer}>
-          <Hyperlink
-            linkStyle={{ color: BaseStyles.hyperlink }}
-            linkText={I18n.t('actWebsite')}
-            onPress={isOnline ? redirectTo : alertOfflineError}
+          <Button
+            containerStyle={styles.signupButtonWrapper}
+            style={styles.signupButtonText}
+            onPress={() => RouterActions.pop()}
           >
-            <Text style={styles.contentText}>
-              {I18n.t('signupText')}
-            </Text>
-          </Hyperlink>
+            { I18n.t('noAccountYet') }
+          </Button>
         </View>
       </View>
     );

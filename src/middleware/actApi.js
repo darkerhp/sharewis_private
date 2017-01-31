@@ -14,7 +14,6 @@ const getHeaders = userId => ({
   'user-id': userId,
 });
 
-
 export const getUserCourses = async (userId: number) => {
   // Run query
   const result = await fetch(`${ACT_API_URL}/my_courses`, {
@@ -69,7 +68,6 @@ export const getCourseDetails = async (userId: number, courseId: number) => {
   return json;
 };
 
-
 export const patchLectureStatus = async (
   userId: number,
   courseId: number,
@@ -90,6 +88,39 @@ export const patchLectureStatus = async (
     await checkStatus(result);
     const json = await result.json();
     // await checkResult(json, l => l.status === newStatus);
+
+    // Parse and return results
+    return json;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * アカウントAPIのデータ補完用のpatchリクエスト
+ * FIXME アカウントAPIの移行後、不要になったら削除予定
+ * @param userId
+ * @param locale
+ * @returns {Promise.<*>}
+ */
+export const patchSignup = async (userId: number, locale: ?string) => {
+  try {
+    // Run query
+    const result = await fetch(`${ACT_API_URL}/users/signup_patch`, {
+      method: 'PATCH',
+      headers: getHeaders(userId),
+      body: JSON.stringify({
+        language: locale,
+        currency: null,
+      }),
+    });
+
+    // Verify results
+    await checkStatus(result);
+    const json = await result.json();
+
+    console.log('signup patch done:', json);
 
     // Parse and return results
     return json;

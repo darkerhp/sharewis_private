@@ -7,7 +7,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 
 import BaseStyles from '../baseStyles';
 import Slide from '../components/Onboarding/Slide';
-import Login from './Login';
+import Signup from './Signup';
 
 const {
   Platform,
@@ -88,7 +88,7 @@ class Onboarding extends Component {
           text={I18n.t('slide3Text')}
           imageSrc={slide3ImageSrc}
         />
-        <Login />
+        <Signup />
       </Swiper>
     );
   }
