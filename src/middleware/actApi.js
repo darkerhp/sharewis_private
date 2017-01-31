@@ -104,7 +104,7 @@ export const patchLectureStatus = async (
  * @param locale
  * @returns {Promise.<*>}
  */
-export const patchSignup = async (userId: number, locale: string) => {
+export const patchSignup = async (userId: number, locale: ?string) => {
   try {
     // Run query
     const result = await fetch(`${ACT_API_URL}/users/signup_patch`, {
