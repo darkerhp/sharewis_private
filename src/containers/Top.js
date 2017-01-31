@@ -217,6 +217,9 @@ class Top extends Component {
       return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
     }
 
+    // TODO ハードコード
+    const topImageUrl = `https://act-production.s3.amazonaws.com/uploads/editor_image/image/1129/app_topimage_750.png?dt=${new Date().getTime()}`;
+
     return (
       <ScrollView
         style={styles.container}
@@ -231,10 +234,7 @@ class Top extends Component {
         }
       >
         <View style={styles.topImageWrapper}>
-          <FitImage
-            // TODO ハードコード
-            source={{ uri: 'https://act-production.s3.amazonaws.com/uploads/editor_image/image/1129/app_topimage_750.png' }}
-          />
+          <FitImage source={{ uri: topImageUrl }} />
         </View>
         <View style={styles.recommendedSnackCourseWrapper}>
           {this.renderSnackCourses()}
