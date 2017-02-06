@@ -33,6 +33,7 @@ const locales = {
     nextLecture: '次のレクチャーへ',
     nickName: 'ニックネーム',
     noCourses: `購入済みのコースがない方は、 ${ACT_SITE_URL} よりお手続きを進めてください。`,
+    noLogin: 'ログインすると購入後のプロコースをアプリで受講できます。',
     offlineErrorTitle: 'ネットワークエラー',
     offlineErrorMessage: '続行するにはインターネット接続が必要です',
     offlineLecture: 'このレクチャーはオフラインで受講できません',
@@ -60,6 +61,7 @@ const locales = {
     invalidPassword: 'パスワードは半角英数またはアンダースコアで入力してください。',
     tooShortPassword: 'パスワードは6文字以上で入力してください。',
     agreeTosAndPolicy: `登録を完了すると、 ${ACT_TOS_URL} 及び ${ACT_PRIVACY_URL} に同意することになります。`,
+    skipSignup: '登録せずにアプリを使う',
     // スナックコース
     snackCourse: 'スナックコース',
     proCourse: 'プロコース',
@@ -94,6 +96,7 @@ const locales = {
     nextLecture: 'Next lecture',
     nickName: 'Nickname',
     noCourses: `If you haven't purchased any courses yet, please go to the ${ACT_SITE_URL}.`,
+    noLogin: 'You can take your purchased Pro Courses after signing in.',
     offlineErrorTitle: 'No Internet Connection',
     offlineErrorMessage: 'Please check and try again',
     offlineLecture: 'Sorry, this lecture is not available offline',
@@ -121,6 +124,7 @@ const locales = {
     invalidPassword: 'You can use alphabets or numbers for password.',
     tooShortPassword: 'Password must be at least 6 characters.',
     agreeTosAndPolicy: `By completing this sign up process, you agree to our ${ACT_TOS_URL} and ${ACT_PRIVACY_URL}.`,
+    skipSignup: 'Skip Signup',
     // スナックコース
     snackCourse: 'Snack Courses',
     proCourse: 'Pro Courses',
@@ -155,6 +159,7 @@ const locales = {
     nextLecture: 'bài giảng tiếp theo',
     nickName: 'Nickname',
     noCourses: `Nếu bạn chưa mua bất kỳ khóa học nào, vui lòng vào ${ACT_SITE_URL}.`,
+    noLogin: 'Bạn có thể tham Pro Courses mua sau khi đăng nhập.',
     offlineErrorTitle: 'Không có kết nối',
     offlineErrorMessage: 'Vui lòng kiểm tra và thử lại',
     offlineLecture: 'Xin lỗi, bài giảng này không có sẵn ở chế độ offline',
@@ -182,6 +187,7 @@ const locales = {
     invalidPassword: 'Bạn có thể sử dụng bảng chữ cái hoặc số cho mật khẩu.',
     tooShortPassword: 'Mật khẩu cần dài ít nhất 6 ký tự.',
     agreeTosAndPolicy: `Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ${ACT_TOS_URL} và ${ACT_PRIVACY_URL}.`,
+    skipSignup: 'Sử dụng các ứng dụng mà không cần đăng ký',
     // スナックコース
     snackCourse: 'Snack Courses',
     proCourse: 'Pro Courses',
