@@ -53,6 +53,22 @@ const styles = StyleSheet.create({
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
     fontWeight: 'normal',
   },
+  skipSignupButtonWrapper: {
+    minHeight: 30,
+    maxHeight: 47,
+    flex: 1,
+    borderRadius: 3,
+    marginTop: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  skipSignupButtonText: {
+    fontSize: 16,
+    color: BaseStyles.textColor,
+    fontFamily: null, // react-native-buttonのfontFamilyをリセット
+    fontWeight: 'normal',
+  },
   text: {
     textAlign: 'center',
     fontSize: 12,
@@ -130,6 +146,13 @@ class Signup extends Component {
             onPress={() => RouterActions.login()}
           >
             { I18n.t('alreadyHaveAnAccount') }
+          </Button>
+          <Button
+            containerStyle={styles.skipSignupButtonWrapper}
+            style={styles.skipSignupButtonText}
+            onPress={() => RouterActions.top()}
+          >
+            { I18n.t('skipSignup') }
           </Button>
         </View>
       </View>
