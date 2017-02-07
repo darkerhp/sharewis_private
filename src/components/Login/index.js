@@ -10,6 +10,7 @@ import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import BaseStyles from '../../baseStyles';
 import Form from './Form';
+import Footer from './Footer'; // eslint-disable-line
 import Facebook from './Facebook';
 import alertOfflineError from '../../utils/alert';
 import { ACT_PASSWORD_REMINDER_URL } from '../../constants/Api';
@@ -37,21 +38,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 10,
     textAlign: 'center',
-  },
-  signupButtonWrapper: {
-    minHeight: 30,
-    maxHeight: 47,
-    flex: 1,
-    borderRadius: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-  signupButtonText: {
-    fontSize: 16,
-    color: BaseStyles.textColor,
-    fontFamily: null, // react-native-buttonのfontFamilyをリセット
-    fontWeight: 'normal',
   },
   contentText: {
     textAlign: 'center',
@@ -110,15 +96,7 @@ class Login extends Component {
           />
         </View>
         <Hr lineColor={'#dadada'} />
-        <View style={styles.footer}>
-          <Button
-            containerStyle={styles.signupButtonWrapper}
-            style={styles.signupButtonText}
-            onPress={() => RouterActions.signup()}
-          >
-            { I18n.t('noAccountYet') }
-          </Button>
-        </View>
+        <Footer {...this.props} />
       </View>
     );
   }
