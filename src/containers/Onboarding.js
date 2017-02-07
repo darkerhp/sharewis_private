@@ -7,7 +7,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 
 import BaseStyles from '../baseStyles';
 import Slide from '../components/Onboarding/Slide';
-import Signup from './Signup'; // eslint-disable-line
+import Signup from '../containers/Signup'; // eslint-disable-line
 
 const {
   Platform,
