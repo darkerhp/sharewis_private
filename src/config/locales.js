@@ -62,6 +62,7 @@ const locales = {
     tooShortPassword: 'パスワードは6文字以上で入力してください。',
     agreeTosAndPolicy: `登録を完了すると、 ${ACT_TOS_URL} 及び ${ACT_PRIVACY_URL} に同意することになります。`,
     skipSignup: '登録せずにアプリを使う',
+    skipLogin: 'ログインせずにアプリを使う',
     // スナックコース
     snackCourse: 'スナックコース',
     proCourse: 'プロコース',
@@ -125,6 +126,7 @@ const locales = {
     tooShortPassword: 'Password must be at least 6 characters.',
     agreeTosAndPolicy: `By completing this sign up process, you agree to our ${ACT_TOS_URL} and ${ACT_PRIVACY_URL}.`,
     skipSignup: 'Skip Signup',
+    skipLogin: 'Skip Login',
     // スナックコース
     snackCourse: 'Snack Courses',
     proCourse: 'Pro Courses',
@@ -188,6 +190,7 @@ const locales = {
     tooShortPassword: 'Mật khẩu cần dài ít nhất 6 ký tự.',
     agreeTosAndPolicy: `Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ${ACT_TOS_URL} và ${ACT_PRIVACY_URL}.`,
     skipSignup: 'Sử dụng các ứng dụng mà không cần đăng ký',
+    skipLogin: 'Bỏ qua đăng nhập',
     // スナックコース
     snackCourse: 'Snack Courses',
     proCourse: 'Pro Courses',
