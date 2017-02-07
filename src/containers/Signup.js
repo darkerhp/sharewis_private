@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-class SignupContainer extends Component {
+class SignupContainer extends Component { // eslint-disable-line
   render() {
     return <Signup {...this.props} />;
   }

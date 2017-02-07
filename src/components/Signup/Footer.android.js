@@ -46,6 +46,6 @@ const Footer = () =>
     >
       { I18n.t('alreadyHaveAnAccount') }
     </Button>
-  </View>
+  </View>;
 
 export default Footer;
