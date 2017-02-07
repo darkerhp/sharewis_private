@@ -30,16 +30,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    textAlign: 'center',
-    fontSize: 12,
-    color: BaseStyles.hyperlink,
-  },
-  footer: {
-    flex: 2,
-    marginHorizontal: 13,
-    paddingVertical: 13,
-  },
 });
 
 class Signup extends Component {
