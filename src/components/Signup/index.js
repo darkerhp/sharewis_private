@@ -2,8 +2,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-import Button from 'react-native-button';
-import Hr from 'react-native-hr';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 import { bindActionCreators } from 'redux';
@@ -12,12 +10,13 @@ import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { formValueSelector } from 'redux-form';
 import Hyperlink from 'react-native-hyperlink';
 
-import * as Actions from '../actions/login';
-import BaseStyles from '../baseStyles';
-import Form from '../components/Signup/Form';
-import alertOfflineError from '../utils/alert';
-import redirectTo from '../utils/linking';
-import { ACT_TOS_URL, ACT_PRIVACY_URL } from '../constants/Api';
+import * as Actions from '../../actions/login';
+import BaseStyles from '../../baseStyles';
+import Form from './Form';
+import Footer from './Footer'; // eslint-disable-line
+import alertOfflineError from '../../utils/alert';
+import redirectTo from '../../utils/linking';
+import { ACT_TOS_URL, ACT_PRIVACY_URL } from '../../constants/Api';
 
 const { StatusBar, StyleSheet, Text, View } = ReactNative;
 
@@ -34,40 +33,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  signupButtonWrapper: {
-    minHeight: 30,
-    maxHeight: 47,
-    flex: 1,
-    borderRadius: 3,
-    marginTop: 35,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#9b9b9b',
-  },
-  signupButtonText: {
-    fontSize: 16,
-    color: BaseStyles.textColor,
-    fontFamily: null, // react-native-buttonのfontFamilyをリセット
-    fontWeight: 'normal',
-  },
-  skipSignupButtonWrapper: {
-    minHeight: 30,
-    maxHeight: 47,
-    flex: 1,
-    borderRadius: 3,
-    marginTop: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-  skipSignupButtonText: {
-    fontSize: 16,
-    color: BaseStyles.textColor,
-    fontFamily: null, // react-native-buttonのfontFamilyをリセット
-    fontWeight: 'normal',
   },
   text: {
     textAlign: 'center',
@@ -138,23 +103,7 @@ class Signup extends Component {
             {I18n.t('agreeTosAndPolicy')}
           </Text>
         </Hyperlink>
-        <View style={styles.footer}>
-          <Hr lineColor={'#dadada'} />
-          <Button
-            containerStyle={styles.signupButtonWrapper}
-            style={styles.signupButtonText}
-            onPress={() => RouterActions.login()}
-          >
-            { I18n.t('alreadyHaveAnAccount') }
-          </Button>
-          <Button
-            containerStyle={styles.skipSignupButtonWrapper}
-            style={styles.skipSignupButtonText}
-            onPress={() => RouterActions.top()}
-          >
-            { I18n.t('skipSignup') }
-          </Button>
-        </View>
+        <Footer />
       </View>
     );
   }
