@@ -85,7 +85,7 @@ class SideMenu extends Component { // eslint-disable-line
               text={I18n.t('accountSettings')}
               iconName={'account-circle'}
               handlePress={() => (
-                isOnline ? RouterActions.account() : alertOfflineError()
+                isOnline ? RouterActions.accountModal() : alertOfflineError()
               )}
             />
           }
