@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
+import Button from 'react-native-button';
 import FitImage from 'react-native-fit-image';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
@@ -53,6 +54,11 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 10,
   },
+  myCourseSummaryItemBox: {
+    height: 150,
+    paddingHorizontal: 15,
+    paddingTop: 15,
+  },
   headerTextWrapper: {
     marginLeft: 10,
     marginBottom: 10,
@@ -67,11 +73,30 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#222',
   },
+  signupButtonWrapper: {
+    minHeight: 30,
+    maxHeight: 47,
+    flex: 1,
+    borderRadius: 3,
+    marginTop: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#9b9b9b',
+  },
+  signupButtonText: {
+    fontSize: 16,
+    color: BaseStyles.textColor,
+    fontFamily: null, // react-native-buttonのfontFamilyをリセット
+    fontWeight: 'normal',
+  },
 });
 
-const mapStateToProps = ({ entities, netInfo, ui }) => ({
+const mapStateToProps = ({ entities, netInfo, ui, user }) => ({
   courses: entities.courses,
   lectures: entities.lectures,
+  isLoginUser: user.loggedIn,
   ...ui,
   isOnline: netInfo.isConnected,
 });
@@ -84,6 +109,7 @@ class Top extends Component {
     // states
     courses: ImmutablePropTypes.orderedMap,
     lectures: ImmutablePropTypes.orderedMap,
+    isLoginUser: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
     // actions
     setCurrentCourseId: PropTypes.func.isRequired,
@@ -103,10 +129,17 @@ class Top extends Component {
 
   @autobind
   async refreshList(force = false) {
-    const { fetchMyCourse, fetchSnackCourse, fetchCoursesDownloadStatus } = this.props;
+    const {
+      fetchMyCourse,
+      fetchSnackCourse,
+      fetchCoursesDownloadStatus,
+      isLoginUser,
+    } = this.props;
     try {
-      await fetchMyCourse(force);
-      await fetchCoursesDownloadStatus();
+      if (isLoginUser) {
+        await fetchMyCourse(force);
+        await fetchCoursesDownloadStatus();
+      }
       await fetchSnackCourse(force);
     } catch (error) {
       console.error(error);
@@ -179,36 +212,62 @@ class Top extends Component {
 
   @autobind
   renderMyCourses() {
-    const { courses, isOnline, lectures } = this.props;
-    const proCourse = courses.getProCourses().first();
-
     return (
       <View>
         <View style={styles.headerTextWrapper}>
           <Text style={styles.headerText}>{I18n.t('myCourse')}</Text>
         </View>
-        {proCourse ?
-          <CourseSummary
-            course={proCourse}
-            isDisabledCourse={false}
-            lectures={lectures.filter(l => l.courseId === proCourse.id)}
-            onPressCourse={this.handlePressMyCourseItem}
-          />
-          :
-          <OneColumnItemBox style={{ height: 150, paddingHorizontal: 15 }} isTouchble={false}>
-            <Hyperlink
-              style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-              linkStyle={{ color: BaseStyles.hyperlink }}
-              linkText={url => (url === ACT_SITE_URL ? I18n.t('actWebsite') : url)}
-              onPress={isOnline ? redirectTo : alertOfflineError}
-            >
-              <Text style={styles.contentText}>
-                {I18n.t('noProCourses')}
-              </Text>
-            </Hyperlink>
-          </OneColumnItemBox>
-        }
+        {this.renderMyCourseItem()}
       </View>
+    );
+  }
+
+  @autobind
+  renderMyCourseItem() {
+    const { courses, lectures, isLoginUser, isOnline } = this.props;
+    const proCourse = courses.getProCourses().first();
+
+    if (!isLoginUser) {
+      return (
+        <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
+          <Text style={styles.contentText}>
+            {I18n.t('noLogin')}
+          </Text>
+          <Button
+            containerStyle={styles.signupButtonWrapper}
+            style={styles.signupButtonText}
+            onPress={() => RouterActions.login()}
+          >
+            { I18n.t('login') }
+          </Button>
+        </OneColumnItemBox>
+      );
+    }
+
+    if (proCourse) {
+      return (
+        <CourseSummary
+          course={proCourse}
+          isDisabledCourse={false}
+          lectures={lectures.filter(l => l.courseId === proCourse.id)}
+          onPressCourse={this.handlePressMyCourseItem}
+        />
+      );
+    }
+
+    return (
+      <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
+        <Hyperlink
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          linkStyle={{ color: BaseStyles.hyperlink }}
+          linkText={url => (url === ACT_SITE_URL ? I18n.t('actWebsite') : url)}
+          onPress={isOnline ? redirectTo : alertOfflineError}
+        >
+          <Text style={styles.contentText}>
+            {I18n.t('noProCourses')}
+          </Text>
+        </Hyperlink>
+      </OneColumnItemBox>
     );
   }
 

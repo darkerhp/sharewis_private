@@ -114,7 +114,7 @@ class Login extends Component {
           <Button
             containerStyle={styles.signupButtonWrapper}
             style={styles.signupButtonText}
-            onPress={() => RouterActions.pop()}
+            onPress={() => RouterActions.signup()}
           >
             { I18n.t('noAccountYet') }
           </Button>

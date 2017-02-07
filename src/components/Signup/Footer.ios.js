@@ -52,23 +52,33 @@ const styles = StyleSheet.create({
   },
 });
 
-const Footer = () =>
+const Footer = ({ handlePressSignup, handlePressSkipSignup }) =>
   <View style={styles.container}>
     <Hr lineColor={'#dadada'} />
     <Button
       containerStyle={styles.signupButtonWrapper}
       style={styles.signupButtonText}
-      onPress={() => RouterActions.login()}
+      onPress={handlePressSignup}
     >
       { I18n.t('alreadyHaveAnAccount') }
     </Button>
     <Button
       containerStyle={styles.skipSignupButtonWrapper}
       style={styles.skipSignupButtonText}
-      onPress={() => RouterActions.top()}
+      onPress={handlePressSkipSignup}
     >
       { I18n.t('skipSignup') }
     </Button>
-  </View>
+  </View>;
+
+Footer.propTypes = {
+  handlePressSignup: PropTypes.func.isRequired,
+  handlePressSkipSignup: PropTypes.func.isRequired,
+};
+
+Footer.defaultProps = {
+  handlePressSignup: () => RouterActions.login(),
+  handlePressSkipSignup: () => RouterActions.top(),
+};
 
 export default Footer;

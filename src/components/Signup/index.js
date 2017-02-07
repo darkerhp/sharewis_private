@@ -4,13 +4,9 @@ import ReactNative from 'react-native';
 
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
-import { formValueSelector } from 'redux-form';
 import Hyperlink from 'react-native-hyperlink';
 
-import * as Actions from '../../actions/login';
 import BaseStyles from '../../baseStyles';
 import Form from './Form';
 import Footer from './Footer'; // eslint-disable-line
@@ -46,24 +42,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
-  const { form, user, netInfo, ui } = state;
-  const selector = formValueSelector('email');
-  const hasEmail = selector(state, 'email') !== undefined;
-  const hasPassword = selector(state, 'password') !== undefined;
-  return {
-    ...user,
-    ...ui,
-    isOnline: netInfo.isConnected,
-    loginDisabled: !(hasEmail && hasPassword),
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions }, dispatch),
-});
-
-@connect(mapStateToProps, mapDispatchToProps)
 class Signup extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
@@ -71,7 +49,6 @@ class Signup extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // Redirect to Course List page if user is logged in
     if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
       RouterActions.top();
     }
@@ -79,16 +56,15 @@ class Signup extends Component {
 
   render() {
     const { isFetching, isOnline } = this.props;
+    StatusBar.setBarStyle('dark-content');
+
     if (isFetching) {
       return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
     }
 
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
-        <Form
-          {...this.props}
-        />
+        <Form {...this.props} />
         <Hyperlink
           style={{ flex: 1, marginHorizontal: 13 }}
           linkStyle={{ color: BaseStyles.hyperlink }}
@@ -103,7 +79,7 @@ class Signup extends Component {
             {I18n.t('agreeTosAndPolicy')}
           </Text>
         </Hyperlink>
-        <Footer />
+        <Footer {...this.props} />
       </View>
     );
   }
