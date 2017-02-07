@@ -3,6 +3,8 @@ import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
 import { REHYDRATE } from 'redux-persist/constants';
 
+import _ from 'lodash';
+
 import Lecture from '../../models/Lecture';
 import LectureMap from '../../models/LectureMap';
 
@@ -18,11 +20,11 @@ const sectionsReducer = handleActions({
     return mergeEntities(state, fromJS(sections));
   },
   // redux-persistのrehydrate用のreducer
-  // Immutable.jsを仕様する場合、変換が必要
+  // Immutable.jsを使用する場合、変換が必要
   [REHYDRATE]: (state, action) => {
     if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities')) return state;
     const sections = action.payload.entities.sections;
-    if (!sections) return state;
+    if (_.isEmpty(sections)) return initialState;
     return mergeEntities(initialState, fromJS(sections));
   },
 }, initialState);

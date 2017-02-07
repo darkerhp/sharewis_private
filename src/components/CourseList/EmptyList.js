@@ -9,7 +9,7 @@ import redirectTo from '../../utils/linking';
 const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
-  emptyList: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 
 
 const emptyList = () =>
-  <View style={styles.emptyList}>
+  <View style={styles.container}>
     <Hyperlink
       linkStyle={{ color: BaseStyles.hyperlink }}
       linkText={I18n.t('actWebsite')}

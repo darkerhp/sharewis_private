@@ -11,6 +11,7 @@ import Onboarding from '../containers/Onboarding';
 import Lecture from '../containers/Lecture';
 import Account from '../containers/Account';
 import Login from '../containers/Login';
+import Signup from '../containers/Signup'; // eslint-disable-line
 import SnackLecture from '../containers/SnackLecture';
 import ScrollableTabs from './ScrollableTabs';
 
@@ -82,8 +83,15 @@ const getScenes = () =>
             initial
           />
           <Scene
+            key="signup"
+            component={Signup}
+            type={ActionConst.RESET}
+            hideNavBar
+          />
+          <Scene
             key="login"
             component={Login}
+            type={ActionConst.RESET}
             hideNavBar
           />
           <Scene
@@ -127,9 +135,9 @@ const getScenes = () =>
           />
         </Scene>
       </Scene>
-      <Scene key="account">
+      <Scene key="accountModal">
         <Scene
-          key="accountModal"
+          key="_accountModal"
           {...baseNavBarProps}
           navigationBarStyle={{
             backgroundColor: '#4c4d4f',

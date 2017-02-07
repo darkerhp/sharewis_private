@@ -33,11 +33,11 @@ const coursesReducer = handleActions({
     return state.merge(updatedCourses);
   },
   // redux-persistのrehydrate用のreducer
-  // Immutable.jsを仕様する場合、変換が必要
+  // Immutable.jsを使用する場合、変換が必要
   [REHYDRATE]: (state, action) => {
     if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities')) return state;
     const courses = action.payload.entities.courses;
-    if (!courses) return state;
+    if (_.isEmpty(courses)) return initialState;
     return refreshEntities(fromJS(courses));
   },
 }, initialState);

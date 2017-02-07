@@ -65,7 +65,7 @@ class SideMenu extends Component { // eslint-disable-line
   render() {
     const { isOnline, user } = this.props;
     let displayUsername = user.nickName || user.userName;
-    if (I18n.currentLocale().indexOf('ja') !== -1) {
+    if (displayUsername && I18n.currentLocale().indexOf('ja') !== -1) {
       displayUsername += ' さん';
     }
 
@@ -80,13 +80,15 @@ class SideMenu extends Component { // eslint-disable-line
           </View>
         </View>
         <View style={styles.mainContainer}>
-          <MenuItem
-            text={I18n.t('accountSettings')}
-            iconName={'account-circle'}
-            handlePress={() => (
-              isOnline ? RouterActions.account() : alertOfflineError()
-            )}
-          />
+          {user.loggedIn &&
+            <MenuItem
+              text={I18n.t('accountSettings')}
+              iconName={'account-circle'}
+              handlePress={() => (
+                isOnline ? RouterActions.account() : alertOfflineError()
+              )}
+            />
+          }
           <MenuItem
             text={I18n.t('inquiry')}
             iconName={'mail'}

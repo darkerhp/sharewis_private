@@ -15,6 +15,7 @@ import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
+import NotLoginList from '../components/CourseList/NotLoginList';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import { ACT_PRO_COURSES_URL } from '../constants/Api';
 import alertOfflineError from '../utils/alert';
@@ -59,9 +60,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ entities, netInfo, ui }) => ({
+const mapStateToProps = ({ entities, netInfo, ui, user }) => ({
   courses: entities.courses,
   lectures: entities.lectures,
+  isLoginUser: user.loggedIn,
   ...ui,
   isOnline: netInfo.isConnected,
 });
@@ -75,6 +77,7 @@ class MyCourse extends Component {
     courses: ImmutablePropTypes.orderedMap,
     lectures: ImmutablePropTypes.orderedMap,
     isFetching: PropTypes.bool.isRequired,
+    isLoginUser: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
     // actions
     setCurrentCourseId: PropTypes.func.isRequired,
@@ -90,7 +93,8 @@ class MyCourse extends Component {
 
   @autobind
   async refreshList(force = false) {
-    const { fetchMyCourse, fetchCoursesDownloadStatus } = this.props;
+    const { fetchMyCourse, fetchCoursesDownloadStatus, isLoginUser } = this.props;
+    if (!isLoginUser) return;
     try {
       await fetchMyCourse(force);
       await fetchCoursesDownloadStatus();
@@ -117,11 +121,15 @@ class MyCourse extends Component {
   }
 
   render() {
-    const { isFetching, isOnline, courses, lectures } = this.props;
+    const { isFetching, isOnline, isLoginUser, courses, lectures } = this.props;
     StatusBar.setBarStyle('light-content');
 
     if (!this.state.isRefreshing && isFetching) {
       return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
+    }
+
+    if (!isLoginUser) {
+      return <NotLoginList />;
     }
 
     if (courses.isEmpty()) {
