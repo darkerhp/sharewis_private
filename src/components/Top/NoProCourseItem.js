@@ -10,7 +10,7 @@ import BaseStyles from '../../baseStyles';
 import OneColumnItemBox from '../CourseList/OneColumnItemBox';
 import { ACT_PRO_COURSES_URL } from '../../constants/Api';
 
-const { StyleSheet, Text } = ReactNative;
+const { Platform, StyleSheet, Text } = ReactNative;
 
 const styles = StyleSheet.create({
   myCourseSummaryItemBox: {
@@ -26,13 +26,22 @@ const styles = StyleSheet.create({
   },
 });
 
+const handlePress = (isOnline, url) => {
+  if (Platform.OS === 'ios') return;
+  if (!isOnline) {
+    alertOfflineError();
+    return;
+  }
+  redirectTo(url);
+};
+
 const NoProCourseItem = ({ isOnline }) =>
   <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
     <Hyperlink
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
       linkStyle={{ color: BaseStyles.hyperlink }}
       linkText={url => (url === ACT_PRO_COURSES_URL ? I18n.t('actWebsite') : url)}
-      onPress={isOnline ? redirectTo : alertOfflineError}
+      onPress={url => handlePress(isOnline, url)}
     >
       <Text style={styles.contentText}>
         {I18n.t('noProCourses')}
