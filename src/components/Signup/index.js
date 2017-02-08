@@ -63,7 +63,10 @@ class Signup extends Component {
             if (url === ACT_PRIVACY_URL) return I18n.t('privacy');
             return url;
           }}
-          onPress={isOnline ? redirectTo : alertOfflineError}
+          onPress={(url) => {
+            if (url === ACT_TOS_URL) RouterActions.tosModal();
+            if (url === ACT_PRIVACY_URL) RouterActions.privacyModal();
+          }}
         >
           <Text style={styles.contentText}>
             {I18n.t('agreeTosAndPolicy')}
