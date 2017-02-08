@@ -8,11 +8,7 @@ exports[`EmptyList renders correctly 1`] = `
     }
   }>
   <View
-    linkStyle={
-      Object {
-        "color": "#00abc9",
-      }
-    }
+    linkStyle={false}
     linkText="[missing \"en.actWebsite\" translation]"
     onPress={[Function]}
     style={undefined}>
