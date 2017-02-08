@@ -14,6 +14,8 @@ import Login from '../containers/Login';
 import Signup from '../containers/Signup'; // eslint-disable-line
 import SnackLecture from '../containers/SnackLecture';
 import ScrollableTabs from '../containers/ScrollableTabs';
+import Privacy from '../components/SideMenu/Privacy';
+import Tos from '../components/SideMenu/Tos';
 
 const { Image, Platform, StyleSheet, View } = ReactNative;
 
@@ -147,6 +149,34 @@ const getScenes = () =>
           leftButtonImage={closeWhiteImage}
           onLeft={() => Actions.pop()}
           title={I18n.t('accountSettings')}
+        />
+      </Scene>
+      <Scene key="tosModal">
+        <Scene
+          key="_tosModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f',
+          }}
+          component={Tos}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('tos')}
+        />
+      </Scene>
+      <Scene key="privacyModal">
+        <Scene
+          key="_privacyModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f',
+          }}
+          component={Privacy}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('privacy')}
         />
       </Scene>
     </Scene>

@@ -3,7 +3,7 @@
 */
 import ReactNative from 'react-native';
 
-const { Platform } = ReactNative;
+const { Dimensions, Platform } = ReactNative;
 
 const Variables = {
   hyperlink: '#00abc9',
@@ -18,6 +18,8 @@ const Variables = {
   }),
   navBarBackgroundColor: '#00abca',
   disabledButtonColor: '#dadada',
+  deviceWidth: Dimensions.get('window').width,
+  deviceHeight: Dimensions.get('window').height,
 };
 
 export default Variables;
