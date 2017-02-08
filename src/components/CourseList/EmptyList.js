@@ -37,7 +37,7 @@ const handlePress = (url) => {
 const emptyList = () =>
   <View style={styles.container}>
     <Hyperlink
-      linkStyle={{ color: BaseStyles.hyperlink }}
+      linkStyle={Platform.OS !== 'ios' && { color: BaseStyles.hyperlink }}
       linkText={I18n.t('actWebsite')}
       onPress={handlePress}
     >
