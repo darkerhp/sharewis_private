@@ -13,7 +13,7 @@ import Account from '../containers/Account';
 import Login from '../containers/Login';
 import Signup from '../containers/Signup'; // eslint-disable-line
 import SnackLecture from '../containers/SnackLecture';
-import ScrollableTabs from './ScrollableTabs';
+import ScrollableTabs from '../containers/ScrollableTabs';
 
 const { Image, Platform, StyleSheet, View } = ReactNative;
 
@@ -111,7 +111,7 @@ const getScenes = () =>
             hideNavBar={false}
             backTitle={I18n.t('myCourse')}
             // onRight={() => console.log('onRight')}
-            onBack={() => Actions.top({ initialPage: 0 })}
+            onBack={() => Actions.top({ moveTo: ScrollableTabs.MY_COURSE })}
             backButtonImage={backButtonWhiteImage}
             // rightButtonImage={moreHorizWhiteImage}
           />
@@ -130,7 +130,7 @@ const getScenes = () =>
             backTitle={I18n.t('snackCourse')}
             component={SnackLecture}
             hideNavBar={false}
-            onBack={() => Actions.top({ initialPage: 2 })}
+            onBack={() => Actions.top({ moveTo: ScrollableTabs.SNACK_COURSE })}
             backButtonImage={backButtonWhiteImage}
           />
         </Scene>

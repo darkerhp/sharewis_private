@@ -16,6 +16,7 @@ import BaseStyles from '../baseStyles';
 import Lecture from '../models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
+import ScrollableTabs from './ScrollableTabs';
 
 const { Alert, StatusBar, StyleSheet, View } = ReactNative;
 
@@ -128,7 +129,7 @@ class SnackLectureContainer extends Component {
         <Button
           containerStyle={styles.nextLectureButton}
           style={styles.nextLectureButtonText}
-          onPress={() => RouterActions.top({ initialPage: 2 })}
+          onPress={() => RouterActions.top({ moveTo: ScrollableTabs.SNACK_COURSE })}
         >
           {I18n.t('backToCourseList')}
         </Button>

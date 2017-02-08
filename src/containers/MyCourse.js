@@ -132,7 +132,7 @@ class MyCourse extends Component {
       return <NotLoginList />;
     }
 
-    if (courses.isEmpty()) {
+    if (courses.getProCourses().isEmpty()) {
       return <EmptyList />;
     }
 

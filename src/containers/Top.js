@@ -19,7 +19,8 @@ import CourseSummary from '../components/CourseList/CourseSummary';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import redirectTo from '../utils/linking';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
-import { ACT_SITE_URL } from '../constants/Api';
+import NoProCourseItem from '../components/Top/NoProCourseItem'; // eslint-disable-line
+import { ACT_PRO_COURSES_URL } from '../constants/Api';
 
 const {
   Alert,
@@ -92,6 +93,42 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
 });
+
+/**
+ * ログインしていない時にマイコースに表示するアイテム
+ * @param isOnline
+ */
+const noLoginItem = isOnline =>
+  <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
+    <Text style={styles.contentText}>
+      {I18n.t('noLogin')}
+    </Text>
+    <Button
+      containerStyle={styles.signupButtonWrapper}
+      style={styles.signupButtonText}
+      onPress={() => RouterActions.login()}
+    >
+      { I18n.t('login') }
+    </Button>
+  </OneColumnItemBox>;
+
+/**
+ * プロコースがない時にマイコースに表示するアイテム
+ * @param isOnline
+ */
+const noProCourseItem = isOnline =>
+  <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
+    <Hyperlink
+      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+      linkStyle={{ color: BaseStyles.hyperlink }}
+      linkText={url => (url === ACT_PRO_COURSES_URL ? I18n.t('actWebsite') : url)}
+      onPress={isOnline ? redirectTo : alertOfflineError}
+    >
+      <Text style={styles.contentText}>
+        {I18n.t('noProCourses')}
+      </Text>
+    </Hyperlink>
+  </OneColumnItemBox>;
 
 const mapStateToProps = ({ entities, netInfo, ui, user }) => ({
   courses: entities.courses,
@@ -228,20 +265,7 @@ class Top extends Component {
     const proCourse = courses.getProCourses().first();
 
     if (!isLoginUser) {
-      return (
-        <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
-          <Text style={styles.contentText}>
-            {I18n.t('noLogin')}
-          </Text>
-          <Button
-            containerStyle={styles.signupButtonWrapper}
-            style={styles.signupButtonText}
-            onPress={() => RouterActions.login()}
-          >
-            { I18n.t('login') }
-          </Button>
-        </OneColumnItemBox>
-      );
+      return noLoginItem(isOnline);
     }
 
     if (proCourse) {
@@ -255,20 +279,7 @@ class Top extends Component {
       );
     }
 
-    return (
-      <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
-        <Hyperlink
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-          linkStyle={{ color: BaseStyles.hyperlink }}
-          linkText={url => (url === ACT_SITE_URL ? I18n.t('actWebsite') : url)}
-          onPress={isOnline ? redirectTo : alertOfflineError}
-        >
-          <Text style={styles.contentText}>
-            {I18n.t('noProCourses')}
-          </Text>
-        </Hyperlink>
-      </OneColumnItemBox>
-    );
+    return <NoProCourseItem isOnline={isOnline} />;
   }
 
   render() {
