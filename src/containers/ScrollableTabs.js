@@ -58,8 +58,6 @@ class ScrollableTabs extends Component {
 
   render() {
     StatusBar.setBarStyle('light-content');
-    const { moveTo, user } = this.props;
-
     return (
       <ScrollableTabView
         style={{ marginTop: BaseStyles.navbarHeight - 1 }}
