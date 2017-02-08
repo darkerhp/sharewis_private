@@ -23,6 +23,7 @@ import redirectTo from '../utils/linking';
 
 const {
   Alert,
+  Platform,
   RefreshControl,
   ScrollView,
   StatusBar,
@@ -120,6 +121,16 @@ class MyCourse extends Component {
     RouterActions.refresh();
   }
 
+  @autobind
+  handlePressSearchMore(isOnline, url) {
+    if (Platform.OS === 'ios') return;
+    if (!isOnline) {
+      alertOfflineError();
+      return;
+    }
+    redirectTo(url);
+  }
+
   render() {
     const { isFetching, isOnline, isLoginUser, courses, lectures } = this.props;
     StatusBar.setBarStyle('light-content');
@@ -169,7 +180,7 @@ class MyCourse extends Component {
                 style={styles.searchMore}
                 linkStyle={{ color: BaseStyles.hyperlink }}
                 linkText={I18n.t('searchMore')}
-                onPress={isOnline ? redirectTo : alertOfflineError}
+                onPress={url => this.handlePressSearchMore(isOnline, url)}
               >
                 <Text style={styles.contentText}>
                   {ACT_PRO_COURSES_URL}
