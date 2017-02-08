@@ -6,7 +6,7 @@ import I18n from 'react-native-i18n';
 import BaseStyles from '../../baseStyles';
 import redirectTo from '../../utils/linking';
 
-const { StyleSheet, Text, View } = ReactNative;
+const { Platform, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -23,13 +23,23 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * リンククリックハンドラ
+ * iOSの場合は何もしない
+ * @param isOnline
+ * @param url
+ */
+const handlePress = (url) => {
+  if (Platform.OS === 'ios') return;
+  redirectTo(url);
+};
 
 const emptyList = () =>
   <View style={styles.container}>
     <Hyperlink
       linkStyle={{ color: BaseStyles.hyperlink }}
       linkText={I18n.t('actWebsite')}
-      onPress={redirectTo}
+      onPress={handlePress}
     >
       <Text style={styles.contentText}>
         {I18n.t('noCourses')}
