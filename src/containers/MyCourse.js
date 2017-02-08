@@ -174,20 +174,22 @@ class MyCourse extends Component {
               />
             );
           })}
-          <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
-            <View style={styles.hyperlinkWrapper}>
-              <Hyperlink
-                style={styles.searchMore}
-                linkStyle={{ color: BaseStyles.hyperlink }}
-                linkText={I18n.t('searchMore')}
-                onPress={url => this.handlePressSearchMore(isOnline, url)}
-              >
-                <Text style={styles.contentText}>
-                  {ACT_PRO_COURSES_URL}
-                </Text>
-              </Hyperlink>
-            </View>
-          </OneColumnItemBox>
+          {Platform.OS !== 'ios' &&
+            <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
+              <View style={styles.hyperlinkWrapper}>
+                <Hyperlink
+                  style={styles.searchMore}
+                  linkStyle={{ color: BaseStyles.hyperlink }}
+                  linkText={I18n.t('searchMore')}
+                  onPress={url => this.handlePressSearchMore(isOnline, url)}
+                >
+                  <Text style={styles.contentText}>
+                    {ACT_PRO_COURSES_URL}
+                  </Text>
+                </Hyperlink>
+              </View>
+            </OneColumnItemBox>
+          }
         </View>
       </ScrollView>
     );
