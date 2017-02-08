@@ -26,6 +26,12 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * リンククリックハンドラ
+ * iOSの場合は何もしない
+ * @param isOnline
+ * @param url
+ */
 const handlePress = (isOnline, url) => {
   if (Platform.OS === 'ios') return;
   if (!isOnline) {
