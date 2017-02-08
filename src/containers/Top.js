@@ -19,6 +19,7 @@ import CourseSummary from '../components/CourseList/CourseSummary';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import redirectTo from '../utils/linking';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
+import NoProCourseItem from '../components/Top/NoProCourseItem'; // eslint-disable-line
 import { ACT_PRO_COURSES_URL } from '../constants/Api';
 
 const {
@@ -278,7 +279,7 @@ class Top extends Component {
       );
     }
 
-    return noProCourseItem(isOnline);
+    return <NoProCourseItem isOnline={isOnline} />;
   }
 
   render() {
