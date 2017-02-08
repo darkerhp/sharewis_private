@@ -122,7 +122,7 @@ class MyCourse extends Component {
   }
 
   @autobind
-  handlePressSearchMore(isOnline, url) {
+  handlePressSearchMore(isOnline, url) { // eslint-disable-line
     if (Platform.OS === 'ios') return;
     if (!isOnline) {
       alertOfflineError();
