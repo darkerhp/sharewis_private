@@ -102,14 +102,14 @@ class SideMenu extends Component { // eslint-disable-line
             text={I18n.t('tos')}
             iconName={'description'}
             handlePress={() => (
-              isOnline ? Linking.openURL(ACT_TOS_URL) : alertOfflineError()
+              isOnline ? RouterActions.tosModal() : alertOfflineError()
             )}
           />
           <MenuItem
             text={I18n.t('privacy')}
             iconName={'lock'}
             handlePress={() => (
-              isOnline ? Linking.openURL(ACT_PRIVACY_URL) : alertOfflineError()
+              isOnline ? RouterActions.privacyModal() : alertOfflineError()
             )}
           />
         </View>
