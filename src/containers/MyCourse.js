@@ -121,16 +121,6 @@ class MyCourse extends Component {
     RouterActions.refresh();
   }
 
-  @autobind
-  handlePressSearchMore(isOnline, url) { // eslint-disable-line
-    if (Platform.OS === 'ios') return;
-    if (!isOnline) {
-      alertOfflineError();
-      return;
-    }
-    redirectTo(url);
-  }
-
   render() {
     const { isFetching, isOnline, isLoginUser, courses, lectures } = this.props;
     StatusBar.setBarStyle('light-content');
@@ -181,7 +171,7 @@ class MyCourse extends Component {
                   style={styles.searchMore}
                   linkStyle={{ color: BaseStyles.hyperlink }}
                   linkText={I18n.t('searchMore')}
-                  onPress={url => this.handlePressSearchMore(isOnline, url)}
+                  onPress={isOnline ? redirectTo : alertOfflineError}
                 >
                   <Text style={styles.contentText}>
                     {ACT_PRO_COURSES_URL}
