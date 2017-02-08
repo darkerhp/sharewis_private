@@ -45,7 +45,7 @@ const NoProCourseItem = ({ isOnline }) =>
   <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
     <Hyperlink
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-      linkStyle={{ color: BaseStyles.hyperlink }}
+      linkStyle={Platform.OS !== 'ios' && { color: BaseStyles.hyperlink }}
       linkText={url => (url === ACT_PRO_COURSES_URL ? I18n.t('actWebsite') : url)}
       onPress={url => handlePress(isOnline, url)}
     >

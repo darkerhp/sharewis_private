@@ -15,7 +15,7 @@ import Facebook from './Facebook';
 import alertOfflineError from '../../utils/alert';
 import { ACT_PASSWORD_REMINDER_URL } from '../../constants/Api';
 
-const { Linking, StatusBar, StyleSheet, Text, View } = ReactNative;
+const { Linking, Platform, StatusBar, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -81,14 +81,16 @@ class Login extends Component {
           />
         </View>
         <View style={styles.passwordForgottenTextWrapper}>
-          <Text
-            style={styles.passwordForgottenText}
-            onPress={() => (
-              isOnline ? Linking.openURL(ACT_PASSWORD_REMINDER_URL) : alertOfflineError()
-            )}
-          >
-            {I18n.t('passwordForgotten')}
-          </Text>
+          {Platform.OS !== 'ios' && // iOSではパスワードリマインダーのリンクを表示しない
+            <Text
+              style={styles.passwordForgottenText}
+              onPress={() => (
+                isOnline ? Linking.openURL(ACT_PASSWORD_REMINDER_URL) : alertOfflineError()
+              )}
+            >
+              {I18n.t('passwordForgotten')}
+            </Text>
+          }
         </View>
         <View style={styles.facebookWrapper}>
           <Facebook
