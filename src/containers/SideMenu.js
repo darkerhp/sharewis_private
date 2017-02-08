@@ -13,7 +13,7 @@ import {
   ACT_PRIVACY_URL,
 } from '../constants/Api';
 
-const { Linking, StyleSheet, Text, View } = ReactNative;
+const { Linking, Platform, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -89,13 +89,15 @@ class SideMenu extends Component { // eslint-disable-line
               )}
             />
           }
-          <MenuItem
-            text={I18n.t('inquiry')}
-            iconName={'mail'}
-            handlePress={() => (
-              isOnline ? Linking.openURL(ACT_INQUIRIES_URL) : alertOfflineError()
-            )}
-          />
+          {Platform.OS !== 'ios' && // iOSではお問い合わせを表示しない
+            <MenuItem
+              text={I18n.t('inquiry')}
+              iconName={'mail'}
+              handlePress={() => (
+                isOnline ? Linking.openURL(ACT_INQUIRIES_URL) : alertOfflineError()
+              )}
+            />
+          }
           <MenuItem
             text={I18n.t('tos')}
             iconName={'description'}
