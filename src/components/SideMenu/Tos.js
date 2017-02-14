@@ -4,6 +4,7 @@ import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../../baseStyles';
+import * as localeUtil from '../../utils/locale';
 
 const { StyleSheet, View, WebView } = ReactNative;
 
@@ -24,7 +25,7 @@ const en = `<h1>Terms of Use for Users</h1><p>These terms and conditions of use 
 const Tos = () =>
   <View style={styles.container}>
     <WebView
-      source={{ html: I18n.currentLocale().indexOf('ja') !== -1 ? ja : en }}
+      source={{ html: localeUtil.isLocaleJa() ? ja : en }}
       style={{ width: BaseStyles.deviceWidth }}
     />
   </View>;

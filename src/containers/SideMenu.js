@@ -12,6 +12,7 @@ import {
   ACT_TOS_URL,
   ACT_PRIVACY_URL,
 } from '../constants/Api';
+import * as localeUtil from '../utils/locale';
 
 const { Linking, Platform, StyleSheet, Text, View } = ReactNative;
 
@@ -65,7 +66,7 @@ class SideMenu extends Component { // eslint-disable-line
   render() {
     const { isOnline, user } = this.props;
     let displayUsername = user.nickName || user.userName;
-    if (displayUsername && I18n.currentLocale().indexOf('ja') !== -1) {
+    if (displayUsername && localeUtil.isLocaleJa()) {
       displayUsername += ' さん';
     }
 
