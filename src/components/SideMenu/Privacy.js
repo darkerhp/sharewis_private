@@ -4,6 +4,7 @@ import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 
 import BaseStyles from '../../baseStyles';
+import * as localeUtil from '../../utils/locale';
 
 const { StyleSheet, View, WebView } = ReactNative;
 
@@ -23,7 +24,7 @@ const en = '<h1>Privacy Policy</h1><p>We, ShareWis Inc. (hereinafter collectivel
 const Privacy = () =>
   <View style={styles.container}>
     <WebView
-      source={{ html: I18n.currentLocale().indexOf('ja') !== -1 ? ja : en }}
+      source={{ html: localeUtil.isLocaleJa() ? ja : en }}
       style={{ width: BaseStyles.deviceWidth }}
     />
   </View>;
