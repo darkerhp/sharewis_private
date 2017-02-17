@@ -55,13 +55,18 @@ const styles = StyleSheet.create({
 class Login extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
+    isModal: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
-      // ユーザーがログインしたらトップページにリダイレクトする
-      RouterActions.pop(); // モーダルからのログイン時にはモーダルを閉じる
+    const { isFetching, isModal } = this.props;
+    // ユーザーがログインしたらトップページにリダイレクトする
+    if (isFetching && !nextProps.isFetching && nextProps.loggedIn) {
+      if (isModal) {
+        // モーダルからのログイン時にはモーダルを閉じる
+        RouterActions.pop();
+      }
       RouterActions.top();
     }
   }

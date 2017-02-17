@@ -95,6 +95,7 @@ const getScenes = () =>
             component={Login}
             type={ActionConst.RESET}
             hideNavBar
+            isModal={false}
           />
           <Scene
             key="top"
@@ -191,6 +192,7 @@ const getScenes = () =>
           leftButtonImage={closeWhiteImage}
           onLeft={() => Actions.pop()}
           title={I18n.t('login')}
+          isModal
         />
       </Scene>
     </Scene>
