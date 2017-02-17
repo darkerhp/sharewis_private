@@ -8,6 +8,7 @@ const initialState = {
   userName: null,
   nickName: null,
   loggedIn: false,
+  isFinishOnboarding: false,
 };
 
 const failure = (state, action) => ({
@@ -39,6 +40,10 @@ export const userReducer = handleActions({
     ...state,
     ...action.payload,
     loggedIn: true,
+  }),
+  FINISH_ONBOARDING: (state, action) => ({
+    ...state,
+    isFinishOnboarding: true,
   }),
 }, initialState);
 

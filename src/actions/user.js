@@ -27,6 +27,7 @@ export const startActFacebookSignup = createAction(types.START_ACT_FACEBOOK_SIGN
 export const fetchActSignupFailure = createAction(types.FETCH_ACT_SIGNUP_FAILURE);
 export const fetchActSignupSuccess = createAction(types.FETCH_ACT_SIGNUP_SUCCESS,
   result => ({ ...result }));
+export const finishOnboarding = createAction(types.FINISH_ONBOARDING);
 
 // Thunks
 export const fetchUserBy = (loginMethod, credentials) =>
