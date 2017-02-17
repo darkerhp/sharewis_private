@@ -25,7 +25,12 @@ build:
           fi
 
     # Install packages
-    - npm-install
+    - script:
+      name: set yarn cache
+      code: yarn config set cache-folder $WERCKER_CACHE_DIR/yarn
+    - script:
+      name: install dependencies
+      code: yarn
 
     # Check node versions if needed
     - script:
