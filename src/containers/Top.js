@@ -4,7 +4,6 @@ import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import FitImage from 'react-native-fit-image';
-import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
@@ -14,14 +13,11 @@ import { connect } from 'react-redux';
 
 import * as coursesActions from '../actions/courses';
 import * as userActions from '../actions/user';
-import alertOfflineError from '../utils/alert';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
-import redirectTo from '../utils/linking';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 import NoProCourseItem from '../components/Top/NoProCourseItem'; // eslint-disable-line
-import { ACT_PRO_COURSES_URL } from '../constants/Api';
 
 const {
   Alert,
@@ -107,28 +103,10 @@ const noLoginItem = isOnline =>
     <Button
       containerStyle={styles.signupButtonWrapper}
       style={styles.signupButtonText}
-      onPress={() => RouterActions.login()}
+      onPress={() => RouterActions.loginModal()}
     >
       { I18n.t('login') }
     </Button>
-  </OneColumnItemBox>;
-
-/**
- * プロコースがない時にマイコースに表示するアイテム
- * @param isOnline
- */
-const noProCourseItem = isOnline =>
-  <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
-    <Hyperlink
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-      linkStyle={{ color: BaseStyles.hyperlink }}
-      linkText={url => (url === ACT_PRO_COURSES_URL ? I18n.t('actWebsite') : url)}
-      onPress={isOnline ? redirectTo : alertOfflineError}
-    >
-      <Text style={styles.contentText}>
-        {I18n.t('noProCourses')}
-      </Text>
-    </Hyperlink>
   </OneColumnItemBox>;
 
 const mapStateToProps = ({ entities, netInfo, ui, user }) => ({

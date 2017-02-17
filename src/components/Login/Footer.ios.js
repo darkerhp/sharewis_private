@@ -1,13 +1,11 @@
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
-import { Actions as RouterActions } from 'react-native-router-flux';
 
 import BaseStyles from '../../baseStyles';
 
-const { StyleSheet, View } = ReactNative;
+const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -48,24 +46,21 @@ const styles = StyleSheet.create({
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
     fontWeight: 'normal',
   },
+  contentText: {
+    flex: 1,
+    color: BaseStyles.textColor,
+    fontSize: 12,
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 const Footer = () =>
   <View style={styles.container}>
-    <Button
-      containerStyle={styles.signupButtonWrapper}
-      style={styles.signupButtonText}
-      onPress={() => RouterActions.signup()}
-    >
-      { I18n.t('noAccountYet') }
-    </Button>
-    <Button
-      containerStyle={styles.skipLoginButtonWrapper}
-      style={styles.skipLoginButtonText}
-      onPress={() => RouterActions.top()}
-    >
-      { I18n.t('skipLogin') }
-    </Button>
+    <Text style={styles.contentText}>
+      {I18n.t('notAllowedSignup')}
+    </Text>
   </View>;
 
 export default Footer;

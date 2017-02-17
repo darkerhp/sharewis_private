@@ -2,7 +2,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-import Button from 'react-native-button';
 import Hr from 'react-native-hr';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
@@ -56,12 +55,18 @@ const styles = StyleSheet.create({
 class Login extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
+    isModal: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
   };
 
   componentWillReceiveProps(nextProps) {
-    // Redirect to Course List page if user is logged in
-    if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
+    const { isFetching, isModal } = this.props;
+    // ユーザーがログインしたらトップページにリダイレクトする
+    if (isFetching && !nextProps.isFetching && nextProps.loggedIn) {
+      if (isModal) {
+        // モーダルからのログイン時にはモーダルを閉じる
+        RouterActions.pop();
+      }
       RouterActions.top();
     }
   }
