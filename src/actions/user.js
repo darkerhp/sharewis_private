@@ -1,7 +1,5 @@
 /**
  * @flow
- *
- * TODO userに変更予定
  */
 import { createAction } from 'redux-actions';
 import I18n from 'react-native-i18n';
