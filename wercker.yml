@@ -26,6 +26,12 @@ build:
 
     # Install packages
     - script:
+      name: install yarn
+      code: npm install -g yarn
+    - script:
+      name: report yarn version
+      code: yarn --version
+    - script:
       name: set yarn cache
       code: yarn config set cache-folder $WERCKER_CACHE_DIR/yarn
     - script:
