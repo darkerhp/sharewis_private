@@ -4,7 +4,6 @@ import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import FitImage from 'react-native-fit-image';
-import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
@@ -14,14 +13,11 @@ import { connect } from 'react-redux';
 
 import * as coursesActions from '../actions/courses';
 import * as userActions from '../actions/user';
-import alertOfflineError from '../utils/alert';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
-import redirectTo from '../utils/linking';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 import NoProCourseItem from '../components/Top/NoProCourseItem'; // eslint-disable-line
-import { ACT_PRO_COURSES_URL } from '../constants/Api';
 
 const {
   Alert,
