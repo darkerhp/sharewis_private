@@ -179,6 +179,20 @@ const getScenes = () =>
           title={I18n.t('privacy')}
         />
       </Scene>
+      <Scene key="loginModal">
+        <Scene
+          key="_loginModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f',
+          }}
+          component={Login}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('login')}
+        />
+      </Scene>
     </Scene>
   </Scene>;
 

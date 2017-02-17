@@ -107,28 +107,10 @@ const noLoginItem = isOnline =>
     <Button
       containerStyle={styles.signupButtonWrapper}
       style={styles.signupButtonText}
-      onPress={() => RouterActions.login()}
+      onPress={() => RouterActions.loginModal()}
     >
       { I18n.t('login') }
     </Button>
-  </OneColumnItemBox>;
-
-/**
- * プロコースがない時にマイコースに表示するアイテム
- * @param isOnline
- */
-const noProCourseItem = isOnline =>
-  <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
-    <Hyperlink
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-      linkStyle={{ color: BaseStyles.hyperlink }}
-      linkText={url => (url === ACT_PRO_COURSES_URL ? I18n.t('actWebsite') : url)}
-      onPress={isOnline ? redirectTo : alertOfflineError}
-    >
-      <Text style={styles.contentText}>
-        {I18n.t('noProCourses')}
-      </Text>
-    </Hyperlink>
   </OneColumnItemBox>;
 
 const mapStateToProps = ({ entities, netInfo, ui, user }) => ({
