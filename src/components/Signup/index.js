@@ -10,8 +10,6 @@ import Hyperlink from 'react-native-hyperlink';
 import BaseStyles from '../../baseStyles';
 import Form from './Form';
 import Footer from './Footer'; // eslint-disable-line
-import alertOfflineError from '../../utils/alert';
-import redirectTo from '../../utils/linking';
 import { ACT_TOS_URL, ACT_PRIVACY_URL } from '../../constants/Api';
 
 const { StatusBar, StyleSheet, Text, View } = ReactNative;
