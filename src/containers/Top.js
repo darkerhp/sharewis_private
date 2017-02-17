@@ -12,7 +12,8 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as Actions from '../actions/courses';
+import * as coursesActions from '../actions/courses';
+import * as userActions from '../actions/user';
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
@@ -138,7 +139,9 @@ const mapStateToProps = ({ entities, netInfo, ui, user }) => ({
   isOnline: netInfo.isConnected,
 });
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ ...coursesActions, ...userActions }, dispatch),
+});
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Top extends Component {
@@ -161,6 +164,7 @@ class Top extends Component {
   }
 
   async componentWillMount() {
+    this.props.finishOnboarding();
     await this.refreshList();
   }
 
