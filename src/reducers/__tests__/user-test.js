@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import * as types from '../../constants/ActionTypes';
 import reducer from '../user';
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/user';
 
 describe('User reducer', () => {
   describe('Facebook graph request actions', () => {

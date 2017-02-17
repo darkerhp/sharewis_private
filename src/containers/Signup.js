@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 
-import * as Actions from '../actions/login';
+import * as Actions from '../actions/user';
 
 import Signup from '../components/Signup';
 
