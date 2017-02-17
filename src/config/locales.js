@@ -71,6 +71,8 @@ const locales = {
     top: 'TOP',
     recommendedSnackCourse: 'オススメのスナックコース',
     noProCourses: `購入済みのプロコースがない方は、 ${ACT_PRO_COURSES_URL} よりお手続きを進めてください。`,
+    // iOS用
+    notAllowedSignup: '現在アプリからの新規登録を受け付けていません',
   },
   en: {
     accountSettings: 'Account Info',
@@ -135,6 +137,8 @@ const locales = {
     top: 'TOP',
     recommendedSnackCourse: 'Featured Snack Courses',
     noProCourses: `If you haven't purchased any pro courses yet, please go to the ${ACT_PRO_COURSES_URL}.`,
+    // iOS用
+    notAllowedSignup: ' User registration is currently not allowed on app',
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -199,6 +203,8 @@ const locales = {
     top: 'TRANG ĐẦU',
     recommendedSnackCourse: 'Snack Courses nổi bật',
     noProCourses: `Nếu bạn không mua bất kỳ Pro Courses nào, vui lòng vào ${ACT_PRO_COURSES_URL}.`,
+    // iOS用
+    notAllowedSignup: 'Đăng ký thành viên hiện đang không được phép trên ứng dụng',
   },
 };
 
