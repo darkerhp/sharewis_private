@@ -84,7 +84,8 @@ class Onboarding extends Component {
         nextButton={<Text style={styles.buttonText}>{I18n.t('next')}</Text>}
         buttonWrapperStyle={styles.buttonWrapper}
         onMomentumScrollEnd={(e, state) => {
-          if (state.index !== 3) {
+          const lastPageIndex = 3;
+          if (state.index !== lastPageIndex) {
             this.setState({ showButtons: true });
             return;
           }
