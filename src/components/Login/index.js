@@ -60,8 +60,9 @@ class Login extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // Redirect to Course List page if user is logged in
     if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
+      // ユーザーがログインしたらトップページにリダイレクトする
+      RouterActions.pop(); // モーダルからのログイン時にはモーダルを閉じる
       RouterActions.top();
     }
   }
