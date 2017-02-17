@@ -12,6 +12,8 @@ const initialState = {
   //
   fetchedCourseDetailsAt: null,
   fetchedMyCourseAt: null,
+  //
+  isFinishOnboarding: false,
 };
 
 const speedList = [1.0, 1.2, 1.5, 2.0];
@@ -92,6 +94,10 @@ const uiReducer = handleActions({
       speed: speedList[index],
     };
   },
+  FINISH_ONBOARDING: (state, action) => ({
+    ...state,
+    isFinishOnboarding: true,
+  }),
 }, initialState);
 
 export default uiReducer;
