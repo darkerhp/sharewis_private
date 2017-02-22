@@ -22,7 +22,7 @@ const renderScrollableTabBar = () =>
   />;
 
 @connect(({ user, routes }) => ({ user, routes }))
-class ScrollableTabs extends Component {
+class ScrollableTabs extends Component { // eslint-disable-line
   static propTypes = {
     moveTo: PropTypes.string,
   };
