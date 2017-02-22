@@ -6,9 +6,7 @@ import I18n from 'react-native-i18n';
 import { connect } from 'react-redux';
 
 import BaseStyles from '../baseStyles';
-import MyCourse from './MyCourse';
 import SnackCourse from './SnackCourse';
-import Top from './Top';
 import ExScrollableTabBar from '../components/ScrollableTabs/ExScrollableTabBar';
 
 // TODO プロコースが増えた場合、DefaultTabBar > ScrollableTabBarで実装する。
@@ -25,6 +23,7 @@ const renderScrollableTabBar = () =>
 class ScrollableTabs extends Component { // eslint-disable-line
   static propTypes = {
     moveTo: PropTypes.string,
+    user: PropTypes.shape({}).isRequired,
   };
 
   render() {
@@ -32,11 +31,9 @@ class ScrollableTabs extends Component { // eslint-disable-line
     return (
       <ScrollableTabView
         style={{ marginTop: BaseStyles.navbarHeight - 1 }}
-        initialPage={1} // 0が開始位置
+        initialPage={0} // 0が開始位置
         renderTabBar={() => renderScrollableTabBar()}
       >
-        <MyCourse tabLabel={I18n.t('myCourse')} />
-        <Top tabLabel={I18n.t('top')} />
         <SnackCourse tabLabel={I18n.t('snackCourse')} />
       </ScrollableTabView>
     );
