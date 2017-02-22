@@ -1,6 +1,7 @@
 /**
- * NOTE:
- * iOS版は新規登録画面をスキップしてトップページに遷移する
+ * NOTE: iOS版
+ * ・新規登録画面をスキップしてトップページに遷移する
+ * ・オンボーディングは２画面のみ
  */
 
 import React, { Component, PropTypes } from 'react';
@@ -53,7 +54,6 @@ const styles = StyleSheet.create({
 // images
 const slide1ImageSrc = require('../components/Onboarding/images/slide1.png');
 const slide2ImageSrc = require('../components/Onboarding/images/slide2.png');
-const slide3ImageSrc = require('../components/Onboarding/images/slide3.png');
 
 @connect(({ user, routes }) => ({ user, routes }))
 class Onboarding extends Component {
@@ -84,7 +84,7 @@ class Onboarding extends Component {
         nextButton={<Text style={styles.buttonText}>{I18n.t('next')}</Text>}
         buttonWrapperStyle={styles.buttonWrapper}
         onMomentumScrollEnd={(e, state) => {
-          const lastPageIndex = 3;
+          const lastPageIndex = 2;
           if (state.index !== lastPageIndex) {
             this.setState({ showButtons: true });
             return;
@@ -100,10 +100,6 @@ class Onboarding extends Component {
         <Slide
           text={I18n.t('slide2Text')}
           imageSrc={slide2ImageSrc}
-        />
-        <Slide
-          text={I18n.t('slide3Text')}
-          imageSrc={slide3ImageSrc}
         />
         <View />
       </Swiper>
