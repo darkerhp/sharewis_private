@@ -1,3 +1,4 @@
+// NOTE: Android版は再生速度変更ボタンが非表示
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
@@ -7,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import SeekBar from './SeekBar';
 import BaseStyles from '../../baseStyles';
 
-const { Platform, StyleSheet, Text, View } = ReactNative;
+const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -35,15 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    // FIXME androidは速度変更不可
-    ...Platform.select({
-      ios: {
-        backgroundColor: BaseStyles.navBarBackgroundColor,
-      },
-      android: {
-        backgroundColor: BaseStyles.disabledButtonColor,
-      },
-    }),
+    backgroundColor: BaseStyles.disabledButtonColor,
   },
   buttonText: {
     fontSize: 18,
@@ -122,14 +115,6 @@ const VideoControls = ({
           name={isPaused ? 'play-arrow' : 'pause'}
           style={styles.playButtonIcon}
         />
-      </Button>
-      <Button
-        containerStyle={styles.speedButton}
-        style={styles.buttonText}
-        onPress={() => onPressSpeed()}
-        disabled={Platform.OS === 'android'}
-      >
-          x{speed}{speed % 1 === 0 ? '.0' : ''}
       </Button>
       <Button
         containerStyle={[

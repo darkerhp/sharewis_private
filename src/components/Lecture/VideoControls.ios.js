@@ -5,10 +5,9 @@ import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import SeekBar from './SeekBar';
 import BaseStyles from '../../baseStyles';
 
-const { Platform, StyleSheet, Text, View } = ReactNative;
+const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -36,15 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    // FIXME androidは速度変更不可
-    ...Platform.select({
-      ios: {
-        backgroundColor: BaseStyles.navBarBackgroundColor,
-      },
-      android: {
-        backgroundColor: BaseStyles.disabledButtonColor,
-      },
-    }),
+    backgroundColor: BaseStyles.navBarBackgroundColor,
   },
   buttonText: {
     fontSize: 18,
@@ -121,7 +112,6 @@ const VideoControls = ({
         containerStyle={styles.speedButton}
         style={styles.buttonText}
         onPress={() => onPressSpeed()}
-        disabled={Platform.OS === 'android'}
       >
           x{speed}{speed % 1 === 0 ? '.0' : ''}
       </Button>
