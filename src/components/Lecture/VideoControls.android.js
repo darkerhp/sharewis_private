@@ -1,3 +1,4 @@
+// NOTE: Android版は再生速度変更ボタンが非表示
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
@@ -114,14 +115,6 @@ const VideoControls = ({
           name={isPaused ? 'play-arrow' : 'pause'}
           style={styles.playButtonIcon}
         />
-      </Button>
-      <Button
-        containerStyle={styles.speedButton}
-        style={styles.buttonText}
-        onPress={() => onPressSpeed()}
-        disabled
-      >
-          x{speed}{speed % 1 === 0 ? '.0' : ''}
       </Button>
       <Button
         containerStyle={[
