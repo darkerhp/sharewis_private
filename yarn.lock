@@ -3686,9 +3686,9 @@ react-native-hyperlink@^0.0.8:
   dependencies:
     linkify-it "^1.2.0"
 
-react-native-i18n@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-0.1.1.tgz#7fdc7512e71c9f5057d5f9ee8d559fc4801a1c14"
+react-native-i18n@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-1.0.0.tgz#0c407d9ebb846aae1aa5e05de6503008553f02fd"
 
 react-native-loading-spinner-overlay@^0.3.0:
   version "0.3.0"
