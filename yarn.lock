@@ -211,7 +211,7 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-autobind-decorator@^1.3.3:
+autobind-decorator@^1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-1.3.4.tgz#b67560e6bbbb68a35c049c82d6351ea0e82d820d"
 
@@ -1789,7 +1789,7 @@ extend@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
 
-extendable-immutable@^1.3.0:
+extendable-immutable@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/extendable-immutable/-/extendable-immutable-1.3.2.tgz#d4acde24427faa63179dde9dca2cd41c8e5e14a3"
   dependencies:
@@ -2894,7 +2894,7 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
-lodash-es@^4.17.3, lodash-es@^4.2.1:
+lodash-es@^4.17.3, lodash-es@^4.17.4, lodash-es@^4.2.0, lodash-es@^4.2.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
 
@@ -3050,7 +3050,7 @@ lodash@^3.5.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.16.6, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.11.2, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3184,7 +3184,7 @@ moment-duration-format@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/moment-duration-format/-/moment-duration-format-1.3.0.tgz#541771b5f87a049cc65540475d3ad966737d6908"
 
-moment@2.x.x, moment@^2.15.1:
+moment@2.x.x, moment@^2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
@@ -3304,11 +3304,11 @@ normalize-path@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-2.0.1.tgz#47886ac1662760d4261b7d979d241709d3ce3f7a"
 
-normalizr@^2.2.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/normalizr/-/normalizr-2.3.1.tgz#ac12d771ce1fe6a43094c3d828caada4ed9a4540"
+normalizr@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/normalizr/-/normalizr-2.2.1.tgz#d4e5217b30d2a1a5b918bf3466ff0f8914507be5"
   dependencies:
-    lodash "^4.17.2"
+    lodash "^4.11.2"
 
 npmlog@^2.0.4:
   version "2.0.4"
@@ -3640,7 +3640,7 @@ react-immutable-proptypes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-immutable-proptypes/-/react-immutable-proptypes-2.1.0.tgz#023d6f39bb15c97c071e9e60d00d136eac5fa0b4"
 
-react-native-button@^1.7.0:
+react-native-button@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-1.8.2.tgz#49e5cadd22ee443adea52a85539d288aa2117ade"
 
@@ -3669,9 +3669,9 @@ react-native-fit-image@^1.4.7:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/react-native-fit-image/-/react-native-fit-image-1.4.7.tgz#4d9cdadeb850fe582981f8f2448e10e122b29d8b"
 
-react-native-fs@^2.0.1-rc.2:
-  version "2.0.1-rc.3"
-  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.0.1-rc.3.tgz#c7db2b42bb666719232b935a2a0981af92c7bf85"
+react-native-fs@^2.1.0-rc.1:
+  version v2.1.0-rc.1
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.1.0-rc.1.tgz#f6078891005478648738db396e822ec0aefc4b95"
   dependencies:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
@@ -3694,15 +3694,15 @@ react-native-loading-spinner-overlay@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.3.0.tgz#3659c7c35523087e8db8f04c9e526d519f907b2b"
 
-react-native-orientation@yamill/react-native-orientation:
+react-native-orientation@DomiR/react-native-orientation:
   version "1.17.0"
-  resolved "https://codeload.github.com/yamill/react-native-orientation/tar.gz/278291739e2b7c8ab208fdf404e4b139e24b4a3f"
+  resolved "https://codeload.github.com/DomiR/react-native-orientation/tar.gz/317c5a245a09dd235526b9ca753653666bc298d3"
 
-react-native-progress@^3.1.0:
+react-native-progress@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.2.0.tgz#86d756be5537c09936ac3d3c4e23710da590743c"
 
-react-native-router-flux@^3.35.0:
+react-native-router-flux@^3.37.0:
   version "3.37.0"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.37.0.tgz#18e8fd3e1e6dbdc4d8340cd47313c28bb9bb1caf"
   dependencies:
@@ -3711,17 +3711,17 @@ react-native-router-flux@^3.35.0:
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
 
-react-native-scrollable-tab-view@^0.7.0:
+react-native-scrollable-tab-view@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/react-native-scrollable-tab-view/-/react-native-scrollable-tab-view-0.7.2.tgz#8d35bfdcd922d22beb8cbb079be277e09e86978a"
   dependencies:
     react-timer-mixin "^0.13.3"
 
-react-native-sleek-loading-indicator@^0.1.2:
+react-native-sleek-loading-indicator@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/react-native-sleek-loading-indicator/-/react-native-sleek-loading-indicator-0.1.3.tgz#1e11919928ba4e351430a1e12f4bcbe52532f58c"
 
-react-native-swiper@^1.4.11:
+react-native-swiper@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.4.tgz#a85535b5374ef8d605a7a720e447ac46816ac448"
 
@@ -3736,9 +3736,9 @@ react-native-vector-icons@^4.0.0:
     lodash "^4.0.0"
     yargs "^6.3.0"
 
-react-native-video@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-0.9.0.tgz#684f8fcc4e8ba6cd73226c70845bee8ee85a8b3b"
+react-native-video@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-1.0.0.tgz#ba92b9e1a114c2c1f3a6144b0639ca3f69a0cc74"
   dependencies:
     keymirror "0.1.1"
 
@@ -3829,13 +3829,14 @@ react-proxy@^1.1.7:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
 
-react-redux@^4.4.5:
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-4.4.6.tgz#4b9d32985307a11096a2dd61561980044fcc6209"
+react-redux@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.3.tgz#86c3b68d56e74294a42e2a740ab66117ef6c019f"
   dependencies:
     hoist-non-react-statics "^1.0.3"
     invariant "^2.0.0"
     lodash "^4.2.0"
+    lodash-es "^4.2.0"
     loose-envify "^1.1.0"
 
 react-static-container@1.0.1:
@@ -3964,7 +3965,7 @@ redux-actions@^0.13.0:
     lodash "^4.13.1"
     reduce-reducers "^0.1.0"
 
-redux-form@^6.0.5:
+redux-form@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-6.5.0.tgz#8c75ea77018afbabaa02f1389cf6b0e10787c5b8"
   dependencies:
@@ -3976,24 +3977,25 @@ redux-form@^6.0.5:
     lodash "^4.17.3"
     lodash-es "^4.17.3"
 
-redux-logger@^2.6.1:
+redux-logger@^2.8.1:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-2.8.1.tgz#c00e689ba00342f44858701d76b1d73fbade72bd"
   dependencies:
     deep-diff "0.3.4"
 
-redux-persist@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-3.5.0.tgz#84bd74c2b17e32d490aea71196a812f2013fcc8e"
+redux-persist@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.4.2.tgz#0e874284f3d155215d1f33f48fadfc850526618e"
   dependencies:
     json-stringify-safe "^5.0.1"
-    lodash "^4.11.1"
+    lodash "^4.17.4"
+    lodash-es "^4.17.4"
 
-redux-thunk@^2.1.0:
+redux-thunk@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
-redux@^3.5.2, redux@^3.6.0:
+redux@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.6.0.tgz#887c2b3d0b9bd86eca2be70571c27654c19e188d"
   dependencies:
@@ -4668,9 +4670,9 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-validator@^6.2.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-6.3.0.tgz#47ce23ed8d4eaddfa9d4b8ef0071b6cf1078d7c8"
+validator@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-7.0.0.tgz#c74deb8063512fac35547938e6f0b1504a282fd2"
 
 vary@~1.0.1:
   version "1.0.1"
