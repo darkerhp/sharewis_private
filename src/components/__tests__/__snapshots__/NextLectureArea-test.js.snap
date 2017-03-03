@@ -15,6 +15,7 @@ exports[`NextLectureArea renders correctly 1`] = `
     accessibilityTraits={undefined}
     accessible={true}
     hitSlop={undefined}
+    isTVSelectable={true}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -27,7 +28,8 @@ exports[`NextLectureArea renders correctly 1`] = `
         "opacity": 1,
       }
     }
-    testID={undefined}>
+    testID={undefined}
+    tvParallaxProperties={undefined}>
     <View
       style={
         Object {

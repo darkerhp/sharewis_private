@@ -5,6 +5,7 @@ exports[`CourseSummary renders correctly 1`] = `
   accessibilityTraits={undefined}
   accessible={true}
   hitSlop={undefined}
+  isTVSelectable={true}
   onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -26,7 +27,8 @@ exports[`CourseSummary renders correctly 1`] = `
       "overflow": "hidden",
     }
   }
-  testID={undefined}>
+  testID={undefined}
+  tvParallaxProperties={undefined}>
   <View
     style={
       Array [
