@@ -57,6 +57,7 @@ class Login extends Component {
     isFetching: PropTypes.bool.isRequired,
     isModal: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
+    loggedIn: PropTypes.bool.isRequired, // eslint-disable-line
   };
 
   componentWillReceiveProps(nextProps) {

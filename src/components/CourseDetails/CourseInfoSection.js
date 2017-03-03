@@ -89,4 +89,8 @@ CourseInfoSection.propTypes = {
   containerStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
+CourseInfoSection.defaultProps = {
+  nextLecture: null,
+};
+
 export default CourseInfoSection;

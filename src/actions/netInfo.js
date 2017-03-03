@@ -30,7 +30,8 @@ export const syncLectureProgress = () =>
           lectureId,
           queuedLectureProgress[lectureId],
         ];
-        return await patchLectureStatus(...params);
+        const result = await patchLectureStatus(...params);
+        return result;
       });
       await Promise.all(promises);
       dispatch(triggeredQueueActions());

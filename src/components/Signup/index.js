@@ -34,6 +34,7 @@ class Signup extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
+    loggedIn: PropTypes.bool.isRequired, // eslint-disable-line
   };
 
   componentWillReceiveProps(nextProps) {

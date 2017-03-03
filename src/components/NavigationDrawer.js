@@ -5,8 +5,8 @@ import SideMenu from '../containers/SideMenu';
 
 export default class NavigationDrawer extends Component {
   static propTypes = {
-    navigationState: PropTypes.shape({}),
-    onNavigate: PropTypes.func,
+    navigationState: PropTypes.shape({}).isRequired,
+    onNavigate: PropTypes.func.isRequired,
   };
 
   render() {

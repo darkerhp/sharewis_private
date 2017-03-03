@@ -75,8 +75,8 @@ const Slide = ({ text, imageSrc }) =>
   </View>;
 
 Slide.propTypes = {
-  text: PropTypes.string,
-  imageSrc: PropTypes.number,
+  text: PropTypes.string.isRequired,
+  imageSrc: PropTypes.number.isRequired,
 };
 
 export default Slide;

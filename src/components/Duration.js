@@ -8,10 +8,10 @@ const { Text, View } = ReactNative;
 
 const Duration = ({
   estimatedTime,
-  format = 'mm:ss',
-  containerStyle = {},
-  durationStyle = {},
-  prefixText = '',
+  format,
+  containerStyle,
+  durationStyle,
+  prefixText,
 }) =>
   <View style={containerStyle}>
     { estimatedTime >= 0 &&
@@ -28,6 +28,13 @@ Duration.propTypes = {
   containerStyle: PropTypes.any, // eslint-disable-line
   durationStyle: PropTypes.any, // eslint-disable-line
   prefixText: PropTypes.string,
+};
+
+Duration.defaultProps = {
+  format: 'mm:ss',
+  containerStyle: {},
+  durationStyle: {},
+  prefixText: '',
 };
 
 export default Duration;
