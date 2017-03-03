@@ -1,7 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`TextField renders correctly 1`] = `
 <TextInput
   onChangeText={[Function]}
   selectTextOnFocus={true}
   underlineColorAndroid="transparent"
-  value="text" />
+  value="text"
+/>
 `;

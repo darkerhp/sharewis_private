@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`EmptyList renders correctly 1`] = `
 <View
   style={
@@ -6,12 +8,14 @@ exports[`EmptyList renders correctly 1`] = `
       "flex": 1,
       "justifyContent": "center",
     }
-  }>
+  }
+>
   <View
     linkStyle={false}
-    linkText="[missing \"en.actWebsite\" translation]"
+    linkText="[missing \\"en.actWebsite\\" translation]"
     onPress={[Function]}
-    style={undefined}>
+    style={undefined}
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -24,8 +28,9 @@ exports[`EmptyList renders correctly 1`] = `
           "margin": 30,
           "textAlign": "center",
         }
-      }>
-      [missing \"en.noCourses\" translation]
+      }
+    >
+      [missing "en.noCourses" translation]
     </Text>
   </View>
 </View>

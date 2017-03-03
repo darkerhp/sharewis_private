@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`LectureItem renders correctly 1`] = `
 <View
   style={
@@ -9,7 +11,8 @@ exports[`LectureItem renders correctly 1`] = `
       "flexDirection": "row",
       "justifyContent": "flex-start",
     }
-  }>
+  }
+>
   <View
     style={
       Object {
@@ -20,7 +23,8 @@ exports[`LectureItem renders correctly 1`] = `
         "height": 48,
         "justifyContent": "center",
       }
-    }>
+    }
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -34,7 +38,8 @@ exports[`LectureItem renders correctly 1`] = `
           },
           false,
         ]
-      }>
+      }
+    >
       1
     </Text>
   </View>
@@ -50,14 +55,16 @@ exports[`LectureItem renders correctly 1`] = `
         },
         false,
       ]
-    }>
+    }
+  >
     <View
       style={
         Object {
           "flex": 1,
           "justifyContent": "center",
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={false}
@@ -78,7 +85,8 @@ exports[`LectureItem renders correctly 1`] = `
               "fontWeight": "normal",
             },
           ]
-        }>
+        }
+      >
         
       </Text>
     </View>
@@ -97,7 +105,8 @@ exports[`LectureItem renders correctly 1`] = `
           "textAlign": "center",
         }
       }
-      estimatedTime={30} />
+      estimatedTime={30}
+    />
   </View>
   <View
     accessibilityComponentType={undefined}
@@ -123,7 +132,8 @@ exports[`LectureItem renders correctly 1`] = `
       }
     }
     testID={undefined}
-    tvParallaxProperties={undefined}>
+    tvParallaxProperties={undefined}
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -137,7 +147,8 @@ exports[`LectureItem renders correctly 1`] = `
           },
           false,
         ]
-      }>
+      }
+    >
       Title
     </Text>
   </View>
@@ -165,7 +176,8 @@ exports[`LectureItem renders correctly 1`] = `
       }
     }
     testID={undefined}
-    tvParallaxProperties={undefined}>
+    tvParallaxProperties={undefined}
+  >
     <Text
       accessible={true}
       allowFontScaling={false}
@@ -186,7 +198,8 @@ exports[`LectureItem renders correctly 1`] = `
             "fontWeight": "normal",
           },
         ]
-      }>
+      }
+    >
       
     </Text>
   </View>
