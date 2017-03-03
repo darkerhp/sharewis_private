@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`MenuItem renders correctly 1`] = `
 <View
   style={
@@ -7,7 +9,8 @@ exports[`MenuItem renders correctly 1`] = `
       "justifyContent": "flex-start",
       "marginBottom": 30,
     }
-  }>
+  }
+>
   <Text
     accessible={true}
     allowFontScaling={false}
@@ -29,7 +32,8 @@ exports[`MenuItem renders correctly 1`] = `
           "fontWeight": "normal",
         },
       ]
-    }>
+    }
+  >
     
   </Text>
   <Text
@@ -42,7 +46,8 @@ exports[`MenuItem renders correctly 1`] = `
         "color": "#33bcd0",
         "fontSize": 17,
       }
-    }>
+    }
+  >
     text
   </Text>
 </View>

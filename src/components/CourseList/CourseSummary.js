@@ -7,6 +7,7 @@ import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import Course from '../../models/Course';
+import LectureMap from '../../models/LectureMap';
 import OneColumnItemBox from './OneColumnItemBox';
 import ProgressBar from '../ProgressBar';
 
@@ -15,7 +16,6 @@ const {
   Platform,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } = ReactNative;
 
@@ -124,11 +124,15 @@ const CourseSummary = ({
 };
 
 CourseSummary.propTypes = {
-  course: PropTypes.instanceOf(Course),
+  course: PropTypes.instanceOf(Course).isRequired,
   lectures: ImmutablePropTypes.orderedMap,
   isDisabledCourse: PropTypes.bool.isRequired,
   onPressCourse: PropTypes.func.isRequired,
   style: PropTypes.any, // eslint-disable-line
+};
+
+CourseSummary.defaultProps = {
+  lectures: new LectureMap(),
 };
 
 export default CourseSummary;

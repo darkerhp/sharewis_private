@@ -1,11 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Duration renders correctly 1`] = `
 <View
-  style={Object {}}>
+  style={Object {}}
+>
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={Object {}}>
+    style={Object {}}
+  >
     
     01:40
   </Text>

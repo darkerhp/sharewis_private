@@ -45,12 +45,12 @@ class VideoLecture extends Component {
   static propTypes = {
     // values
     currentLecture: PropTypes.instanceOf(Lecture).isRequired,
-    handleEnd: PropTypes.func,
     isFullScreen: PropTypes.bool.isRequired,
     lectureContentStyleId: PropTypes.number.isRequired,
     speed: PropTypes.number.isRequired,
     // actions
     changeVideoPlaySpeed: PropTypes.func.isRequired,
+    handleEnd: PropTypes.func.isRequired,
     toggleFullScreen: PropTypes.func.isRequired,
   };
 

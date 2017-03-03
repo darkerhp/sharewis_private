@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Slide renders correctly 1`] = `
 <View
   style={
@@ -7,14 +9,16 @@ exports[`Slide renders correctly 1`] = `
       "flex": 1,
       "justifyContent": "center",
     }
-  }>
+  }
+>
   <View
     style={
       Object {
         "backgroundColor": "#e7eef0",
         "flex": 2,
       }
-    }>
+    }
+  >
     <Image
       resizeMode="contain"
       source={undefined}
@@ -26,7 +30,8 @@ exports[`Slide renders correctly 1`] = `
           "marginTop": 90,
           "width": 750,
         }
-      } />
+      }
+    />
   </View>
   <View
     style={
@@ -37,7 +42,8 @@ exports[`Slide renders correctly 1`] = `
         "opacity": 0.6,
         "padding": 25,
       }
-    }>
+    }
+  >
     <View
       linkStyle={
         Object {
@@ -50,7 +56,8 @@ exports[`Slide renders correctly 1`] = `
         Object {
           "flex": 1,
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -62,7 +69,8 @@ exports[`Slide renders correctly 1`] = `
             "lineHeight": 22,
             "textAlign": "center",
           }
-        } />
+        }
+      />
     </View>
   </View>
 </View>

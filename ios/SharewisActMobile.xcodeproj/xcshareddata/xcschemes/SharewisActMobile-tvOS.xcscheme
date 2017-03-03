@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83CBBA2D1A601D0E00E9B192"
+               BlueprintIdentifier = "2D2A28121D9B038B00D4039D"
                BuildableName = "libReact.a"
-               BlueprintName = "React"
+               BlueprintName = "React-tvOS"
                ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "SharewisActMobile.app"
-               BlueprintName = "SharewisActMobile"
+               BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+               BuildableName = "SharewisActMobile-tvOS.app"
+               BlueprintName = "SharewisActMobile-tvOS"
                ReferencedContainer = "container:SharewisActMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
+            buildForRunning = "YES"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "SharewisActMobileTests.xctest"
-               BlueprintName = "SharewisActMobileTests"
+               BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
+               BuildableName = "SharewisActMobile-tvOSTests.xctest"
+               BlueprintName = "SharewisActMobile-tvOSTests"
                ReferencedContainer = "container:SharewisActMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -60,9 +60,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "SharewisActMobileTests.xctest"
-               BlueprintName = "SharewisActMobileTests"
+               BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
+               BuildableName = "SharewisActMobile-tvOSTests.xctest"
+               BlueprintName = "SharewisActMobile-tvOSTests"
                ReferencedContainer = "container:SharewisActMobile.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -70,9 +70,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SharewisActMobile.app"
-            BlueprintName = "SharewisActMobile"
+            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+            BuildableName = "SharewisActMobile-tvOS.app"
+            BlueprintName = "SharewisActMobile-tvOS"
             ReferencedContainer = "container:SharewisActMobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -93,9 +93,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SharewisActMobile.app"
-            BlueprintName = "SharewisActMobile"
+            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+            BuildableName = "SharewisActMobile-tvOS.app"
+            BlueprintName = "SharewisActMobile-tvOS"
             ReferencedContainer = "container:SharewisActMobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -112,9 +112,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SharewisActMobile.app"
-            BlueprintName = "SharewisActMobile"
+            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+            BuildableName = "SharewisActMobile-tvOS.app"
+            BlueprintName = "SharewisActMobile-tvOS"
             ReferencedContainer = "container:SharewisActMobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

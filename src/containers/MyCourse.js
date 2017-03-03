@@ -12,14 +12,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions/courses';
+import alertOfflineError from '../utils/alert';
 import BaseStyles from '../baseStyles';
+import CourseMap from '../models/CourseMap';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
+import LectureMap from '../models/LectureMap';
 import NotLoginList from '../components/CourseList/NotLoginList';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
-import { ACT_PRO_COURSES_URL } from '../constants/Api';
-import alertOfflineError from '../utils/alert';
 import redirectTo from '../utils/linking';
+import { ACT_PRO_COURSES_URL } from '../constants/Api';
 
 const {
   Alert,
@@ -83,6 +85,11 @@ class MyCourse extends Component {
     // actions
     setCurrentCourseId: PropTypes.func.isRequired,
   };
+
+  static defaultProps = {
+    courses: new CourseMap(),
+    lectures: new LectureMap(),
+  }
 
   state = {
     isRefreshing: false,

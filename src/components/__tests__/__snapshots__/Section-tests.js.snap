@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Section renders correctly 1`] = `
 <View
   style={
@@ -10,7 +12,8 @@ exports[`Section renders correctly 1`] = `
       "justifyContent": "flex-start",
       "padding": 7,
     }
-  }>
+  }
+>
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -20,7 +23,8 @@ exports[`Section renders correctly 1`] = `
         "color": "#4a4a4a",
         "fontSize": 14,
       }
-    }>
+    }
+  >
     Title
   </Text>
 </View>

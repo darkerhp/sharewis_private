@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`NextLectureArea renders correctly 1`] = `
 <View
   style={
@@ -8,13 +10,15 @@ exports[`NextLectureArea renders correctly 1`] = `
       },
       0,
     ]
-  }>
+  }
+>
   <View
     accessibilityComponentType={undefined}
     accessibilityLabel={undefined}
     accessibilityTraits={undefined}
     accessible={true}
     hitSlop={undefined}
+    isTVSelectable={true}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -27,7 +31,9 @@ exports[`NextLectureArea renders correctly 1`] = `
         "opacity": 1,
       }
     }
-    testID={undefined}>
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
     <View
       style={
         Object {
@@ -36,11 +42,13 @@ exports[`NextLectureArea renders correctly 1`] = `
           "justifyContent": "center",
           "overflow": "hidden",
         }
-      }>
+      }
+    >
       <Image
         resizeMode="contain"
         source={1}
-        style={Object {}} />
+        style={Object {}}
+      />
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -53,7 +61,8 @@ exports[`NextLectureArea renders correctly 1`] = `
             "position": "absolute",
             "top": 30,
           }
-        } />
+        }
+      />
     </View>
     <View
       style={
@@ -63,7 +72,8 @@ exports[`NextLectureArea renders correctly 1`] = `
           "flex": 1,
           "justifyContent": "center",
         }
-      }>
+      }
+    >
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -73,8 +83,9 @@ exports[`NextLectureArea renders correctly 1`] = `
             "color": "white",
             "fontWeight": "900",
           }
-        }>
-        [missing \"en.nextLecture\" translation]
+        }
+      >
+        [missing "en.nextLecture" translation]
       </Text>
     </View>
   </View>

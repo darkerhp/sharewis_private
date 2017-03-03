@@ -82,7 +82,7 @@ class SideMenu extends Component { // eslint-disable-line
         </View>
         <View style={styles.mainContainer}>
           {Platform.OS !== 'ios' && // iOSではログインを表示しない
-            < MenuItem
+            <MenuItem
               text={user.loggedIn ? I18n.t('accountSettings') : I18n.t('login')}
               iconName={'account-circle'}
               handlePress={() => {

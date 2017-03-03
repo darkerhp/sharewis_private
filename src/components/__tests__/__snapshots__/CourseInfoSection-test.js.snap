@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`CourseInfoSection renders correctly 1`] = `
 <View
   style={
@@ -7,13 +9,15 @@ exports[`CourseInfoSection renders correctly 1`] = `
       },
       Object {},
     ]
-  }>
+  }
+>
   <View
     style={
       Object {
         "flex": 1,
       }
-    }>
+    }
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -24,7 +28,8 @@ exports[`CourseInfoSection renders correctly 1`] = `
           "fontSize": 16,
           "fontWeight": "900",
         }
-      }>
+      }
+    >
       Title
     </Text>
   </View>
@@ -36,10 +41,12 @@ exports[`CourseInfoSection renders correctly 1`] = `
     }
     handlePressNextLecture={[Function]}
     hidden={true}
-    nextLecture={Object {}} />
+    nextLecture={Object {}}
+  />
   <Progress
     completeLectureCount={0}
-    totalLectureCount={10} />
+    totalLectureCount={10}
+  />
   <Duration
     containerStyleId={
       Object {
@@ -59,6 +66,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
       }
     }
     estimatedTime={100}
-    format="[missing \"en.totalDurationFormat\" translation]" />
+    format="[missing \\"en.totalDurationFormat\\" translation]"
+  />
 </View>
 `;
