@@ -39,7 +39,7 @@
     "react-native-hyperlink": "^0.0.8",
     "react-native-i18n": "^1.0.0",
     "react-native-loading-spinner-overlay": "^0.3.0",
-    "react-native-orientation": "DomiR/react-native-orientation",
+    "react-native-orientation": "DomiR/react-native-orientation#master",
     "react-native-progress": "^3.2.0",
     "react-native-router-flux": "^3.37.0",
     "react-native-scrollable-tab-view": "^0.7.2",
