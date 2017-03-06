@@ -246,7 +246,7 @@ reloading the simulator)
    ```
 
 1. Xcodeを開き、以下の設定を行う。
-    1. General -> Bundle Identifierに「com.share-wis.ShareWisACT」を設定する
+    1. General -> Bundle Identifierに「com.share-wis.ShareWis」を設定する
     1. FacebookSDKをXcodeに追加する。[ドキュメント](https://developers.facebook.com/docs/ios/getting-started/#sdk-project)
     1. Build Settingsに環境変数[FACEBOOK_APP_ID]を追加する。[詳細](https://gyazo.com/0e7b6d30655fb82bc2e87c442825db9a)
     1. LaunchImageの設定がされていなければ再設定する。
