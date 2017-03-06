@@ -58,6 +58,7 @@
 		D7E326A1411F4427886D2392 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 581B0F28F2BD4F15A1D533D7 /* libcxxreact.a */; };
 		EFA5D0CAADEE4AB1BFCCAE70 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E05186E7ED45F7B0F7912D /* SimpleLineIcons.ttf */; };
 		EFB4F6D1CFC5481FA13772A5 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EB367D20A8401A909CCA9E /* libRCTFBSDK.a */; };
+		FB30576D22BD40A396B1E45B /* libRNMixpanel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4E1E1733F04719B6C24E57 /* libRNMixpanel.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = SharewisActMobile;
+		};
+		0A57A6481E6D3D78006F5F34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 993A71533F084A88B051FCA3 /* RNMixpanel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FDC64AF01BF1690D0044C1B4;
+			remoteInfo = RNMixpanel;
 		};
 		0ABBAF0D1E66D4C800F9B672 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -343,9 +351,11 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		75008EB2D30D5134CDEB9F9A /* Pods-SharewisActMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharewisActMobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharewisActMobileTests/Pods-SharewisActMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7A4E1E1733F04719B6C24E57 /* libRNMixpanel.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNMixpanel.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8992CE68BA5F4252AECCB5D2 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		89ADBAF3524D457ABE467F55 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		993A71533F084A88B051FCA3 /* RNMixpanel.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNMixpanel.xcodeproj; path = "../node_modules/react-native-mixpanel/RNMixpanel.xcodeproj"; sourceTree = "<group>"; };
 		A50FC27D59F440BC8E874352 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		A5581FBE51B448A1BD44B590 /* libPods-SharewisActMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SharewisActMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFBF9699F6BE4B2F90ECF6DE /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -400,6 +410,7 @@
 				42A3D3CDE7BA4F6E872000F9 /* libRCTOrientation.a in Frameworks */,
 				A7D0C1333F6E4146943B809C /* libRNVectorIcons.a in Frameworks */,
 				AE47A23BE3724F3793290FBE /* libRCTVideo.a in Frameworks */,
+				FB30576D22BD40A396B1E45B /* libRNMixpanel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +508,14 @@
 				CC6A1DEDDF319330EDC1E32C /* libPods-SharewisActMobileTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0A57A6261E6D3D78006F5F34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A57A6491E6D3D78006F5F34 /* libRNMixpanel.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		0ABBAF071E66D4C800F9B672 /* Products */ = {
@@ -644,6 +663,7 @@
 				3807E88D3F6147F8933276B4 /* RCTOrientation.xcodeproj */,
 				4F2C015FF11544C4AB5853CA /* RNVectorIcons.xcodeproj */,
 				0469D6EC5DE94382BD4AA3FC /* RCTVideo.xcodeproj */,
+				993A71533F084A88B051FCA3 /* RNMixpanel.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -885,6 +905,10 @@
 					ProjectRef = FA16FF50F3484CD8920B4E26 /* RNI18n.xcodeproj */;
 				},
 				{
+					ProductGroup = 0A57A6261E6D3D78006F5F34 /* Products */;
+					ProjectRef = 993A71533F084A88B051FCA3 /* RNMixpanel.xcodeproj */;
+				},
+				{
 					ProductGroup = 0ABBB0301E66D4EC00F9B672 /* Products */;
 					ProjectRef = 4F2C015FF11544C4AB5853CA /* RNVectorIcons.xcodeproj */;
 				},
@@ -933,6 +957,13 @@
 			fileType = archive.ar;
 			path = libRCTVibration.a;
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A57A6491E6D3D78006F5F34 /* libRNMixpanel.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNMixpanel.a;
+			remoteRef = 0A57A6481E6D3D78006F5F34 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0ABBAF0E1E66D4C800F9B672 /* libRCTFBSDK.a */ = {
@@ -1369,6 +1400,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1391,6 +1423,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1481,6 +1514,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1511,6 +1545,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1540,6 +1575,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SharewisActMobile-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1564,6 +1600,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SharewisActMobile-tvOSTests";
