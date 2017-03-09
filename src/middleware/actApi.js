@@ -1,6 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /**
  * @flow
+ * TODO これMiddlewareじゃない・・・
  */
 /* global fetch */
 import { ACT_API_URL, ACT_API_KEY } from '../constants/Api';
