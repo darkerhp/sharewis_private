@@ -1,9 +1,9 @@
 /* global __DEV__ */
 import Mixpanel from 'react-native-mixpanel';
+import { ActionConst } from 'react-native-router-flux';
 
 export const mixpanel = store => next => (action) => {
-  if (action.type === 'REACT_NATIVE_ROUTER_FLUX_PUSH'
-    || action.type === 'REACT_NATIVE_ROUTER_FLUX_RESET') {
+  if (action.type === ActionConst.PUSH || action.type === ActionConst.RESET) {
     Mixpanel.track(`アプリ ${action.key}ページ 表示`);
   }
 
