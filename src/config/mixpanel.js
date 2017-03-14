@@ -9,11 +9,4 @@ export default function setupMixpanel() {
   }
 
   Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN);
-
-  // TODO send push notifications token to Mixpanel
-  if (Platform.OS === 'ios') {
-    Mixpanel.initPushHandling('token_from_apple');
-  } else {
-    Mixpanel.initPushHandling('token_from_google');
-  }
 }
