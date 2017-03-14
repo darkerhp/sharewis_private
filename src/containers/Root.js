@@ -9,13 +9,14 @@ import Orientation from 'react-native-orientation';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import setupI18n from '../config/locales';
+import setupMixpanel from '../config/mixpanel';
 import PURGE_STORAGE from '../config';
 import configureStore from '../store';
 import App from './App';
 
 const store = configureStore();
 setupI18n();
-
+setupMixpanel();
 
 export default class Root extends Component {
   constructor() {

@@ -10,6 +10,7 @@ import createReactotronEnhancer from 'reactotron-redux';
 import { autoRehydrate } from 'redux-persist';
 
 import netInfoMiddleware from './middleware/netInfo';
+import mixpanelMiddleware from './middleware/mixpanel';
 import rootReducer from './reducers';
 
 
@@ -17,6 +18,7 @@ const loggerMiddleware = createLogger();
 const middleWare = applyMiddleware(
   thunkMiddleware,
   netInfoMiddleware,
+  mixpanelMiddleware,
   loggerMiddleware,
 );
 

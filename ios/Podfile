@@ -8,6 +8,7 @@ target 'SharewisActMobile' do
 
   # Pods for SharewisActMobile
   pod 'Repro'
+  pod 'Mixpanel'
 
   target 'SharewisActMobileTests' do
     inherit! :search_paths
