@@ -19,6 +19,8 @@
 		0A3E557B1E66BB270003C1B7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E55771E66BB270003C1B7 /* FBSDKCoreKit.framework */; };
 		0A3E557C1E66BB270003C1B7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E55781E66BB270003C1B7 /* FBSDKLoginKit.framework */; };
 		0A3E557D1E66BB270003C1B7 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E55791E66BB270003C1B7 /* FBSDKShareKit.framework */; };
+		0A95A3CE1E791FDF00E6E3E7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95A3CD1E791FDF00E6E3E7 /* NotificationService.swift */; };
+		0A95A3D21E791FDF00E6E3E7 /* SharewisNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0A95A3CB1E791FDE00E6E3E7 /* SharewisNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0ABBAED21E66CD4B00F9B672 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -110,6 +112,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = FDC64AF01BF1690D0044C1B4;
 			remoteInfo = RNMixpanel;
+		};
+		0A95A3D01E791FDF00E6E3E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A95A3CA1E791FDE00E6E3E7;
+			remoteInfo = SharewisNotificationService;
 		};
 		0ABBAF0D1E66D4C800F9B672 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -309,6 +318,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0A95A3A71E791CE300E6E3E7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0A95A3D21E791FDF00E6E3E7 /* SharewisNotificationService.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -326,6 +349,9 @@
 		0A3E55781E66BB270003C1B7 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		0A3E55791E66BB270003C1B7 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		0A6134011E78CF3F00EDAE9E /* SharewisActMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SharewisActMobile.entitlements; path = SharewisActMobile/SharewisActMobile.entitlements; sourceTree = "<group>"; };
+		0A95A3CB1E791FDE00E6E3E7 /* SharewisNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharewisNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A95A3CD1E791FDF00E6E3E7 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		0A95A3CF1E791FDF00E6E3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A969B550CDD4FE0ABAFB89B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		0FF53B2F40C14F1EA1E0EBFD /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -380,6 +406,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DE62997145B5F56E841FE50 /* libPods-SharewisActMobileTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A95A3C81E791FDE00E6E3E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +550,15 @@
 				0A57A6491E6D3D78006F5F34 /* libRNMixpanel.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A95A3CC1E791FDE00E6E3E7 /* SharewisNotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				0A95A3CD1E791FDF00E6E3E7 /* NotificationService.swift */,
+				0A95A3CF1E791FDF00E6E3E7 /* Info.plist */,
+			);
+			path = SharewisNotificationService;
 			sourceTree = "<group>";
 		};
 		0ABBAF071E66D4C800F9B672 /* Products */ = {
@@ -682,6 +724,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0A95A3CC1E791FDE00E6E3E7 /* SharewisNotificationService */,
 				0A3E54AC1E66A3DE0003C1B7 /* Frameworks */,
 				13B07FAE1A68108700A75B9A /* SharewisActMobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -701,6 +744,7 @@
 				00E356EE1AD99517003FC87E /* SharewisActMobileTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* SharewisActMobile-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* SharewisActMobile-tvOSTests.xctest */,
+				0A95A3CB1E791FDE00E6E3E7 /* SharewisNotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -746,6 +790,23 @@
 			productReference = 00E356EE1AD99517003FC87E /* SharewisActMobileTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		0A95A3CA1E791FDE00E6E3E7 /* SharewisNotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A95A3D31E791FDF00E6E3E7 /* Build configuration list for PBXNativeTarget "SharewisNotificationService" */;
+			buildPhases = (
+				0A95A3C71E791FDE00E6E3E7 /* Sources */,
+				0A95A3C81E791FDE00E6E3E7 /* Frameworks */,
+				0A95A3C91E791FDE00E6E3E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SharewisNotificationService;
+			productName = SharewisNotificationService;
+			productReference = 0A95A3CB1E791FDE00E6E3E7 /* SharewisNotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		13B07F861A680F5B00A75B9A /* SharewisActMobile */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SharewisActMobile" */;
@@ -757,10 +818,12 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				5B824A959006136582A2C78D /* [CP] Embed Pods Frameworks */,
 				43897B2A3DB30624FB9053C1 /* [CP] Copy Pods Resources */,
+				0A95A3A71E791CE300E6E3E7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0A95A3D11E791FDF00E6E3E7 /* PBXTargetDependency */,
 			);
 			name = SharewisActMobile;
 			productName = "Hello World";
@@ -809,12 +872,18 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 820;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					0A95A3CA1E791FDE00E6E3E7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = S6JTW2HH6N;
+						ProvisioningStyle = Automatic;
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = S6JTW2HH6N;
@@ -926,6 +995,7 @@
 				00E356ED1AD99517003FC87E /* SharewisActMobileTests */,
 				2D02E47A1E0B4A5D006451C7 /* SharewisActMobile-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* SharewisActMobile-tvOSTests */,
+				0A95A3CA1E791FDE00E6E3E7 /* SharewisNotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -1172,6 +1242,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0A95A3C91E791FDE00E6E3E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1338,6 +1415,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0A95A3C71E791FDE00E6E3E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A95A3CE1E791FDF00E6E3E7 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1371,6 +1456,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* SharewisActMobile */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		0A95A3D11E791FDF00E6E3E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A95A3CA1E791FDE00E6E3E7 /* SharewisNotificationService */;
+			targetProxy = 0A95A3D01E791FDF00E6E3E7 /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1445,10 +1535,49 @@
 			};
 			name = Release;
 		};
+		0A95A3D41E791FDF00E6E3E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = S6JTW2HH6N;
+				INFOPLIST_FILE = SharewisNotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis.SharewisNotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		0A95A3D51E791FDF00E6E3E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = S6JTW2HH6N;
+				INFOPLIST_FILE = SharewisNotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis.SharewisNotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EF3EB1317561E8728CBA16 /* Pods-SharewisActMobile.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SharewisActMobile/SharewisActMobile.entitlements;
@@ -1483,6 +1612,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CCD32C330AC9C46CA2E28BD8 /* Pods-SharewisActMobile.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SharewisActMobile/SharewisActMobile.entitlements;
@@ -1722,6 +1852,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		0A95A3D31E791FDF00E6E3E7 /* Build configuration list for PBXNativeTarget "SharewisNotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A95A3D41E791FDF00E6E3E7 /* Debug */,
+				0A95A3D51E791FDF00E6E3E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SharewisActMobile" */ = {
 			isa = XCConfigurationList;
