@@ -1461,6 +1461,8 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/Repro\"",
 					"$(SRCROOT)/../node_modules/react-native-orientation/iOS/RCTOrientation",
+					"\"$(SRCROOT)/../node_modules/react-native/ReactCommon/**\"/**",
+					"\"$(SRCROOT)/../node_modules/react-native/React/**\"/**",
 				);
 				INFOPLIST_FILE = SharewisActMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1492,6 +1494,8 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/Repro\"",
 					"$(SRCROOT)/../node_modules/react-native-orientation/iOS/RCTOrientation",
+					"\"$(SRCROOT)/../node_modules/react-native/ReactCommon/**\"/**",
+					"\"$(SRCROOT)/../node_modules/react-native/React/**\"/**",
 				);
 				INFOPLIST_FILE = SharewisActMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
