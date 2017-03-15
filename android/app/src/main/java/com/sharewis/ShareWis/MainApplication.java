@@ -66,6 +66,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     // Setup Repro
     Repro.setup(this, "a3ec35c0-af7a-47ac-a10f-866ba354bd33");
+    Repro.enablePushNotification("357133052683");
     // Start Recording
     Repro.startRecording();
     // If you want to use AppEventsLogger to log events.

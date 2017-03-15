@@ -14,6 +14,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Repro/Repro.h>
 #import "Orientation.h"
+#import <UserNotifications/UserNotifications.h>
 
 @implementation AppDelegate
 
@@ -42,6 +43,26 @@
   [Repro setup:@"a3ec35c0-af7a-47ac-a10f-866ba354bd33"];
   [Repro startRecording];
 
+  // For Repro Notification Setting http://docs.repro.io/ja/dev/sdk/push-notification/ios.html#apns
+  if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) {
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+      if (granted) {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+      }
+    }];
+  } else {
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)]) {
+      UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+      UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+      [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+      [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+      UIRemoteNotificationType types = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert| UIRemoteNotificationTypeSound;
+      [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+    }
+  }
+  
   return YES;
 }
 
@@ -67,6 +88,17 @@
 // for react-native-orientation https://github.com/yamill/react-native-orientation#ios
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   return [Orientation getOrientation];
+}
+
+// For Repro Notification Setting http://docs.repro.io/ja/dev/sdk/push-notification/ios.html#repro
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+  [Repro setPushDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+  NSLog(@"Remote Notification Error: %@", error);
 }
 
 @end
