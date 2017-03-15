@@ -1,6 +1,6 @@
 PODS:
   - Mixpanel (3.1.2)
-  - Repro (2.2.2)
+  - Repro (2.2.9)
 
 DEPENDENCIES:
   - Mixpanel
@@ -8,7 +8,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Mixpanel: 38a26d7c6f2189827c8bbcf4e484af29f4401ce6
-  Repro: 89dcf9bf2c11532a36c5bce5865d00f3324662d6
+  Repro: 19da1c9f6be950d8a5514f8514398d34cb133227
 
 PODFILE CHECKSUM: 3b2380f9febaaf59d26656d697c12c02a87d436b
 

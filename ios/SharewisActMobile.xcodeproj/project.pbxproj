@@ -1860,6 +1860,7 @@
 				0A95A3D51E791FDF00E6E3E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SharewisActMobile" */ = {
 			isa = XCConfigurationList;
