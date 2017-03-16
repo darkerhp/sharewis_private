@@ -12,6 +12,7 @@ import setupI18n from '../config/locales';
 import setupMixpanel from '../config/mixpanel';
 import PURGE_STORAGE from '../config';
 import configureStore from '../store';
+import transform from '../transform';
 import App from './App';
 
 const store = configureStore();
@@ -29,10 +30,14 @@ export default class Root extends Component {
       store,
       {
         storage: AsyncStorage,
-        blacklist: ['ui', 'routes'],
+        blacklist: ['ui', 'routes', 'form'],
+        transforms: [transform],
       },
-      () => this.setState({ rehydrated: true }),
+      () => {
+        this.setState({ rehydrated: true });
+      },
     );
+
     if (__DEV__ && PURGE_STORAGE) {
       LoginManager.logOut();
       persistor.purge();
