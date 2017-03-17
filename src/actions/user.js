@@ -2,6 +2,7 @@
  * @flow
  */
 import { createAction } from 'redux-actions';
+import { Client } from 'bugsnag-react-native';
 import I18n from 'react-native-i18n';
 
 import * as types from '../constants/ActionTypes';
@@ -43,6 +44,7 @@ export const fetchUserBy = (loginMethod, credentials) =>
       const data = await getUserData(credentials);
       return dispatch(fetchActLoginSuccess(data));
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
       dispatch(fetchActLoginFailure);
       throw error;
@@ -64,6 +66,7 @@ export const signupUserBy = (loginMethod, credentials) =>
       await patchSignup(userData.userId, I18n.locale ? I18n.locale.split('-')[0] : null);
       return dispatch(fetchActSignupSuccess(userData));
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
       dispatch(fetchActSignupFailure);
       throw error;

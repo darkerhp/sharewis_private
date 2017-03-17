@@ -10,6 +10,8 @@ const factory = (lectureId, props = {}) => (
   new OrderedMap({ [lectureId]: new Lecture({ id: lectureId, ...props }) })
 );
 
+jest.mock('bugsnag-react-native', () => 'Bugsnag');
+
 describe('lectures reducer', () => {
   it('should handle COMPLETE_LECTURE', () => {
     const lectureId = 1;

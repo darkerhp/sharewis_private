@@ -9,6 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
+import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
 import * as coursesActions from '../actions/courses';
@@ -161,6 +162,7 @@ class Top extends Component {
       }
       await fetchSnackCourse(force);
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }

@@ -2,6 +2,7 @@
  * @flow
  */
 import { createAction } from 'redux-actions';
+import { Client } from 'bugsnag-react-native';
 
 import { queueLectureProgress } from '../actions/netInfo';
 import * as types from '../constants/ActionTypes';
@@ -42,6 +43,7 @@ export const updateLectureStatus = (lectureId: number, status: string) =>
       }
       dispatch(updateLectureStatusSuccess(lectureId, status));
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
       dispatch(updateLectureStatusFailure());
       throw error;

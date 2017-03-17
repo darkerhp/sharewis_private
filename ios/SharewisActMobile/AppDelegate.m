@@ -15,6 +15,7 @@
 #import <Repro/Repro.h>
 #import "Orientation.h"
 #import <UserNotifications/UserNotifications.h>
+#import <BugsnagReactNative/BugsnagReactNative.h>
 
 @implementation AppDelegate
 
@@ -39,6 +40,8 @@
   [[FBSDKApplicationDelegate sharedInstance] application:application
           didFinishLaunchingWithOptions:launchOptions];
   // Add any custom logic here.
+
+  [BugsnagReactNative start];
 
   [Repro setup:@"a3ec35c0-af7a-47ac-a10f-866ba354bd33"];
   [Repro startRecording];

@@ -4,6 +4,8 @@
  * TODO これMiddlewareじゃない・・・
  */
 /* global fetch */
+import { Client } from 'bugsnag-react-native';
+
 import { ACT_API_URL, ACT_API_KEY } from '../constants/Api';
 import { checkStatus, checkResult } from '../utils/api';
 
@@ -93,6 +95,7 @@ export const patchLectureStatus = async (
     // Parse and return results
     return json;
   } catch (error) {
+    new Client().notify(error);
     console.error(error);
     throw error;
   }
@@ -126,6 +129,7 @@ export const patchSignup = async (userId: number, locale: ?string) => {
     // Parse and return results
     return json;
   } catch (error) {
+    new Client().notify(error);
     console.error(error);
     throw error;
   }

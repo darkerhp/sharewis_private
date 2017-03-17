@@ -16,6 +16,8 @@ jest.mock('Linking', () => {
   };
 });
 
+jest.mock('bugsnag-react-native', () => 'Bugsnag');
+
 describe('Linking Utils', () => {
   const ACT_API_URL = require('../../constants/Api');
 

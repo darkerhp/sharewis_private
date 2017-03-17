@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import NextLectureArea from '../CourseDetails/NextLectureArea';
 
+jest.mock('bugsnag-react-native', () => 'Bugsnag');
 
 describe('NextLectureArea', () => {
   it('renders correctly', () => {

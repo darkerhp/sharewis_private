@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 import Lecture from '../../models/Lecture';
 
+jest.mock('bugsnag-react-native', () => 'Bugsnag');
+
 describe('Lecture Model', () => {
   describe('getLectureIconName', () => {
     it('should return video lecture icon name', () => {

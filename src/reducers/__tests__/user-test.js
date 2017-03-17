@@ -3,6 +3,8 @@ import * as types from '../../constants/ActionTypes';
 import reducer from '../user';
 import * as actions from '../../actions/user';
 
+jest.mock('bugsnag-react-native', () => 'Bugsnag');
+
 describe('User reducer', () => {
   describe('Facebook graph request actions', () => {
     beforeEach(() => {
