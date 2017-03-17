@@ -142,6 +142,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':bugsnag-react-native')
     compile project(':react-native-mixpanel')
     compile project(':react-native-video')
     compile project(':react-native-vector-icons')
