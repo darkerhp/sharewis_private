@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import CourseInfoSection from '../CourseDetails/CourseInfoSection';
 
+jest.mock('bugsnag-react-native', () => 'Bugsnag');
 jest.mock('../Duration', () => 'Duration');
 jest.mock('../CourseDetails/NextLectureArea', () => 'NextLectureArea');
 jest.mock('../CourseDetails/Progress', () => 'Progress');

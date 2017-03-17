@@ -8,6 +8,7 @@ import LectureItem from '../CourseDetails/LectureItem';
 import Lecture from '../../models/Lecture';
 
 jest.mock('../Duration', () => 'Duration');
+jest.mock('bugsnag-react-native', () => 'Bugsnag');
 
 describe('LectureItem', () => {
   it('renders correctly', () => {
