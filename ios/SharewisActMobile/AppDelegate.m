@@ -15,6 +15,7 @@
 #import <Repro/Repro.h>
 #import "Orientation.h"
 #import <UserNotifications/UserNotifications.h>
+#import <BugsnagReactNative/BugsnagReactNative.h>
 
 @implementation AppDelegate
 
