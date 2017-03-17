@@ -4,6 +4,8 @@ import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
 import android.content.Intent;
 import android.content.res.Configuration;
+import com.bugsnag.BugsnagReactNative;
+import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
 
@@ -28,5 +30,11 @@ public class MainActivity extends ReactActivity {
         Intent intent = new Intent("onConfigurationChanged");
         intent.putExtra("newConfig", newConfig);
         this.sendBroadcast(intent);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        BugsnagReactNative.start(this);
     }
 }
