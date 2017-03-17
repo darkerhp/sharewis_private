@@ -3,10 +3,11 @@ import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
 import I18n from 'react-native-i18n';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
+import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import * as Actions from '../actions/courses';
 import BaseStyles from '../baseStyles';
@@ -71,6 +72,7 @@ class SnackCourse extends Component {
     try {
       await fetchSnackCourse(force);
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }

@@ -1,6 +1,7 @@
 /* global __DEV__ */
 import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
+import { Client } from 'bugsnag-react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
@@ -15,6 +16,7 @@ import configureStore from '../store';
 import transform from '../transform';
 import App from './App';
 
+const bugsnag = new Client();
 const store = configureStore();
 setupI18n();
 setupMixpanel();

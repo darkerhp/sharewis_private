@@ -2,9 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
+import Orientation from 'react-native-orientation';
 import Video from 'react-native-video';
 import { Actions as RouterActions } from 'react-native-router-flux';
-import Orientation from 'react-native-orientation';
+import { Client } from 'bugsnag-react-native';
+
 
 import VideoControls from './VideoControls'; // eslint-disable-line
 import FullScreenVideoControls from './FullScreenVideoControls'; // eslint-disable-line
@@ -131,7 +133,10 @@ class VideoLecture extends Component {
         onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
         onLoad={() => this.setState({ isLoadingThumbnail: false })}
         onEnd={handleEnd}
-        onError={e => console.error(e)}
+        onError={(e) => {
+          new Client().notify(e);
+          console.error(e);
+        }}
         onProgress={this.handleVideoProgress}
         paused={this.state.seeking || this.state.isPaused}
         playInBackground={false}

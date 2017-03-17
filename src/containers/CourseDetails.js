@@ -2,14 +2,15 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-import { _ } from 'lodash';
 import autobind from 'autobind-decorator';
-import { Actions as RouterActions } from 'react-native-router-flux';
-import RNFS from 'react-native-fs';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import RNFS from 'react-native-fs';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
+import { _ } from 'lodash';
+import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
+import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions/courseDetails';
@@ -91,6 +92,7 @@ class CourseDetails extends Component {
       await fetchCourseDetails(id);
       await fetchVideoInDeviceStatus(id);
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
@@ -167,6 +169,7 @@ class CourseDetails extends Component {
     } catch (error) {
       if (error.message !== 'Download has been aborted') {
         errorDownloadVideo(lecture.id);
+        new Client().notify(error);
         Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
         console.error(error);
       }

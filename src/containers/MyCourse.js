@@ -4,11 +4,12 @@ import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
-import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
+import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
+import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions/courses';
@@ -107,6 +108,7 @@ class MyCourse extends Component {
       await fetchMyCourse(force);
       await fetchCoursesDownloadStatus();
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }

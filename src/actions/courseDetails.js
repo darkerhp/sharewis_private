@@ -1,6 +1,7 @@
 import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 import _ from 'lodash';
+import { Client } from 'bugsnag-react-native';
 
 import * as types from '../constants/ActionTypes';
 import { ACT_API_CACHE } from '../constants/Api';
@@ -58,6 +59,7 @@ export const fetchCourseDetails = courseId =>
         )));
       }
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
       dispatch(fetchCourseDetailsFailure());
       throw error;

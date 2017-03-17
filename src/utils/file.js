@@ -1,4 +1,5 @@
 import RNFS from 'react-native-fs';
+import { Client } from 'bugsnag-react-native';
 
 const ARCHIVE_PATH = `${RNFS.DocumentDirectoryPath}/archive`;
 
@@ -29,6 +30,7 @@ export async function hasVideoByCourse(courseId) {
       readDirItem => getFileExtension(readDirItem.name) === 'mp4',
     );
   } catch (error) {
+    new Client().notify(error);
     console.error(error);
     throw error;
   }

@@ -2,6 +2,8 @@
 /* @flow */
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
+import { Client } from 'bugsnag-react-native';
+
 import * as types from '../constants/ActionTypes';
 import { patchLectureStatus } from '../middleware/actApi';
 
@@ -36,6 +38,7 @@ export const syncLectureProgress = () =>
       await Promise.all(promises);
       dispatch(triggeredQueueActions());
     } catch (error) {
+      new Client().notify(error);
       console.error(error);
     }
   };
