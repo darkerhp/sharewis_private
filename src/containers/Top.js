@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BaseStyles.courseListBackgroundColor,
-    paddingBottom: BaseStyles.navbarHeight,
   },
   topImageWrapper: {
     overflow: 'hidden',
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
   },
   myCourseWrapper: {
     flex: 1,
-    marginBottom: 10,
+    marginBottom: BaseStyles.navbarHeight,
   },
   myCourseSummaryItemBox: {
     height: 150,
