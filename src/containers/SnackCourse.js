@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BaseStyles.courseListBackgroundColor,
-    paddingBottom: BaseStyles.navbarHeight,
     paddingTop: 5,
   },
   contentContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    paddingBottom: BaseStyles.navbarHeight,
   },
 });
 
