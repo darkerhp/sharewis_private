@@ -16,12 +16,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 13,
     paddingVertical: 13,
   },
+  hrWrapper: {
+    marginBottom: 35,
+  },
   signupButtonWrapper: {
     minHeight: 30,
     maxHeight: 47,
     flex: 1,
     borderRadius: 3,
-    marginTop: 35,
+    // marginTop: 35,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
@@ -38,7 +41,9 @@ const styles = StyleSheet.create({
 
 const Footer = () =>
   <View style={styles.container}>
-    <Hr lineColor={'#dadada'} />
+    <View style={styles.hrWrapper}>
+      <Hr lineColor={'#dadada'} />
+    </View>
     <Button
       containerStyle={styles.signupButtonWrapper}
       style={styles.signupButtonText}
