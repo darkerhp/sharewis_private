@@ -110,13 +110,6 @@ class VideoLecture extends Component {
   @autobind
   handlePressPlay() {
     this.setState({ isPaused: !this.state.isPaused, isStarted: true });
-
-    // 動画再生中はスリープしない
-    if (this.state.isPaused) {
-      KeepAwake.deactivate();
-    } else {
-      KeepAwake.activate();
-    }
   }
 
   @autobind
@@ -203,6 +196,8 @@ class VideoLecture extends Component {
         {isFullScreen
           ? <FullScreenVideoControls {...videoControlsProps} />
           : <VideoControls {...videoControlsProps} />}
+
+        <KeepAwake />
       </View>
     );
   }
