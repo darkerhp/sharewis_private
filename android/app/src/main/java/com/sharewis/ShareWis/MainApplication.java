@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.corbt.keepawake.KCKeepAwakePackage;
 import com.bugsnag.BugsnagReactNative;
 import com.kevinejohn.RNMixpanel.RNMixpanel;
 import com.brentvatne.react.ReactVideoPackage;
@@ -43,6 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new KCKeepAwakePackage(),
             BugsnagReactNative.getPackage(),
             new RNMixpanel(),
             new VectorIconsPackage(),

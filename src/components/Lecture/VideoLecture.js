@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
+import KeepAwake from 'react-native-keep-awake';
 import Orientation from 'react-native-orientation';
 import Video from 'react-native-video';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { Client } from 'bugsnag-react-native';
-
 
 import VideoControls from './VideoControls'; // eslint-disable-line
 import FullScreenVideoControls from './FullScreenVideoControls'; // eslint-disable-line
@@ -196,6 +196,8 @@ class VideoLecture extends Component {
         {isFullScreen
           ? <FullScreenVideoControls {...videoControlsProps} />
           : <VideoControls {...videoControlsProps} />}
+
+        <KeepAwake />
       </View>
     );
   }
