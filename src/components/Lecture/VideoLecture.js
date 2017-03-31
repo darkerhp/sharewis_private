@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
+import KeepAwake from 'react-native-keep-awake';
 import Orientation from 'react-native-orientation';
 import Video from 'react-native-video';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { Client } from 'bugsnag-react-native';
-
 
 import VideoControls from './VideoControls'; // eslint-disable-line
 import FullScreenVideoControls from './FullScreenVideoControls'; // eslint-disable-line
@@ -110,6 +110,13 @@ class VideoLecture extends Component {
   @autobind
   handlePressPlay() {
     this.setState({ isPaused: !this.state.isPaused, isStarted: true });
+
+    // 動画再生中はスリープしない
+    if (this.state.isPaused) {
+      KeepAwake.deactivate();
+    } else {
+      KeepAwake.activate();
+    }
   }
 
   @autobind
