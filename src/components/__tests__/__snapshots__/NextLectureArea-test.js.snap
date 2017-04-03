@@ -8,7 +8,7 @@ exports[`NextLectureArea renders correctly 1`] = `
         "alignItems": "center",
         "justifyContent": "center",
       },
-      0,
+      undefined,
     ]
   }
 >
@@ -40,6 +40,7 @@ exports[`NextLectureArea renders correctly 1`] = `
           "alignItems": "flex-start",
           "flex": 2,
           "justifyContent": "center",
+          "maxWidth": 730,
           "overflow": "hidden",
         }
       }

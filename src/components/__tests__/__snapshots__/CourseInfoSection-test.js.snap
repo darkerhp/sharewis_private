@@ -34,7 +34,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
     </Text>
   </View>
   <NextLectureArea
-    containerStyleId={
+    containerStyle={
       Object {
         "flex": 3,
       }

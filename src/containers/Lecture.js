@@ -113,6 +113,7 @@ class LectureContainer extends Component {
     if (!currentLecture.canAccess(isOnline)) {
       return <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />;
     }
+
     if (currentLecture.isVideo()) {
       return (
         <VideoLecture

@@ -61,7 +61,7 @@ const CourseInfoSection = ({
         nextLecture={nextLecture}
         handlePressNextLecture={handlePressNextLecture}
         hidden
-        containerStyleId={styles.lectureAreaContainer}
+        containerStyle={styles.lectureAreaContainer}
       />
     }
 

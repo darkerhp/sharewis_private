@@ -5,7 +5,13 @@ import I18n from 'react-native-i18n';
 import BaseStyles from '../../baseStyles';
 import Lecture from '../../models/Lecture';
 
-const { View, StyleSheet, Text, Image, TouchableOpacity } = ReactNative;
+const {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+} = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +23,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    maxWidth: BaseStyles.deviceWidth - 20, // 親コンポーネントのpadding分引いた画面幅
   },
   courseImage: {},
   nextLectureTextWrapper: {
@@ -39,7 +46,6 @@ const styles = StyleSheet.create({
 
 });
 
-
 const videoImageSrc = require('./images/video.png');
 const quizImageSrc = require('./images/quiz.png');
 const textImageSrc = require('./images/text.png');
@@ -57,8 +63,8 @@ const getNextLectureImageSrc = (nextLecture) => {
   }
 };
 
-const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyleId }) =>
-  <View style={[styles.container, containerStyleId]}>
+const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyle }) =>
+  <View style={[styles.container, containerStyle]}>
     <TouchableOpacity onPress={handlePressNextLecture}>
       <View style={styles.courseImageWrapper}>
         <Image
@@ -77,7 +83,7 @@ const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyleId
 NextLectureArea.propTypes = {
   nextLecture: PropTypes.shape({}).isRequired,
   handlePressNextLecture: PropTypes.func.isRequired,
-  containerStyleId: PropTypes.number.isRequired,
+  containerStyle: PropTypes.any, // eslint-disable-line
 };
 
 export default NextLectureArea;
