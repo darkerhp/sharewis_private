@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
 
 });
 
-
 const videoImageSrc = require('./images/video.png');
 const quizImageSrc = require('./images/quiz.png');
 const textImageSrc = require('./images/text.png');
@@ -57,8 +56,8 @@ const getNextLectureImageSrc = (nextLecture) => {
   }
 };
 
-const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyleId }) =>
-  <View style={[styles.container, containerStyleId]}>
+const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyle }) =>
+  <View style={[styles.container, containerStyle]}>
     <TouchableOpacity onPress={handlePressNextLecture}>
       <View style={styles.courseImageWrapper}>
         <Image
@@ -77,7 +76,7 @@ const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyleId
 NextLectureArea.propTypes = {
   nextLecture: PropTypes.shape({}).isRequired,
   handlePressNextLecture: PropTypes.func.isRequired,
-  containerStyleId: PropTypes.number.isRequired,
+  containerStyle: PropTypes.any, // eslint-disable-line
 };
 
 export default NextLectureArea;
