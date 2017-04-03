@@ -5,7 +5,13 @@ import I18n from 'react-native-i18n';
 import BaseStyles from '../../baseStyles';
 import Lecture from '../../models/Lecture';
 
-const { View, StyleSheet, Text, Image, TouchableOpacity } = ReactNative;
+const {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+} = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +23,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    maxWidth: BaseStyles.deviceWidth - 20, // 親コンポーネントのpadding分引いた画面幅
   },
   courseImage: {},
   nextLectureTextWrapper: {
