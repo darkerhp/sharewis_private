@@ -7,10 +7,10 @@ import I18n from 'react-native-i18n';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import Hyperlink from 'react-native-hyperlink';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import Form from './Form';
 import Footer from './Footer'; // eslint-disable-line
-import { ACT_TOS_URL, ACT_PRIVACY_URL } from '../../constants/Api';
+import { ACT_TOS_URL, ACT_PRIVACY_URL } from '../../lib/constants';
 
 const { StatusBar, StyleSheet, Text, View } = ReactNative;
 

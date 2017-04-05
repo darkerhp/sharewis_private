@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 
-import BaseStyles from '../../baseStyles';
-import Lecture from '../../models/Lecture';
+import BaseStyles from '../../lib/baseStyles';
+import Lecture from '../../modules/models/Lecture';
 
 const {
   View,

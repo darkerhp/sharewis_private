@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import { lectures } from '../../data/dummyData';
+import { lectures } from '../../../lib/dummyData';
 
-import Lecture from '../../models/Lecture';
-import LectureMap from '../../models/LectureMap';
+import Lecture from '../Lecture';
+import LectureMap from '../LectureMap';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
 

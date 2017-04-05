@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
-import BaseStyles from '../baseStyles';
+import BaseStyles from '../lib/baseStyles';
 import Slide from '../components/Onboarding/Slide';
 import Signup from '../containers/Signup'; // eslint-disable-line
 

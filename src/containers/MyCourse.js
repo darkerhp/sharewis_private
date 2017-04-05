@@ -12,17 +12,17 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as Actions from '../actions/courses';
+import * as Actions from '../modules/actions/courses';
 import alertOfflineError from '../utils/alert';
-import BaseStyles from '../baseStyles';
-import CourseMap from '../models/CourseMap';
+import BaseStyles from '../lib/baseStyles';
+import CourseMap from '../modules/models/CourseMap';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
-import LectureMap from '../models/LectureMap';
+import LectureMap from '../modules/models/LectureMap';
 import NotLoginList from '../components/CourseList/NotLoginList';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import redirectTo from '../utils/linking';
-import { ACT_PRO_COURSES_URL } from '../constants/Api';
+import { ACT_PRO_COURSES_URL } from '../lib/constants';
 
 const {
   Alert,

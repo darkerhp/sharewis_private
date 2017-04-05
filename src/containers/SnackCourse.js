@@ -9,10 +9,10 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as Actions from '../actions/courses';
-import BaseStyles from '../baseStyles';
+import * as Actions from '../modules/actions/courses';
+import BaseStyles from '../lib/baseStyles';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
-import Course from '../models/Course';
+import Course from '../modules/models/Course';
 
 const {
   Alert,

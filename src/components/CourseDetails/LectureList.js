@@ -3,7 +3,7 @@ import ReactNative from 'react-native';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import LectureItem from './LectureItem';
 import Section from './Section';
 

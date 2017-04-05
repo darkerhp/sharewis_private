@@ -11,7 +11,7 @@ import {
 import validator from 'validator';
 
 import alertOfflineError from '../../utils/alert';
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import TextField from '../../components/TextField';
 import validateEmailLogin from '../../utils/validate';
 

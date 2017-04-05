@@ -5,8 +5,8 @@
 import { createTransform } from 'redux-persist';
 import _ from 'lodash';
 
-import CourseMap from './models/CourseMap';
-import LectureMap from './models/LectureMap';
+import CourseMap from '../modules/models/CourseMap';
+import LectureMap from '../modules/models/LectureMap';
 
 const transform = createTransform(
   // transform state coming from redux on its way to being serialized and stored

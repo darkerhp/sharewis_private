@@ -2,7 +2,7 @@
 import { createAction } from 'redux-actions';
 import { OrderedMap } from 'immutable';
 import reducer from '../entities/lectures';
-import * as types from '../../constants/ActionTypes';
+import * as types from '../../ActionTypes';
 
 import Lecture from '../../models/Lecture';
 

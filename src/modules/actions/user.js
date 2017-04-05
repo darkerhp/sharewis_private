@@ -5,9 +5,9 @@ import { createAction } from 'redux-actions';
 import { Client } from 'bugsnag-react-native';
 import I18n from 'react-native-i18n';
 
-import * as types from '../constants/ActionTypes';
-import { getUserData, signupByEmail } from '../middleware/accountApi';
-import { patchSignup } from '../middleware/actApi';
+import * as types from '../ActionTypes';
+import { getUserData, signupByEmail } from '../../redux/middleware/accountApi';
+import { patchSignup } from '../../redux/middleware/actApi';
 
 
 // Actions Creators

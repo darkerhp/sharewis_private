@@ -3,13 +3,13 @@ import { createAction } from 'redux-actions';
 import _ from 'lodash';
 import { Client } from 'bugsnag-react-native';
 
-import * as types from '../constants/ActionTypes';
-import { ACT_API_CACHE } from '../constants/Api';
+import * as types from '../ActionTypes';
+import { ACT_API_CACHE } from '../../lib/constants';
 import Lecture from '../models/Lecture';
-import * as FileUtils from '../utils/file';
+import * as FileUtils from '../../utils/file';
 
-import { getCourseDetails } from '../middleware/actApi';
-import * as schema from '../schema';
+import { getCourseDetails } from '../../redux/middleware/actApi';
+import * as schema from '../../lib/schema';
 
 // Actions Creators
 export const fetchCourseDetailsFailure = createAction(types.FETCH_COURSE_DETAILS_FAILURE);

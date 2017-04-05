@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import * as types from '../../constants/ActionTypes';
+import * as types from '../../ActionTypes';
 import reducer from '../user';
 import * as actions from '../../actions/user';
 

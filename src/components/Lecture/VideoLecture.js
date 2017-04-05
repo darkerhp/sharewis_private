@@ -10,7 +10,7 @@ import { Client } from 'bugsnag-react-native';
 
 import VideoControls from './VideoControls'; // eslint-disable-line
 import FullScreenVideoControls from './FullScreenVideoControls'; // eslint-disable-line
-import Lecture from '../../models/Lecture';
+import Lecture from '../../modules/models/Lecture';
 
 const {
   ActivityIndicator,

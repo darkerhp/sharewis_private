@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-import BaseStyles from '../../baseStyles';
-import Course from '../../models/Course';
+import BaseStyles from '../../lib/baseStyles';
+import Course from '../../modules/models/Course';
 import TwoColumnItemBox from './TwoColumnItemBox';
 
 const {

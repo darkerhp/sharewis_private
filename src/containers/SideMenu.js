@@ -11,7 +11,7 @@ import {
   ACT_INQUIRIES_URL,
   ACT_TOS_URL,
   ACT_PRIVACY_URL,
-} from '../constants/Api';
+} from '../lib/constants';
 import * as localeUtil from '../utils/locale';
 
 const { Linking, Platform, StyleSheet, Text, View } = ReactNative;

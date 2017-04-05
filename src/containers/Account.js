@@ -3,7 +3,7 @@ import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from 'react-redux';
 
-import BaseStyles from '../baseStyles';
+import BaseStyles from '../lib/baseStyles';
 
 const { View, Text, StyleSheet, Platform, Dimensions } = ReactNative;
 const { width } = Dimensions.get('window');

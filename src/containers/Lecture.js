@@ -10,9 +10,9 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as Actions from '../actions/lecture';
-import BaseStyles from '../baseStyles';
-import Lecture from '../models/Lecture';
+import * as Actions from '../modules/actions/lecture';
+import BaseStyles from '../lib/baseStyles';
+import Lecture from '../modules/models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import TextLecture from '../components/Lecture/TextLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';

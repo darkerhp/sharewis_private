@@ -6,7 +6,7 @@ import Hr from 'react-native-hr';
 import I18n from 'react-native-i18n';
 import { Actions as RouterActions } from 'react-native-router-flux';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 
 const { StyleSheet, View } = ReactNative;
 

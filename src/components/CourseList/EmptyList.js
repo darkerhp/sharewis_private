@@ -3,7 +3,7 @@ import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import redirectTo from '../../utils/linking';
 
 const { Platform, StyleSheet, Text, View } = ReactNative;

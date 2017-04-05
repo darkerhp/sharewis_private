@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 import ProgressBar from '../ProgressBar';
-import BaseStyle from '../../baseStyles';
+import BaseStyle from '../../lib/baseStyles';
 
 const { View, StyleSheet, Text } = ReactNative;
 

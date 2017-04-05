@@ -3,7 +3,7 @@ import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 
 const { StyleSheet, TouchableOpacity } = ReactNative;
 

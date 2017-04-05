@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import Course from '../../models/Course';
+import Course from '../Course';
 
 describe('Course Model', () => {
   describe('check course type', () => {

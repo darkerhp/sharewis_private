@@ -5,7 +5,7 @@ import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 
 const { StyleSheet, Text, View } = ReactNative;
 

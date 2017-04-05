@@ -5,7 +5,7 @@ import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-vi
 import I18n from 'react-native-i18n';
 import { connect } from 'react-redux';
 
-import BaseStyles from '../baseStyles';
+import BaseStyles from '../lib/baseStyles';
 import MyCourse from './MyCourse';
 import SnackCourse from './SnackCourse';
 import Top from './Top';

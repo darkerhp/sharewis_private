@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-import Lecture from '../../models/Lecture';
-import BaseStyles from '../../baseStyles';
+import Lecture from '../../modules/models/Lecture';
+import BaseStyles from '../../lib/baseStyles';
 
 const {
   StyleSheet,

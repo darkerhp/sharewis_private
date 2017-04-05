@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import I18n from 'react-native-i18n';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import NextLectureArea from './NextLectureArea';
 import Duration from '../Duration';
 import Progress from './Progress';
-import Lecture from '../../models/Lecture';
+import Lecture from '../../modules/models/Lecture';
 
 const { Platform, StyleSheet, Text, View } = ReactNative;
 

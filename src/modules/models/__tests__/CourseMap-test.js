@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import { courses } from '../../data/dummyData';
+import { courses } from '../../../lib/dummyData';
 
-import Course from '../../models/Course';
-import CourseMap from '../../models/CourseMap';
+import Course from '../Course';
+import CourseMap from '../CourseMap';
 
 describe('CourseMap', () => {
   it('should return snack course', () => {

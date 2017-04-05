@@ -4,9 +4,9 @@
 import { createAction } from 'redux-actions';
 import { Client } from 'bugsnag-react-native';
 
-import { queueLectureProgress } from '../actions/netInfo';
-import * as types from '../constants/ActionTypes';
-import { patchLectureStatus } from '../middleware/actApi';
+import { queueLectureProgress } from './netInfo';
+import * as types from '../ActionTypes';
+import { patchLectureStatus } from '../../redux/middleware/actApi';
 import Lecture from '../models/Lecture';
 
 // Actions Creators

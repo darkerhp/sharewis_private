@@ -5,7 +5,7 @@ import {
   ACT_TOS_URL,
   ACT_PRIVACY_URL,
   ACT_PRO_COURSES_URL,
-} from '../constants/Api';
+} from '../lib/constants';
 
 const locales = {
   ja: {

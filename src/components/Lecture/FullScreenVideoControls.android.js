@@ -6,7 +6,7 @@ import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import SeekBar from './SeekBar';
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 
 const { Platform, StyleSheet, TouchableOpacity, Text, View } = ReactNative;
 

@@ -4,8 +4,8 @@ import _ from 'lodash';
 import { createAction } from 'redux-actions';
 import { Client } from 'bugsnag-react-native';
 
-import * as types from '../constants/ActionTypes';
-import { patchLectureStatus } from '../middleware/actApi';
+import * as types from '../ActionTypes';
+import { patchLectureStatus } from '../../redux/middleware/actApi';
 
 
 export const fetchNetInfo = createAction(types.MIDDLEWARE_NETINFO);

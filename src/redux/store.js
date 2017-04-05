@@ -11,7 +11,7 @@ import { autoRehydrate } from 'redux-persist';
 
 import netInfoMiddleware from './middleware/netInfo';
 import mixpanelMiddleware from './middleware/mixpanel';
-import rootReducer from './reducers';
+import rootReducer from '../modules/reducers';
 
 
 const loggerMiddleware = createLogger();
