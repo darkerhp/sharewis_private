@@ -2,10 +2,10 @@ import _ from 'lodash';
 import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 
-import * as types from '../constants/ActionTypes';
-import { getUserCourses, getSnackCourses } from '../middleware/actApi';
-import * as schema from '../schema';
-import * as FileUtils from '../utils/file';
+import * as types from '../ActionTypes';
+import { getUserCourses, getSnackCourses } from '../../redux/middleware/actApi';
+import * as schema from '../../lib/schema';
+import * as FileUtils from '../../utils/file';
 
 // Actions Creators
 export const fetchMyCourseFailure = createAction(types.FETCH_MY_COURSE_FAILURE);

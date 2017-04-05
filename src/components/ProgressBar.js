@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
-import BaseStyles from '../baseStyles';
+import BaseStyles from '../lib/baseStyles';
 
 const { StyleSheet, View } = ReactNative;
 

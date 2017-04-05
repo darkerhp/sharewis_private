@@ -5,7 +5,7 @@ import redirectTo from '../linking';
 global.Promise = require.requireActual('promise');
 
 jest.mock('Linking', () => {
-  const ACT_API_URL = require('../../constants/Api');
+  const ACT_API_URL = require('../../lib/constants');
 
   return {
     canOpenURL: url =>
@@ -19,7 +19,7 @@ jest.mock('Linking', () => {
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
 
 describe('Linking Utils', () => {
-  const ACT_API_URL = require('../../constants/Api');
+  const ACT_API_URL = require('../../lib/constants');
 
   it('should redirect to the given url', () =>
     redirectTo(ACT_API_URL).then(result =>

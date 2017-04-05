@@ -1,13 +1,13 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /**
  * @flow
- * TODO これMiddlewareじゃない・・・
+ * TODO これMiddlewareじゃない・・・ API Utilをちゃんとしてactionに持っていく
  */
 /* global fetch */
 import { Client } from 'bugsnag-react-native';
 
-import { ACT_API_URL, ACT_API_KEY } from '../constants/Api';
-import { checkStatus, checkResult } from '../utils/api';
+import { ACT_API_URL, ACT_API_KEY } from '../../lib/constants';
+import { checkStatus, checkResult } from '../../utils/api';
 
 
 const getHeaders = userId => ({

@@ -7,12 +7,12 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import Form from './Form';
 import Footer from './Footer'; // eslint-disable-line
 import Facebook from './Facebook';
 import alertOfflineError from '../../utils/alert';
-import { ACT_PASSWORD_REMINDER_URL } from '../../constants/Api';
+import { ACT_PASSWORD_REMINDER_URL } from '../../lib/constants';
 
 const { Linking, Platform, StatusBar, StyleSheet, Text, View } = ReactNative;
 

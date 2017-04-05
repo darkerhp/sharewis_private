@@ -1,10 +1,10 @@
 /**
  * @flow
- * これmiddlewareじゃない
+ * これmiddlewareじゃない TODO API Utilをちゃんとしてactionに持っていく
  */
 /* global fetch */
-import { ACCOUNT_API_URL } from '../constants/Api';
-import { checkStatus, checkResult } from '../utils/api';
+import { ACCOUNT_API_URL } from '../../lib/constants';
+import { checkStatus, checkResult } from '../../utils/api';
 
 
 export const getUserData = async (credentials: Array<string>) => {

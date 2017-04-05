@@ -12,8 +12,8 @@ import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import setupI18n from '../config/locales';
 import setupMixpanel from '../config/mixpanel';
 import PURGE_STORAGE from '../config';
-import configureStore from '../store';
-import transform from '../transform';
+import configureStore from '../redux/store';
+import transform from '../lib/transform';
 import App from './App';
 
 const bugsnag = new Client();

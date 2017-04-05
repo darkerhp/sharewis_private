@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import LectureItem from '../CourseDetails/LectureItem';
 
-import Lecture from '../../models/Lecture';
+import Lecture from '../../modules/models/Lecture';
 
 jest.mock('../Duration', () => 'Duration');
 jest.mock('bugsnag-react-native', () => 'Bugsnag');

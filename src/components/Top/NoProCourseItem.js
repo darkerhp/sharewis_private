@@ -6,9 +6,9 @@ import I18n from 'react-native-i18n';
 
 import alertOfflineError from '../../utils/alert';
 import redirectTo from '../../utils/linking';
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import OneColumnItemBox from '../CourseList/OneColumnItemBox';
-import { ACT_PRO_COURSES_URL } from '../../constants/Api';
+import { ACT_PRO_COURSES_URL } from '../../lib/constants';
 
 const { Platform, StyleSheet, Text } = ReactNative;
 

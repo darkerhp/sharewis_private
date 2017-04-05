@@ -3,7 +3,7 @@
  */
 import { Record } from 'immutable';
 
-import * as FileUtils from '../utils/file';
+import * as FileUtils from '../../utils/file';
 
 const LectureRecord = Record({
   id: 0,

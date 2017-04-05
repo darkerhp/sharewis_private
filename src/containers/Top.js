@@ -12,9 +12,9 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as coursesActions from '../actions/courses';
-import * as userActions from '../actions/user';
-import BaseStyles from '../baseStyles';
+import * as coursesActions from '../modules/actions/courses';
+import * as userActions from '../modules/actions/user';
+import BaseStyles from '../lib/baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';

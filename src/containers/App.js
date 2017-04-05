@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Actions, Router } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import Styles from '../baseStyles';
+import Styles from '../lib/baseStyles';
 import getScenes from '../components/Scenes';
-import { initApp } from '../actions/ui';
+import { initApp } from '../modules/actions/ui';
 
 const RouterWithRedux = connect()(Router);
 

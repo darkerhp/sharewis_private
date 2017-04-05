@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import Duration from '../Duration';
 import DownloadAction from './DownloadAction';
 

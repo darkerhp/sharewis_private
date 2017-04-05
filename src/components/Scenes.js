@@ -4,7 +4,7 @@ import ReactNative from 'react-native';
 import { Actions, ActionConst, Modal, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
-import BaseStyles from '../baseStyles';
+import BaseStyles from '../lib/baseStyles';
 import CourseDetails from '../containers/CourseDetails';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';

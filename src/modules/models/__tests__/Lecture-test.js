@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import Lecture from '../../models/Lecture';
+import Lecture from '../Lecture';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
 

@@ -3,7 +3,7 @@ import ReactNative from 'react-native';
 
 import I18n from 'react-native-i18n';
 
-import BaseStyles from '../../baseStyles';
+import BaseStyles from '../../lib/baseStyles';
 import * as localeUtil from '../../utils/locale';
 
 const { StyleSheet, View, WebView } = ReactNative;

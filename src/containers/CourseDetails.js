@@ -13,17 +13,17 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as Actions from '../actions/courseDetails';
-import * as LectureActions from '../actions/lecture';
+import * as Actions from '../modules/actions/courseDetails';
+import * as LectureActions from '../modules/actions/lecture';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import * as FileUtils from '../utils/file';
-import BaseStyles from '../baseStyles';
+import BaseStyles from '../lib/baseStyles';
 import {
   getSectionMergedLectureList,
   getLectureProgress,
   getLectureTotalDuration,
-} from '../selectors/lectureSelectors';
+} from '../lib/lectureSelectors';
 
 const {
   Alert,
