@@ -14,6 +14,7 @@ import Login from '../containers/Login';
 import Signup from '../containers/Signup'; // eslint-disable-line
 import SnackLecture from '../containers/SnackLecture';
 import ScrollableTabs from '../containers/ScrollableTabs';
+import Premium from '../components/SideMenu/Premium';
 import Privacy from '../components/SideMenu/Privacy';
 import Tos from '../components/SideMenu/Tos';
 
@@ -193,6 +194,20 @@ const getScenes = () =>
           onLeft={() => Actions.pop()}
           title={I18n.t('login')}
           isModal
+        />
+      </Scene>
+      <Scene key="premiumModal">
+        <Scene
+          key="_premiumModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f',
+          }}
+          component={Premium}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={'プレミアムアカウントの入会'} // TODO 翻訳
         />
       </Scene>
     </Scene>
