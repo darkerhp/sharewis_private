@@ -4,17 +4,18 @@ import ReactNative from 'react-native';
 import { Actions, ActionConst, Modal, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
+import Account from '../containers/Account';
 import BaseStyles from '../lib/baseStyles';
 import CourseDetails from '../containers/CourseDetails';
+import Lecture from '../containers/Lecture';
+import Login from '../containers/Login';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
-import Lecture from '../containers/Lecture';
-import Account from '../containers/Account';
-import Login from '../containers/Login';
+import Premium from '../containers/Premium';
+import Privacy from '../components/SideMenu/Privacy';
+import ScrollableTabs from '../containers/ScrollableTabs';
 import Signup from '../containers/Signup'; // eslint-disable-line
 import SnackLecture from '../containers/SnackLecture';
-import ScrollableTabs from '../containers/ScrollableTabs';
-import Privacy from '../components/SideMenu/Privacy';
 import Tos from '../components/SideMenu/Tos';
 
 const { Image, Platform, StyleSheet, View } = ReactNative;
@@ -30,7 +31,11 @@ const baseNavBarProps = {
     borderBottomColor: BaseStyles.navBarBackgroundColor,
   },
   backTitle: '戻る',
-  titleStyle: { color: 'white' },
+  titleStyle: {
+    color: 'white',
+    fontSize: 14.5,
+    fontWeight: 'bold',
+  },
   backButtonTextStyle: {
     color: 'white',
     paddingLeft: 0,
@@ -89,6 +94,7 @@ const getScenes = () =>
             component={Signup}
             type={ActionConst.RESET}
             hideNavBar
+            isModal={false}
           />
           <Scene
             key="login"
@@ -193,6 +199,35 @@ const getScenes = () =>
           onLeft={() => Actions.pop()}
           title={I18n.t('login')}
           isModal
+        />
+      </Scene>
+      <Scene key="signupModal">
+        <Scene
+          key="_signupModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f',
+          }}
+          component={Signup}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('signup')}
+          isModal
+        />
+      </Scene>
+      <Scene key="premiumModal">
+        <Scene
+          key="_premiumModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f',
+          }}
+          component={Premium}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('premiumJoinTitle')}
         />
       </Scene>
     </Scene>

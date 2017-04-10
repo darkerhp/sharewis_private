@@ -90,7 +90,7 @@ class MyCourse extends Component {
   static defaultProps = {
     courses: new CourseMap(),
     lectures: new LectureMap(),
-  }
+  };
 
   state = {
     isRefreshing: false,

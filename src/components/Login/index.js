@@ -73,7 +73,7 @@ class Login extends Component {
   }
 
   render() {
-    const { isFetching, isOnline } = this.props;
+    const { isFetching, isModal, isOnline } = this.props;
     StatusBar.setBarStyle('dark-content');
     if (isFetching) {
       return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
@@ -103,8 +103,8 @@ class Login extends Component {
             {...this.props}
           />
         </View>
-        <Hr lineColor={'#dadada'} />
-        <Footer {...this.props} />
+        {!isModal && <Hr lineColor={'#dadada'} /> }
+        {isModal ? <View style={{ flex: 1 }} /> : <Footer {...this.props} />}
       </View>
     );
   }

@@ -1,6 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
+import Button from 'react-native-button';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import { Actions as RouterActions } from 'react-native-router-flux';
@@ -54,6 +55,21 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#33bcd0',
   },
+  joinButtonWrapper: {
+    minHeight: 30,
+    maxHeight: 47,
+    flex: 1,
+    borderRadius: 3,
+    alignItems: 'center',
+    backgroundColor: '#F5A400',
+    justifyContent: 'center',
+    marginBottom: 15,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    fontFamily: null, // react-native-buttonのfontFamilyをリセット
+  },
 });
 
 @connect(({ netInfo, ui, user }) => ({ isOnline: netInfo.isConnected, ui, user }))
@@ -82,26 +98,26 @@ class SideMenu extends Component { // eslint-disable-line
         </View>
         <View style={styles.mainContainer}>
           {Platform.OS !== 'ios' && // iOSではログインを表示しない
-            <MenuItem
-              text={user.loggedIn ? I18n.t('accountSettings') : I18n.t('login')}
-              iconName={'account-circle'}
-              handlePress={() => {
-                if (!isOnline) {
-                  alertOfflineError();
-                  return;
-                }
-                user.loggedIn ? RouterActions.accountModal() : RouterActions.loginModal(); // eslint-disable-line
-              }}
-            />
+          <MenuItem
+            text={user.loggedIn ? I18n.t('accountSettings') : I18n.t('login')}
+            iconName={'account-circle'}
+            handlePress={() => {
+              if (!isOnline) {
+                alertOfflineError();
+                return;
+              }
+              user.loggedIn ? RouterActions.accountModal() : RouterActions.loginModal(); // eslint-disable-line
+            }}
+          />
           }
           {Platform.OS !== 'ios' && // iOSではお問い合わせを表示しない
-            <MenuItem
-              text={I18n.t('inquiry')}
-              iconName={'mail'}
-              handlePress={() => (
-                isOnline ? Linking.openURL(ACT_INQUIRIES_URL) : alertOfflineError()
-              )}
-            />
+          <MenuItem
+            text={I18n.t('inquiry')}
+            iconName={'mail'}
+            handlePress={() => (
+              isOnline ? Linking.openURL(ACT_INQUIRIES_URL) : alertOfflineError()
+            )}
+          />
           }
           <MenuItem
             text={I18n.t('tos')}
@@ -117,6 +133,17 @@ class SideMenu extends Component { // eslint-disable-line
               isOnline ? RouterActions.privacyModal() : alertOfflineError()
             )}
           />
+          {Platform.OS === 'ios' &&
+            <Button
+              containerStyle={styles.joinButtonWrapper}
+              style={styles.buttonText}
+              onPress={() => (
+                isOnline ? RouterActions.premiumModal() : alertOfflineError()
+              )}
+            >
+              プレミアムアカウントについて
+            </Button>
+          }
         </View>
       </View>
     );

@@ -25,17 +25,17 @@ const styles = StyleSheet.create({
   lectureContentStyle: {
     flex: 3,
   },
-  nextLectureButtonWrapper: {
+  joinButtonWrapper: {
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
-  nextLectureButton: {
+  joinButton: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: BaseStyles.navBarBackgroundColor,
     minHeight: 60,
   },
-  nextLectureButtonText: {
+  joinButtonText: {
     color: 'white',
   },
 });
@@ -127,10 +127,10 @@ class SnackLectureContainer extends Component {
     const { isFullScreen } = this.props;
     if (isFullScreen) return null;
     return (
-      <View style={styles.nextLectureButtonWrapper}>
+      <View style={styles.joinButtonWrapper}>
         <Button
-          containerStyle={styles.nextLectureButton}
-          style={styles.nextLectureButtonText}
+          containerStyle={styles.joinButton}
+          style={styles.joinButtonText}
           onPress={() => RouterActions.top({ moveTo: ScrollableTabs.SNACK_COURSE })}
         >
           {I18n.t('backToCourseList')}

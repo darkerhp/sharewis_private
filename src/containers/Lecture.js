@@ -23,17 +23,17 @@ const styles = StyleSheet.create({
   lectureContentStyle: {
     flex: 3,
   },
-  nextLectureButtonWrapper: {
+  joinButtonWrapper: {
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
-  nextLectureButton: {
+  joinButton: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: BaseStyles.navBarBackgroundColor,
     minHeight: 60,
   },
-  nextLectureButtonText: {
+  joinButtonText: {
     color: 'white',
   },
 });
@@ -138,11 +138,11 @@ class LectureContainer extends Component {
     // アプリでは、コースを完了できないため最後のレクチャーの場合、ボタンを表示しない
     const isVisibleButton = !isLastLecture && currentLecture.canAccess(isOnline);
     return (
-      <View style={styles.nextLectureButtonWrapper}>
+      <View style={styles.joinButtonWrapper}>
         { isVisibleButton &&
           <Button
-            containerStyle={styles.nextLectureButton}
-            style={styles.nextLectureButtonText}
+            containerStyle={styles.joinButton}
+            style={styles.joinButtonText}
             onPress={this.handlePressNextLecture}
           >
             {I18n.t('nextLecture')}

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 12,
   },
-  buttonWrapper: {
+  joinButtonWrapper: {
     alignItems: 'stretch',
   },
   button: {
@@ -82,7 +82,7 @@ class Facebook extends Component {
             { I18n.t('facebookLabel') }
           </Text>
         </View>
-        <View style={styles.buttonWrapper}>
+        <View style={styles.joinButtonWrapper}>
           <LoginButton
             style={styles.button}
             readPermissions={['public_profile', 'email']}
