@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: BaseStyles.navBarBackgroundColor,
   },
-  buttonWrapper: {
+  joinButtonWrapper: {
     paddingHorizontal: 15,
     paddingVertical: 25,
     alignItems: 'flex-end',
@@ -74,7 +74,7 @@ class Onboarding extends Component {
         paginationStyle={styles.pagination}
         prevButton={<Text style={styles.buttonText}>{I18n.t('back')}</Text>}
         nextButton={<Text style={styles.buttonText}>{I18n.t('next')}</Text>}
-        buttonWrapperStyle={styles.buttonWrapper}
+        buttonWrapperStyle={styles.joinButtonWrapper}
       >
         <Slide
           text={I18n.t('slide1Text')}

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
   },
-  buttonWrapper: {
+  joinButtonWrapper: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -157,7 +157,7 @@ class FullScreenVideoControls extends Component {
               <Text style={styles.lectureTitle}>{title}</Text>
             </View>
           </View>
-          <View style={styles.buttonWrapper}>
+          <View style={styles.joinButtonWrapper}>
             <Button
               containerStyle={[
                 styles.playButton,

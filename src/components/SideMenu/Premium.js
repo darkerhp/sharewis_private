@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
@@ -6,7 +6,7 @@ import I18n from 'react-native-i18n';
 import BaseStyles from '../../lib/baseStyles';
 import * as localeUtil from '../../utils/locale';
 
-const { StyleSheet, View, WebView } = ReactNative;
+const { Image, StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -15,39 +15,57 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: BaseStyles.navbarHeight,
   },
-  buttonWrapper: {
-    minHeight: 30,
-    maxHeight: 47,
-    flex: 1,
-    borderRadius: 3,
-    alignItems: 'center',
-    backgroundColor: '#F5A400',
-    justifyContent: 'center',
-    marginBottom: 15,
+  premiumImageWrapper: {
+    flex: 5,
   },
-  buttonText: {
-    fontSize: 16,
+  premiumImage: {
+    maxWidth: BaseStyles.deviceWidth,
+    maxHeight: BaseStyles.deviceHeight - BaseStyles.navbarHeight - 70,
+  },
+  joinButtonWrapper: {
+    justifyContent: 'flex-end',
+    alignItems: 'stretch',
+    width: BaseStyles.deviceWidth,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    backgroundColor: BaseStyles.courseListBackgroundColor,
+  },
+  joinButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8EC445',
+    minHeight: 55,
+  },
+  joinButtonText: {
     color: 'white',
-    fontFamily: null, // react-native-buttonのfontFamilyをリセット
   },
 });
 
-const ja = '<h1>プレミアム</h1>';
-const en = '<h1>プレミアム</h1>';
+const ja = require('./images/premium_ja.png');
+const en = require('./images/premium_en.png');
 
-const Privacy = () =>
+const Premium = ({ onPressJoin }) =>
   <View style={styles.container}>
-    <WebView
-      source={{ html: localeUtil.isLocaleJa() ? ja : en }}
-      style={{ flex: 5, width: BaseStyles.deviceWidth }}
-    />
-    <Button
-      containerStyle={styles.buttonWrapper}
-      style={styles.buttonText}
-      onPress={() => console.log('press')}
-    >
-      入会する
-    </Button>
+    <View style={styles.premiumImageWrapper}>
+      <Image
+        source={localeUtil.isLocaleJa() ? ja : en}
+        resizeMode={Image.resizeMode.contain}
+        style={styles.premiumImage}
+      />
+    </View>
+    <View style={styles.joinButtonWrapper}>
+      <Button
+        containerStyle={styles.joinButton}
+        style={styles.joinButtonText}
+        onPress={onPressJoin}
+      >
+        {I18n.t('nextLecture')}
+      </Button>
+    </View>
   </View>;
 
-export default Privacy;
+Premium.propTypes = {
+  onPressJoin: PropTypes.func.isRequired,
+};
+
+export default Premium;

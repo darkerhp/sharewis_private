@@ -4,18 +4,18 @@ import ReactNative from 'react-native';
 import { Actions, ActionConst, Modal, Scene } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
+import Account from '../containers/Account';
 import BaseStyles from '../lib/baseStyles';
 import CourseDetails from '../containers/CourseDetails';
+import Lecture from '../containers/Lecture';
+import Login from '../containers/Login';
 import NavigationDrawer from './NavigationDrawer';
 import Onboarding from '../containers/Onboarding';
-import Lecture from '../containers/Lecture';
-import Account from '../containers/Account';
-import Login from '../containers/Login';
+import Premium from '../containers/Premium';
+import Privacy from '../components/SideMenu/Privacy';
+import ScrollableTabs from '../containers/ScrollableTabs';
 import Signup from '../containers/Signup'; // eslint-disable-line
 import SnackLecture from '../containers/SnackLecture';
-import ScrollableTabs from '../containers/ScrollableTabs';
-import Premium from '../components/SideMenu/Premium';
-import Privacy from '../components/SideMenu/Privacy';
 import Tos from '../components/SideMenu/Tos';
 
 const { Image, Platform, StyleSheet, View } = ReactNative;

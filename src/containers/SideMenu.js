@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#33bcd0',
   },
-  buttonWrapper: {
+  joinButtonWrapper: {
     minHeight: 30,
     maxHeight: 47,
     flex: 1,
@@ -135,7 +135,7 @@ class SideMenu extends Component { // eslint-disable-line
           />
           {Platform.OS === 'ios' &&
             <Button
-              containerStyle={styles.buttonWrapper}
+              containerStyle={styles.joinButtonWrapper}
               style={styles.buttonText}
               onPress={() => (
                 isOnline ? RouterActions.premiumModal() : alertOfflineError()
