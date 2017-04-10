@@ -94,6 +94,7 @@ const getScenes = () =>
             component={Signup}
             type={ActionConst.RESET}
             hideNavBar
+            isModal={false}
           />
           <Scene
             key="login"
@@ -197,6 +198,21 @@ const getScenes = () =>
           leftButtonImage={closeWhiteImage}
           onLeft={() => Actions.pop()}
           title={I18n.t('login')}
+          isModal
+        />
+      </Scene>
+      <Scene key="signupModal">
+        <Scene
+          key="_signupModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f',
+          }}
+          component={Signup}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('signup')}
           isModal
         />
       </Scene>

@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
 class Signup extends Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
+    isModal: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
     loggedIn: PropTypes.bool.isRequired, // eslint-disable-line
   };
@@ -44,7 +45,7 @@ class Signup extends Component {
   }
 
   render() {
-    const { isFetching, isOnline } = this.props;
+    const { isFetching, isModal, isOnline } = this.props;
     StatusBar.setBarStyle('dark-content');
 
     if (isFetching) {
@@ -71,7 +72,7 @@ class Signup extends Component {
             {I18n.t('agreeTosAndPolicy')}
           </Text>
         </Hyperlink>
-        <Footer {...this.props} />
+        {isModal ? <View style={{ flex: 2 }} /> : <Footer {...this.props} />}
       </View>
     );
   }

@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import autobind from 'autobind-decorator';
+import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
@@ -34,7 +35,7 @@ class PremiumContainer extends Component {
   @autobind
   handlePressJoin() {
     const { loggedIn } = this.props;
-    if (!loggedIn) {
+    if (loggedIn) {
       this.popupLoginAlert();
     } else {
       Alert.alert(
@@ -54,11 +55,13 @@ class PremiumContainer extends Component {
       {
         text: I18n.t('login'),
         onPress: () => {
+          RouterActions.loginModal();
         },
       },
       {
         text: I18n.t('signup'),
         onPress: () => {
+          RouterActions.signupModal();
         },
       },
       { text: I18n.t('cancel') },
