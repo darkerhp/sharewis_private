@@ -59,7 +59,7 @@ const Premium = ({ onPressJoin }) =>
         style={styles.joinButtonText}
         onPress={onPressJoin}
       >
-        {I18n.t('nextLecture')}
+        {I18n.t('join')}
       </Button>
     </View>
   </View>;
