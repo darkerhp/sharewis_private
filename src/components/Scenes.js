@@ -31,7 +31,11 @@ const baseNavBarProps = {
     borderBottomColor: BaseStyles.navBarBackgroundColor,
   },
   backTitle: '戻る',
-  titleStyle: { color: 'white' },
+  titleStyle: {
+    color: 'white',
+    fontSize: 14.5,
+    fontWeight: 'bold',
+  },
   backButtonTextStyle: {
     color: 'white',
     paddingLeft: 0,
