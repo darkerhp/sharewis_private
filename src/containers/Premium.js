@@ -50,7 +50,7 @@ class PremiumContainer extends Component {
   }
 
   @autobind
-  popupLoginAlert() {
+  popupLoginAlert() { // eslint-disable-line
     const options = [
       {
         text: I18n.t('login'),
@@ -75,7 +75,7 @@ class PremiumContainer extends Component {
   }
 
   @autobind
-  join() {
+  join() { // eslint-disable-line
     console.log('join');
   }
 
