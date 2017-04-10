@@ -207,7 +207,7 @@ const getScenes = () =>
           component={Premium}
           leftButtonImage={closeWhiteImage}
           onLeft={() => Actions.pop()}
-          title={'premiumJoinTitle'} // TODO 翻訳
+          title={I18n.t('premiumJoinTitle')} // TODO 翻訳
         />
       </Scene>
     </Scene>

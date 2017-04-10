@@ -81,7 +81,7 @@ const locales = {
     mustBeLoggedIn: 'ログインして下さい',
     paymentFailed: '決済に失敗しました',
     premiumJoin: 'プレミアムアカウントに入会しますか？',
-    premiumJoinTitle: 'プレミアムアカウント入会',
+    premiumJoinTitle: 'プレミアムアカウントの入会',
     thankYou: '入会完了',
   },
   en: {
