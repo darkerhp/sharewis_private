@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -54,6 +53,7 @@
 		EFA5D0CAADEE4AB1BFCCAE70 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E05186E7ED45F7B0F7912D /* SimpleLineIcons.ttf */; };
 		EFB4F6D1CFC5481FA13772A5 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EB367D20A8401A909CCA9E /* libRCTFBSDK.a */; };
 		FB30576D22BD40A396B1E45B /* libRNMixpanel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4E1E1733F04719B6C24E57 /* libRNMixpanel.a */; };
+		0DF00A4C2B56475B94B23A66 /* libInAppUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A86B25FD04CB40D78F960554 /* libInAppUtils.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -407,6 +407,8 @@
 		F4AEDFF3D9F24B50A825C332 /* libRCTOrientation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOrientation.a; sourceTree = "<group>"; };
 		FA16FF50F3484CD8920B4E26 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		FF27B31A6D2341348B775991 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
+		5C2DE6000C1B4D7198E3AF11 /* InAppUtils.xcodeproj */ = {isa = PBXFileReference; name = "InAppUtils.xcodeproj"; path = "../node_modules/react-native-in-app-utils/InAppUtils.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A86B25FD04CB40D78F960554 /* libInAppUtils.a */ = {isa = PBXFileReference; name = "libInAppUtils.a"; path = "libInAppUtils.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,6 +460,7 @@
 				DDED4022664842EAB9807F09 /* libBugsnagReactNative.a in Frameworks */,
 				98B98A544C4F47DBB7FAE167 /* libz.tbd in Frameworks */,
 				0A5EA5D11E8C7CD4000DDD0C /* libKCKeepAwake.a in Frameworks */,
+				0DF00A4C2B56475B94B23A66 /* libInAppUtils.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +723,7 @@
 				993A71533F084A88B051FCA3 /* RNMixpanel.xcodeproj */,
 				8D9E0C6464A04595A5F1595B /* BugsnagReactNative.xcodeproj */,
 				2B12966C343A47D095DEE881 /* KCKeepAwake.xcodeproj */,
+				5C2DE6000C1B4D7198E3AF11 /* InAppUtils.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1442,6 +1446,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1465,6 +1470,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1499,6 +1505,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis.SharewisNotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1527,6 +1534,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1561,6 +1569,7 @@
 					"\"$(SRCROOT)/../node_modules/react-native/React/**\"/**",
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-keep-awake/ios",
+					"$(SRCROOT)/../node_modules/react-native-in-app-utils/InAppUtils",
 				);
 				INFOPLIST_FILE = SharewisActMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1597,6 +1606,7 @@
 					"\"$(SRCROOT)/../node_modules/react-native/React/**\"/**",
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 					"$(SRCROOT)/../node_modules/react-native-keep-awake/ios",
+					"$(SRCROOT)/../node_modules/react-native-in-app-utils/InAppUtils",
 				);
 				INFOPLIST_FILE = SharewisActMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

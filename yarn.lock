@@ -3702,6 +3702,10 @@ react-native-i18n@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-1.0.0.tgz#0c407d9ebb846aae1aa5e05de6503008553f02fd"
 
+react-native-in-app-utils@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-in-app-utils/-/react-native-in-app-utils-5.2.3.tgz#25eb0eeb1ff597679322db924f8d61188ebb1dd3"
+
 react-native-keep-awake@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-2.0.3.tgz#56c30b7e5733e4d64e2400560f12f7c23f80bf26"
