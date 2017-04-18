@@ -3,9 +3,9 @@ import { normalize } from 'normalizr';
 import { createAction } from 'redux-actions';
 
 import * as types from '../ActionTypes';
-import { getUserCourses, getSnackCourses } from '../../redux/middleware/actApi';
 import * as schema from '../../lib/schema';
 import * as FileUtils from '../../utils/file';
+import * as Api from '../../utils/api';
 
 // Actions Creators
 export const fetchMyCourseFailure = createAction(types.FETCH_MY_COURSE_FAILURE);
@@ -36,7 +36,7 @@ export const fetchMyCourse = (force = false) =>
 
       if (courses.getProCourses().isEmpty() || force) {
         dispatch(fetchMyCourseStart());
-        const response = await getUserCourses(userId);
+        const response = await Api.get('my_courses', { 'user-id': userId });
         dispatch(fetchMyCourseSuccess(normalizeCourses(response)));
       }
     } catch (error) {
@@ -55,7 +55,7 @@ export const fetchSnackCourse = (force = false) =>
 
       if (courses.getSnackCourses().isEmpty() || force) {
         dispatch(fetchSnackCourseStart());
-        const response = await getSnackCourses(userId);
+        const response = await Api.get('snack_courses', { 'user-id': userId });
         dispatch(fetchSnackCourseSuccess(normalizeCourses(response)));
       }
     } catch (error) {

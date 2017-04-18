@@ -5,8 +5,6 @@ import { createAction } from 'redux-actions';
 import { Client } from 'bugsnag-react-native';
 
 import * as types from '../ActionTypes';
-import { patchLectureStatus } from '../../redux/middleware/actApi';
-
 
 export const fetchNetInfo = createAction(types.MIDDLEWARE_NETINFO);
 export const queueLectureProgress = createAction(types.QUEUE_LECTURE_PROGRESS);
