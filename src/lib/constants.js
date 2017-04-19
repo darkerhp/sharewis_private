@@ -11,7 +11,7 @@ const actApiKey = 'Pr4BP2BedViT6Gjm2aiwRJAy6ziTs2i6yGrsyTp9';
 if (__DEV__) {
   ACCOUNT_API_HOST = 'dev-account.share-wis.com';
   ACCOUNT_API_BASE_PATH = '/dev';
-  ACT_API_HOST = 'staging-act.share-wis.com';
+  ACT_API_HOST = 'staging1.share-wis.com';
 }
 
 export const ACCOUNT_API_URL = `https://${ACCOUNT_API_HOST}${ACCOUNT_API_BASE_PATH}`;
