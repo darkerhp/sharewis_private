@@ -118,11 +118,13 @@ async function handleResponse(path, response) {
     }
 
     const responseBody = await response.text();
-    return {
+    const res = {
       status: response.status,
       headers: response.headers,
       body: responseBody ? JSON.parse(responseBody) : null,
     };
+    console.log('handleResponse:response', res);
+    return res;
   } catch (e) {
     throw e;
   }
