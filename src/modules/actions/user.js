@@ -4,6 +4,7 @@
 import { createAction } from 'redux-actions';
 import { Client as Bugsnag } from 'bugsnag-react-native';
 import I18n from 'react-native-i18n';
+import base64 from 'base-64';
 
 import * as types from '../ActionTypes';
 import * as Api from '../../utils/api';
@@ -30,7 +31,8 @@ export const finishOnboarding = createAction(types.FINISH_ONBOARDING);
 
 // Thunks
 async function getUserData(credentials: Array<string>) {
-  const result = Api.get('users/me', { Authorization: `Basic ${credentials[0]}:${credentials[1]}` });
+  const credential = base64.encode(`${credentials[0]}:${credentials[1]}`);
+  const result = await Api.get('users/me', { Authorization: `Basic ${credential}` });
   return {
     userId: result.id,
     userName: result.username,
@@ -41,7 +43,7 @@ async function getUserData(credentials: Array<string>) {
 }
 
 async function signupByEmail(credentials: Array<string>) {
-  const result = Api.post('users/signup', {
+  const result = await Api.post('users/signup', {
     email: credentials[0],
     password: credentials[1],
     language: I18n.locale ? I18n.locale.split('-')[0] : null,
