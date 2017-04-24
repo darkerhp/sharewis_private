@@ -1,6 +1,4 @@
-/**
- * @flow
- */
+/** @flow */
 /* global fetch */
 import Promise from 'bluebird';
 import { Client as Bugsnag } from 'bugsnag-react-native';
@@ -39,7 +37,7 @@ function timeout(promise, ms) {
  * @param requestPromise
  * @returns {Promise.<void>}
  */
-async function bodyOf(requestPromise) {
+async function bodyOf(requestPromise): Promise<void> {
   try {
     const response = await requestPromise;
     return response.body;
@@ -49,11 +47,11 @@ async function bodyOf(requestPromise) {
 }
 
 /**
- * url
- * @param path
- * @returns {string}
+ * urlを生成する
+ * @param path API_ROOT以下のpath
+ * @returns {string} エンドポイントのURL
  */
-export function url(path) {
+export function url(path: string): string {
   return path.indexOf('/') === 0
     ? API_ROOT + path
     : `${API_ROOT}/${path}`;
@@ -65,7 +63,7 @@ export function url(path) {
  * @param endpoint
  * @param method
  */
-function logError(error, endpoint, method) {
+function logError(error, endpoint: string, method) {
   if (error.status) {
     const summary = `(${error.status} ${error.statusText}): ${error._bodyInit}`; // eslint-disable-line
     console.error(`API request ${method.toUpperCase()} ${endpoint} responded with ${summary}`);
@@ -79,7 +77,7 @@ function logError(error, endpoint, method) {
  * @param response
  * @returns {Promise.<*>}
  */
-async function getErrorMessageSafely(response) {
+async function getErrorMessageSafely(response): Promise<any> {
   try {
     const body = await response.text();
     if (!body) {
@@ -103,7 +101,7 @@ async function getErrorMessageSafely(response) {
  * @param response
  * @returns {Promise.<{status: number, headers, body: null}>}
  */
-async function handleResponse(path, response) {
+async function handleResponse(path: string, response): Promise<any> {
   try {
     const status = response.status;
 
@@ -141,7 +139,6 @@ function getRequestHeaders(body, header) {
     ? { Accept: 'application/json', 'Content-Type': 'application/json', 'app-api-key': ACT_API_KEY }
     : { Accept: 'application/json', 'app-api-key': ACT_API_KEY };
 
-
   if (header) {
     return { ...headers, ...header };
   }
@@ -157,7 +154,7 @@ function getRequestHeaders(body, header) {
  * @param header
  * @returns {Promise.<*>}
  */
-async function sendRequest(method, path, body, header) {
+async function sendRequest(method: string, path: string, body, header) {
   try {
     const endpoint = url(path);
     const headers = getRequestHeaders(body, header);
@@ -175,14 +172,14 @@ async function sendRequest(method, path, body, header) {
 }
 
 /**
- * request
+ * requestを送信する
  * @param method
- * @param path
+ * @param path API_ROOT以下のpath
  * @param body
  * @param header
  * @returns {Promise}
  */
-export async function request(method, path, body, header) {
+export async function request(method: 'get' | 'post' | 'patch' | 'put' | 'delete', path: string, body, header) {
   try {
     const response = await sendRequest(method, path, body, header);
     return handleResponse(
@@ -197,54 +194,59 @@ export async function request(method, path, body, header) {
 }
 
 /**
- * get
- * @param path
+ * getリクエストを送信する
+ * requestのwrapper
+ * @param path API_ROOT以下のpath
  * @param header
  * @returns {Promise}
  */
-export async function get(path, header) {
+export async function get(path: string, header) {
   return bodyOf(request('get', path, null, header));
 }
 
 /**
- * patch
+ * patchリクエストを送信する
+ * requestのwrapper
  * @param path
  * @param body
  * @param header
  * @returns {Promise}
  */
-export async function patch(path, body, header) {
+export async function patch(path: string, body, header) {
   return bodyOf(request('patch', path, body, header));
 }
 
 /**
- * post
+ * postリクエストを送信する
+ * requestのwrapper
  * @param path
  * @param body
  * @param header
  * @returns {Promise}
  */
-export async function post(path, body, header) {
+export async function post(path: string, body, header) {
   return bodyOf(request('post', path, body, header));
 }
 
 /**
- * put
+ * putリクエストを送信する
+ * requestのwrapper
  * @param path
  * @param body
  * @param header
  * @returns {Promise}
  */
-export async function put(path, body, header) {
+export async function put(path: string, body, header) {
   return bodyOf(request('put', path, body, header));
 }
 
 /**
- * del
+ * deleteリクエストを送信する
+ * requestのwrapper
  * @param path
  * @param header
  * @returns {Promise}
  */
-export async function del(path, header) {
+export async function del(path: string, header) {
   return bodyOf(request('delete', path, null, header));
 }
