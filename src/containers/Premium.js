@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 
-import * as Actions from '../modules/actions/user';
+import * as premiumActions from '../modules/actions/premium';
 import Premium from '../components/SideMenu/Premium';
 
 const { Alert } = ReactNative;
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions }, dispatch),
+  ...bindActionCreators({ ...premiumActions }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -32,25 +32,7 @@ class PremiumContainer extends Component {
     loggedIn: PropTypes.bool.isRequired,
   };
 
-  @autobind
-  handlePressJoin() {
-    const { loggedIn } = this.props;
-    if (loggedIn) {
-      this.popupLoginAlert();
-    } else {
-      Alert.alert(
-        I18n.t('premiumJoinTitle'),
-        I18n.t('premiumJoin'),
-        [
-          { text: I18n.t('join'), onPress: () => this.join() },
-          { text: I18n.t('cancel') },
-        ],
-      );
-    }
-  }
-
-  @autobind
-  popupLoginAlert() { // eslint-disable-line
+  static popupLoginAlert() {
     const options = [
       {
         text: I18n.t('login'),
@@ -75,12 +57,41 @@ class PremiumContainer extends Component {
   }
 
   @autobind
-  join() { // eslint-disable-line
-    console.log('join');
+  popupPremiumJoinAlert() {
+    Alert.alert(
+      I18n.t('premiumJoinTitle'),
+      I18n.t('premiumJoin'),
+      [
+        { text: I18n.t('join'), onPress: () => this.join() },
+        { text: I18n.t('cancel') },
+      ],
+    );
+  }
+
+  @autobind
+  handlePressJoin() {
+    const { loggedIn } = this.props;
+    if (!loggedIn) {
+      PremiumContainer.popupLoginAlert();
+      return;
+    }
+    this.popupPremiumJoinAlert();
+  }
+
+  @autobind
+  async join() { // eslint-disable-line
+    const { userId, joinPremium } = this.props;
+    const result = await joinPremium(userId);
+
+    // thank you 遷移
+    if (result) {
+      Alert.alert(I18n.t('paymentFailed'), '', [{ text: I18n.t('cancel') }]);
+    } else {
+      Alert.alert(I18n.t('thankYou'), I18n.t('thankYouMessage'));
+    }
   }
 
   render() {
-    console.log(this.handlePressJoin);
     return <Premium {...this.props} onPressJoin={this.handlePressJoin} />;
   }
 }
