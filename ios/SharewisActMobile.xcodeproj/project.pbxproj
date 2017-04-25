@@ -128,14 +128,14 @@
 			remoteGlobalIDString = 8AD256131D6DE5F600C7D842;
 			remoteInfo = BugsnagReactNative;
 		};
-		0A94C93A1EADDB1C0008553C /* PBXContainerItemProxy */ = {
+		0A94C97D1EAF1E020008553C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5C2DE6000C1B4D7198E3AF11 /* InAppUtils.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 46E694321B289730000B634E;
 			remoteInfo = InAppUtils;
 		};
-		0A94C93C1EADDB1C0008553C /* PBXContainerItemProxy */ = {
+		0A94C97F1EAF1E020008553C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5C2DE6000C1B4D7198E3AF11 /* InAppUtils.xcodeproj */;
 			proxyType = 2;
@@ -580,11 +580,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0A94C9351EADDB1C0008553C /* Products */ = {
+		0A94C9781EAF1E020008553C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A94C93B1EADDB1C0008553C /* libInAppUtils.a */,
-				0A94C93D1EADDB1C0008553C /* InAppUtilsTests.xctest */,
+				0A94C97E1EAF1E020008553C /* libInAppUtils.a */,
+				0A94C9801EAF1E020008553C /* InAppUtilsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -914,7 +914,7 @@
 					ProjectRef = 8D9E0C6464A04595A5F1595B /* BugsnagReactNative.xcodeproj */;
 				},
 				{
-					ProductGroup = 0A94C9351EADDB1C0008553C /* Products */;
+					ProductGroup = 0A94C9781EAF1E020008553C /* Products */;
 					ProjectRef = 5C2DE6000C1B4D7198E3AF11 /* InAppUtils.xcodeproj */;
 				},
 				{
@@ -1067,18 +1067,18 @@
 			remoteRef = 0A6DC65E1E7B869100A5F595 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A94C93B1EADDB1C0008553C /* libInAppUtils.a */ = {
+		0A94C97E1EAF1E020008553C /* libInAppUtils.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libInAppUtils.a;
-			remoteRef = 0A94C93A1EADDB1C0008553C /* PBXContainerItemProxy */;
+			remoteRef = 0A94C97D1EAF1E020008553C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0A94C93D1EADDB1C0008553C /* InAppUtilsTests.xctest */ = {
+		0A94C9801EAF1E020008553C /* InAppUtilsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = InAppUtilsTests.xctest;
-			remoteRef = 0A94C93C1EADDB1C0008553C /* PBXContainerItemProxy */;
+			remoteRef = 0A94C97F1EAF1E020008553C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0ABBAF0E1E66D4C800F9B672 /* libRCTFBSDK.a */ = {
