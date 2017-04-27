@@ -271,6 +271,7 @@ class Top extends Component {
     }
 
     // TODO ハードコード
+    // eslint-disable-next-line
     const topImageUrl = `https://act-production.s3.amazonaws.com/uploads/editor_image/image/1129/app_topimage_750.png?dt=${new Date().getTime()}`;
 
     return (
