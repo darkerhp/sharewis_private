@@ -51,8 +51,8 @@ class PremiumContainer extends Component {
     ];
 
     Alert.alert(
-      I18n.t('loginShareWis'),
-      I18n.t('loginShareWisText'),
+      I18n.t('login'),
+      I18n.t('mustBeLoggedIn'),
       options,
     );
   }
@@ -101,7 +101,7 @@ class PremiumContainer extends Component {
       return Alert.alert(I18n.t('paymentFailed'), '', [{ text: I18n.t('cancel') }]);
     }
 
-    Alert.alert(I18n.t('thankYou'), I18n.t('thankYouMessage'));
+    Alert.alert(I18n.t('thankYouForJoinTitle'), I18n.t('thankYouForJoinMessage'));
     RouterActions.pop();
     RouterActions.refresh({ key: 'drawer', open: false }); // drawerを閉じる
     RouterActions.top();
