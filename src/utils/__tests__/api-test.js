@@ -43,7 +43,7 @@ describe('API', () => {
   });
 
   // generate basic tests for basic HTTP methods
-  for (const method of ['get', 'put', 'post', 'del']) {
+  for (const method of ['get', 'put', 'post', 'del']) { // eslint-disable-line
     const body = { foo: 'bar' };
 
     // create a function that calls the corresponding method on the API module
@@ -51,7 +51,7 @@ describe('API', () => {
       ? path => api[method](path, body)
       : path => api[method](path);
 
-    describe(method, () => {
+    describe(method, () => { // eslint-disable-line
       it('should fetch() the given endpoint', async () => {
         await apiMethod(SIMPLE_ENDPOINT);
         expect(fetch.lastUrl()).toBe(`${API_ROOT}${SIMPLE_ENDPOINT}`);
