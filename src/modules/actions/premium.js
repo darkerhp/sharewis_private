@@ -29,7 +29,7 @@ export const joinPremium = userId =>
       if (!response || !response.productIdentifier) {
         throw new Error('Error purchasing product');
       }
-      const receiptDataResponse = InAppUtils.receiptDataAsync();
+      const receiptDataResponse = await InAppUtils.receiptDataAsync();
       await Api.post('premium_payment_infos/app_store', { receipt_data: receiptDataResponse }, { 'user-id': userId });
       dispatch(joinPremiumSuccess());
       return true;

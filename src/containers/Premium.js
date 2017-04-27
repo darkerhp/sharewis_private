@@ -7,6 +7,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
+import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import * as premiumActions from '../modules/actions/premium';
 import Premium from '../components/SideMenu/Premium';
@@ -56,6 +57,14 @@ class PremiumContainer extends Component {
     );
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: false,
+    };
+  }
+
   @autobind
   popupPremiumJoinAlert() {
     Alert.alert(
@@ -81,17 +90,28 @@ class PremiumContainer extends Component {
   @autobind
   async join() { // eslint-disable-line
     const { userId, joinPremium } = this.props;
+
+    this.setState({ isLoading: true });
+
     const result = await joinPremium(userId);
 
-    // thank you 遷移
-    if (result) {
-      Alert.alert(I18n.t('paymentFailed'), '', [{ text: I18n.t('cancel') }]);
-    } else {
-      Alert.alert(I18n.t('thankYou'), I18n.t('thankYouMessage'));
+    this.setState({ isLoading: false });
+
+    if (!result) {
+      return Alert.alert(I18n.t('paymentFailed'), '', [{ text: I18n.t('cancel') }]);
     }
+
+    Alert.alert(I18n.t('thankYou'), I18n.t('thankYouMessage'));
+    RouterActions.pop();
+    RouterActions.refresh({ key: 'drawer', open: false }); // drawerを閉じる
+    RouterActions.top();
   }
 
   render() {
+    if (this.state.isLoading) {
+      return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
+    }
+
     return <Premium {...this.props} onPressJoin={this.handlePressJoin} />;
   }
 }

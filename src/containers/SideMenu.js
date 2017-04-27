@@ -133,7 +133,7 @@ class SideMenu extends Component { // eslint-disable-line
               isOnline ? RouterActions.privacyModal() : alertOfflineError()
             )}
           />
-          {Platform.OS === 'ios' &&
+          {Platform.OS === 'ios' && !user.isPremium &&
             <Button
               containerStyle={styles.joinButtonWrapper}
               style={styles.buttonText}
