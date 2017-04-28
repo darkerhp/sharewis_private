@@ -134,7 +134,7 @@ class SideMenu extends Component { // eslint-disable-line
   @autobind
   renderRestoreButton() {
     if (this.state.isLoading) {
-      return <ActivityIndicator animating size='small' color={'white'} />;
+      return <ActivityIndicator animating size="small" color={'white'} />;
     }
     return I18n.t('restorePurchaseButtonLabel');
   }
