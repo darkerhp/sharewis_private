@@ -83,6 +83,13 @@ const locales = {
     premiumJoinTitle: 'プレミアムアカウントの入会',
     thankYouForJoinTitle: 'ご入会ありがとうございます',
     thankYouForJoinMessage: 'プレミアムアカウントへのご入会手続きが完了しました。\nテキスト形式レクチャーの閲覧や、コースのダウンロード、倍速再生などの機能が使えるようになりました！\nプレミアムアカウントの特典をあなたの学びに是非ご活用ください。',
+    restorePurchaseButtonLabel: '購入履歴を復元する',
+    restorePurchaseSuccessTitle: '復元成功',
+    restorePurchaseSuccessMessage: '購入履歴を復元しました。',
+    restorePurchaseNotFoundTitle: '未購入',
+    restorePurchaseNotFoundMessage: '復元する購入履歴が見つかりませんでした。',
+    restorePurchaseErrorTitle: '復元失敗',
+    restorePurchaseErrorMessage: '購入履歴の復元に失敗しました。',
   },
   en: {
     accountSettings: 'Account Info',
@@ -158,6 +165,13 @@ const locales = {
     premiumJoinTitle: 'Join Premium Account',
     thankYouForJoinTitle: 'Thank you for joining',
     thankYouForJoinMessage: 'You have successfully upgraded your account to Premium', // TODO 要翻訳
+    restorePurchaseButtonLabel: '##要翻訳', // TODO 翻訳
+    restorePurchaseSuccessTitle: 'Restore Successful',
+    restorePurchaseSuccessMessage: 'Successfully restores all your purchases.',
+    restorePurchaseNotFoundTitle: 'No Purchases',
+    restorePurchaseNotFoundMessage: 'We didn\'t find any purchases to restore.',
+    restorePurchaseErrorTitle: 'iTunes Error',
+    restorePurchaseErrorMessage: 'Could not connect to iTunes store.',
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -233,6 +247,13 @@ const locales = {
     premiumJoinTitle: 'Join Premium Account', // TODO 要翻訳
     thankYouForJoinTitle: 'Thank you for joining',
     thankYouForJoinMessage: 'You have successfully upgraded your account to Premium', // TODO 要翻訳
+    restorePurchaseButtonLabel: '##要翻訳', // TODO 翻訳
+    restorePurchaseSuccessTitle: 'Restore Successful', // TODO 翻訳
+    restorePurchaseSuccessMessage: 'Successfully restores all your purchases.', // TODO 翻訳
+    restorePurchaseNotFoundTitle: 'No Purchases', // TODO 翻訳
+    restorePurchaseNotFoundMessage: 'We didn\'t find any purchases to restore.', // TODO 翻訳
+    restorePurchaseErrorTitle: 'iTunes Error', // TODO 翻訳
+    restorePurchaseErrorMessage: 'Could not connect to iTunes store.', // TODO 翻訳
   },
 };
 
