@@ -2,12 +2,12 @@
  * @flow
  */
 import { createAction } from 'redux-actions';
-import { Client } from 'bugsnag-react-native';
+import { Client as Bugsnag } from 'bugsnag-react-native';
 
 import { queueLectureProgress } from './netInfo';
 import * as types from '../ActionTypes';
-import { patchLectureStatus } from '../../redux/middleware/actApi';
 import Lecture from '../models/Lecture';
+import * as Api from '../../utils/api';
 
 // Actions Creators
 export const updateLectureStatusFailure = createAction(types.UPDATE_LECTURE_STATUS_FAILURE);
@@ -31,7 +31,11 @@ export const updateLectureStatus = (lectureId: number, status: string) =>
       const userId = user.userId;
       const lecture = lectures.get(lectureId.toString());
       if (netInfo.isConnected) {
-        await patchLectureStatus(userId, lecture.courseId, lectureId, status);
+        await Api.patch(
+          `courses/${lecture.courseId}/lectures/${lectureId}`,
+          { status },
+          { 'user-id': userId },
+        );
       } else {
         dispatch(queueLectureProgress({ lectureId, status }));
       }
@@ -43,7 +47,7 @@ export const updateLectureStatus = (lectureId: number, status: string) =>
       }
       dispatch(updateLectureStatusSuccess(lectureId, status));
     } catch (error) {
-      new Client().notify(error);
+      new Bugsnag().notify(error);
       console.error(error);
       dispatch(updateLectureStatusFailure());
       throw error;

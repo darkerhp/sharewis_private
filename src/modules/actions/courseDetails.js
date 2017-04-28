@@ -7,8 +7,8 @@ import * as types from '../ActionTypes';
 import { ACT_API_CACHE } from '../../lib/constants';
 import Lecture from '../models/Lecture';
 import * as FileUtils from '../../utils/file';
+import * as Api from '../../utils/api';
 
-import { getCourseDetails } from '../../redux/middleware/actApi';
 import * as schema from '../../lib/schema';
 
 // Actions Creators
@@ -52,7 +52,7 @@ export const fetchCourseDetails = courseId =>
       if (!lectures.find(l => l.courseId === courseId)
         || fetchedCourseDetailsAt - Date.now() > ACT_API_CACHE) {
         dispatch(fetchCourseDetailsStart());
-        const response = await getCourseDetails(userId, courseId);
+        const response = await Api.get(`courses/${courseId}`, { 'user-id': userId });
         dispatch(fetchCourseDetailsSuccess(_.merge(
           normalizeLectures(response),
           normalizeSections(response),

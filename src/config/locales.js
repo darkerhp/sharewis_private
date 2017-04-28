@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import I18n from 'react-native-i18n';
 
 import {
@@ -74,15 +75,14 @@ const locales = {
     // iOS用
     notAllowedSignup: '現在アプリからの新規登録を受け付けていません',
     cancel: 'キャンセル',
+    aboutPremiumButtonLabel: 'プレミアムアカウントについて',
     join: '入会する',
-    joinText: '入会する',
-    loginShareWis: 'ShareWisにログイン',
-    loginShareWisText: 'プレミアムアカウントへのご入会にはログインが必要です。',
-    mustBeLoggedIn: 'ログインして下さい',
+    mustBeLoggedIn: 'プレミアムアカウントへのご入会にはログインが必要です。',
     paymentFailed: '決済に失敗しました',
     premiumJoin: 'プレミアムアカウントに入会しますか？',
     premiumJoinTitle: 'プレミアムアカウントの入会',
-    thankYou: '入会完了',
+    thankYouForJoinTitle: 'ご入会ありがとうございます',
+    thankYouForJoinMessage: 'プレミアムアカウントへのご入会手続きが完了しました。\nテキスト形式レクチャーの閲覧や、コースのダウンロード、倍速再生などの機能が使えるようになりました！\nプレミアムアカウントの特典をあなたの学びに是非ご活用ください。',
   },
   en: {
     accountSettings: 'Account Info',
@@ -150,15 +150,14 @@ const locales = {
     // iOS用
     notAllowedSignup: ' User registration is currently not allowed on app',
     cancel: 'Cancel',
+    aboutPremiumButtonLabel: '##要翻訳', // TODO 要翻訳
     join: 'Join Premium',
-    joinText: 'Join Premium',
-    loginShareWis: 'Login to ShareWis',
-    loginShareWisText: 'Please login to ShareWis first in order to join Premium Account',
     mustBeLoggedIn: 'Must be logged in to join premium account',
     paymentFailed: 'Payment failed',
     premiumJoin: 'Would you like to join Premium Account?',
     premiumJoinTitle: 'Join Premium Account',
-    thankYou: '##要翻訳', // TODO 要翻訳
+    thankYouForJoinTitle: 'Thank you for joining',
+    thankYouForJoinMessage: 'You have successfully upgraded your account to Premium', // TODO 要翻訳
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -226,15 +225,14 @@ const locales = {
     // iOS用
     notAllowedSignup: 'Đăng ký thành viên hiện đang không được phép trên ứng dụng',
     cancel: 'Cancel', // TODO 要翻訳
+    aboutPremiumButtonLabel: '##要翻訳', // TODO 要翻訳
     join: 'Join Premium', // TODO 要翻訳
-    joinText: 'Join Premium', // TODO 要翻訳
-    loginShareWis: 'Login to ShareWis', // TODO 要翻訳
-    loginShareWisText: 'Please login to ShareWis first in order to join Premium Account', // TODO 要翻訳
     mustBeLoggedIn: 'Must be logged in to join premium account', // TODO 要翻訳
     paymentFailed: 'Payment failed', // TODO 要翻訳
     premiumJoin: 'Would you like to join Premium Account?', // TODO 要翻訳
     premiumJoinTitle: 'Join Premium Account', // TODO 要翻訳
-    thankYou: '##要翻訳', // TODO 要翻訳
+    thankYouForJoinTitle: 'Thank you for joining',
+    thankYouForJoinMessage: 'You have successfully upgraded your account to Premium', // TODO 要翻訳
   },
 };
 

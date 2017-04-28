@@ -5,15 +5,13 @@ import { createAction } from 'redux-actions';
 import { Client } from 'bugsnag-react-native';
 
 import * as types from '../ActionTypes';
-import { patchLectureStatus } from '../../redux/middleware/actApi';
-
+import * as Api from '../../utils/api';
 
 export const fetchNetInfo = createAction(types.MIDDLEWARE_NETINFO);
 export const queueLectureProgress = createAction(types.QUEUE_LECTURE_PROGRESS);
 export const triggeredQueueActions = createAction(types.TRIGGERED_QUEUE_ACTIONS);
 
 // Thunks
-
 export const syncLectureProgress = () =>
   async (dispatch, getState) => {
     try {
@@ -26,13 +24,12 @@ export const syncLectureProgress = () =>
       if (_.isEmpty(queuedLectureProgress)) return;
 
       const promises = Object.keys(queuedLectureProgress).map(async (lectureId) => {
-        const params = [
-          userId,
-          lectures[lectureId].courseId,
-          lectureId,
-          queuedLectureProgress[lectureId],
-        ];
-        const result = await patchLectureStatus(...params);
+        const result = await Api.patch(
+          `courses/${lectures[lectureId].courseId}/lectures/${lectureId}`,
+          { status: queuedLectureProgress[lectureId] },
+          { 'user-id': userId },
+        );
+
         return result;
       });
       await Promise.all(promises);

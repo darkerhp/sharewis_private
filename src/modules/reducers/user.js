@@ -9,6 +9,8 @@ const initialState = {
   nickName: null,
   loggedIn: false,
   isFinishOnboarding: false,
+  isPremium: false,
+  mixpanelId: null,
 };
 
 const failure = (state, action) => ({
@@ -44,6 +46,14 @@ export const userReducer = handleActions({
   FINISH_ONBOARDING: (state, action) => ({
     ...state,
     isFinishOnboarding: true,
+  }),
+  JOIN_PREMIUM_SUCCESS: (state, action) => ({
+    ...state,
+    isPremium: true,
+  }),
+  JOIN_PREMIUM_FAILURE: (state, action) => ({
+    ...state,
+    isPremium: false,
   }),
 }, initialState);
 

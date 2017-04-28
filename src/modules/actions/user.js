@@ -2,13 +2,12 @@
  * @flow
  */
 import { createAction } from 'redux-actions';
-import { Client } from 'bugsnag-react-native';
+import { Client as Bugsnag } from 'bugsnag-react-native';
 import I18n from 'react-native-i18n';
+import base64 from 'base-64';
 
 import * as types from '../ActionTypes';
-import { getUserData, signupByEmail } from '../../redux/middleware/accountApi';
-import { patchSignup } from '../../redux/middleware/actApi';
-
+import * as Api from '../../utils/api';
 
 // Actions Creators
 export const startActEmailLogin = createAction(types.START_ACT_EMAIL_LOGIN,
@@ -31,6 +30,35 @@ export const fetchActSignupSuccess = createAction(types.FETCH_ACT_SIGNUP_SUCCESS
 export const finishOnboarding = createAction(types.FINISH_ONBOARDING);
 
 // Thunks
+async function getUserData(credentials: Array<string>) {
+  const credential = base64.encode(`${credentials[0]}:${credentials[1]}`);
+  const result = await Api.get('users/me', { Authorization: `Basic ${credential}` });
+  return {
+    userId: result.id,
+    userName: result.username,
+    nickName: result.nickname,
+    email: result.email,
+    isPremium: result.is_premium,
+  };
+}
+
+async function signupByEmail(credentials: Array<string>) {
+  const result = await Api.post('users/signup', {
+    email: credentials[0],
+    password: credentials[1],
+    language: I18n.locale ? I18n.locale.split('-')[0] : null,
+    currency: null,
+  });
+
+  return {
+    userId: result.id,
+    userName: result.username,
+    nickName: result.nickname,
+    email: result.email,
+    isPremium: result.is_premium,
+  };
+}
+
 export const fetchUserBy = (loginMethod, credentials) =>
   async (dispatch) => {
     if (loginMethod === 'facebook') {
@@ -44,7 +72,7 @@ export const fetchUserBy = (loginMethod, credentials) =>
       const data = await getUserData(credentials);
       return dispatch(fetchActLoginSuccess(data));
     } catch (error) {
-      new Client().notify(error);
+      new Bugsnag().notify(error);
       console.error(error);
       dispatch(fetchActLoginFailure);
       throw error;
@@ -63,10 +91,9 @@ export const signupUserBy = (loginMethod, credentials) =>
 
     try {
       const userData = await signupByEmail(credentials);
-      await patchSignup(userData.userId, I18n.locale ? I18n.locale.split('-')[0] : null);
       return dispatch(fetchActSignupSuccess(userData));
     } catch (error) {
-      new Client().notify(error);
+      new Bugsnag().notify(error);
       console.error(error);
       dispatch(fetchActSignupFailure);
       throw error;
