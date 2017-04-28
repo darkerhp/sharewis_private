@@ -18,6 +18,8 @@ const products = [
 // Action Creators
 export const joinPremiumSuccess = createAction(types.JOIN_PREMIUM_SUCCESS);
 export const joinPremiumFailure = createAction(types.JOIN_PREMIUM_FAILURE);
+export const restorePremiumSuccess = createAction(types.RESTORE_PREMIUM_SUCCESS);
+export const restorePremiumFailure = createAction(types.RESTORE_PREMIUM_FAILURE);
 
 // Thunks
 export const joinPremium = userId =>
@@ -37,6 +39,29 @@ export const joinPremium = userId =>
       new Bugsnag().notify(error);
       console.error(error);
       dispatch(joinPremiumFailure());
+      throw error;
+    }
+  };
+
+export const restorePremium = () =>
+  async (dispatch) => {
+    try {
+      const response = await InAppUtils.restorePurchasesAsync();
+      if (response.length === 0) {
+        return response;
+      }
+      response.forEach((purchase) => {
+        if (purchase.productIdentifier === products[0]) {
+          console.log('Handle purchased product.');
+        }
+      });
+      dispatch(restorePremiumSuccess());
+      return response;
+    } catch (error) {
+      console.log('itunes Error', 'Could not connect to itunes store.');
+      new Bugsnag().notify(error);
+      console.error(error);
+      dispatch(restorePremiumFailure());
       throw error;
     }
   };
