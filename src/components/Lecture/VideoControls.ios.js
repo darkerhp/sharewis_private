@@ -1,10 +1,10 @@
-// NOTE iOS版はreact-native-videoライブラリの不具合によりプログレスバーを表示しない
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import SeekBar from './SeekBar';
 import BaseStyles from '../../lib/baseStyles';
 
 const { StyleSheet, Text, View } = ReactNative;
@@ -90,6 +90,13 @@ const VideoControls = ({
       right: 20,
     } : { flex: 2, paddingBottom: 40, backgroundColor: 'white' })}
   >
+    <SeekBar
+      currentTime={currentTime}
+      estimatedTime={estimatedTime}
+      isFullScreen={isFullScreen}
+      onSlidingComplete={onSlidingComplete}
+      onValueChange={onValueChange}
+    />
     <View style={styles.lectureTitleTextWrapper}>
       <Text style={styles.lectureTitle}>{title}</Text>
     </View>
