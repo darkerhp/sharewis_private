@@ -5,6 +5,8 @@ let ACCOUNT_API_HOST = 'account.share-wis.com';
 let ACCOUNT_API_BASE_PATH = '';
 let ACT_API_HOST = 'share-wis.com';
 
+let env = 'production';
+
 const ACT_API_BASE_PATH = '/api';
 const actApiKey = 'Pr4BP2BedViT6Gjm2aiwRJAy6ziTs2i6yGrsyTp9';
 
@@ -12,6 +14,7 @@ if (__DEV__) {
   ACCOUNT_API_HOST = 'dev-account.share-wis.com';
   ACCOUNT_API_BASE_PATH = '/dev';
   ACT_API_HOST = 'staging1.share-wis.com';
+  env = 'staging';
 }
 
 export const ACCOUNT_API_URL = `https://${ACCOUNT_API_HOST}${ACCOUNT_API_BASE_PATH}`;
@@ -29,3 +32,5 @@ export const ACT_PRO_COURSES_URL = `${ACT_SITE_URL}/pro_courses`;
 
 // Set 1h of caching (in ms)
 export const ACT_API_CACHE = 60 * 60 * 1000;
+
+export const ENV = env;

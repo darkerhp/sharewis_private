@@ -157,19 +157,17 @@ class SideMenu extends Component { // eslint-disable-line
           </View>
         </View>
         <View style={styles.mainContainer}>
-          {Platform.OS !== 'ios' && // iOSではログインを表示しない
-            <MenuItem
-              text={user.loggedIn ? I18n.t('accountSettings') : I18n.t('login')}
-              iconName={'account-circle'}
-              handlePress={() => {
-                if (!isOnline) {
-                  alertOfflineError();
-                  return;
-                }
-                user.loggedIn ? RouterActions.accountModal() : RouterActions.loginModal(); // eslint-disable-line
-              }}
-            />
-          }
+          <MenuItem
+            text={user.loggedIn ? I18n.t('accountSettings') : I18n.t('login')}
+            iconName={'account-circle'}
+            handlePress={() => {
+              if (!isOnline) {
+                alertOfflineError();
+                return;
+              }
+              user.loggedIn ? RouterActions.accountModal() : RouterActions.loginModal(); // eslint-disable-line
+            }}
+          />
           {Platform.OS !== 'ios' && // iOSではお問い合わせを表示しない
             <MenuItem
               text={I18n.t('inquiry')}
