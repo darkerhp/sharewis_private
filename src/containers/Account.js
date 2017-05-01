@@ -4,6 +4,7 @@ import I18n from 'react-native-i18n';
 import { connect } from 'react-redux';
 
 import BaseStyles from '../lib/baseStyles';
+import { ENV } from '../lib/constants';
 
 const { View, Text, StyleSheet, Platform, Dimensions } = ReactNative;
 const { width } = Dimensions.get('window');
@@ -67,7 +68,21 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  versionContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    width,
+  },
+  versionText: {
+    textAlign: 'right',
+    color: '#aaa',
+    fontSize: 10,
+    margin: 5,
+  },
 });
+
+const pckg = require('../../package.json');
 
 @connect(({ user }) => ({ user }))
 class Account extends Component {// eslint-disable-line
@@ -115,8 +130,9 @@ class Account extends Component {// eslint-disable-line
           </View>
         </View>
 
-        <View style={styles.fbContainer} />
-        <View style={styles.notificationContainer} />
+        <View style={styles.versionContainer}>
+          <Text style={styles.versionText}>version: {pckg.version}-{ENV}</Text>
+        </View>
       </View>
     );
   }
