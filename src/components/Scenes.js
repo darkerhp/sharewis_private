@@ -6,6 +6,7 @@ import I18n from 'react-native-i18n';
 
 import Account from '../containers/Account';
 import BaseStyles from '../lib/baseStyles';
+import { ENV } from '../lib/constants';
 import CourseDetails from '../containers/CourseDetails';
 import Lecture from '../containers/Lecture';
 import Login from '../containers/Login';
@@ -25,10 +26,12 @@ const menuWhiteImage = require('./images/ic_menu_white.png');
 const backButtonWhiteImage = require('./images/ic_chevron_left_white.png');
 const closeWhiteImage = require('./images/ic_close_white.png');
 
+const navBarColor = ENV === 'production' ? BaseStyles.navBarBackgroundColor : 'pink';
+
 const baseNavBarProps = {
   navigationBarStyle: {
-    backgroundColor: BaseStyles.navBarBackgroundColor,
-    borderBottomColor: BaseStyles.navBarBackgroundColor,
+    backgroundColor: navBarColor,
+    borderBottomColor: navBarColor,
   },
   backTitle: '戻る',
   titleStyle: {
