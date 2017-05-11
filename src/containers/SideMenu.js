@@ -191,17 +191,20 @@ class SideMenu extends Component { // eslint-disable-line
               isOnline ? RouterActions.privacyModal() : alertOfflineError()
             )}
           />
-          {Platform.OS === 'ios' && !user.isPremium &&
-            <Button
-              containerStyle={styles.joinButtonWrapper}
-              style={styles.buttonText}
-              onPress={() => (
-                isOnline ? RouterActions.premiumModal() : alertOfflineError()
-              )}
-            >
-              {I18n.t('aboutPremiumButtonLabel')}
-            </Button>
-          }
+          {/*
+            FIXME プレミアムアカウントに入会するボタンは一旦非表示に
+           {Platform.OS === 'ios' && !user.isPremium &&
+           <Button
+           containerStyle={styles.joinButtonWrapper}
+           style={styles.buttonText}
+           onPress={() => (
+           isOnline ? RouterActions.premiumModal() : alertOfflineError()
+           )}
+           >
+           {I18n.t('aboutPremiumButtonLabel')}
+           </Button>
+           }
+          */}
           {Platform.OS === 'ios' &&
             <Button
               containerStyle={styles.restoreButtonWrapper}
