@@ -16,7 +16,7 @@ const Variables = {
     ios: 65,
     android: 55,
   }),
-  navBarBackgroundColor: '#00abca',
+  navBarBackgroundColor: '#00abc9',
   disabledButtonColor: '#dadada',
   deviceWidth: Dimensions.get('window').width,
   deviceHeight: Dimensions.get('window').height,
