@@ -9,6 +9,8 @@ const CourseRecord = Record({
   title: '',
   type: '',
   ranking: 0,
+  // for products
+  isPurchased: false,
 });
 
 export default class Course extends CourseRecord {

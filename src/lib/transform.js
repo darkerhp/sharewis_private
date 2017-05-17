@@ -7,19 +7,21 @@ import _ from 'lodash';
 
 import CourseMap from '../modules/models/CourseMap';
 import LectureMap from '../modules/models/LectureMap';
+import ProductMap from '../modules/models/ProductMap';
 
 const transform = createTransform(
   // transform state coming from redux on its way to being serialized and stored
   (inboundState, key) => inboundState,
   // transform state coming from storage, on its way to be rehydrated into redux
   (outboundState, key) => {
-    const { courses, lectures, sections } = outboundState;
+    const { courses, lectures, sections, products } = outboundState;
 
     return {
       ...outboundState,
       courses: _.isEmpty(courses) ? new CourseMap() : courses,
       lectures: _.isEmpty(lectures) ? new LectureMap() : lectures,
       sections: _.isEmpty(sections) ? new LectureMap() : sections,
+      products: _.isEmpty(products) ? new ProductMap() : sections,
     };
   },
   // configuration options

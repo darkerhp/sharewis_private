@@ -23,7 +23,8 @@ import {
   getSectionMergedLectureList,
   getLectureProgress,
   getLectureTotalDuration,
-} from '../lib/lectureSelectors';
+  getNextNotCompletedLecture,
+} from '../modules/selectors/lectureSelectors';
 
 const {
   Alert,
@@ -101,8 +102,8 @@ class CourseDetails extends Component {
   @autobind
   handlePressNextLecture() {
     const { id, lectures } = this.props;
-    const lecture = lectures.getNextLecture(id);
-    this.handlePressLecture(lecture);
+    const nextNotCompletedLecture = getNextNotCompletedLecture({}, { lectures, currentCourseId: id });
+    this.handlePressLecture(nextNotCompletedLecture);
   }
 
   @autobind
@@ -200,7 +201,7 @@ class CourseDetails extends Component {
       completeLectureCount: lectureProgress,
       courseTitle: title,
       totalDuration,
-      nextLecture: lectures.getNextLecture(id),
+      nextLecture: getNextNotCompletedLecture({}, { lectures, currentCourseId: id }),
     };
 
     return (

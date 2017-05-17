@@ -19,6 +19,10 @@ import CourseSummary from '../components/CourseList/CourseSummary';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 import NoProCourseItem from '../components/Top/NoProCourseItem'; // eslint-disable-line
+import {
+  snackCourseSelector,
+  purchasedProCourseSelector,
+} from '../modules/selectors/courseSelectors';
 
 const {
   Alert,
@@ -109,13 +113,18 @@ const noLoginItem = isOnline =>
     </Button>
   </OneColumnItemBox>;
 
-const mapStateToProps = ({ entities, netInfo, ui, user }) => ({
-  courses: entities.courses,
-  lectures: entities.lectures,
-  isLoginUser: user.loggedIn,
-  ...ui,
-  isOnline: netInfo.isConnected,
-});
+const mapStateToProps = (state, props) => {
+  const { entities, netInfo, ui, user } = state;
+
+  return {
+    lectures: entities.lectures,
+    snackCourses: snackCourseSelector(state, props),
+    purchasedProCourses: purchasedProCourseSelector(state, props),
+    isLoginUser: user.loggedIn,
+    ...ui,
+    isOnline: netInfo.isConnected,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators({ ...coursesActions, ...userActions }, dispatch),
@@ -125,7 +134,8 @@ const mapDispatchToProps = dispatch => ({
 class Top extends Component {
   static propTypes = {
     // states
-    courses: ImmutablePropTypes.orderedMap,
+    purchasedProCourses: ImmutablePropTypes.orderedMap,
+    snackCourses: ImmutablePropTypes.orderedMap,
     lectures: ImmutablePropTypes.orderedMap,
     isLoginUser: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
@@ -203,10 +213,9 @@ class Top extends Component {
 
   @autobind
   renderSnackCourses() {
-    const { courses } = this.props;
-    const snackCourseItems = courses
-      .getSnackCourses()
-      .sortByRanking()
+    const { snackCourses } = this.props;
+    const snackCourseItems = snackCourses
+      .sortBy(c => c.ranking)
       .valueSeq()
       .map(course =>
         <TwoColumnCourseItem
@@ -244,8 +253,8 @@ class Top extends Component {
 
   @autobind
   renderMyCourseItem() {
-    const { courses, lectures, isLoginUser, isOnline } = this.props;
-    const proCourse = courses.getProCourses().first();
+    const { purchasedProCourses, lectures, isLoginUser, isOnline } = this.props;
+    const proCourse = purchasedProCourses.first();
 
     if (!isLoginUser) {
       return noLoginItem(isOnline);

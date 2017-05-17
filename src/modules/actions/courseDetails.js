@@ -27,19 +27,11 @@ export const finishDeleteVideo = createAction(types.FINISH_DELETE_VIDEO);
 export const updateVideoInDeviceStatus = createAction(types.UPDATE_VIDEO_IN_DEVICE_STATUS);
 
 // Thunks
-const normalizeLectures = response =>
-  normalize(
-    response.lectures.filter(l => l.kind === Lecture.KIND_LECTURE).map(lecture =>
-      _.mapKeys(lecture, (value, key) => _.camelCase(key)),
-    ), schema.arrayOfLectures,
-  );
+const normalizeLectures = lectures =>
+  normalize(lectures.map(l => Api.keyToCamelcase(l)), schema.arrayOfLectures);
 
-const normalizeSections = response =>
-  normalize(
-    response.lectures.filter(l => l.kind === Lecture.KIND_SECTION).map(section =>
-      _.mapKeys(section, (value, key) => _.camelCase(key)),
-    ), schema.arrayOfSections,
-  );
+const normalizeSections = sections =>
+  normalize(sections.map(s => Api.keyToCamelcase(s)), schema.arrayOfSections);
 
 export const fetchCourseDetails = courseId =>
   async (dispatch, getState) => {
@@ -54,8 +46,8 @@ export const fetchCourseDetails = courseId =>
         dispatch(fetchCourseDetailsStart());
         const response = await Api.get(`courses/${courseId}`, { 'user-id': userId });
         dispatch(fetchCourseDetailsSuccess(_.merge(
-          normalizeLectures(response),
-          normalizeSections(response),
+          normalizeLectures(response.lectures.filter(l => l.kind === Lecture.KIND_LECTURE)),
+          normalizeSections(response.lectures.filter(l => l.kind === Lecture.KIND_SECTION)),
         )));
       }
     } catch (error) {
