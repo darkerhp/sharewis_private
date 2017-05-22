@@ -1,10 +1,19 @@
+import _ from 'lodash';
 import { createSelector } from 'reselect';
 
-export const snackCourseSelector = (state, props) =>
-  state.entities.courses.filter(c => c.type === 'SnackCourse');
+export const courseSelector = (state, props) => (
+  _.has(state, 'entities.courses') ? state.entities.courses : props.courses
+);
 
-export const proCourseSelector = (state, props) =>
-  state.entities.courses.filter(c => c.type === 'ProCourse');
+export const snackCourseSelector = createSelector(
+  courseSelector,
+  courses => courses.filter(c => c.type === 'SnackCourse'),
+);
+
+export const proCourseSelector = createSelector(
+  courseSelector,
+  courses => courses.filter(c => c.type === 'ProCourse'),
+);
 
 export const purchasedProCourseSelector = createSelector(
   proCourseSelector,
