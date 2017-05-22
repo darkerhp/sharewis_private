@@ -4,7 +4,7 @@
  */
 import { createAction } from 'redux-actions';
 
-import * as types from '../ActionTypes';
+import * as types from './ActionTypes';
 
 // Action Creators
 export const joinPremiumSuccess = createAction(types.JOIN_PREMIUM_SUCCESS);

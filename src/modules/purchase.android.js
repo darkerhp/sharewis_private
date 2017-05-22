@@ -8,11 +8,11 @@ import Promise from 'bluebird';
 import { createAction } from 'redux-actions';
 import { Client as Bugsnag } from 'bugsnag-react-native';
 
-import * as types from '../ActionTypes';
-import * as Api from '../../utils/api';
-import * as schema from '../../lib/schema';
+import * as types from './ActionTypes';
+import * as Api from '../utils/api';
+import * as schema from '../lib/schema';
 
-const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
+// const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
 
 // Action Creators
 export const purchaseCourseSuccess = createAction(types.PURCHASE_COURSE_SUCCESS);
