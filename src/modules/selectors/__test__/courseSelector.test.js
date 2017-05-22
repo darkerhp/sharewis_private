@@ -19,15 +19,11 @@ const courses = {
 
 const courseMap = new CourseMap(courses).map(course => new Course(course));
 
-
-describe('courseSelector', () => {
+describe('courseSelectors', () => {
   it('courseSelector should return courses', () => {
     const param = { courses: courseMap };
-    let result;
-    result = courseSelector({ entities: param });
-    expect(result).toEqual(courseMap);
-    result = courseSelector({}, param);
-    expect(result).toEqual(courseMap);
+    expect(courseSelector({ entities: param })).toEqual(courseMap);
+    expect(courseSelector({}, param)).toEqual(courseMap);
   });
 
   it('snackCourseSelector should return snack courses', () => {

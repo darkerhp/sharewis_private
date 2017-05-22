@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import { createSelector } from 'reselect';
 
-const sectionsSelector = (state, props) => {
+export const sectionsSelector = (state, props) => {
   const sections = _.has(state, 'entities.sections') ? state.entities.sections : props.sections;
   const currentCourseId = _.has(state, 'ui.currentCourseId') ? state.ui.currentCourseId : props.currentCourseId;
   return sections.filter(l => l.courseId === currentCourseId);
 };
 
-const lecturesSelector = (state, props) => {
+export const lecturesSelector = (state, props) => {
   const lectures = _.has(state, 'entities.lectures') ? state.entities.lectures : props.lectures;
   const currentCourseId = _.has(state, 'ui.currentCourseId') ? state.ui.currentCourseId : props.currentCourseId;
   return lectures.filter(l => l.courseId === currentCourseId);
