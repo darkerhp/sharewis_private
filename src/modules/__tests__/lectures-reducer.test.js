@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 import { createAction } from 'redux-actions';
 import { OrderedMap } from 'immutable';
-import reducer from '../../lectures';
-import * as types from '../../ActionTypes';
+import reducer from '../lectures';
+import * as types from '../ActionTypes';
 
-import Lecture from '../../models/Lecture';
-import LectureMap from '../../models/LectureMap';
+import Lecture from '../models/Lecture';
+import LectureMap from '../models/LectureMap';
 
 const factory = (lectureId, props = {}) => (
   new OrderedMap({ [lectureId]: new Lecture({ id: lectureId, ...props }) })

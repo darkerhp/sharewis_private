@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 import { createAction } from 'redux-actions';
 import { OrderedMap } from 'immutable';
-import reducer from '../../products';
-import * as types from '../../ActionTypes';
+import reducer from '../products';
+import * as types from '../ActionTypes';
 
-import Product from '../../models/Product';
-import ProductMap from '../../models/ProductMap';
+import Product from '../models/Product';
+import ProductMap from '../models/ProductMap';
 
 const factory = (productId, props = {}) => (
   new ProductMap({ [productId]: new Product({ id: productId, ...props }) })

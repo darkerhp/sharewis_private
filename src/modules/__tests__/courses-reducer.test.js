@@ -2,10 +2,10 @@
 import { createAction } from 'redux-actions';
 import { OrderedMap } from 'immutable';
 
-import reducer from '../../courses';
-import * as types from '../../ActionTypes';
+import reducer from '../courses';
+import * as types from '../ActionTypes';
 
-import Course from '../../models/Course';
+import Course from '../models/Course';
 
 const factory = (courseId, props = {}) => (
   new OrderedMap({ [courseId]: new Course({ id: courseId, ...props }) })
