@@ -1,5 +1,6 @@
 /** @flow */
 /* global fetch */
+import _ from 'lodash';
 import Promise from 'bluebird';
 import { Client as Bugsnag } from 'bugsnag-react-native';
 import HttpError from 'standard-http-error';
@@ -162,8 +163,8 @@ async function sendRequest(method: string, path: string, body, header) {
       ? { method, headers, body: JSON.stringify(body) }
       : { method, headers };
 
-    console.log('sendRequest:endpoint', endpoint);
-    console.log('sendRequest:options', options);
+    console.log('api:sendRequest:endpoint', endpoint);
+    console.log('api:sendRequest:options', options);
 
     return timeout(fetch(endpoint, options), TIMEOUT);
   } catch (e) {
@@ -182,10 +183,11 @@ async function sendRequest(method: string, path: string, body, header) {
 export async function request(method: 'get' | 'post' | 'patch' | 'put' | 'delete', path: string, body, header) {
   try {
     const response = await sendRequest(method, path, body, header);
-    return handleResponse(
+    const handledResponse = handleResponse(
       path,
       response,
     );
+    return handledResponse;
   } catch (error) {
     logError(error, url(path), method);
     new Bugsnag().notify(error);
@@ -249,4 +251,12 @@ export async function put(path: string, body, header) {
  */
 export async function del(path: string, header) {
   return bodyOf(request('delete', path, null, header));
+}
+
+/**
+ * objectのキーをキャメルケースに変換する
+ * @param object
+ */
+export function keyToCamelcase(object) {
+  return _.mapKeys(object, (value, key) => _.camelCase(key));
 }

@@ -13,6 +13,7 @@ import * as Actions from '../modules/actions/courses';
 import BaseStyles from '../lib/baseStyles';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 import Course from '../modules/models/Course';
+import { snackCourseSelector } from '../modules/selectors/courseSelectors';
 
 const {
   Alert,
@@ -34,12 +35,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ entities, netInfo, ui }) => ({
-  courses: entities.courses,
-  lectures: entities.lectures,
-  ...ui,
-  isOnline: netInfo.isConnected,
-});
+const mapStateToProps = (state, props) => {
+  const { entities, netInfo, ui } = state;
+
+  return {
+    courses: entities.courses,
+    lectures: entities.lectures,
+    snackCourses: snackCourseSelector(state, props),
+    ...ui,
+    isOnline: netInfo.isConnected,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
 
@@ -55,6 +61,7 @@ class SnackCourse extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
     this.state = {
       isRefreshing: false,
       isLoading: true,
@@ -68,7 +75,7 @@ class SnackCourse extends Component {
 
   @autobind
   async refreshList(force = false) {
-    const { fetchSnackCourse } = this.props;
+    const { fetchSnackCourse, snackCourses } = this.props;
     try {
       await fetchSnackCourse(force);
     } catch (error) {
@@ -77,9 +84,8 @@ class SnackCourse extends Component {
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
 
-    const snackCourses = this.props.courses.getSnackCourses().toJS();
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(snackCourses),
+      dataSource: this.state.dataSource.cloneWithRows(snackCourses.toJS()),
       isLoading: false,
     });
   }

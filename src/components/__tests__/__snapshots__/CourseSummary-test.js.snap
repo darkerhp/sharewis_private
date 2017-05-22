@@ -146,7 +146,7 @@ exports[`CourseSummary renders correctly 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#00abca",
+                "backgroundColor": "#00abc9",
               },
               Object {
                 "flex": NaN,

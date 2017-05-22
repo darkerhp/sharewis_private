@@ -16,6 +16,7 @@ import Lecture from '../modules/models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import TextLecture from '../components/Lecture/TextLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
+import { getLastLectureId, getNextLecture } from '../modules/selectors/lectureSelectors';
 
 const { StatusBar, StyleSheet, View } = ReactNative;
 
@@ -38,15 +39,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ entities: { lectures }, netInfo, ui }) => {
+const mapStateToProps = (state, props) => {
+  const { entities: { lectures }, netInfo, ui } = state;
   const lectureId = ui.currentLectureId;
   const currentLecture = lectures.get(lectureId.toString());
+  const lastLectureId = getLastLectureId(state, props);
   return {
     lectures,
     currentLecture,
+    nextLecture: getNextLecture({ ...state, currentOrder: currentLecture.order }, props),
     ...ui,
     isOnline: netInfo.isConnected,
-    isLastLecture: lectureId === lectures.getLastLectureId(currentLecture.courseId),
+    isLastLecture: lectureId === lastLectureId,
   };
 };
 
@@ -57,10 +61,10 @@ class LectureContainer extends Component {
   static propTypes = {
     // values
     currentLecture: PropTypes.instanceOf(Lecture).isRequired,
+    nextLecture: PropTypes.instanceOf(Lecture).isRequired,
     isFullScreen: PropTypes.bool.isRequired,
     isLastLecture: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
-    lectures: ImmutablePropTypes.orderedMap.isRequired,
     // actions
     updateLectureStatus: PropTypes.func.isRequired,
     setCurrentLectureId: PropTypes.func.isRequired,
@@ -92,7 +96,7 @@ class LectureContainer extends Component {
 
     const {
       currentLecture,
-      lectures,
+      nextLecture,
       updateLectureStatus,
       setCurrentLectureId,
     } = this.props;
@@ -101,8 +105,6 @@ class LectureContainer extends Component {
       updateLectureStatus(currentLecture.id, Lecture.STATUS_FINISHED);
     }
 
-    const nextLecture = lectures.getNextLecture(
-      currentLecture.courseId, false, currentLecture.order);
     setCurrentLectureId(nextLecture.id);
   }
 

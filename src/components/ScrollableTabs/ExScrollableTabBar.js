@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import { DefaultTabBar } from 'react-native-scrollable-tab-view';
+import { ScrollableTabBar } from 'react-native-scrollable-tab-view';
 
 const { Platform } = ReactNative;
 
-export default class ExScrollableTabBar extends DefaultTabBar {
+export default class ExScrollableTabBar extends ScrollableTabBar {
   componentDidMount() {
     // NOTE AndroidでTopページが初期表示されない不具合に対するHackコード
     if (Platform.OS === 'android') {

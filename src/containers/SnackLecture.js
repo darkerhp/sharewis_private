@@ -90,7 +90,7 @@ class SnackLectureContainer extends Component {
     }
 
     const lectures = this.props.lectures;
-    const currentLecture = lectures.byCourseId(currentCourse.id).first();
+    const currentLecture = lectures.filter(l => l.courseId === currentCourse.id).first();
     setCurrentLectureId(currentLecture.id);
     if (currentLecture.isNotStarted()) {
       updateLectureStatus(currentLecture.id, Lecture.STATUS_VIEWED);

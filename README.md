@@ -194,8 +194,13 @@ $ npm test
 $ npm test -- --watch   # continuous testing
 ```
 
-
-
+### Architecture
+- redux
+- immutable.js
+- react-native-router-flux
+- redux-thunk
+- jest
+- Ducks pattern [WIP]
 
 ## Debugging
 

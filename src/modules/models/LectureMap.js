@@ -1,59 +1,36 @@
-/**
- * @flow
- */
-import { OrderedMap } from 'extendable-immutable';
+import { OrderedMap } from 'immutable';
 import Lecture from './Lecture';
 
-export default class LectureMap extends OrderedMap {
-  static isLectureMap(value) {
-    return value && value instanceof LectureMap;
-  }
+const LectureMap = OrderedMap;
 
-  /**
-   * 次のレクチャーを取得する
-   * @param courseId
-   * @param skipCompleted
-   * @param currentOrder
-   * @returns Lecture
-   */
-  getNextLecture(
-    courseId: number,
-    skipCompleted: boolean = true,
-    currentOrder: number = 0,
-  ): Lecture {
-    let filteredLectures = this.filter(l => (
-      l.courseId === courseId &&
-      l.isLecture() &&
-      (l.isVideo() || l.isText()) && // TODO 今のところ動画とテキストだけ
-      l.order > currentOrder
-    ));
-    if (skipCompleted) {
-      filteredLectures = filteredLectures.filterNot(l => l.isFinished());
-    }
-    return filteredLectures.sortBy(l => l.order).first() || null;
-  }
+export default LectureMap;
 
-  /**
-   * 最終レクチャーのIDを取得する
-   * @param courseId
-   * @return レクチャーID
-   */
-  getLastLectureId(courseId: number): number {
-    const videoLectures = this.filter(l => (
-      l.courseId === courseId &&
-      l.isLecture() &&
-      (l.isVideo() || l.isText()) // TODO 今のところ動画とテキストだけ
-    ));
+// ※extendable-immutableを使うとMap同士のmerge時にRecordが上書きされない不具合がある。
+// TODO ↑の理由によってextendできないので以下のfunctionをどこかに定義する
 
-    return videoLectures.sortBy(l => l.order).last().id;
+/**
+ * 次のレクチャーを取得する
+ * @param map
+ * @param courseId
+ * @param skipCompleted
+ * @param currentOrder
+ * @returns Lecture
+ */
+export function getNextLecture(
+  map: LectureMap,
+  courseId: number,
+  skipCompleted: boolean = true,
+  currentOrder: number = 0,
+): Lecture {
+  let filteredLectures = map.filter(l => (
+    l.courseId === courseId &&
+    l.isLecture() &&
+    (l.isVideo() || l.isText()) && // TODO 今のところ動画とテキストだけ
+    l.order > currentOrder
+  ));
+  if (skipCompleted) {
+    filteredLectures = filteredLectures.filterNot(l => l.isFinished());
   }
-
-  /**
-   * コースIDでフィルタリング
-   * @param courseId
-   * @return LectureMap
-   */
-  byCourseId(courseId: number): LectureMap {
-    return this.filter(l => l.courseId === courseId);
-  }
+  return filteredLectures.sortBy(l => l.order).first() || null;
 }
+

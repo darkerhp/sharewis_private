@@ -5,6 +5,7 @@ import reducer from '../entities/lectures';
 import * as types from '../../ActionTypes';
 
 import Lecture from '../../models/Lecture';
+import LectureMap from '../../models/LectureMap';
 
 const factory = (lectureId, props = {}) => (
   new OrderedMap({ [lectureId]: new Lecture({ id: lectureId, ...props }) })
@@ -13,6 +14,35 @@ const factory = (lectureId, props = {}) => (
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
 
 describe('lectures reducer', () => {
+  it('should handle FETCH_COURSE_DETAILS_SUCCESS', () => {
+    const lectureId = 1;
+    const payload = {
+      entities: {
+        lectures: {
+          1: {
+            body: null,
+            courseId: 143,
+            estimatedTime: 180,
+            id: 1,
+            kind: 'lecture',
+            order: 204,
+            status: 'not_started',
+            thumbnailUrl: 'https://hoge.com/deliveries/a.jpg?image_crop_resized=200x120',
+            title: 'Y-120 学習チェック例文',
+            type: 'video',
+            videoUrl: 'http://embed.wistia.com/deliveries/108d768d4ba077380ee8d5390ca1ee3cf8d447e3.bin',
+          },
+        },
+      },
+    };
+    expect(
+      reducer(
+        factory(lectureId),
+        createAction(types.FETCH_COURSE_DETAILS_SUCCESS)(payload),
+      ),
+    ).toEqual(factory(lectureId, { ...payload.entities.lectures[1] }));
+  });
+
   it('should handle COMPLETE_LECTURE', () => {
     const lectureId = 1;
     expect(

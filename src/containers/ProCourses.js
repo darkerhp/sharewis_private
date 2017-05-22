@@ -5,28 +5,30 @@ import ReactNative from 'react-native';
 import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
+import Promise from 'bluebird';
 
-import * as Actions from '../modules/actions/courses';
+import * as coursesActions from '../modules/actions/courses';
+import * as productsActions from '../modules/actions/products'; // eslint-disable-line
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
 import CourseMap from '../modules/models/CourseMap';
-import CourseSummary from '../components/CourseList/CourseSummary';
+import ProCourseSummary from '../components/CourseList/ProCourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
 import LectureMap from '../modules/models/LectureMap';
-import NotLoginList from '../components/CourseList/NotLoginList';
+import ProductMap from '../modules/models/ProductMap';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import redirectTo from '../utils/linking';
 import { ACT_PRO_COURSES_URL } from '../lib/constants';
-import { purchasedProCourseSelector } from '../modules/selectors/courseSelectors';
+import { notPurchasedProCourseSelector } from '../modules/selectors/courseSelectors';
 
 const {
   Alert,
+  NativeModules,
   Platform,
   RefreshControl,
   ScrollView,
@@ -69,31 +71,31 @@ const mapStateToProps = (state, props) => {
   const { entities, netInfo, ui, user } = state;
 
   return {
-    purchasedProCourses: purchasedProCourseSelector(state, props),
+    notPurchasedProCourses: notPurchasedProCourseSelector(state, props),
     lectures: entities.lectures,
+    products: entities.products,
     isLoginUser: user.loggedIn,
     ...ui,
     isOnline: netInfo.isConnected,
   };
 };
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...coursesActions, ...productsActions }, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
-class MyCourse extends Component {
+class ProCourses extends Component {
   static propTypes = {
     // states
-    purchasedProCourses: ImmutablePropTypes.orderedMap,
-    lectures: ImmutablePropTypes.orderedMap,
-    isLoginUser: PropTypes.bool.isRequired,
+    notPurchasedProCourses: PropTypes.instanceOf(CourseMap),
+    lectures: PropTypes.instanceOf(LectureMap),
+    products: PropTypes.instanceOf(ProductMap),
     isOnline: PropTypes.bool.isRequired,
-    // actions
-    setCurrentCourseId: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    purchasedProCourses: new CourseMap(),
+    notPurchasedProCourses: new CourseMap(),
     lectures: new LectureMap(),
+    products: new ProductMap(),
   };
 
   state = {
@@ -109,11 +111,12 @@ class MyCourse extends Component {
 
   @autobind
   async refreshList(force = false) {
-    const { fetchMyCourse, fetchCoursesDownloadStatus, isLoginUser } = this.props;
-    if (!isLoginUser) return;
+    const { fetchProCourse, fetchProducts, loadProducts } = this.props;
+
     try {
-      await fetchMyCourse(force);
-      await fetchCoursesDownloadStatus();
+      await fetchProCourse(force);
+      await fetchProducts();
+      await loadProducts();
     } catch (error) {
       new Client().notify(error);
       console.error(error);
@@ -122,11 +125,11 @@ class MyCourse extends Component {
   }
 
   @autobind
-  handlePressCourse(course) {
-    const { isOnline, setCurrentCourseId } = this.props;
-    if (!isOnline && !course.hasDownloadedLecture) return;
-    setCurrentCourseId(course.id);
-    RouterActions.courseDetails();
+  async handlePressCourse(identifier) {
+    const { isOnline } = this.props;
+    if (!isOnline) return; // eslint-disable-line
+
+    // TODO 購入処理を実装する
   }
 
   @autobind
@@ -138,18 +141,14 @@ class MyCourse extends Component {
   }
 
   render() {
-    const { isOnline, isLoginUser, lectures, purchasedProCourses } = this.props;
+    const { isOnline, notPurchasedProCourses, lectures, products } = this.props;
     StatusBar.setBarStyle('light-content');
 
     if (!this.state.isRefreshing && this.state.isLoading) {
       return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
     }
 
-    if (!isLoginUser) {
-      return <NotLoginList />;
-    }
-
-    if (purchasedProCourses.isEmpty()) {
+    if (notPurchasedProCourses.isEmpty()) {
       return <EmptyList />;
     }
 
@@ -167,13 +166,14 @@ class MyCourse extends Component {
         }
       >
         <View style={styles.courseList}>
-          {purchasedProCourses.valueSeq().map((course) => {
+          {notPurchasedProCourses.valueSeq().map((course) => {
             const isDisabledCourse = !isOnline && !course.hasDownloadedLecture;
             return (
-              <CourseSummary
+              <ProCourseSummary
                 key={course.id}
                 courseSummaryStyleId={styles.box}
                 course={course}
+                product={products.find(p => p.courseId === course.id)}
                 isDisabledCourse={isDisabledCourse}
                 lectures={lectures.filter(l => l.courseId === course.id)}
                 onPressCourse={this.handlePressCourse}
@@ -202,4 +202,4 @@ class MyCourse extends Component {
   }
 }
 
-export default MyCourse;
+export default ProCourses;

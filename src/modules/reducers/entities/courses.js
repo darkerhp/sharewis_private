@@ -19,13 +19,19 @@ const refreshEntities = newCourses => mergeEntities(initialState, newCourses);
 const coursesReducer = handleActions({
   FETCH_MY_COURSE_SUCCESS: (state: CourseMap, action) => {
     const courses = action.payload.entities.courses;
+    console.log('FETCH_MY_COURSE_SUCCESS', courses);
     if (!courses) return state;
-    return mergeEntities(state.getSnackCourses(), fromJS(courses));
+    return mergeEntities(state, fromJS(courses));
   },
   FETCH_SNACK_COURSE_SUCCESS: (state: CourseMap, action) => {
     const courses = action.payload.entities.courses;
     if (!courses) return state;
-    return mergeEntities(state.getProCourses(), fromJS(courses));
+    return mergeEntities(state, fromJS(courses));
+  },
+  FETCH_PRO_COURSE_SUCCESS: (state: CourseMap, action) => {
+    const courses = action.payload.entities.courses;
+    if (!courses) return state;
+    return mergeEntities(state, fromJS(courses));
   },
   UPDATE_COURSE_DOWNLOADED_STATUS: (state, action) => {
     if (_.isEmpty(state)) return state;
