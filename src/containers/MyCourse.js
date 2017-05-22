@@ -12,7 +12,7 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as Actions from '../modules/actions/courses';
+import * as Actions from '../modules/courses';
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
 import CourseMap from '../modules/models/CourseMap';

@@ -25,7 +25,6 @@ export const TOGGLE_PLAY = 'sharewis/lectures/TOGGLE_PLAY';
 export const CHANGE_VIDEO_PLAY_SPEED = 'sharewis/lectures/CHANGE_VIDEO_PLAY_SPEED';
 export const TOGGLE_FULL_SCREEN = 'sharewis/lectures/TOGGLE_FULL_SCREEN';
 export const UPDATE_VIDEO_PROGRESS = 'sharewis/lectures/UPDATE_VIDEO_PROGRESS';
-export const SET_CURRENT_LECTURE_ID = 'sharewis/lectures/SET_CURRENT_LECTURE_ID';
 
 // Reducer
 const initialState = new LectureMap();
@@ -122,7 +121,6 @@ export const updateLectureStatusFailure = createAction(UPDATE_LECTURE_STATUS_FAI
 export const updateLectureStatusStart = createAction(UPDATE_LECTURE_STATUS_START);
 export const updateLectureStatusSuccess = createAction(UPDATE_LECTURE_STATUS_SUCCESS,
   (lectureId, status) => ({ lectureId, status }));
-export const setCurrentLectureId = createAction(SET_CURRENT_LECTURE_ID);
 export const toggleFullScreen = createAction(TOGGLE_FULL_SCREEN);
 export const togglePlay = createAction(TOGGLE_PLAY);
 export const changeVideoPlaySpeed = createAction(CHANGE_VIDEO_PLAY_SPEED);

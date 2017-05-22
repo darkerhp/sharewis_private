@@ -2,9 +2,14 @@ import { createAction, handleActions } from 'redux-actions';
 
 // Actions
 const INIT_APP = 'sharewis/ui/INIT_APP';
+export const SET_CURRENT_COURSE_ID = 'sharewis/ui/SET_CURRENT_COURSE_ID';
+export const SET_CURRENT_LECTURE_ID = 'sharewis/ui/SET_CURRENT_LECTURE_ID';
+
 
 // Actions Creators
 export const initApp = createAction(INIT_APP);
+export const setCurrentCourseId = createAction(SET_CURRENT_COURSE_ID);
+export const setCurrentLectureId = createAction(SET_CURRENT_LECTURE_ID);
 
 // Reducer
 const initialState = {
@@ -75,11 +80,11 @@ const reducer = handleActions({
     ...state,
     isLectureDownloading: false,
   }),
-  SET_CURRENT_COURSE_ID: (state, action) => ({
+  [SET_CURRENT_COURSE_ID]: (state, action) => ({
     ...state,
     currentCourseId: action.payload,
   }),
-  SET_CURRENT_LECTURE_ID: (state, action) => ({
+  [SET_CURRENT_LECTURE_ID]: (state, action) => ({
     // レクチャー画面表示前に呼ばれるアクション
     ...state,
     currentLectureId: action.payload,

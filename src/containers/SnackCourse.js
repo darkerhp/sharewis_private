@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as Actions from '../modules/actions/courses';
+import * as Actions from '../modules/courses';
 import BaseStyles from '../lib/baseStyles';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 import Course from '../modules/models/Course';
@@ -39,7 +39,7 @@ const mapStateToProps = (state, props) => {
   const { entities, netInfo, ui } = state;
 
   return {
-    courses: entities.courses,
+    courses: entities.reducer,
     lectures: entities.lectures,
     snackCourses: snackCourseSelector(state, props),
     ...ui,

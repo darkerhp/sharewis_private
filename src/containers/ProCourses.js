@@ -12,7 +12,7 @@ import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 import Promise from 'bluebird';
 
-import * as coursesActions from '../modules/actions/courses';
+import * as coursesActions from '../modules/courses';
 import * as productsActions from '../modules/actions/products'; // eslint-disable-line
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';

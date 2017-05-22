@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { createSelector } from 'reselect';
 
 export const courseSelector = (state, props) => (
-  _.has(state, 'entities.courses') ? state.entities.courses : props.courses
+  _.has(state, 'entities.courses') ? state.entities.reducer : props.reducer
 );
 
 export const snackCourseSelector = createSelector(

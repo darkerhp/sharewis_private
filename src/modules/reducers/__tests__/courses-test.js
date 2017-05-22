@@ -2,7 +2,7 @@
 import { createAction } from 'redux-actions';
 import { OrderedMap } from 'immutable';
 
-import reducer from '../entities/courses';
+import reducer from '../../courses';
 import * as types from '../../ActionTypes';
 
 import Course from '../../models/Course';
