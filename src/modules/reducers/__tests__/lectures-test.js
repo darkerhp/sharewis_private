@@ -27,7 +27,7 @@ describe('lectures reducer', () => {
             kind: 'lecture',
             order: 204,
             status: 'not_started',
-            thumbnailUrl: 'https://embed-ssl.wistia.com/deliveries/ab637785f037ad351d5b7e6e1a11fec88d1e07e9.jpg?image_crop_resized=200x120',
+            thumbnailUrl: 'https://hoge.com/deliveries/a.jpg?image_crop_resized=200x120',
             title: 'Y-120 学習チェック例文',
             type: 'video',
             videoUrl: 'http://embed.wistia.com/deliveries/108d768d4ba077380ee8d5390ca1ee3cf8d447e3.bin',

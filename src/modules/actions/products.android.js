@@ -50,7 +50,7 @@ export const loadProducts = () =>
   async (dispatch, getState) => {
     try {
       return true;
-    } catch (error) {
+    } catch (error) { // eslint-disable-line
       new Bugsnag().notify(error);
       console.error(error);
       dispatch(loadProductsFailure());

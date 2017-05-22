@@ -65,36 +65,34 @@ const styles = StyleSheet.create({
 });
 
 
-const CourseSummary = ({ course, product, onPressCourse, style }) => {
-  return (
-    <OneColumnItemBox
-      style={[styles.container, style]}
-      onPress={() => onPressCourse(product.priceString)}
-    >
-      <View style={{ flex: 1 }}>
-        <Image
-          style={styles.image}
-          source={{ uri: course.imageUrl }}
-          resizeMode={Image.resizeMode.stretch}
-        />
-        <View
-          style={styles.detailsWrapper}
-        >
-          <Text style={styles.title}>
-            {course.title}
-          </Text>
-          <View style={styles.priceArea}>
-            <View style={styles.priceWrapper}>
-              <Text style={styles.priceText}>
-                {product.priceString}
-              </Text>
-            </View>
+const CourseSummary = ({ course, product, onPressCourse, style }) => (
+  <OneColumnItemBox
+    style={[styles.container, style]}
+    onPress={() => onPressCourse(product.priceString)}
+  >
+    <View style={{ flex: 1 }}>
+      <Image
+        style={styles.image}
+        source={{ uri: course.imageUrl }}
+        resizeMode={Image.resizeMode.stretch}
+      />
+      <View
+        style={styles.detailsWrapper}
+      >
+        <Text style={styles.title}>
+          {course.title}
+        </Text>
+        <View style={styles.priceArea}>
+          <View style={styles.priceWrapper}>
+            <Text style={styles.priceText}>
+              {product.priceString}
+            </Text>
           </View>
         </View>
       </View>
-    </OneColumnItemBox>
+    </View>
+  </OneColumnItemBox>
   );
-};
 
 CourseSummary.propTypes = {
   course: PropTypes.instanceOf(Course).isRequired,
