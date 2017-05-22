@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import * as types from '../../ActionTypes';
-import reducer from '../user';
-import * as actions from '../../actions/user';
+import reducer from '../../user';
+import * as actions from '../../user';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
 

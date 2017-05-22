@@ -4,7 +4,7 @@ import { reducer as form } from 'redux-form';
 import entities from './entities';
 import ui from '../ui';
 import routes from '../routes';
-import user from './user';
+import user from '../user';
 import netInfo from '../netInfo';
 import videoDownload from './videoDownload';
 
