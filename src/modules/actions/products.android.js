@@ -4,7 +4,7 @@
 import _ from 'lodash';
 import { normalize } from 'normalizr';
 import { NativeModules, Platform } from 'react-native';
-import Promise from 'bluebird';
+// import Promise from 'bluebird';
 import { createAction } from 'redux-actions';
 import { Client as Bugsnag } from 'bugsnag-react-native';
 
@@ -12,17 +12,13 @@ import * as types from '../ActionTypes';
 import * as Api from '../../utils/api';
 import * as schema from '../../lib/schema';
 
-const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
+// const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
 
 // Action Creators
 export const fetchProductsSuccess = createAction(types.FETCH_PRODUCTS_SUCCESS);
 export const fetchProductsFailure = createAction(types.FETCH_PRODUCTS_FAILURE);
 export const loadProductsSuccess = createAction(types.LOAD_PRODUCTS_SUCCESS);
 export const loadProductsFailure = createAction(types.LOAD_PRODUCTS_FAILURE);
-export const purchaseCourseSuccess = createAction(types.PURCHASE_COURSE_SUCCESS);
-export const purchaseCourseFailure = createAction(types.PURCHASE_COURSE_FAILURE);
-export const restoreCourseSuccess = createAction(types.RESTORE_COURSE_SUCCESS);
-export const restoreCourseFailure = createAction(types.RESTORE_COURSE_FAILURE);
 
 // Thunks
 const normalizeProducts = response =>
@@ -53,15 +49,6 @@ export const fetchProducts = () =>
 export const loadProducts = () =>
   async (dispatch, getState) => {
     try {
-      const { entities: { products } } = getState();
-      const productIdentifiers = _.values(products.map(p => p.identifier).toJS());
-      const loadProductsResponse = await InAppUtils.loadProductsAsync(productIdentifiers);
-      // idを紐付けてnormalizr
-      const loadedProducts = loadProductsResponse.map((lp) => {
-        const product = products.find(p => p.identifier === lp.identifier).toJS();
-        return { ...product, ...lp };
-      });
-      dispatch(loadProductsSuccess(normalizeProducts(loadedProducts)));
       return true;
     } catch (error) {
       new Bugsnag().notify(error);

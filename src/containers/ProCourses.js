@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import Promise from 'bluebird';
 
 import * as coursesActions from '../modules/actions/courses';
-import * as purchaseActions from '../modules/actions/purchase';
+import * as productsActions from '../modules/actions/products'; // eslint-disable-line
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
 import CourseMap from '../modules/models/CourseMap';
@@ -37,8 +37,6 @@ const {
   Text,
   View,
 } = ReactNative;
-
-const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
 
 const styles = StyleSheet.create({
   container: {
@@ -82,7 +80,7 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...coursesActions, ...purchaseActions }, dispatch) });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...coursesActions, ...productsActions }, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
 class ProCourses extends Component {
@@ -129,11 +127,9 @@ class ProCourses extends Component {
   @autobind
   async handlePressCourse(identifier) {
     const { isOnline } = this.props;
-    if (!isOnline) return; // TODO アラート
+    if (!isOnline) return; // eslint-disable-line
 
-    // TODO DEBUG用
-    const loadProductsResponse = await InAppUtils.loadProductsAsync(['com.sharewis.courses.180']);
-    console.log('loadProductsResponse:', loadProductsResponse);
+    // TODO 購入処理を実装する
   }
 
   @autobind

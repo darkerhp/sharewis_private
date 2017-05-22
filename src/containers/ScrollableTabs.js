@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { StatusBar } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import I18n from 'react-native-i18n';
@@ -39,7 +39,7 @@ class ScrollableTabs extends Component { // eslint-disable-line
         <MyCourse tabLabel={I18n.t('myCourse')} />
         <Top tabLabel={I18n.t('top')} />
         <SnackCourse tabLabel={I18n.t('snackCourse')} />
-        <ProCourses tabLabel={I18n.t('proCourse')} />
+        {Platform.OS === 'ios' && <ProCourses tabLabel={I18n.t('proCourse')} />}
       </ScrollableTabView>
     );
   }
