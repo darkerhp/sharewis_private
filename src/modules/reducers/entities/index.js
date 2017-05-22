@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import courses from './courses';
-import lectures from './lectures';
+import lectures from '../../lectures';
 import sections from './sections';
 import products from './products';
 

@@ -11,8 +11,7 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as lectureActions from '../modules/actions/lecture';
-import * as courseDetailsActions from '../modules/actions/courseDetails';
+import * as lecturesActions from '../modules/lectures';
 import BaseStyles from '../lib/baseStyles';
 import Lecture from '../modules/models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
@@ -53,7 +52,7 @@ const mapStateToProps = ({ entities: { courses, lectures }, netInfo, ui }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...lectureActions, ...courseDetailsActions }, dispatch),
+  ...bindActionCreators({ ...lecturesActions }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

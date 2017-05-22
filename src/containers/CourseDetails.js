@@ -13,8 +13,8 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as Actions from '../modules/actions/courseDetails';
-import * as LectureActions from '../modules/actions/lecture';
+import * as Actions from '../modules/lectures';
+import * as LectureActions from '../modules/lectures';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import * as FileUtils from '../utils/file';
