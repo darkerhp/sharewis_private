@@ -69,7 +69,7 @@ exports[`NextLectureArea renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#00abca",
+          "backgroundColor": "#00abc9",
           "flex": 1,
           "justifyContent": "center",
         }
