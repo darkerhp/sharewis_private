@@ -7,7 +7,7 @@ import Reactotron from 'reactotron-react-native';
 import createReactotronEnhancer from 'reactotron-redux';
 import { autoRehydrate } from 'redux-persist';
 
-import rootReducer from '../modules/reducers';
+import rootReducer from './rootReducer';
 import middleware from './middleware';
 
 const middleWare = applyMiddleware(...middleware);
