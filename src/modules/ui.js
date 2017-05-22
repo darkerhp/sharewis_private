@@ -1,5 +1,12 @@
-import { handleActions } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 
+// Actions
+const INIT_APP = 'sharewis/ui/INIT_APP';
+
+// Actions Creators
+export const initApp = createAction(INIT_APP);
+
+// Reducer
 const initialState = {
   currentCourseId: 0,
   currentLectureId: 0,
@@ -19,7 +26,7 @@ const speedList = [1.0, 1.2, 1.5, 2.0];
 const startFetching = state => ({ ...state, isFetching: true });
 const stopFetching = state => ({ ...state, isFetching: false });
 
-const uiReducer = handleActions({
+const reducer = handleActions({
   INIT_APP: (state, action) => ({ ...initialState }),
   FETCH_ACT_LOGIN_FAILURE: stopFetching,
   FETCH_ACT_LOGIN_SUCCESS: stopFetching,
@@ -94,5 +101,5 @@ const uiReducer = handleActions({
   },
 }, initialState);
 
-export default uiReducer;
+export default reducer;
 

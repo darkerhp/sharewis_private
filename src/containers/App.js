@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Styles from '../lib/baseStyles';
 import getScenes from '../components/Scenes';
-import { initApp } from '../modules/actions/ui';
+import { initApp } from '../modules/ui';
 
 const RouterWithRedux = connect()(Router);
 

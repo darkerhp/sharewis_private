@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 
 import entities from './entities';
-import ui from './ui';
+import ui from '../ui';
 import routes from '../routes';
 import user from './user';
 import netInfo from '../netInfo';
