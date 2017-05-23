@@ -21,14 +21,14 @@ export const restorePremiumSuccess = createAction(RESTORE_PREMIUM_SUCCESS);
 export const restorePremiumFailure = createAction(RESTORE_PREMIUM_FAILURE);
 
 // Thunks
-const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
-
 const products = [
   'com.sharewis.Premium1m',
 ];
 
 export const joinPremium = userId =>
   async (dispatch) => {
+    const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
+
     try {
       const loadProductsResponse = await InAppUtils.loadProductsAsync(products);
       console.log('loadProductsResponse:', loadProductsResponse);
@@ -50,6 +50,8 @@ export const joinPremium = userId =>
 
 export const restorePremium = () =>
   async (dispatch) => {
+    const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
+
     try {
       const response = await InAppUtils.restorePurchasesAsync();
       if (response.length === 0) {

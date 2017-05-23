@@ -1,10 +1,10 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /* @flow */
-import { handleActions } from 'redux-actions';
+import _ from 'lodash';
 import { fromJS } from 'immutable';
+import { handleActions } from 'redux-actions';
 import { REHYDRATE } from 'redux-persist/constants';
 
-import _ from 'lodash';
 
 import Lecture from './models/Lecture';
 import LectureMap from './models/LectureMap';

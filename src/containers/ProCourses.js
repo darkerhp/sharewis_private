@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import Promise from 'bluebird';
 
 import * as coursesActions from '../modules/courses';
-import * as productsActions from '../modules/actions/products'; // eslint-disable-line
+import * as productsActions from '../modules/products'; // eslint-disable-line
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
 import CourseMap from '../modules/models/CourseMap';

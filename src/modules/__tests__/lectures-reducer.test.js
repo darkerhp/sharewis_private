@@ -1,11 +1,19 @@
 /* eslint-disable no-undef */
 import { createAction } from 'redux-actions';
 import { OrderedMap } from 'immutable';
-import reducer from '../lectures';
-import * as types from '../ActionTypes';
 
 import Lecture from '../models/Lecture';
-import LectureMap from '../models/LectureMap';
+
+import reducer, {
+  FETCH_COURSE_DETAILS_SUCCESS,
+  COMPLETE_LECTURE,
+  BEGIN_DOWNLOAD_VIDEO,
+  PROGRESS_DOWNLOAD_VIDEO,
+  FINISH_DOWNLOAD_VIDEO,
+  ERROR_DOWNLOAD_VIDEO,
+  CANCEL_DOWNLOAD_VIDEO,
+  FINISH_DELETE_VIDEO,
+} from '../lectures';
 
 const factory = (lectureId, props = {}) => (
   new OrderedMap({ [lectureId]: new Lecture({ id: lectureId, ...props }) })
@@ -38,7 +46,7 @@ describe('lectures reducer', () => {
     expect(
       reducer(
         factory(lectureId),
-        createAction(types.FETCH_COURSE_DETAILS_SUCCESS)(payload),
+        createAction(FETCH_COURSE_DETAILS_SUCCESS)(payload),
       ),
     ).toEqual(factory(lectureId, { ...payload.entities.lectures[1] }));
   });
@@ -48,7 +56,7 @@ describe('lectures reducer', () => {
     expect(
       reducer(
         factory(lectureId),
-        createAction(types.COMPLETE_LECTURE)(lectureId),
+        createAction(COMPLETE_LECTURE)(lectureId),
       ),
     ).toEqual(factory(lectureId, { status: Lecture.STATUS_FINISHED }));
   });
@@ -58,7 +66,7 @@ describe('lectures reducer', () => {
     expect(
       reducer(
         factory(lectureId),
-        createAction(types.BEGIN_DOWNLOAD_VIDEO)({
+        createAction(BEGIN_DOWNLOAD_VIDEO)({
           lectureId,
           jobId: 1,
           statusCode: 200,
@@ -74,7 +82,7 @@ describe('lectures reducer', () => {
     expect(
       reducer(
         factory(lectureId, { jobId: 1 }),
-        createAction(types.PROGRESS_DOWNLOAD_VIDEO)({
+        createAction(PROGRESS_DOWNLOAD_VIDEO)({
           lectureId,
           jobId: 1,
           progress: 99,
@@ -90,7 +98,7 @@ describe('lectures reducer', () => {
     expect(
       reducer(
         factory(lectureId, { jobId: 1 }),
-        createAction(types.FINISH_DOWNLOAD_VIDEO)(lectureId),
+        createAction(FINISH_DOWNLOAD_VIDEO)(lectureId),
       ),
     ).toEqual(
       factory(lectureId, {
@@ -107,7 +115,7 @@ describe('lectures reducer', () => {
     expect(
       reducer(
         factory(lectureId),
-        createAction(types.ERROR_DOWNLOAD_VIDEO)(lectureId),
+        createAction(ERROR_DOWNLOAD_VIDEO)(lectureId),
       ),
     ).toEqual(
       factory(lectureId, {
@@ -124,7 +132,7 @@ describe('lectures reducer', () => {
     expect(
       reducer(
         factory(lectureId),
-        createAction(types.CANCEL_DOWNLOAD_VIDEO)(lectureId),
+        createAction(CANCEL_DOWNLOAD_VIDEO)(lectureId),
       ),
     ).toEqual(
       factory(lectureId, { isDownloading: false, jobId: -1 }),
@@ -136,7 +144,7 @@ describe('lectures reducer', () => {
     expect(
       reducer(
         factory(lectureId),
-        createAction(types.FINISH_DELETE_VIDEO)(lectureId),
+        createAction(FINISH_DELETE_VIDEO)(lectureId),
       ),
     ).toEqual(
       factory(lectureId, { hasVideoInDevice: false, progress: 0 }),

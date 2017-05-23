@@ -9,7 +9,8 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as Actions from '../modules/courses';
+import * as coursesActions from '../modules/courses';
+import * as uiActions from '../modules/ui';
 import BaseStyles from '../lib/baseStyles';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 import Course from '../modules/models/Course';
@@ -47,7 +48,7 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...coursesActions, ...uiActions }, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
 class SnackCourse extends Component {

@@ -1,42 +1,41 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /* @flow */
-import { createAction, handleActions } from 'redux-actions';
-import { Client as Bugsnag } from 'bugsnag-react-native';
-import { REHYDRATE } from 'redux-persist/constants';
-import { fromJS } from 'immutable';
 import _ from 'lodash';
+import { Client as Bugsnag } from 'bugsnag-react-native';
+import { createAction, handleActions } from 'redux-actions';
+import { fromJS } from 'immutable';
 import { normalize } from 'normalizr';
+import { REHYDRATE } from 'redux-persist/constants';
 
 import * as Api from '../utils/api';
-
+import * as FileUtils from '../utils/file';
+import * as schema from '../lib/schema';
 import Lecture from './models/Lecture';
 import LectureMap from './models/LectureMap';
+import { ACT_API_CACHE } from '../lib/constants';
 import { queueLectureProgress } from './netInfo';
 import { setCurrentLectureId } from './ui';
-import * as schema from '../lib/schema';
-import { ACT_API_CACHE } from '../lib/constants';
-import * as FileUtils from '../utils/file';
 
 // Actions
-const COMPLETE_LECTURE = 'sharewis/lectures/COMPLETE_LECTURE';
-const FETCH_COURSE_DETAILS_FAILURE = 'sharewis/lectures/FETCH_COURSE_DETAILS_FAILURE';
-const FETCH_COURSE_DETAILS_START = 'sharewis/lectures/FETCH_COURSE_DETAILS_START';
-const FETCH_COURSE_DETAILS_SUCCESS = 'sharewis/lectures/FETCH_COURSE_DETAILS_SUCCESS';
-const UPDATE_LECTURE_STATUS_FAILURE = 'sharewis/lectures/UPDATE_LECTURE_STATUS_FAILURE';
-const UPDATE_LECTURE_STATUS_START = 'sharewis/lectures/UPDATE_LECTURE_STATUS_START';
-const UPDATE_LECTURE_STATUS_SUCCESS = 'sharewis/lectures/UPDATE_LECTURE_STATUS_SUCCESS';
-const TOGGLE_PLAY = 'sharewis/lectures/TOGGLE_PLAY';
-const CHANGE_VIDEO_PLAY_SPEED = 'sharewis/lectures/CHANGE_VIDEO_PLAY_SPEED';
-const TOGGLE_FULL_SCREEN = 'sharewis/lectures/TOGGLE_FULL_SCREEN';
-const UPDATE_VIDEO_PROGRESS = 'sharewis/lectures/UPDATE_VIDEO_PROGRESS';
-const UPDATE_VIDEO_IN_DEVICE_STATUS = 'sharewis/lectures/UPDATE_VIDEO_IN_DEVICE_STATUS';
-const PRESS_DOWNLOAD_VIDEO = 'sharewis/lectures/PRESS_DOWNLOAD_VIDEO';
-const BEGIN_DOWNLOAD_VIDEO = 'sharewis/lectures/BEGIN_DOWNLOAD_VIDEO';
-const CANCEL_DOWNLOAD_VIDEO = 'sharewis/lectures/CANCEL_DOWNLOAD_VIDEO';
-const PROGRESS_DOWNLOAD_VIDEO = 'sharewis/lectures/PROGRESS_DOWNLOAD_VIDEO';
-const FINISH_DOWNLOAD_VIDEO = 'sharewis/lectures/FINISH_DOWNLOAD_VIDEO';
-const ERROR_DOWNLOAD_VIDEO = 'sharewis/lectures/ERROR_DOWNLOAD_VIDEO';
-const FINISH_DELETE_VIDEO = 'sharewis/lectures/FINISH_DELETE_VIDEO';
+export const BEGIN_DOWNLOAD_VIDEO = 'sharewis/lectures/BEGIN_DOWNLOAD_VIDEO';
+export const CANCEL_DOWNLOAD_VIDEO = 'sharewis/lectures/CANCEL_DOWNLOAD_VIDEO';
+export const CHANGE_VIDEO_PLAY_SPEED = 'sharewis/lectures/CHANGE_VIDEO_PLAY_SPEED';
+export const COMPLETE_LECTURE = 'sharewis/lectures/COMPLETE_LECTURE';
+export const ERROR_DOWNLOAD_VIDEO = 'sharewis/lectures/ERROR_DOWNLOAD_VIDEO';
+export const FETCH_COURSE_DETAILS_FAILURE = 'sharewis/lectures/FETCH_COURSE_DETAILS_FAILURE';
+export const FETCH_COURSE_DETAILS_START = 'sharewis/lectures/FETCH_COURSE_DETAILS_START';
+export const FETCH_COURSE_DETAILS_SUCCESS = 'sharewis/lectures/FETCH_COURSE_DETAILS_SUCCESS';
+export const FINISH_DELETE_VIDEO = 'sharewis/lectures/FINISH_DELETE_VIDEO';
+export const FINISH_DOWNLOAD_VIDEO = 'sharewis/lectures/FINISH_DOWNLOAD_VIDEO';
+export const PRESS_DOWNLOAD_VIDEO = 'sharewis/lectures/PRESS_DOWNLOAD_VIDEO';
+export const PROGRESS_DOWNLOAD_VIDEO = 'sharewis/lectures/PROGRESS_DOWNLOAD_VIDEO';
+export const TOGGLE_FULL_SCREEN = 'sharewis/lectures/TOGGLE_FULL_SCREEN';
+export const TOGGLE_PLAY = 'sharewis/lectures/TOGGLE_PLAY';
+export const UPDATE_LECTURE_STATUS_FAILURE = 'sharewis/lectures/UPDATE_LECTURE_STATUS_FAILURE';
+export const UPDATE_LECTURE_STATUS_START = 'sharewis/lectures/UPDATE_LECTURE_STATUS_START';
+export const UPDATE_LECTURE_STATUS_SUCCESS = 'sharewis/lectures/UPDATE_LECTURE_STATUS_SUCCESS';
+export const UPDATE_VIDEO_IN_DEVICE_STATUS = 'sharewis/lectures/UPDATE_VIDEO_IN_DEVICE_STATUS';
+export const UPDATE_VIDEO_PROGRESS = 'sharewis/lectures/UPDATE_VIDEO_PROGRESS';
 
 // Reducer
 const initialState = new LectureMap();

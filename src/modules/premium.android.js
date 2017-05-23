@@ -11,10 +11,10 @@ export const RESTORE_PREMIUM_SUCCESS = 'sharewis/premium/RESTORE_PREMIUM_SUCCESS
 export const RESTORE_PREMIUM_FAILURE = 'sharewis/premium/RESTORE_PREMIUM_FAILURE';
 
 // Action Creators
-export const joinPremiumSuccess = createAction(types.JOIN_PREMIUM_SUCCESS);
-export const joinPremiumFailure = createAction(types.JOIN_PREMIUM_FAILURE);
-export const restorePremiumSuccess = createAction(types.RESTORE_PREMIUM_SUCCESS);
-export const restorePremiumFailure = createAction(types.RESTORE_PREMIUM_FAILURE);
+export const joinPremiumSuccess = createAction(JOIN_PREMIUM_SUCCESS);
+export const joinPremiumFailure = createAction(JOIN_PREMIUM_FAILURE);
+export const restorePremiumSuccess = createAction(RESTORE_PREMIUM_SUCCESS);
+export const restorePremiumFailure = createAction(RESTORE_PREMIUM_FAILURE);
 
 // Thunks
 export const joinPremium = userId =>

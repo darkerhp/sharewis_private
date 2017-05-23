@@ -16,10 +16,10 @@ import Product from './models/Product';
 import ProductMap from './models/ProductMap';
 
 // Actions
-const FETCH_PRODUCTS_SUCCESS = 'sharewis/products/FETCH_PRODUCTS_SUCCESS';
-const FETCH_PRODUCTS_FAILURE = 'sharewis/products/FETCH_PRODUCTS_FAILURE';
-const LOAD_PRODUCTS_SUCCESS = 'sharewis/products/LOAD_PRODUCTS_SUCCESS';
-const LOAD_PRODUCTS_FAILURE = 'sharewis/products/LOAD_PRODUCTS_FAILURE';
+export const FETCH_PRODUCTS_SUCCESS = 'sharewis/products/FETCH_PRODUCTS_SUCCESS';
+export const FETCH_PRODUCTS_FAILURE = 'sharewis/products/FETCH_PRODUCTS_FAILURE';
+export const LOAD_PRODUCTS_SUCCESS = 'sharewis/products/LOAD_PRODUCTS_SUCCESS';
+export const LOAD_PRODUCTS_FAILURE = 'sharewis/products/LOAD_PRODUCTS_FAILURE';
 
 // Reducer
 const initialState = new ProductMap();
@@ -61,8 +61,6 @@ export const loadProductsFailure = createAction(LOAD_PRODUCTS_FAILURE);
 
 // side effects, only as applicable
 // e.g. thunks, epics, etc
-const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
-
 const normalizeProducts = response =>
   normalize(response.map(product => Api.keyToCamelcase(product)), schema.arrayOfProducts);
 
@@ -90,6 +88,7 @@ export const fetchProducts = () =>
  */
 export const loadProducts = () =>
   async (dispatch, getState) => {
+    const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
     try {
       const { entities: { products } } = getState();
       const productIdentifiers = _.values(products.map(p => p.identifier).toJS());

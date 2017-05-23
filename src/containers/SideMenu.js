@@ -17,7 +17,7 @@ import {
   ACT_PRIVACY_URL,
 } from '../lib/constants';
 import * as localeUtil from '../utils/locale';
-import * as premiumActions from '../modules/actions/premium'; // eslint-disable-line
+import * as premiumActions from '../modules/premium'; // eslint-disable-line
 
 const {
   ActivityIndicator,

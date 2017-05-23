@@ -1,30 +1,30 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /* @flow */
-import { createAction, handleActions } from 'redux-actions';
-import { Client as Bugsnag } from 'bugsnag-react-native';
-import I18n from 'react-native-i18n';
 import base64 from 'base-64';
+import I18n from 'react-native-i18n';
+import { Client as Bugsnag } from 'bugsnag-react-native';
+import { createAction, handleActions } from 'redux-actions';
 
 import * as Api from '../utils/api';
 
 import {
-  JOIN_PREMIUM_SUCCESS,
   JOIN_PREMIUM_FAILURE,
+  JOIN_PREMIUM_SUCCESS,
 } from './premium'; // eslint-disable-line
 
 // Actions
-const FETCH_ACT_LOGIN_FAILURE = 'sharewis/user/FETCH_ACT_LOGIN_FAILURE';
-const FETCH_ACT_LOGIN_SUCCESS = 'sharewis/user/FETCH_ACT_LOGIN_SUCCESS';
-const FETCH_ACT_SIGNUP_FAILURE = 'sharewis/user/FETCH_ACT_SIGNUP_FAILURE';
-const FETCH_ACT_SIGNUP_SUCCESS = 'sharewis/user/FETCH_ACT_SIGNUP_SUCCESS';
-const FETCH_FB_EMAIL_FAILURE = 'sharewis/user/FETCH_FB_EMAIL_FAILURE';
-const FETCH_FB_EMAIL_SUCCESS = 'sharewis/user/FETCH_FB_EMAIL_SUCCESS';
-const FINISH_ONBOARDING = 'sharewis/user/FINISH_ONBOARDING';
-const START_ACT_EMAIL_LOGIN = 'sharewis/user/START_ACT_EMAIL_LOGIN';
-const START_ACT_EMAIL_SIGNUP = 'sharewis/user/START_ACT_EMAIL_SIGNUP';
-const START_ACT_FACEBOOK_LOGIN = 'sharewis/user/START_ACT_FACEBOOK_LOGIN';
-const START_ACT_FACEBOOK_SIGNUP = 'sharewis/user/START_ACT_FACEBOOK_SIGNUP';
-const START_FB_EMAIL_REQUEST = 'sharewis/user/START_FB_EMAIL_REQUEST';
+export const FETCH_ACT_LOGIN_FAILURE = 'sharewis/user/FETCH_ACT_LOGIN_FAILURE';
+export const FETCH_ACT_LOGIN_SUCCESS = 'sharewis/user/FETCH_ACT_LOGIN_SUCCESS';
+export const FETCH_ACT_SIGNUP_FAILURE = 'sharewis/user/FETCH_ACT_SIGNUP_FAILURE';
+export const FETCH_ACT_SIGNUP_SUCCESS = 'sharewis/user/FETCH_ACT_SIGNUP_SUCCESS';
+export const FETCH_FB_EMAIL_FAILURE = 'sharewis/user/FETCH_FB_EMAIL_FAILURE';
+export const FETCH_FB_EMAIL_SUCCESS = 'sharewis/user/FETCH_FB_EMAIL_SUCCESS';
+export const FINISH_ONBOARDING = 'sharewis/user/FINISH_ONBOARDING';
+export const START_ACT_EMAIL_LOGIN = 'sharewis/user/START_ACT_EMAIL_LOGIN';
+export const START_ACT_EMAIL_SIGNUP = 'sharewis/user/START_ACT_EMAIL_SIGNUP';
+export const START_ACT_FACEBOOK_LOGIN = 'sharewis/user/START_ACT_FACEBOOK_LOGIN';
+export const START_ACT_FACEBOOK_SIGNUP = 'sharewis/user/START_ACT_FACEBOOK_SIGNUP';
+export const START_FB_EMAIL_REQUEST = 'sharewis/user/START_FB_EMAIL_REQUEST';
 
 // Reducer
 const initialState = {

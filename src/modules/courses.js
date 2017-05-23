@@ -1,16 +1,15 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /* @flow */
 import _ from 'lodash';
-import { createAction, handleActions } from 'redux-actions';
 import { Client as Bugsnag } from 'bugsnag-react-native';
-import { normalize } from 'normalizr';
+import { createAction, handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
+import { normalize } from 'normalizr';
 import { REHYDRATE } from 'redux-persist/constants';
 
-import * as schema from '../lib/schema';
-import * as FileUtils from '../utils/file';
 import * as Api from '../utils/api';
-
+import * as FileUtils from '../utils/file';
+import * as schema from '../lib/schema';
 import Course from './models/Course';
 import CourseMap from './models/CourseMap';
 
@@ -22,17 +21,16 @@ import {
 } from './selectors/courseSelectors';
 
 // Actions
-const FETCH_MY_COURSE_FAILURE = 'sharewis/courses/FETCH_MY_COURSE_FAILURE';
-const FETCH_MY_COURSE_START = 'sharewis/courses/FETCH_MY_COURSE_START';
-const FETCH_MY_COURSE_SUCCESS = 'sharewis/courses/FETCH_MY_COURSE_SUCCESS';
-const FETCH_SNACK_COURSE_FAILURE = 'sharewis/courses/FETCH_SNACK_COURSE_FAILURE';
-const FETCH_SNACK_COURSE_START = 'sharewis/courses/FETCH_SNACK_COURSE_START';
-const FETCH_SNACK_COURSE_SUCCESS = 'sharewis/courses/FETCH_SNACK_COURSE_SUCCESS';
-const FETCH_PRO_COURSE_FAILURE = 'sharewis/courses/FETCH_PRO_COURSE_FAILURE';
-const FETCH_PRO_COURSE_START = 'sharewis/courses/FETCH_PRO_COURSE_START';
-const FETCH_PRO_COURSE_SUCCESS = 'sharewis/courses/FETCH_PRO_COURSE_SUCCESS';
-const UPDATE_COURSE_DOWNLOADED_STATUS = 'sharewis/courses/UPDATE_COURSE_DOWNLOADED_STATUS';
-const LOAD_COURSE = 'sharewis/courses/LOAD_COURSE';
+export const FETCH_MY_COURSE_FAILURE = 'sharewis/courses/FETCH_MY_COURSE_FAILURE';
+export const FETCH_MY_COURSE_START = 'sharewis/courses/FETCH_MY_COURSE_START';
+export const FETCH_MY_COURSE_SUCCESS = 'sharewis/courses/FETCH_MY_COURSE_SUCCESS';
+export const FETCH_PRO_COURSE_FAILURE = 'sharewis/courses/FETCH_PRO_COURSE_FAILURE';
+export const FETCH_PRO_COURSE_START = 'sharewis/courses/FETCH_PRO_COURSE_START';
+export const FETCH_PRO_COURSE_SUCCESS = 'sharewis/courses/FETCH_PRO_COURSE_SUCCESS';
+export const FETCH_SNACK_COURSE_FAILURE = 'sharewis/courses/FETCH_SNACK_COURSE_FAILURE';
+export const FETCH_SNACK_COURSE_START = 'sharewis/courses/FETCH_SNACK_COURSE_START';
+export const FETCH_SNACK_COURSE_SUCCESS = 'sharewis/courses/FETCH_SNACK_COURSE_SUCCESS';
+export const UPDATE_COURSE_DOWNLOADED_STATUS = 'sharewis/courses/UPDATE_COURSE_DOWNLOADED_STATUS';
 
 // Reducer
 const initialState = new CourseMap();
@@ -44,17 +42,17 @@ const refreshEntities = newCourses => mergeEntities(initialState, newCourses);
 
 const reducer = handleActions({
   [FETCH_MY_COURSE_SUCCESS]: (state: CourseMap, action) => {
-    const courses = action.payload.entities.reducer;
+    const courses = action.payload.entities.courses;
     if (!courses) return state;
     return mergeEntities(state, fromJS(courses));
   },
   [FETCH_SNACK_COURSE_SUCCESS]: (state: CourseMap, action) => {
-    const courses = action.payload.entities.reducer;
+    const courses = action.payload.entities.courses;
     if (!courses) return state;
     return mergeEntities(state, fromJS(courses));
   },
   [FETCH_PRO_COURSE_SUCCESS]: (state: CourseMap, action) => {
-    const courses = action.payload.entities.reducer;
+    const courses = action.payload.entities.courses;
     if (!courses) return state;
     return mergeEntities(state, fromJS(courses));
   },
@@ -67,7 +65,7 @@ const reducer = handleActions({
   // Immutable.jsを使用する場合、変換が必要
   [REHYDRATE]: (state, action) => {
     if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities')) return state;
-    const courses = action.payload.entities.reducer;
+    const courses = action.payload.entities.courses;
     if (_.isEmpty(courses)) return initialState;
     return refreshEntities(fromJS(courses));
   },
