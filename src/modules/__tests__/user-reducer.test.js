@@ -1,7 +1,11 @@
 /* eslint-disable no-undef */
-import * as types from '../../ActionTypes';
-import reducer from '../user';
-import * as actions from '../../actions/user';
+import userReducer, {
+  fetchFBEmailSuccess,
+  fetchFBEmailFailure,
+  startActFacebookLogin,
+  fetchActLoginFailure,
+  fetchActLoginSuccess,
+} from '../user';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
 
@@ -19,14 +23,14 @@ describe('User reducer', () => {
     });
 
     it('should handle successful login', () => {
-      expect(reducer(loggedOut, actions.fetchFBEmailSuccess([
+      expect(userReducer(loggedOut, fetchFBEmailSuccess([
         'a@example.com',
         '12345',
       ]))).toEqual(loggedIn);
     });
 
     it('should handle failed login', () => {
-      expect(reducer(loggedOut, actions.fetchFBEmailFailure())).toEqual(loggedOut);
+      expect(userReducer(loggedOut, fetchFBEmailFailure())).toEqual(loggedOut);
     });
   });
 
@@ -48,18 +52,18 @@ describe('User reducer', () => {
     });
 
     it('should handle start login', () => {
-      expect(reducer(loggedOut, actions.startActFacebookLogin([
+      expect(userReducer(loggedOut, startActFacebookLogin([
         'user@example.com',
         '1234567890',
       ]))).toEqual(fetching);
     });
 
     it('should handle failure login', () => {
-      expect(reducer(loggedOut, actions.fetchActLoginFailure())).toEqual(loggedOut);
+      expect(userReducer(loggedOut, fetchActLoginFailure())).toEqual(loggedOut);
     });
 
     it('should handle success login', () => {
-      expect(reducer(fetching, actions.fetchActLoginSuccess({
+      expect(userReducer(fetching, fetchActLoginSuccess({
         userName: 'username',
         nickName: 'nickname',
       }))).toEqual(loggedIn);

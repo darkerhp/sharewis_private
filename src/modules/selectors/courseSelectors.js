@@ -1,9 +1,12 @@
 import _ from 'lodash';
 import { createSelector } from 'reselect';
 
-export const courseSelector = (state, props) => (
-  _.has(state, 'entities.courses') ? state.entities.courses : props.courses
-);
+import CourseMap from '../models/CourseMap';
+
+export const courseSelector = (state, props) => {
+  const courses = _.has(state, 'entities.courses') ? state.entities.courses : props.courses;
+  return courses || new CourseMap();
+};
 
 export const snackCourseSelector = createSelector(
   courseSelector,

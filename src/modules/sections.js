@@ -1,19 +1,23 @@
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /* @flow */
-import { handleActions } from 'redux-actions';
+import _ from 'lodash';
 import { fromJS } from 'immutable';
+import { handleActions } from 'redux-actions';
 import { REHYDRATE } from 'redux-persist/constants';
 
-import _ from 'lodash';
 
-import Lecture from '../../models/Lecture';
-import LectureMap from '../../models/LectureMap';
+import Lecture from './models/Lecture';
+import LectureMap from './models/LectureMap';
 
+// Actions
+
+// Reducer
 const initialState = new LectureMap();
 
 const mergeEntities = (state, newSections) =>
   state.merge(newSections.map(section => new Lecture(section)));
 
-const sectionsReducer = handleActions({
+const reducer = handleActions({
   FETCH_COURSE_DETAILS_SUCCESS: (state, action) => {
     const sections = action.payload.entities.sections;
     if (!sections) return state;
@@ -29,4 +33,9 @@ const sectionsReducer = handleActions({
   },
 }, initialState);
 
-export default sectionsReducer;
+export default reducer;
+
+// Action Creators
+
+// side effects, only as applicable
+// e.g. thunks, epics, etc

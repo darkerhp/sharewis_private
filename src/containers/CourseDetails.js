@@ -13,8 +13,8 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as Actions from '../modules/actions/courseDetails';
-import * as LectureActions from '../modules/actions/lecture';
+import * as lectureActions from '../modules/lectures';
+import * as uiActions from '../modules/ui';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
 import * as FileUtils from '../utils/file';
@@ -59,7 +59,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions, ...LectureActions }, dispatch),
+  ...bindActionCreators({ ...lectureActions, ...uiActions }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

@@ -10,7 +10,8 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as Actions from '../modules/actions/lecture';
+import * as lectureActions from '../modules/lectures';
+import * as uiActions from '../modules/ui';
 import BaseStyles from '../lib/baseStyles';
 import Lecture from '../modules/models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
@@ -54,7 +55,7 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(Actions, dispatch) });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...lectureActions, ...uiActions }, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
 class LectureContainer extends Component {

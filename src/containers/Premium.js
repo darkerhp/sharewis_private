@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
-import * as premiumActions from '../modules/actions/premium'; // eslint-disable-line
+import * as premiumActions from '../modules/premium'; // eslint-disable-line
 import Premium from '../components/SideMenu/Premium';
 
 const { Alert } = ReactNative;

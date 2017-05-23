@@ -12,8 +12,9 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as coursesActions from '../modules/actions/courses';
-import * as userActions from '../modules/actions/user';
+import * as coursesActions from '../modules/courses';
+import * as userActions from '../modules/user';
+import * as uiActions from '../modules/ui';
 import BaseStyles from '../lib/baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
@@ -127,7 +128,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...coursesActions, ...userActions }, dispatch),
+  ...bindActionCreators({ ...coursesActions, ...userActions, ...uiActions }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

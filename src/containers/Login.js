@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 
-import * as Actions from '../modules/actions/user';
+import * as Actions from '../modules/user';
 import Login from '../components/Login';
 
 const mapStateToProps = (state) => {

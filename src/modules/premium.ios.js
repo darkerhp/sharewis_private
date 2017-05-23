@@ -6,24 +6,29 @@ import Promise from 'bluebird';
 import { createAction } from 'redux-actions';
 import { Client as Bugsnag } from 'bugsnag-react-native';
 
-import * as types from '../ActionTypes';
-import * as Api from '../../utils/api';
+import * as Api from '../utils/api';
 
-const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
+// Actions
+export const JOIN_PREMIUM_SUCCESS = 'sharewis/premium/JOIN_PREMIUM_SUCCESS';
+export const JOIN_PREMIUM_FAILURE = 'sharewis/premium/JOIN_PREMIUM_FAILURE';
+export const RESTORE_PREMIUM_SUCCESS = 'sharewis/premium/RESTORE_PREMIUM_SUCCESS';
+export const RESTORE_PREMIUM_FAILURE = 'sharewis/premium/RESTORE_PREMIUM_FAILURE';
 
+// Action Creators
+export const joinPremiumSuccess = createAction(JOIN_PREMIUM_SUCCESS);
+export const joinPremiumFailure = createAction(JOIN_PREMIUM_FAILURE);
+export const restorePremiumSuccess = createAction(RESTORE_PREMIUM_SUCCESS);
+export const restorePremiumFailure = createAction(RESTORE_PREMIUM_FAILURE);
+
+// Thunks
 const products = [
   'com.sharewis.Premium1m',
 ];
 
-// Action Creators
-export const joinPremiumSuccess = createAction(types.JOIN_PREMIUM_SUCCESS);
-export const joinPremiumFailure = createAction(types.JOIN_PREMIUM_FAILURE);
-export const restorePremiumSuccess = createAction(types.RESTORE_PREMIUM_SUCCESS);
-export const restorePremiumFailure = createAction(types.RESTORE_PREMIUM_FAILURE);
-
-// Thunks
 export const joinPremium = userId =>
   async (dispatch) => {
+    const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
+
     try {
       const loadProductsResponse = await InAppUtils.loadProductsAsync(products);
       console.log('loadProductsResponse:', loadProductsResponse);
@@ -45,6 +50,8 @@ export const joinPremium = userId =>
 
 export const restorePremium = () =>
   async (dispatch) => {
+    const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
+
     try {
       const response = await InAppUtils.restorePurchasesAsync();
       if (response.length === 0) {

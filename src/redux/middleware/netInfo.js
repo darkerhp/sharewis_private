@@ -1,7 +1,7 @@
 import { NetInfo } from 'react-native';
 import _ from 'lodash';
 
-import { fetchNetInfo, syncLectureProgress } from '../../modules/actions/netInfo';
+import { fetchNetInfo, syncLectureProgress } from '../../modules/netInfo';
 
 const createOneShotMiddleware = (middleware) => {
   let hasBeenTriggered = false;
