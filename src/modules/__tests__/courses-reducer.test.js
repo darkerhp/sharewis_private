@@ -7,6 +7,8 @@ import * as types from '../ActionTypes';
 
 import Course from '../models/Course';
 
+jest.mock('bugsnag-react-native', () => 'Bugsnag');
+
 const factory = (courseId, props = {}) => (
   new OrderedMap({ [courseId]: new Course({ id: courseId, ...props }) })
 );

@@ -12,12 +12,18 @@ import * as types from './ActionTypes';
 import * as Api from '../utils/api';
 import * as schema from '../lib/schema';
 
-// const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);
+
+// Actions
+export const PURCHASE_COURSE_SUCCESS = 'sharewis/purchase/PURCHASE_COURSE_SUCCESS';
+export const PURCHASE_COURSE_FAILURE = 'sharewis/purchase/PURCHASE_COURSE_FAILURE';
+export const RESTORE_COURSE_SUCCESS = 'sharewis/purchase/RESTORE_COURSE_SUCCESS';
+export const RESTORE_COURSE_FAILURE = 'sharewis/purchase/RESTORE_COURSE_FAILURE';
 
 // Action Creators
-export const purchaseCourseSuccess = createAction(types.PURCHASE_COURSE_SUCCESS);
-export const purchaseCourseFailure = createAction(types.PURCHASE_COURSE_FAILURE);
-export const restoreCourseSuccess = createAction(types.RESTORE_COURSE_SUCCESS);
-export const restoreCourseFailure = createAction(types.RESTORE_COURSE_FAILURE);
+export const purchaseCourseSuccess = createAction(PURCHASE_COURSE_SUCCESS);
+export const purchaseCourseFailure = createAction(PURCHASE_COURSE_FAILURE);
+export const restoreCourseSuccess = createAction(RESTORE_COURSE_SUCCESS);
+export const restoreCourseFailure = createAction(RESTORE_COURSE_FAILURE);
 
 // Thunks
+// const InAppUtils = Promise.promisifyAll(NativeModules.InAppUtils);

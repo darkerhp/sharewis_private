@@ -32,51 +32,51 @@ const startFetching = state => ({ ...state, isFetching: true });
 const stopFetching = state => ({ ...state, isFetching: false });
 
 const reducer = handleActions({
-  INIT_APP: (state, action) => ({ ...initialState }),
-  FETCH_ACT_LOGIN_FAILURE: stopFetching,
-  FETCH_ACT_LOGIN_SUCCESS: stopFetching,
-  FETCH_ACT_SIGNUP_FAILURE: stopFetching,
-  FETCH_ACT_SIGNUP_SUCCESS: stopFetching,
-  FETCH_FB_EMAIL_FAILURE: stopFetching,
-  FETCH_FB_EMAIL_SUCCESS: startFetching,
-  START_ACT_EMAIL_LOGIN: startFetching,
-  START_ACT_EMAIL_SIGNUP: startFetching,
-  START_ACT_FACEBOOK_LOGIN: startFetching,
-  FETCH_MY_COURSE_START: startFetching,
-  FETCH_MY_COURSE_FAILURE: (state, action) => ({
+  [INIT_APP]: (state, action) => ({ ...initialState }),
+  [FETCH_ACT_LOGIN_FAILURE]: stopFetching,
+  [FETCH_ACT_LOGIN_SUCCESS]: stopFetching,
+  [FETCH_ACT_SIGNUP_FAILURE]: stopFetching,
+  [FETCH_ACT_SIGNUP_SUCCESS]: stopFetching,
+  [FETCH_FB_EMAIL_FAILURE]: stopFetching,
+  [FETCH_FB_EMAIL_SUCCESS]: startFetching,
+  [START_ACT_EMAIL_LOGIN]: startFetching,
+  [START_ACT_EMAIL_SIGNUP]: startFetching,
+  [START_ACT_FACEBOOK_LOGIN]: startFetching,
+  [FETCH_MY_COURSE_START]: startFetching,
+  [FETCH_MY_COURSE_FAILURE]: (state, action) => ({
     ...state,
     error: action.payload,
     isFetching: false,
   }),
-  FETCH_MY_COURSE_SUCCESS: (state, action) => ({ // TODO isFetchingをLocal Stateに変更して削除予定
+  [FETCH_MY_COURSE_SUCCESS]: (state, action) => ({ // TODO isFetchingをLocal Stateに変更して削除予定
     ...state,
     isFetching: false,
     fetchedMyCourseAt: Date.now(),
   }),
-  FETCH_COURSE_DETAILS_START: startFetching,
-  FETCH_COURSE_DETAILS_FAILURE: (state, action) => ({
+  [FETCH_COURSE_DETAILS_START]: startFetching,
+  [FETCH_COURSE_DETAILS_FAILURE]: (state, action) => ({
     ...state,
     error: action.payload,
     isFetching: false,
   }),
-  FETCH_COURSE_DETAILS_SUCCESS: (state, action) => ({
+  [FETCH_COURSE_DETAILS_SUCCESS]: (state, action) => ({
     ...state,
     isFetching: false,
     fetchedCourseDetailsAt: Date.now(),
   }),
-  PRESS_DOWNLOAD_VIDEO: (state, action) => ({
+  [PRESS_DOWNLOAD_VIDEO]: (state, action) => ({
     ...state,
     isLectureDownloading: true,
   }),
-  FINISH_DOWNLOAD_VIDEO: (state, action) => ({
+  [FINISH_DOWNLOAD_VIDEO]: (state, action) => ({
     ...state,
     isLectureDownloading: false,
   }),
-  ERROR_DOWNLOAD_VIDEO: (state, action) => ({
+  [ERROR_DOWNLOAD_VIDEO]: (state, action) => ({
     ...state,
     isLectureDownloading: false,
   }),
-  CANCEL_DOWNLOAD_VIDEO: (state, action) => ({
+  [CANCEL_DOWNLOAD_VIDEO]: (state, action) => ({
     ...state,
     isLectureDownloading: false,
   }),
@@ -92,11 +92,11 @@ const reducer = handleActions({
     isPaused: true,
     isStarted: false,
   }),
-  TOGGLE_FULL_SCREEN: (state, action) => ({
+  [TOGGLE_FULL_SCREEN]: (state, action) => ({
     ...state,
     isFullScreen: !state.isFullScreen,
   }),
-  CHANGE_VIDEO_PLAY_SPEED: (state, action) => {
+  [CHANGE_VIDEO_PLAY_SPEED]: (state, action) => {
     const currentIndex = speedList.indexOf(state.speed);
     const index = (currentIndex === speedList.length - 1) ? 0 : currentIndex + 1;
     return {

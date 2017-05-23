@@ -7,6 +7,11 @@ import base64 from 'base-64';
 
 import * as Api from '../utils/api';
 
+import {
+  JOIN_PREMIUM_SUCCESS,
+  JOIN_PREMIUM_FAILURE,
+} from './premium'; // eslint-disable-line
+
 // Actions
 const FETCH_ACT_LOGIN_FAILURE = 'sharewis/user/FETCH_ACT_LOGIN_FAILURE';
 const FETCH_ACT_LOGIN_SUCCESS = 'sharewis/user/FETCH_ACT_LOGIN_SUCCESS';

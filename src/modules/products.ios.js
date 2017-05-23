@@ -30,12 +30,12 @@ const mergeEntities = (state, newProducts) =>
 const refreshEntities = newProducts => mergeEntities(initialState, newProducts);
 
 const reducer = handleActions({
-  FETCH_PRODUCTS_SUCCESS: (state: ProductMap, action) => {
+  [FETCH_PRODUCTS_SUCCESS]: (state: ProductMap, action) => {
     const products = action.payload.entities.products;
     if (!products) return state;
     return refreshEntities(fromJS(products));
   },
-  LOAD_PRODUCTS_SUCCESS: (state: ProductMap, action) => {
+  [LOAD_PRODUCTS_SUCCESS]: (state: ProductMap, action) => {
     const loadedProducts = action.payload.entities.products;
     if (!loadedProducts) return state;
     return mergeEntities(state, fromJS(loadedProducts));

@@ -7,7 +7,6 @@ import { normalize } from 'normalizr';
 import { fromJS } from 'immutable';
 import { REHYDRATE } from 'redux-persist/constants';
 
-import * as types from './ActionTypes';
 import * as schema from '../lib/schema';
 import * as FileUtils from '../utils/file';
 import * as Api from '../utils/api';

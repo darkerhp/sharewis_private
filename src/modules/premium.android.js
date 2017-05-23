@@ -4,7 +4,11 @@
  */
 import { createAction } from 'redux-actions';
 
-import * as types from './ActionTypes';
+// Actions
+export const JOIN_PREMIUM_SUCCESS = 'sharewis/premium/JOIN_PREMIUM_SUCCESS';
+export const JOIN_PREMIUM_FAILURE = 'sharewis/premium/JOIN_PREMIUM_FAILURE';
+export const RESTORE_PREMIUM_SUCCESS = 'sharewis/premium/RESTORE_PREMIUM_SUCCESS';
+export const RESTORE_PREMIUM_FAILURE = 'sharewis/premium/RESTORE_PREMIUM_FAILURE';
 
 // Action Creators
 export const joinPremiumSuccess = createAction(types.JOIN_PREMIUM_SUCCESS);
