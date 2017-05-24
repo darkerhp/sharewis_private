@@ -142,6 +142,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-device-info')
     compile project(':react-native-keep-awake')
     compile project(':bugsnag-react-native')
     compile project(':react-native-mixpanel')
