@@ -26,9 +26,9 @@ export const START_ACT_EMAIL_SIGNUP = 'sharewis/user/START_ACT_EMAIL_SIGNUP';
 export const START_ACT_FACEBOOK_LOGIN = 'sharewis/user/START_ACT_FACEBOOK_LOGIN';
 export const START_ACT_FACEBOOK_SIGNUP = 'sharewis/user/START_ACT_FACEBOOK_SIGNUP';
 export const START_FB_EMAIL_REQUEST = 'sharewis/user/START_FB_EMAIL_REQUEST';
-export const CREATE_PURCHASED_USER_START = 'sharewis/user/CREATE_PURCHASED_USER_START';
-export const CREATE_PURCHASED_USER_SUCCESS = 'sharewis/user/CREATE_PURCHASED_USER_SUCCESS';
-export const CREATE_PURCHASED_USER_FAILURE = 'sharewis/user/CREATE_PURCHASED_USER_FAILURE';
+export const CREATE_PURCHASED_GUEST_START = 'sharewis/user/CREATE_PURCHASED_GUEST_START';
+export const CREATE_PURCHASED_GUEST_SUCCESS = 'sharewis/user/CREATE_PURCHASED_GUEST_SUCCESS';
+export const CREATE_PURCHASED_GUEST_FAILURE = 'sharewis/user/CREATE_PURCHASED_GUEST_FAILURE';
 
 // Reducer
 const initialState = {
@@ -40,6 +40,7 @@ const initialState = {
   isFinishOnboarding: false,
   isPremium: false,
   mixpanelId: null,
+  isTemporary: null,
 };
 
 const notLogin = (state, action) => ({
@@ -64,21 +65,12 @@ export const reducer = handleActions({
   [START_ACT_FACEBOOK_LOGIN]: notLogin,
   [FETCH_ACT_LOGIN_SUCCESS]: login,
   [FETCH_ACT_SIGNUP_SUCCESS]: login,
-  [FINISH_ONBOARDING]: (state, action) => ({
-    ...state,
-    isFinishOnboarding: true,
-  }),
-  [JOIN_PREMIUM_SUCCESS]: (state, action) => ({
-    ...state,
-    isPremium: true,
-  }),
-  [JOIN_PREMIUM_FAILURE]: (state, action) => ({
-    ...state,
-    isPremium: false,
-  }),
-  [CREATE_PURCHASED_USER_START]: notLogin,
-  [CREATE_PURCHASED_USER_SUCCESS]: notLogin,
-  [CREATE_PURCHASED_USER_FAILURE]: notLogin,
+  [FINISH_ONBOARDING]: (state, action) => ({ ...state, isFinishOnboarding: true }),
+  [JOIN_PREMIUM_SUCCESS]: (state, action) => ({ ...state, isPremium: true }),
+  [JOIN_PREMIUM_FAILURE]: (state, action) => ({ ...state, isPremium: false }),
+  [CREATE_PURCHASED_GUEST_START]: notLogin,
+  [CREATE_PURCHASED_GUEST_SUCCESS]: (state, action) => ({ ...state, isTemporary: true }),
+  [CREATE_PURCHASED_GUEST_FAILURE]: notLogin,
 }, initialState);
 
 export default reducer;
@@ -102,9 +94,9 @@ export const fetchActSignupFailure = createAction(FETCH_ACT_SIGNUP_FAILURE);
 export const fetchActSignupSuccess = createAction(FETCH_ACT_SIGNUP_SUCCESS,
   result => ({ ...result }));
 export const finishOnboarding = createAction(FINISH_ONBOARDING);
-export const createPurchasedUserStart = createAction(CREATE_PURCHASED_USER_START);
-export const createPurchasedUserSuccess = createAction(CREATE_PURCHASED_USER_SUCCESS);
-export const createPurchasedUserFailure = createAction(CREATE_PURCHASED_USER_FAILURE);
+export const createPurchasedGuestStart = createAction(CREATE_PURCHASED_GUEST_START);
+export const createPurchasedGuestSuccess = createAction(CREATE_PURCHASED_GUEST_SUCCESS);
+export const createPurchasedGuestFailure = createAction(CREATE_PURCHASED_GUEST_FAILURE);
 
 
 // side effects, only as applicable
@@ -185,22 +177,22 @@ export const signupUserBy = (loginMethod, credentials) =>
  * @param loginMethod
  * @param credentials
  */
-export const createPurchasedUser = (loginMethod, credentials) =>
+export const createPurchasedGuest = (loginMethod, credentials) =>
   async (dispatch) => {
-    dispatch(createPurchasedUserStart);
+    dispatch(createPurchasedGuestStart);
     try {
       const deviceId = DeviceInfo.getDeviceId();
       const userData = await Api.post('users/purchased_guest', {
-        deviceId,
+        device_id: deviceId,
         language: I18n.locale ? I18n.locale.split('-')[0] : null,
         currency: null,
       });
-      dispatch(createPurchasedUserSuccess(userData));
+      dispatch(createPurchasedGuestSuccess(userData));
       return userData;
     } catch (error) {
       new Bugsnag().notify(error);
       console.error(error);
-      dispatch(createPurchasedUserFailure);
+      dispatch(createPurchasedGuestFailure);
       throw error;
     }
   };
