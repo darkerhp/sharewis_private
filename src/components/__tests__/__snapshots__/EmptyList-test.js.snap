@@ -29,9 +29,7 @@ exports[`EmptyList renders correctly 1`] = `
           "textAlign": "center",
         }
       }
-    >
-      [missing "en.noCourses" translation]
-    </Text>
+    />
   </View>
 </View>
 `;

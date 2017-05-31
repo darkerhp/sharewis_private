@@ -1,6 +1,7 @@
 /**
  * @flow
  */
+// Courseの下位モジュール的なやつ OS毎に処理が異なるため分離
 import _ from 'lodash';
 import { normalize } from 'normalizr';
 import { NativeModules, Platform } from 'react-native';

@@ -14,6 +14,7 @@ import Promise from 'bluebird';
 
 import * as coursesActions from '../modules/courses';
 import * as productsActions from '../modules/products'; // eslint-disable-line
+import * as purchaseActions from '../modules/purchase'; // eslint-disable-line
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
 import CourseMap from '../modules/models/CourseMap';
@@ -28,7 +29,6 @@ import { notPurchasedProCourseSelector } from '../modules/selectors/courseSelect
 
 const {
   Alert,
-  NativeModules,
   Platform,
   RefreshControl,
   ScrollView,
@@ -68,19 +68,24 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, props) => {
-  const { entities, netInfo, ui, user } = state;
+  const { entities, netInfo, ui } = state;
 
   return {
     notPurchasedProCourses: notPurchasedProCourseSelector(state, props),
     lectures: entities.lectures,
     products: entities.products,
-    isLoginUser: user.loggedIn,
     ...ui,
     isOnline: netInfo.isConnected,
   };
 };
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...coursesActions, ...productsActions }, dispatch) });
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({
+    ...coursesActions,
+    ...productsActions,
+    ...purchaseActions,
+  }, dispatch),
+});
 
 @connect(mapStateToProps, mapDispatchToProps)
 class ProCourses extends Component {
@@ -125,11 +130,22 @@ class ProCourses extends Component {
   }
 
   @autobind
-  async handlePressCourse(identifier) {
-    const { isOnline } = this.props;
-    if (!isOnline) return; // eslint-disable-line
-
-    // TODO 購入処理を実装する
+  async handlePressCourse(courseId) {
+    const { createPurchaseStatus, isOnline, purchaseCourse } = this.props;
+    if (!isOnline) {
+      alertOfflineError();
+      return;
+    }
+    try {
+      this.setState({ isLoading: true });
+      const response = await purchaseCourse(courseId);
+      await createPurchaseStatus(courseId, response);
+    } catch (error) {
+      // TODO 購入に失敗した旨のアラートを表示する
+      Alert.alert(I18n.t('errorTitle'), '購入処理中にエラーが発生しました。もう一度コースをタップして再購入してください。'); // TODO 翻訳
+    } finally {
+      this.setState({ isLoading: false });
+    }
   }
 
   @autobind
@@ -149,7 +165,8 @@ class ProCourses extends Component {
     }
 
     if (notPurchasedProCourses.isEmpty()) {
-      return <EmptyList />;
+      // TODO メッセージ ＆ 翻訳
+      return <EmptyList contentText={'購入可能なコースはありません'} />;
     }
 
     return (
@@ -176,25 +193,25 @@ class ProCourses extends Component {
                 product={products.find(p => p.courseId === course.id)}
                 isDisabledCourse={isDisabledCourse}
                 lectures={lectures.filter(l => l.courseId === course.id)}
-                onPressCourse={this.handlePressCourse}
+                onPressCourse={() => this.handlePressCourse(course.id)}
               />
             );
           })}
           {Platform.OS !== 'ios' &&
-            <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
-              <View style={styles.hyperlinkWrapper}>
-                <Hyperlink
-                  style={styles.searchMore}
-                  linkStyle={{ color: BaseStyles.hyperlink }}
-                  linkText={I18n.t('searchMore')}
-                  onPress={isOnline ? redirectTo : alertOfflineError}
-                >
-                  <Text style={styles.contentText}>
-                    {ACT_PRO_COURSES_URL}
-                  </Text>
-                </Hyperlink>
-              </View>
-            </OneColumnItemBox>
+          <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
+            <View style={styles.hyperlinkWrapper}>
+              <Hyperlink
+                style={styles.searchMore}
+                linkStyle={{ color: BaseStyles.hyperlink }}
+                linkText={I18n.t('searchMore')}
+                onPress={isOnline ? redirectTo : alertOfflineError}
+              >
+                <Text style={styles.contentText}>
+                  {ACT_PRO_COURSES_URL}
+                </Text>
+              </Hyperlink>
+            </View>
+          </OneColumnItemBox>
           }
         </View>
       </ScrollView>
