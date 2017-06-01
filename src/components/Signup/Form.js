@@ -9,6 +9,7 @@ import {
   SubmissionError,
 } from 'redux-form';
 import validator from 'validator';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
 import alertOfflineError from '../../utils/alert';
 import BaseStyles from '../../lib/baseStyles';
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
 
 
 const formOptions = {
-  form: 'email',
+  form: 'signupForm',
   validate: validateEmailLogin,
 };
 
@@ -122,7 +123,20 @@ class Form extends Component {
       await fetchUserBy('email', [email, password]);
     } catch (error) {
       fetchActSignupFailure();
-      Alert.alert(I18n.t('errorTitle'), I18n.t('signupEmailError'));
+
+      if (/email/.test(error.message)) {
+        Alert.alert(
+          I18n.t('alreadyRegisteredEmailErrorTitle'),
+          I18n.t('alreadyRegisteredEmailErrorMessage'),
+          [
+            { text: I18n.t('login'), onPress: () => RouterActions.login({ initialEmailValue: email }) },
+            { text: I18n.t('cancel') },
+          ],
+        );
+      } else {
+        Alert.alert(I18n.t('errorTitle'), I18n.t('signupEmailError'));
+      }
+
       throw new SubmissionError({
         _error: I18n.t('signupEmailError'),
       });

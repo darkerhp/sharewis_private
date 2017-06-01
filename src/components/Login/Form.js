@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
 
 const formOptions = {
-  form: 'email',
+  form: 'loginForm',
   validate: validateEmailLogin,
 };
 
@@ -122,7 +122,6 @@ class Form extends Component {
 
   render() {
     const { handleSubmit, loginDisabled } = this.props;
-
     return (
       <View style={styles.container}>
         <View style={styles.labelWrapper}>
