@@ -64,6 +64,8 @@ const locales = {
     agreeTosAndPolicy: `登録を完了すると、 ${ACT_TOS_URL} 及び ${ACT_PRIVACY_URL} に同意することになります。`,
     skipSignup: '登録せずにアプリを使う',
     skipLogin: 'ログインせずにアプリを使う',
+    alreadyRegisteredEmailErrorTitle: 'すでに登録されています',
+    alreadyRegisteredEmailErrorMessage: 'このメールアドレスでログインしますか？',
     // スナックコース
     snackCourse: 'スナックコース',
     proCourse: 'プロコース',
@@ -146,6 +148,8 @@ const locales = {
     agreeTosAndPolicy: `By completing this sign up process, you agree to our ${ACT_TOS_URL} and ${ACT_PRIVACY_URL}.`,
     skipSignup: 'Skip Signup',
     skipLogin: 'Skip Login',
+    alreadyRegisteredEmailError: 'Already registered',
+    alreadyRegisteredEmailErrorMessage: 'Would you like to login instead?',
     // スナックコース
     snackCourse: 'Snack Courses',
     proCourse: 'Pro Courses',
@@ -228,6 +232,8 @@ const locales = {
     agreeTosAndPolicy: `Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ${ACT_TOS_URL} và ${ACT_PRIVACY_URL}.`,
     skipSignup: 'Sử dụng các ứng dụng mà không cần đăng ký',
     skipLogin: 'Bỏ qua đăng nhập',
+    alreadyRegisteredEmailError: 'Đã đăng ký',
+    alreadyRegisteredEmailErrorMessage: 'Bạn có muốn đăng nhập thay thế không?',
     // スナックコース
     snackCourse: 'Snack Courses',
     proCourse: 'Pro Courses',
