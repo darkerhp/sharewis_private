@@ -6,6 +6,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import Hyperlink from 'react-native-hyperlink';
+import Hr from 'react-native-hr';
 
 import BaseStyles from '../../lib/baseStyles';
 import Form from './Form';
@@ -27,6 +28,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  hrWrapper: {
+    marginBottom: 25,
   },
 });
 
@@ -72,6 +76,9 @@ class Signup extends Component {
             {I18n.t('agreeTosAndPolicy')}
           </Text>
         </Hyperlink>
+        <View style={styles.hrWrapper}>
+          <Hr lineColor={'#dadada'} />
+        </View>
         {isModal ? <View style={{ flex: 2 }} /> : <Footer {...this.props} />}
       </View>
     );

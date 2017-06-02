@@ -63,9 +63,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   joinButtonWrapper: {
-    minHeight: 30,
-    maxHeight: 47,
-    flex: 1,
+    height: 47,
     borderRadius: 3,
     alignItems: 'center',
     backgroundColor: '#7be161',
