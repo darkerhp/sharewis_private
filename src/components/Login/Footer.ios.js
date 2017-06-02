@@ -41,6 +41,14 @@ const Footer = () =>
     >
       { I18n.t('noAccountYet') }
     </Button>
+    <Button
+      containerStyle={[styles.buttonWrapper, { borderWidth: 0, marginTop: 20 }]}
+      style={styles.buttonText}
+      onPress={() => RouterActions.top()}
+    >
+      { I18n.t('skipLogin') }
+    </Button>
+
   </View>;
 
 export default Footer;
