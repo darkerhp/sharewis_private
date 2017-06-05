@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     maxWidth: BaseStyles.deviceWidth,
     maxHeight: BaseStyles.deviceHeight - BaseStyles.navbarHeight - 70,
   },
-  joinButtonWrapper: {
+  buttonWrapper: {
     justifyContent: 'flex-end',
     alignItems: 'stretch',
     width: BaseStyles.deviceWidth,
@@ -53,7 +53,7 @@ const Premium = ({ onPressJoin }) =>
         style={styles.premiumImage}
       />
     </View>
-    <View style={styles.joinButtonWrapper}>
+    <View style={styles.buttonWrapper}>
       <Button
         containerStyle={styles.joinButton}
         style={styles.joinButtonText}

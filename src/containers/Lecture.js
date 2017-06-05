@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   lectureContentStyle: {
     flex: 3,
   },
-  joinButtonWrapper: {
+  buttonWrapper: {
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
@@ -142,7 +142,7 @@ class LectureContainer extends Component {
     // アプリでは、コースを完了できないため最後のレクチャーの場合、ボタンを表示しない
     const isVisibleButton = !isLastLecture && currentLecture.canAccess(isOnline);
     return (
-      <View style={styles.joinButtonWrapper}>
+      <View style={styles.buttonWrapper}>
         { isVisibleButton &&
           <Button
             containerStyle={styles.joinButton}

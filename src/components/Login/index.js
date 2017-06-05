@@ -70,6 +70,8 @@ class Login extends Component {
       if (isModal) {
         // モーダルからのログイン時にはモーダルを閉じる
         RouterActions.pop();
+        // ↓NOTE: これを入れるとポップアップが全てログインモーダルに。。。
+        // RouterActions.refresh({ key: 'drawer', open: false });
       }
       RouterActions.top();
     }
@@ -106,9 +108,11 @@ class Login extends Component {
             {...this.props}
           />
         </View>
-        <View style={styles.hrWrapper}>
-          <Hr lineColor={'#dadada'} />
-        </View>
+        {!isModal &&
+          <View style={styles.hrWrapper}>
+            <Hr lineColor={'#dadada'} />
+          </View>
+        }
         {isModal ? <View style={{ flex: 1 }} /> : <Footer {...this.props} />}
       </View>
     );

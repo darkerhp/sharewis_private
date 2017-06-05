@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderColor: '#dadada',
     borderBottomWidth: 1,
   },
-  joinButtonWrapper: {
+  buttonWrapper: {
     height: 47,
     borderRadius: 3,
     alignItems: 'center',
@@ -159,7 +159,7 @@ class Form extends Component {
         </View>
         <View style={styles.buttonTextWrapper}>
           <Button
-            containerStyle={[styles.joinButtonWrapper, loginDisabled && {
+            containerStyle={[styles.buttonWrapper, loginDisabled && {
               backgroundColor: BaseStyles.disabledButtonColor,
             }]}
             style={styles.buttonText}

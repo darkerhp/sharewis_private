@@ -43,7 +43,16 @@ class Signup extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.isFetching && !nextProps.isFetching && nextProps.loggedIn) {
+    const { isFetching, isModal } = this.props;
+
+    // ユーザーがログインしたらトップページにリダイレクトする
+    if (isFetching && !nextProps.isFetching && nextProps.loggedIn) {
+      if (isModal) {
+        // モーダルからのログイン時にはモーダルを閉じる
+        RouterActions.pop();
+        // ↓NOTE: これを入れるとポップアップが全てログインモーダルに。。。
+        // RouterActions.refresh({ key: 'drawer', open: false });
+      }
       RouterActions.top();
     }
   }
@@ -76,9 +85,11 @@ class Signup extends Component {
             {I18n.t('agreeTosAndPolicy')}
           </Text>
         </Hyperlink>
-        <View style={styles.hrWrapper}>
-          <Hr lineColor={'#dadada'} />
-        </View>
+        {!isModal &&
+          <View style={styles.hrWrapper}>
+            <Hr lineColor={'#dadada'} />
+          </View>
+        }
         {isModal ? <View style={{ flex: 2 }} /> : <Footer {...this.props} />}
       </View>
     );
