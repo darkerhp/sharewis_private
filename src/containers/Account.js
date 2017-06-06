@@ -1,18 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
+
+import autobind from 'autobind-decorator';
+import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Actions as RouterActions } from 'react-native-router-flux';
 
+import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
 import { ENV } from '../lib/constants';
+import * as premiumActions from '../modules/premium'; // eslint-disable-line
 
-const { View, Text, StyleSheet, Platform, Dimensions } = ReactNative;
+const { ActivityIndicator, Alert, View, Text, StyleSheet, Platform, Dimensions } = ReactNative;
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'flex-start',
     backgroundColor: BaseStyles.onboardingBackgroundColor,
     paddingTop: 90,
   },
@@ -71,7 +77,6 @@ const styles = StyleSheet.create({
   versionContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'flex-end',
     width,
   },
   versionText: {
@@ -80,57 +85,178 @@ const styles = StyleSheet.create({
     fontSize: 10,
     margin: 5,
   },
+  buttonWrapper: {
+    height: 47,
+    borderRadius: 3,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#9b9b9b',
+  },
+  buttonText: {
+    fontSize: 16,
+    color: BaseStyles.textColor,
+    fontWeight: '400',
+    fontFamily: null, // react-native-buttonのfontFamilyをリセット
+  },
+  restoreButtonWrapper: {
+    backgroundColor: '#6f6f6f',
+    borderWidth: 0,
+    marginHorizontal: 15,
+    marginBottom: 0,
+  },
+  restoreButtonText: {
+    color: 'white',
+  },
+  forGuestFieldWrapper: {
+    justifyContent: 'center',
+    marginHorizontal: 15,
+    marginBottom: 15,
+  },
+  forGuestFieldLableTextWrapper: {
+    marginBottom: 10,
+  },
+  forGuestFieldLableText: {
+    fontSize: 14,
+    color: BaseStyles.textColor,
+  },
 });
 
 const pckg = require('../../package.json');
 
-@connect(({ user }) => ({ user }))
-class Account extends Component {// eslint-disable-line
+const mapStateToProps = ({ netInfo, ui, user }) => ({ isOnline: netInfo.isConnected, ui, user });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators(premiumActions, dispatch) });
+
+@connect(mapStateToProps, mapDispatchToProps)
+class Account extends Component {
   static propTypes = {
     user: PropTypes.shape({}).isRequired,
+    isOnline: PropTypes.bool.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: false,
+    };
+  }
+
+  async restore() {
+    const { restorePremium } = this.props;
+
+    try {
+      this.setState({ isLoading: true });
+      const response = await restorePremium();
+      if (response.length === 0) {
+        Alert.alert(I18n.t('restorePurchaseNotFoundTitle'), I18n.t('restorePurchaseNotFoundMessage'));
+        return;
+      }
+      Alert.alert(I18n.t('restorePurchaseSuccessTitle'), I18n.t('restorePurchaseSuccessMessage'));
+    } catch (error) {
+      Alert.alert(I18n.t('restorePurchaseErrorTitle'), I18n.t('restorePurchaseErrorMessage'));
+    } finally {
+      this.setState({ isLoading: false });
+    }
+  }
+
+  @autobind
+  renderRestoreButton() {
+    if (this.state.isLoading) {
+      return <ActivityIndicator animating size="small" color={'white'} />;
+    }
+    return I18n.t('restorePurchaseButtonLabel');
+  }
+
+  @autobind
+  renderProfileField(fieldName, fieldValue, rowStyle = {}, valueStyle = {}) { // eslint-disable-line
+    return (
+      <View style={[styles.rowWrapper, rowStyle]}>
+        <View style={styles.fieldNameWrapper}>
+          <Text style={styles.fieldText}>{fieldName}</Text>
+        </View>
+        <View style={styles.fieldValueWrapper}>
+          <Text style={[styles.fieldText, fieldValue || { color: '#999' }, valueStyle]}>
+            {fieldValue || I18n.t('notSet')}
+          </Text>
+        </View>
+      </View>
+    );
+  }
+
+  @autobind
+  renderLoginAndSignupButtons() {
+    const { isOnline } = this.props;
+
+    return (
+      <View style={{ justifyContent: 'flex-start' }}>
+        <View style={styles.forGuestFieldWrapper}>
+          <View style={styles.forGuestFieldLableTextWrapper}>
+            <Text style={styles.forGuestFieldLableText}>{I18n.t('loginNavigationMessage')}</Text>
+          </View>
+          <Button
+            containerStyle={styles.buttonWrapper}
+            style={styles.buttonText}
+            onPress={isOnline ? RouterActions.loginModal : alertOfflineError}
+          >
+            {I18n.t('login')}
+          </Button>
+        </View>
+        <View style={styles.forGuestFieldWrapper}>
+          <View style={styles.forGuestFieldLableTextWrapper}>
+            <Text style={styles.forGuestFieldLableText}>{I18n.t('noAccountYet')}</Text>
+          </View>
+          <Button
+            containerStyle={styles.buttonWrapper}
+            style={styles.buttonText}
+            onPress={isOnline ? RouterActions.signupModal : alertOfflineError}
+          >
+            {I18n.t('signupForFree')}
+          </Button>
+        </View>
+      </View>
+    );
+  }
+
   render() {
-    const { user } = this.props;
+    const { isOnline, user } = this.props;
+    const isGuest = !user.loggedIn;
     return (
       <View style={styles.container}>
         {/* <View style={styles.profileImageContainer} /> */}
-
-        <View style={styles.profileContainer}>
+        <View style={[styles.profileContainer, isGuest && { flex: 0.5 }]}>
           <View style={styles.labelWrapper}>
             <Text style={styles.label}>
               {I18n.t('profile')}
             </Text>
           </View>
           <View style={styles.profileContentWrapper}>
-            <View style={styles.rowWrapper}>
-              <View style={styles.fieldNameWrapper}>
-                <Text style={styles.fieldText}>{I18n.t('userName')}</Text>
-              </View>
-              <View style={styles.fieldValueWrapper}>
-                <Text style={styles.fieldText}>{user.userName}</Text>
-              </View>
-            </View>
-            <View style={styles.rowWrapper}>
-              <View style={styles.fieldNameWrapper}>
-                <Text style={styles.fieldText}>{I18n.t('nickName')}</Text>
-              </View>
-              <View style={styles.fieldValueWrapper}>
-                <Text style={styles.fieldText}>{user.nickName}</Text>
-              </View>
-            </View>
-            <View style={[styles.rowWrapper, { borderBottomWidth: 0 }]}>
-              <View style={styles.fieldNameWrapper}>
-                <Text style={styles.fieldText}>{I18n.t('email')}</Text>
-              </View>
-              <View style={styles.fieldValueWrapper}>
-                <Text style={styles.fieldText}>{user.email}</Text>
-              </View>
-            </View>
+            {this.renderProfileField(
+              I18n.t('userName'),
+              isGuest ? I18n.t('noLoginProfileMessage') : user.userName,
+              isGuest && { borderBottomWidth: 0 },
+              isGuest && { color: '#999', textAlign: 'right', marginRight: 15 },
+            )}
+            {!isGuest && this.renderProfileField(I18n.t('nickName'), user.nickName)}
+            {!isGuest && this.renderProfileField(I18n.t('email'), user.email, { borderBottomWidth: 0 })}
           </View>
         </View>
-
+        {!user.loggedIn && this.renderLoginAndSignupButtons()}
         <View style={styles.versionContainer}>
+          {Platform.OS === 'ios' &&
+          <Button
+            containerStyle={[styles.buttonWrapper, styles.restoreButtonWrapper]}
+            style={[styles.buttonText, styles.restoreButtonText]}
+            onPress={() => (
+              isOnline ? this.restore() : alertOfflineError()
+            )}
+            disabled={this.state.isLoading}
+          >
+            { this.renderRestoreButton() }
+          </Button>
+          }
           <Text style={styles.versionText}>version: {pckg.version}-{ENV}</Text>
         </View>
       </View>

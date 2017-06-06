@@ -12,21 +12,19 @@ const { StyleSheet, View } = ReactNative;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginHorizontal: 13,
     paddingVertical: 13,
   },
-  signupButtonWrapper: {
-    minHeight: 30,
-    maxHeight: 47,
-    flex: 1,
+  buttonWrapper: {
+    height: 47,
     borderRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#9b9b9b',
   },
-  signupButtonText: {
+  buttonText: {
     fontSize: 16,
     color: BaseStyles.textColor,
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
@@ -37,8 +35,8 @@ const styles = StyleSheet.create({
 const Footer = () =>
   <View style={styles.container}>
     <Button
-      containerStyle={styles.signupButtonWrapper}
-      style={styles.signupButtonText}
+      containerStyle={styles.buttonWrapper}
+      style={styles.buttonText}
       onPress={() => RouterActions.signup()}
     >
       { I18n.t('noAccountYet') }

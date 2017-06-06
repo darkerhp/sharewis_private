@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   lectureContentStyle: {
     flex: 3,
   },
-  joinButtonWrapper: {
+  buttonWrapper: {
     justifyContent: 'flex-end',
     alignItems: 'stretch',
   },
@@ -127,7 +127,7 @@ class SnackLectureContainer extends Component {
     const { isFullScreen } = this.props;
     if (isFullScreen) return null;
     return (
-      <View style={styles.joinButtonWrapper}>
+      <View style={styles.buttonWrapper}>
         <Button
           containerStyle={styles.joinButton}
           style={styles.joinButtonText}

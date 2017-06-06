@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: BaseStyles.textColor,
   },
+  hrWrapper: {
+    marginBottom: 25,
+  },
   footer: {
     flex: 1,
     alignItems: 'center',
@@ -67,6 +70,8 @@ class Login extends Component {
       if (isModal) {
         // モーダルからのログイン時にはモーダルを閉じる
         RouterActions.pop();
+        // ↓NOTE: これを入れるとポップアップが全てログインモーダルに。。。
+        // RouterActions.refresh({ key: 'drawer', open: false });
       }
       RouterActions.top();
     }
@@ -103,7 +108,11 @@ class Login extends Component {
             {...this.props}
           />
         </View>
-        {!isModal && <Hr lineColor={'#dadada'} /> }
+        {!isModal &&
+          <View style={styles.hrWrapper}>
+            <Hr lineColor={'#dadada'} />
+          </View>
+        }
         {isModal ? <View style={{ flex: 1 }} /> : <Footer {...this.props} />}
       </View>
     );
