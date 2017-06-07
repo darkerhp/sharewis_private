@@ -96,6 +96,7 @@ const locales = {
     restorePurchaseNotFoundMessage: '復元する購入履歴が見つかりませんでした。',
     restorePurchaseErrorTitle: '復元失敗',
     restorePurchaseErrorMessage: '購入履歴の復元に失敗しました。',
+    notPurchasedProCourseYet: '購入済みのプロコースがありません。',
   },
   en: {
     accountSettings: 'Account Info',
@@ -184,6 +185,7 @@ const locales = {
     restorePurchaseNotFoundMessage: 'We didn\'t find any purchases to restore.',
     restorePurchaseErrorTitle: 'iTunes Error',
     restorePurchaseErrorMessage: 'Could not connect to iTunes store.',
+    notPurchasedProCourseYet: 'Bạn chưa mua Pro Courses nào.',
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -272,6 +274,7 @@ const locales = {
     restorePurchaseNotFoundMessage: 'We didn\'t find any purchases to restore.', // TODO 翻訳
     restorePurchaseErrorTitle: 'iTunes Error', // TODO 翻訳
     restorePurchaseErrorMessage: 'Could not connect to iTunes store.', // TODO 翻訳
+    notPurchasedProCourseYet: 'You haven\'t purchased any Pro Courses yet.',
   },
 };
 
