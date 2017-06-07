@@ -142,16 +142,18 @@ class MyCourse extends Component {
     const { isOnline, isLoginUser, lectures, purchasedProCourses } = this.props;
     StatusBar.setBarStyle('light-content');
 
+    const isAndroid = Platform.OS === 'android';
+
     if (!this.state.isRefreshing && this.state.isLoading) {
       return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
     }
 
-    if (!isLoginUser && Platform.OS === 'android') {
+    if (!isLoginUser && isAndroid) {
       return <NotLoginList />;
     }
 
     if (purchasedProCourses.isEmpty()) {
-      const contentText = Platform.OS === 'ios' ? I18n.t('notPurchasedProCourseYet') : I18n.t('noCourses');
+      const contentText = !isAndroid ? I18n.t('notPurchasedProCourseYet') : I18n.t('noCourses');
       return <EmptyList contentText={contentText} />;
     }
 
@@ -182,7 +184,7 @@ class MyCourse extends Component {
               />
             );
           })}
-          {Platform.OS !== 'ios' &&
+          {isAndroid &&
             <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
               <View style={styles.hyperlinkWrapper}>
                 <Hyperlink
