@@ -151,7 +151,7 @@ class MyCourse extends Component {
     }
 
     if (purchasedProCourses.isEmpty()) {
-      return <EmptyList />;
+      return <EmptyList contentText={I18n.t('noCourses')} />;
     }
 
     return (

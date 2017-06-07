@@ -1,6 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /* @flow */
 import base64 from 'base-64';
+import DeviceInfo from 'react-native-device-info';
 import I18n from 'react-native-i18n';
 import { Client as Bugsnag } from 'bugsnag-react-native';
 import { createAction, handleActions } from 'redux-actions';
@@ -25,6 +26,9 @@ export const START_ACT_EMAIL_SIGNUP = 'sharewis/user/START_ACT_EMAIL_SIGNUP';
 export const START_ACT_FACEBOOK_LOGIN = 'sharewis/user/START_ACT_FACEBOOK_LOGIN';
 export const START_ACT_FACEBOOK_SIGNUP = 'sharewis/user/START_ACT_FACEBOOK_SIGNUP';
 export const START_FB_EMAIL_REQUEST = 'sharewis/user/START_FB_EMAIL_REQUEST';
+export const CREATE_PURCHASED_GUEST_START = 'sharewis/user/CREATE_PURCHASED_GUEST_START';
+export const CREATE_PURCHASED_GUEST_SUCCESS = 'sharewis/user/CREATE_PURCHASED_GUEST_SUCCESS';
+export const CREATE_PURCHASED_GUEST_FAILURE = 'sharewis/user/CREATE_PURCHASED_GUEST_FAILURE';
 
 // Reducer
 const initialState = {
@@ -36,50 +40,37 @@ const initialState = {
   isFinishOnboarding: false,
   isPremium: false,
   mixpanelId: null,
+  isTemporary: null,
 };
 
-const failure = (state, action) => ({
+const notLogin = (state, action) => ({
   ...state,
   ...action.payload,
   loggedIn: false,
 });
 
-const fetching = (state, action) => ({
+const login = (state, action) => ({
   ...state,
   ...action.payload,
-  loggedIn: false,
+  loggedIn: true,
 });
 
 export const reducer = handleActions({
-  [FETCH_ACT_LOGIN_FAILURE]: failure,
-  [FETCH_ACT_SIGNUP_FAILURE]: failure,
-  [FETCH_FB_EMAIL_FAILURE]: failure,
-  [FETCH_FB_EMAIL_SUCCESS]: fetching,
-  [START_ACT_EMAIL_LOGIN]: fetching,
-  [START_ACT_EMAIL_SIGNUP]: fetching,
-  [START_ACT_FACEBOOK_LOGIN]: fetching,
-  [FETCH_ACT_LOGIN_SUCCESS]: (state, action) => ({
-    ...state,
-    ...action.payload,
-    loggedIn: true,
-  }),
-  [FETCH_ACT_SIGNUP_SUCCESS]: (state, action) => ({
-    ...state,
-    ...action.payload,
-    loggedIn: true,
-  }),
-  [FINISH_ONBOARDING]: (state, action) => ({
-    ...state,
-    isFinishOnboarding: true,
-  }),
-  [JOIN_PREMIUM_SUCCESS]: (state, action) => ({
-    ...state,
-    isPremium: true,
-  }),
-  [JOIN_PREMIUM_FAILURE]: (state, action) => ({
-    ...state,
-    isPremium: false,
-  }),
+  [FETCH_ACT_LOGIN_FAILURE]: notLogin,
+  [FETCH_ACT_SIGNUP_FAILURE]: notLogin,
+  [FETCH_FB_EMAIL_FAILURE]: notLogin,
+  [FETCH_FB_EMAIL_SUCCESS]: notLogin,
+  [START_ACT_EMAIL_LOGIN]: notLogin,
+  [START_ACT_EMAIL_SIGNUP]: notLogin,
+  [START_ACT_FACEBOOK_LOGIN]: notLogin,
+  [FETCH_ACT_LOGIN_SUCCESS]: login,
+  [FETCH_ACT_SIGNUP_SUCCESS]: login,
+  [FINISH_ONBOARDING]: (state, action) => ({ ...state, isFinishOnboarding: true }),
+  [JOIN_PREMIUM_SUCCESS]: (state, action) => ({ ...state, isPremium: true }),
+  [JOIN_PREMIUM_FAILURE]: (state, action) => ({ ...state, isPremium: false }),
+  [CREATE_PURCHASED_GUEST_START]: notLogin,
+  [CREATE_PURCHASED_GUEST_SUCCESS]: (state, action) => ({ ...state, isTemporary: true }),
+  [CREATE_PURCHASED_GUEST_FAILURE]: notLogin,
 }, initialState);
 
 export default reducer;
@@ -103,6 +94,9 @@ export const fetchActSignupFailure = createAction(FETCH_ACT_SIGNUP_FAILURE);
 export const fetchActSignupSuccess = createAction(FETCH_ACT_SIGNUP_SUCCESS,
   result => ({ ...result }));
 export const finishOnboarding = createAction(FINISH_ONBOARDING);
+export const createPurchasedGuestStart = createAction(CREATE_PURCHASED_GUEST_START);
+export const createPurchasedGuestSuccess = createAction(CREATE_PURCHASED_GUEST_SUCCESS);
+export const createPurchasedGuestFailure = createAction(CREATE_PURCHASED_GUEST_FAILURE);
 
 
 // side effects, only as applicable
@@ -177,3 +171,28 @@ export const signupUserBy = (loginMethod, credentials) =>
     }
   };
 
+/**
+ * 購入済みゲストユーザーを作成する
+ *  購入済みゲストユーザー: ゲストユーザーがコースを購入した場合に作成する仮ユーザー
+ * @param loginMethod
+ * @param credentials
+ */
+export const createPurchasedGuest = (loginMethod, credentials) =>
+  async (dispatch) => {
+    dispatch(createPurchasedGuestStart);
+    try {
+      const deviceId = DeviceInfo.getDeviceId();
+      const userData = await Api.post('users/purchased_guest', {
+        device_id: deviceId,
+        language: I18n.locale ? I18n.locale.split('-')[0] : null,
+        currency: null,
+      });
+      dispatch(createPurchasedGuestSuccess(userData));
+      return userData;
+    } catch (error) {
+      new Bugsnag().notify(error);
+      console.error(error);
+      dispatch(createPurchasedGuestFailure);
+      throw error;
+    }
+  };

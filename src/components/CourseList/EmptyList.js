@@ -34,7 +34,7 @@ const handlePress = (url) => {
   redirectTo(url);
 };
 
-const emptyList = () =>
+const emptyList = ({ contentText }) =>
   <View style={styles.container}>
     <Hyperlink
       linkStyle={Platform.OS !== 'ios' && { color: BaseStyles.hyperlink }}
@@ -42,9 +42,13 @@ const emptyList = () =>
       onPress={handlePress}
     >
       <Text style={styles.contentText}>
-        {I18n.t('noCourses')}
+        {contentText}
       </Text>
     </Hyperlink>
   </View>;
+
+emptyList.propTypes = {
+  contentText: PropTypes.string.isRequired,
+};
 
 export default emptyList;

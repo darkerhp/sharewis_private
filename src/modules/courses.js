@@ -12,13 +12,16 @@ import * as FileUtils from '../utils/file';
 import * as schema from '../lib/schema';
 import Course from './models/Course';
 import CourseMap from './models/CourseMap';
-
 import {
   proCourseSelector,
   snackCourseSelector,
   purchasedProCourseSelector,
   notPurchasedProCourseSelector,
 } from './selectors/courseSelectors';
+
+import {
+  CREATE_PURCHASE_STATUS_SUCCESS,
+} from './purchase'; // eslint-disable-line
 
 // Actions
 export const FETCH_MY_COURSE_FAILURE = 'sharewis/courses/FETCH_MY_COURSE_FAILURE';
@@ -60,6 +63,10 @@ const reducer = handleActions({
     if (_.isEmpty(state)) return state;
     const updatedCourses = action.payload;
     return state.merge(updatedCourses);
+  },
+  [CREATE_PURCHASE_STATUS_SUCCESS]: (state, action) => {
+    const courseId = action.payload;
+    return state.update(courseId.toString(), course => course.set('isPurchased', true));
   },
   // redux-persistのrehydrate用のreducer
   // Immutable.jsを使用する場合、変換が必要
