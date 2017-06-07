@@ -13,8 +13,8 @@ import BaseStyles from '../lib/baseStyles';
 import { ENV } from '../lib/constants';
 import * as premiumActions from '../modules/premium'; // eslint-disable-line
 
-const { ActivityIndicator, Alert, View, Text, StyleSheet, Platform, Dimensions } = ReactNative;
-const { width } = Dimensions.get('window');
+const { ActivityIndicator, Alert, View, Text, StyleSheet, Platform } = ReactNative;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     flex: 2,
-    width,
+    width: BaseStyles.deviceWidth,
   },
   fbContainer: {
     flex: 1,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   versionContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    width,
+    width: BaseStyles.deviceWidth,
   },
   versionText: {
     textAlign: 'right',

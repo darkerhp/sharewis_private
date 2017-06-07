@@ -27,15 +27,12 @@ import {
 
 const {
   Alert,
-  Dimensions,
   RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
   View,
 } = ReactNative;
-
-const displayWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -44,11 +41,11 @@ const styles = StyleSheet.create({
   },
   topImageWrapper: {
     overflow: 'hidden',
-    width: displayWidth,
+    width: BaseStyles.deviceWidth,
     marginBottom: 10,
   },
   topImage: {
-    width: displayWidth,
+    width: BaseStyles.deviceWidth,
   },
   recommendedSnackCourseWrapper: {
     flex: 1,
@@ -169,7 +166,7 @@ class Top extends Component {
     const { isOnline, setCurrentCourseId } = this.props;
 
     if (!isOnline) return;
-    
+
     setCurrentCourseId(courseId);
     RouterActions.snackLecture({
       backTitle: I18n.t('back'),

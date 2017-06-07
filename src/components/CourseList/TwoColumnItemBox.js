@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import BaseStyles from '../../lib/baseStyles';
+
 const {
-  Dimensions,
   StyleSheet,
   TouchableOpacity,
   View,
 } = ReactNative;
 
-const displayWidth = Dimensions.get('window').width;
-const itemWidth = (displayWidth - 30) / 2;
+const itemWidth = (BaseStyles.deviceWidth - 30) / 2;
 const itemHeight = (itemWidth / 3) * 4; // 4:3
 
 const styles = StyleSheet.create({

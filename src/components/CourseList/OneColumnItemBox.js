@@ -4,7 +4,6 @@ import ReactNative from 'react-native';
 import BaseStyles from '../../lib/baseStyles';
 
 const {
-  Dimensions,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -13,7 +12,7 @@ const {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: Dimensions.get('window').height / 2,
+    height: BaseStyles.deviceHeight / 2,
     borderWidth: 1,
     borderColor: BaseStyles.borderColor,
     borderRadius: 9,

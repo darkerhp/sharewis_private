@@ -7,9 +7,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 
 import BaseStyles from '../../lib/baseStyles';
 
-const { Dimensions, StyleSheet, Text, View } = ReactNative;
-
-const displayWidth = Dimensions.get('window').width;
+const { StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -27,7 +25,7 @@ const styles = StyleSheet.create({
   },
   signupButtonWrapper: {
     height: 47,
-    width: displayWidth - 60,
+    width: BaseStyles.deviceWidth - 60,
     borderRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
