@@ -96,24 +96,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/**
- * ログインしていない時にマイコースに表示するアイテム
- * @param isOnline
- */
-const noLoginItem = isOnline =>
-  <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
-    <Text style={styles.contentText}>
-      {I18n.t('noLogin')}
-    </Text>
-    <Button
-      containerStyle={styles.signupButtonWrapper}
-      style={styles.signupButtonText}
-      onPress={() => RouterActions.loginModal()}
-    >
-      { I18n.t('login') }
-    </Button>
-  </OneColumnItemBox>;
-
 const mapStateToProps = (state, props) => {
   const { entities, netInfo, ui, user } = state;
 
@@ -183,9 +165,11 @@ class Top extends Component {
   }
 
   @autobind
-  handlePressSnackCourseItem(courseId) { // eslint-disable-line
+  handlePressSnackCourseItem(courseId) {
     const { isOnline, setCurrentCourseId } = this.props;
+
     if (!isOnline) return;
+    
     setCurrentCourseId(courseId);
     RouterActions.snackLecture({
       backTitle: I18n.t('back'),
@@ -256,10 +240,6 @@ class Top extends Component {
   renderMyCourseItem() {
     const { purchasedProCourses, lectures, isLoginUser, isOnline } = this.props;
     const proCourse = purchasedProCourses.first();
-
-    if (!isLoginUser) {
-      return noLoginItem(isOnline);
-    }
 
     if (proCourse) {
       return (

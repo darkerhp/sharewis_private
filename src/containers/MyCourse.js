@@ -146,12 +146,13 @@ class MyCourse extends Component {
       return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
     }
 
-    if (!isLoginUser) {
+    if (!isLoginUser && Platform.OS === 'android') {
       return <NotLoginList />;
     }
 
     if (purchasedProCourses.isEmpty()) {
-      return <EmptyList contentText={I18n.t('noCourses')} />;
+      const contentText = Platform.OS === 'ios' ? I18n.t('notPurchasedProCourseYet') : I18n.t('noCourses');
+      return <EmptyList contentText={contentText} />;
     }
 
     return (
