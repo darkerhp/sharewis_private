@@ -3,6 +3,10 @@ import Drawer from 'react-native-drawer';
 import { Actions, DefaultRenderer } from 'react-native-router-flux';
 import SideMenu from '../containers/SideMenu';
 
+const drawerStyles = {
+  drawer: { shadowColor: '#333333', shadowOpacity: 0.9, shadowRadius: 3 },
+};
+
 export default class NavigationDrawer extends Component {
   static propTypes = {
     navigationState: PropTypes.shape({}).isRequired,
@@ -23,8 +27,9 @@ export default class NavigationDrawer extends Component {
         panCloseMask={0.2}
         // panOpenMask={0.9} FIXME swipeで開かないように
         negotiatePan
+        styles={drawerStyles}
         tweenHandler={ratio => ({
-          main: { opacity: Math.max(0.54, 1 - ratio) },
+          main: { opacity: Math.max(0.4, 1 - ratio) },
         })}
       >
         <DefaultRenderer navigationState={children[0]} onNavigate={onNavigate} />
