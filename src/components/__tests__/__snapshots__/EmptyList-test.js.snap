@@ -5,6 +5,7 @@ exports[`EmptyList renders correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
+      "backgroundColor": "#e7eef0",
       "flex": 1,
       "justifyContent": "center",
     }
