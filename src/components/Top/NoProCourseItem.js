@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
   myCourseSummaryItemBox: {
     height: 150,
     paddingHorizontal: 15,
-    paddingTop: 15,
   },
   contentText: {
     textAlign: 'center',
