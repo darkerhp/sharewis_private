@@ -149,6 +149,7 @@ class MyCourse extends Component {
     }
 
     if (!isLoginUser && isAndroid) {
+      // FIXME: 今のところandroidではログイン必須のため、NotLoginListが表示されることはない
       return <NotLoginList />;
     }
 
