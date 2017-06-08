@@ -6,7 +6,6 @@ import Course from '../../modules/models/Course';
 import TwoColumnItemBox from './TwoColumnItemBox';
 
 const {
-  Dimensions,
   Image,
   Platform,
   StyleSheet,
@@ -14,8 +13,7 @@ const {
   View,
 } = ReactNative;
 
-const displayWidth = Dimensions.get('window').width;
-const itemWidth = (displayWidth - 30) / 2;
+const itemWidth = (BaseStyles.deviceWidth - 30) / 2;
 const itemHeight = (itemWidth / 3) * 4; // 4:3
 
 const styles = StyleSheet.create({

@@ -8,13 +8,11 @@ import { ACT_SITE_URL } from '../../lib/constants';
 import redirectTo from '../../utils/linking';
 
 const {
-  Dimensions,
   StyleSheet,
   Text,
   Image,
   View,
 } = ReactNative;
-const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   slide: {
@@ -32,7 +30,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 90,
     marginBottom: 30,
-    width,
+    width: BaseStyles.deviceWidth,
   },
   content: {
     flex: 1,

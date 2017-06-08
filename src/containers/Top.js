@@ -17,25 +17,24 @@ import * as userActions from '../modules/user';
 import * as uiActions from '../modules/ui';
 import BaseStyles from '../lib/baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
-import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
-import NoProCourseItem from '../components/Top/NoProCourseItem'; // eslint-disable-line
+import NoProCourseItem from '../components/Top/NoProCourseItem';
 import {
   snackCourseSelector,
   purchasedProCourseSelector,
 } from '../modules/selectors/courseSelectors';
+import CourseMap from '../modules/models/CourseMap';
+import LectureMap from '../modules/models/LectureMap';
+
 
 const {
   Alert,
-  Dimensions,
   RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
   View,
 } = ReactNative;
-
-const displayWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -44,11 +43,11 @@ const styles = StyleSheet.create({
   },
   topImageWrapper: {
     overflow: 'hidden',
-    width: displayWidth,
+    width: BaseStyles.deviceWidth,
     marginBottom: 10,
   },
   topImage: {
-    width: displayWidth,
+    width: BaseStyles.deviceWidth,
   },
   recommendedSnackCourseWrapper: {
     flex: 1,
@@ -96,24 +95,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/**
- * ログインしていない時にマイコースに表示するアイテム
- * @param isOnline
- */
-const noLoginItem = isOnline =>
-  <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
-    <Text style={styles.contentText}>
-      {I18n.t('noLogin')}
-    </Text>
-    <Button
-      containerStyle={styles.signupButtonWrapper}
-      style={styles.signupButtonText}
-      onPress={() => RouterActions.loginModal()}
-    >
-      { I18n.t('login') }
-    </Button>
-  </OneColumnItemBox>;
-
 const mapStateToProps = (state, props) => {
   const { entities, netInfo, ui, user } = state;
 
@@ -142,6 +123,12 @@ class Top extends Component {
     isOnline: PropTypes.bool.isRequired,
     // actions
     setCurrentCourseId: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    purchasedProCourses: new CourseMap(),
+    snackCourses: new CourseMap(),
+    lectures: new LectureMap(),
   };
 
   constructor(props) {
@@ -183,9 +170,11 @@ class Top extends Component {
   }
 
   @autobind
-  handlePressSnackCourseItem(courseId) { // eslint-disable-line
+  handlePressSnackCourseItem(courseId) {
     const { isOnline, setCurrentCourseId } = this.props;
+
     if (!isOnline) return;
+
     setCurrentCourseId(courseId);
     RouterActions.snackLecture({
       backTitle: I18n.t('back'),
@@ -256,10 +245,6 @@ class Top extends Component {
   renderMyCourseItem() {
     const { purchasedProCourses, lectures, isLoginUser, isOnline } = this.props;
     const proCourse = purchasedProCourses.first();
-
-    if (!isLoginUser) {
-      return noLoginItem(isOnline);
-    }
 
     if (proCourse) {
       return (
