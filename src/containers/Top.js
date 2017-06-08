@@ -17,13 +17,15 @@ import * as userActions from '../modules/user';
 import * as uiActions from '../modules/ui';
 import BaseStyles from '../lib/baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
-import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
-import NoProCourseItem from '../components/Top/NoProCourseItem'; // eslint-disable-line
+import NoProCourseItem from '../components/Top/NoProCourseItem';
 import {
   snackCourseSelector,
   purchasedProCourseSelector,
 } from '../modules/selectors/courseSelectors';
+import CourseMap from '../modules/models/CourseMap';
+import LectureMap from '../modules/models/LectureMap';
+
 
 const {
   Alert,
@@ -121,6 +123,12 @@ class Top extends Component {
     isOnline: PropTypes.bool.isRequired,
     // actions
     setCurrentCourseId: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    purchasedProCourses: new CourseMap(),
+    snackCourses: new CourseMap(),
+    lectures: new LectureMap(),
   };
 
   constructor(props) {
