@@ -32,6 +32,7 @@ export const CREATE_PURCHASED_GUEST_FAILURE = 'sharewis/user/CREATE_PURCHASED_GU
 
 // Reducer
 const initialState = {
+  userId: 0,
   password: null,
   facebookId: null,
   userName: null,
@@ -40,7 +41,7 @@ const initialState = {
   isFinishOnboarding: false,
   isPremium: false,
   mixpanelId: null,
-  isTemporary: null,
+  isTemporary: false,
 };
 
 const notLogin = (state, action) => ({
@@ -53,6 +54,7 @@ const login = (state, action) => ({
   ...state,
   ...action.payload,
   loggedIn: true,
+  isTemporary: false,
 });
 
 export const reducer = handleActions({
@@ -69,7 +71,12 @@ export const reducer = handleActions({
   [JOIN_PREMIUM_SUCCESS]: (state, action) => ({ ...state, isPremium: true }),
   [JOIN_PREMIUM_FAILURE]: (state, action) => ({ ...state, isPremium: false }),
   [CREATE_PURCHASED_GUEST_START]: notLogin,
-  [CREATE_PURCHASED_GUEST_SUCCESS]: (state, action) => ({ ...state, isTemporary: true }),
+  [CREATE_PURCHASED_GUEST_SUCCESS]: (state, action) => ({
+    ...state,
+    ...action.payload,
+    loggedIn: false,
+    isTemporary: true,
+  }),
   [CREATE_PURCHASED_GUEST_FAILURE]: notLogin,
 }, initialState);
 
@@ -110,6 +117,7 @@ async function getUserData(credentials: Array<string>) {
     nickName: result.nickname,
     email: result.email,
     isPremium: result.is_premium,
+    isTemporary: result.is_temporary,
   };
 }
 
@@ -127,6 +135,25 @@ async function signupByEmail(credentials: Array<string>) {
     nickName: result.nickname,
     email: result.email,
     isPremium: result.is_premium,
+    isTemporary: result.is_temporary,
+  };
+}
+
+async function signupPurchasedGuestByEmail(credentials: Array<string>, userId) {
+  const result = await Api.post('users/signup_purchased_guest', {
+    email: credentials[0],
+    password: credentials[1],
+    language: I18n.locale ? I18n.locale.split('-')[0] : null,
+    currency: null,
+  }, { 'user-id': userId });
+
+  return {
+    userId: result.id,
+    userName: result.username,
+    nickName: result.nickname,
+    email: result.email,
+    isPremium: result.is_premium,
+    isTemporary: result.is_temporary,
   };
 }
 
@@ -151,7 +178,9 @@ export const fetchUserBy = (loginMethod, credentials) =>
   };
 
 export const signupUserBy = (loginMethod, credentials) =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
+    const { user } = getState();
+
     if (loginMethod === 'facebook') {
       // TODO Facebook signup 実装する
       dispatch(fetchFBEmailSuccess(credentials));
@@ -161,7 +190,9 @@ export const signupUserBy = (loginMethod, credentials) =>
     }
 
     try {
-      const userData = await signupByEmail(credentials);
+      const userData = user.isTemporary === true
+        ? await signupPurchasedGuestByEmail(credentials, user.id)
+        : await signupByEmail(credentials);
       return dispatch(fetchActSignupSuccess(userData));
     } catch (error) {
       new Bugsnag().notify(error);

@@ -118,7 +118,7 @@ class Form extends Component {
 
     try {
       await signupUserBy('email', [email, password]);
-      await fetchUserBy('email', [email, password]);
+      await fetchUserBy('email', [email, password]); // FIXME: これいる？
     } catch (error) {
       fetchActSignupFailure();
 

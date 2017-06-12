@@ -48,6 +48,7 @@ describe('User reducer', () => {
         facebookId: '1234567890',
         userName: 'username',
         nickName: 'nickname',
+        isTemporary: false,
       };
     });
 
