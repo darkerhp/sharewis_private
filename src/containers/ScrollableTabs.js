@@ -16,7 +16,7 @@ import ExScrollableTabBar from '../components/ScrollableTabs/ExScrollableTabBar'
 // デザイン妥協できない場合、CustomでScrollableTabBarを実装する必要がありそう。
 const renderScrollableTabBar = () =>
   <ExScrollableTabBar
-    underlineStyle={{ backgroundColor: '#ffff77', height: 3 }}
+    underlineStyle={{ height: 0 }} // アクティブタグのアンダーラインを表示しない
     activeTextColor="#ffffff"
     inactiveTextColor="#ffffff"
     backgroundColor={BaseStyles.navBarBackgroundColor}
