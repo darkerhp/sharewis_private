@@ -1,6 +1,6 @@
 {
-  "name": "SharewisActMobile",
-  "version": "5.0.3",
+  "name": "SharewisMobile",
+  "version": "5.1.0",
   "private": true,
   "jest": {
     "preset": "react-native",
