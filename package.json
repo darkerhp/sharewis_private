@@ -37,7 +37,7 @@
     "react-native-button": "^1.8.2",
     "react-native-device-info": "^0.10.2",
     "react-native-drawer": "^2.3.0",
-    "react-native-fbsdk": "^0.5.0",
+    "react-native-fbsdk": "^0.5.1",
     "react-native-fit-image": "^1.4.7",
     "react-native-fs": "^2.1.0-rc.1",
     "react-native-hr": "^1.1.3",
