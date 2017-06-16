@@ -82,26 +82,31 @@ class SideMenu extends Component { // eslint-disable-line
   };
 
   renderLoginAndSignupButtons() {
-    const { isOnline } = this.props;
+    const { isOnline, user } = this.props;
 
     return (
       <View>
-        <View style={styles.forGuestFieldWrapper}>
-          <View style={styles.labelTextWrapper}>
-            <Text style={styles.labelText}>{I18n.t('loginNavigationMessage')}</Text>
+        {user.isTemporary === false && // 購入済みゲストユーザーにはログインさせない
+          <View style={styles.forGuestFieldWrapper}>
+            <View style={styles.labelTextWrapper}>
+              <Text style={styles.labelText}>{I18n.t('loginNavigationMessage')}</Text>
+            </View>
+            <Button
+              containerStyle={styles.buttonWrapper}
+              style={styles.buttonText}
+              onPress={isOnline ? RouterActions.loginModal : alertOfflineError}
+            >
+              {I18n.t('login')}
+            </Button>
           </View>
-          <Button
-            containerStyle={styles.buttonWrapper}
-            style={styles.buttonText}
-            onPress={isOnline ? RouterActions.loginModal : alertOfflineError}
-          >
-            {I18n.t('login')}
-          </Button>
-        </View>
+        }
+
         <View style={styles.forGuestFieldWrapper}>
-          <View style={styles.labelTextWrapper}>
-            <Text style={styles.labelText}>{I18n.t('noAccountYet')}</Text>
-          </View>
+          {user.isTemporary === false && // 購入済みゲストユーザーには表示しない
+            <View style={styles.labelTextWrapper}>
+              <Text style={styles.labelText}>{I18n.t('noAccountYet')}</Text>
+            </View>
+          }
           <Button
             containerStyle={styles.buttonWrapper}
             style={styles.buttonText}
