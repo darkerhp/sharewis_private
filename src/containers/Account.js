@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
@@ -11,7 +12,8 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
 import { ENV } from '../lib/constants';
-import * as premiumActions from '../modules/premium'; // eslint-disable-line
+import * as courseActions from '../modules/courses';
+import * as purchaseActions from '../modules/purchase'; // eslint-disable-line
 
 const { ActivityIndicator, Alert, View, Text, StyleSheet, Platform } = ReactNative;
 
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
 const pckg = require('../../package.json');
 
 const mapStateToProps = ({ netInfo, ui, user }) => ({ isOnline: netInfo.isConnected, ui, user });
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators(premiumActions, dispatch) });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...courseActions, ...purchaseActions }, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Account extends Component {
@@ -145,17 +147,19 @@ class Account extends Component {
   }
 
   async restore() {
-    const { restorePremium } = this.props;
+    const { fetchMyCourse, restoreCourse, fetchRestorePurchases, user } = this.props;
 
     try {
       this.setState({ isLoading: true });
-      const response = await restorePremium();
+      const response = await restoreCourse(user);
       if (response.length === 0) {
         Alert.alert(I18n.t('restorePurchaseNotFoundTitle'), I18n.t('restorePurchaseNotFoundMessage'));
         return;
       }
+      await fetchMyCourse(true);
       Alert.alert(I18n.t('restorePurchaseSuccessTitle'), I18n.t('restorePurchaseSuccessMessage'));
     } catch (error) {
+      console.error(error);
       Alert.alert(I18n.t('restorePurchaseErrorTitle'), I18n.t('restorePurchaseErrorMessage'));
     } finally {
       this.setState({ isLoading: false });
@@ -163,7 +167,7 @@ class Account extends Component {
   }
 
   @autobind
-  renderRestoreButton() {
+  renderRestoreButtonLabel() {
     if (this.state.isLoading) {
       return <ActivityIndicator animating size="small" color={'white'} />;
     }
@@ -178,7 +182,7 @@ class Account extends Component {
           <Text style={styles.fieldText}>{fieldName}</Text>
         </View>
         <View style={styles.fieldValueWrapper}>
-          <Text style={[styles.fieldText, fieldValue || { color: '#999' }, valueStyle]}>
+          <Text style={[styles.fieldText, _.isEmpty(fieldValue) ? { color: '#999' } : {}, valueStyle]}>
             {fieldValue || I18n.t('notSet')}
           </Text>
         </View>
@@ -254,7 +258,7 @@ class Account extends Component {
             )}
             disabled={this.state.isLoading}
           >
-            { this.renderRestoreButton() }
+            { this.renderRestoreButtonLabel() }
           </Button>
           }
           <Text style={styles.versionText}>version: {pckg.version}-{ENV}</Text>

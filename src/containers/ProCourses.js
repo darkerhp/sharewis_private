@@ -166,7 +166,7 @@ class ProCourses extends Component {
 
     if (notPurchasedProCourses.isEmpty()) {
       // TODO メッセージ ＆ 翻訳
-      return <EmptyList contentText={'購入可能なコースはありません'} />;
+      return <EmptyList contentText={I18n.t('notAvailablePurchaseCourses')} />;
     }
 
     return (

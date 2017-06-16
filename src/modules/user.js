@@ -157,6 +157,24 @@ async function signupPurchasedGuestByEmail(credentials: Array<string>, userId) {
   };
 }
 
+export async function postPurchasedGuest() {
+  const deviceId = DeviceInfo.getUniqueID();
+  const userData = await Api.post('users/purchased_guest', {
+    device_id: deviceId,
+    language: I18n.locale ? I18n.locale.split('-')[0] : null,
+    currency: null,
+  });
+
+  return {
+    userId: userData.id,
+    userName: userData.username,
+    nickName: userData.nickname,
+    email: userData.email,
+    isPremium: userData.is_premium,
+    isTemporary: userData.is_temporary,
+  };
+}
+
 export const fetchUserBy = (loginMethod, credentials) =>
   async (dispatch) => {
     if (loginMethod === 'facebook') {
@@ -205,19 +223,12 @@ export const signupUserBy = (loginMethod, credentials) =>
 /**
  * 購入済みゲストユーザーを作成する
  *  購入済みゲストユーザー: ゲストユーザーがコースを購入した場合に作成する仮ユーザー
- * @param loginMethod
- * @param credentials
  */
-export const createPurchasedGuest = (loginMethod, credentials) =>
+export const createPurchasedGuest = () =>
   async (dispatch) => {
     dispatch(createPurchasedGuestStart);
     try {
-      const deviceId = DeviceInfo.getDeviceId();
-      const userData = await Api.post('users/purchased_guest', {
-        device_id: deviceId,
-        language: I18n.locale ? I18n.locale.split('-')[0] : null,
-        currency: null,
-      });
+      const userData = await postPurchasedGuest();
       dispatch(createPurchasedGuestSuccess(userData));
       return userData;
     } catch (error) {
