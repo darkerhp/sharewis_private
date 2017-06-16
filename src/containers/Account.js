@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
 const pckg = require('../../package.json');
 
 const mapStateToProps = ({ netInfo, ui, user }) => ({ isOnline: netInfo.isConnected, ui, user });
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators({...courseActions, ...purchaseActions}, dispatch) });
+const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...courseActions, ...purchaseActions }, dispatch) });
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Account extends Component {
