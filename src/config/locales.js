@@ -97,6 +97,7 @@ const locales = {
     restorePurchaseErrorTitle: '復元失敗',
     restorePurchaseErrorMessage: '購入履歴の復元に失敗しました。',
     notPurchasedProCourseYet: '購入済みのプロコースがありません。',
+    notAvailablePurchaseCourses: '購入可能なコースはありません。',
   },
   en: {
     accountSettings: 'Account Info',
@@ -157,7 +158,7 @@ const locales = {
     agreeTosAndPolicy: `By completing this sign up process, you agree to our ${ACT_TOS_URL} and ${ACT_PRIVACY_URL}.`,
     skipSignup: 'Skip Signup',
     skipLogin: 'Skip Login',
-    alreadyRegisteredEmailError: 'Already registered',
+    alreadyRegisteredEmailErrorTitle: 'Already registered',
     alreadyRegisteredEmailErrorMessage: 'Would you like to login instead?',
     // スナックコース
     snackCourse: 'Snack Courses',
@@ -178,14 +179,15 @@ const locales = {
     premiumJoinTitle: 'Join Premium Account',
     thankYouForJoinTitle: 'Thank you for joining',
     thankYouForJoinMessage: 'You have successfully upgraded your account to Premium', // TODO 要翻訳
-    restorePurchaseButtonLabel: '##要翻訳', // TODO 翻訳
+    restorePurchaseButtonLabel: 'Restore Purchases',
     restorePurchaseSuccessTitle: 'Restore Successful',
     restorePurchaseSuccessMessage: 'Successfully restores all your purchases.',
     restorePurchaseNotFoundTitle: 'No Purchases',
     restorePurchaseNotFoundMessage: 'We didn\'t find any purchases to restore.',
     restorePurchaseErrorTitle: 'iTunes Error',
     restorePurchaseErrorMessage: 'Could not connect to iTunes store.',
-    notPurchasedProCourseYet: 'Bạn chưa mua Pro Courses nào.',
+    notPurchasedProCourseYet: 'You haven\'t purchased any Pro Courses yet.',
+    notAvailablePurchaseCourses: '＊＊要翻訳＊＊', // TODO 要翻訳
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -246,7 +248,7 @@ const locales = {
     agreeTosAndPolicy: `Khi hoàn thành đăng ký nghĩa là bạn đồng ý với ${ACT_TOS_URL} và ${ACT_PRIVACY_URL}.`,
     skipSignup: 'Sử dụng các ứng dụng mà không cần đăng ký',
     skipLogin: 'Bỏ qua đăng nhập',
-    alreadyRegisteredEmailError: 'Đã đăng ký',
+    alreadyRegisteredEmailErrorTitle: 'Đã đăng ký',
     alreadyRegisteredEmailErrorMessage: 'Bạn có muốn đăng nhập thay thế không?',
     // スナックコース
     snackCourse: 'Snack Courses',
@@ -258,7 +260,7 @@ const locales = {
     noProCourses: `Nếu bạn không mua bất kỳ Pro Courses nào, vui lòng vào ${ACT_PRO_COURSES_URL}.`,
     // iOS用
     notAllowedSignup: 'Đăng ký thành viên hiện đang không được phép trên ứng dụng',
-    cancel: 'Cancel', // TODO 要翻訳
+    cancel: 'Huỷ',
     aboutPremiumButtonLabel: '##要翻訳', // TODO 要翻訳
     join: 'Join Premium', // TODO 要翻訳
     mustBeLoggedIn: 'Must be logged in to join premium account', // TODO 要翻訳
@@ -267,14 +269,15 @@ const locales = {
     premiumJoinTitle: 'Join Premium Account', // TODO 要翻訳
     thankYouForJoinTitle: 'Thank you for joining',
     thankYouForJoinMessage: 'You have successfully upgraded your account to Premium', // TODO 要翻訳
-    restorePurchaseButtonLabel: '##要翻訳', // TODO 翻訳
-    restorePurchaseSuccessTitle: 'Restore Successful', // TODO 翻訳
-    restorePurchaseSuccessMessage: 'Successfully restores all your purchases.', // TODO 翻訳
-    restorePurchaseNotFoundTitle: 'No Purchases', // TODO 翻訳
-    restorePurchaseNotFoundMessage: 'We didn\'t find any purchases to restore.', // TODO 翻訳
-    restorePurchaseErrorTitle: 'iTunes Error', // TODO 翻訳
-    restorePurchaseErrorMessage: 'Could not connect to iTunes store.', // TODO 翻訳
-    notPurchasedProCourseYet: 'You haven\'t purchased any Pro Courses yet.',
+    restorePurchaseButtonLabel: 'Khôi phục mua hàng',
+    restorePurchaseSuccessTitle: 'Phục hồi thành công',
+    restorePurchaseSuccessMessage: 'Khôi phục thành công tất cả các lần mua hàng của bạn.',
+    restorePurchaseNotFoundTitle: 'Không mua hàng',
+    restorePurchaseNotFoundMessage: 'Chúng tôi không tìm thấy bất kỳ khoản mua hàng nào để khôi phục.',
+    restorePurchaseErrorTitle: 'Lỗi iTunes',
+    restorePurchaseErrorMessage: 'Không thể kết nối với cửa hàng iTunes.',
+    notPurchasedProCourseYet: 'Bạn chưa mua Pro Courses nào.',
+    notAvailablePurchaseCourses: '＊＊要翻訳＊＊', // TODO 要翻訳
   },
 };
 
