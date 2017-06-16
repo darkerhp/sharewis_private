@@ -187,7 +187,7 @@ const locales = {
     restorePurchaseErrorTitle: 'iTunes Error',
     restorePurchaseErrorMessage: 'Could not connect to iTunes store.',
     notPurchasedProCourseYet: 'You haven\'t purchased any Pro Courses yet.',
-    notAvailablePurchaseCourses: '＊＊要翻訳＊＊', // TODO 要翻訳
+    notAvailablePurchaseCourses: 'No Pro Courses available',
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -277,7 +277,7 @@ const locales = {
     restorePurchaseErrorTitle: 'Lỗi iTunes',
     restorePurchaseErrorMessage: 'Không thể kết nối với cửa hàng iTunes.',
     notPurchasedProCourseYet: 'Bạn chưa mua Pro Courses nào.',
-    notAvailablePurchaseCourses: '＊＊要翻訳＊＊', // TODO 要翻訳
+    notAvailablePurchaseCourses: 'Bạn không thể mua bất kỳ Pro Courses nào.',
   },
 };
 
