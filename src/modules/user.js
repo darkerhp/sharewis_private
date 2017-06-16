@@ -209,7 +209,7 @@ export const signupUserBy = (loginMethod, credentials) =>
 
     try {
       const userData = user.isTemporary === true
-        ? await signupPurchasedGuestByEmail(credentials, user.id)
+        ? await signupPurchasedGuestByEmail(credentials, user.userId)
         : await signupByEmail(credentials);
       return dispatch(fetchActSignupSuccess(userData));
     } catch (error) {
