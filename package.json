@@ -47,7 +47,7 @@
     "react-native-keep-awake": "^2.0.3",
     "react-native-loading-spinner-overlay": "^0.3.0",
     "react-native-mixpanel": "^0.0.15",
-    "react-native-orientation": "git://github.com/DomiR/react-native-orientation.git",
+    "react-native-orientation": "git+https://github.com/yamill/react-native-orientation.git",
     "react-native-progress": "^3.2.0",
     "react-native-router-flux": "^3.37.0",
     "react-native-scrollable-tab-view": "^0.7.2",

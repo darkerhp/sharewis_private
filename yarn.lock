@@ -3722,9 +3722,9 @@ react-native-mixpanel@^0.0.15:
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/react-native-mixpanel/-/react-native-mixpanel-0.0.15.tgz#02c10ea7a4317f893685c62ebb09c82a2bab3db8"
 
-"react-native-orientation@git://github.com/DomiR/react-native-orientation.git":
+"react-native-orientation@git+https://github.com/yamill/react-native-orientation.git":
   version "1.17.0"
-  resolved "git://github.com/DomiR/react-native-orientation.git#317c5a245a09dd235526b9ca753653666bc298d3"
+  resolved "git+https://github.com/yamill/react-native-orientation.git#9a796cf0790491bd7d96b905496dc43383316d0e"
 
 react-native-progress@^3.2.0:
   version "3.2.0"
