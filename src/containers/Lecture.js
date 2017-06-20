@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as lectureActions from '../modules/lectures';
+import * as lecturesActions from '../modules/lectures';
 import * as uiActions from '../modules/ui';
 import BaseStyles from '../lib/baseStyles';
 import Lecture from '../modules/models/Lecture';
@@ -55,7 +55,12 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...lectureActions, ...uiActions }, dispatch) });
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({
+    ..._.pickBy(lecturesActions, _.isFunction),
+    ..._.pickBy(uiActions, _.isFunction),
+  }, dispatch),
+});
 
 @connect(mapStateToProps, mapDispatchToProps)
 class LectureContainer extends Component {
@@ -144,13 +149,13 @@ class LectureContainer extends Component {
     return (
       <View style={styles.buttonWrapper}>
         { isVisibleButton &&
-          <Button
-            containerStyle={styles.joinButton}
-            style={styles.joinButtonText}
-            onPress={this.handlePressNextLecture}
-          >
-            {I18n.t('nextLecture')}
-          </Button>
+        <Button
+          containerStyle={styles.joinButton}
+          style={styles.joinButtonText}
+          onPress={this.handlePressNextLecture}
+        >
+          {I18n.t('nextLecture')}
+        </Button>
         }
       </View>
     );

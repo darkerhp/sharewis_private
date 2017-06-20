@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...premiumActions }, dispatch),
+  ...bindActionCreators({ ..._.pickBy(premiumActions, _.isFunction) }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

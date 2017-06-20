@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
-import Button from 'react-native-button';
 import FitImage from 'react-native-fit-image';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -109,7 +109,11 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...coursesActions, ...userActions, ...uiActions }, dispatch),
+  ...bindActionCreators({
+    ..._.pickBy(coursesActions, _.isFunction),
+    ..._.pickBy(userActions, _.isFunction),
+    ..._.pickBy(uiActions, _.isFunction),
+  }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

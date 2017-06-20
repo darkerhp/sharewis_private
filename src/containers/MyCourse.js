@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
@@ -9,7 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
-import { Client } from 'bugsnag-react-native';
+import { Client as Bugsnag } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
 import * as coursesActions from '../modules/courses';
@@ -78,7 +79,12 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...coursesActions, ...uiActions }, dispatch) });
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({
+    ..._.pickBy(coursesActions, _.isFunction),
+    ..._.pickBy(uiActions, _.isFunction),
+  }, dispatch),
+});
 
 @connect(mapStateToProps, mapDispatchToProps)
 class MyCourse extends Component {
@@ -116,7 +122,7 @@ class MyCourse extends Component {
       await fetchMyCourse(force);
       await fetchCoursesDownloadStatus();
     } catch (error) {
-      new Client().notify(error);
+      new Bugsnag().notify(error);
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
@@ -186,20 +192,20 @@ class MyCourse extends Component {
             );
           })}
           {isAndroid &&
-            <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
-              <View style={styles.hyperlinkWrapper}>
-                <Hyperlink
-                  style={styles.searchMore}
-                  linkStyle={{ color: BaseStyles.hyperlink }}
-                  linkText={I18n.t('searchMore')}
-                  onPress={isOnline ? redirectTo : alertOfflineError}
-                >
-                  <Text style={styles.contentText}>
-                    {ACT_PRO_COURSES_URL}
-                  </Text>
-                </Hyperlink>
-              </View>
-            </OneColumnItemBox>
+          <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
+            <View style={styles.hyperlinkWrapper}>
+              <Hyperlink
+                style={styles.searchMore}
+                linkStyle={{ color: BaseStyles.hyperlink }}
+                linkText={I18n.t('searchMore')}
+                onPress={isOnline ? redirectTo : alertOfflineError}
+              >
+                <Text style={styles.contentText}>
+                  {ACT_PRO_COURSES_URL}
+                </Text>
+              </Hyperlink>
+            </View>
+          </OneColumnItemBox>
           }
         </View>
       </ScrollView>
