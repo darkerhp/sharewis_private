@@ -39,18 +39,20 @@ const handlePress = (isOnline, url) => {
 };
 
 const NoProCourseItem = ({ isOnline }) =>
-  <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
-    <Hyperlink
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-      linkStyle={{ color: BaseStyles.hyperlink }}
-      linkText={url => (url === ACT_PRO_COURSES_URL ? I18n.t('actWebsite') : url)}
-      onPress={url => handlePress(isOnline, url)}
-    >
-      <Text style={styles.contentText}>
-        {Platform.OS === 'ios' ? I18n.t('notPurchasedProCourseYet') : I18n.t('noProCourses')}
-      </Text>
-    </Hyperlink>
-  </OneColumnItemBox>;
+  (
+    <OneColumnItemBox style={styles.myCourseSummaryItemBox} isTouchble={false}>
+      <Hyperlink
+        style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+        linkStyle={{ color: BaseStyles.hyperlink }}
+        linkText={url => (url === ACT_PRO_COURSES_URL ? I18n.t('actWebsite') : url)}
+        onPress={url => handlePress(isOnline, url)}
+      >
+        <Text style={styles.contentText}>
+          {Platform.OS === 'ios' ? I18n.t('notPurchasedProCourseYet') : I18n.t('noProCourses')}
+        </Text>
+      </Hyperlink>
+    </OneColumnItemBox>
+  );
 
 NoProCourseItem.propTypes = {
   isOnline: PropTypes.bool.isRequired,

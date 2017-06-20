@@ -43,17 +43,19 @@ const styles = StyleSheet.create({
 
 
 const NotLoginList = () =>
-  <View style={styles.container}>
-    <Text style={styles.contentText}>
-      {I18n.t('noLogin')}
-    </Text>
-    <Button
-      containerStyle={styles.signupButtonWrapper}
-      style={styles.signupButtonText}
-      onPress={() => RouterActions.login()}
-    >
-      { I18n.t('login') }
-    </Button>
-  </View>;
+  (
+    <View style={styles.container}>
+      <Text style={styles.contentText}>
+        {I18n.t('noLogin')}
+      </Text>
+      <Button
+        containerStyle={styles.signupButtonWrapper}
+        style={styles.signupButtonText}
+        onPress={() => RouterActions.login()}
+      >
+        { I18n.t('login') }
+      </Button>
+    </View>
+  );
 
 export default NotLoginList;

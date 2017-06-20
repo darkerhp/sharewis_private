@@ -45,24 +45,26 @@ const ja = require('./images/premium_ja.png');
 const en = require('./images/premium_en.png');
 
 const Premium = ({ onPressJoin }) =>
-  <View style={styles.container}>
-    <View style={styles.premiumImageWrapper}>
-      <Image
-        source={localeUtil.isLocaleJa() ? ja : en}
-        resizeMode={Image.resizeMode.contain}
-        style={styles.premiumImage}
-      />
+  (
+    <View style={styles.container}>
+      <View style={styles.premiumImageWrapper}>
+        <Image
+          source={localeUtil.isLocaleJa() ? ja : en}
+          resizeMode={Image.resizeMode.contain}
+          style={styles.premiumImage}
+        />
+      </View>
+      <View style={styles.buttonWrapper}>
+        <Button
+          containerStyle={styles.joinButton}
+          style={styles.joinButtonText}
+          onPress={onPressJoin}
+        >
+          {I18n.t('join')}
+        </Button>
+      </View>
     </View>
-    <View style={styles.buttonWrapper}>
-      <Button
-        containerStyle={styles.joinButton}
-        style={styles.joinButtonText}
-        onPress={onPressJoin}
-      >
-        {I18n.t('join')}
-      </Button>
-    </View>
-  </View>;
+  );
 
 Premium.propTypes = {
   onPressJoin: PropTypes.func.isRequired,

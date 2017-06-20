@@ -127,6 +127,7 @@ class Top extends Component {
     isOnline: PropTypes.bool.isRequired,
     // actions
     setCurrentCourseId: PropTypes.func.isRequired,
+    finishOnboarding: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -211,12 +212,13 @@ class Top extends Component {
     const snackCourseItems = snackCourses
       .sortBy(c => c.ranking)
       .valueSeq()
-      .map(course =>
+      .map(course => (
         <TwoColumnCourseItem
           key={course.id}
           course={course}
           onPress={() => this.handlePressSnackCourseItem(course.id)}
-        />);
+        />
+      ));
 
     return (
       <View>

@@ -20,13 +20,15 @@ const styles = StyleSheet.create({
 
 
 const OfflineLecture = ({ lectureContentStyleId }) =>
-  <View style={[lectureContentStyleId, styles.container]}>
-    <View>
-      <Text style={styles.contentText}>
-        {I18n.t('offlineLecture')}
-      </Text>
+  (
+    <View style={[lectureContentStyleId, styles.container]}>
+      <View>
+        <Text style={styles.contentText}>
+          {I18n.t('offlineLecture')}
+        </Text>
+      </View>
     </View>
-  </View>;
+  );
 
 OfflineLecture.propTypes = {
   lectureContentStyleId: PropTypes.number.isRequired,

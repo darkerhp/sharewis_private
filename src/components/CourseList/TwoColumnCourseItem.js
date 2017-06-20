@@ -53,16 +53,18 @@ const styles = StyleSheet.create({
 });
 
 const TwoColumnCourseItem = ({ style, course, onPress, ...props }) =>
-  <TwoColumnItemBox
-    style={[styles.container, style]}
-    onPress={onPress}
-    {...props}
-  >
-    <Image source={{ uri: course.imageUrl }} style={styles.courseImage} />
-    <View style={styles.courseContentWrapper}>
-      <Text style={styles.courseTitle}>{course.title}</Text>
-    </View>
-  </TwoColumnItemBox>;
+  (
+    <TwoColumnItemBox
+      style={[styles.container, style]}
+      onPress={onPress}
+      {...props}
+    >
+      <Image source={{ uri: course.imageUrl }} style={styles.courseImage} />
+      <View style={styles.courseContentWrapper}>
+        <Text style={styles.courseTitle}>{course.title}</Text>
+      </View>
+    </TwoColumnItemBox>
+  );
 
 
 TwoColumnCourseItem.propTypes = {

@@ -41,42 +41,44 @@ const styles = StyleSheet.create({
 
 
 const CourseInfoSection = ({
-  // values
-  completeLectureCount,
-  containerStyle,
-  courseTitle,
-  nextLecture,
-  totalLectureCount,
-  totalDuration,
-  // actions
-  handlePressNextLecture,
+ // values
+ completeLectureCount,
+ containerStyle,
+ courseTitle,
+ nextLecture,
+ totalLectureCount,
+ totalDuration,
+ // actions
+ handlePressNextLecture,
 }) =>
-  <View style={[styles.container, containerStyle]}>
-    <View style={styles.courseTitleWrapper}>
-      <Text style={styles.courseTitleText}>{courseTitle}</Text>
-    </View>
+  (
+    <View style={[styles.container, containerStyle]}>
+      <View style={styles.courseTitleWrapper}>
+        <Text style={styles.courseTitleText}>{courseTitle}</Text>
+      </View>
 
-    {nextLecture &&
-      <NextLectureArea
-        nextLecture={nextLecture}
-        handlePressNextLecture={handlePressNextLecture}
-        hidden
-        containerStyle={styles.lectureAreaContainer}
+      {nextLecture &&
+        <NextLectureArea
+          nextLecture={nextLecture}
+          handlePressNextLecture={handlePressNextLecture}
+          hidden
+          containerStyle={styles.lectureAreaContainer}
+        />
+      }
+
+      <Progress
+        completeLectureCount={completeLectureCount}
+        totalLectureCount={totalLectureCount}
       />
-    }
 
-    <Progress
-      completeLectureCount={completeLectureCount}
-      totalLectureCount={totalLectureCount}
-    />
-
-    <Duration
-      estimatedTime={totalDuration}
-      format={I18n.t('totalDurationFormat')}
-      containerStyleId={styles.totalDurationWrapper}
-      durationStyleId={styles.totalDuration}
-    />
-  </View>;
+      <Duration
+        estimatedTime={totalDuration}
+        format={I18n.t('totalDurationFormat')}
+        containerStyleId={styles.totalDurationWrapper}
+        durationStyleId={styles.totalDuration}
+      />
+    </View>
+  );
 
 
 CourseInfoSection.propTypes = {

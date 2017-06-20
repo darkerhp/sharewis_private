@@ -33,14 +33,16 @@ const styles = StyleSheet.create({
 });
 
 const Footer = () =>
-  <View style={styles.container}>
-    <Button
-      containerStyle={styles.buttonWrapper}
-      style={styles.buttonText}
-      onPress={() => RouterActions.signup()}
-    >
-      { I18n.t('noAccountYet') }
-    </Button>
-  </View>;
+  (
+    <View style={styles.container}>
+      <Button
+        containerStyle={styles.buttonWrapper}
+        style={styles.buttonText}
+        onPress={() => RouterActions.signup()}
+      >
+        { I18n.t('noAccountYet') }
+      </Button>
+    </View>
+  );
 
 export default Footer;

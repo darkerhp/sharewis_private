@@ -20,10 +20,12 @@ const styles = StyleSheet.create({
 
 
 const ProgressBar = ({ progress }) =>
-  <View style={styles.progressView}>
-    <View style={[styles.currentProgress, { flex: progress }]} />
-    <View style={{ flex: 1 - progress }} />
-  </View>;
+  (
+    <View style={styles.progressView}>
+      <View style={[styles.currentProgress, { flex: progress }]} />
+      <View style={{ flex: 1 - progress }} />
+    </View>
+  );
 
 ProgressBar.propTypes = {
   progress: PropTypes.number.isRequired,

@@ -23,12 +23,14 @@ const styles = StyleSheet.create({
 });
 
 const MenuItem = ({ text, iconName, handlePress }) =>
-  <View style={styles.menuWrapper}>
-    <Icon style={styles.menuIcon} name={iconName} />
-    <Text style={styles.menuText} onPress={handlePress}>
-      {text}
-    </Text>
-  </View>;
+  (
+    <View style={styles.menuWrapper}>
+      <Icon style={styles.menuIcon} name={iconName} />
+      <Text style={styles.menuText} onPress={handlePress}>
+        {text}
+      </Text>
+    </View>
+  );
 
 MenuItem.propTypes = {
   text: PropTypes.string.isRequired,

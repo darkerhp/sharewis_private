@@ -19,12 +19,14 @@ const styles = StyleSheet.create({
 
 
 const Progress = ({ completeLectureCount, totalLectureCount }) =>
-  <View style={styles.container}>
-    <Text style={styles.progressText}>
-      {`${completeLectureCount}/${totalLectureCount} ${I18n.t('progressText')}`}
-    </Text>
-    <ProgressBar progress={completeLectureCount / totalLectureCount} />
-  </View>;
+  (
+    <View style={styles.container}>
+      <Text style={styles.progressText}>
+        {`${completeLectureCount}/${totalLectureCount} ${I18n.t('progressText')}`}
+      </Text>
+      <ProgressBar progress={completeLectureCount / totalLectureCount} />
+    </View>
+  );
 
 Progress.propTypes = {
   completeLectureCount: PropTypes.number.isRequired,

@@ -33,17 +33,19 @@ const LectureList = ({
   handlePressDownload,
   handlePressLecture,
 }) =>
-  <View style={[styles.container, containerStyleId]}>
-    {lectureList.map((lecture, i) => renderLecture({
-      key: i,
-      courseId,
-      isOnline,
-      lecture,
-      handlePressLecture,
-      handlePressDownload,
-      handlePressDelete,
-    }))}
-  </View>;
+  (
+    <View style={[styles.container, containerStyleId]}>
+      {lectureList.map((lecture, i) => renderLecture({
+        key: i,
+        courseId,
+        isOnline,
+        lecture,
+        handlePressLecture,
+        handlePressDownload,
+        handlePressDelete,
+      }))}
+    </View>
+  );
 
 LectureList.propTypes = {
   // values

@@ -64,21 +64,23 @@ const getNextLectureImageSrc = (nextLecture) => {
 };
 
 const NextLectureArea = ({ nextLecture, handlePressNextLecture, containerStyle }) =>
-  <View style={[styles.container, containerStyle]}>
-    <TouchableOpacity onPress={handlePressNextLecture}>
-      <View style={styles.courseImageWrapper}>
-        <Image
-          source={getNextLectureImageSrc(nextLecture)}
-          style={styles.courseImage}
-          resizeMode={Image.resizeMode.contain}
-        />
-        <Text style={styles.nextLectureTitleText}>{nextLecture.title}</Text>
-      </View>
-      <View style={styles.nextLectureTextWrapper}>
-        <Text style={styles.nextLectureText}>{I18n.t('nextLecture')}</Text>
-      </View>
-    </TouchableOpacity>
-  </View>;
+  (
+    <View style={[styles.container, containerStyle]}>
+      <TouchableOpacity onPress={handlePressNextLecture}>
+        <View style={styles.courseImageWrapper}>
+          <Image
+            source={getNextLectureImageSrc(nextLecture)}
+            style={styles.courseImage}
+            resizeMode={Image.resizeMode.contain}
+          />
+          <Text style={styles.nextLectureTitleText}>{nextLecture.title}</Text>
+        </View>
+        <View style={styles.nextLectureTextWrapper}>
+          <Text style={styles.nextLectureText}>{I18n.t('nextLecture')}</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
 
 NextLectureArea.propTypes = {
   nextLecture: PropTypes.shape({}).isRequired,
