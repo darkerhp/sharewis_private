@@ -142,6 +142,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-i18n')
     compile project(':react-native-device-info')
     compile project(':react-native-keep-awake')
     compile project(':bugsnag-react-native')
@@ -149,7 +150,6 @@ dependencies {
     compile project(':react-native-video')
     compile project(':react-native-vector-icons')
     compile project(':react-native-orientation')
-    compile project(':react-native-i18n')
     compile project(':react-native-fs')
     compile project(':react-native-fbsdk')
 
