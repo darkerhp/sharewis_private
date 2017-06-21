@@ -49,7 +49,7 @@ const Premium = ({ onPressJoin }) =>
     <View style={styles.container}>
       <View style={styles.premiumImageWrapper}>
         <Image
-          source={localeUtil.isLocaleJa() ? ja : en}
+          source={localeUtil.isJa() ? ja : en}
           resizeMode={Image.resizeMode.contain}
           style={styles.premiumImage}
         />

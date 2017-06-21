@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import Progress from '../CourseDetails/Progress';
 
+jest.mock('react-native-i18n', () => ({ t: () => '' }));
 jest.mock('../ProgressBar', () => 'ProgressBar');
 
 describe('Progress', () => {

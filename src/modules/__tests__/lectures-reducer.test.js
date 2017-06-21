@@ -20,6 +20,7 @@ const factory = (lectureId, props = {}) => (
 );
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
+jest.mock('react-native-i18n', () => ({ currentLocale: () => '' }));
 
 describe('lectures reducer', () => {
   it('should handle FETCH_COURSE_DETAILS_SUCCESS', () => {

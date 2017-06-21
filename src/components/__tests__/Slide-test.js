@@ -8,7 +8,7 @@ import Slide from '../Onboarding/Slide';
 jest.mock('../../utils/linking', () =>
   () => 'redirectTo',
 );
-
+jest.mock('react-native-i18n', () => ({ currentLocale: () => '' }));
 
 describe('Slide', () => {
   it('renders correctly', () => {

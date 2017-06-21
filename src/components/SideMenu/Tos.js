@@ -27,7 +27,7 @@ const Tos = () =>
   (
     <View style={styles.container}>
       <WebView
-        source={{ html: localeUtil.isLocaleJa() ? ja : en }}
+        source={{ html: localeUtil.isJa() ? ja : en }}
         style={{ width: BaseStyles.deviceWidth }}
       />
     </View>

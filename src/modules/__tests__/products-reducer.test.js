@@ -10,6 +10,8 @@ const factory = (productId, props = {}) => (
 );
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
+jest.mock('../../utils/api', () => 'Api');
+
 
 const payload = {
   entities: {

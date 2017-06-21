@@ -8,6 +8,7 @@ import userReducer, {
 } from '../user';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
+jest.mock('react-native-i18n', () => ({ currentLocale: () => '' }));
 
 describe('User reducer', () => {
   describe('Facebook graph request actions', () => {

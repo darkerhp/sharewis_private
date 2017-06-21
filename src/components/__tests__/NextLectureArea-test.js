@@ -6,6 +6,7 @@ import React from 'react';
 import NextLectureArea from '../CourseDetails/NextLectureArea';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
+jest.mock('react-native-i18n', () => ({ t: () => '' }));
 
 describe('NextLectureArea', () => {
   it('renders correctly', () => {
