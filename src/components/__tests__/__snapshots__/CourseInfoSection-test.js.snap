@@ -21,6 +21,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {
@@ -66,7 +67,7 @@ exports[`CourseInfoSection renders correctly 1`] = `
       }
     }
     estimatedTime={100}
-    format="[missing \\"en.totalDurationFormat\\" translation]"
+    format=""
   />
 </View>
 `;

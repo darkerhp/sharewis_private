@@ -123,7 +123,7 @@ class SideMenu extends Component { // eslint-disable-line
     const { isOnline, user } = this.props;
 
     let displayUsername = user.nickName || user.userName;
-    if (displayUsername && localeUtil.isLocaleJa()) {
+    if (displayUsername && localeUtil.isJa()) {
       displayUsername += ' さん';
     }
 

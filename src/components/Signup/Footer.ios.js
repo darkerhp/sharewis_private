@@ -33,22 +33,24 @@ const styles = StyleSheet.create({
 });
 
 const Footer = ({ handlePressSignup, handlePressSkipSignup }) =>
-  <View style={styles.container}>
-    <Button
-      containerStyle={styles.buttonWrapper}
-      style={styles.buttonText}
-      onPress={handlePressSignup}
-    >
-      { I18n.t('alreadyHaveAnAccount') }
-    </Button>
-    <Button
-      containerStyle={[styles.buttonWrapper, { borderWidth: 0, marginTop: 20 }]}
-      style={styles.buttonText}
-      onPress={handlePressSkipSignup}
-    >
-      { I18n.t('skipSignup') }
-    </Button>
-  </View>;
+  (
+    <View style={styles.container}>
+      <Button
+        containerStyle={styles.buttonWrapper}
+        style={styles.buttonText}
+        onPress={handlePressSignup}
+      >
+        { I18n.t('alreadyHaveAnAccount') }
+      </Button>
+      <Button
+        containerStyle={[styles.buttonWrapper, { borderWidth: 0, marginTop: 20 }]}
+        style={styles.buttonText}
+        onPress={handlePressSkipSignup}
+      >
+        { I18n.t('skipSignup') }
+      </Button>
+    </View>
+  );
 
 Footer.propTypes = {
   handlePressSignup: PropTypes.func.isRequired,

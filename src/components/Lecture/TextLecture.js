@@ -27,17 +27,19 @@ const styles = StyleSheet.create({
 });
 
 const TextLecture = ({ currentLecture, lectureContentStyleId }) =>
-  <View style={[lectureContentStyleId, { marginTop: BaseStyles.navbarHeight }]}>
-    <View style={styles.lectureTitleTextWrapper}>
-      <Text style={styles.lectureTitle}>{currentLecture.title}</Text>
+  (
+    <View style={[lectureContentStyleId, { marginTop: BaseStyles.navbarHeight }]}>
+      <View style={styles.lectureTitleTextWrapper}>
+        <Text style={styles.lectureTitle}>{currentLecture.title}</Text>
+      </View>
+      <View style={styles.webViewWrapper}>
+        <WebView
+          style={styles.webView}
+          source={{ html: currentLecture.body }}
+        />
+      </View>
     </View>
-    <View style={styles.webViewWrapper}>
-      <WebView
-        style={styles.webView}
-        source={{ html: currentLecture.body }}
-      />
-    </View>
-  </View>;
+  );
 
 TextLecture.propTypes = {
   currentLecture: PropTypes.instanceOf(Lecture).isRequired,

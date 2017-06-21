@@ -22,9 +22,11 @@ const styles = StyleSheet.create({
 });
 
 const Section = ({ lecture }) =>
-  <View style={styles.container}>
-    <Text style={styles.sectionTitleText}>{lecture.title}</Text>
-  </View>;
+  (
+    <View style={styles.container}>
+      <Text style={styles.sectionTitleText}>{lecture.title}</Text>
+    </View>
+  );
 
 
 Section.propTypes = {

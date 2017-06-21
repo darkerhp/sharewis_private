@@ -3,7 +3,7 @@ import validateEmailLogin from '../validate';
 import setupI18n from '../../config/locales';
 
 setupI18n();
-
+jest.mock('react-native-i18n', () => ({ currentLocale: () => '', t: () => 'Required' }));
 
 describe('Validate', () => {
   describe('validateEmailLogin', () => {

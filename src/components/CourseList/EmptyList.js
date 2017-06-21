@@ -36,17 +36,19 @@ const handlePress = (url) => {
 };
 
 const emptyList = ({ contentText }) =>
-  <View style={styles.container}>
-    <Hyperlink
-      linkStyle={Platform.OS !== 'ios' && { color: BaseStyles.hyperlink }}
-      linkText={I18n.t('actWebsite')}
-      onPress={handlePress}
-    >
-      <Text style={styles.contentText}>
-        {contentText}
-      </Text>
-    </Hyperlink>
-  </View>;
+  (
+    <View style={styles.container}>
+      <Hyperlink
+        linkStyle={Platform.OS !== 'ios' && { color: BaseStyles.hyperlink }}
+        linkText={I18n.t('actWebsite')}
+        onPress={handlePress}
+      >
+        <Text style={styles.contentText}>
+          {contentText}
+        </Text>
+      </Hyperlink>
+    </View>
+  );
 
 emptyList.propTypes = {
   contentText: PropTypes.string.isRequired,

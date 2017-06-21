@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions }, dispatch),
+  ...bindActionCreators({ ..._.pickBy(Actions, _.isFunction) }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

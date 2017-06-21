@@ -7,6 +7,7 @@ import reducer, { UPDATE_COURSE_DOWNLOADED_STATUS } from '../courses';
 import Course from '../models/Course';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
+jest.mock('react-native-i18n', () => ({ currentLocale: () => '' }));
 
 const factory = (courseId, props = {}) => (
   new OrderedMap({ [courseId]: new Course({ id: courseId, ...props }) })

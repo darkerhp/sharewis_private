@@ -17,6 +17,7 @@ jest.mock('Linking', () => {
 });
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
+jest.mock('react-native-i18n', () => ({ currentLocale: () => '' }));
 
 describe('Linking Utils', () => {
   const ACT_API_URL = require('../../lib/constants');

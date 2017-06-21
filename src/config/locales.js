@@ -8,7 +8,7 @@ import {
   ACT_PRO_COURSES_URL,
 } from '../lib/constants';
 
-const locales = {
+export const locales = {
   ja: {
     accountSettings: 'アカウント情報',
     actWebsite: 'ShareWisのWebサイト',

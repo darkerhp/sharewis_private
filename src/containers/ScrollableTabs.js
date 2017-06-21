@@ -15,12 +15,14 @@ import ExScrollableTabBar from '../components/ScrollableTabs/ExScrollableTabBar'
 // TODO プロコースが増えた場合、DefaultTabBar > ScrollableTabBarで実装する。
 // デザイン妥協できない場合、CustomでScrollableTabBarを実装する必要がありそう。
 const renderScrollableTabBar = () =>
-  <ExScrollableTabBar
-    underlineStyle={{ height: 0 }} // アクティブタグのアンダーラインを表示しない
-    activeTextColor="#ffffff"
-    inactiveTextColor="#ffffff"
-    backgroundColor={BaseStyles.navBarBackgroundColor}
-  />;
+  (
+    <ExScrollableTabBar
+      underlineStyle={{ height: 0 }} // アクティブタグのアンダーラインを表示しない
+      activeTextColor="#ffffff"
+      inactiveTextColor="#ffffff"
+      backgroundColor={BaseStyles.navBarBackgroundColor}
+    />
+  );
 
 @connect(({ user, routes }) => ({ user, routes }))
 class ScrollableTabs extends Component { // eslint-disable-line

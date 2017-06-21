@@ -1,6 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 import React, { Component } from 'react';
 
+import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
@@ -23,7 +24,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...Actions }, dispatch),
+  ...bindActionCreators({ ..._.pickBy(Actions, _.isFunction) }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

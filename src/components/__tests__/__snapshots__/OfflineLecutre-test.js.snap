@@ -16,6 +16,7 @@ exports[`OfflineLecture renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {
@@ -26,7 +27,7 @@ exports[`OfflineLecture renders correctly 1`] = `
         }
       }
     >
-      [missing "en.offlineLecture" translation]
+      
     </Text>
   </View>
 </View>

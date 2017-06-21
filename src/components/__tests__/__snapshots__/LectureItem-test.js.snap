@@ -28,6 +28,7 @@ exports[`LectureItem renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -68,6 +69,7 @@ exports[`LectureItem renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={false}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -115,6 +117,7 @@ exports[`LectureItem renders correctly 1`] = `
     accessible={true}
     hitSlop={undefined}
     isTVSelectable={true}
+    nativeID={undefined}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -137,6 +140,7 @@ exports[`LectureItem renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -159,6 +163,7 @@ exports[`LectureItem renders correctly 1`] = `
     accessible={true}
     hitSlop={undefined}
     isTVSelectable={true}
+    nativeID={undefined}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -181,6 +186,7 @@ exports[`LectureItem renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={false}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

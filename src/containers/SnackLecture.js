@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
@@ -11,7 +12,7 @@ import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as lectureActions from '../modules/lectures';
+import * as lecturesActions from '../modules/lectures';
 import * as uiActions from '../modules/ui';
 import BaseStyles from '../lib/baseStyles';
 import Lecture from '../modules/models/Lecture';
@@ -53,7 +54,10 @@ const mapStateToProps = ({ entities: { courses, lectures }, netInfo, ui }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...lectureActions, ...uiActions }, dispatch),
+  ...bindActionCreators({
+    ..._.pickBy(lecturesActions, _.isFunction),
+    ..._.pickBy(uiActions, _.isFunction),
+  }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

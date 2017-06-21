@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.corbt.keepawake.KCKeepAwakePackage;
 import com.bugsnag.BugsnagReactNative;
@@ -11,7 +12,6 @@ import com.kevinejohn.RNMixpanel.RNMixpanel;
 import com.brentvatne.react.ReactVideoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.github.yamill.orientation.OrientationPackage;
-import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.rnfs.RNFSPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.CallbackManager;
@@ -45,13 +45,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNI18nPackage(),
             new RNDeviceInfo(),
             new KCKeepAwakePackage(),
             BugsnagReactNative.getPackage(),
             new RNMixpanel(),
             new VectorIconsPackage(),
             new OrientationPackage(),
-          new ReactNativeI18n(),
           new FBSDKPackage(mCallbackManager),
           new RNFSPackage(),
           new ReactVideoPackage()

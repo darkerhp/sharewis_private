@@ -15,6 +15,7 @@ const FAILING_ENDPOINT = '/broken';
 const SIMPLE_RESPONSE = { foo: 'bar' };
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
+jest.mock('react-native-i18n', () => ({ currentLocale: () => '' }));
 
 async function getError(thunk) {
   try {

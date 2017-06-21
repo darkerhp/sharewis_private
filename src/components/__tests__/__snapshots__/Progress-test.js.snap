@@ -12,6 +12,7 @@ exports[`Progress renders correctly 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
+    disabled={false}
     ellipsizeMode="tail"
     style={
       Object {
@@ -20,7 +21,7 @@ exports[`Progress renders correctly 1`] = `
       }
     }
   >
-    0/10 [missing "en.progressText" translation]
+    0/10 
   </Text>
   <ProgressBar
     progress={0}

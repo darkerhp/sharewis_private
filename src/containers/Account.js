@@ -12,7 +12,7 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
 import { ENV } from '../lib/constants';
-import * as courseActions from '../modules/courses';
+import * as coursesActions from '../modules/courses';
 import * as purchaseActions from '../modules/purchase'; // eslint-disable-line
 
 const { ActivityIndicator, Alert, View, Text, StyleSheet, Platform } = ReactNative;
@@ -129,7 +129,12 @@ const styles = StyleSheet.create({
 const pckg = require('../../package.json');
 
 const mapStateToProps = ({ netInfo, ui, user }) => ({ isOnline: netInfo.isConnected, ui, user });
-const mapDispatchToProps = dispatch => ({ ...bindActionCreators({ ...courseActions, ...purchaseActions }, dispatch) });
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({
+    ..._.pickBy(coursesActions, _.isFunction),
+    ..._.pickBy(purchaseActions, _.isFunction),
+  }, dispatch),
+});
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Account extends Component {
@@ -197,25 +202,25 @@ class Account extends Component {
     return (
       <View style={{ justifyContent: 'flex-start' }}>
         {user.isTemporary === false && // 購入済みゲストユーザーにはログインさせない
-          <View style={styles.forGuestFieldWrapper}>
-            <View style={styles.forGuestFieldLableTextWrapper}>
-              <Text style={styles.forGuestFieldLableText}>{I18n.t('loginNavigationMessage')}</Text>
-            </View>
-            <Button
-              containerStyle={styles.buttonWrapper}
-              style={styles.buttonText}
-              onPress={isOnline ? RouterActions.loginModal : alertOfflineError}
-            >
-              {I18n.t('login')}
-            </Button>
+        <View style={styles.forGuestFieldWrapper}>
+          <View style={styles.forGuestFieldLableTextWrapper}>
+            <Text style={styles.forGuestFieldLableText}>{I18n.t('loginNavigationMessage')}</Text>
           </View>
+          <Button
+            containerStyle={styles.buttonWrapper}
+            style={styles.buttonText}
+            onPress={isOnline ? RouterActions.loginModal : alertOfflineError}
+          >
+            {I18n.t('login')}
+          </Button>
+        </View>
         }
 
         <View style={styles.forGuestFieldWrapper}>
           {user.isTemporary === false && // 購入済みゲストユーザーには表示しない
-            <View style={styles.forGuestFieldLableTextWrapper}>
-              <Text style={styles.forGuestFieldLableText}>{I18n.t('noAccountYet')}</Text>
-            </View>
+          <View style={styles.forGuestFieldLableTextWrapper}>
+            <Text style={styles.forGuestFieldLableText}>{I18n.t('noAccountYet')}</Text>
+          </View>
           }
           <Button
             containerStyle={styles.buttonWrapper}

@@ -2,18 +2,18 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import RNFS from 'react-native-fs';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
-import { _ } from 'lodash';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
 
-import * as lectureActions from '../modules/lectures';
+import * as lecturesActions from '../modules/lectures';
 import * as uiActions from '../modules/ui';
 import LectureList from '../components/CourseDetails/LectureList';
 import CourseInfoSection from '../components/CourseDetails/CourseInfoSection';
@@ -57,7 +57,10 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ...lectureActions, ...uiActions }, dispatch),
+  ...bindActionCreators({
+    ..._.pickBy(lecturesActions, _.isFunction),
+    ..._.pickBy(uiActions, _.isFunction),
+  }, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -224,15 +227,15 @@ class CourseDetails extends Component {
             }}
           />
           {!lectures.isEmpty() &&
-            <LectureList
-              containerStyleId={styles.lectureContainer}
-              lectureList={sectionMergedLectureList}
-              courseId={id}
-              isOnline={isOnline}
-              handlePressLecture={this.handlePressLecture}
-              handlePressDelete={this.handlePressDelete}
-              handlePressDownload={this.handlePressDownload}
-            />
+          <LectureList
+            containerStyleId={styles.lectureContainer}
+            lectureList={sectionMergedLectureList}
+            courseId={id}
+            isOnline={isOnline}
+            handlePressLecture={this.handlePressLecture}
+            handlePressDelete={this.handlePressDelete}
+            handlePressDownload={this.handlePressDownload}
+          />
           }
         </View>
       </ScrollView>

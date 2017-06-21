@@ -2,15 +2,15 @@
 import React, { Component, PropTypes } from 'react';
 import ReactNative from 'react-native';
 
+import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
-import { Client } from 'bugsnag-react-native';
+import { Client as Bugsnag } from 'bugsnag-react-native';
 import { connect } from 'react-redux';
-import Promise from 'bluebird';
 
 import * as coursesActions from '../modules/courses';
 import * as productsActions from '../modules/products'; // eslint-disable-line
@@ -81,9 +81,9 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators({
-    ...coursesActions,
-    ...productsActions,
-    ...purchaseActions,
+    ..._.pickBy(coursesActions, _.isFunction),
+    ..._.pickBy(productsActions, _.isFunction),
+    ..._.pickBy(purchaseActions, _.isFunction),
   }, dispatch),
 });
 
@@ -123,7 +123,7 @@ class ProCourses extends Component {
       await fetchProducts();
       await loadProducts();
     } catch (error) {
-      new Client().notify(error);
+      new Bugsnag().notify(error);
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }

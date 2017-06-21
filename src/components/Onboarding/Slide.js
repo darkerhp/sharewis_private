@@ -49,28 +49,30 @@ const styles = StyleSheet.create({
 
 
 const Slide = ({ text, imageSrc }) =>
-  <View style={styles.slide}>
-    <View style={styles.slideImageContainer}>
-      <Image
-        source={imageSrc}
-        style={styles.slideImage}
-        resizeMode={'contain'}
-      />
-    </View>
-    <View style={styles.content}>
-      <Hyperlink
-        style={{ flex: 1 }}
-        linkStyle={{ color: BaseStyles.hyperlink }}
-        linkText={url => (url === ACT_SITE_URL ? I18n.t('actWebsite') : url)}
-        onPress={redirectTo}
-      >
+  (
+    <View style={styles.slide}>
+      <View style={styles.slideImageContainer}>
+        <Image
+          source={imageSrc}
+          style={styles.slideImage}
+          resizeMode={'contain'}
+        />
+      </View>
+      <View style={styles.content}>
+        <Hyperlink
+          style={{ flex: 1 }}
+          linkStyle={{ color: BaseStyles.hyperlink }}
+          linkText={url => (url === ACT_SITE_URL ? I18n.t('actWebsite') : url)}
+          onPress={redirectTo}
+        >
 
-        <Text style={styles.contentText}>
-          {text}
-        </Text>
-      </Hyperlink>
+          <Text style={styles.contentText}>
+            {text}
+          </Text>
+        </Hyperlink>
+      </View>
     </View>
-  </View>;
+  );
 
 Slide.propTypes = {
   text: PropTypes.string.isRequired,
