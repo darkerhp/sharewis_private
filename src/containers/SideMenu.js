@@ -87,25 +87,25 @@ class SideMenu extends Component { // eslint-disable-line
     return (
       <View>
         {user.isTemporary === false && // 購入済みゲストユーザーにはログインさせない
-          <View style={styles.forGuestFieldWrapper}>
-            <View style={styles.labelTextWrapper}>
-              <Text style={styles.labelText}>{I18n.t('loginNavigationMessage')}</Text>
-            </View>
-            <Button
-              containerStyle={styles.buttonWrapper}
-              style={styles.buttonText}
-              onPress={isOnline ? RouterActions.loginModal : alertOfflineError}
-            >
-              {I18n.t('login')}
-            </Button>
+        <View style={styles.forGuestFieldWrapper}>
+          <View style={styles.labelTextWrapper}>
+            <Text style={styles.labelText}>{I18n.t('loginNavigationMessage')}</Text>
           </View>
+          <Button
+            containerStyle={styles.buttonWrapper}
+            style={styles.buttonText}
+            onPress={isOnline ? RouterActions.loginModal : alertOfflineError}
+          >
+            {I18n.t('login')}
+          </Button>
+        </View>
         }
 
         <View style={styles.forGuestFieldWrapper}>
           {user.isTemporary === false && // 購入済みゲストユーザーには表示しない
-            <View style={styles.labelTextWrapper}>
-              <Text style={styles.labelText}>{I18n.t('noAccountYet')}</Text>
-            </View>
+          <View style={styles.labelTextWrapper}>
+            <Text style={styles.labelText}>{I18n.t('noAccountYet')}</Text>
+          </View>
           }
           <Button
             containerStyle={styles.buttonWrapper}
@@ -122,8 +122,13 @@ class SideMenu extends Component { // eslint-disable-line
   render() {
     const { isOnline, user } = this.props;
 
-    let displayUsername = user.nickName || user.userName;
-    if (displayUsername && localeUtil.isJa()) {
+    let displayUsername = '';
+    if (user.loggedIn) {
+      displayUsername = user.nickName || user.userName;
+    } else {
+      displayUsername = I18n.t('guest');
+    }
+    if (localeUtil.isJa()) {
       displayUsername += ' さん';
     }
 
@@ -133,7 +138,7 @@ class SideMenu extends Component { // eslint-disable-line
           <View style={styles.profileWrapper}>
             {/* TODO プロフィール画像 */}
             <Text style={styles.userNameText}>
-              {user.loggedIn && displayUsername}
+              {displayUsername}
             </Text>
           </View>
         </View>
