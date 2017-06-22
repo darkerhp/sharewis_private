@@ -99,6 +99,7 @@ export const locales = {
     restorePurchaseErrorMessage: '購入履歴の復元に失敗しました。',
     notPurchasedProCourseYet: '購入済みのプロコースがありません。',
     notAvailablePurchaseCourses: '購入可能なコースはありません。',
+    purchaseCourseFailed: '購入処理中にエラーが発生しました。再度、購入手続きをお進めください。',
   },
   en: {
     accountSettings: 'Account Info',
@@ -190,6 +191,7 @@ export const locales = {
     restorePurchaseErrorMessage: 'Could not connect to iTunes store.',
     notPurchasedProCourseYet: 'You haven\'t purchased any Pro Courses yet.',
     notAvailablePurchaseCourses: 'No Pro Courses available',
+    purchaseCourseFailed: 'An error has occurred during payment proccess. Please retry your purchase.',
   },
   vi: {
     accountSettings: 'Thông tin tài khoản',
@@ -281,6 +283,7 @@ export const locales = {
     restorePurchaseErrorMessage: 'Không thể kết nối với cửa hàng iTunes.',
     notPurchasedProCourseYet: 'Bạn chưa mua Pro Courses nào.',
     notAvailablePurchaseCourses: 'Bạn không thể mua bất kỳ Pro Courses nào.',
+    purchaseCourseFailed: 'Đã xảy ra lỗi trong quá trình thanh toán. Vui lòng thử lại mua hàng của bạn.',
   },
 };
 
