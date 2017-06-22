@@ -141,8 +141,7 @@ class ProCourses extends Component {
       const response = await purchaseCourse(courseId);
       await createPurchaseStatus(courseId, response);
     } catch (error) {
-      // TODO 購入に失敗した旨のアラートを表示する
-      Alert.alert(I18n.t('errorTitle'), '購入処理中にエラーが発生しました。もう一度コースをタップして再購入してください。'); // TODO 翻訳
+      Alert.alert(I18n.t('errorTitle'), I18n.t('purchaseCourseFailed'));
     } finally {
       this.setState({ isLoading: false });
     }
