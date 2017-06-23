@@ -1,5 +1,6 @@
 // NOTE: Android版は再生速度変更ボタンが非表示
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
 import Button from 'react-native-button';

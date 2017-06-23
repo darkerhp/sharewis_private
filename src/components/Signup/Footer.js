@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
 import Button from 'react-native-button';
-import Hr from 'react-native-hr';
 import I18n from 'react-native-i18n';
 import { Actions as RouterActions } from 'react-native-router-flux';
 

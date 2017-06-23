@@ -1,11 +1,11 @@
 import { Record } from 'immutable';
 
 const CourseRecord = Record({
-  id: null,
+  id: 0,
   hasDownloadedLecture: false,
   imageUrl: '',
-  lectureCount: null,
-  lectureProgress: null,
+  lectureCount: 0,
+  lectureProgress: 0,
   title: '',
   type: '',
   ranking: 0,
