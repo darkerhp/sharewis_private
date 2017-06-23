@@ -1,5 +1,6 @@
 /* eslint no-console: ["error", { allow: ["warn", "log"] }] */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 import FBSDK from 'react-native-fbsdk';
 import autobind from 'autobind-decorator';

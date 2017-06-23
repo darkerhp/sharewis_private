@@ -1,5 +1,6 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
 import { Actions as RouterActions } from 'react-native-router-flux';
