@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
