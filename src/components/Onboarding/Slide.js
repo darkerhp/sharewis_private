@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';

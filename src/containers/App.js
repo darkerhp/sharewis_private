@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { Actions, Router } from 'react-native-router-flux';
 import { connect } from 'react-redux';

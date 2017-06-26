@@ -132,7 +132,7 @@ exports[`CourseSummary renders correctly 1`] = `
           }
         }
       >
-        null/null 
+        0/0 
       </Text>
       <View
         style={

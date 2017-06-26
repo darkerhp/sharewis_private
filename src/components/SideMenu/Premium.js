@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
