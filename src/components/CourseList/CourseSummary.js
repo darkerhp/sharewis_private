@@ -81,7 +81,7 @@ const CourseSummary = ({
   style,
 }) => {
   const lectureProgress = lectures.isEmpty()
-    ? course.lectureProgress
+    ? course.lectureProgress || 0
     : lectures.filter(l => l.isFinished()).size;
   return (
     <OneColumnItemBox

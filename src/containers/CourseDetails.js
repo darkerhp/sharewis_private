@@ -48,7 +48,7 @@ const mapStateToProps = (state, props) => {
   const currentCourse = courses.get(currentCourseId.toString());
   return {
     ...currentCourse.toJS(),
-    lectureProgress: getLectureProgress(state, props),
+    lectureProgress: getLectureProgress(state, props) || 0,
     lectures,
     sectionMergedLectureList: getSectionMergedLectureList(state, props),
     totalDuration: getLectureTotalDuration(state, props),
