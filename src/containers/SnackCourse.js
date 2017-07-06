@@ -91,9 +91,8 @@ class SnackCourse extends Component {
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
-
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(snackCourses.toJS()),
+      dataSource: this.state.dataSource.cloneWithRows(snackCourses.valueSeq().sortBy(c => c.ranking).toJS()),
       isLoading: false,
     });
   }
