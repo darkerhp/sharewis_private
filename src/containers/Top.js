@@ -24,6 +24,7 @@ import {
   snackCourseSelector,
   purchasedProCourseSelector,
 } from '../modules/selectors/courseSelectors';
+import Course from '../modules/models/Course';
 import CourseMap from '../modules/models/CourseMap';
 import LectureMap from '../modules/models/LectureMap';
 
@@ -210,16 +211,13 @@ class Top extends Component {
   @autobind
   renderSnackCourses() {
     const { snackCourses } = this.props;
-    const snackCourseItems = snackCourses
-      .sortBy(c => c.ranking)
-      .valueSeq()
-      .map(course => (
-        <TwoColumnCourseItem
-          key={course.id}
-          course={course}
-          onPress={() => this.handlePressSnackCourseItem(course.id)}
-        />
-      ));
+    const snackCourseItems = _.sampleSize(snackCourses.valueSeq().toJS(), 4).map(course => (
+      <TwoColumnCourseItem
+        key={course.id}
+        course={new Course(course)}
+        onPress={() => this.handlePressSnackCourseItem(course.id)}
+      />
+    ));
 
     return (
       <View>
