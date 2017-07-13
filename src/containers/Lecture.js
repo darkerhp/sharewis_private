@@ -127,8 +127,7 @@ class LectureContainer extends Component {
       return (
         <VideoLecture
           lectureContentStyleId={styles.lectureContentStyle}
-          // handleEnd={this.handlePressNextLecture} TODO auto play
-          handleEnd={() => console.log('End Snack Lecture')}
+          onVideoEnd={this.handlePressNextLecture}
           {...this.props}
         />
       );
