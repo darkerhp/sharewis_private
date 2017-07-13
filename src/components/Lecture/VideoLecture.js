@@ -53,7 +53,7 @@ class VideoLecture extends Component {
     speed: PropTypes.number.isRequired,
     // actions
     changeVideoPlaySpeed: PropTypes.func.isRequired,
-    handleEnd: PropTypes.func.isRequired,
+    onVideoEnd: PropTypes.func.isRequired,
     toggleFullScreen: PropTypes.func.isRequired,
   };
 
@@ -73,8 +73,8 @@ class VideoLecture extends Component {
     seeking: false,
     isLoadingThumbnail: true,
     currentTime: 0,
-    isPaused: true,
-    isStarted: false,
+    isPaused: false,
+    isStarted: true,
   };
 
   @autobind
@@ -115,8 +115,9 @@ class VideoLecture extends Component {
 
   @autobind
   renderVideo() {
-    const { currentLecture, handleEnd, speed } = this.props;
+    const { currentLecture, onVideoEnd, speed } = this.props;
     if (!this.state.isStarted) {
+      // FIXME 動画レクチャー表示時にデフォルトで再生するように仕様変更したため、常に「this.state.isStarted = true」となるためここは通らない。
       return (
         <Image
           style={styles.backgroundVideo}
@@ -133,7 +134,7 @@ class VideoLecture extends Component {
         muted={false}
         onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
         onLoad={() => this.setState({ isLoadingThumbnail: false })}
-        onEnd={handleEnd}
+        onEnd={onVideoEnd}
         onError={(e) => {
           new Client().notify(e);
           console.error(e);
