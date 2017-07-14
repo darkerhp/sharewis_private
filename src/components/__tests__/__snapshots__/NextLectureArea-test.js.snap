@@ -17,6 +17,7 @@ exports[`NextLectureArea renders correctly 1`] = `
     accessibilityLabel={undefined}
     accessibilityTraits={undefined}
     accessible={true}
+    collapsable={undefined}
     hitSlop={undefined}
     isTVSelectable={true}
     nativeID={undefined}

@@ -224,41 +224,14 @@ reloading the simulator)
 
 ## Upgrading
 
-1. Read the release notes for your new version in
-   [Github](https://github.com/facebook/react-native/releases)
+see https://facebook.github.io/react-native/docs/upgrading.html#upgrade-based-on-git
+ 
+```
+$ react-native-git-upgrade
+$ cd ios
+$ pod install
+```
 
-1. Install the new version of react-native
-   ```
-   $ npm install --save react-native@0.38.0
-   ```
-1. Run upgrade script. Always read the diff when prompted and decided whether to
-   override the file or not. **※ただし `project.pbxproj` は手動でマージするのは難しいので上書きする。**
-   ```
-   $ react-native upgrade
-   ```
-   
-   以下の2ファイルはそれぞれ対応するファイルと比較し、マージ後に削除する。
-   ```
-   android/app/src/main/java/com/sharewisactmobile/MainActivity.java --> android/app/src/main/java/com/sharewis/ShareWisAct/MainActivity.java
-   android/app/src/main/java/com/sharewisactmobile/MainApplication --> android/app/src/main/java/com/sharewis/ShareWisAct/MainApplication
-   ```
-
-1. Re-link and Re-install dependency packages:
-   ```
-   $ react-native link
-   $ react-native install fbsdk
-   $ cd ios budle exec pod install
-   ```
-
-1. Xcodeを開き、以下の設定を行う。
-    1. General -> Bundle Identifierに「com.share-wis.ShareWis」を設定する
-    1. FacebookSDKをXcodeに追加する。[ドキュメント](https://developers.facebook.com/docs/ios/getting-started/#sdk-project)
-    1. Build Settingsに環境変数[FACEBOOK_APP_ID]を追加する。[詳細](https://gyazo.com/0e7b6d30655fb82bc2e87c442825db9a)
-    1. LaunchImageの設定がされていなければ再設定する。
-    1. ARTライブラリを追加する。（https://github.com/bgryszko/react-native-circular-progress/issues/23）
-
-### For react native video
-   - Info.plistの `App Transport Security Settings` に `Allow Arbitrary Loads` を追加してYESを設定する。（For Dev）
 
 ### トラブルシューティング
  Facebookログインに失敗する場合（エラーコード308）
