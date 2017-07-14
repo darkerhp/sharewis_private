@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 import { createSelector } from 'reselect';
 
 import CourseMap from '../models/CourseMap';
@@ -26,4 +27,12 @@ export const purchasedProCourseSelector = createSelector(
 export const notPurchasedProCourseSelector = createSelector(
   proCourseSelector,
   proCourses => proCourses.filter(c => c.isPurchased === false),
+);
+
+// 閲覧日次の降順にソートされたpurchasedProCoursesを取得する
+export const getSortedPurchasedProCourses = createSelector(
+  purchasedProCourseSelector,
+  purchasedProCourses => (
+    purchasedProCourses.sortBy(c => (_.isEmpty(c.viewedAt) ? 0 : moment(c.viewedAt).unix())).reverse()
+  ),
 );

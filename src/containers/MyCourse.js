@@ -8,7 +8,6 @@ import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import moment from 'moment';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
@@ -19,7 +18,6 @@ import * as coursesActions from '../modules/courses';
 import * as uiActions from '../modules/ui';
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
-import Course from '../modules/models/Course';
 import CourseMap from '../modules/models/CourseMap';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
@@ -28,7 +26,9 @@ import NotLoginList from '../components/CourseList/NotLoginList';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import redirectTo from '../utils/linking';
 import { ACT_PRO_COURSES_URL } from '../lib/constants';
-import { purchasedProCourseSelector } from '../modules/selectors/courseSelectors';
+import {
+  getSortedPurchasedProCourses,
+} from '../modules/selectors/courseSelectors';
 
 const {
   Alert,
@@ -74,7 +74,7 @@ const mapStateToProps = (state, props) => {
   const { entities, netInfo, ui, user } = state;
 
   return {
-    purchasedProCourses: purchasedProCourseSelector(state, props),
+    purchasedProCourses: getSortedPurchasedProCourses(state, props),
     lectures: entities.lectures,
     isLoginUser: user.loggedIn,
     ...ui,
@@ -165,10 +165,6 @@ class MyCourse extends Component {
       return <EmptyList contentText={contentText} />;
     }
 
-    const sortedMyCourses = _.sortBy(purchasedProCourses.valueSeq().toJS(),
-      c => (_.isEmpty(c.viewedAt) ? 0 : moment(c.viewedAt).unix()),
-    ).reverse();
-
     return (
       <ScrollView
         style={styles.container}
@@ -183,13 +179,13 @@ class MyCourse extends Component {
         }
       >
         <View style={styles.courseList}>
-          {sortedMyCourses.map((course) => {
+          {purchasedProCourses.valueSeq().map((course) => {
             const isDisabledCourse = !isOnline && !course.hasDownloadedLecture;
             return (
               <CourseSummary
                 key={course.id}
                 courseSummaryStyleId={styles.box}
-                course={new Course(course)}
+                course={course}
                 isDisabledCourse={isDisabledCourse}
                 lectures={lectures.filter(l => l.courseId === course.id)}
                 onPressCourse={this.handlePressCourse}
