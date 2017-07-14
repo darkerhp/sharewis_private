@@ -9,6 +9,7 @@ const CourseRecord = Record({
   title: '',
   type: '',
   ranking: 0,
+  viewedAt: '',
   // for products
   isPurchased: false,
 });

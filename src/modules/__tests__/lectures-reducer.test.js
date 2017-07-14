@@ -6,7 +6,7 @@ import Lecture from '../models/Lecture';
 
 import reducer, {
   FETCH_COURSE_DETAILS_SUCCESS,
-  COMPLETE_LECTURE,
+  UPDATE_LECTURE_STATUS_SUCCESS,
   BEGIN_DOWNLOAD_VIDEO,
   PROGRESS_DOWNLOAD_VIDEO,
   FINISH_DOWNLOAD_VIDEO,
@@ -52,12 +52,12 @@ describe('lectures reducer', () => {
     ).toEqual(factory(lectureId, { ...payload.entities.lectures[1] }));
   });
 
-  it('should handle COMPLETE_LECTURE', () => {
+  it('should handle UPDATE_LECTURE_STATUS_SUCCESS', () => {
     const lectureId = 1;
     expect(
       reducer(
-        factory(lectureId),
-        createAction(COMPLETE_LECTURE)(lectureId),
+        factory(lectureId, { status: Lecture.STATUS_NOT_STARTED }),
+        createAction(UPDATE_LECTURE_STATUS_SUCCESS)({ lectureId, status: Lecture.STATUS_FINISHED }),
       ),
     ).toEqual(factory(lectureId, { status: Lecture.STATUS_FINISHED }));
   });

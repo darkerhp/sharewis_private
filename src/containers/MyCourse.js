@@ -8,6 +8,7 @@ import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import moment from 'moment';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
@@ -18,6 +19,7 @@ import * as coursesActions from '../modules/courses';
 import * as uiActions from '../modules/ui';
 import alertOfflineError from '../utils/alert';
 import BaseStyles from '../lib/baseStyles';
+import Course from '../modules/models/Course';
 import CourseMap from '../modules/models/CourseMap';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import EmptyList from '../components/CourseList/EmptyList';
@@ -110,15 +112,14 @@ class MyCourse extends Component {
   };
 
   async componentWillMount() {
-    this.setState({ isLoading: true });
     await this.refreshList();
-    this.setState({ isLoading: false });
   }
 
   @autobind
   async refreshList(force = false) {
     const { fetchMyCourse, fetchCoursesDownloadStatus, isLoginUser } = this.props;
     if (!isLoginUser) return;
+    this.setState({ isLoading: true });
     try {
       await fetchMyCourse(force);
       await fetchCoursesDownloadStatus();
@@ -127,6 +128,7 @@ class MyCourse extends Component {
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
+    this.setState({ isLoading: false });
   }
 
   @autobind
@@ -139,9 +141,7 @@ class MyCourse extends Component {
 
   @autobind
   async handleRefresh() {
-    this.setState({ isRefreshing: true });
     await this.refreshList(true);
-    this.setState({ isRefreshing: false });
     RouterActions.refresh();
   }
 
@@ -165,6 +165,10 @@ class MyCourse extends Component {
       return <EmptyList contentText={contentText} />;
     }
 
+    const sortedMyCourses = _.sortBy(purchasedProCourses.valueSeq().toJS(),
+      c => (_.isEmpty(c.viewedAt) ? 0 : moment(c.viewedAt).unix()),
+    ).reverse();
+
     return (
       <ScrollView
         style={styles.container}
@@ -179,13 +183,13 @@ class MyCourse extends Component {
         }
       >
         <View style={styles.courseList}>
-          {purchasedProCourses.valueSeq().map((course) => {
+          {sortedMyCourses.map((course) => {
             const isDisabledCourse = !isOnline && !course.hasDownloadedLecture;
             return (
               <CourseSummary
                 key={course.id}
                 courseSummaryStyleId={styles.box}
-                course={course}
+                course={new Course(course)}
                 isDisabledCourse={isDisabledCourse}
                 lectures={lectures.filter(l => l.courseId === course.id)}
                 onPressCourse={this.handlePressCourse}

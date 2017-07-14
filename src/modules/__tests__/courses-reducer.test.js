@@ -3,6 +3,7 @@ import { createAction } from 'redux-actions';
 import { OrderedMap } from 'immutable';
 
 import reducer, { UPDATE_COURSE_DOWNLOADED_STATUS } from '../courses';
+import { UPDATE_LECTURE_STATUS_SUCCESS } from '../lectures';
 
 import Course from '../models/Course';
 
@@ -24,5 +25,14 @@ describe('courses reducer', () => {
         ),
       ),
     ).toEqual(factory(courseId, { hasDownloadedLecture: true }));
+  });
+
+  it('should handle UPDATE_LECTURE_STATUS_SUCCESS', () => {
+    const courseId = 1;
+    const resultCourse = reducer(
+      factory(courseId, { viewedAt: null }),
+      createAction(UPDATE_LECTURE_STATUS_SUCCESS)({ courseId }),
+    ).first();
+    expect(resultCourse.viewedAt).not.toBeNull();
   });
 });
