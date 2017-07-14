@@ -22,7 +22,7 @@ import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 import NoProCourseItem from '../components/Top/NoProCourseItem';
 import {
   snackCourseSelector,
-  purchasedProCourseSelector,
+  getSortedPurchasedProCourses,
 } from '../modules/selectors/courseSelectors';
 import Course from '../modules/models/Course';
 import CourseMap from '../modules/models/CourseMap';
@@ -103,7 +103,7 @@ const mapStateToProps = (state, props) => {
   return {
     lectures: entities.lectures,
     snackCourses: snackCourseSelector(state, props),
-    purchasedProCourses: purchasedProCourseSelector(state, props),
+    purchasedProCourses: getSortedPurchasedProCourses(state, props),
     isLoginUser: user.loggedIn,
     ...ui,
     isOnline: netInfo.isConnected,
