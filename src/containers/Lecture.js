@@ -85,6 +85,8 @@ class LectureContainer extends Component {
     const { currentLecture, updateLectureStatus } = this.props;
     if (currentLecture.isNotStarted()) {
       updateLectureStatus(currentLecture.id, Lecture.STATUS_VIEWED);
+    } else if (currentLecture.isFinished()) {
+      updateLectureStatus(currentLecture.id, Lecture.STATUS_FINISHED);
     }
   }
 

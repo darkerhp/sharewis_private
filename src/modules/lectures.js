@@ -60,10 +60,10 @@ const reducer = handleActions({
     const lectures = action.payload;
     return state.merge(lectures);
   },
-  [COMPLETE_LECTURE]: (state, action) => {
-    const lectureId = action.payload;
+  [UPDATE_LECTURE_STATUS_SUCCESS]: (state, action) => {
+    const { lectureId, status } = action.payload;
     return state.update(lectureId.toString(), lecture => (
-      lecture.set('status', Lecture.STATUS_FINISHED)
+      lecture.set('status', status)
     ));
   },
   [BEGIN_DOWNLOAD_VIDEO]: (state, action) => {
@@ -131,7 +131,7 @@ export default reducer;
 export const updateLectureStatusFailure = createAction(UPDATE_LECTURE_STATUS_FAILURE);
 export const updateLectureStatusStart = createAction(UPDATE_LECTURE_STATUS_START);
 export const updateLectureStatusSuccess = createAction(UPDATE_LECTURE_STATUS_SUCCESS,
-  (lectureId, status) => ({ lectureId, status }));
+  (lectureId, status, courseId) => ({ lectureId, status, courseId }));
 export const toggleFullScreen = createAction(TOGGLE_FULL_SCREEN);
 export const togglePlay = createAction(TOGGLE_PLAY);
 export const changeVideoPlaySpeed = createAction(CHANGE_VIDEO_PLAY_SPEED);
@@ -215,13 +215,7 @@ export const updateLectureStatus = (lectureId: number, status: string) =>
       } else {
         dispatch(queueLectureProgress({ lectureId, status }));
       }
-
-      if (status === Lecture.STATUS_FINISHED) {
-        dispatch(completeLecture(lectureId));
-      } else {
-        dispatch(setCurrentLectureId(lectureId));
-      }
-      dispatch(updateLectureStatusSuccess(lectureId, status));
+      dispatch(updateLectureStatusSuccess(lectureId, status, lecture.courseId));
     } catch (error) {
       new Bugsnag().notify(error);
       console.error(error);

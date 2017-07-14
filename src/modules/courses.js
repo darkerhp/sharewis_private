@@ -1,6 +1,7 @@
 /* eslint no-console: ["error", { allow: ["error", "log"] }] */
 /* @flow */
 import _ from 'lodash';
+import moment from 'moment';
 import { Client as Bugsnag } from 'bugsnag-react-native';
 import { createAction, handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
@@ -19,9 +20,8 @@ import {
   notPurchasedProCourseSelector,
 } from './selectors/courseSelectors';
 
-import {
-  CREATE_PURCHASE_STATUS_SUCCESS,
-} from './purchase'; // eslint-disable-line
+import { UPDATE_LECTURE_STATUS_SUCCESS } from './lectures';
+import { CREATE_PURCHASE_STATUS_SUCCESS } from './purchase'; // eslint-disable-line
 
 // Actions
 export const FETCH_MY_COURSE_FAILURE = 'sharewis/courses/FETCH_MY_COURSE_FAILURE';
@@ -67,6 +67,10 @@ const reducer = handleActions({
   [CREATE_PURCHASE_STATUS_SUCCESS]: (state, action) => {
     const courseId = action.payload;
     return state.update(courseId.toString(), course => course.set('isPurchased', true));
+  },
+  [UPDATE_LECTURE_STATUS_SUCCESS]: (state, action) => {
+    const courseId = action.payload.courseId;
+    return state.update(courseId.toString(), course => course.set('viewedAt', moment().format()));
   },
   // redux-persistのrehydrate用のreducer
   // Immutable.jsを使用する場合、変換が必要
