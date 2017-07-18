@@ -171,9 +171,7 @@ class Top extends Component {
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
 
-    this.setState({
-      isLoading: false,
-    });
+    this.setState({ isLoading: false });
   }
 
   @autobind
