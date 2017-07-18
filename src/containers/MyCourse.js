@@ -107,7 +107,7 @@ class MyCourse extends Component {
   };
 
   state = {
-    isLoading: false,
+    isLoading: true,
     isRefreshing: false,
   };
 
@@ -118,8 +118,9 @@ class MyCourse extends Component {
   @autobind
   async refreshList(force = false) {
     const { fetchMyCourse, fetchCoursesDownloadStatus, isLoginUser } = this.props;
+
     if (!isLoginUser) return;
-    this.setState({ isLoading: true });
+
     try {
       await fetchMyCourse(force);
       await fetchCoursesDownloadStatus();
@@ -128,6 +129,7 @@ class MyCourse extends Component {
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
+
     this.setState({ isLoading: false });
   }
 
@@ -141,7 +143,9 @@ class MyCourse extends Component {
 
   @autobind
   async handleRefresh() {
+    this.setState({ isRefreshing: true });
     await this.refreshList(true);
+    this.setState({ isRefreshing: false });
     RouterActions.refresh();
   }
 
@@ -151,7 +155,7 @@ class MyCourse extends Component {
 
     const isAndroid = Platform.OS === 'android';
 
-    if (!this.state.isRefreshing && this.state.isLoading) {
+    if (this.state.isLoading) {
       return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
     }
 
