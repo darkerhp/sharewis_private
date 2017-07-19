@@ -18,10 +18,10 @@
 		0A5EA5D11E8C7CD4000DDD0C /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5EA5AD1E8BB0F2000DDD0C /* libKCKeepAwake.a */; };
 		0A95A3CE1E791FDF00E6E3E7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95A3CD1E791FDF00E6E3E7 /* NotificationService.swift */; };
 		0A95A3D21E791FDF00E6E3E7 /* SharewisNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0A95A3CB1E791FDE00E6E3E7 /* SharewisNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		0AA88E1D1F1F48690010B7CD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E191F1F48690010B7CD /* Bolts.framework */; };
-		0AA88E1E1F1F48690010B7CD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E1A1F1F48690010B7CD /* FBSDKCoreKit.framework */; };
-		0AA88E1F1F1F48690010B7CD /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E1B1F1F48690010B7CD /* FBSDKLoginKit.framework */; };
-		0AA88E201F1F48690010B7CD /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E1C1F1F48690010B7CD /* FBSDKShareKit.framework */; };
+		0AA88E6A1F1F62E70010B7CD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E661F1F62E70010B7CD /* Bolts.framework */; };
+		0AA88E6B1F1F62E70010B7CD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E671F1F62E70010B7CD /* FBSDKCoreKit.framework */; };
+		0AA88E6C1F1F62E70010B7CD /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E681F1F62E70010B7CD /* FBSDKLoginKit.framework */; };
+		0AA88E6D1F1F62E70010B7CD /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E691F1F62E70010B7CD /* FBSDKShareKit.framework */; };
 		0ABBAED21E66CD4B00F9B672 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		0ACEFE711F0DF6060014908A /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACEFDFD1F0DF5F30014908A /* libART.a */; };
 		0DF00A4C2B56475B94B23A66 /* libInAppUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A86B25FD04CB40D78F960554 /* libInAppUtils.a */; };
@@ -590,10 +590,10 @@
 		0A95A3CD1E791FDF00E6E3E7 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		0A95A3CF1E791FDF00E6E3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A969B550CDD4FE0ABAFB89B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		0AA88E191F1F48690010B7CD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		0AA88E1A1F1F48690010B7CD /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		0AA88E1B1F1F48690010B7CD /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		0AA88E1C1F1F48690010B7CD /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		0AA88E661F1F62E70010B7CD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
+		0AA88E671F1F62E70010B7CD /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		0AA88E681F1F62E70010B7CD /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Frameworks/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		0AA88E691F1F62E70010B7CD /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Frameworks/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		0ACEFA7A1F0DF5F10014908A /* ActionSheetIOS.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ActionSheetIOS.js; sourceTree = "<group>"; };
 		0ACEFA7B1F0DF5F10014908A /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RCTActionSheet.xcodeproj; sourceTree = "<group>"; };
 		0ACEFA7E1F0DF5F10014908A /* RCTActionSheetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTActionSheetManager.h; sourceTree = "<group>"; };
@@ -1401,13 +1401,13 @@
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
+				0AA88E6A1F1F62E70010B7CD /* Bolts.framework in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				0ABBAED21E66CD4B00F9B672 /* libRCTWebSocket.a in Frameworks */,
 				42B82E3B99C68E1BE898DFDB /* libPods-SharewisActMobile.a in Frameworks */,
 				EFB4F6D1CFC5481FA13772A5 /* libRCTFBSDK.a in Frameworks */,
 				05E707751475444BBB1E7F14 /* libRNFS.a in Frameworks */,
 				21F2E6C689114ECFA13FA34F /* libReact.a in Frameworks */,
-				0AA88E1E1F1F48690010B7CD /* FBSDKCoreKit.framework in Frameworks */,
 				C0EC48D21D5F4BA8AD247BCE /* libyoga.a in Frameworks */,
 				D7E326A1411F4427886D2392 /* libcxxreact.a in Frameworks */,
 				055C95E67D30476B9D6941CB /* libjschelpers.a in Frameworks */,
@@ -1416,13 +1416,13 @@
 				AE47A23BE3724F3793290FBE /* libRCTVideo.a in Frameworks */,
 				FB30576D22BD40A396B1E45B /* libRNMixpanel.a in Frameworks */,
 				DDED4022664842EAB9807F09 /* libBugsnagReactNative.a in Frameworks */,
+				0AA88E6D1F1F62E70010B7CD /* FBSDKShareKit.framework in Frameworks */,
 				98B98A544C4F47DBB7FAE167 /* libz.tbd in Frameworks */,
+				0AA88E6B1F1F62E70010B7CD /* FBSDKCoreKit.framework in Frameworks */,
 				0A5EA5D11E8C7CD4000DDD0C /* libKCKeepAwake.a in Frameworks */,
 				0DF00A4C2B56475B94B23A66 /* libInAppUtils.a in Frameworks */,
-				0AA88E1D1F1F48690010B7CD /* Bolts.framework in Frameworks */,
-				0AA88E201F1F48690010B7CD /* FBSDKShareKit.framework in Frameworks */,
-				0AA88E1F1F1F48690010B7CD /* FBSDKLoginKit.framework in Frameworks */,
 				98A06D6F9CEF48FCB765A58F /* libRNDeviceInfo.a in Frameworks */,
+				0AA88E6C1F1F62E70010B7CD /* FBSDKLoginKit.framework in Frameworks */,
 				A1FEF7B4C5D34A33BB716FD2 /* libRNI18n.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1492,10 +1492,10 @@
 		0A3E54AC1E66A3DE0003C1B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0AA88E191F1F48690010B7CD /* Bolts.framework */,
-				0AA88E1A1F1F48690010B7CD /* FBSDKCoreKit.framework */,
-				0AA88E1B1F1F48690010B7CD /* FBSDKLoginKit.framework */,
-				0AA88E1C1F1F48690010B7CD /* FBSDKShareKit.framework */,
+				0AA88E661F1F62E70010B7CD /* Bolts.framework */,
+				0AA88E671F1F62E70010B7CD /* FBSDKCoreKit.framework */,
+				0AA88E681F1F62E70010B7CD /* FBSDKLoginKit.framework */,
+				0AA88E691F1F62E70010B7CD /* FBSDKShareKit.framework */,
 				0ACEFA781F0DF5F10014908A /* Libraries */,
 				A5581FBE51B448A1BD44B590 /* libPods-SharewisActMobile.a */,
 				CC6A1DEDDF319330EDC1E32C /* libPods-SharewisActMobileTests.a */,
@@ -4842,6 +4842,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4885,6 +4886,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
