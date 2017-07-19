@@ -3907,9 +3907,9 @@ react-native-mixpanel@^0.0.15:
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/react-native-mixpanel/-/react-native-mixpanel-0.0.15.tgz#02c10ea7a4317f893685c62ebb09c82a2bab3db8"
 
-"react-native-orientation@git+https://github.com/yamill/react-native-orientation.git":
-  version "2.0.0"
-  resolved "git+https://github.com/yamill/react-native-orientation.git#0aa4efbfb15e75d41bce3fc2dcaf8d3a2793046d"
+react-native-orientation@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-orientation/-/react-native-orientation-2.1.0.tgz#1bd820ad96d93c05431f3d473bcc7dce9728a1f7"
 
 react-native-progress@^3.2.1:
   version "3.3.0"
@@ -3958,9 +3958,9 @@ react-native-video@^1.0.0:
   dependencies:
     keymirror "0.1.1"
 
-react-native@0.46.2:
-  version "0.46.2"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.46.2.tgz#e87a80fa8bb949cbd0562fa11399293852a447aa"
+react-native@0.46.4:
+  version "0.46.4"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.46.4.tgz#281bbcc165e5c36b4c8eaa868e6768543e811bcb"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"

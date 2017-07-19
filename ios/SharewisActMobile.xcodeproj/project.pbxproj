@@ -15,13 +15,13 @@
 		00E356F31AD99517003FC87E /* SharewisActMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SharewisActMobileTests.m */; };
 		055C95E67D30476B9D6941CB /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 083F808558224F48AAFCCD66 /* libjschelpers.a */; };
 		05E707751475444BBB1E7F14 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A36A4037204465787B9633B /* libRNFS.a */; };
-		0A3E557A1E66BB270003C1B7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E55761E66BB270003C1B7 /* Bolts.framework */; };
-		0A3E557B1E66BB270003C1B7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E55771E66BB270003C1B7 /* FBSDKCoreKit.framework */; };
-		0A3E557C1E66BB270003C1B7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E55781E66BB270003C1B7 /* FBSDKLoginKit.framework */; };
-		0A3E557D1E66BB270003C1B7 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3E55791E66BB270003C1B7 /* FBSDKShareKit.framework */; };
 		0A5EA5D11E8C7CD4000DDD0C /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5EA5AD1E8BB0F2000DDD0C /* libKCKeepAwake.a */; };
 		0A95A3CE1E791FDF00E6E3E7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95A3CD1E791FDF00E6E3E7 /* NotificationService.swift */; };
 		0A95A3D21E791FDF00E6E3E7 /* SharewisNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0A95A3CB1E791FDE00E6E3E7 /* SharewisNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0AA88E1D1F1F48690010B7CD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E191F1F48690010B7CD /* Bolts.framework */; };
+		0AA88E1E1F1F48690010B7CD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E1A1F1F48690010B7CD /* FBSDKCoreKit.framework */; };
+		0AA88E1F1F1F48690010B7CD /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E1B1F1F48690010B7CD /* FBSDKLoginKit.framework */; };
+		0AA88E201F1F48690010B7CD /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA88E1C1F1F48690010B7CD /* FBSDKShareKit.framework */; };
 		0ABBAED21E66CD4B00F9B672 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		0ACEFE711F0DF6060014908A /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACEFDFD1F0DF5F30014908A /* libART.a */; };
 		0DF00A4C2B56475B94B23A66 /* libInAppUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A86B25FD04CB40D78F960554 /* libInAppUtils.a */; };
@@ -585,15 +585,15 @@
 		00E356F21AD99517003FC87E /* SharewisActMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharewisActMobileTests.m; sourceTree = "<group>"; };
 		0469D6EC5DE94382BD4AA3FC /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		083F808558224F48AAFCCD66 /* libjschelpers.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libjschelpers.a; sourceTree = "<group>"; };
-		0A3E55761E66BB270003C1B7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
-		0A3E55771E66BB270003C1B7 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		0A3E55781E66BB270003C1B7 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		0A3E55791E66BB270003C1B7 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		0A6134011E78CF3F00EDAE9E /* SharewisActMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SharewisActMobile.entitlements; path = SharewisActMobile/SharewisActMobile.entitlements; sourceTree = "<group>"; };
 		0A95A3CB1E791FDE00E6E3E7 /* SharewisNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharewisNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A95A3CD1E791FDF00E6E3E7 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		0A95A3CF1E791FDF00E6E3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A969B550CDD4FE0ABAFB89B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		0AA88E191F1F48690010B7CD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		0AA88E1A1F1F48690010B7CD /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		0AA88E1B1F1F48690010B7CD /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		0AA88E1C1F1F48690010B7CD /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		0ACEFA7A1F0DF5F10014908A /* ActionSheetIOS.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ActionSheetIOS.js; sourceTree = "<group>"; };
 		0ACEFA7B1F0DF5F10014908A /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RCTActionSheet.xcodeproj; sourceTree = "<group>"; };
 		0ACEFA7E1F0DF5F10014908A /* RCTActionSheetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTActionSheetManager.h; sourceTree = "<group>"; };
@@ -1403,14 +1403,11 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				0ABBAED21E66CD4B00F9B672 /* libRCTWebSocket.a in Frameworks */,
-				0A3E557D1E66BB270003C1B7 /* FBSDKShareKit.framework in Frameworks */,
-				0A3E557C1E66BB270003C1B7 /* FBSDKLoginKit.framework in Frameworks */,
-				0A3E557A1E66BB270003C1B7 /* Bolts.framework in Frameworks */,
-				0A3E557B1E66BB270003C1B7 /* FBSDKCoreKit.framework in Frameworks */,
 				42B82E3B99C68E1BE898DFDB /* libPods-SharewisActMobile.a in Frameworks */,
 				EFB4F6D1CFC5481FA13772A5 /* libRCTFBSDK.a in Frameworks */,
 				05E707751475444BBB1E7F14 /* libRNFS.a in Frameworks */,
 				21F2E6C689114ECFA13FA34F /* libReact.a in Frameworks */,
+				0AA88E1E1F1F48690010B7CD /* FBSDKCoreKit.framework in Frameworks */,
 				C0EC48D21D5F4BA8AD247BCE /* libyoga.a in Frameworks */,
 				D7E326A1411F4427886D2392 /* libcxxreact.a in Frameworks */,
 				055C95E67D30476B9D6941CB /* libjschelpers.a in Frameworks */,
@@ -1422,6 +1419,9 @@
 				98B98A544C4F47DBB7FAE167 /* libz.tbd in Frameworks */,
 				0A5EA5D11E8C7CD4000DDD0C /* libKCKeepAwake.a in Frameworks */,
 				0DF00A4C2B56475B94B23A66 /* libInAppUtils.a in Frameworks */,
+				0AA88E1D1F1F48690010B7CD /* Bolts.framework in Frameworks */,
+				0AA88E201F1F48690010B7CD /* FBSDKShareKit.framework in Frameworks */,
+				0AA88E1F1F1F48690010B7CD /* FBSDKLoginKit.framework in Frameworks */,
 				98A06D6F9CEF48FCB765A58F /* libRNDeviceInfo.a in Frameworks */,
 				A1FEF7B4C5D34A33BB716FD2 /* libRNI18n.a in Frameworks */,
 			);
@@ -1492,11 +1492,11 @@
 		0A3E54AC1E66A3DE0003C1B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AA88E191F1F48690010B7CD /* Bolts.framework */,
+				0AA88E1A1F1F48690010B7CD /* FBSDKCoreKit.framework */,
+				0AA88E1B1F1F48690010B7CD /* FBSDKLoginKit.framework */,
+				0AA88E1C1F1F48690010B7CD /* FBSDKShareKit.framework */,
 				0ACEFA781F0DF5F10014908A /* Libraries */,
-				0A3E55761E66BB270003C1B7 /* Bolts.framework */,
-				0A3E55771E66BB270003C1B7 /* FBSDKCoreKit.framework */,
-				0A3E55781E66BB270003C1B7 /* FBSDKLoginKit.framework */,
-				0A3E55791E66BB270003C1B7 /* FBSDKShareKit.framework */,
 				A5581FBE51B448A1BD44B590 /* libPods-SharewisActMobile.a */,
 				CC6A1DEDDF319330EDC1E32C /* libPods-SharewisActMobileTests.a */,
 				75741335E08C444B9D9F946C /* libz.tbd */,
@@ -4839,6 +4839,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = S6JTW2HH6N;
 				FACEBOOK_APP_ID = 739140542810010;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -4878,6 +4882,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S6JTW2HH6N;
 				FACEBOOK_APP_ID = 1491866444383166;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
