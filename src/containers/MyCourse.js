@@ -113,6 +113,7 @@ class MyCourse extends Component {
 
   async componentWillMount() {
     await this.refreshList();
+    this.setState({ isLoading: false });
   }
 
   @autobind
@@ -129,8 +130,6 @@ class MyCourse extends Component {
       console.error(error);
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
-
-    this.setState({ isLoading: false });
   }
 
   @autobind
