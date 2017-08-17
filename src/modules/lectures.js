@@ -48,11 +48,7 @@ const reducer = handleActions({
   [FETCH_COURSE_DETAILS_SUCCESS]: (state, action) => {
     const lectures = action.payload.entities.lectures;
     if (!lectures) return state;
-
-    console.log('state', state);
-    console.log('map', fromJS(lectures).map(lecture => new Lecture(lecture)));
     const next = mergeEntities(state, fromJS(lectures));
-    console.log('next', next);
     return next;
   },
   [UPDATE_VIDEO_IN_DEVICE_STATUS]: (state, action) => {
