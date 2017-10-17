@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Platform, StatusBar } from 'react-native';
 
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
@@ -27,10 +26,6 @@ const renderScrollableTabBar = () =>
 
 @connect(({ user, routes }) => ({ user, routes }))
 class ScrollableTabs extends Component { // eslint-disable-line
-  static propTypes = {
-    moveTo: PropTypes.string,
-  };
-
   render() {
     StatusBar.setBarStyle('light-content');
     return (

@@ -18,7 +18,7 @@ export default class NavigationDrawer extends Component {
     const { navigationState: { children, key, open }, onNavigate } = this.props;
     return (
       <Drawer
-        ref={ref => (this.navigator = ref)}
+        ref={(ref) => { this.navigator = ref; }}
         type="displace"
         open={open}
         onClose={() => Actions.refresh({ key, open: false })} // NOTE Landscape時に呼び出されてしまう。問題が起こるかも

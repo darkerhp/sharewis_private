@@ -1,4 +1,4 @@
-/* eslint-disable no-undef, max-nested-callbacks, no-unused-expressions*/
+/* eslint-disable no-undef, max-nested-callbacks, no-unused-expressions */
 
 import fetch from 'fetch-mock';
 import HttpError from 'standard-http-error';
