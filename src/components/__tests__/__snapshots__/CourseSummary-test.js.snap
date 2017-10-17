@@ -107,13 +107,11 @@ exports[`CourseSummary renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "backgroundColor": "#b3b3b3",
+                  "backgroundColor": "black",
                   "flex": 1,
                   "height": 1,
                 },
-                Object {
-                  "backgroundColor": "#dadada",
-                },
+                Object {},
               ]
             }
           />
