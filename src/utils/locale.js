@@ -8,4 +8,15 @@ export const isVi = () => I18n.currentLocale().indexOf('vi') !== -1;
 /**
  * @returns kayakoのURL用のlocale
  */
-export const getKayakoLocale = () => (isEn() ? 'en-us' : I18n.currentLocale());
+export const getKayakoLocale = () => {
+  let kayakoLocale;
+  if (isEn()) {
+    kayakoLocale = 'en-us';
+  } else if (isJa()) {
+    kayakoLocale = 'ja';
+  } else if (isVi()) {
+    kayakoLocale = 'vi';
+  }
+  return kayakoLocale;
+};
+

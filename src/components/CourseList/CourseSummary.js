@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
-import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import Course from '../../modules/models/Course';
 import LectureMap from '../../modules/models/LectureMap';
+
+import Hr from '../Hr';
 import OneColumnItemBox from './OneColumnItemBox';
 import ProgressBar from '../ProgressBar';
 

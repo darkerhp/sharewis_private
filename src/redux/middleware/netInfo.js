@@ -23,7 +23,7 @@ const netInfoMiddleware = createOneShotMiddleware(async (dispatch) => {
   };
   const isConnected = await NetInfo.isConnected.fetch();
   handle(isConnected);
-  NetInfo.isConnected.addEventListener('change', handle);
+  NetInfo.isConnected.addEventListener('connectionChange', handle);
 });
 
 export default netInfoMiddleware;

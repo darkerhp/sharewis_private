@@ -6,7 +6,6 @@ import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -18,6 +17,7 @@ import Lecture from '../modules/models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import TextLecture from '../components/Lecture/TextLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
+import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import { getLastLectureId, getNextLecture } from '../modules/selectors/lectureSelectors';
 
 const { StatusBar, StyleSheet, View } = ReactNative;

@@ -7,7 +7,6 @@ import autobind from 'autobind-decorator';
 import FitImage from 'react-native-fit-image';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
@@ -20,6 +19,7 @@ import BaseStyles from '../lib/baseStyles';
 import CourseSummary from '../components/CourseList/CourseSummary';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
 import NoProCourseItem from '../components/Top/NoProCourseItem';
+import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import {
   snackCourseSelector,
   getSortedPurchasedProCourses,

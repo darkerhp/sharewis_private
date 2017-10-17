@@ -5,13 +5,13 @@ import ReactNative from 'react-native';
 
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import Hyperlink from 'react-native-hyperlink';
-import Hr from 'react-native-hr';
 
 import BaseStyles from '../../lib/baseStyles';
 import Form from './Form';
 import Footer from './Footer'; // eslint-disable-line
+import Hr from '../Hr';
+import SleekLoadingIndicator from '../SleekLoadingIndicator';
 import { ACT_TOS_URL, ACT_PRIVACY_URL } from '../../lib/constants';
 
 const { StatusBar, StyleSheet, Text, View } = ReactNative;

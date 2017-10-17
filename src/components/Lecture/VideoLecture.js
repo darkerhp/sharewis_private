@@ -144,7 +144,7 @@ class VideoLecture extends Component {
         playInBackground={false}
         playWhenInactive={false}
         rate={speed}
-        ref={ref => (this.video = ref)}
+        ref={(ref) => { this.video = ref; }}
         repeat={false}
         resizeMode="contain"
         source={{ uri: currentLecture.getVideoUrl() }}

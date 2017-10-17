@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
 class Facebook extends Component {
   static propTypes = {
     fetchUserBy: PropTypes.func.isRequired,
+    fetchFBEmailFailure: PropTypes.func.isRequired,
   };
 
   @autobind
