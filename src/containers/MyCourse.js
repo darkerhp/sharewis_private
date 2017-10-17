@@ -8,7 +8,6 @@ import autobind from 'autobind-decorator';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { Client as Bugsnag } from 'bugsnag-react-native';
@@ -24,6 +23,7 @@ import EmptyList from '../components/CourseList/EmptyList';
 import LectureMap from '../modules/models/LectureMap';
 import NotLoginList from '../components/CourseList/NotLoginList';
 import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
+import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import redirectTo from '../utils/linking';
 import { ACT_PRO_COURSES_URL } from '../lib/constants';
 import {

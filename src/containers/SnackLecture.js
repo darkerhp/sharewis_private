@@ -7,7 +7,6 @@ import autobind from 'autobind-decorator';
 import Button from 'react-native-button';
 import I18n from 'react-native-i18n';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { Client } from 'bugsnag-react-native';
@@ -19,6 +18,7 @@ import BaseStyles from '../lib/baseStyles';
 import Lecture from '../modules/models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
+import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import ScrollableTabs from './ScrollableTabs';
 
 const { Alert, StatusBar, StyleSheet, View } = ReactNative;

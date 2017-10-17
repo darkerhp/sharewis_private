@@ -3,15 +3,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
-import Hr from 'react-native-hr';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import BaseStyles from '../../lib/baseStyles';
 import Form from './Form';
 import Footer from './Footer'; // eslint-disable-line
 import Facebook from './Facebook';
+import Hr from '../Hr';
+import SleekLoadingIndicator from '../SleekLoadingIndicator';
+
 import alertOfflineError from '../../utils/alert';
 import { ACT_PASSWORD_REMINDER_URL } from '../../lib/constants';
 

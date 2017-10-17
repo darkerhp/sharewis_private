@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import I18n from 'react-native-i18n';
 import Orientation from 'react-native-orientation';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import setupI18n from '../config/locales';
 import setupMixpanel from '../config/mixpanel';
@@ -15,6 +14,8 @@ import PURGE_STORAGE from '../config';
 import configureStore from '../redux/store';
 import transform from '../lib/transform';
 import App from './App';
+
+import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 
 const bugsnag = new Client();
 const store = configureStore();

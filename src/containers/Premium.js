@@ -9,10 +9,10 @@ import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 
 import * as premiumActions from '../modules/premium'; // eslint-disable-line
 import Premium from '../components/SideMenu/Premium';
+import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 
 const { Alert } = ReactNative;
 

@@ -5,7 +5,6 @@ import ReactNative from 'react-native';
 import _ from 'lodash';
 import autobind from 'autobind-decorator';
 import I18n from 'react-native-i18n';
-import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { Client as Bugsnag } from 'bugsnag-react-native';
@@ -15,6 +14,7 @@ import * as coursesActions from '../modules/courses';
 import * as uiActions from '../modules/ui';
 import BaseStyles from '../lib/baseStyles';
 import TwoColumnCourseItem from '../components/CourseList/TwoColumnCourseItem';
+import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import Course from '../modules/models/Course';
 import { snackCourseSelector } from '../modules/selectors/courseSelectors';
 
