@@ -117,7 +117,10 @@ const VideoControls = ({
         />
       </Button>
       <Button
-        containerStyle={styles.speedButton}
+        containerStyle={[
+          styles.speedButton,
+          isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
+        ]}
         style={styles.buttonText}
         onPress={() => onPressSpeed()}
       >
