@@ -111,7 +111,9 @@ exports[`CourseSummary renders correctly 1`] = `
                   "flex": 1,
                   "height": 1,
                 },
-                Object {},
+                Object {
+                  "backgroundColor": "#dadada",
+                },
               ]
             }
           />
