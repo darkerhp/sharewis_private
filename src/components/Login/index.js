@@ -112,7 +112,7 @@ class Login extends Component {
         </View>
         {!isModal &&
           <View style={styles.hrWrapper}>
-            <Hr lineColor={'#dadada'} />
+            <Hr lineStyle={{ backgroundColor: '#dadada' }} />
           </View>
         }
         {isModal ? <View style={{ flex: 1 }} /> : <Footer {...this.props} />}

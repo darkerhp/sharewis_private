@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
 
 
 const CourseSummary = ({
-  course,
-  lectures,
-  isDisabledCourse,
-  onPressCourse,
-  style,
-}) => {
+                         course,
+                         lectures,
+                         isDisabledCourse,
+                         onPressCourse,
+                         style,
+                       }) => {
   const lectureProgress = lectures.isEmpty()
     ? course.lectureProgress || 0
     : lectures.filter(l => l.isFinished()).size;
@@ -105,7 +105,7 @@ const CourseSummary = ({
             {course.title}
           </Text>
           <View style={styles.hr}>
-            <Hr lineColor={'#dadada'} />
+            <Hr lineStyle={{ backgroundColor: '#dadada' }} />
           </View>
           <Text style={styles.progress}>
             {`${lectureProgress}/${course.lectureCount} ${I18n.t('progressText')}`}
