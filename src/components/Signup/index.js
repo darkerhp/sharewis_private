@@ -88,7 +88,7 @@ class Signup extends Component {
         </Hyperlink>
         {!isModal &&
           <View style={styles.hrWrapper}>
-            <Hr lineColor={'#dadada'} />
+            <Hr lineStyle={{ backgroundColor: '#dadada' }} />
           </View>
         }
         {isModal ? <View style={{ flex: 2 }} /> : <Footer {...this.props} />}

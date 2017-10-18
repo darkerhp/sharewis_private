@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import autobind from 'autobind-decorator';
+
 import {
   StyleSheet,
   Text,
@@ -22,18 +24,12 @@ const styles = StyleSheet.create({
 });
 
 class Hr extends Component {
-  constructor(props) {
-    super(props);
-
-    this.renderLine = this.renderLine.bind(this);
-    this.renderText = this.renderText.bind(this);
-    this.renderInner = this.renderInner.bind(this);
-  }
-
+  @autobind
   renderLine(key) {
     return <View key={key} style={[styles.line, this.props.lineStyle]} />;
   }
 
+  @autobind
   renderText(key) {
     return (
       <View key={key}>
@@ -42,6 +38,7 @@ class Hr extends Component {
     );
   }
 
+  @autobind
   renderInner() {
     if (!this.props.text) {
       return this.renderLine();

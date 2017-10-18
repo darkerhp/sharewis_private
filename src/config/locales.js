@@ -106,7 +106,7 @@ export const locales = {
     actWebsite: "ShareWis's website",
     back: 'Back',
     close: 'close',
-    myCourse: 'My Courses',
+    myCourse: 'MY COURSES',
     downloadAlreadyInProgress: 'download already in progress.',
     downloadAvailable: 'Downloaded lectures exist',
     email: 'E-mail',
@@ -164,8 +164,8 @@ export const locales = {
     alreadyRegisteredEmailErrorTitle: 'Already registered',
     alreadyRegisteredEmailErrorMessage: 'Would you like to login instead?',
     // スナックコース
-    snackCourse: 'Snack Courses',
-    proCourse: 'Pro Courses',
+    snackCourse: 'SNACK COURSES',
+    proCourse: 'PRO COURSES',
     backToCourseList: 'Go back to course list',
     // トップページ
     top: 'TOP',
@@ -198,7 +198,7 @@ export const locales = {
     actWebsite: 'trang web ShareWis',
     back: 'Trở lại',
     close: 'Đóng',
-    myCourse: 'các khóa học của tôi',
+    myCourse: 'KHOÁ HỌC CỦA TÔI',
     downloadAlreadyInProgress: 'Tải về đã được tiến hành',
     downloadAvailable: 'Bài giảng tải về đã tồn tại',
     email: 'Địa chỉ email',
@@ -256,8 +256,8 @@ export const locales = {
     alreadyRegisteredEmailErrorTitle: 'Đã đăng ký',
     alreadyRegisteredEmailErrorMessage: 'Bạn có muốn đăng nhập thay thế không?',
     // スナックコース
-    snackCourse: 'Snack Courses',
-    proCourse: 'Pro Courses',
+    snackCourse: 'SNACK COURSES',
+    proCourse: 'PRO COURSES',
     backToCourseList: 'Trở lại danh sách khoá học',
     // トップページ
     top: 'TRANG ĐẦU',
