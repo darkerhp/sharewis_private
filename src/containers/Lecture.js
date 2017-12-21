@@ -17,6 +17,7 @@ import Lecture from '../modules/models/Lecture';
 import OfflineLecture from '../components/Lecture/OfflineLecture';
 import TextLecture from '../components/Lecture/TextLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
+import AudioLecture from '../components/Lecture/AudioLecture';
 import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import { getLastLectureId, getNextLecture } from '../modules/selectors/lectureSelectors';
 
@@ -129,13 +130,24 @@ class LectureContainer extends Component {
       return (
         <VideoLecture
           lectureContentStyleId={styles.lectureContentStyle}
-          onVideoEnd={this.handlePressNextLecture}
+          onPlayEnd={this.handlePressNextLecture}
           {...this.props}
         />
       );
     }
+
     if (currentLecture.isText()) {
       return <TextLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />;
+    }
+
+    if (currentLecture.isAudio()) {
+      return (
+        <AudioLecture
+          onPlayEnd={this.handlePressNextLecture}
+          lectureContentStyleId={styles.lectureContentStyle}
+          {...this.props}
+        />
+      );
     }
 
     return null;
@@ -150,7 +162,7 @@ class LectureContainer extends Component {
     const isVisibleButton = !isLastLecture && currentLecture.canAccess(isOnline);
     return (
       <View style={styles.buttonWrapper}>
-        { isVisibleButton &&
+        {isVisibleButton &&
         <Button
           containerStyle={styles.joinButton}
           style={styles.joinButtonText}

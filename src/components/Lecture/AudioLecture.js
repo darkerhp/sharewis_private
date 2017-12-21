@@ -8,13 +8,13 @@ import Orientation from 'react-native-orientation';
 import Video from 'react-native-video';
 import { Actions as RouterActions } from 'react-native-router-flux';
 import { Client } from 'bugsnag-react-native';
+import BaseStyles from '../../lib/baseStyles';
 
 import VideoControls from './VideoControls'; // eslint-disable-line
 import FullScreenVideoControls from './FullScreenVideoControls'; // eslint-disable-line
 import Lecture from '../../modules/models/Lecture';
 
 const {
-  ActivityIndicator,
   Image,
   StatusBar,
   StyleSheet,
@@ -22,14 +22,6 @@ const {
 } = ReactNative;
 
 const styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    backgroundColor: 'white',
-  },
   videoContainer: {
     flex: 2,
     justifyContent: 'center',
@@ -44,7 +36,9 @@ const styles = StyleSheet.create({
   },
 });
 
-class VideoLecture extends Component {
+const lectureImageSrc = require('./images/audio_lecture_image.png');
+
+class AudioLecture extends Component {
   static propTypes = {
     // values
     currentLecture: PropTypes.instanceOf(Lecture).isRequired,
@@ -101,9 +95,9 @@ class VideoLecture extends Component {
   handlePressFullScreen() {
     const { isFullScreen, toggleFullScreen } = this.props;
     if (isFullScreen) {
-      VideoLecture.toPortrait();
+      AudioLecture.toPortrait();
     } else {
-      VideoLecture.toFullScreen();
+      AudioLecture.toFullScreen();
     }
     toggleFullScreen();
   }
@@ -113,63 +107,13 @@ class VideoLecture extends Component {
     this.setState({ isPaused: !this.state.isPaused, isStarted: true });
   }
 
-  @autobind
-  renderVideo() {
-    const { currentLecture, onPlayEnd, speed } = this.props;
-    if (!this.state.isStarted) {
-      // FIXME 動画レクチャー表示時にデフォルトで再生するように仕様変更したため、常に「this.state.isStarted = true」となるためここは通らない。
-      return (
-        <Image
-          style={styles.backgroundVideo}
-          source={{ uri: currentLecture.thumbnailUrl }}
-          onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
-          onLoadEnd={() => this.setState({ isLoadingThumbnail: false })}
-          resizeMode="contain"
-        />
-      );
-    }
-
-    return (
-      <Video
-        muted={false}
-        onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
-        onLoad={() => this.setState({ isLoadingThumbnail: false })}
-        onEnd={onPlayEnd}
-        onError={(e) => {
-          new Client().notify(e);
-          console.error(e);
-        }}
-        onProgress={this.handleVideoProgress}
-        paused={this.state.seeking || this.state.isPaused}
-        playInBackground={false}
-        playWhenInactive={false}
-        rate={speed}
-        ref={(ref) => { this.video = ref; }}
-        repeat={false}
-        resizeMode="contain"
-        source={{ uri: currentLecture.getVideoUrl() }}
-        style={styles.backgroundVideo}
-        volume={1.0}
-      />
-    );
-  }
-
-  @autobind
-  renderIndicator() {
-    if (!this.state.isLoadingThumbnail) return null;
-    return (
-      <View style={styles.loadingIndicatorWrapper}>
-        <ActivityIndicator />
-      </View>
-    );
-  }
-
   render() {
     const {
       changeVideoPlaySpeed,
       currentLecture,
       isFullScreen,
       lectureContentStyleId,
+      onPlayEnd,
       speed,
     } = this.props;
 
@@ -190,9 +134,36 @@ class VideoLecture extends Component {
 
     return (
       <View style={[lectureContentStyleId, isFullScreen && { flex: 1 }]}>
-        <View style={(isFullScreen ? { flex: 1 } : styles.videoContainer)}>
-          {this.renderVideo()}
-          {this.renderIndicator()}
+        <View style={isFullScreen ? { flex: 1 } : styles.videoContainer}>
+          <Image
+            style={
+              isFullScreen
+                ? { height: BaseStyles.deviceWidth, width: BaseStyles.deviceHeight }
+                : { width: BaseStyles.deviceWidth }
+            }
+            source={lectureImageSrc}
+            resizeMode="contain"
+          />
+          <Video
+            muted={false}
+            onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
+            onLoad={() => this.setState({ isLoadingThumbnail: false })}
+            onEnd={onPlayEnd}
+            onError={(e) => {
+              new Client().notify(e);
+              console.error(e);
+            }}
+            onProgress={this.handleVideoProgress}
+            paused={this.state.seeking || this.state.isPaused}
+            playInBackground
+            playWhenInactive={false}
+            rate={speed}
+            ref={(ref) => { this.video = ref; }}
+            repeat={false}
+            resizeMode="contain"
+            source={{ uri: currentLecture.getAudioUrl() }}
+            volume={1.0}
+          />
         </View>
 
         {isFullScreen
@@ -205,4 +176,4 @@ class VideoLecture extends Component {
   }
 }
 
-export default VideoLecture;
+export default AudioLecture;
