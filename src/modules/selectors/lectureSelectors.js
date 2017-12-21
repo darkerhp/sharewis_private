@@ -15,7 +15,7 @@ export const lecturesSelector = (state, props) => {
 
 export const viewableLecturesSelector = createSelector(
   lecturesSelector,
-  lectures => lectures.filter(l => l.isVideo() || l.isText()), // TODO 今のところ動画とテキストだけ
+  lectures => lectures.filter(l => l.isViewable()),
 );
 
 // sectionとlectureをマージしたListを取得する

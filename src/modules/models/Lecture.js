@@ -20,6 +20,8 @@ const LectureRecord = Record({
   hasVideoInDevice: false,
   // For TextLecture
   body: '',
+  // For AudioLecture
+  audioUrl: '',
   // For downloading TODO
   isDownloading: false,
   jobId: -1,
@@ -75,26 +77,72 @@ export default class Lecture extends LectureRecord {
   }
 
   /**
+   * 音声ファイルのURLを取得する
+   * デバイスに保存してある場合、ファイルパスを返却する
+   * @returns {string}
+   */
+  getAudioUrl(): string {
+    // TODO 音声ファイルのダウンロードを実装する
+    // if (this.hasAudioInDevice) {
+    //   return `file://${FileUtils.createAudioFileName(this.id, this.courseId)}`;
+    // }
+    return this.audioUrl;
+  }
+
+  /**
    * アクセス可能なレクチャーかどうか
    * @param isOnline
    * @returns {boolean}
    */
   canAccess(isOnline: boolean = true): boolean {
+    if (!this.isViewable()) return false;
+
     switch (this.type) {
       case Lecture.TYPE_VIDEO:
         return isOnline || this.hasVideoInDevice;
+      case Lecture.TYPE_AUDIO:
+        // TODO 実装する
+        return isOnline;
+      default:
+        return isOnline;
+    }
+  }
+
+  /**
+   * アプリで閲覧可能なレクチャーかどうか
+   * @returns {boolean}
+   */
+  isViewable(): boolean {
+    switch (this.type) {
+      case Lecture.TYPE_VIDEO:
+      case Lecture.TYPE_AUDIO:
       case Lecture.TYPE_TEXT:
-        break;
+        return true;
       case Lecture.TYPE_QUIZ:
       case Lecture.TYPE_PDF:
       case Lecture.TYPE_ATTACHMENT:
-      case Lecture.TYPE_AUDIO:
       default:
         return false;
     }
-    return isOnline;
   }
 
+  /**
+   * ダウンロード可能なレクチャーかどうか
+   * @returns {boolean}
+   */
+  isDownloadable(): boolean {
+    switch (this.type) {
+      case Lecture.TYPE_VIDEO:
+      case Lecture.TYPE_AUDIO:
+        return true;
+      case Lecture.TYPE_TEXT:
+      case Lecture.TYPE_QUIZ:
+      case Lecture.TYPE_PDF:
+      case Lecture.TYPE_ATTACHMENT:
+      default:
+        return false;
+    }
+  }
 
   /**
    * レクチャーが開始済みかどうか

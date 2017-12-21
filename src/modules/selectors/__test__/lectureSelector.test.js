@@ -48,7 +48,7 @@ describe('lectureSelectors', () => {
     });
 
     const viewableLectures = viewableLecturesSelector.resultFunc(lectures);
-    expect(viewableLectures.size).toEqual(2);
+    expect(viewableLectures.size).toEqual(3);
   });
 
   it('getSectionMergedLectureList should return section merged lectures', () => {

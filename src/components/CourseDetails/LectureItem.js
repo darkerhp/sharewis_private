@@ -162,7 +162,7 @@ const LectureItem = ({
       >{lecture.title}</Text>
     </TouchableOpacity>
 
-    {lecture.canAccess(isOnline) &&
+    {lecture.isDownloadable() && isOnline &&
       <DownloadAction
         handlePressDelete={handlePressDelete}
         handlePressDownload={handlePressDownload}
