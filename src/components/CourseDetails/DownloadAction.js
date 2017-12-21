@@ -35,7 +35,7 @@ const renderIcon = (lecture) => {
   }
   return (
     <Icon
-      name={lecture.hasVideoInDevice ? 'delete' : 'cloud-download'}
+      name={lecture.isDownloaded ? 'delete' : 'cloud-download'}
       style={styles.actionIcon}
     />
   );
@@ -45,7 +45,7 @@ const DownloadAction = ({ handlePressDelete, handlePressDownload, lecture }) => 
   <TouchableOpacity
     style={styles.actionIconWrapper}
     onPress={() => (
-      lecture.hasVideoInDevice ? handlePressDelete(lecture) : handlePressDownload(lecture)
+      lecture.isDownloaded ? handlePressDelete(lecture) : handlePressDownload(lecture)
     )}
   >
     {renderIcon(lecture)}

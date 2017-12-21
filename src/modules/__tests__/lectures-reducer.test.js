@@ -7,11 +7,11 @@ import Lecture from '../models/Lecture';
 import reducer, {
   FETCH_COURSE_DETAILS_SUCCESS,
   UPDATE_LECTURE_STATUS_SUCCESS,
-  BEGIN_DOWNLOAD_VIDEO,
-  PROGRESS_DOWNLOAD_VIDEO,
-  FINISH_DOWNLOAD_VIDEO,
-  ERROR_DOWNLOAD_VIDEO,
-  CANCEL_DOWNLOAD_VIDEO,
+  BEGIN_DOWNLOAD_LECTURE,
+  PROGRESS_DOWNLOAD_LECTURE,
+  FINISH_DOWNLOAD_LECTURE,
+  ERROR_DOWNLOAD_LECTURE,
+  CANCEL_DOWNLOAD_LECTURE,
   FINISH_DELETE_VIDEO,
 } from '../lectures';
 
@@ -62,12 +62,12 @@ describe('lectures reducer', () => {
     ).toEqual(factory(lectureId, { status: Lecture.STATUS_FINISHED }));
   });
 
-  it('should handle BEGIN_DOWNLOAD_VIDEO', () => {
+  it('should handle BEGIN_DOWNLOAD_LECTURE', () => {
     const lectureId = 1;
     expect(
       reducer(
         factory(lectureId),
-        createAction(BEGIN_DOWNLOAD_VIDEO)({
+        createAction(BEGIN_DOWNLOAD_LECTURE)({
           lectureId,
           jobId: 1,
           statusCode: 200,
@@ -78,12 +78,12 @@ describe('lectures reducer', () => {
     );
   });
 
-  it('should handle PROGRESS_DOWNLOAD_VIDEO', () => {
+  it('should handle PROGRESS_DOWNLOAD_LECTURE', () => {
     const lectureId = 1;
     expect(
       reducer(
         factory(lectureId, { jobId: 1 }),
-        createAction(PROGRESS_DOWNLOAD_VIDEO)({
+        createAction(PROGRESS_DOWNLOAD_LECTURE)({
           lectureId,
           jobId: 1,
           progress: 99,
@@ -94,16 +94,16 @@ describe('lectures reducer', () => {
     );
   });
 
-  it('should handle FINISH_DOWNLOAD_VIDEO', () => {
+  it('should handle FINISH_DOWNLOAD_LECTURE', () => {
     const lectureId = 1;
     expect(
       reducer(
         factory(lectureId, { jobId: 1 }),
-        createAction(FINISH_DOWNLOAD_VIDEO)(lectureId),
+        createAction(FINISH_DOWNLOAD_LECTURE)(lectureId),
       ),
     ).toEqual(
       factory(lectureId, {
-        hasVideoInDevice: true,
+        isDownloaded: true,
         isDownloading: false,
         jobId: -1,
         progress: 0,
@@ -111,16 +111,16 @@ describe('lectures reducer', () => {
     );
   });
 
-  it('should handle ERROR_DOWNLOAD_VIDEO', () => {
+  it('should handle ERROR_DOWNLOAD_LECTURE', () => {
     const lectureId = 1;
     expect(
       reducer(
         factory(lectureId),
-        createAction(ERROR_DOWNLOAD_VIDEO)(lectureId),
+        createAction(ERROR_DOWNLOAD_LECTURE)(lectureId),
       ),
     ).toEqual(
       factory(lectureId, {
-        hasVideoInDevice: false,
+        isDownloaded: false,
         isDownloading: false,
         jobId: -1,
         progress: 0,
@@ -128,12 +128,12 @@ describe('lectures reducer', () => {
     );
   });
 
-  it('should handle CANCEL_DOWNLOAD_VIDEO', () => {
+  it('should handle CANCEL_DOWNLOAD_LECTURE', () => {
     const lectureId = 1;
     expect(
       reducer(
         factory(lectureId),
-        createAction(CANCEL_DOWNLOAD_VIDEO)(lectureId),
+        createAction(CANCEL_DOWNLOAD_LECTURE)(lectureId),
       ),
     ).toEqual(
       factory(lectureId, { isDownloading: false, jobId: -1 }),
@@ -148,7 +148,7 @@ describe('lectures reducer', () => {
         createAction(FINISH_DELETE_VIDEO)(lectureId),
       ),
     ).toEqual(
-      factory(lectureId, { hasVideoInDevice: false, progress: 0 }),
+      factory(lectureId, { isDownloaded: false, progress: 0 }),
     );
   });
 });

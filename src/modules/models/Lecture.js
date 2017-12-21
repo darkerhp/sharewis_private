@@ -14,10 +14,10 @@ const LectureRecord = Record({
   status: '',
   title: '',
   type: '',
+  isDownloaded: false,
   // For VideoLecture
   videoUrl: '',
   thumbnailUrl: '',
-  hasVideoInDevice: false,
   // For TextLecture
   body: '',
   // For AudioLecture
@@ -70,7 +70,7 @@ export default class Lecture extends LectureRecord {
    * @returns {string}
    */
   getVideoUrl(): string {
-    if (this.hasVideoInDevice) {
+    if (this.isDownloaded) {
       return `file://${FileUtils.createVideoFileName(this.id, this.courseId)}`;
     }
     return this.videoUrl;
@@ -99,7 +99,7 @@ export default class Lecture extends LectureRecord {
 
     switch (this.type) {
       case Lecture.TYPE_VIDEO:
-        return isOnline || this.hasVideoInDevice;
+        return isOnline || this.isDownloaded;
       case Lecture.TYPE_AUDIO:
         // TODO 実装する
         return isOnline;

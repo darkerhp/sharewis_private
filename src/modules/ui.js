@@ -19,14 +19,14 @@ import {
 } from './courses';
 
 import {
-  CANCEL_DOWNLOAD_VIDEO,
+  CANCEL_DOWNLOAD_LECTURE,
   CHANGE_VIDEO_PLAY_SPEED,
-  ERROR_DOWNLOAD_VIDEO,
+  ERROR_DOWNLOAD_LECTURE,
   FETCH_COURSE_DETAILS_FAILURE,
   FETCH_COURSE_DETAILS_START,
   FETCH_COURSE_DETAILS_SUCCESS,
-  FINISH_DOWNLOAD_VIDEO,
-  PRESS_DOWNLOAD_VIDEO,
+  FINISH_DOWNLOAD_LECTURE,
+  PRESS_DOWNLOAD_LECTURE,
   TOGGLE_FULL_SCREEN,
 } from './lectures';
 
@@ -94,19 +94,19 @@ const reducer = handleActions({
     isFetching: false,
     fetchedCourseDetailsAt: Date.now(),
   }),
-  [PRESS_DOWNLOAD_VIDEO]: (state, action) => ({
+  [PRESS_DOWNLOAD_LECTURE]: (state, action) => ({
     ...state,
     isLectureDownloading: true,
   }),
-  [FINISH_DOWNLOAD_VIDEO]: (state, action) => ({
+  [FINISH_DOWNLOAD_LECTURE]: (state, action) => ({
     ...state,
     isLectureDownloading: false,
   }),
-  [ERROR_DOWNLOAD_VIDEO]: (state, action) => ({
+  [ERROR_DOWNLOAD_LECTURE]: (state, action) => ({
     ...state,
     isLectureDownloading: false,
   }),
-  [CANCEL_DOWNLOAD_VIDEO]: (state, action) => ({
+  [CANCEL_DOWNLOAD_LECTURE]: (state, action) => ({
     ...state,
     isLectureDownloading: false,
   }),
