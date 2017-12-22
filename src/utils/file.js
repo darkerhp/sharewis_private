@@ -6,12 +6,15 @@ const ARCHIVE_PATH = `${RNFS.DocumentDirectoryPath}/archive`;
 export const getCourseArchivePath = courseId =>
   `${ARCHIVE_PATH}/${courseId}`;
 
-export const getCourseVideosDirPath = courseId =>
-  `${getCourseArchivePath(courseId)}/videos`;
+export const getCourseDownloadDirPath = courseId =>
+  `${getCourseArchivePath(courseId)}/videos`; // FIXME ダウンロード対象が動画だけだった頃の名残でディレクトリ名がvideosとなっている
 
 // ARCHIVE_PATH/archive/{course_id}/videos/{lecture_id}.mp4
 export const createVideoFileName = (lectureId, courseId) =>
-  `${getCourseVideosDirPath(courseId)}/${lectureId}.mp4`;
+  `${getCourseDownloadDirPath(courseId)}/${lectureId}.mp4`; // FIXME mp4決め打ち
+
+export const createAudioFileName = (lectureId, courseId) =>
+  `${getCourseDownloadDirPath(courseId)}/${lectureId}.mp3`; // FIXME mp3決め打ち
 
 export const exists = path => RNFS.exists(path);
 
@@ -20,15 +23,16 @@ const getFileExtension = (fileName) => {
   return f[f.length - 1].toLowerCase();
 };
 
-export async function hasVideoByCourse(courseId) {
+export async function hasDownloadLectureByCourse(courseId) {
   try {
-    const courseVideoDirPath = getCourseVideosDirPath(courseId);
-    const isExists = await exists(courseVideoDirPath);
+    const courseDownloadDirPath = getCourseDownloadDirPath(courseId);
+    const isExists = await exists(courseDownloadDirPath);
     if (!isExists) return false;
-    const readDirItemResults = await RNFS.readDir(courseVideoDirPath);
-    return readDirItemResults.some(
-      readDirItem => getFileExtension(readDirItem.name) === 'mp4',
-    );
+    const readDirItemResults = await RNFS.readDir(courseDownloadDirPath);
+    return readDirItemResults.some((readDirItem) => {
+      const fileExt = getFileExtension(readDirItem.name);
+      return fileExt === 'mp4' || fileExt === 'mp3';
+    });
   } catch (error) {
     new Client().notify(error);
     console.error(error);

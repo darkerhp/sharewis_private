@@ -36,7 +36,7 @@ export const lectures = {
     type: 'video',
     status: 'finished',
     videoUrl: 'http://embed.wistia.com/deliveries/51559062784985da094679d8d0cd6bddb6b1a3bb.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
   5923: {
     id: 5923,
@@ -48,7 +48,7 @@ export const lectures = {
     type: 'video',
     status: 'finished',
     videoUrl: 'http://embed.wistia.com/deliveries/88e9054bee268576fd4cfafb39cc6c923aeeac9a.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
   5924: {
     id: 5924,
@@ -60,7 +60,7 @@ export const lectures = {
     type: 'video',
     status: 'finished',
     videoUrl: 'http://embed.wistia.com/deliveries/5c7720d9c27e548025e188e2a994a8af24af07bc.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
   5925: {
     id: 5925,
@@ -72,7 +72,7 @@ export const lectures = {
     type: 'video',
     status: 'finished',
     videoUrl: 'http://embed.wistia.com/deliveries/8b97a96f11f5ac426c0b01986a1e185420a52a52.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
   5926: {
     id: 5926,
@@ -84,7 +84,7 @@ export const lectures = {
     type: 'video',
     status: 'viewed',
     videoUrl: 'http://embed.wistia.com/deliveries/083a72a68dfeeacbc07ff9d231cb293f1070a1d2.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
   5927: {
     id: 5927,
@@ -96,7 +96,7 @@ export const lectures = {
     type: 'video',
     status: 'viewed',
     videoUrl: 'http://embed.wistia.com/deliveries/a22cee442e0187d7ed5083d3efbb0f3b25450642.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
   5928: {
     id: 5928,
@@ -118,7 +118,7 @@ export const lectures = {
     type: 'video',
     status: 'finished',
     videoUrl: 'http://embed.wistia.com/deliveries/812543688957f95a13626c8b1c6072a1900f1d9e.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
   5930: {
     id: 5930,
@@ -130,7 +130,7 @@ export const lectures = {
     type: 'video',
     status: 'finished',
     videoUrl: 'http://embed.wistia.com/deliveries/a2d9ccad60e78647fb0a376eb3b4859ef3640cff.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
   9999: {
     id: 9999,
@@ -142,7 +142,7 @@ export const lectures = {
     type: 'video',
     status: '',
     videoUrl: 'http://embed.wistia.com/deliveries/a2d9ccad60e78647fb0a376eb3b4859ef3640cff.bin',
-    hasVideoInDevice: false,
+    isDownloaded: false,
   },
 };
 

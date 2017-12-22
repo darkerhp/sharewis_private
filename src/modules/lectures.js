@@ -17,24 +17,24 @@ import { queueLectureProgress } from './netInfo';
 import { setCurrentLectureId } from './ui';
 
 // Actions
-export const BEGIN_DOWNLOAD_VIDEO = 'sharewis/lectures/BEGIN_DOWNLOAD_VIDEO';
-export const CANCEL_DOWNLOAD_VIDEO = 'sharewis/lectures/CANCEL_DOWNLOAD_VIDEO';
+export const BEGIN_DOWNLOAD_LECTURE = 'sharewis/lectures/BEGIN_DOWNLOAD_LECTURE';
+export const CANCEL_DOWNLOAD_LECTURE = 'sharewis/lectures/CANCEL_DOWNLOAD_LECTURE';
 export const CHANGE_VIDEO_PLAY_SPEED = 'sharewis/lectures/CHANGE_VIDEO_PLAY_SPEED';
 export const COMPLETE_LECTURE = 'sharewis/lectures/COMPLETE_LECTURE';
-export const ERROR_DOWNLOAD_VIDEO = 'sharewis/lectures/ERROR_DOWNLOAD_VIDEO';
+export const ERROR_DOWNLOAD_LECTURE = 'sharewis/lectures/ERROR_DOWNLOAD_LECTURE';
 export const FETCH_COURSE_DETAILS_FAILURE = 'sharewis/lectures/FETCH_COURSE_DETAILS_FAILURE';
 export const FETCH_COURSE_DETAILS_START = 'sharewis/lectures/FETCH_COURSE_DETAILS_START';
 export const FETCH_COURSE_DETAILS_SUCCESS = 'sharewis/lectures/FETCH_COURSE_DETAILS_SUCCESS';
 export const FINISH_DELETE_VIDEO = 'sharewis/lectures/FINISH_DELETE_VIDEO';
-export const FINISH_DOWNLOAD_VIDEO = 'sharewis/lectures/FINISH_DOWNLOAD_VIDEO';
-export const PRESS_DOWNLOAD_VIDEO = 'sharewis/lectures/PRESS_DOWNLOAD_VIDEO';
-export const PROGRESS_DOWNLOAD_VIDEO = 'sharewis/lectures/PROGRESS_DOWNLOAD_VIDEO';
+export const FINISH_DOWNLOAD_LECTURE = 'sharewis/lectures/FINISH_DOWNLOAD_LECTURE';
+export const PRESS_DOWNLOAD_LECTURE = 'sharewis/lectures/PRESS_DOWNLOAD_LECTURE';
+export const PROGRESS_DOWNLOAD_LECTURE = 'sharewis/lectures/PROGRESS_DOWNLOAD_LECTURE';
 export const TOGGLE_FULL_SCREEN = 'sharewis/lectures/TOGGLE_FULL_SCREEN';
 export const TOGGLE_PLAY = 'sharewis/lectures/TOGGLE_PLAY';
 export const UPDATE_LECTURE_STATUS_FAILURE = 'sharewis/lectures/UPDATE_LECTURE_STATUS_FAILURE';
 export const UPDATE_LECTURE_STATUS_START = 'sharewis/lectures/UPDATE_LECTURE_STATUS_START';
 export const UPDATE_LECTURE_STATUS_SUCCESS = 'sharewis/lectures/UPDATE_LECTURE_STATUS_SUCCESS';
-export const UPDATE_VIDEO_IN_DEVICE_STATUS = 'sharewis/lectures/UPDATE_VIDEO_IN_DEVICE_STATUS';
+export const UPDATE_DOWNLOADED_STATUS = 'sharewis/lectures/UPDATE_DOWNLOADED_STATUS';
 export const UPDATE_VIDEO_PROGRESS = 'sharewis/lectures/UPDATE_VIDEO_PROGRESS';
 
 // Reducer
@@ -51,7 +51,7 @@ const reducer = handleActions({
     const next = mergeEntities(state, fromJS(lectures));
     return next;
   },
-  [UPDATE_VIDEO_IN_DEVICE_STATUS]: (state, action) => {
+  [UPDATE_DOWNLOADED_STATUS]: (state, action) => {
     if (_.isEmpty(state)) return state;
     const lectures = action.payload;
     return state.merge(lectures);
@@ -62,13 +62,13 @@ const reducer = handleActions({
       lecture.set('status', status)
     ));
   },
-  [BEGIN_DOWNLOAD_VIDEO]: (state, action) => {
+  [BEGIN_DOWNLOAD_LECTURE]: (state, action) => {
     const { lectureId, jobId } = action.payload;
     return state.update(lectureId.toString(), lecture =>
       lecture.merge({ isDownloading: true, jobId }),
     );
   },
-  [PROGRESS_DOWNLOAD_VIDEO]: (state, action) => {
+  [PROGRESS_DOWNLOAD_LECTURE]: (state, action) => {
     const { lectureId, jobId, progress } = action.payload;
     const strLectureId = lectureId.toString();
     if (state.get(strLectureId).jobId === -1) return state;
@@ -76,29 +76,29 @@ const reducer = handleActions({
       lecture.merge({ isDownloading: true, jobId, progress }),
     );
   },
-  [FINISH_DOWNLOAD_VIDEO]: (state, action) => {
+  [FINISH_DOWNLOAD_LECTURE]: (state, action) => {
     const lectureId = action.payload;
     return state.update(lectureId.toString(), lecture =>
       lecture.merge({
-        hasVideoInDevice: true,
+        isDownloaded: true,
         isDownloading: false,
         jobId: -1,
         progress: 0,
       }),
     );
   },
-  [ERROR_DOWNLOAD_VIDEO]: (state, action) => {
+  [ERROR_DOWNLOAD_LECTURE]: (state, action) => {
     const lectureId = action.payload;
     return state.update(lectureId.toString(), lecture =>
       lecture.merge({
-        hasVideoInDevice: false,
+        isDownloaded: false,
         isDownloading: false,
         jobId: -1,
         progress: 0,
       }),
     );
   },
-  [CANCEL_DOWNLOAD_VIDEO]: (state, action) => {
+  [CANCEL_DOWNLOAD_LECTURE]: (state, action) => {
     const lectureId = action.payload;
     return state.update(lectureId.toString(), lecture =>
       lecture.merge({ isDownloading: false, jobId: -1 }),
@@ -107,7 +107,7 @@ const reducer = handleActions({
   [FINISH_DELETE_VIDEO]: (state, action) => {
     const lectureId = action.payload;
     return state.update(lectureId.toString(), lecture =>
-      lecture.merge({ hasVideoInDevice: false, progress: 0 }),
+      lecture.merge({ isDownloaded: false, progress: 0 }),
     );
   },
   // redux-persistのrehydrate用のreducer
@@ -136,16 +136,16 @@ export const completeLecture = createAction(COMPLETE_LECTURE);
 export const fetchCourseDetailsFailure = createAction(FETCH_COURSE_DETAILS_FAILURE);
 export const fetchCourseDetailsStart = createAction(FETCH_COURSE_DETAILS_START);
 export const fetchCourseDetailsSuccess = createAction(FETCH_COURSE_DETAILS_SUCCESS);
-export const pressDownloadVideo = createAction(PRESS_DOWNLOAD_VIDEO);
-export const beginDownloadVideo = createAction(BEGIN_DOWNLOAD_VIDEO,
+export const pressDownloadLecture = createAction(PRESS_DOWNLOAD_LECTURE);
+export const beginDownloadLecture = createAction(BEGIN_DOWNLOAD_LECTURE,
   (lectureId, jobId, statusCode) => ({ lectureId, jobId, statusCode }));
-export const progressDownloadVideo = createAction(PROGRESS_DOWNLOAD_VIDEO,
+export const progressDownloadLecture = createAction(PROGRESS_DOWNLOAD_LECTURE,
   (lectureId, jobId, progress) => ({ lectureId, jobId, progress }));
-export const finishDownloadVideo = createAction(FINISH_DOWNLOAD_VIDEO);
-export const errorDownloadVideo = createAction(ERROR_DOWNLOAD_VIDEO);
-export const cancelDownloadVideo = createAction(CANCEL_DOWNLOAD_VIDEO);
+export const finishDownloadLecture = createAction(FINISH_DOWNLOAD_LECTURE);
+export const errorDownloadLecture = createAction(ERROR_DOWNLOAD_LECTURE);
+export const cancelDownloadLecture = createAction(CANCEL_DOWNLOAD_LECTURE);
 export const finishDeleteVideo = createAction(FINISH_DELETE_VIDEO);
-export const updateVideoInDeviceStatus = createAction(UPDATE_VIDEO_IN_DEVICE_STATUS);
+export const updateDownloadedStatus = createAction(UPDATE_DOWNLOADED_STATUS);
 
 // side effects, only as applicable
 // e.g. thunks, epics, etc
@@ -180,17 +180,18 @@ export const fetchCourseDetails = courseId =>
     }
   };
 
-export const fetchVideoInDeviceStatus = courseId => (
+export const fetchDownloadedStatus = courseId => (
   async (dispatch, getState) => {
     const { entities: { lectures } } = getState();
     if (lectures.isEmpty()) return;
-    const promises = lectures.map(async (lecture) => {
-      const path = FileUtils.createVideoFileName(lecture.id, courseId);
-      const hasVideoInDevice = await FileUtils.exists(path);
-      return lecture.set('hasVideoInDevice', hasVideoInDevice);
+    const targetLectures = lectures.filter(l => new Lecture(l).isDownloadable());
+    const promises = targetLectures.map(async (lecture) => {
+      const path = new Lecture(lecture).getAttachmentFileName();
+      const isDownloaded = await FileUtils.exists(path);
+      return lecture.set('isDownloaded', isDownloaded);
     });
     const updatedLectures = await Promise.all(promises);
-    dispatch(updateVideoInDeviceStatus(updatedLectures));
+    dispatch(updateDownloadedStatus(updatedLectures));
   }
 );
 

@@ -79,21 +79,21 @@ class CourseDetails extends Component {
     title: PropTypes.string.isRequired,
     totalDuration: PropTypes.number.isRequired,
     // actions
-    beginDownloadVideo: PropTypes.func.isRequired,
+    beginDownloadLecture: PropTypes.func.isRequired,
     finishDeleteVideo: PropTypes.func.isRequired,
-    finishDownloadVideo: PropTypes.func.isRequired,
-    cancelDownloadVideo: PropTypes.func.isRequired,
-    errorDownloadVideo: PropTypes.func.isRequired,
+    finishDownloadLecture: PropTypes.func.isRequired,
+    cancelDownloadLecture: PropTypes.func.isRequired,
+    errorDownloadLecture: PropTypes.func.isRequired,
     setCurrentLectureId: PropTypes.func.isRequired,
-    pressDownloadVideo: PropTypes.func.isRequired,
-    progressDownloadVideo: PropTypes.func.isRequired,
+    pressDownloadLecture: PropTypes.func.isRequired,
+    progressDownloadLecture: PropTypes.func.isRequired,
   };
 
   async componentWillMount() {
-    const { fetchCourseDetails, fetchVideoInDeviceStatus, id } = this.props;
+    const { fetchCourseDetails, fetchDownloadedStatus, id } = this.props;
     try {
       await fetchCourseDetails(id);
-      await fetchVideoInDeviceStatus(id);
+      await fetchDownloadedStatus(id);
     } catch (error) {
       new Client().notify(error);
       console.error(error);
@@ -117,8 +117,8 @@ class CourseDetails extends Component {
 
   @autobind
   handlePressDelete(lecture) {
-    const { id, finishDeleteVideo } = this.props;
-    const path = FileUtils.createVideoFileName(lecture.id, id);
+    const { finishDeleteVideo } = this.props;
+    const path = lecture.getAttachmentFileName();
     return RNFS.unlink(path)
       .then(() => finishDeleteVideo(lecture.id))
       .catch(err => Alert.alert(I18n.t('errorTitle'), I18n.t('deleteVideoFailure')));
@@ -128,50 +128,49 @@ class CourseDetails extends Component {
   async handlePressDownload(lecture) { // eslint-disable-line
     const {
       id,
-      beginDownloadVideo,
-      errorDownloadVideo,
-      finishDownloadVideo,
-      cancelDownloadVideo,
+      beginDownloadLecture,
+      errorDownloadLecture,
+      finishDownloadLecture,
+      cancelDownloadLecture,
       isLectureDownloading,
-      pressDownloadVideo,
-      progressDownloadVideo,
+      pressDownloadLecture,
+      progressDownloadLecture,
     } = this.props;
 
     if (lecture.isDownloading) {
       await RNFS.stopDownload(lecture.jobId);
       this.handlePressDelete(lecture);
-      return cancelDownloadVideo(lecture.id);
+      return cancelDownloadLecture(lecture.id);
     } else if (isLectureDownloading) {
       return Alert.alert(I18n.t('errorTitle'), I18n.t('downloadAlreadyInProgress'));
     }
 
-    pressDownloadVideo();
+    pressDownloadLecture();
 
-    const videoDirPath = FileUtils.getCourseVideosDirPath(id);
-    const toFile = FileUtils.createVideoFileName(lecture.id, id);
+    const downloadDirPath = FileUtils.getCourseDownloadDirPath(id);
 
     try {
-      const isExists = await RNFS.exists(videoDirPath);
+      const isExists = await RNFS.exists(downloadDirPath);
       if (!isExists) {
-        await RNFS.mkdir(videoDirPath);
+        await RNFS.mkdir(downloadDirPath);
       }
       await RNFS.downloadFile({
-        fromUrl: lecture.videoUrl,
-        toFile,
+        fromUrl: lecture.getAttachmentUrl(),
+        toFile: lecture.getAttachmentFileName(),
         begin: (res) => {
           const { jobId, statusCode } = res;
-          beginDownloadVideo(lecture.id, jobId, statusCode);
+          beginDownloadLecture(lecture.id, jobId, statusCode);
         },
         progress: ({ bytesWritten, contentLength, jobId }) => {
           const progress = bytesWritten / contentLength;
-          progressDownloadVideo(lecture.id, jobId, progress);
+          progressDownloadLecture(lecture.id, jobId, progress);
         },
         progressDivider: 2,
       }).promise;
-      finishDownloadVideo(lecture.id);
+      finishDownloadLecture(lecture.id);
     } catch (error) {
       if (error.message !== 'Download has been aborted') {
-        errorDownloadVideo(lecture.id);
+        errorDownloadLecture(lecture.id);
         new Client().notify(error);
         Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
         console.error(error);
