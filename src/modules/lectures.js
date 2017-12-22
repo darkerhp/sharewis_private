@@ -184,8 +184,9 @@ export const fetchDownloadedStatus = courseId => (
   async (dispatch, getState) => {
     const { entities: { lectures } } = getState();
     if (lectures.isEmpty()) return;
-    const promises = lectures.map(async (lecture) => {
-      const path = FileUtils.createVideoFileName(lecture.id, courseId);
+    const targetLectures = lectures.filter(l => new Lecture(l).isDownloadable());
+    const promises = targetLectures.map(async (lecture) => {
+      const path = new Lecture(lecture).getAttachmentFileName();
       const isDownloaded = await FileUtils.exists(path);
       return lecture.set('isDownloaded', isDownloaded);
     });

@@ -117,8 +117,8 @@ class CourseDetails extends Component {
 
   @autobind
   handlePressDelete(lecture) {
-    const { id, finishDeleteVideo } = this.props;
-    const path = FileUtils.createVideoFileName(lecture.id, id);
+    const { finishDeleteVideo } = this.props;
+    const path = lecture.getAttachmentFileName();
     return RNFS.unlink(path)
       .then(() => finishDeleteVideo(lecture.id))
       .catch(err => Alert.alert(I18n.t('errorTitle'), I18n.t('deleteVideoFailure')));
@@ -147,17 +147,16 @@ class CourseDetails extends Component {
 
     pressDownloadLecture();
 
-    const videoDirPath = FileUtils.getCourseVideosDirPath(id);
-    const toFile = FileUtils.createVideoFileName(lecture.id, id);
+    const downloadDirPath = FileUtils.getCourseDownloadDirPath(id);
 
     try {
-      const isExists = await RNFS.exists(videoDirPath);
+      const isExists = await RNFS.exists(downloadDirPath);
       if (!isExists) {
-        await RNFS.mkdir(videoDirPath);
+        await RNFS.mkdir(downloadDirPath);
       }
       await RNFS.downloadFile({
-        fromUrl: lecture.videoUrl,
-        toFile,
+        fromUrl: lecture.getAttachmentUrl(),
+        toFile: lecture.getAttachmentFileName(),
         begin: (res) => {
           const { jobId, statusCode } = res;
           beginDownloadLecture(lecture.id, jobId, statusCode);

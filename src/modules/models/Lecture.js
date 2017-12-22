@@ -82,11 +82,40 @@ export default class Lecture extends LectureRecord {
    * @returns {string}
    */
   getAudioUrl(): string {
-    // TODO 音声ファイルのダウンロードを実装する
-    // if (this.hasAudioInDevice) {
-    //   return `file://${FileUtils.createAudioFileName(this.id, this.courseId)}`;
-    // }
+    if (this.isDownloaded) {
+      return `file://${FileUtils.createAudioFileName(this.id, this.courseId)}`;
+    }
     return this.audioUrl;
+  }
+
+  /**
+   * 添付ファイル名(パス)を取得する
+   * @returns {*}
+   */
+  getAttachmentFileName(): string {
+    switch (this.type) {
+      case Lecture.TYPE_VIDEO:
+        return FileUtils.createVideoFileName(this.id, this.courseId);
+      case Lecture.TYPE_AUDIO:
+        return FileUtils.createAudioFileName(this.id, this.courseId);
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * 添付ファイルのURLを取得する
+   * @returns {*}
+   */
+  getAttachmentUrl(): string {
+    switch (this.type) {
+      case Lecture.TYPE_VIDEO:
+        return this.getVideoUrl();
+      case Lecture.TYPE_AUDIO:
+        return this.getAudioUrl();
+      default:
+        return null;
+    }
   }
 
   /**

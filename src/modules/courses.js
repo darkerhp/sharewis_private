@@ -172,7 +172,7 @@ export const fetchCoursesDownloadStatus = () =>
     const proCourses = proCourseSelector(getState());
     if (proCourses.isEmpty()) return;
     const promises = proCourses.map(async (course) => {
-      const hasDownloadedLecture = await FileUtils.hasVideoByCourse(course.id);
+      const hasDownloadedLecture = await FileUtils.hasDownloadLectureByCourse(course.id);
       return course.set('hasDownloadedLecture', hasDownloadedLecture);
     });
     const updatedCourses = await Promise.all(promises);
