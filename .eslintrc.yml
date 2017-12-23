@@ -1,16 +1,20 @@
-extends: airbnb
+extends: [
+  "airbnb",
+  "plugin:prettier/recommended",
+]
 
 parser: babel-eslint
 
 parserOptions:
   ecmaFeatures:
-  jsx: true
+    jsx: true
 
 plugins:
   - react
   - jsx-a11y
   - import
   - flowtype
+  - prettier
 
 rules:
   # Enable
@@ -19,6 +23,7 @@ rules:
     { "varsIgnorePattern": "[iI]gnored" }
   ]
   max-len: ["error", 120]
+  prettier/prettier: error
 
   # Disable
   react/jsx-filename-extension: 0  # unsupported by react-native
