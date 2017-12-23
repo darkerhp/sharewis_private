@@ -14,25 +14,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 7,
     borderColor: BaseStyles.borderColor,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
   sectionTitleText: {
     fontSize: 14,
-    color: BaseStyles.textColor,
-  },
+    color: BaseStyles.textColor
+  }
 });
 
-const Section = ({ lecture }) =>
-  (
-    <View style={styles.container}>
-      <Text style={styles.sectionTitleText}>{lecture.title}</Text>
-    </View>
-  );
-
+const Section = ({ lecture }) => (
+  <View style={styles.container}>
+    <Text style={styles.sectionTitleText}>{lecture.title}</Text>
+  </View>
+);
 
 Section.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  lecture: PropTypes.object.isRequired,
+  lecture: PropTypes.object.isRequired
 };
 
 export default Section;

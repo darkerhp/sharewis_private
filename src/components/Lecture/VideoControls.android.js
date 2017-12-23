@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'space-around',
     alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   playButton: {
     width: 78,
@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     borderRadius: 78 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.navBarBackgroundColor,
+    backgroundColor: BaseStyles.navBarBackgroundColor
   },
   playButtonIcon: {
     fontSize: 40,
     height: 44,
-    color: 'white',
+    color: 'white'
   },
   speedButton: {
     width: 62,
@@ -37,21 +37,21 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.disabledButtonColor,
+    backgroundColor: BaseStyles.disabledButtonColor
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
+    color: 'white'
   },
   lectureTitleTextWrapper: {
     flex: 0.5,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   lectureTitle: {
     fontSize: 17,
     color: '#e0e0e0',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   fullScreenButton: {
     width: 62,
@@ -59,13 +59,13 @@ const styles = StyleSheet.create({
     borderRadius: 62 / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.navBarBackgroundColor,
+    backgroundColor: BaseStyles.navBarBackgroundColor
   },
   fullScreenButtonIcon: {
     fontSize: 28,
     height: 28,
-    color: 'white',
-  },
+    color: 'white'
+  }
 });
 
 const VideoControls = ({
@@ -80,17 +80,21 @@ const VideoControls = ({
   onSlidingComplete,
   onValueChange,
   speed,
-  title,
+  title
 }) => (
   <View
-    style={(isFullScreen ? {
-      backgroundColor: 'transparent',
-      borderRadius: 5,
-      bottom: 20,
-      left: 20,
-      position: 'absolute',
-      right: 20,
-    } : { flex: 2, paddingBottom: 40, backgroundColor: 'white' })}
+    style={
+      isFullScreen
+        ? {
+            backgroundColor: 'transparent',
+            borderRadius: 5,
+            bottom: 20,
+            left: 20,
+            position: 'absolute',
+            right: 20
+          }
+        : { flex: 2, paddingBottom: 40, backgroundColor: 'white' }
+    }
   >
     <SeekBar
       currentTime={currentTime}
@@ -106,7 +110,9 @@ const VideoControls = ({
       <Button
         containerStyle={[
           styles.playButton,
-          isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
+          isLoadingThumbnail && {
+            backgroundColor: BaseStyles.disabledButtonColor
+          }
         ]}
         style={styles.buttonText}
         onPress={() => onPressPlay()}
@@ -120,21 +126,19 @@ const VideoControls = ({
       <Button
         containerStyle={[
           styles.fullScreenButton,
-          isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
+          isLoadingThumbnail && {
+            backgroundColor: BaseStyles.disabledButtonColor
+          }
         ]}
         style={styles.buttonText}
         onPress={() => onPressFullScreen()}
         disabled={isLoadingThumbnail}
       >
-        <Icon
-          name={'fullscreen'}
-          style={styles.fullScreenButtonIcon}
-        />
+        <Icon name={'fullscreen'} style={styles.fullScreenButtonIcon} />
       </Button>
     </View>
   </View>
-  );
-
+);
 
 VideoControls.propTypes = {
   currentTime: PropTypes.number.isRequired,
@@ -149,7 +153,7 @@ VideoControls.propTypes = {
   onPressPlay: PropTypes.func.isRequired,
   onPressSpeed: PropTypes.func.isRequired,
   onSlidingComplete: PropTypes.func.isRequired,
-  onValueChange: PropTypes.func.isRequired,
+  onValueChange: PropTypes.func.isRequired
 };
 
 export default VideoControls;

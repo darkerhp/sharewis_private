@@ -13,19 +13,21 @@ const RouterWithRedux = connect()(Router);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Styles.backgroundColor,
-  },
+    backgroundColor: Styles.backgroundColor
+  }
 });
 
-
-@connect(({ user }) => ({ user }), dispatch => ({
-  initialize() {
-    dispatch(initApp());
-  },
-}))
+@connect(
+  ({ user }) => ({ user }),
+  dispatch => ({
+    initialize() {
+      dispatch(initApp());
+    }
+  })
+)
 class App extends Component {
   static propTypes = {
-    initialize: PropTypes.func.isRequired,
+    initialize: PropTypes.func.isRequired
   };
 
   componentWillMount() {
@@ -34,14 +36,8 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <RouterWithRedux
-        style={styles.container}
-        scenes={this.scenes}
-      />
-    );
+    return <RouterWithRedux style={styles.container} scenes={this.scenes} />;
   }
 }
-
 
 export default App;

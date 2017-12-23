@@ -31,10 +31,14 @@ describe('API', () => {
     // jest 16 still breaks Promises...
     global.Promise = require.requireActual('promise');
     // stub AsyncStorage.getItem
-    require.requireActual('react-native').AsyncStorage.getItem = () => Promise.resolve(1);
+    require.requireActual('react-native').AsyncStorage.getItem = () =>
+      Promise.resolve(1);
     fetch
       .mock(API_ROOT + SIMPLE_ENDPOINT, { status: 200, body: SIMPLE_RESPONSE })
-      .mock(API_ROOT + ERROR_ENDPOINT, { status: 400, body: { message: 'You did bad.' } })
+      .mock(API_ROOT + ERROR_ENDPOINT, {
+        status: 400,
+        body: { message: 'You did bad.' }
+      })
       .mock(API_ROOT + PROTECTED_ENDPOINT, { status: 403 })
       .mock(API_ROOT + FAILING_ENDPOINT, { status: 500 }); // don't specify body to test default message
   });
@@ -48,9 +52,10 @@ describe('API', () => {
     const body = { foo: 'bar' };
 
     // create a function that calls the corresponding method on the API module
-    const apiMethod = method === 'put' || method === 'post'
-      ? path => api[method](path, body)
-      : path => api[method](path);
+    const apiMethod =
+      method === 'put' || method === 'post'
+        ? path => api[method](path, body)
+        : path => api[method](path);
 
     describe(method, () => { // eslint-disable-line
       it('should fetch() the given endpoint', async () => {
@@ -104,7 +109,7 @@ describe('API', () => {
     let spyAllErrors;
     const expectedArgs = {
       path: PROTECTED_ENDPOINT,
-      message: 'Forbidden',
+      message: 'Forbidden'
     };
 
     beforeEach(() => {
@@ -135,7 +140,7 @@ describe('API', () => {
       expect(spyAllErrors).toBeCalledWith(expectedArgs, 403);
     });
 
-    it('doesn\'t notify about errors on other channels', async () => {
+    it("doesn't notify about errors on other channels", async () => {
       await getError(() => api.get(PROTECTED_ENDPOINT));
 
       // never called, unmatching error code

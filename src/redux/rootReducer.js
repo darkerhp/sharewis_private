@@ -14,7 +14,7 @@ const entities = combineReducers({
   courses,
   lectures,
   sections,
-  products,
+  products
 });
 
 const rootReducer = combineReducers({
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   form,
   routes,
   user,
-  netInfo,
+  netInfo
 });
 
 export default rootReducer;

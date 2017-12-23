@@ -12,21 +12,25 @@ jest.mock('bugsnag-react-native', () => 'Bugsnag');
 
 describe('LectureItem', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <LectureItem
-        isOnline
-        handlePressDelete={() => null}
-        handlePressDownload={() => null}
-        handlePressLecture={() => null}
-        lecture={new Lecture({
-          status: 'not_started',
-          order: 1,
-          estimatedTime: 30,
-          title: 'Title',
-          type: 'video',
-        })}
-      />,
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <LectureItem
+          isOnline
+          handlePressDelete={() => null}
+          handlePressDownload={() => null}
+          handlePressLecture={() => null}
+          lecture={
+            new Lecture({
+              status: 'not_started',
+              order: 1,
+              estimatedTime: 30,
+              title: 'Title',
+              type: 'video'
+            })
+          }
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

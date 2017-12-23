@@ -4,11 +4,7 @@ import ReactNative from 'react-native';
 
 import LoadingIndicator from './LoadingIndicator';
 
-const {
-  View,
-  Text,
-  StyleSheet,
-} = ReactNative;
+const { View, Text, StyleSheet } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -19,20 +15,19 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
-
 
 class SleekLoadingIndicator extends Component {
   static propTypes = {
     text: PropTypes.string,
-    loading: PropTypes.bool,
+    loading: PropTypes.bool
   };
 
   static defaultProps = {
     text: 'Loading...',
-    loading: true,
+    loading: true
   };
 
   render() {
@@ -43,7 +38,6 @@ class SleekLoadingIndicator extends Component {
       </View>
     );
   }
-
 }
 
 export default SleekLoadingIndicator;

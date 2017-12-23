@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: BaseStyles.navbarHeight,
-    backgroundColor: BaseStyles.onboardingBackgroundColor,
+    backgroundColor: BaseStyles.onboardingBackgroundColor
   },
   contentText: {
     flex: 1,
@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 10,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   hrWrapper: {
-    marginBottom: 25,
-  },
+    marginBottom: 25
+  }
 });
 
 class Signup extends Component {
@@ -63,7 +63,9 @@ class Signup extends Component {
     StatusBar.setBarStyle('dark-content');
 
     if (isFetching) {
-      return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />
+      );
     }
 
     return (
@@ -72,25 +74,23 @@ class Signup extends Component {
         <Hyperlink
           style={{ flex: 1, marginHorizontal: 13 }}
           linkStyle={{ color: BaseStyles.hyperlink }}
-          linkText={(url) => {
+          linkText={url => {
             if (url === ACT_TOS_URL) return I18n.t('tos');
             if (url === ACT_PRIVACY_URL) return I18n.t('privacy');
             return url;
           }}
-          onPress={(url) => {
+          onPress={url => {
             if (url === ACT_TOS_URL) RouterActions.tosModal();
             if (url === ACT_PRIVACY_URL) RouterActions.privacyModal();
           }}
         >
-          <Text style={styles.contentText}>
-            {I18n.t('agreeTosAndPolicy')}
-          </Text>
+          <Text style={styles.contentText}>{I18n.t('agreeTosAndPolicy')}</Text>
         </Hyperlink>
-        {!isModal &&
+        {!isModal && (
           <View style={styles.hrWrapper}>
             <Hr lineStyle={{ backgroundColor: '#dadada' }} />
           </View>
-        }
+        )}
         {isModal ? <View style={{ flex: 2 }} /> : <Footer {...this.props} />}
       </View>
     );

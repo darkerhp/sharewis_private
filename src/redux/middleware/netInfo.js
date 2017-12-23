@@ -3,9 +3,9 @@ import _ from 'lodash';
 
 import { fetchNetInfo, syncLectureProgress } from '../../modules/netInfo';
 
-const createOneShotMiddleware = (middleware) => {
+const createOneShotMiddleware = middleware => {
   let hasBeenTriggered = false;
-  return store => next => (action) => {
+  return store => next => action => {
     next(action);
     if (!hasBeenTriggered) {
       hasBeenTriggered = true;
@@ -14,8 +14,8 @@ const createOneShotMiddleware = (middleware) => {
   };
 };
 
-const netInfoMiddleware = createOneShotMiddleware(async (dispatch) => {
-  const handle = (isConnected) => {
+const netInfoMiddleware = createOneShotMiddleware(async dispatch => {
+  const handle = isConnected => {
     dispatch(fetchNetInfo({ isConnected }));
     if (isConnected) {
       dispatch(syncLectureProgress());

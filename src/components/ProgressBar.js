@@ -12,24 +12,22 @@ const styles = StyleSheet.create({
     height: 18,
     backgroundColor: '#cdcdcd',
     borderColor: '#cdcdcd',
-    borderWidth: 1,
+    borderWidth: 1
   },
   currentProgress: {
-    backgroundColor: BaseStyles.navBarBackgroundColor,
-  },
+    backgroundColor: BaseStyles.navBarBackgroundColor
+  }
 });
 
-
-const ProgressBar = ({ progress }) =>
-  (
-    <View style={styles.progressView}>
-      <View style={[styles.currentProgress, { flex: progress }]} />
-      <View style={{ flex: 1 - progress }} />
-    </View>
-  );
+const ProgressBar = ({ progress }) => (
+  <View style={styles.progressView}>
+    <View style={[styles.currentProgress, { flex: progress }]} />
+    <View style={{ flex: 1 - progress }} />
+  </View>
+);
 
 ProgressBar.propTypes = {
-  progress: PropTypes.number.isRequired,
+  progress: PropTypes.number.isRequired
 };
 
 export default ProgressBar;

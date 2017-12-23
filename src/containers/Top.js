@@ -22,12 +22,11 @@ import NoProCourseItem from '../components/Top/NoProCourseItem';
 import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import {
   snackCourseSelector,
-  getSortedPurchasedProCourses,
+  getSortedPurchasedProCourses
 } from '../modules/selectors/courseSelectors';
 import Course from '../modules/models/Course';
 import CourseMap from '../modules/models/CourseMap';
 import LectureMap from '../modules/models/LectureMap';
-
 
 const {
   Alert,
@@ -35,47 +34,47 @@ const {
   ScrollView,
   StyleSheet,
   Text,
-  View,
+  View
 } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: BaseStyles.courseListBackgroundColor,
+    backgroundColor: BaseStyles.courseListBackgroundColor
   },
   topImageWrapper: {
     overflow: 'hidden',
     width: BaseStyles.deviceWidth,
-    marginBottom: 10,
+    marginBottom: 10
   },
   topImage: {
-    width: BaseStyles.deviceWidth,
+    width: BaseStyles.deviceWidth
   },
   recommendedSnackCourseWrapper: {
-    flex: 1,
+    flex: 1
   },
   myCourseWrapper: {
     flex: 1,
-    marginBottom: BaseStyles.navbarHeight,
+    marginBottom: BaseStyles.navbarHeight
   },
   myCourseSummaryItemBox: {
     height: 150,
     paddingHorizontal: 15,
-    paddingTop: 15,
+    paddingTop: 15
   },
   headerTextWrapper: {
     marginLeft: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   headerText: {
     fontSize: 14,
-    color: '#030304',
+    color: '#030304'
   },
   contentText: {
     textAlign: 'center',
     lineHeight: 22,
     fontSize: 17,
-    color: '#222',
+    color: '#222'
   },
   signupButtonWrapper: {
     minHeight: 30,
@@ -87,14 +86,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: '#9b9b9b',
+    borderColor: '#9b9b9b'
   },
   signupButtonText: {
     fontSize: 16,
     color: BaseStyles.textColor,
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
-    fontWeight: 'normal',
-  },
+    fontWeight: 'normal'
+  }
 });
 
 const mapStateToProps = (state, props) => {
@@ -106,16 +105,19 @@ const mapStateToProps = (state, props) => {
     purchasedProCourses: getSortedPurchasedProCourses(state, props),
     isLoginUser: user.loggedIn,
     ...ui,
-    isOnline: netInfo.isConnected,
+    isOnline: netInfo.isConnected
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({
-    ..._.pickBy(coursesActions, _.isFunction),
-    ..._.pickBy(userActions, _.isFunction),
-    ..._.pickBy(uiActions, _.isFunction),
-  }, dispatch),
+  ...bindActionCreators(
+    {
+      ..._.pickBy(coursesActions, _.isFunction),
+      ..._.pickBy(userActions, _.isFunction),
+      ..._.pickBy(uiActions, _.isFunction)
+    },
+    dispatch
+  )
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -129,20 +131,20 @@ class Top extends Component {
     isOnline: PropTypes.bool.isRequired,
     // actions
     setCurrentCourseId: PropTypes.func.isRequired,
-    finishOnboarding: PropTypes.func.isRequired,
+    finishOnboarding: PropTypes.func.isRequired
   };
 
   static defaultProps = {
     purchasedProCourses: new CourseMap(),
     snackCourses: new CourseMap(),
-    lectures: new LectureMap(),
+    lectures: new LectureMap()
   };
 
   constructor(props) {
     super(props);
     this.state = {
       isRefreshing: false,
-      isLoading: true,
+      isLoading: true
     };
   }
 
@@ -157,7 +159,7 @@ class Top extends Component {
       fetchMyCourse,
       fetchSnackCourse,
       fetchCoursesDownloadStatus,
-      isLoginUser,
+      isLoginUser
     } = this.props;
     try {
       if (isLoginUser) {
@@ -183,7 +185,7 @@ class Top extends Component {
     setCurrentCourseId(courseId);
     RouterActions.snackLecture({
       backTitle: I18n.t('back'),
-      onBack: () => RouterActions.pop(),
+      onBack: () => RouterActions.pop()
     });
   }
 
@@ -194,7 +196,7 @@ class Top extends Component {
     setCurrentCourseId(course.id);
     RouterActions.courseDetails({
       backTitle: I18n.t('back'),
-      onBack: () => RouterActions.pop(),
+      onBack: () => RouterActions.pop()
     });
   }
 
@@ -209,7 +211,10 @@ class Top extends Component {
   @autobind
   renderSnackCourses() {
     const { snackCourses } = this.props;
-    const snackCourseItems = _.sampleSize(snackCourses.valueSeq().toJS(), 4).map(course => (
+    const snackCourseItems = _.sampleSize(
+      snackCourses.valueSeq().toJS(),
+      4
+    ).map(course => (
       <TwoColumnCourseItem
         key={course.id}
         course={new Course(course)}
@@ -220,7 +225,9 @@ class Top extends Component {
     return (
       <View>
         <View style={styles.headerTextWrapper}>
-          <Text style={styles.headerText}>{I18n.t('recommendedSnackCourse')}</Text>
+          <Text style={styles.headerText}>
+            {I18n.t('recommendedSnackCourse')}
+          </Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           {snackCourseItems.slice(0, 2)}
@@ -265,7 +272,12 @@ class Top extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator
+          loading={this.state.isLoading}
+          text={I18n.t('loading')}
+        />
+      );
     }
 
     // TODO ハードコード
@@ -291,9 +303,7 @@ class Top extends Component {
         <View style={styles.recommendedSnackCourseWrapper}>
           {this.renderSnackCourses()}
         </View>
-        <View style={styles.myCourseWrapper}>
-          {this.renderMyCourses()}
-        </View>
+        <View style={styles.myCourseWrapper}>{this.renderMyCourses()}</View>
       </ScrollView>
     );
   }

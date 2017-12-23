@@ -5,20 +5,22 @@ import { Actions, DefaultRenderer } from 'react-native-router-flux';
 import SideMenu from '../containers/SideMenu';
 
 const drawerStyles = {
-  drawer: { shadowColor: '#333333', shadowOpacity: 0.9, shadowRadius: 3 },
+  drawer: { shadowColor: '#333333', shadowOpacity: 0.9, shadowRadius: 3 }
 };
 
 export default class NavigationDrawer extends Component {
   static propTypes = {
     navigationState: PropTypes.shape({}).isRequired,
-    onNavigate: PropTypes.func.isRequired,
+    onNavigate: PropTypes.func.isRequired
   };
 
   render() {
     const { navigationState: { children, key, open }, onNavigate } = this.props;
     return (
       <Drawer
-        ref={(ref) => { this.navigator = ref; }}
+        ref={ref => {
+          this.navigator = ref;
+        }}
         type="displace"
         open={open}
         onClose={() => Actions.refresh({ key, open: false })} // NOTE Landscape時に呼び出されてしまう。問題が起こるかも
@@ -30,10 +32,13 @@ export default class NavigationDrawer extends Component {
         negotiatePan
         styles={drawerStyles}
         tweenHandler={ratio => ({
-          main: { opacity: Math.max(0.4, 1 - ratio) },
+          main: { opacity: Math.max(0.4, 1 - ratio) }
         })}
       >
-        <DefaultRenderer navigationState={children[0]} onNavigate={onNavigate} />
+        <DefaultRenderer
+          navigationState={children[0]}
+          onNavigate={onNavigate}
+        />
       </Drawer>
     );
   }

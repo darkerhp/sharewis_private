@@ -18,69 +18,66 @@ const styles = StyleSheet.create({
   courseTitleText: {
     color: BaseStyles.textColor,
     fontSize: 16,
-    fontWeight: '900',
+    fontWeight: '900'
   },
   totalDurationWrapper: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    alignItems: 'flex-end'
   },
   totalDuration: {
     ...Platform.select({
       android: {
-        width: 130,  // Or text will be trimmed in english
-      },
+        width: 130 // Or text will be trimmed in english
+      }
     }),
     textAlign: 'center',
     color: BaseStyles.textColor,
     fontSize: 10,
     fontWeight: 'bold',
     padding: 5,
-    backgroundColor: '#F2F2F2',
-  },
+    backgroundColor: '#F2F2F2'
+  }
 });
 
-
 const CourseInfoSection = ({
- // values
- completeLectureCount,
- containerStyle,
- courseTitle,
- nextLecture,
- totalLectureCount,
- totalDuration,
- // actions
- handlePressNextLecture,
-}) =>
-  (
-    <View style={[styles.container, containerStyle]}>
-      <View style={styles.courseTitleWrapper}>
-        <Text style={styles.courseTitleText}>{courseTitle}</Text>
-      </View>
-
-      {nextLecture &&
-        <NextLectureArea
-          nextLecture={nextLecture}
-          handlePressNextLecture={handlePressNextLecture}
-          hidden
-          containerStyle={styles.lectureAreaContainer}
-        />
-      }
-
-      <Progress
-        completeLectureCount={completeLectureCount}
-        totalLectureCount={totalLectureCount}
-      />
-
-      <Duration
-        estimatedTime={totalDuration}
-        format={I18n.t('totalDurationFormat')}
-        containerStyleId={styles.totalDurationWrapper}
-        durationStyleId={styles.totalDuration}
-      />
+  // values
+  completeLectureCount,
+  containerStyle,
+  courseTitle,
+  nextLecture,
+  totalLectureCount,
+  totalDuration,
+  // actions
+  handlePressNextLecture
+}) => (
+  <View style={[styles.container, containerStyle]}>
+    <View style={styles.courseTitleWrapper}>
+      <Text style={styles.courseTitleText}>{courseTitle}</Text>
     </View>
-  );
 
+    {nextLecture && (
+      <NextLectureArea
+        nextLecture={nextLecture}
+        handlePressNextLecture={handlePressNextLecture}
+        hidden
+        containerStyle={styles.lectureAreaContainer}
+      />
+    )}
+
+    <Progress
+      completeLectureCount={completeLectureCount}
+      totalLectureCount={totalLectureCount}
+    />
+
+    <Duration
+      estimatedTime={totalDuration}
+      format={I18n.t('totalDurationFormat')}
+      containerStyleId={styles.totalDurationWrapper}
+      durationStyleId={styles.totalDuration}
+    />
+  </View>
+);
 
 CourseInfoSection.propTypes = {
   courseTitle: PropTypes.string.isRequired,
@@ -89,11 +86,11 @@ CourseInfoSection.propTypes = {
   totalDuration: PropTypes.number.isRequired,
   nextLecture: PropTypes.instanceOf(Lecture),
   handlePressNextLecture: PropTypes.func.isRequired,
-  containerStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  containerStyle: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 CourseInfoSection.defaultProps = {
-  nextLecture: null,
+  nextLecture: null
 };
 
 export default CourseInfoSection;

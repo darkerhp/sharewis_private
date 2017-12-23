@@ -22,39 +22,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: BaseStyles.navbarHeight,
-    backgroundColor: BaseStyles.onboardingBackgroundColor,
+    backgroundColor: BaseStyles.onboardingBackgroundColor
   },
   formWrapper: {
     flex: 3,
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-start'
   },
   facebookWrapper: {
-    flex: 1,
+    flex: 1
   },
   passwordForgottenTextWrapper: {
-    flex: 1,
+    flex: 1
   },
   passwordForgottenText: {
     color: BaseStyles.hyperlink,
     fontSize: 12,
     marginTop: 10,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   contentText: {
     textAlign: 'center',
     fontSize: 12,
-    color: BaseStyles.textColor,
+    color: BaseStyles.textColor
   },
   hrWrapper: {
-    marginBottom: 25,
+    marginBottom: 25
   },
   footer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 13,
-    paddingVertical: 13,
-  },
+    paddingVertical: 13
+  }
 });
 
 class Login extends Component {
@@ -83,38 +83,38 @@ class Login extends Component {
     const { isFetching, isModal, isOnline } = this.props;
     StatusBar.setBarStyle('dark-content');
     if (isFetching) {
-      return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />
+      );
     }
 
     return (
       <View style={styles.container}>
         <View style={styles.formWrapper}>
-          <Form
-            {...this.props}
-          />
+          <Form {...this.props} />
         </View>
         <View style={styles.passwordForgottenTextWrapper}>
-          {Platform.OS !== 'ios' && // iOSではパスワードリマインダーのリンクを表示しない
+          {Platform.OS !== 'ios' && ( // iOSではパスワードリマインダーのリンクを表示しない
             <Text
               style={styles.passwordForgottenText}
-              onPress={() => (
-                isOnline ? Linking.openURL(ACT_PASSWORD_REMINDER_URL) : alertOfflineError()
-              )}
+              onPress={() =>
+                isOnline
+                  ? Linking.openURL(ACT_PASSWORD_REMINDER_URL)
+                  : alertOfflineError()
+              }
             >
               {I18n.t('passwordForgotten')}
             </Text>
-          }
+          )}
         </View>
         <View style={styles.facebookWrapper}>
-          <Facebook
-            {...this.props}
-          />
+          <Facebook {...this.props} />
         </View>
-        {!isModal &&
+        {!isModal && (
           <View style={styles.hrWrapper}>
             <Hr lineStyle={{ backgroundColor: '#dadada' }} />
           </View>
-        }
+        )}
         {isModal ? <View style={{ flex: 1 }} /> : <Footer {...this.props} />}
       </View>
     );

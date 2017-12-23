@@ -11,13 +11,15 @@ jest.mock('Slider', () => 'Slider');
 
 describe('SeekBar', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <SeekBar
-        currentTime={10}
-        estimatedTime={100}
-        onValueChange={() => null}
-      />,
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <SeekBar
+          currentTime={10}
+          estimatedTime={100}
+          onValueChange={() => null}
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

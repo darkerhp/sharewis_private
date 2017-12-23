@@ -10,33 +10,32 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: 30,
+    marginBottom: 30
   },
   menuIcon: {
     fontSize: 32,
     color: '#999',
-    marginRight: 10,
+    marginRight: 10
   },
   menuText: {
     fontSize: 17,
-    color: '#33bcd0',
-  },
+    color: '#33bcd0'
+  }
 });
 
-const MenuItem = ({ text, iconName, handlePress }) =>
-  (
-    <View style={styles.menuWrapper}>
-      <Icon style={styles.menuIcon} name={iconName} />
-      <Text style={styles.menuText} onPress={handlePress}>
-        {text}
-      </Text>
-    </View>
-  );
+const MenuItem = ({ text, iconName, handlePress }) => (
+  <View style={styles.menuWrapper}>
+    <Icon style={styles.menuIcon} name={iconName} />
+    <Text style={styles.menuText} onPress={handlePress}>
+      {text}
+    </Text>
+  </View>
+);
 
 MenuItem.propTypes = {
   text: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,
-  handlePress: PropTypes.func.isRequired,
+  handlePress: PropTypes.func.isRequired
 };
 
 export default MenuItem;

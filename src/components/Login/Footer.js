@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 13,
-    paddingVertical: 13,
+    paddingVertical: 13
   },
   buttonWrapper: {
     height: 47,
@@ -23,27 +23,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: '#9b9b9b',
+    borderColor: '#9b9b9b'
   },
   buttonText: {
     fontSize: 16,
     color: BaseStyles.textColor,
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
-    fontWeight: 'normal',
-  },
+    fontWeight: 'normal'
+  }
 });
 
-const Footer = () =>
-  (
-    <View style={styles.container}>
-      <Button
-        containerStyle={styles.buttonWrapper}
-        style={styles.buttonText}
-        onPress={() => RouterActions.signup()}
-      >
-        { I18n.t('noAccountYet') }
-      </Button>
-    </View>
-  );
+const Footer = () => (
+  <View style={styles.container}>
+    <Button
+      containerStyle={styles.buttonWrapper}
+      style={styles.buttonText}
+      onPress={() => RouterActions.signup()}
+    >
+      {I18n.t('noAccountYet')}
+    </Button>
+  </View>
+);
 
 export default Footer;

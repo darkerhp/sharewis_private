@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TextInput } from 'react-native';
 
-const TextField = (props) => {
-  const {
-    input: { value, onChange },
-    ...otherProps
-  } = props;
+const TextField = props => {
+  const { input: { value, onChange }, ...otherProps } = props;
 
   return (
     <TextInput
@@ -21,8 +18,7 @@ const TextField = (props) => {
 
 /* eslint-disable react/forbid-prop-types */
 TextField.propTypes = {
-  input: PropTypes.object.isRequired,
+  input: PropTypes.object.isRequired
 };
-
 
 export default TextField;

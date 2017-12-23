@@ -9,9 +9,9 @@ jest.mock('react-native-i18n', () => ({ t: () => '' }));
 
 describe('OfflineLecture', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <OfflineLecture lectureContentStyleId={1} />,
-    ).toJSON();
+    const tree = renderer
+      .create(<OfflineLecture lectureContentStyleId={1} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

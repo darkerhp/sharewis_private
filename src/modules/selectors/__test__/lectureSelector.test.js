@@ -8,7 +8,7 @@ import {
   getLectureTotalDuration,
   getNextNotCompletedLecture,
   getNextLecture,
-  getLastLectureId,
+  getLastLectureId
 } from '../../selectors/lectureSelectors';
 
 import Lecture from '../../models/Lecture';
@@ -16,26 +16,33 @@ import LectureMap from '../../models/LectureMap';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
 
-const factory = lectures => new LectureMap(lectures).map(lecture => new Lecture(lecture));
+const factory = lectures =>
+  new LectureMap(lectures).map(lecture => new Lecture(lecture));
 
 describe('lectureSelectors', () => {
   it('sectionsSelector should return sections', () => {
     const sections = factory({
       1: { id: 1, kind: 'section', courseId: 1 },
-      2: { id: 2, kind: 'section', courseId: 2 },
+      2: { id: 2, kind: 'section', courseId: 2 }
     });
 
-    const selectedSections = sectionsSelector({}, { currentCourseId: 1, sections });
+    const selectedSections = sectionsSelector(
+      {},
+      { currentCourseId: 1, sections }
+    );
     expect(selectedSections.size).toEqual(1);
   });
 
   it('lecturesSelector should return lectures', () => {
     const lectures = factory({
       1: { id: 1, kind: 'lecture', courseId: 1 },
-      2: { id: 2, kind: 'lecture', courseId: 2 },
+      2: { id: 2, kind: 'lecture', courseId: 2 }
     });
 
-    const selectedLectures = lecturesSelector({}, { currentCourseId: 1, lectures });
+    const selectedLectures = lecturesSelector(
+      {},
+      { currentCourseId: 1, lectures }
+    );
     expect(selectedLectures.size).toEqual(1);
   });
 
@@ -44,7 +51,7 @@ describe('lectureSelectors', () => {
       1: { id: 1, type: 'video' },
       2: { id: 2, type: 'text' },
       3: { id: 3, type: 'pdf' },
-      4: { id: 4, type: 'audio' },
+      4: { id: 4, type: 'audio' }
     });
 
     const viewableLectures = viewableLecturesSelector.resultFunc(lectures);
@@ -52,15 +59,21 @@ describe('lectureSelectors', () => {
   });
 
   it('getSectionMergedLectureList should return section merged lectures', () => {
-    const sections = factory({ 101: { id: 101, order: 1 }, 102: { id: 102, order: 4 } });
+    const sections = factory({
+      101: { id: 101, order: 1 },
+      102: { id: 102, order: 4 }
+    });
 
     const lectures = factory({
       901: { id: 901, order: 2 },
       902: { id: 902, order: 3 },
-      903: { id: 903, order: 5 },
+      903: { id: 903, order: 5 }
     });
 
-    const mergedLectures = getSectionMergedLectureList.resultFunc(sections, lectures);
+    const mergedLectures = getSectionMergedLectureList.resultFunc(
+      sections,
+      lectures
+    );
     console.log(mergedLectures);
     expect(mergedLectures.size).toEqual(5);
     expect(mergedLectures.first().id).toEqual(101);
@@ -72,7 +85,7 @@ describe('lectureSelectors', () => {
       1: { id: 1, status: 'finished' },
       2: { id: 2, status: 'finished' },
       3: { id: 3, status: 'viewed' },
-      4: { id: 4, status: 'not_started' },
+      4: { id: 4, status: 'not_started' }
     });
 
     const lectureProgress = getLectureProgress.resultFunc(lectures);
@@ -80,7 +93,10 @@ describe('lectureSelectors', () => {
   });
 
   it('getLectureTotalDuration', () => {
-    const lectures = factory({ 1: { id: 1, estimatedTime: 3 }, 2: { id: 2, estimatedTime: 6 } });
+    const lectures = factory({
+      1: { id: 1, estimatedTime: 3 },
+      2: { id: 2, estimatedTime: 6 }
+    });
 
     const totalDuration = getLectureTotalDuration.resultFunc(lectures);
     expect(totalDuration).toEqual(9);
@@ -90,7 +106,7 @@ describe('lectureSelectors', () => {
     const lectures = factory({
       1: { id: 1, order: 1, status: 'finished' },
       2: { id: 2, order: 2, status: 'not_started' },
-      3: { id: 3, order: 3, status: 'not_started' },
+      3: { id: 3, order: 3, status: 'not_started' }
     });
 
     const nextLecture = getNextNotCompletedLecture.resultFunc(lectures);
@@ -102,7 +118,7 @@ describe('lectureSelectors', () => {
     const lectures = factory({
       1: { id: 1, order: 1, status: 'finished' },
       2: { id: 2, order: 2, status: 'not_started' },
-      3: { id: 3, order: 3, status: 'not_started' },
+      3: { id: 3, order: 3, status: 'not_started' }
     });
 
     const nextLecture = getNextLecture.resultFunc(lectures, 0);
@@ -114,7 +130,7 @@ describe('lectureSelectors', () => {
     const lectures = factory({
       1: { id: 1, order: 3 },
       2: { id: 2, order: 2 },
-      3: { id: 3, order: 1 },
+      3: { id: 3, order: 1 }
     });
 
     const lastLectureId = getLastLectureId.resultFunc(lectures);

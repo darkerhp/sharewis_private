@@ -26,9 +26,7 @@ import OneColumnItemBox from '../components/CourseList/OneColumnItemBox';
 import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import redirectTo from '../utils/linking';
 import { ACT_PRO_COURSES_URL } from '../lib/constants';
-import {
-  getSortedPurchasedProCourses,
-} from '../modules/selectors/courseSelectors';
+import { getSortedPurchasedProCourses } from '../modules/selectors/courseSelectors';
 
 const {
   Alert,
@@ -38,36 +36,36 @@ const {
   StatusBar,
   StyleSheet,
   Text,
-  View,
+  View
 } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: BaseStyles.courseListBackgroundColor,
+    backgroundColor: BaseStyles.courseListBackgroundColor
   },
   courseList: {
     flex: 1,
     marginVertical: 13,
-    paddingBottom: BaseStyles.navbarHeight,
+    paddingBottom: BaseStyles.navbarHeight
   },
   contentText: {
     textAlign: 'center',
     lineHeight: 22,
     fontSize: 17,
     color: '#222',
-    textAlignVertical: 'center',
+    textAlignVertical: 'center'
   },
   hyperlinkWrapper: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   searchMore: {
     borderWidth: 1,
     borderColor: BaseStyles.hyperlink,
-    paddingHorizontal: 5,
-  },
+    paddingHorizontal: 5
+  }
 });
 
 const mapStateToProps = (state, props) => {
@@ -78,15 +76,18 @@ const mapStateToProps = (state, props) => {
     lectures: entities.lectures,
     isLoginUser: user.loggedIn,
     ...ui,
-    isOnline: netInfo.isConnected,
+    isOnline: netInfo.isConnected
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({
-    ..._.pickBy(coursesActions, _.isFunction),
-    ..._.pickBy(uiActions, _.isFunction),
-  }, dispatch),
+  ...bindActionCreators(
+    {
+      ..._.pickBy(coursesActions, _.isFunction),
+      ..._.pickBy(uiActions, _.isFunction)
+    },
+    dispatch
+  )
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -98,17 +99,17 @@ class MyCourse extends Component {
     isLoginUser: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
     // actions
-    setCurrentCourseId: PropTypes.func.isRequired,
+    setCurrentCourseId: PropTypes.func.isRequired
   };
 
   static defaultProps = {
     purchasedProCourses: new CourseMap(),
-    lectures: new LectureMap(),
+    lectures: new LectureMap()
   };
 
   state = {
     isLoading: true,
-    isRefreshing: false,
+    isRefreshing: false
   };
 
   async componentWillMount() {
@@ -118,7 +119,11 @@ class MyCourse extends Component {
 
   @autobind
   async refreshList(force = false) {
-    const { fetchMyCourse, fetchCoursesDownloadStatus, isLoginUser } = this.props;
+    const {
+      fetchMyCourse,
+      fetchCoursesDownloadStatus,
+      isLoginUser
+    } = this.props;
 
     if (!isLoginUser) return;
 
@@ -155,7 +160,12 @@ class MyCourse extends Component {
     const isAndroid = Platform.OS === 'android';
 
     if (this.state.isLoading) {
-      return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator
+          loading={this.state.isLoading}
+          text={I18n.t('loading')}
+        />
+      );
     }
 
     if (!isLoginUser && isAndroid) {
@@ -164,7 +174,9 @@ class MyCourse extends Component {
     }
 
     if (purchasedProCourses.isEmpty()) {
-      const contentText = !isAndroid ? I18n.t('notPurchasedProCourseYet') : I18n.t('noCourses');
+      const contentText = !isAndroid
+        ? I18n.t('notPurchasedProCourseYet')
+        : I18n.t('noCourses');
       return <EmptyList contentText={contentText} />;
     }
 
@@ -182,7 +194,7 @@ class MyCourse extends Component {
         }
       >
         <View style={styles.courseList}>
-          {purchasedProCourses.valueSeq().map((course) => {
+          {purchasedProCourses.valueSeq().map(course => {
             const isDisabledCourse = !isOnline && !course.hasDownloadedLecture;
             return (
               <CourseSummary
@@ -195,22 +207,20 @@ class MyCourse extends Component {
               />
             );
           })}
-          {isAndroid &&
-          <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
-            <View style={styles.hyperlinkWrapper}>
-              <Hyperlink
-                style={styles.searchMore}
-                linkStyle={{ color: BaseStyles.hyperlink }}
-                linkText={I18n.t('searchMore')}
-                onPress={isOnline ? redirectTo : alertOfflineError}
-              >
-                <Text style={styles.contentText}>
-                  {ACT_PRO_COURSES_URL}
-                </Text>
-              </Hyperlink>
-            </View>
-          </OneColumnItemBox>
-          }
+          {isAndroid && (
+            <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
+              <View style={styles.hyperlinkWrapper}>
+                <Hyperlink
+                  style={styles.searchMore}
+                  linkStyle={{ color: BaseStyles.hyperlink }}
+                  linkText={I18n.t('searchMore')}
+                  onPress={isOnline ? redirectTo : alertOfflineError}
+                >
+                  <Text style={styles.contentText}>{ACT_PRO_COURSES_URL}</Text>
+                </Hyperlink>
+              </View>
+            </OneColumnItemBox>
+          )}
         </View>
       </ScrollView>
     );

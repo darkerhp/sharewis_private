@@ -16,23 +16,23 @@ import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 
 const { Alert } = ReactNative;
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { user, netInfo, ui } = state;
   return {
     ...user,
     ...ui,
-    isOnline: netInfo.isConnected,
+    isOnline: netInfo.isConnected
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ..._.pickBy(premiumActions, _.isFunction) }, dispatch),
+  ...bindActionCreators({ ..._.pickBy(premiumActions, _.isFunction) }, dispatch)
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
 class PremiumContainer extends Component {
   static propTypes = {
-    loggedIn: PropTypes.bool.isRequired,
+    loggedIn: PropTypes.bool.isRequired
   };
 
   static popupLoginAlert() {
@@ -41,42 +41,34 @@ class PremiumContainer extends Component {
         text: I18n.t('login'),
         onPress: () => {
           RouterActions.loginModal();
-        },
+        }
       },
       {
         text: I18n.t('signup'),
         onPress: () => {
           RouterActions.signupModal();
-        },
+        }
       },
-      { text: I18n.t('cancel') },
+      { text: I18n.t('cancel') }
     ];
 
-    Alert.alert(
-      I18n.t('login'),
-      I18n.t('mustBeLoggedIn'),
-      options,
-    );
+    Alert.alert(I18n.t('login'), I18n.t('mustBeLoggedIn'), options);
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      isLoading: false,
+      isLoading: false
     };
   }
 
   @autobind
   popupPremiumJoinAlert() {
-    Alert.alert(
-      I18n.t('premiumJoinTitle'),
-      I18n.t('premiumJoin'),
-      [
-        { text: I18n.t('join'), onPress: () => this.join() },
-        { text: I18n.t('cancel') },
-      ],
-    );
+    Alert.alert(I18n.t('premiumJoinTitle'), I18n.t('premiumJoin'), [
+      { text: I18n.t('join'), onPress: () => this.join() },
+      { text: I18n.t('cancel') }
+    ]);
   }
 
   @autobind
@@ -100,10 +92,15 @@ class PremiumContainer extends Component {
     this.setState({ isLoading: false });
 
     if (!result) {
-      return Alert.alert(I18n.t('paymentFailed'), '', [{ text: I18n.t('cancel') }]);
+      return Alert.alert(I18n.t('paymentFailed'), '', [
+        { text: I18n.t('cancel') }
+      ]);
     }
 
-    Alert.alert(I18n.t('thankYouForJoinTitle'), I18n.t('thankYouForJoinMessage'));
+    Alert.alert(
+      I18n.t('thankYouForJoinTitle'),
+      I18n.t('thankYouForJoinMessage')
+    );
     RouterActions.pop();
     RouterActions.refresh({ key: 'drawer', open: false }); // drawerを閉じる
     RouterActions.top();
@@ -111,7 +108,12 @@ class PremiumContainer extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator
+          loading={this.state.isLoading}
+          text={I18n.t('loading')}
+        />
+      );
     }
 
     return <Premium {...this.props} onPressJoin={this.handlePressJoin} />;

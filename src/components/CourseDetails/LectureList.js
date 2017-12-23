@@ -13,15 +13,16 @@ const { View, StyleSheet } = ReactNative;
 const styles = StyleSheet.create({
   container: {
     borderColor: BaseStyles.borderColor,
-    borderTopWidth: 1,
-  },
+    borderTopWidth: 1
+  }
 });
 
-const renderLecture = params => (
-  params.lecture.isSection()
-    ? <Section key={params.key} lecture={params.lecture} />
-    : <LectureItem {...params} />
-);
+const renderLecture = params =>
+  params.lecture.isSection() ? (
+    <Section key={params.key} lecture={params.lecture} />
+  ) : (
+    <LectureItem {...params} />
+  );
 
 const LectureList = ({
   // values
@@ -32,21 +33,22 @@ const LectureList = ({
   // actions
   handlePressDelete,
   handlePressDownload,
-  handlePressLecture,
-}) =>
-  (
-    <View style={[styles.container, containerStyleId]}>
-      {lectureList.map((lecture, i) => renderLecture({
+  handlePressLecture
+}) => (
+  <View style={[styles.container, containerStyleId]}>
+    {lectureList.map((lecture, i) =>
+      renderLecture({
         key: i,
         courseId,
         isOnline,
         lecture,
         handlePressLecture,
         handlePressDownload,
-        handlePressDelete,
-      }))}
-    </View>
-  );
+        handlePressDelete
+      })
+    )}
+  </View>
+);
 
 LectureList.propTypes = {
   // values
@@ -57,7 +59,7 @@ LectureList.propTypes = {
   // actions
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDelete: PropTypes.func.isRequired,
-  handlePressDownload: PropTypes.func.isRequired,
+  handlePressDownload: PropTypes.func.isRequired
 };
 
 export default LectureList;

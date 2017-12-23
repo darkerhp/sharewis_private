@@ -14,12 +14,7 @@ import VideoControls from './VideoControls'; // eslint-disable-line
 import FullScreenVideoControls from './FullScreenVideoControls'; // eslint-disable-line
 import Lecture from '../../modules/models/Lecture';
 
-const {
-  Image,
-  StatusBar,
-  StyleSheet,
-  View,
-} = ReactNative;
+const { Image, StatusBar, StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
   videoContainer: {
@@ -27,13 +22,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    marginTop: 64,
+    marginTop: 64
   },
   loadingIndicatorWrapper: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
 
 const lectureImageSrc = require('./images/audio_lecture_image.png');
@@ -48,7 +43,7 @@ class AudioLecture extends Component {
     // actions
     changeVideoPlaySpeed: PropTypes.func.isRequired,
     onPlayEnd: PropTypes.func.isRequired,
-    toggleFullScreen: PropTypes.func.isRequired,
+    toggleFullScreen: PropTypes.func.isRequired
   };
 
   static toFullScreen() {
@@ -68,7 +63,7 @@ class AudioLecture extends Component {
     isLoadingThumbnail: true,
     currentTime: 0,
     isPaused: false,
-    isStarted: true,
+    isStarted: true
   };
 
   @autobind
@@ -114,7 +109,7 @@ class AudioLecture extends Component {
       isFullScreen,
       lectureContentStyleId,
       onPlayEnd,
-      speed,
+      speed
     } = this.props;
 
     const videoControlsProps = {
@@ -129,7 +124,7 @@ class AudioLecture extends Component {
       onSlidingComplete: this.handleSlidingComplete,
       onValueChange: this.handleValueChange,
       speed,
-      title: currentLecture.title,
+      title: currentLecture.title
     };
 
     return (
@@ -138,7 +133,10 @@ class AudioLecture extends Component {
           <Image
             style={
               isFullScreen
-                ? { height: BaseStyles.deviceWidth, width: BaseStyles.deviceHeight }
+                ? {
+                    height: BaseStyles.deviceWidth,
+                    width: BaseStyles.deviceHeight
+                  }
                 : { width: BaseStyles.deviceWidth }
             }
             source={lectureImageSrc}
@@ -149,7 +147,7 @@ class AudioLecture extends Component {
             onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
             onLoad={() => this.setState({ isLoadingThumbnail: false })}
             onEnd={onPlayEnd}
-            onError={(e) => {
+            onError={e => {
               new Client().notify(e);
               console.error(e);
             }}
@@ -158,7 +156,9 @@ class AudioLecture extends Component {
             playInBackground
             playWhenInactive={false}
             rate={speed}
-            ref={(ref) => { this.video = ref; }}
+            ref={ref => {
+              this.video = ref;
+            }}
             repeat={false}
             resizeMode="contain"
             source={{ uri: currentLecture.getAudioUrl() }}
@@ -166,9 +166,11 @@ class AudioLecture extends Component {
           />
         </View>
 
-        {isFullScreen
-          ? <FullScreenVideoControls {...videoControlsProps} />
-          : <VideoControls {...videoControlsProps} />}
+        {isFullScreen ? (
+          <FullScreenVideoControls {...videoControlsProps} />
+        ) : (
+          <VideoControls {...videoControlsProps} />
+        )}
 
         <KeepAwake />
       </View>

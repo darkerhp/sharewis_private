@@ -6,38 +6,38 @@ import momentDurationFormat from 'moment-duration-format';
 
 const { Text, View } = ReactNative;
 
-
 const Duration = ({
   estimatedTime,
   format,
   containerStyle,
   durationStyle,
-  prefixText,
-}) =>
-  (
-    <View style={containerStyle}>
-      { estimatedTime >= 0 &&
-        <Text style={durationStyle}>
-          {prefixText}{moment.duration(estimatedTime, 'seconds').format(format, { trim: false })}
-        </Text>
-      }
-    </View>
-  );
-
+  prefixText
+}) => (
+  <View style={containerStyle}>
+    {estimatedTime >= 0 && (
+      <Text style={durationStyle}>
+        {prefixText}
+        {moment
+          .duration(estimatedTime, 'seconds')
+          .format(format, { trim: false })}
+      </Text>
+    )}
+  </View>
+);
 
 Duration.propTypes = {
   estimatedTime: PropTypes.number.isRequired,
   format: PropTypes.string,
   containerStyle: PropTypes.any, // eslint-disable-line
   durationStyle: PropTypes.any, // eslint-disable-line
-  prefixText: PropTypes.string,
+  prefixText: PropTypes.string
 };
 
 Duration.defaultProps = {
   format: 'mm:ss',
   containerStyle: {},
   durationStyle: {},
-  prefixText: '',
+  prefixText: ''
 };
 
 export default Duration;

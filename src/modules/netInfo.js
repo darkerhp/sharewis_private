@@ -14,29 +14,32 @@ const TRIGGERED_QUEUE_ACTIONS = 'sharewis/netInfo/TRIGGERED_QUEUE_ACTIONS';
 // Reducer
 const initialState = {
   isConnected: false,
-  queuedLectureProgress: {}, // { [lectureId]: [status]  }
+  queuedLectureProgress: {} // { [lectureId]: [status]  }
 };
 
-const reducer = handleActions({
-  [MIDDLEWARE_NETINFO]: (state, action) => ({
-    ...state,
-    ...action.payload,
-  }),
-  [QUEUE_LECTURE_PROGRESS]: (state, action) => {
-    const { lectureId, status } = action.payload;
-    return {
+const reducer = handleActions(
+  {
+    [MIDDLEWARE_NETINFO]: (state, action) => ({
       ...state,
-      queuedLectureProgress: {
-        ...state.queuedLectureProgress,
-        [lectureId]: status,
-      },
-    };
+      ...action.payload
+    }),
+    [QUEUE_LECTURE_PROGRESS]: (state, action) => {
+      const { lectureId, status } = action.payload;
+      return {
+        ...state,
+        queuedLectureProgress: {
+          ...state.queuedLectureProgress,
+          [lectureId]: status
+        }
+      };
+    },
+    [TRIGGERED_QUEUE_ACTIONS]: (state, action) => ({
+      ...state,
+      queuedLectureProgress: {}
+    })
   },
-  [TRIGGERED_QUEUE_ACTIONS]: (state, action) => ({
-    ...state,
-    queuedLectureProgress: {},
-  }),
-}, initialState);
+  initialState
+);
 
 export default reducer;
 
@@ -47,30 +50,29 @@ export const triggeredQueueActions = createAction(TRIGGERED_QUEUE_ACTIONS);
 
 // side effects, only as applicable
 // e.g. thunks, epics, etc
-export const syncLectureProgress = () =>
-  async (dispatch, getState) => {
-    try {
-      const {
-        entities: { lectures },
-        netInfo: { queuedLectureProgress },
-        user: { userId },
-      } = getState();
+export const syncLectureProgress = () => async (dispatch, getState) => {
+  try {
+    const {
+      entities: { lectures },
+      netInfo: { queuedLectureProgress },
+      user: { userId }
+    } = getState();
 
-      if (_.isEmpty(queuedLectureProgress)) return;
+    if (_.isEmpty(queuedLectureProgress)) return;
 
-      const promises = Object.keys(queuedLectureProgress).map(async (lectureId) => {
-        const result = await Api.patch(
-          `courses/${lectures[lectureId].courseId}/lectures/${lectureId}`,
-          { status: queuedLectureProgress[lectureId] },
-          { 'user-id': userId },
-        );
+    const promises = Object.keys(queuedLectureProgress).map(async lectureId => {
+      const result = await Api.patch(
+        `courses/${lectures[lectureId].courseId}/lectures/${lectureId}`,
+        { status: queuedLectureProgress[lectureId] },
+        { 'user-id': userId }
+      );
 
-        return result;
-      });
-      await Promise.all(promises);
-      dispatch(triggeredQueueActions());
-    } catch (error) {
-      new Client().notify(error);
-      console.error(error);
-    }
-  };
+      return result;
+    });
+    await Promise.all(promises);
+    dispatch(triggeredQueueActions());
+  } catch (error) {
+    new Client().notify(error);
+    console.error(error);
+  }
+};

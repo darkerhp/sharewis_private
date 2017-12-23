@@ -9,17 +9,19 @@ jest.mock('../CourseDetails/LectureItem', () => 'LectureItem');
 
 describe('LectureList', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <LectureList
-        courseId={0}
-        isOnline
-        lectureList={[]}
-        containerStyleId={0}
-        handlePressDelete={() => null}
-        handlePressDownload={() => null}
-        handlePressLecture={() => null}
-      />,
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <LectureList
+          courseId={0}
+          isOnline
+          lectureList={[]}
+          containerStyleId={0}
+          handlePressDelete={() => null}
+          handlePressDownload={() => null}
+          handlePressLecture={() => null}
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

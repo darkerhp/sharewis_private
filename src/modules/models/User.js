@@ -8,7 +8,7 @@ const UserRecord = Record({
   loggedIn: false,
   name: '', // TODO 今のstateでuserName
   nickName: '',
-  password: '',
+  password: ''
 });
 
 export default class User extends UserRecord {

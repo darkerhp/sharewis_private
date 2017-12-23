@@ -14,15 +14,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: BaseStyles.courseListBackgroundColor,
+    backgroundColor: BaseStyles.courseListBackgroundColor
   },
   contentText: {
     textAlign: 'center',
     lineHeight: 22,
     fontSize: 17,
     color: '#222',
-    margin: 30,
-  },
+    margin: 30
+  }
 });
 
 /**
@@ -31,28 +31,25 @@ const styles = StyleSheet.create({
  * @param isOnline
  * @param url
  */
-const handlePress = (url) => {
+const handlePress = url => {
   if (Platform.OS === 'ios') return;
   redirectTo(url);
 };
 
-const emptyList = ({ contentText }) =>
-  (
-    <View style={styles.container}>
-      <Hyperlink
-        linkStyle={Platform.OS !== 'ios' && { color: BaseStyles.hyperlink }}
-        linkText={I18n.t('actWebsite')}
-        onPress={handlePress}
-      >
-        <Text style={styles.contentText}>
-          {contentText}
-        </Text>
-      </Hyperlink>
-    </View>
-  );
+const emptyList = ({ contentText }) => (
+  <View style={styles.container}>
+    <Hyperlink
+      linkStyle={Platform.OS !== 'ios' && { color: BaseStyles.hyperlink }}
+      linkText={I18n.t('actWebsite')}
+      onPress={handlePress}
+    >
+      <Text style={styles.contentText}>{contentText}</Text>
+    </Hyperlink>
+  </View>
+);
 
 emptyList.propTypes = {
-  contentText: PropTypes.string.isRequired,
+  contentText: PropTypes.string.isRequired
 };
 
 export default emptyList;

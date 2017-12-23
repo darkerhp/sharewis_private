@@ -10,28 +10,26 @@ const { View, StyleSheet, Text } = ReactNative;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   progressText: {
     marginBottom: 5,
-    color: BaseStyle.textColor,
-  },
+    color: BaseStyle.textColor
+  }
 });
 
-
-const Progress = ({ completeLectureCount, totalLectureCount }) =>
-  (
-    <View style={styles.container}>
-      <Text style={styles.progressText}>
-        {`${completeLectureCount}/${totalLectureCount} ${I18n.t('progressText')}`}
-      </Text>
-      <ProgressBar progress={completeLectureCount / totalLectureCount} />
-    </View>
-  );
+const Progress = ({ completeLectureCount, totalLectureCount }) => (
+  <View style={styles.container}>
+    <Text style={styles.progressText}>
+      {`${completeLectureCount}/${totalLectureCount} ${I18n.t('progressText')}`}
+    </Text>
+    <ProgressBar progress={completeLectureCount / totalLectureCount} />
+  </View>
+);
 
 Progress.propTypes = {
   completeLectureCount: PropTypes.number.isRequired,
-  totalLectureCount: PropTypes.number.isRequired,
+  totalLectureCount: PropTypes.number.isRequired
 };
 
 export default Progress;
