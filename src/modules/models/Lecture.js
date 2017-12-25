@@ -128,10 +128,8 @@ export default class Lecture extends LectureRecord {
 
     switch (this.type) {
       case Lecture.TYPE_VIDEO:
-        return isOnline || this.isDownloaded;
       case Lecture.TYPE_AUDIO:
-        // TODO 実装する
-        return isOnline;
+        return isOnline || this.isDownloaded;
       default:
         return isOnline;
     }
