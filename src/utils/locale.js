@@ -19,4 +19,3 @@ export const getKayakoLocale = () => {
   }
   return kayakoLocale;
 };
-

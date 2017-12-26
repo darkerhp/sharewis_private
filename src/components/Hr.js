@@ -2,25 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import autobind from 'autobind-decorator';
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-} from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 const styles = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'black'
   },
   text: {
     flex: 1,
     textAlign: 'center',
     marginLeft: 15,
-    marginRight: 15,
-  },
+    marginRight: 15
+  }
 });
 
 class Hr extends Component {
@@ -33,7 +28,9 @@ class Hr extends Component {
   renderText(key) {
     return (
       <View key={key}>
-        <Text style={[styles.text, this.props.textStyle]}>{this.props.text}</Text>
+        <Text style={[styles.text, this.props.textStyle]}>
+          {this.props.text}
+        </Text>
       </View>
     );
   }
@@ -43,11 +40,7 @@ class Hr extends Component {
     if (!this.props.text) {
       return this.renderLine();
     }
-    return [
-      this.renderLine(1),
-      this.renderText(2),
-      this.renderLine(3),
-    ];
+    return [this.renderLine(1), this.renderText(2), this.renderLine(3)];
   }
 
   render() {
@@ -57,7 +50,7 @@ class Hr extends Component {
           flexDirection: 'row',
           alignItems: 'center',
           marginLeft: this.props.marginLeft,
-          marginRight: this.props.marginRight,
+          marginRight: this.props.marginRight
         }}
       >
         {this.renderInner()}
@@ -71,7 +64,7 @@ Hr.propTypes = {
   text: PropTypes.string,
   marginLeft: PropTypes.number,
   marginRight: PropTypes.number,
-  textStyle: PropTypes.shape({}),
+  textStyle: PropTypes.shape({})
 };
 
 Hr.defaultProps = {
@@ -79,7 +72,7 @@ Hr.defaultProps = {
   text: '',
   marginLeft: 8,
   marginRight: 8,
-  textStyle: {},
+  textStyle: {}
 };
 
 export default Hr;

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     left: 0,
-    right: 0,
+    right: 0
   },
   container: {
     backgroundColor: 'rgba(0,0,0,0.3)',
@@ -25,19 +25,19 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     left: 0,
-    right: 0,
+    right: 0
   },
   headerWrapper: {
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   buttonWrapper: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   seekBarWrapper: {
     flex: 1,
@@ -46,38 +46,38 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     ...Platform.select({
       android: {
-        paddingBottom: 10,
-      },
-    }),
+        paddingBottom: 10
+      }
+    })
   },
   playButton: {
     width: 78,
     height: 78,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
   playButtonIcon: {
     fontSize: 78,
     height: 78,
     color: 'white',
-    opacity: 0.9,
+    opacity: 0.9
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
+    color: 'white'
   },
   lectureTitleTextWrapper: {
     flex: 0.5,
     justifyContent: 'center',
     alignItems: 'flex-start',
-    padding: 15,
+    padding: 15
   },
   lectureTitle: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
-    opacity: 0.9,
+    opacity: 0.9
   },
   fullScreenExitButton: {
     width: 34,
@@ -87,19 +87,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     ...Platform.select({
       ios: {
-        paddingBottom: 5,
+        paddingBottom: 5
       },
       android: {
-        paddingTop: 10,
-      },
-    }),
+        paddingTop: 10
+      }
+    })
   },
   fullScreenExitButtonIcon: {
     fontSize: 34,
     height: 34,
     color: 'white',
-    opacity: 0.9,
-  },
+    opacity: 0.9
+  }
 });
 
 class FullScreenVideoControls extends Component {
@@ -114,12 +114,12 @@ class FullScreenVideoControls extends Component {
     onPressFullScreen: PropTypes.func.isRequired,
     onPressPlay: PropTypes.func.isRequired,
     onSlidingComplete: PropTypes.func.isRequired,
-    onValueChange: PropTypes.func.isRequired,
+    onValueChange: PropTypes.func.isRequired
   };
 
   state = {
     isShowControls: false,
-    timeoutId: 0,
+    timeoutId: 0
   };
 
   @autobind
@@ -129,7 +129,10 @@ class FullScreenVideoControls extends Component {
     if (!isPaused) {
       this.setState({ isShowControls: true });
       if (this.state.timeoutId) clearTimeout(this.state.timeoutId);
-      const timeoutId = setTimeout(() => this.setState({ isShowControls: false }), 5000);
+      const timeoutId = setTimeout(
+        () => this.setState({ isShowControls: false }),
+        5000
+      );
       this.setState({ timeoutId });
     }
   }
@@ -151,7 +154,7 @@ class FullScreenVideoControls extends Component {
       onPressPlay,
       onSlidingComplete,
       onValueChange,
-      title,
+      title
     } = this.props;
 
     return (
@@ -160,54 +163,55 @@ class FullScreenVideoControls extends Component {
         onPress={this.handlePressContainer}
         activeOpacity={1}
       >
-        {(isPaused || this.state.isShowControls) &&
-        <View style={styles.container}>
-          <View style={styles.headerWrapper}>
-            <View style={styles.lectureTitleTextWrapper}>
-              <Text style={styles.lectureTitle}>{title}</Text>
+        {(isPaused || this.state.isShowControls) && (
+          <View style={styles.container}>
+            <View style={styles.headerWrapper}>
+              <View style={styles.lectureTitleTextWrapper}>
+                <Text style={styles.lectureTitle}>{title}</Text>
+              </View>
+            </View>
+            <View style={styles.buttonWrapper}>
+              <Button
+                containerStyle={[
+                  styles.playButton,
+                  isLoadingThumbnail && {
+                    backgroundColor: BaseStyles.disabledButtonColor
+                  }
+                ]}
+                style={styles.buttonText}
+                onPress={() => onPressPlay()}
+                disabled={isLoadingThumbnail}
+              >
+                <Icon
+                  name={isPaused ? 'play-arrow' : 'pause'}
+                  style={styles.playButtonIcon}
+                />
+              </Button>
+            </View>
+            <View style={styles.seekBarWrapper}>
+              <SeekBar
+                currentTime={currentTime}
+                estimatedTime={estimatedTime}
+                isFullScreen={isFullScreen}
+                onSlidingComplete={onSlidingComplete}
+                onValueChange={onValueChange}
+              />
+              <Button
+                containerStyle={styles.fullScreenExitButton}
+                style={styles.buttonText}
+                onPress={this.handlePressFullScreenExit}
+              >
+                <Icon
+                  name={'fullscreen-exit'}
+                  style={styles.fullScreenExitButtonIcon}
+                />
+              </Button>
             </View>
           </View>
-          <View style={styles.buttonWrapper}>
-            <Button
-              containerStyle={[
-                styles.playButton,
-                isLoadingThumbnail && { backgroundColor: BaseStyles.disabledButtonColor },
-              ]}
-              style={styles.buttonText}
-              onPress={() => onPressPlay()}
-              disabled={isLoadingThumbnail}
-            >
-              <Icon
-                name={isPaused ? 'play-arrow' : 'pause'}
-                style={styles.playButtonIcon}
-              />
-            </Button>
-          </View>
-          <View style={styles.seekBarWrapper}>
-            <SeekBar
-              currentTime={currentTime}
-              estimatedTime={estimatedTime}
-              isFullScreen={isFullScreen}
-              onSlidingComplete={onSlidingComplete}
-              onValueChange={onValueChange}
-            />
-            <Button
-              containerStyle={styles.fullScreenExitButton}
-              style={styles.buttonText}
-              onPress={this.handlePressFullScreenExit}
-            >
-              <Icon
-                name={'fullscreen-exit'}
-                style={styles.fullScreenExitButtonIcon}
-              />
-            </Button>
-          </View>
-        </View>
-        }
+        )}
       </TouchableOpacity>
     );
   }
 }
-
 
 export default FullScreenVideoControls;

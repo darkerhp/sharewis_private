@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     marginHorizontal: 13,
-    paddingVertical: 13,
+    paddingVertical: 13
   },
   signupButtonWrapper: {
     minHeight: 30,
@@ -26,27 +26,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: '#9b9b9b',
+    borderColor: '#9b9b9b'
   },
   signupButtonText: {
     fontSize: 16,
     color: BaseStyles.textColor,
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
-    fontWeight: 'normal',
-  },
+    fontWeight: 'normal'
+  }
 });
 
-const Footer = () =>
-  (
-    <View style={styles.container}>
-      <Button
-        containerStyle={styles.signupButtonWrapper}
-        style={styles.signupButtonText}
-        onPress={() => RouterActions.login()}
-      >
-        { I18n.t('alreadyHaveAnAccount') }
-      </Button>
-    </View>
-  );
+const Footer = () => (
+  <View style={styles.container}>
+    <Button
+      containerStyle={styles.signupButtonWrapper}
+      style={styles.signupButtonText}
+      onPress={() => RouterActions.login()}
+    >
+      {I18n.t('alreadyHaveAnAccount')}
+    </Button>
+  </View>
+);
 
 export default Footer;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Platform, StatusBar } from 'react-native';
 
-import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
+import ScrollableTabView, {
+  DefaultTabBar
+} from 'react-native-scrollable-tab-view';
 import I18n from 'react-native-i18n';
 import { connect } from 'react-redux';
 
@@ -14,15 +16,14 @@ import ExScrollableTabBar from '../components/ScrollableTabs/ExScrollableTabBar'
 
 // TODO プロコースが増えた場合、DefaultTabBar > ScrollableTabBarで実装する。
 // デザイン妥協できない場合、CustomでScrollableTabBarを実装する必要がありそう。
-const renderScrollableTabBar = () =>
-  (
-    <ExScrollableTabBar
-      underlineStyle={{ height: 0 }} // アクティブタグのアンダーラインを表示しない
-      activeTextColor="#ffffff"
-      inactiveTextColor="#ffffff"
-      backgroundColor={BaseStyles.navBarBackgroundColor}
-    />
-  );
+const renderScrollableTabBar = () => (
+  <ExScrollableTabBar
+    underlineStyle={{ height: 0 }} // アクティブタグのアンダーラインを表示しない
+    activeTextColor="#ffffff"
+    inactiveTextColor="#ffffff"
+    backgroundColor={BaseStyles.navBarBackgroundColor}
+  />
+);
 
 @connect(({ user, routes }) => ({ user, routes }))
 class ScrollableTabs extends Component { // eslint-disable-line

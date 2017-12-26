@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: BaseStyles.navbarHeight,
+    marginTop: BaseStyles.navbarHeight
   },
   premiumImageWrapper: {
-    flex: 5,
+    flex: 5
   },
   premiumImage: {
     maxWidth: BaseStyles.deviceWidth,
-    maxHeight: BaseStyles.deviceHeight - BaseStyles.navbarHeight - 70,
+    maxHeight: BaseStyles.deviceHeight - BaseStyles.navbarHeight - 70
   },
   buttonWrapper: {
     justifyContent: 'flex-end',
@@ -29,46 +29,45 @@ const styles = StyleSheet.create({
     width: BaseStyles.deviceWidth,
     paddingHorizontal: 10,
     paddingVertical: 20,
-    backgroundColor: BaseStyles.courseListBackgroundColor,
+    backgroundColor: BaseStyles.courseListBackgroundColor
   },
   joinButton: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#8EC445',
-    minHeight: 55,
+    minHeight: 55
   },
   joinButtonText: {
-    color: 'white',
-  },
+    color: 'white'
+  }
 });
 
 const ja = require('./images/premium_ja.png');
 const en = require('./images/premium_en.png');
 
-const Premium = ({ onPressJoin }) =>
-  (
-    <View style={styles.container}>
-      <View style={styles.premiumImageWrapper}>
-        <Image
-          source={localeUtil.isJa() ? ja : en}
-          resizeMode={Image.resizeMode.contain}
-          style={styles.premiumImage}
-        />
-      </View>
-      <View style={styles.buttonWrapper}>
-        <Button
-          containerStyle={styles.joinButton}
-          style={styles.joinButtonText}
-          onPress={onPressJoin}
-        >
-          {I18n.t('join')}
-        </Button>
-      </View>
+const Premium = ({ onPressJoin }) => (
+  <View style={styles.container}>
+    <View style={styles.premiumImageWrapper}>
+      <Image
+        source={localeUtil.isJa() ? ja : en}
+        resizeMode={Image.resizeMode.contain}
+        style={styles.premiumImage}
+      />
     </View>
-  );
+    <View style={styles.buttonWrapper}>
+      <Button
+        containerStyle={styles.joinButton}
+        style={styles.joinButtonText}
+        onPress={onPressJoin}
+      >
+        {I18n.t('join')}
+      </Button>
+    </View>
+  </View>
+);
 
 Premium.propTypes = {
-  onPressJoin: PropTypes.func.isRequired,
+  onPressJoin: PropTypes.func.isRequired
 };
 
 export default Premium;

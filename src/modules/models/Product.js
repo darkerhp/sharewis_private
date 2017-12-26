@@ -14,7 +14,7 @@ const ProductRecord = Record({
   downloadable: false,
   price: 0,
   priceString: '',
-  title: '',
+  title: ''
 });
 
 export default class Product extends ProductRecord {}

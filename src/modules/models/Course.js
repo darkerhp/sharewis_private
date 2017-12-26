@@ -11,7 +11,7 @@ const CourseRecord = Record({
   ranking: 0,
   viewedAt: '',
   // for products
-  isPurchased: false,
+  isPurchased: false
 });
 
 export default class Course extends CourseRecord {

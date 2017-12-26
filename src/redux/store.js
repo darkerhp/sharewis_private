@@ -12,7 +12,7 @@ import middleware from './middleware';
 
 const middleWare = applyMiddleware(...middleware);
 
-const configureStore = (initialState) => {
+const configureStore = initialState => {
   let composition = compose(middleWare, autoRehydrate());
 
   if (__DEV__) {
@@ -24,6 +24,5 @@ const configureStore = (initialState) => {
 
   return createStore(rootReducer, initialState, composition);
 };
-
 
 export default configureStore;

@@ -13,13 +13,7 @@ import VideoControls from './VideoControls'; // eslint-disable-line
 import FullScreenVideoControls from './FullScreenVideoControls'; // eslint-disable-line
 import Lecture from '../../modules/models/Lecture';
 
-const {
-  ActivityIndicator,
-  Image,
-  StatusBar,
-  StyleSheet,
-  View,
-} = ReactNative;
+const { ActivityIndicator, Image, StatusBar, StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -28,20 +22,20 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   videoContainer: {
     flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    marginTop: 64,
+    marginTop: 64
   },
   loadingIndicatorWrapper: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
 
 class VideoLecture extends Component {
@@ -54,7 +48,7 @@ class VideoLecture extends Component {
     // actions
     changeVideoPlaySpeed: PropTypes.func.isRequired,
     onPlayEnd: PropTypes.func.isRequired,
-    toggleFullScreen: PropTypes.func.isRequired,
+    toggleFullScreen: PropTypes.func.isRequired
   };
 
   static toFullScreen() {
@@ -74,7 +68,7 @@ class VideoLecture extends Component {
     isLoadingThumbnail: true,
     currentTime: 0,
     isPaused: false,
-    isStarted: true,
+    isStarted: true
   };
 
   @autobind
@@ -135,7 +129,7 @@ class VideoLecture extends Component {
         onLoadStart={() => this.setState({ isLoadingThumbnail: true })}
         onLoad={() => this.setState({ isLoadingThumbnail: false })}
         onEnd={onPlayEnd}
-        onError={(e) => {
+        onError={e => {
           new Client().notify(e);
           console.error(e);
         }}
@@ -144,7 +138,9 @@ class VideoLecture extends Component {
         playInBackground={false}
         playWhenInactive={false}
         rate={speed}
-        ref={(ref) => { this.video = ref; }}
+        ref={ref => {
+          this.video = ref;
+        }}
         repeat={false}
         resizeMode="contain"
         source={{ uri: currentLecture.getVideoUrl() }}
@@ -170,7 +166,7 @@ class VideoLecture extends Component {
       currentLecture,
       isFullScreen,
       lectureContentStyleId,
-      speed,
+      speed
     } = this.props;
 
     const videoControlsProps = {
@@ -185,19 +181,21 @@ class VideoLecture extends Component {
       onSlidingComplete: this.handleSlidingComplete,
       onValueChange: this.handleValueChange,
       speed,
-      title: currentLecture.title,
+      title: currentLecture.title
     };
 
     return (
       <View style={[lectureContentStyleId, isFullScreen && { flex: 1 }]}>
-        <View style={(isFullScreen ? { flex: 1 } : styles.videoContainer)}>
+        <View style={isFullScreen ? { flex: 1 } : styles.videoContainer}>
           {this.renderVideo()}
           {this.renderIndicator()}
         </View>
 
-        {isFullScreen
-          ? <FullScreenVideoControls {...videoControlsProps} />
-          : <VideoControls {...videoControlsProps} />}
+        {isFullScreen ? (
+          <FullScreenVideoControls {...videoControlsProps} />
+        ) : (
+          <VideoControls {...videoControlsProps} />
+        )}
 
         <KeepAwake />
       </View>

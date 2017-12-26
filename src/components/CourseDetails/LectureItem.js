@@ -17,17 +17,17 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
     borderColor: BaseStyles.borderColor,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
   lectureDisabled: {
     ...Platform.select({
       android: {
-        opacity: 0.2,
+        opacity: 0.2
       },
       ios: {
-        opacity: 0.4,
-      },
-    }),
+        opacity: 0.4
+      }
+    })
   },
   lectureNoTextWrapper: {
     flex: 1,
@@ -35,44 +35,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: BaseStyles.borderColor,
-    borderRightWidth: 1,
+    borderRightWidth: 1
   },
-  lectureNoTextWrapperCompleted: { // FIXME lectureNoTextWrapperと共通化できる？
+  lectureNoTextWrapperCompleted: {
+    // FIXME lectureNoTextWrapperと共通化できる？
     flex: 1,
     height: lectureRowHeight,
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: BaseStyles.navBarBackgroundColor,
     borderRightWidth: 1,
-    backgroundColor: BaseStyles.navBarBackgroundColor,
+    backgroundColor: BaseStyles.navBarBackgroundColor
   },
   lectureNoText: {
     fontSize: 14,
     color: BaseStyles.textColor,
-    fontWeight: '600',
+    fontWeight: '600'
   },
   lectureNoTextCompleted: {
     fontSize: 14,
     color: 'white',
-    fontWeight: '600',
+    fontWeight: '600'
   },
   lectureInfoWrapper: {
     flex: 1,
     height: lectureRowHeight,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   lectureIconWrapper: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   lectureIcon: {
     color: BaseStyles.textColor,
-    fontSize: 15,
+    fontSize: 15
   },
   durationWrapper: {
-    flex: 1,
+    flex: 1
   },
   durationStyle: {
     fontSize: 8,
@@ -83,31 +84,31 @@ const styles = StyleSheet.create({
     ...Platform.select({
       android: {
         color: BaseStyles.textColor,
-        width: 30,  // or seconds will be trimmed in android
-      },
-    }),
+        width: 30 // or seconds will be trimmed in android
+      }
+    })
   },
   lectureTitleTextWrapper: {
     flex: 5,
     height: lectureRowHeight,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
   lectureTitleText: {
     fontSize: 12,
     color: BaseStyles.textColor,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   actionIconWrapper: {
     flex: 1,
     height: lectureRowHeight,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   actionIcon: {
     color: '#757575',
-    fontSize: 32,
-  },
+    fontSize: 32
+  }
 });
 
 const LectureItem = ({
@@ -115,35 +116,36 @@ const LectureItem = ({
   isOnline,
   handlePressDelete,
   handlePressLecture,
-  handlePressDownload,
+  handlePressDownload
 }) => (
   <View style={styles.container}>
     <View
-      style={lecture.isFinished()
+      style={
+        lecture.isFinished()
           ? styles.lectureNoTextWrapperCompleted
-          : styles.lectureNoTextWrapper}
+          : styles.lectureNoTextWrapper
+      }
     >
       <Text
         style={[
-            (lecture.isFinished()
-              ? styles.lectureNoTextCompleted
-              : styles.lectureNoText),
-          !lecture.canAccess(isOnline) && styles.lectureDisabled,
+          lecture.isFinished()
+            ? styles.lectureNoTextCompleted
+            : styles.lectureNoText,
+          !lecture.canAccess(isOnline) && styles.lectureDisabled
         ]}
-      >{lecture.order}</Text>
+      >
+        {lecture.order}
+      </Text>
     </View>
 
     <View
       style={[
         styles.lectureInfoWrapper,
-        !lecture.canAccess(isOnline) && styles.lectureDisabled,
+        !lecture.canAccess(isOnline) && styles.lectureDisabled
       ]}
     >
       <View style={styles.lectureIconWrapper}>
-        <Icon
-          style={styles.lectureIcon}
-          name={lecture.getLectureIconName()}
-        />
+        <Icon style={styles.lectureIcon} name={lecture.getLectureIconName()} />
       </View>
       <Duration
         estimatedTime={lecture.estimatedTime}
@@ -153,24 +155,33 @@ const LectureItem = ({
     </View>
 
     <TouchableOpacity
-      style={[styles.lectureTitleTextWrapper, !lecture.canAccess(isOnline) && { flex: 6 }]}
+      style={[
+        styles.lectureTitleTextWrapper,
+        !lecture.canAccess(isOnline) && { flex: 6 }
+      ]}
       onPress={() => handlePressLecture(lecture)}
       disabled={!lecture.canAccess(isOnline)}
     >
       <Text
-        style={[styles.lectureTitleText, !lecture.canAccess(isOnline) && styles.lectureDisabled]}
-      >{lecture.title}</Text>
+        style={[
+          styles.lectureTitleText,
+          !lecture.canAccess(isOnline) && styles.lectureDisabled
+        ]}
+      >
+        {lecture.title}
+      </Text>
     </TouchableOpacity>
 
-    {lecture.isDownloadable() && isOnline &&
-      <DownloadAction
-        handlePressDelete={handlePressDelete}
-        handlePressDownload={handlePressDownload}
-        lecture={lecture}
-      />
-    }
+    {lecture.isDownloadable() &&
+      isOnline && (
+        <DownloadAction
+          handlePressDelete={handlePressDelete}
+          handlePressDownload={handlePressDownload}
+          lecture={lecture}
+        />
+      )}
   </View>
-  );
+);
 
 LectureItem.propTypes = {
   // values
@@ -179,7 +190,7 @@ LectureItem.propTypes = {
   // actions
   handlePressLecture: PropTypes.func.isRequired,
   handlePressDelete: PropTypes.func.isRequired,
-  handlePressDownload: PropTypes.func.isRequired,
+  handlePressDownload: PropTypes.func.isRequired
 };
 
 export default LectureItem;

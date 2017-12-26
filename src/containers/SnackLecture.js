@@ -25,21 +25,21 @@ const { Alert, StatusBar, StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
   lectureContentStyle: {
-    flex: 3,
+    flex: 3
   },
   buttonWrapper: {
     justifyContent: 'flex-end',
-    alignItems: 'stretch',
+    alignItems: 'stretch'
   },
   joinButton: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: BaseStyles.navBarBackgroundColor,
-    minHeight: 60,
+    minHeight: 60
   },
   joinButtonText: {
-    color: 'white',
-  },
+    color: 'white'
+  }
 });
 
 const mapStateToProps = ({ entities: { courses, lectures }, netInfo, ui }) => {
@@ -50,15 +50,18 @@ const mapStateToProps = ({ entities: { courses, lectures }, netInfo, ui }) => {
     lectures,
     currentCourse,
     ...ui,
-    isOnline: netInfo.isConnected,
+    isOnline: netInfo.isConnected
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({
-    ..._.pickBy(lecturesActions, _.isFunction),
-    ..._.pickBy(uiActions, _.isFunction),
-  }, dispatch),
+  ...bindActionCreators(
+    {
+      ..._.pickBy(lecturesActions, _.isFunction),
+      ..._.pickBy(uiActions, _.isFunction)
+    },
+    dispatch
+  )
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -68,11 +71,11 @@ class SnackLectureContainer extends Component {
     currentLectureId: PropTypes.number.isRequired,
     isFullScreen: PropTypes.bool.isRequired,
     isOnline: PropTypes.bool.isRequired,
-    lectures: ImmutablePropTypes.orderedMap.isRequired,
+    lectures: ImmutablePropTypes.orderedMap.isRequired
   };
 
   state = {
-    loading: false,
+    loading: false
   };
 
   async componentWillMount() {
@@ -80,7 +83,7 @@ class SnackLectureContainer extends Component {
       currentCourse,
       fetchCourseDetails,
       setCurrentLectureId,
-      updateLectureStatus,
+      updateLectureStatus
     } = this.props;
 
     this.setState({ loading: true });
@@ -95,7 +98,9 @@ class SnackLectureContainer extends Component {
     }
 
     const lectures = this.props.lectures;
-    const currentLecture = lectures.filter(l => l.courseId === currentCourse.id).first();
+    const currentLecture = lectures
+      .filter(l => l.courseId === currentCourse.id)
+      .first();
     setCurrentLectureId(currentLecture.id);
     if (currentLecture.isNotStarted()) {
       updateLectureStatus(currentLecture.id, Lecture.STATUS_VIEWED);
@@ -111,7 +116,9 @@ class SnackLectureContainer extends Component {
     const currentLecture = lectures.get(currentLectureId.toString());
 
     if (!currentLecture.canAccess(isOnline)) {
-      return <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />;
+      return (
+        <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />
+      );
     }
     if (currentLecture.isVideo()) {
       return (
@@ -136,7 +143,9 @@ class SnackLectureContainer extends Component {
         <Button
           containerStyle={styles.joinButton}
           style={styles.joinButtonText}
-          onPress={() => RouterActions.top({ moveTo: ScrollableTabs.SNACK_COURSE })}
+          onPress={() =>
+            RouterActions.top({ moveTo: ScrollableTabs.SNACK_COURSE })
+          }
         >
           {I18n.t('backToCourseList')}
         </Button>
@@ -146,7 +155,12 @@ class SnackLectureContainer extends Component {
 
   render() {
     if (this.state.loading) {
-      return <SleekLoadingIndicator loading={this.state.loading} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator
+          loading={this.state.loading}
+          text={I18n.t('loading')}
+        />
+      );
     }
 
     return (

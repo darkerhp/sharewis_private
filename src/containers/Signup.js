@@ -10,7 +10,7 @@ import * as Actions from '../modules/user';
 
 import Signup from '../components/Signup';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { form, user, netInfo, ui } = state;
   const selector = formValueSelector('signupForm');
   const hasEmail = selector(state, 'email') !== undefined;
@@ -19,18 +19,18 @@ const mapStateToProps = (state) => {
     ...user,
     ...ui,
     isOnline: netInfo.isConnected,
-    loginDisabled: !(hasEmail && hasPassword),
+    loginDisabled: !(hasEmail && hasPassword)
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ..._.pickBy(Actions, _.isFunction) }, dispatch),
+  ...bindActionCreators({ ..._.pickBy(Actions, _.isFunction) }, dispatch)
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
 class SignupContainer extends Component {
   static defaultProps = {
-    isModal: false,
+    isModal: false
   };
 
   render() {

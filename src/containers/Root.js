@@ -34,11 +34,11 @@ export default class Root extends Component {
       {
         storage: AsyncStorage,
         blacklist: ['ui', 'routes', 'form'],
-        transforms: [transform],
+        transforms: [transform]
       },
       () => {
         this.setState({ rehydrated: true });
-      },
+      }
     );
 
     if (__DEV__ && PURGE_STORAGE) {

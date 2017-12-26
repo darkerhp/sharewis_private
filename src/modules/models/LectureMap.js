@@ -20,17 +20,17 @@ export function getNextLecture(
   map: LectureMap,
   courseId: number,
   skipCompleted: boolean = true,
-  currentOrder: number = 0,
+  currentOrder: number = 0
 ): Lecture {
-  let filteredLectures = map.filter(l => (
-    l.courseId === courseId &&
-    l.isLecture() &&
-    (l.isVideo() || l.isText()) && // TODO 今のところ動画とテキストだけ
-    l.order > currentOrder
-  ));
+  let filteredLectures = map.filter(
+    l =>
+      l.courseId === courseId &&
+      l.isLecture() &&
+      (l.isVideo() || l.isText()) && // TODO 今のところ動画とテキストだけ
+      l.order > currentOrder
+  );
   if (skipCompleted) {
     filteredLectures = filteredLectures.filterNot(l => l.isFinished());
   }
   return filteredLectures.sortBy(l => l.order).first() || null;
 }
-

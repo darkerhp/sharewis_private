@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 13,
+    marginHorizontal: 13
   },
   contentText: {
     textAlign: 'center',
     lineHeight: 22,
     fontSize: 17,
     color: '#222',
-    margin: 30,
+    margin: 30
   },
   signupButtonWrapper: {
     height: 47,
@@ -31,31 +31,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: '#9b9b9b',
+    borderColor: '#9b9b9b'
   },
   signupButtonText: {
     fontSize: 16,
     color: BaseStyles.textColor,
     fontFamily: null, // react-native-buttonのfontFamilyをリセット
-    fontWeight: 'normal',
-  },
+    fontWeight: 'normal'
+  }
 });
 
-
-const NotLoginList = () =>
-  (
-    <View style={styles.container}>
-      <Text style={styles.contentText}>
-        {I18n.t('noLogin')}
-      </Text>
-      <Button
-        containerStyle={styles.signupButtonWrapper}
-        style={styles.signupButtonText}
-        onPress={() => RouterActions.login()}
-      >
-        { I18n.t('login') }
-      </Button>
-    </View>
-  );
+const NotLoginList = () => (
+  <View style={styles.container}>
+    <Text style={styles.contentText}>{I18n.t('noLogin')}</Text>
+    <Button
+      containerStyle={styles.signupButtonWrapper}
+      style={styles.signupButtonText}
+      onPress={() => RouterActions.login()}
+    >
+      {I18n.t('login')}
+    </Button>
+  </View>
+);
 
 export default NotLoginList;

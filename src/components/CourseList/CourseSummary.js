@@ -13,74 +13,67 @@ import Hr from '../Hr';
 import OneColumnItemBox from './OneColumnItemBox';
 import ProgressBar from '../ProgressBar';
 
-const {
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} = ReactNative;
+const { Image, Platform, StyleSheet, Text, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {},
   image: {
     flex: 5,
     borderTopLeftRadius: 9,
-    borderTopRightRadius: 9,
+    borderTopRightRadius: 9
   },
   detailsWrapper: {
     flex: 3,
     paddingHorizontal: 10,
     paddingVertical: 15,
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
   detailsWrapperHasDownloaded: {
     paddingBottom: 0,
-    paddingTop: 10,
+    paddingTop: 10
   },
   disabledCourse: {
     ...Platform.select({
       android: {
-        opacity: 0.2,
+        opacity: 0.2
       },
       ios: {
-        opacity: 0.4,
-      },
-    }),
+        opacity: 0.4
+      }
+    })
   },
   title: {
     fontWeight: '900',
     color: '#222',
-    fontSize: 13,
+    fontSize: 13
   },
   hr: {
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   progress: {
     fontSize: 12,
     color: '#222',
     marginBottom: 3,
-    textDecorationLine: 'underline',
+    textDecorationLine: 'underline'
   },
   download: {
     alignItems: 'center',
-    flexDirection: 'row-reverse',
+    flexDirection: 'row-reverse'
   },
   downloadText: {
     color: '#7fc8ed',
     fontSize: 11,
-    paddingLeft: 3,
-  },
+    paddingLeft: 3
+  }
 });
 
-
 const CourseSummary = ({
-                         course,
-                         lectures,
-                         isDisabledCourse,
-                         onPressCourse,
-                         style,
-                       }) => {
+  course,
+  lectures,
+  isDisabledCourse,
+  onPressCourse,
+  style
+}) => {
   const lectureProgress = lectures.isEmpty()
     ? course.lectureProgress || 0
     : lectures.filter(l => l.isFinished()).size;
@@ -91,34 +84,31 @@ const CourseSummary = ({
       disabled={isDisabledCourse}
     >
       <View style={[{ flex: 1 }, isDisabledCourse && styles.disabledCourse]}>
-        <Image
-          style={styles.image}
-          source={{ uri: course.imageUrl }}
-        />
+        <Image style={styles.image} source={{ uri: course.imageUrl }} />
         <View
           style={[
             styles.detailsWrapper,
-            course.hasDownloadedLecture && styles.detailsWrapperHasDownloaded,
+            course.hasDownloadedLecture && styles.detailsWrapperHasDownloaded
           ]}
         >
-          <Text style={styles.title}>
-            {course.title}
-          </Text>
+          <Text style={styles.title}>{course.title}</Text>
           <View style={styles.hr}>
             <Hr lineStyle={{ backgroundColor: '#dadada' }} />
           </View>
           <Text style={styles.progress}>
-            {`${lectureProgress}/${course.lectureCount} ${I18n.t('progressText')}`}
+            {`${lectureProgress}/${course.lectureCount} ${I18n.t(
+              'progressText'
+            )}`}
           </Text>
           <ProgressBar progress={lectureProgress / course.lectureCount} />
-          {course.hasDownloadedLecture &&
-          <View style={styles.download}>
-            <Text style={styles.downloadText}>
-              {I18n.t('downloadAvailable')}
-            </Text>
-            <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
-          </View>
-          }
+          {course.hasDownloadedLecture && (
+            <View style={styles.download}>
+              <Text style={styles.downloadText}>
+                {I18n.t('downloadAvailable')}
+              </Text>
+              <Icon color={'#7fc8ed'} size={20} name={'cloud-download'} />
+            </View>
+          )}
         </View>
       </View>
     </OneColumnItemBox>
@@ -134,7 +124,7 @@ CourseSummary.propTypes = {
 };
 
 CourseSummary.defaultProps = {
-  lectures: new LectureMap(),
+  lectures: new LectureMap()
 };
 
 export default CourseSummary;

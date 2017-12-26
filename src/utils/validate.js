@@ -1,10 +1,9 @@
 /**
-* @flow
-*/
+ * @flow
+ */
 import I18n from 'react-native-i18n';
 
-
-const validateEmailLogin = (values) => {
+const validateEmailLogin = values => {
   const errors = {};
   if (!values.email) {
     errors.email = I18n.t('required');
@@ -15,6 +14,5 @@ const validateEmailLogin = (values) => {
 
   return errors;
 };
-
 
 export default validateEmailLogin;

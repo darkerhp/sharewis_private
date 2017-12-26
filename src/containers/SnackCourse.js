@@ -18,24 +18,19 @@ import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
 import Course from '../modules/models/Course';
 import { snackCourseSelector } from '../modules/selectors/courseSelectors';
 
-const {
-  Alert,
-  ListView,
-  RefreshControl,
-  StyleSheet,
-} = ReactNative;
+const { Alert, ListView, RefreshControl, StyleSheet } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BaseStyles.courseListBackgroundColor,
-    paddingTop: 5,
+    paddingTop: 5
   },
   contentContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingBottom: BaseStyles.navbarHeight,
-  },
+    paddingBottom: BaseStyles.navbarHeight
+  }
 });
 
 const mapStateToProps = (state, props) => {
@@ -46,15 +41,18 @@ const mapStateToProps = (state, props) => {
     lectures: entities.lectures,
     snackCourses: snackCourseSelector(state, props),
     ...ui,
-    isOnline: netInfo.isConnected,
+    isOnline: netInfo.isConnected
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({
-    ..._.pickBy(coursesActions, _.isFunction),
-    ..._.pickBy(uiActions, _.isFunction),
-  }, dispatch),
+  ...bindActionCreators(
+    {
+      ..._.pickBy(coursesActions, _.isFunction),
+      ..._.pickBy(uiActions, _.isFunction)
+    },
+    dispatch
+  )
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -63,17 +61,19 @@ class SnackCourse extends Component {
     // states
     isOnline: PropTypes.bool.isRequired,
     // actions
-    setCurrentCourseId: PropTypes.func.isRequired,
+    setCurrentCourseId: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
 
     this.state = {
       isRefreshing: false,
       isLoading: true,
-      dataSource: ds.cloneWithRows([1, 2]),
+      dataSource: ds.cloneWithRows([1, 2])
     };
   }
 
@@ -92,8 +92,13 @@ class SnackCourse extends Component {
       Alert.alert(I18n.t('errorTitle'), I18n.t('networkFailure'));
     }
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(snackCourses.valueSeq().sortBy(c => c.ranking).toJS()),
-      isLoading: false,
+      dataSource: this.state.dataSource.cloneWithRows(
+        snackCourses
+          .valueSeq()
+          .sortBy(c => c.ranking)
+          .toJS()
+      ),
+      isLoading: false
     });
   }
 
@@ -126,7 +131,12 @@ class SnackCourse extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator
+          loading={this.state.isLoading}
+          text={I18n.t('loading')}
+        />
+      );
     }
 
     return (

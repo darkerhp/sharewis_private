@@ -10,15 +10,17 @@ jest.mock('react-native-i18n', () => ({ t: () => '' }));
 
 describe('NextLectureArea', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <NextLectureArea
-        containerStyleId={0}
-        handlePressNextLecture={() => null}
-        nextLecture={{
-          type: 'lecture',
-        }}
-      />,
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <NextLectureArea
+          containerStyleId={0}
+          handlePressNextLecture={() => null}
+          nextLecture={{
+            type: 'lecture'
+          }}
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

@@ -9,7 +9,7 @@ import { formValueSelector } from 'redux-form';
 import * as Actions from '../modules/user';
 import Login from '../components/Login';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { form, user, netInfo, ui, routes: { scene } } = state;
   const selector = formValueSelector('loginForm');
   const hasEmail = selector(state, 'email') !== undefined;
@@ -20,12 +20,14 @@ const mapStateToProps = (state) => {
     isOnline: netInfo.isConnected,
     loginDisabled: !(hasEmail && hasPassword),
     // 新規登録時に登録済みのemailを入力して遷移してきた場合 sceneのinitialEmailValueに入力したemailが設定されている
-    initialValues: { email: _.has(scene, 'initialEmailValue') ? scene.initialEmailValue : '' },
+    initialValues: {
+      email: _.has(scene, 'initialEmailValue') ? scene.initialEmailValue : ''
+    }
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ ..._.pickBy(Actions, _.isFunction) }, dispatch),
+  ...bindActionCreators({ ..._.pickBy(Actions, _.isFunction) }, dispatch)
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

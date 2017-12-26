@@ -26,218 +26,214 @@ const menuWhiteImage = require('./images/ic_menu_white.png');
 const backButtonWhiteImage = require('./images/ic_chevron_left_white.png');
 const closeWhiteImage = require('./images/ic_close_white.png');
 
-const navBarColor = ENV === 'production' ? BaseStyles.navBarBackgroundColor : 'pink';
+const navBarColor =
+  ENV === 'production' ? BaseStyles.navBarBackgroundColor : 'pink';
 
 const baseNavBarProps = {
   navigationBarStyle: {
     backgroundColor: navBarColor,
-    borderBottomColor: navBarColor,
+    borderBottomColor: navBarColor
   },
   backTitle: '戻る',
   titleStyle: {
     color: 'white',
     fontSize: 14.5,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   backButtonTextStyle: {
     color: 'white',
-    paddingLeft: 0,
+    paddingLeft: 0
   },
   rightButtonTextStyle: { color: 'white' },
   rightButtonIconStyle: {
     width: 25,
-    height: 21,
+    height: 21
   },
   leftButtonTextStyle: { color: 'white' },
   leftButtonIconStyle: {
     width: 25,
-    height: 21,
+    height: 21
   },
   leftButtonStyle: {
-    width: 200,
-  },
+    width: 200
+  }
 };
 
 const styles = StyleSheet.create({
   logoTitleImageWrapper: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   logoTitleImage: {
     width: 70,
-    marginTop: 75,
-  },
+    marginTop: 75
+  }
 });
 
 const logoImageSrc = require('./images/logo.png');
 
-const logoTitle = () =>
-  (
-    <View style={styles.logoTitleImageWrapper}>
-      <Image
-        source={logoImageSrc}
-        resizeMode={'contain'}
-        style={styles.logoTitleImage}
-      />
-    </View>
-  );
+const logoTitle = () => (
+  <View style={styles.logoTitleImageWrapper}>
+    <Image
+      source={logoImageSrc}
+      resizeMode={'contain'}
+      style={styles.logoTitleImage}
+    />
+  </View>
+);
 
-
-const getScenes = () =>
-  (
-    <Scene key="modal" component={Modal}>
-      <Scene key="root" hideNavBar>
-        <Scene key="drawer" component={NavigationDrawer} open={false}>
-          <Scene key="main" hideNavBar>
-            <Scene
-              key="onboarding"
-              component={Onboarding}
-              initial
-            />
-            <Scene
-              key="signup"
-              component={Signup}
-              type={ActionConst.RESET}
-              hideNavBar
-              isModal={false}
-            />
-            <Scene
-              key="login"
-              component={Login}
-              type={ActionConst.RESET}
-              hideNavBar
-              isModal={false}
-            />
-            <Scene
-              key="top"
-              {...baseNavBarProps}
-              component={ScrollableTabs}
-              type={ActionConst.RESET}
-              hideNavBar={false}
-              onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
-              leftButtonImage={menuWhiteImage}
-              renderTitle={logoTitle}
-            />
-            <Scene
-              key="courseDetails"
-              {...baseNavBarProps}
-              component={CourseDetails}
-              hideNavBar={false}
-              backTitle={I18n.t('myCourse')}
-              // onRight={() => console.log('onRight')}
-              onBack={() => Actions.top({ moveTo: ScrollableTabs.MY_COURSE })}
-              backButtonImage={backButtonWhiteImage}
-              // rightButtonImage={moreHorizWhiteImage}
-            />
-            <Scene
-              key="lecture"
-              {...baseNavBarProps}
-              backTitle={I18n.t('back')}
-              component={Lecture}
-              hideNavBar={false}
-              onBack={() => Actions.pop()}
-              backButtonImage={backButtonWhiteImage}
-            />
-            <Scene
-              key="snackLecture"
-              {...baseNavBarProps}
-              backTitle={I18n.t('snackCourse')}
-              component={SnackLecture}
-              hideNavBar={false}
-              onBack={() => Actions.top({ moveTo: ScrollableTabs.SNACK_COURSE })}
-              backButtonImage={backButtonWhiteImage}
-            />
-          </Scene>
-        </Scene>
-        <Scene key="accountModal">
+const getScenes = () => (
+  <Scene key="modal" component={Modal}>
+    <Scene key="root" hideNavBar>
+      <Scene key="drawer" component={NavigationDrawer} open={false}>
+        <Scene key="main" hideNavBar>
+          <Scene key="onboarding" component={Onboarding} initial />
           <Scene
-            key="_accountModal"
-            {...baseNavBarProps}
-            navigationBarStyle={{
-              backgroundColor: '#4c4d4f',
-              borderBottomColor: '#4c4d4f',
-            }}
-            component={Account}
-            leftButtonImage={closeWhiteImage}
-            onLeft={() => Actions.pop()}
-            title={I18n.t('accountSettings')}
-          />
-        </Scene>
-        <Scene key="tosModal">
-          <Scene
-            key="_tosModal"
-            {...baseNavBarProps}
-            navigationBarStyle={{
-              backgroundColor: '#4c4d4f',
-              borderBottomColor: '#4c4d4f',
-            }}
-            component={Tos}
-            leftButtonImage={closeWhiteImage}
-            onLeft={() => Actions.pop()}
-            title={I18n.t('tos')}
-          />
-        </Scene>
-        <Scene key="privacyModal">
-          <Scene
-            key="_privacyModal"
-            {...baseNavBarProps}
-            navigationBarStyle={{
-              backgroundColor: '#4c4d4f',
-              borderBottomColor: '#4c4d4f',
-            }}
-            component={Privacy}
-            leftButtonImage={closeWhiteImage}
-            onLeft={() => Actions.pop()}
-            title={I18n.t('privacy')}
-          />
-        </Scene>
-        <Scene key="loginModal">
-          <Scene
-            key="_loginModal"
-            {...baseNavBarProps}
-            navigationBarStyle={{
-              backgroundColor: '#4c4d4f',
-              borderBottomColor: '#4c4d4f',
-            }}
-            component={Login}
-            leftButtonImage={closeWhiteImage}
-            onLeft={() => Actions.pop()}
-            title={I18n.t('login')}
-            isModal
-          />
-        </Scene>
-        <Scene key="signupModal">
-          <Scene
-            key="_signupModal"
-            {...baseNavBarProps}
-            navigationBarStyle={{
-              backgroundColor: '#4c4d4f',
-              borderBottomColor: '#4c4d4f',
-            }}
+            key="signup"
             component={Signup}
-            leftButtonImage={closeWhiteImage}
-            onLeft={() => Actions.pop()}
-            title={I18n.t('signup')}
-            isModal
+            type={ActionConst.RESET}
+            hideNavBar
+            isModal={false}
           />
-        </Scene>
-        <Scene key="premiumModal">
           <Scene
-            key="_premiumModal"
+            key="login"
+            component={Login}
+            type={ActionConst.RESET}
+            hideNavBar
+            isModal={false}
+          />
+          <Scene
+            key="top"
             {...baseNavBarProps}
-            navigationBarStyle={{
-              backgroundColor: '#4c4d4f',
-              borderBottomColor: '#4c4d4f',
-            }}
-            component={Premium}
-            leftButtonImage={closeWhiteImage}
-            onLeft={() => Actions.pop()}
-            title={I18n.t('premiumJoinTitle')}
+            component={ScrollableTabs}
+            type={ActionConst.RESET}
+            hideNavBar={false}
+            onLeft={() =>
+              Actions.refresh({ key: 'drawer', open: value => !value })
+            }
+            leftButtonImage={menuWhiteImage}
+            renderTitle={logoTitle}
+          />
+          <Scene
+            key="courseDetails"
+            {...baseNavBarProps}
+            component={CourseDetails}
+            hideNavBar={false}
+            backTitle={I18n.t('myCourse')}
+            // onRight={() => console.log('onRight')}
+            onBack={() => Actions.top({ moveTo: ScrollableTabs.MY_COURSE })}
+            backButtonImage={backButtonWhiteImage}
+            // rightButtonImage={moreHorizWhiteImage}
+          />
+          <Scene
+            key="lecture"
+            {...baseNavBarProps}
+            backTitle={I18n.t('back')}
+            component={Lecture}
+            hideNavBar={false}
+            onBack={() => Actions.pop()}
+            backButtonImage={backButtonWhiteImage}
+          />
+          <Scene
+            key="snackLecture"
+            {...baseNavBarProps}
+            backTitle={I18n.t('snackCourse')}
+            component={SnackLecture}
+            hideNavBar={false}
+            onBack={() => Actions.top({ moveTo: ScrollableTabs.SNACK_COURSE })}
+            backButtonImage={backButtonWhiteImage}
           />
         </Scene>
       </Scene>
+      <Scene key="accountModal">
+        <Scene
+          key="_accountModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f'
+          }}
+          component={Account}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('accountSettings')}
+        />
+      </Scene>
+      <Scene key="tosModal">
+        <Scene
+          key="_tosModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f'
+          }}
+          component={Tos}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('tos')}
+        />
+      </Scene>
+      <Scene key="privacyModal">
+        <Scene
+          key="_privacyModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f'
+          }}
+          component={Privacy}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('privacy')}
+        />
+      </Scene>
+      <Scene key="loginModal">
+        <Scene
+          key="_loginModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f'
+          }}
+          component={Login}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('login')}
+          isModal
+        />
+      </Scene>
+      <Scene key="signupModal">
+        <Scene
+          key="_signupModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f'
+          }}
+          component={Signup}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('signup')}
+          isModal
+        />
+      </Scene>
+      <Scene key="premiumModal">
+        <Scene
+          key="_premiumModal"
+          {...baseNavBarProps}
+          navigationBarStyle={{
+            backgroundColor: '#4c4d4f',
+            borderBottomColor: '#4c4d4f'
+          }}
+          component={Premium}
+          leftButtonImage={closeWhiteImage}
+          onLeft={() => Actions.pop()}
+          title={I18n.t('premiumJoinTitle')}
+        />
+      </Scene>
     </Scene>
-  );
+  </Scene>
+);
 
 export default getScenes;

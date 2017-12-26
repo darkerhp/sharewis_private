@@ -5,16 +5,13 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import MenuItem from '../SideMenu/MenuItem';
 
-
 describe('MenuItem', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <MenuItem
-        text={'text'}
-        iconName={'mail'}
-        handlePress={() => null}
-      />,
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <MenuItem text={'text'} iconName={'mail'} handlePress={() => null} />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

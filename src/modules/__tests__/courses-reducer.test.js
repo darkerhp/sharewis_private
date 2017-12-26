@@ -10,9 +10,8 @@ import Course from '../models/Course';
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
 jest.mock('react-native-i18n', () => ({ currentLocale: () => '' }));
 
-const factory = (courseId, props = {}) => (
-  new OrderedMap({ [courseId]: new Course({ id: courseId, ...props }) })
-);
+const factory = (courseId, props = {}) =>
+  new OrderedMap({ [courseId]: new Course({ id: courseId, ...props }) });
 
 describe('courses reducer', () => {
   it('should handle UPDATE_COURSE_DOWNLOADED_STATUS', () => {
@@ -21,9 +20,9 @@ describe('courses reducer', () => {
       reducer(
         factory(courseId),
         createAction(UPDATE_COURSE_DOWNLOADED_STATUS)(
-          factory(courseId, { hasDownloadedLecture: true }),
-        ),
-      ),
+          factory(courseId, { hasDownloadedLecture: true })
+        )
+      )
     ).toEqual(factory(courseId, { hasDownloadedLecture: true }));
   });
 
@@ -31,7 +30,7 @@ describe('courses reducer', () => {
     const courseId = 1;
     const resultCourse = reducer(
       factory(courseId, { viewedAt: null }),
-      createAction(UPDATE_LECTURE_STATUS_SUCCESS)({ courseId }),
+      createAction(UPDATE_LECTURE_STATUS_SUCCESS)({ courseId })
     ).first();
     expect(resultCourse.viewedAt).not.toBeNull();
   });

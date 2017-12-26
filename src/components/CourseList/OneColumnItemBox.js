@@ -4,11 +4,7 @@ import ReactNative from 'react-native';
 
 import BaseStyles from '../../lib/baseStyles';
 
-const {
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} = ReactNative;
+const { StyleSheet, TouchableOpacity, View } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
@@ -20,35 +16,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginBottom: 13,
     marginHorizontal: 10,
-    overflow: 'hidden',
-  },
+    overflow: 'hidden'
+  }
 });
 
 const OneColumnItemBox = ({ style, isTouchble, ...props }) => {
   if (isTouchble) {
-    return (
-      <TouchableOpacity
-        style={[styles.container, style]}
-        {...props}
-      />
-    );
+    return <TouchableOpacity style={[styles.container, style]} {...props} />;
   }
 
-  return (
-    <View
-      style={[styles.container, style]}
-      {...props}
-    />
-  );
+  return <View style={[styles.container, style]} {...props} />;
 };
 
 OneColumnItemBox.propTypes = {
   style: PropTypes.any.isRequired, // eslint-disable-line
-  isTouchble: PropTypes.bool.isRequired,
+  isTouchble: PropTypes.bool.isRequired
 };
 
 OneColumnItemBox.defaultProps = {
-  isTouchble: true,
+  isTouchble: true
 };
 
 export default OneColumnItemBox;

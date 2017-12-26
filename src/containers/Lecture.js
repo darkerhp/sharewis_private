@@ -19,27 +19,30 @@ import TextLecture from '../components/Lecture/TextLecture';
 import VideoLecture from '../components/Lecture/VideoLecture';
 import AudioLecture from '../components/Lecture/AudioLecture';
 import SleekLoadingIndicator from '../components/SleekLoadingIndicator';
-import { getLastLectureId, getNextLecture } from '../modules/selectors/lectureSelectors';
+import {
+  getLastLectureId,
+  getNextLecture
+} from '../modules/selectors/lectureSelectors';
 
 const { StatusBar, StyleSheet, View } = ReactNative;
 
 const styles = StyleSheet.create({
   lectureContentStyle: {
-    flex: 3,
+    flex: 3
   },
   buttonWrapper: {
     justifyContent: 'flex-end',
-    alignItems: 'stretch',
+    alignItems: 'stretch'
   },
   joinButton: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: BaseStyles.navBarBackgroundColor,
-    minHeight: 60,
+    minHeight: 60
   },
   joinButtonText: {
-    color: 'white',
-  },
+    color: 'white'
+  }
 });
 
 const mapStateToProps = (state, props) => {
@@ -50,18 +53,24 @@ const mapStateToProps = (state, props) => {
   return {
     lectures,
     currentLecture,
-    nextLecture: getNextLecture({ ...state, currentOrder: currentLecture.order }, props),
+    nextLecture: getNextLecture(
+      { ...state, currentOrder: currentLecture.order },
+      props
+    ),
     ...ui,
     isOnline: netInfo.isConnected,
-    isLastLecture: lectureId === lastLectureId,
+    isLastLecture: lectureId === lastLectureId
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({
-    ..._.pickBy(lecturesActions, _.isFunction),
-    ..._.pickBy(uiActions, _.isFunction),
-  }, dispatch),
+  ...bindActionCreators(
+    {
+      ..._.pickBy(lecturesActions, _.isFunction),
+      ..._.pickBy(uiActions, _.isFunction)
+    },
+    dispatch
+  )
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -75,11 +84,11 @@ class LectureContainer extends Component {
     isOnline: PropTypes.bool.isRequired,
     // actions
     updateLectureStatus: PropTypes.func.isRequired,
-    setCurrentLectureId: PropTypes.func.isRequired,
+    setCurrentLectureId: PropTypes.func.isRequired
   };
 
   state = {
-    loading: false,
+    loading: false
   };
 
   componentWillMount() {
@@ -108,7 +117,7 @@ class LectureContainer extends Component {
       currentLecture,
       nextLecture,
       updateLectureStatus,
-      setCurrentLectureId,
+      setCurrentLectureId
     } = this.props;
 
     if (!currentLecture.isFinished()) {
@@ -123,7 +132,9 @@ class LectureContainer extends Component {
     const { currentLecture, isOnline } = this.props;
 
     if (!currentLecture.canAccess(isOnline)) {
-      return <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />;
+      return (
+        <OfflineLecture lectureContentStyleId={styles.lectureContentStyle} />
+      );
     }
 
     if (currentLecture.isVideo()) {
@@ -137,7 +148,12 @@ class LectureContainer extends Component {
     }
 
     if (currentLecture.isText()) {
-      return <TextLecture lectureContentStyleId={styles.lectureContentStyle} {...this.props} />;
+      return (
+        <TextLecture
+          lectureContentStyleId={styles.lectureContentStyle}
+          {...this.props}
+        />
+      );
     }
 
     if (currentLecture.isAudio()) {
@@ -155,29 +171,40 @@ class LectureContainer extends Component {
 
   @autobind
   renderNextLectureArea() {
-    const { currentLecture, isFullScreen, isLastLecture, isOnline } = this.props;
+    const {
+      currentLecture,
+      isFullScreen,
+      isLastLecture,
+      isOnline
+    } = this.props;
     // フルスクリーン時には「次のレクチャーへ」ボタンの領域自体表示しない
     if (isFullScreen) return null;
     // アプリでは、コースを完了できないため最後のレクチャーの場合、ボタンを表示しない
-    const isVisibleButton = !isLastLecture && currentLecture.canAccess(isOnline);
+    const isVisibleButton =
+      !isLastLecture && currentLecture.canAccess(isOnline);
     return (
       <View style={styles.buttonWrapper}>
-        {isVisibleButton &&
-        <Button
-          containerStyle={styles.joinButton}
-          style={styles.joinButtonText}
-          onPress={this.handlePressNextLecture}
-        >
-          {I18n.t('nextLecture')}
-        </Button>
-        }
+        {isVisibleButton && (
+          <Button
+            containerStyle={styles.joinButton}
+            style={styles.joinButtonText}
+            onPress={this.handlePressNextLecture}
+          >
+            {I18n.t('nextLecture')}
+          </Button>
+        )}
       </View>
     );
   }
 
   render() {
     if (this.state.loading) {
-      return <SleekLoadingIndicator loading={this.state.loading} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator
+          loading={this.state.loading}
+          text={I18n.t('loading')}
+        />
+      );
     }
 
     return (

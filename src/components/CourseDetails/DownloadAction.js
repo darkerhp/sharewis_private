@@ -14,15 +14,15 @@ const styles = StyleSheet.create({
     flex: 1,
     height: lectureRowHeight,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   actionIcon: {
     color: '#757575',
-    fontSize: 32,
-  },
+    fontSize: 32
+  }
 });
 
-const renderIcon = (lecture) => {
+const renderIcon = lecture => {
   if (lecture.isDownloading) {
     return (
       <Progress.Circle
@@ -41,12 +41,18 @@ const renderIcon = (lecture) => {
   );
 };
 
-const DownloadAction = ({ handlePressDelete, handlePressDownload, lecture }) => (
+const DownloadAction = ({
+  handlePressDelete,
+  handlePressDownload,
+  lecture
+}) => (
   <TouchableOpacity
     style={styles.actionIconWrapper}
-    onPress={() => (
-      lecture.isDownloaded ? handlePressDelete(lecture) : handlePressDownload(lecture)
-    )}
+    onPress={() =>
+      lecture.isDownloaded
+        ? handlePressDelete(lecture)
+        : handlePressDownload(lecture)
+    }
   >
     {renderIcon(lecture)}
   </TouchableOpacity>
@@ -57,7 +63,7 @@ DownloadAction.propTypes = {
   lecture: PropTypes.shape({}).isRequired,
   // actions
   handlePressDelete: PropTypes.func.isRequired,
-  handlePressDownload: PropTypes.func.isRequired,
+  handlePressDownload: PropTypes.func.isRequired
 };
 
 export default DownloadAction;

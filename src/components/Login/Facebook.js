@@ -12,30 +12,30 @@ const { GraphRequest, GraphRequestManager, LoginButton, LoginManager } = FBSDK;
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    marginHorizontal: 13,
+    marginHorizontal: 13
   },
   labelWrapper: {
     alignItems: 'flex-end',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   label: {
     alignSelf: 'flex-end',
     color: '#666',
-    fontSize: 12,
+    fontSize: 12
   },
   buttonWrapper: {
-    alignItems: 'stretch',
+    alignItems: 'stretch'
   },
   button: {
     marginVertical: 5,
-    height: 30,
-  },
+    height: 30
+  }
 });
 
 class Facebook extends Component {
   static propTypes = {
     fetchUserBy: PropTypes.func.isRequired,
-    fetchFBEmailFailure: PropTypes.func.isRequired,
+    fetchFBEmailFailure: PropTypes.func.isRequired
   };
 
   @autobind
@@ -72,7 +72,11 @@ class Facebook extends Component {
       console.log(result.grantedPermissions);
       return;
     }
-    const infoRequest = new GraphRequest('/me?fields=email', null, this.getAccountData);
+    const infoRequest = new GraphRequest(
+      '/me?fields=email',
+      null,
+      this.getAccountData
+    );
     new GraphRequestManager().addRequest(infoRequest).start();
   }
 
@@ -80,9 +84,7 @@ class Facebook extends Component {
     return (
       <View style={styles.view}>
         <View style={styles.labelWrapper}>
-          <Text style={styles.label}>
-            { I18n.t('facebookLabel') }
-          </Text>
+          <Text style={styles.label}>{I18n.t('facebookLabel')}</Text>
         </View>
         <View style={styles.buttonWrapper}>
           <LoginButton

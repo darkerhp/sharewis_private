@@ -24,22 +24,18 @@ import {
   getSectionMergedLectureList,
   getLectureProgress,
   getLectureTotalDuration,
-  getNextNotCompletedLecture,
+  getNextNotCompletedLecture
 } from '../modules/selectors/lectureSelectors';
 
-const {
-  Alert,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  View,
-} = ReactNative;
+const { Alert, ScrollView, StatusBar, StyleSheet, View } = ReactNative;
 
-const HALF_DISPLAY_HEIGHT = (BaseStyles.deviceHeight - BaseStyles.navbarHeight) / 2;
-const QUARTER_DISPLAY_HEIGHT = (BaseStyles.deviceHeight - BaseStyles.navbarHeight) / 4;
+const HALF_DISPLAY_HEIGHT =
+  (BaseStyles.deviceHeight - BaseStyles.navbarHeight) / 2;
+const QUARTER_DISPLAY_HEIGHT =
+  (BaseStyles.deviceHeight - BaseStyles.navbarHeight) / 4;
 
 const styles = StyleSheet.create({
-  lectureContainer: { flex: 1 },
+  lectureContainer: { flex: 1 }
 });
 
 const mapStateToProps = (state, props) => {
@@ -53,15 +49,18 @@ const mapStateToProps = (state, props) => {
     sectionMergedLectureList: getSectionMergedLectureList(state, props),
     totalDuration: getLectureTotalDuration(state, props),
     isOnline: netInfo.isConnected,
-    ...ui,
+    ...ui
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({
-    ..._.pickBy(lecturesActions, _.isFunction),
-    ..._.pickBy(uiActions, _.isFunction),
-  }, dispatch),
+  ...bindActionCreators(
+    {
+      ..._.pickBy(lecturesActions, _.isFunction),
+      ..._.pickBy(uiActions, _.isFunction)
+    },
+    dispatch
+  )
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -86,7 +85,7 @@ class CourseDetails extends Component {
     errorDownloadLecture: PropTypes.func.isRequired,
     setCurrentLectureId: PropTypes.func.isRequired,
     pressDownloadLecture: PropTypes.func.isRequired,
-    progressDownloadLecture: PropTypes.func.isRequired,
+    progressDownloadLecture: PropTypes.func.isRequired
   };
 
   async componentWillMount() {
@@ -104,7 +103,10 @@ class CourseDetails extends Component {
   @autobind
   handlePressNextLecture() {
     const { id, lectures } = this.props;
-    const nextNotCompletedLecture = getNextNotCompletedLecture({}, { lectures, currentCourseId: id });
+    const nextNotCompletedLecture = getNextNotCompletedLecture(
+      {},
+      { lectures, currentCourseId: id }
+    );
     this.handlePressLecture(nextNotCompletedLecture);
   }
 
@@ -121,7 +123,9 @@ class CourseDetails extends Component {
     const path = lecture.getAttachmentFileName();
     return RNFS.unlink(path)
       .then(() => finishDeleteVideo(lecture.id))
-      .catch(err => Alert.alert(I18n.t('errorTitle'), I18n.t('deleteVideoFailure')));
+      .catch(err =>
+        Alert.alert(I18n.t('errorTitle'), I18n.t('deleteVideoFailure'))
+      );
   }
 
   @autobind
@@ -134,7 +138,7 @@ class CourseDetails extends Component {
       cancelDownloadLecture,
       isLectureDownloading,
       pressDownloadLecture,
-      progressDownloadLecture,
+      progressDownloadLecture
     } = this.props;
 
     if (lecture.isDownloading) {
@@ -142,7 +146,10 @@ class CourseDetails extends Component {
       this.handlePressDelete(lecture);
       return cancelDownloadLecture(lecture.id);
     } else if (isLectureDownloading) {
-      return Alert.alert(I18n.t('errorTitle'), I18n.t('downloadAlreadyInProgress'));
+      return Alert.alert(
+        I18n.t('errorTitle'),
+        I18n.t('downloadAlreadyInProgress')
+      );
     }
 
     pressDownloadLecture();
@@ -157,7 +164,7 @@ class CourseDetails extends Component {
       await RNFS.downloadFile({
         fromUrl: lecture.getAttachmentUrl(),
         toFile: lecture.getAttachmentFileName(),
-        begin: (res) => {
+        begin: res => {
           const { jobId, statusCode } = res;
           beginDownloadLecture(lecture.id, jobId, statusCode);
         },
@@ -165,7 +172,7 @@ class CourseDetails extends Component {
           const progress = bytesWritten / contentLength;
           progressDownloadLecture(lecture.id, jobId, progress);
         },
-        progressDivider: 2,
+        progressDivider: 2
       }).promise;
       finishDownloadLecture(lecture.id);
     } catch (error) {
@@ -188,13 +195,15 @@ class CourseDetails extends Component {
       lectureCount,
       lectureProgress,
       title,
-      totalDuration,
+      totalDuration
     } = this.props;
 
     StatusBar.setBarStyle('light-content');
 
     if (isFetching) {
-      return <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator loading={isFetching} text={I18n.t('loading')} />
+      );
     }
 
     const courseInfo = {
@@ -202,7 +211,10 @@ class CourseDetails extends Component {
       completeLectureCount: lectureProgress,
       courseTitle: title,
       totalDuration,
-      nextLecture: getNextNotCompletedLecture({}, { lectures, currentCourseId: id }),
+      nextLecture: getNextNotCompletedLecture(
+        {},
+        { lectures, currentCourseId: id }
+      )
     };
 
     return (
@@ -215,7 +227,7 @@ class CourseDetails extends Component {
           style={{
             flex: 1,
             paddingTop: BaseStyles.navbarHeight,
-            paddingBottom: BaseStyles.navbarHeight,
+            paddingBottom: BaseStyles.navbarHeight
           }}
         >
           <CourseInfoSection
@@ -223,20 +235,21 @@ class CourseDetails extends Component {
             handlePressNextLecture={this.handlePressNextLecture}
             containerStyle={{
               height: _.isEmpty(courseInfo.nextLecture)
-                ? QUARTER_DISPLAY_HEIGHT : HALF_DISPLAY_HEIGHT,
+                ? QUARTER_DISPLAY_HEIGHT
+                : HALF_DISPLAY_HEIGHT
             }}
           />
-          {!lectures.isEmpty() &&
-          <LectureList
-            containerStyleId={styles.lectureContainer}
-            lectureList={sectionMergedLectureList}
-            courseId={id}
-            isOnline={isOnline}
-            handlePressLecture={this.handlePressLecture}
-            handlePressDelete={this.handlePressDelete}
-            handlePressDownload={this.handlePressDownload}
-          />
-          }
+          {!lectures.isEmpty() && (
+            <LectureList
+              containerStyleId={styles.lectureContainer}
+              lectureList={sectionMergedLectureList}
+              courseId={id}
+              isOnline={isOnline}
+              handlePressLecture={this.handlePressLecture}
+              handlePressDelete={this.handlePressDelete}
+              handlePressDownload={this.handlePressDownload}
+            />
+          )}
         </View>
       </ScrollView>
     );

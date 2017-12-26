@@ -9,5 +9,5 @@ export default [
   thunkMiddleware,
   netInfoMiddleware,
   mixpanelMiddleware,
-  loggerMiddleware,
+  loggerMiddleware
 ];

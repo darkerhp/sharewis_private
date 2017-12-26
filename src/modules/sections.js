@@ -17,22 +17,26 @@ const initialState = new LectureMap();
 const mergeEntities = (state, newSections) =>
   state.merge(newSections.map(section => new Lecture(section)));
 
-const reducer = handleActions({
-  [FETCH_COURSE_DETAILS_SUCCESS]: (state, action) => {
-    const sections = action.payload.entities.sections;
-    if (!sections) return state;
-    const next = mergeEntities(state, fromJS(sections));
-    return next;
+const reducer = handleActions(
+  {
+    [FETCH_COURSE_DETAILS_SUCCESS]: (state, action) => {
+      const sections = action.payload.entities.sections;
+      if (!sections) return state;
+      const next = mergeEntities(state, fromJS(sections));
+      return next;
+    },
+    // redux-persistのrehydrate用のreducer
+    // Immutable.jsを使用する場合、変換が必要
+    [REHYDRATE]: (state, action) => {
+      if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities'))
+        return state;
+      const sections = action.payload.entities.sections;
+      if (_.isEmpty(sections)) return initialState;
+      return mergeEntities(initialState, fromJS(sections));
+    }
   },
-  // redux-persistのrehydrate用のreducer
-  // Immutable.jsを使用する場合、変換が必要
-  [REHYDRATE]: (state, action) => {
-    if (!Object.prototype.hasOwnProperty.call(action.payload, 'entities')) return state;
-    const sections = action.payload.entities.sections;
-    if (_.isEmpty(sections)) return initialState;
-    return mergeEntities(initialState, fromJS(sections));
-  },
-}, initialState);
+  initialState
+);
 
 export default reducer;
 

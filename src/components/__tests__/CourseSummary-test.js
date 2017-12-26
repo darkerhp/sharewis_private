@@ -18,13 +18,15 @@ jest.mock('react-native-i18n', () => ({ t: () => '' }));
 
 describe('CourseSummary', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <CourseSummary
-        course={new Course({ imageUrl: base64Icon })}
-        lectures={new OrderedMap()}
-        courseSummaryStyleId={1}
-      />,
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <CourseSummary
+          course={new Course({ imageUrl: base64Icon })}
+          lectures={new OrderedMap()}
+          courseSummaryStyleId={1}
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

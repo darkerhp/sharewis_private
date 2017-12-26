@@ -13,18 +13,20 @@ jest.mock('../CourseDetails/Progress', () => 'Progress');
 
 describe('CourseInfoSection', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <CourseInfoSection
-        completeLectureCount={0}
-        containerStyle={{}}
-        courseTitle={'Title'}
-        isCompleted={false}
-        nextLecture={{}}
-        totalLectureCount={10}
-        totalDuration={100}
-        handlePressNextLecture={() => null}
-      />,
-    ).toJSON();
+    const tree = renderer
+      .create(
+        <CourseInfoSection
+          completeLectureCount={0}
+          containerStyle={{}}
+          courseTitle={'Title'}
+          isCompleted={false}
+          nextLecture={{}}
+          totalLectureCount={10}
+          totalDuration={100}
+          handlePressNextLecture={() => null}
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

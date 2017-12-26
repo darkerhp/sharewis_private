@@ -4,7 +4,7 @@ import userReducer, {
   fetchFBEmailFailure,
   startActFacebookLogin,
   fetchActLoginFailure,
-  fetchActLoginSuccess,
+  fetchActLoginSuccess
 } from '../user';
 
 jest.mock('bugsnag-react-native', () => 'Bugsnag');
@@ -19,15 +19,14 @@ describe('User reducer', () => {
         // we still need to query ACT API.
         loggedIn: false,
         facebookId: '12345',
-        email: 'a@example.com',
+        email: 'a@example.com'
       };
     });
 
     it('should handle successful login', () => {
-      expect(userReducer(loggedOut, fetchFBEmailSuccess([
-        'a@example.com',
-        '12345',
-      ]))).toEqual(loggedIn);
+      expect(
+        userReducer(loggedOut, fetchFBEmailSuccess(['a@example.com', '12345']))
+      ).toEqual(loggedIn);
     });
 
     it('should handle failed login', () => {
@@ -41,7 +40,7 @@ describe('User reducer', () => {
       fetching = {
         loggedIn: false,
         email: 'user@example.com',
-        facebookId: '1234567890',
+        facebookId: '1234567890'
       };
       loggedIn = {
         loggedIn: true,
@@ -49,15 +48,17 @@ describe('User reducer', () => {
         facebookId: '1234567890',
         userName: 'username',
         nickName: 'nickname',
-        isTemporary: false,
+        isTemporary: false
       };
     });
 
     it('should handle start login', () => {
-      expect(userReducer(loggedOut, startActFacebookLogin([
-        'user@example.com',
-        '1234567890',
-      ]))).toEqual(fetching);
+      expect(
+        userReducer(
+          loggedOut,
+          startActFacebookLogin(['user@example.com', '1234567890'])
+        )
+      ).toEqual(fetching);
     });
 
     it('should handle failure login', () => {
@@ -65,10 +66,15 @@ describe('User reducer', () => {
     });
 
     it('should handle success login', () => {
-      expect(userReducer(fetching, fetchActLoginSuccess({
-        userName: 'username',
-        nickName: 'nickname',
-      }))).toEqual(loggedIn);
+      expect(
+        userReducer(
+          fetching,
+          fetchActLoginSuccess({
+            userName: 'username',
+            nickName: 'nickname'
+          })
+        )
+      ).toEqual(loggedIn);
     });
   });
 });

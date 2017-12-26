@@ -25,7 +25,7 @@ function timeout(promise, ms) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => reject(new Error('timeout')), ms);
     promise
-      .then((response) => {
+      .then(response => {
         clearTimeout(timer);
         resolve(response);
       })
@@ -53,9 +53,7 @@ async function bodyOf(requestPromise): Promise<void> {
  * @returns {string} エンドポイントのURL
  */
 export function url(path: string): string {
-  return path.indexOf('/') === 0
-    ? API_ROOT + path
-    : `${API_ROOT}/${path}`;
+  return path.indexOf('/') === 0 ? API_ROOT + path : `${API_ROOT}/${path}`;
 }
 
 /**
@@ -67,9 +65,15 @@ export function url(path: string): string {
 function logError(error, endpoint: string, method) {
   if (error.status) {
     const summary = `(${error.status} ${error.statusText}): ${error._bodyInit}`; // eslint-disable-line
-    console.error(`API request ${method.toUpperCase()} ${endpoint} responded with ${summary}`);
+    console.error(
+      `API request ${method.toUpperCase()} ${endpoint} responded with ${summary}`
+    );
   } else {
-    console.error(`API request ${method.toUpperCase()} ${endpoint} failed with message "${error.message}"`);
+    console.error(
+      `API request ${method.toUpperCase()} ${endpoint} failed with message "${
+        error.message
+      }"`
+    );
   }
 }
 
@@ -120,7 +124,7 @@ async function handleResponse(path: string, response): Promise<any> {
     const res = {
       status: response.status,
       headers: response.headers,
-      body: responseBody ? JSON.parse(responseBody) : null,
+      body: responseBody ? JSON.parse(responseBody) : null
     };
     console.log('handleResponse:response', res);
     return res;
@@ -137,7 +141,11 @@ async function handleResponse(path: string, response): Promise<any> {
  */
 function getRequestHeaders(body, header) {
   const headers = body
-    ? { Accept: 'application/json', 'Content-Type': 'application/json', 'app-api-key': ACT_API_KEY }
+    ? {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'app-api-key': ACT_API_KEY
+      }
     : { Accept: 'application/json', 'app-api-key': ACT_API_KEY };
 
   if (header) {
@@ -180,13 +188,15 @@ async function sendRequest(method: string, path: string, body, header) {
  * @param header
  * @returns {Promise}
  */
-export async function request(method: 'get' | 'post' | 'patch' | 'put' | 'delete', path: string, body, header) {
+export async function request(
+  method: 'get' | 'post' | 'patch' | 'put' | 'delete',
+  path: string,
+  body,
+  header
+) {
   try {
     const response = await sendRequest(method, path, body, header);
-    const handledResponse = handleResponse(
-      path,
-      response,
-    );
+    const handledResponse = handleResponse(path, response);
     return handledResponse;
   } catch (error) {
     logError(error, url(path), method);

@@ -36,36 +36,36 @@ const {
   StatusBar,
   StyleSheet,
   Text,
-  View,
+  View
 } = ReactNative;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: BaseStyles.courseListBackgroundColor,
+    backgroundColor: BaseStyles.courseListBackgroundColor
   },
   courseList: {
     flex: 1,
     marginVertical: 13,
-    paddingBottom: BaseStyles.navbarHeight,
+    paddingBottom: BaseStyles.navbarHeight
   },
   contentText: {
     textAlign: 'center',
     lineHeight: 22,
     fontSize: 17,
     color: '#222',
-    textAlignVertical: 'center',
+    textAlignVertical: 'center'
   },
   hyperlinkWrapper: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   searchMore: {
     borderWidth: 1,
     borderColor: BaseStyles.hyperlink,
-    paddingHorizontal: 5,
-  },
+    paddingHorizontal: 5
+  }
 });
 
 const mapStateToProps = (state, props) => {
@@ -76,16 +76,19 @@ const mapStateToProps = (state, props) => {
     lectures: entities.lectures,
     products: entities.products,
     ...ui,
-    isOnline: netInfo.isConnected,
+    isOnline: netInfo.isConnected
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({
-    ..._.pickBy(coursesActions, _.isFunction),
-    ..._.pickBy(productsActions, _.isFunction),
-    ..._.pickBy(purchaseActions, _.isFunction),
-  }, dispatch),
+  ...bindActionCreators(
+    {
+      ..._.pickBy(coursesActions, _.isFunction),
+      ..._.pickBy(productsActions, _.isFunction),
+      ..._.pickBy(purchaseActions, _.isFunction)
+    },
+    dispatch
+  )
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -95,18 +98,18 @@ class ProCourses extends Component {
     notPurchasedProCourses: PropTypes.instanceOf(CourseMap),
     lectures: PropTypes.instanceOf(LectureMap),
     products: PropTypes.instanceOf(ProductMap),
-    isOnline: PropTypes.bool.isRequired,
+    isOnline: PropTypes.bool.isRequired
   };
 
   static defaultProps = {
     notPurchasedProCourses: new CourseMap(),
     lectures: new LectureMap(),
-    products: new ProductMap(),
+    products: new ProductMap()
   };
 
   state = {
     isLoading: false,
-    isRefreshing: false,
+    isRefreshing: false
   };
 
   async componentWillMount() {
@@ -161,7 +164,12 @@ class ProCourses extends Component {
     StatusBar.setBarStyle('light-content');
 
     if (!this.state.isRefreshing && this.state.isLoading) {
-      return <SleekLoadingIndicator loading={this.state.isLoading} text={I18n.t('loading')} />;
+      return (
+        <SleekLoadingIndicator
+          loading={this.state.isLoading}
+          text={I18n.t('loading')}
+        />
+      );
     }
 
     if (notPurchasedProCourses.isEmpty()) {
@@ -183,7 +191,7 @@ class ProCourses extends Component {
         }
       >
         <View style={styles.courseList}>
-          {notPurchasedProCourses.valueSeq().map((course) => {
+          {notPurchasedProCourses.valueSeq().map(course => {
             const isDisabledCourse = !isOnline && !course.hasDownloadedLecture;
             return (
               <ProCourseSummary
@@ -197,22 +205,20 @@ class ProCourses extends Component {
               />
             );
           })}
-          {Platform.OS !== 'ios' &&
-          <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
-            <View style={styles.hyperlinkWrapper}>
-              <Hyperlink
-                style={styles.searchMore}
-                linkStyle={{ color: BaseStyles.hyperlink }}
-                linkText={I18n.t('searchMore')}
-                onPress={isOnline ? redirectTo : alertOfflineError}
-              >
-                <Text style={styles.contentText}>
-                  {ACT_PRO_COURSES_URL}
-                </Text>
-              </Hyperlink>
-            </View>
-          </OneColumnItemBox>
-          }
+          {Platform.OS !== 'ios' && (
+            <OneColumnItemBox style={{ height: 150 }} isTouchble={false}>
+              <View style={styles.hyperlinkWrapper}>
+                <Hyperlink
+                  style={styles.searchMore}
+                  linkStyle={{ color: BaseStyles.hyperlink }}
+                  linkText={I18n.t('searchMore')}
+                  onPress={isOnline ? redirectTo : alertOfflineError}
+                >
+                  <Text style={styles.contentText}>{ACT_PRO_COURSES_URL}</Text>
+                </Hyperlink>
+              </View>
+            </OneColumnItemBox>
+          )}
         </View>
       </ScrollView>
     );

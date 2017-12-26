@@ -21,11 +21,11 @@ const transform = createTransform(
       courses: _.isEmpty(courses) ? new CourseMap() : courses,
       lectures: _.isEmpty(lectures) ? new LectureMap() : lectures,
       sections: _.isEmpty(sections) ? new LectureMap() : sections,
-      products: _.isEmpty(products) ? new ProductMap() : sections,
+      products: _.isEmpty(products) ? new ProductMap() : sections
     };
   },
   // configuration options
-  { whitelist: ['entities'] },
+  { whitelist: ['entities'] }
 );
 
 export default transform;

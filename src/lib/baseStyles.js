@@ -1,6 +1,6 @@
 /**
-* @flow
-*/
+ * @flow
+ */
 import ReactNative from 'react-native';
 
 const { Dimensions, Platform } = ReactNative;
@@ -14,13 +14,12 @@ const Variables = {
   textColor: '#4a4a4a',
   navbarHeight: Platform.select({
     ios: 65,
-    android: 55,
+    android: 55
   }),
   navBarBackgroundColor: '#00abc9',
   disabledButtonColor: '#dadada',
   deviceWidth: Dimensions.get('window').width,
-  deviceHeight: Dimensions.get('window').height,
+  deviceHeight: Dimensions.get('window').height
 };
 
 export default Variables;
-

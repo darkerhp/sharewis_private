@@ -11,20 +11,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   slider: {
     flex: 1,
     ...Platform.select({
       android: {
-        backgroundColor: '#eee',
-      },
-    }),
+        backgroundColor: '#eee'
+      }
+    })
   },
   timeTextContainer: {
     justifyContent: 'center',
     width: 60,
-    marginHorizontal: 10,
+    marginHorizontal: 10
   },
   timeText: {
     color: '#bdbdbd',
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     opacity: 0.9,
     padding: 0,
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 });
 
 const SeekBar = ({
@@ -41,7 +41,7 @@ const SeekBar = ({
   estimatedTime,
   isFullScreen,
   onValueChange,
-  onSlidingComplete,
+  onSlidingComplete
 }) => {
   const timeEnd = estimatedTime - currentTime;
   return (
@@ -70,13 +70,12 @@ const SeekBar = ({
   );
 };
 
-
 SeekBar.propTypes = {
   currentTime: PropTypes.number.isRequired,
   estimatedTime: PropTypes.number.isRequired,
   isFullScreen: PropTypes.bool.isRequired,
   onValueChange: PropTypes.func.isRequired,
-  onSlidingComplete: PropTypes.func.isRequired,
+  onSlidingComplete: PropTypes.func.isRequired
 };
 
 export default SeekBar;

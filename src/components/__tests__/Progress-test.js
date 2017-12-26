@@ -10,12 +10,9 @@ jest.mock('../ProgressBar', () => 'ProgressBar');
 
 describe('Progress', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <Progress
-        completeLectureCount={0}
-        totalLectureCount={10}
-      />,
-    ).toJSON();
+    const tree = renderer
+      .create(<Progress completeLectureCount={0} totalLectureCount={10} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
