@@ -543,6 +543,62 @@
 			remoteGlobalIDString = 2D2A28881D9B049200D4039D;
 			remoteInfo = "RCTWebSocket-tvOS";
 		};
+		5754E21F20295DD200FF76DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D001F3B181A0099AA32;
+			remoteInfo = fishhook;
+		};
+		5754E22120295DD200FF76DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
+			remoteInfo = "fishhook-tvOS";
+		};
+		5754E22720295DD200FF76DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ACEFDEE1F0DF5F30014908A /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D001F3B181A0099AA32;
+			remoteInfo = fishhook;
+		};
+		5754E22920295DD200FF76DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ACEFDEE1F0DF5F30014908A /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
+			remoteInfo = "fishhook-tvOS";
+		};
+		5754E23B20295DD200FF76DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EBF21BDC1FC498900052F4D5;
+			remoteInfo = jsinspector;
+		};
+		5754E23D20295DD200FF76DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EBF21BFA1FC4989A0052F4D5;
+			remoteInfo = "jsinspector-tvOS";
+		};
+		5754E23F20295DD200FF76DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
+			remoteInfo = privatedata;
+		};
+		5754E24120295DD200FF76DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
+			remoteInfo = "privatedata-tvOS";
+		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -3626,6 +3682,8 @@
 			children = (
 				0ACEFE5A1F0DF5F30014908A /* libRCTWebSocket.a */,
 				0ACEFE5C1F0DF5F30014908A /* libRCTWebSocket-tvOS.a */,
+				5754E22820295DD200FF76DB /* libfishhook.a */,
+				5754E22A20295DD200FF76DB /* libfishhook-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3653,6 +3711,8 @@
 			children = (
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
+				5754E22020295DD200FF76DB /* libfishhook.a */,
+				5754E22220295DD200FF76DB /* libfishhook-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3683,10 +3743,14 @@
 				0ABBAFBB1E66D4DA00F9B672 /* libcxxreact.a */,
 				0ABBAFBD1E66D4DA00F9B672 /* libjschelpers.a */,
 				0ABBAFBF1E66D4DA00F9B672 /* libjschelpers.a */,
+				5754E23C20295DD200FF76DB /* libjsinspector.a */,
+				5754E23E20295DD200FF76DB /* libjsinspector-tvOS.a */,
 				0AA933931F94C9860034D5CA /* libthird-party.a */,
 				0AA933951F94C9860034D5CA /* libthird-party.a */,
 				0AA933971F94C9860034D5CA /* libdouble-conversion.a */,
 				0AA933991F94C9860034D5CA /* libdouble-conversion.a */,
+				5754E24020295DD200FF76DB /* libprivatedata.a */,
+				5754E24220295DD200FF76DB /* libprivatedata-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3878,11 +3942,12 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = T2F46JJNJ6;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					0A95A3CA1E791FDE00E6E3E7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = S6JTW2HH6N;
+						DevelopmentTeam = T2F46JJNJ6;
 						ProvisioningStyle = Automatic;
 					};
 					13B07F861A680F5B00A75B9A = {
@@ -4539,6 +4604,62 @@
 			remoteRef = 3DAD3E981DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		5754E22020295DD200FF76DB /* libfishhook.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfishhook.a;
+			remoteRef = 5754E21F20295DD200FF76DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5754E22220295DD200FF76DB /* libfishhook-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libfishhook-tvOS.a";
+			remoteRef = 5754E22120295DD200FF76DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5754E22820295DD200FF76DB /* libfishhook.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfishhook.a;
+			remoteRef = 5754E22720295DD200FF76DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5754E22A20295DD200FF76DB /* libfishhook-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libfishhook-tvOS.a";
+			remoteRef = 5754E22920295DD200FF76DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5754E23C20295DD200FF76DB /* libjsinspector.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjsinspector.a;
+			remoteRef = 5754E23B20295DD200FF76DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5754E23E20295DD200FF76DB /* libjsinspector-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libjsinspector-tvOS.a";
+			remoteRef = 5754E23D20295DD200FF76DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5754E24020295DD200FF76DB /* libprivatedata.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprivatedata.a;
+			remoteRef = 5754E23F20295DD200FF76DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5754E24220295DD200FF76DB /* libprivatedata-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libprivatedata-tvOS.a";
+			remoteRef = 5754E24120295DD200FF76DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4814,6 +4935,7 @@
 			baseConfigurationReference = 75008EB2D30D5134CDEB9F9A /* Pods-SharewisActMobileTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = T2F46JJNJ6;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -4846,6 +4968,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = T2F46JJNJ6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
@@ -4876,7 +4999,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = S6JTW2HH6N;
+				DEVELOPMENT_TEAM = T2F46JJNJ6;
 				INFOPLIST_FILE = SharewisNotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -4884,7 +5007,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis.SharewisNotificationService";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BeetSoft.ShareWis.SharewisNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4905,7 +5028,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = S6JTW2HH6N;
+				DEVELOPMENT_TEAM = T2F46JJNJ6;
 				INFOPLIST_FILE = SharewisNotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -4913,7 +5036,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis.SharewisNotificationService";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BeetSoft.ShareWis.SharewisNotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -4960,7 +5083,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BeetSoft.ShareWis;
 				PRODUCT_NAME = SharewisActMobile;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -5004,7 +5127,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.share-wis.ShareWis";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BeetSoft.ShareWis;
 				PRODUCT_NAME = SharewisActMobile;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
