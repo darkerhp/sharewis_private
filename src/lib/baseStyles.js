@@ -4,6 +4,8 @@
 import ReactNative from 'react-native';
 
 const { Dimensions, Platform } = ReactNative;
+const width = Dimensions.get('window').width
+const height= Dimensions.get('window').height
 
 const Variables = {
   hyperlink: '#00abc9',
@@ -18,8 +20,8 @@ const Variables = {
   }),
   navBarBackgroundColor: '#00abc9',
   disabledButtonColor: '#dadada',
-  deviceWidth: Dimensions.get('window').width,
-  deviceHeight: Dimensions.get('window').height
+  deviceWidth:width,
+  deviceHeight:height
 };
 
 export default Variables;

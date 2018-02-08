@@ -162,6 +162,7 @@ export const fetchSnackCourse = (force = false) => async (
     if (snackCourses.isEmpty() || force) {
       dispatch(fetchSnackCourseStart());
       const response = await Api.get('snack_courses', { 'user-id': userId });
+      console.log('__test__', response)
       dispatch(fetchSnackCourseSuccess(normalizeCourses(response)));
     }
   } catch (error) {
